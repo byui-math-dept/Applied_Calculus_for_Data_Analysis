@@ -32,17 +32,27 @@ ol[type="a"] {
 table {
   display: block;
   overflow-x: auto;
-  white-space: nowrap;
   max-width: 100%;
+  table-layout: fixed;
+  width: 100%;
 }
 
-/* But allow text in cells to wrap normally */
+/* Allow text in cells to wrap normally */
 table td, table th {
   white-space: normal;
-  min-width: 4rem;
+  word-wrap: break-word;
 }
 
-/* Schedule date column: don't wrap "Mon Apr 20" */
+/* Schedule: Week column narrow, day columns equal and wide enough for topic text */
+table th:first-child,
 table td:first-child {
+  width: 3.5rem;
   white-space: nowrap;
+}
+
+/* Equal width for each MTRF day column (~22% each, leaves room for Week col) */
+table th:not(:first-child),
+table td:not(:first-child) {
+  width: 22%;
+  min-width: 160px;
 }
