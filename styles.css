@@ -33,26 +33,15 @@ table {
   display: block;
   overflow-x: auto;
   max-width: 100%;
-  table-layout: fixed;
-  width: 100%;
 }
 
-/* Allow text in cells to wrap normally */
 table td, table th {
   white-space: normal;
   word-wrap: break-word;
+  min-width: 120px;
 }
 
-/* Schedule: Week column narrow, day columns equal and wide enough for topic text */
-table th:first-child,
-table td:first-child {
-  width: 3.5rem;
+table td:first-child, table th:first-child {
+  min-width: 3rem;
   white-space: nowrap;
-}
-
-/* Equal width for each MTRF day column (~22% each, leaves room for Week col) */
-table th:not(:first-child),
-table td:not(:first-child) {
-  width: 22%;
-  min-width: 160px;
 }
