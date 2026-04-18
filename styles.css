@@ -36,6 +36,7 @@ table {
 }
 
 table td, table th {
+  border: 1px solid #dee2e6 !important;
   white-space: normal;
   word-wrap: break-word;
   min-width: 120px;
