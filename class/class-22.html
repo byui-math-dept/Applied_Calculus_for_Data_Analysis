@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Class 22 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +72,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +132,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +323,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +394,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +439,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---chain-rule-practice" id="toc-activity---chain-rule-practice" class="nav-link" data-scroll-target="#activity---chain-rule-practice">Activity - Chain Rule Practice</a></li>
+  <li><a href="#activity---partial-derivatives-with-the-chain-rule" id="toc-activity---partial-derivatives-with-the-chain-rule" class="nav-link" data-scroll-target="#activity---partial-derivatives-with-the-chain-rule">Activity - Partial Derivatives with the Chain Rule</a></li>
+  <li><a href="#activity---graphing-a-second-derivative" id="toc-activity---graphing-a-second-derivative" class="nav-link" data-scroll-target="#activity---graphing-a-second-derivative">Activity - Graphing a Second Derivative</a></li>
+  <li><a href="#activity---loglikelihood" id="toc-activity---loglikelihood" class="nav-link" data-scroll-target="#activity---loglikelihood">Activity - Loglikelihood</a></li>
+  <li><a href="#activity---chain-rule-practice-1" id="toc-activity---chain-rule-practice-1" class="nav-link" data-scroll-target="#activity---chain-rule-practice-1">Activity - Chain Rule Practice</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +459,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Class 22</h1>
 </div>
 
 
@@ -436,14 +476,171 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definition: Partial Derivative
+</summary>
+<p>Consider a function of several variables <span class="math inline">\(f(x,y)\)</span>. - The symbol <span class="math inline">\(\frac{\partial f}{\partial x}\)</span> is read “the partial derivative of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span>” or “the partial of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span>”. - The symbol <span class="math inline">\(\frac{\partial f}{\partial y}\)</span> is read “the partial derivative of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(y\)</span>” or “the partial of <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(y\)</span>”. To calculate a partial derivative we treat all independent variables, except the one we are differentiating with respect to, as constants and use the derivative rules for a single variable function.</p>
+<p>Let’s look at an example that includes the chain rule. Consider the function <span class="math inline">\(S(x,y) = 3(\pi x + 4y)^3\)</span>. - The partial of <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(x\)</span> is <span class="math inline">\(\frac{\partial S}{\partial x} = 3(3(\pi x + 4y)^{2})(\pi)\)</span>. - And the partial of <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(y\)</span> is <span class="math inline">\(\frac{\partial S}{\partial y} = 3(3(\pi x + 4y)^{2})(4)\)</span>.</p>
+</details>
+</div>
+</div>
+<ol type="1">
+<li><p>For the function <span class="math inline">\(g(x) = e^{3x^2}\)</span>, identify two functions <span class="math inline">\(f(u)\)</span> and <span class="math inline">\(u(x)\)</span> so that <span class="math inline">\(g(x) = f(u(x))\)</span>. Then compute <span class="math inline">\(\frac{dg}{dx} = \frac{df}{du}\frac{du}{dx}\)</span>.</p></li>
+<li><p>Use the information about <span class="math inline">\(f\)</span> and <span class="math inline">\(f'\)</span> in the table and <span class="math inline">\(g\)</span> to find each of the following values. http://byuimath.com/bmw/all/119/uploads/Class/chain_rule_exercise.png</p>
+<ul>
+<li>Given <span class="math inline">\(h(x) = g(f(x))\)</span>, find <span class="math inline">\(h'(3)\)</span>.</li>
+<li>Given <span class="math inline">\(k(x) = f(g(x))\)</span>, find <span class="math inline">\(k'(1)\)</span>.</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>Each of these problems focus on using the chain rule. We will use <span class="math inline">\(g(1) = 2\)</span> and <span class="math inline">\(g'(1)=3\)</span> (slope of the line). - We have <span class="math inline">\(h'(x) = g'(f(x))f'(x)\)</span>, which means <span class="math inline">\(h'(3) = g'(f(3))f'(3) = g'(1)(6) = (3)(6) = 18\)</span>. - We get <span class="math inline">\(k'(x) = f'(g(x))g'(x)\)</span>, and so <span class="math inline">\(k'(1) = f'(g(1))g'(1) = f'(2)(3) = (5)(3) = 15\)</span>.</p>
+</details>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Given <span class="math inline">\(f(a; \textbf{x}) = \sum_{i=1}^{3} (ax_i + 2)^5\)</span>, find <span class="math inline">\(\frac{df}{da}\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answer
+</summary>
+<p>We see <span class="math inline">\(\frac{df}{da} = 5x_1(ax_1 + 2)^4 + 5x_2(ax_2 + 2)^4 + 5x_3(ax_3 + 2)^4 = \sum_{i=1}^3 5x_i(ax_i + 2)^4\)</span>.</p>
+</details>
+</div>
+</div>
+<ol start="4" type="1">
+<li>For the function <span class="math inline">\(f(x) = e^{3x}\)</span> and <span class="math inline">\(g(x) = x^4 - 1\)</span>, write out both <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>, and then compute the derivative of each composite function.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>The composite functions are - <span class="math inline">\(f(g(x)) = e^{3(x^4 - 1)}\)</span> and - <span class="math inline">\(g(f(x)) =  (e^{3x})^4 - 1\)</span>. The derivatives of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are <span class="math inline">\(f'(x) = 3e^{3x}\)</span> and <span class="math inline">\(g'(x) = 4x^3\)</span>. The chain rule then gives us - <span class="math inline">\(\ds\frac{d}{dx}[f(g(x))] = f'(g(x))g'(x) = 3e^{3(g(x))}4x^3 = 3e^{3(x^4 - 1)}4x^3.\)</span> - <span class="math inline">\(\ds\frac{d}{dx}[g(f(x))] = g'(f(x))f'(x) = 4(f(x))^33e^{3x} = 4(e^{3x})^33e^{3x}.\)</span></p>
+</details>
+</div>
+</div>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
+<section id="activity---chain-rule-practice" class="level3">
+<h3 class="anchored" data-anchor-id="activity---chain-rule-practice">Activity - Chain Rule Practice</h3>
+<p>For each function <span class="math inline">\(g(x)\)</span>, identify two functions <span class="math inline">\(f(u)\)</span> and <span class="math inline">\(u(x)\)</span> so that <span class="math inline">\(g(x) = f(u(x))\)</span> and then compute <span class="math inline">\(\frac{dg}{dx} = \frac{df}{du}\frac{du}{dx}\)</span>. 1. <span class="math inline">\(g(x) = (x^2-3)^4\)</span> 1. <span class="math inline">\(g(x) = \ln(4x+3)\)</span> 1. <span class="math inline">\(g(x) = e^{4x+3}\)</span> 1. <span class="math inline">\(g(x) = (x^3+\ln x)^2\)</span> 1. <span class="math inline">\(g(x) = \ln (e^{2x} + 1)\)</span> 1. <span class="math inline">\(g(x) = e^{4\ln{5x}+3}\)</span></p>
+</section>
+<section id="activity---partial-derivatives-with-the-chain-rule" class="level3">
+<h3 class="anchored" data-anchor-id="activity---partial-derivatives-with-the-chain-rule">Activity - Partial Derivatives with the Chain Rule</h3>
+<ol type="1">
+<li>Given <span class="math inline">\(S(x, y; a, b) = 3(ax + by)^{-3}\)</span>, find <span class="math inline">\(\diff{S}{x}\)</span> assuming all other variables and parameters are constant then find <span class="math inline">\(\diff{S}{y}\)</span> assuming all other variables and parameters are constant. (Yes, these are long-winded ways of saying compute <span class="math inline">\(\frac{\partial S}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}\)</span>.)</li>
+<li>Given <span class="math inline">\(g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}\)</span>, find <span class="math inline">\(\frac{\partial g}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2}\)</span>.</li>
+<li>Given <span class="math inline">\(h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}\)</span>, find <span class="math inline">\(\frac{\partial h}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y}\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answer
+</summary>
+<ol type="1">
+<li>We have <span class="math inline">\(\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}\)</span>.</li>
+<li>We find <span class="math inline">\(\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{x_i}{2\sqrt{a_1x_i + a_2y_i}}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{y_i}{2\sqrt{a_1x_i + a_2y_i}}\)</span>.</li>
+<li>We compute <span class="math inline">\(\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}\)</span></li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<section id="activity---graphing-a-second-derivative" class="level3">
+<h3 class="anchored" data-anchor-id="activity---graphing-a-second-derivative">Activity - Graphing a Second Derivative</h3>
+<p>For the function below, graph the first and second derivative. https://byuimath.com/bmw/all/119/uploads/Class/Second-Derivative-Exercise.png</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>See https://www.desmos.com/calculator/nrd4njagea.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="activity---loglikelihood" class="level3">
+<h3 class="anchored" data-anchor-id="activity---loglikelihood">Activity - Loglikelihood</h3>
+<p>You have been given a list of 44 data points, <span class="math inline">\((t_i, y_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the time in hours since the light was turned on and <span class="math inline">\(y_i\)</span> is the percent intensity of the bulb after <span class="math inline">\(t_i\)</span> hours. A model for the percent intensity of the bulb is <span class="math inline">\(f(x;m,b) = mx+b\)</span>, where <span class="math inline">\(t\)</span> is the time in hours since the light was turned on. - Write the formula for the residuals.</p>
+<p>Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1). - Write down the probability model we are using for one of the residuals. - What does knowing the residuals are independent allow us to do? - Use the assumption of independent residuals to write the joint probability function. - Write the likelihood function for the residuals in this situation. - Write the loglikelihood function for the errors in this situation. - Rewrite the loglikelihood function using the properties of logs and sums.</p>
+</section>
+<section id="activity---chain-rule-practice-1" class="level3">
+<h3 class="anchored" data-anchor-id="activity---chain-rule-practice-1">Activity - Chain Rule Practice</h3>
+<p>For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. As a suggestion, compute both <span class="math inline">\(f'(x)\)</span> and <span class="math inline">\(g'(x)\)</span> first, and then show how you can combine <span class="math inline">\(f,g,f',g'\)</span> to get the derivative of each composite function.<br>
+Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span> 1. <span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span> 1. <span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span> 1. <span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span> 1. <span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span> 1. <span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span> 1. <span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span> 1. <span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span> 1. <span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span> 1. <span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span> 1. <span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span> 1. <span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span> 1. <span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

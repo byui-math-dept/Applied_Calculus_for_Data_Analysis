@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Flex Day 1 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +72,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +132,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +323,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +394,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +439,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#definitions-and-reminders" id="toc-definitions-and-reminders" class="nav-link" data-scroll-target="#definitions-and-reminders">Definitions and Reminders</a></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---logs-with-prod-and-sum-notation" id="toc-activity---logs-with-prod-and-sum-notation" class="nav-link" data-scroll-target="#activity---logs-with-prod-and-sum-notation">Activity - Logs with <span class="math inline">\(\prod\)</span> and <span class="math inline">\(\sum\)</span> notation</a></li>
+  <li><a href="#activity---practice-with-logarithms" id="toc-activity---practice-with-logarithms" class="nav-link" data-scroll-target="#activity---practice-with-logarithms">Activity - Practice with Logarithms</a></li>
+  <li><a href="#activity---solving-equations" id="toc-activity---solving-equations" class="nav-link" data-scroll-target="#activity---solving-equations">Activity - Solving Equations</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#between-class-sessions" id="toc-between-class-sessions" class="nav-link" data-scroll-target="#between-class-sessions">Between Class Sessions</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +463,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Flex Day 1</h1>
 </div>
 
 
@@ -436,14 +480,298 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<p>Match the expanded log expressions in the left column with the condensed log expressions in the right column. | Expanded Expressions | Condensed Expressions | | — | — | | 1. <span class="math inline">\(\log 3 + \log 2\)</span> | A. <span class="math inline">\(\log 4\)</span> | | 2. <span class="math inline">\(\log 10 - \log 2\)</span> | B. <span class="math inline">\(\log 5\)</span> | | 3. <span class="math inline">\(3\log 2\)</span> | C. <span class="math inline">\(\log 6\)</span> | | 4. <span class="math inline">\(\frac{2}{3}\log 27\)</span> | D. <span class="math inline">\(\log 8\)</span> | | 5. <span class="math inline">\(\log 24 - \log 6\)</span> | E. <span class="math inline">\(\log 9\)</span> | | 6. <span class="math inline">\(\log 6 + \log 3\)</span> | F. <span class="math inline">\(\log 18\)</span> | |</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<ol type="1">
+<li>C<br></li>
+<li>B<br></li>
+<li>D<br></li>
+<li>E<br></li>
+<li>A<br></li>
+<li>F</li>
+</ol>
+<p>We can use R to calculate approximations for each expression.</p>
+<pre><code>log(3,10) + log(2,10)
+log(6,10)
+
+log10(10) - log10(2)
+log(5,10)
+
+3*log(2,10)
+log10(8)
+
+(2/3)*log(27,10)
+log(9,10)
+
+log(24,10)-log10(6)
+log10(4)
+
+log(6,10)+log10(3)
+log(18,10)</code></pre>
+</details>
+</div>
+</div>
+</section>
+<section id="definitions-and-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="definitions-and-reminders">Definitions and Reminders</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definition: Exponential Function (OpenStax Textbook)
+</summary>
+<p>An <strong>exponential function</strong> is of the form <span class="math inline">\(b^x\)</span> where <span class="math inline">\(b&gt;0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
+<p>Note: An exponential function is not an algebraic function.</p>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Key Characteristics of Exponential Function
+</summary>
+<ul>
+<li>Domain is all real numbers</li>
+<li>Range is positive real numbers</li>
+<li>When <span class="math inline">\(b &gt; 1\)</span> the function is increasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> decreases (approaches negative infinity) the output gets close to zero.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output increases without bound.</li>
+<li>These functions are concave up. (We will learn the precise meaning of concavity later this semester.)</li>
+</ul></li>
+<li>When <span class="math inline">\(0&lt; b &lt; 1\)</span> the function is decreasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> decreases (approaches negative infinity) the output grows without bound.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output gets close to zero.</li>
+<li>These functions are concave up. (We will learn the precise meaning of concavity later this semester.)</li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Properties of Exponents
+</summary>
+<p>If <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(b &gt;0\)</span>, and <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are any real number, then - <span class="math inline">\(a^m \cdot a^n = a^{m+n}\)</span> - <span class="math inline">\(\frac{a^m}{a^n} = a^{m-n}\)</span> - <span class="math inline">\((a^m)^n = a^{mn}\)</span> - <span class="math inline">\(\frac{1}{a^n} = a^{-n}\)</span> - <span class="math inline">\(\sqrt[n]{a} = a^{1/n}\)</span> - <span class="math inline">\(\sqrt[n]{a^m} = a^{m/n}\)</span> - <span class="math inline">\(a^m \cdot b^m = (a \cdot b)^m\)</span> - <span class="math inline">\(\frac{a^m}{b^m} = \left(\frac{a}{b}\right)^m\)</span></p>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definition: Logarithm (OpenStax Textbook)
+</summary>
+<p>A <strong>logarithm</strong> base <span class="math inline">\(b\)</span> of a positive number satisfies the following definition.</p>
+<p>For <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(b&gt;0\)</span>, and <span class="math inline">\(b \neq 1\)</span>, <span class="math inline">\(y = \log_b(x)\)</span> is equivalent to <span class="math inline">\(b^y = x\)</span></p>
+<ul>
+<li>We read <span class="math inline">\(\log_b(x)\)</span> as, “the log base <span class="math inline">\(b\)</span> of <span class="math inline">\(x\)</span>” or “the logarithm with base <span class="math inline">\(b\)</span> of <span class="math inline">\(x\)</span>”.</li>
+<li>The logarithm is the exponent that <span class="math inline">\(b\)</span> must be raised to get <span class="math inline">\(x\)</span>.</li>
+<li>When we evaluate <span class="math inline">\(\log_b(x)\)</span> we answer the question, “To what exponent must <span class="math inline">\(b\)</span> be raised to in order to get <span class="math inline">\(x\)</span>?”</li>
+</ul>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The key idea is that we can rewrite any logarithm in exponential form, as <span class="math display">\[\huge{y = \log_b(x) \Leftrightarrow b^y = x}.\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definition: Logarithmic Function
+</summary>
+<p>A <strong>logarithmic function</strong> is of the form <span class="math inline">\(\log_b(x)\)</span> where <span class="math inline">\(b&gt;0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
+<p>Note: A logarithmic function is not an algebraic function.</p>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Key Characteristics of Logarithmic Function
+</summary>
+<ul>
+<li>Domain is positive real numbers</li>
+<li>Range is all real numbers</li>
+<li>When <span class="math inline">\(b &gt; 1\)</span> the function is increasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> gets close to zero from the right the output approaches negative infinity.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output increases without bound.</li>
+<li>These functions are concave down.</li>
+</ul></li>
+<li>When <span class="math inline">\(0&lt; b &lt; 1\)</span> the function is decreasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> gets close to zero from the right the output grows without bound (approaches infinity).</li>
+<li>As <span class="math inline">\(x\)</span> increases the output approaches negative infinity.</li>
+<li>These functions are concave up.</li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Properties of Logarithms
+</summary>
+<p>If <span class="math inline">\(a&gt;0\)</span>, <span class="math inline">\(b &gt; 0\)</span>, <span class="math inline">\(c &gt; 0\)</span>, <span class="math inline">\(b \neq 1\)</span>, and <span class="math inline">\(n\)</span> is any real number, then - <span class="math inline">\(\log_b b^x = x\)</span> and <span class="math inline">\(b^{\log_b x} = x\)</span> (inverse property) - Special Cases - <span class="math inline">\(\log_b b = \log_b b^1 = 1\)</span> - <span class="math inline">\(\log_b 1 = \log_b b^0 = 0\)</span> - <span class="math inline">\(\log_b(ac) = \log_b(a) + \log_b(c)\)</span> (product property) - <span class="math inline">\(\log_b\left(\frac{a}{c}\right) = \log_b(a) - \log_b(c)\)</span> (quotient property) - <span class="math inline">\(\log_b(a^n) = n\log_b(a)\)</span> (power property)</p>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\huge{\text{Logs turn multiplication into addtion!}}\)</span></p>
+</div>
+</div>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>General Instructions - Give each group member a several minutes to share.</p>
+<section id="activity---logs-with-prod-and-sum-notation" class="level3">
+<h3 class="anchored" data-anchor-id="activity---logs-with-prod-and-sum-notation">Activity - Logs with <span class="math inline">\(\prod\)</span> and <span class="math inline">\(\sum\)</span> notation</h3>
+<p>Write in expanded form. - <span class="math inline">\(\prod_{m=1}^2(mx + 1)\)</span> - <span class="math inline">\(\prod_{m=1}^3(mx + 1)\)</span> - <span class="math inline">\(\sum_{m=1}^3(mx + 1)\)</span> - <span class="math inline">\(\sum_{m=1}^3\ln(mx + 1)\)</span> - <span class="math inline">\(\sum_{m=1}^3(x_m + 1)\)</span> - <span class="math inline">\(\sum_{m=1}^3\ln(x_m + 1)\)</span></p>
+<p>Rewrite the following expressions using log properties. - <span class="math inline">\(\ln \left(\prod_{m=1}^2(mx + 1)\right)\)</span> - <span class="math inline">\(\ln \left(\prod_{m=1}^7(mx + 1)\right)\)</span> - <span class="math inline">\(\ln \left(\prod_{i=1}^5((y_i - 3)^2) \right)\)</span> - <span class="math inline">\(\ln \left(\prod_{i=1}^n((ax_i+b-y_i)^2) \right)\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\huge{\text{Logs turn multiplication into addtion!}}\)</span></p>
+</div>
+</div>
+</section>
+<section id="activity---practice-with-logarithms" class="level3">
+<h3 class="anchored" data-anchor-id="activity---practice-with-logarithms">Activity - Practice with Logarithms</h3>
+<p>Use R to plot the functions <span class="math inline">\(f(x) = 2^x\)</span>, <span class="math inline">\(g(x) = e^x\)</span>, and <span class="math inline">\(h(x) = 10^x\)</span>. Then answer the following questions. - What is the domain of an exponential function? - What is the range of an exponential function? - Give an example of a power function. What is the difference between a power function and an exponential function?</p>
+<p>Use R to plot the function <span class="math inline">\(F(x) = \log_2(x)\)</span>, <span class="math inline">\(G(x) = \ln(x)\)</span>, and <span class="math inline">\(H(x) = \log(x)\)</span>. Then answer the following questions. - What is the domain of a logarithmic function? - What is the range of a logarithmic function?</p>
+</section>
+<section id="activity---solving-equations" class="level3">
+<h3 class="anchored" data-anchor-id="activity---solving-equations">Activity - Solving Equations</h3>
+<p>Solve the following equations for <span class="math inline">\(x\)</span>. Write down the exact answer and decimal approximation (round to 4 decimal places). - <span class="math inline">\(\ln(4x-2) = 5\)</span> - <span class="math inline">\(\log(5x-30) = 1\)</span> - <span class="math inline">\(9^x = 49\)</span> - <span class="math inline">\(2^x = 56\)</span> - <span class="math inline">\(-2\log_5(7x) = 2\)</span> - <span class="math inline">\(\log_3(x-3) - 4 = 12\)</span> - <span class="math inline">\(\log_2(x-1) + \log_2(x+5) = 4\)</span> - <span class="math inline">\(e^{x-1}-5 = 5\)</span> - <span class="math inline">\(3(4^{2-5x})-7=8\)</span> - <span class="math inline">\(\ln(x+5) + \ln(x) = \ln(12x)\)</span></p>
+</section>
+</section>
+</section>
+<section id="between-class-sessions" class="level1">
+<h1>Between Class Sessions</h1>
+<p><a id="PP"></a></p>
+<section id="skill-practice-ka-homework" class="level2">
+<h2 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h2>
+<ul>
+<li>Finish any of the first three log assignments if you have not already finished them.</li>
+<li>Continue working on 1 – Solve Logarithmic Equations (and IVT) assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level2">
+<h2 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h2>
+<ul>
+<li>Continue working on Project 1 Task 3</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Class 1 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +72,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +132,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +323,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +394,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +439,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#welcome" id="toc-welcome" class="nav-link" data-scroll-target="#welcome">Welcome!</a></li>
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#group-discussion" id="toc-group-discussion" class="nav-link" data-scroll-target="#group-discussion">Group Discussion</a></li>
+  <li><a href="#class-discussion" id="toc-class-discussion" class="nav-link" data-scroll-target="#class-discussion">Class Discussion</a>
+  <ul class="collapse">
+  <li><a href="#mastery-learning---specifications-grading" id="toc-mastery-learning---specifications-grading" class="nav-link" data-scroll-target="#mastery-learning---specifications-grading">Mastery Learning - Specifications Grading</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +457,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Class 1</h1>
 </div>
 
 
@@ -436,14 +474,367 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome!</h2>
+<ul>
+<li>The address for this Wiki is <a href="https://byuimath.com/bmw/all/119/" target="_blank">https://byuimath.com/bmw/all/119/</a>.<br>
+&gt; <img src="../assets/uploads/Class/119-bmw.png" class="img-fluid">{#height=“100px”}</li>
+<li>First Day Challenge: Exchange name and contact information with at least 1 other student in this class during our work today.</li>
+</ul>
+</section>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<ol type="1">
+<li>Let <span class="math inline">\(f(x,y) = 4x^2 -5y\sqrt{x+1}\)</span>. Find each of the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(3,2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0,-2.1)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-2.1,5)\)</span>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(3,2) = 16\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0,-2.1) = 10.5\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-2.1,5)\)</span> is undefined
+</li>
+</ol>
+<p>Note: The terms “undefined” and “no solution” have different meanings mathematically. In this case, <span class="math inline">\(f(-2.1,5)\)</span> is undefined because when we try to evaluate <span class="math inline">\(f(-2.1,5)\)</span>, we see <span class="math inline">\(f(-2.1,5) = 4(-2.1)^2 - 5(5)\sqrt{-2.1+1} = 17.64 - 25\sqrt{-1.1}\)</span>. Since there is no real number such that when you square the number you get -1.1, we see <span class="math inline">\(\sqrt{-1.1}\)</span> is undefined when we are working with real number. You can assume that we will always be working with real numbers in this class, unless otherwise specified.</p>
+</details>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Consider the piecewise function <span class="math display">\[f(x) =
+\begin{cases}
+x &amp; \quad x\geq 0 \\ \\
+-x &amp; \quad x&lt;0
+\end{cases}.\]</span> Find the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-27)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\sqrt{3})\)</span>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2) = 2\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-27) = 27\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0) = 0\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\sqrt{3}) = \sqrt{3} \approx 1.732051\)</span>
+</li>
+</ol>
+<p>The number <span class="math inline">\(f(3)\)</span> an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol <span class="math inline">\(\sqrt{3}\)</span> which represents the positive real number that when you square it you get exactly 3.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="group-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="group-discussion">Group Discussion</h2>
+<p>We’ll split into randomized groups every day of class. Jot your name on the board to help us all learn each other’s names.<br>
+Then work through the following problems. - Take turns acting as scribe for the group. When you are the scribe, it’s fine to not know exactly how to proceed. - The goal is to ask questions of each other and help each other. - Leave up your work so that you can compare your answers with neighbors.</p>
+<ol type="1">
+<li>Let <span class="math inline">\(f(x) = \frac{2x+4}{x^2}\)</span>. Find each of the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(-4)\)</span>
+</li>
+</ol></li>
+<li><span class="math inline">\(f(1)\)</span></li>
+<li><span class="math inline">\(f(0)\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(-4) = -0.25\)</span>
+</li>
+<li>
+<span class="math inline">\(f(1) = 6\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0)\)</span> is undefined
+</li>
+</ol>
+<p>Note: The number <span class="math inline">\(f(0)\)</span> is undefined in this case because when we try to evaluate <span class="math inline">\(f(0)\)</span> we see <span class="math inline">\(f(0) = \frac{2(0)+4}{0^2} = \frac{4}{0}\)</span>. What does it mean to divide the quantity 4 into 0 parts? This operation is not defined. Some of you may have had calculus before and tried to give an answer of infinity. Note that infinity is a concept, not a number.</p>
+<p>Another way to think of division is that we are looking for a number <span class="math inline">\(k\)</span> so that <span class="math inline">\(k = \frac{n}{d}\)</span>. Thus <span class="math inline">\(k\)</span> multiplied by <span class="math inline">\(d\)</span> would need to be equal to <span class="math inline">\(n\)</span>, in other words <span class="math inline">\(k d = n\)</span>. If the numerator is 4, <span class="math inline">\(n=4\)</span>, and the denominator is 0, <span class="math inline">\(d = 0\)</span>, this would mean <span class="math inline">\(0 = 4\)</span> (<span class="math inline">\(k \cdot 0 = 4\)</span>) for any choice of <span class="math inline">\(k\)</span>, which doesn’t make any sense (we have a contradiction). So we say division by zero is undefined.</p>
+</details>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Let <span class="math inline">\(f(x) = 8x^2 - 15\)</span>. Find each of the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(1)\)</span>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2) = 17\)</span>
+</li>
+<li>
+<span class="math inline">\(f(1) = -7\)</span>
+</li>
+</ol>
+</details>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Consider the piecewise function <span class="math inline">\(f(x) =
+\begin{cases}
+x^2 &amp; \quad x\geq 0 \\ \\
+-x+4 &amp; \quad x&lt;0
+\end{cases}.\)</span><br> Find the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-27)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\sqrt{3})\)</span>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2) = 6\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-27) = 31\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0) = 0\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\sqrt{3}) = 3\)</span>
+</li>
+</ol>
+</details>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Consider the piecewise function <span class="math inline">\(f(x) =
+\begin{cases}
+x^3 &amp; \quad x &lt; -1 \\ \\
+-2 &amp; \quad -1 &lt; x &lt; 4 \\ \\
+\sqrt{x} &amp; \quad x \geq 4
+\end{cases}.\)</span><br> Find the following values.
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-0.5)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(3)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(5.2)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-1)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(4)\)</span>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ol type="a">
+<li>
+<span class="math inline">\(f(-2) = -8\)</span>
+</li>
+<li>
+<span class="math inline">\(f(-0.5) = -2\)</span>
+</li>
+<li>
+<span class="math inline">\(f(3) = -2\)</span>
+</li>
+<li>
+<span class="math inline">\(f(0) = -2\)</span>
+</li>
+<li>
+<span class="math inline">\(f(5.2) \approx 2.280351\)</span>. The number <span class="math inline">\(f(5.2)\)</span> an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol <span class="math inline">\(\sqrt{5.2}\)</span> which represents the positive real number that when you square it you get exactly 5.2.
+</li>
+<li>
+<span class="math inline">\(f(-1)\)</span> is undefined. We have no rule that tells us what we the output will be when the input is -1. Generally in situations like this, we assume that -1 is not in the domain of <span class="math inline">\(f\)</span> rather than that the author just forgot to tell us the rule for the output connected to the input -1.
+</li>
+<li>
+<span class="math inline">\(f(4) = 2\)</span>
+</li>
+</ol>
+</details>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Let <span class="math inline">\(f(x) = x^2\)</span>. Determine whether or not <span class="math inline">\(f(a+b) = f(a) + f(b)\)</span>. Carefully explain your answer. While an example is not an explanation, sometimes examples can be a helpful part of an explanation.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Possible Explanation
+</summary>
+<p>Given <span class="math inline">\(f(x) = x^2\)</span>, we will show <span class="math inline">\(f(a+b) = f(a) + f(b)\)</span> is not true for all values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> by providing a pair of number <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that <span class="math inline">\((a+b)^2 \neq a^2 + b^2\)</span> (a counter example). Let <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=7\)</span>. We see <span class="math inline">\((a+b)^2 = (1+7)^2 = 8^2 = 64\)</span> and <span class="math inline">\(a^2 + b^2 = 1^2 + 7^2 = 1 + 49 = 50\)</span>. We see <span class="math inline">\((a+b)^2 = 64 \neq 50 = a^2 + b^2\)</span> or <span class="math inline">\((a+b)^2 \neq a^2 + b^2\)</span>.</p>
+<p>We can also show that <span class="math inline">\(f(a+b) = f(a) + f(b)\)</span> is not a true statement by showing that <span class="math inline">\(f(a+b) \neq f(a) + f(b)\)</span> in general when <span class="math inline">\(f(x) = x^2\)</span>. We see <span class="math inline">\(f(a) = a^2\)</span> and <span class="math inline">\(f(b) = b^2\)</span>. Now we compute <span class="math inline">\(f(a+b) = (a+b)^2 = (a+b)(a+b) = a^2 + 2ab + b^2 \neq a^2 + b^2 = f(a) + f(b)\)</span> when <span class="math inline">\(2ab \neq 0\)</span>. Thus we see that <span class="math inline">\(f(a+b) \neq f(a) + f(b)\)</span> unless <span class="math inline">\(2ab = 0\)</span>.</p>
+<p>Important take away: - The square of a sum is NOT the sum of the squares, <span class="math inline">\((a + b)^2 \neq a^2 + b^2\)</span>. - The operation of addition must happen before the power. The order of operations is grouping and then exponents.</p>
+</details>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Construct a plot of as many of the functions above as you have time. Use whatever software package you are comfortable with, helping each other to replicate the plot.</li>
+</ol>
+</section>
+<section id="class-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="class-discussion">Class Discussion</h2>
+<section id="mastery-learning---specifications-grading" class="level3">
+<h3 class="anchored" data-anchor-id="mastery-learning---specifications-grading">Mastery Learning - Specifications Grading</h3>
+<ol type="1">
+<li>What is <a href="https://youtu.be/-MTRxRO5SRA?t=137" target="_blank">mastery learning</a>?</li>
+<li>What is <a href="https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay" target="_blank">specifications grading</a>?</li>
+<li>Course Introduction and <a href="https://byui.instructure.com/courses/398938/assignments/syllabus" target="_blank">Syllabus</a>.
+<ul>
+<li>Are you in the right class?</li>
+<li><a href="https://byui.instructure.com/courses/398938/pages/math-119-weekly-rhythm?module_item_id=33584172" target="_blank">Weekly rhythm</a>, what should I be doing between class?
+<ol type="1">
+<li>Attendance &amp; Preparation - #tasklist</li>
+<li>Knewton-Alta</li>
+<li>Projects</li>
+</ol></li>
+</ul></li>
+</ol>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

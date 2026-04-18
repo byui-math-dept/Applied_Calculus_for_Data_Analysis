@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Definition: NegativeOnTheIntervalI – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +72,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +132,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +323,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +394,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -405,21 +434,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Definition: NegativeOnTheIntervalI</h1>
 </div>
 
 
@@ -436,15 +459,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definition: <strong>Negative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is negative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; 0\)</span>.</p>
+</details>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Class 19 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,27 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +107,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +167,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +358,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +429,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +474,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---compute-derivatives" id="toc-activity---compute-derivatives" class="nav-link" data-scroll-target="#activity---compute-derivatives">Activity - Compute derivatives</a></li>
+  <li><a href="#activity---higher-order-derivatives" id="toc-activity---higher-order-derivatives" class="nav-link" data-scroll-target="#activity---higher-order-derivatives">Activity - Higher Order Derivatives</a></li>
+  </ul></li>
+  <li><a href="#bonus-problems" id="toc-bonus-problems" class="nav-link" data-scroll-target="#bonus-problems">Bonus Problems</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Class 19</h1>
 </div>
 
 
@@ -436,14 +509,208 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<ol type="1">
+<li>Compute <span class="math inline">\(k'(x)\)</span> for <span class="math inline">\(k(x) = (4x^3-7x)^5\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>We can let <span class="math inline">\(y(u) = u^5\)</span> and <span class="math inline">\(u(x) = 4x^3-7x\)</span>. The then compute <span class="math display">\[
+\begin{align*}
+k'(x)
+&amp;= \frac{dy}{du}\frac{du}{dx} &amp;\text{(chain rule)} \\
+&amp;= (5u^4)(12x^2-7) &amp;\text{(power rule)}\\
+&amp;= (5(4x^3-7x)^4)(12x^2-7) &amp;\text{(write in terms of $x$)}.
+\end{align*}
+\]</span></p>
+</details>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Compute <span class="math inline">\(g'(x)\)</span> for <span class="math inline">\(g(x) = (e^x+3x^2)(x^3-2\ln x)\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>Let <span class="math inline">\(u(x) = e^x+3x^2\)</span> and compute <span class="math inline">\(u'(x) = e^x+6x\)</span> using the sum, constant multiple, power, and exponential rules. Then let <span class="math inline">\(v(x) = x^3-2\ln x\)</span> and obtain <span class="math inline">\(v'(x) = 3x^2-\frac{2}{x}\)</span>, using the power, difference, and logarithm rules. The product rule then gives <span class="math display">\[\begin{align*}
+\frac{d}{dx}[(e^x+3x^2)(x^3-2\ln x)]
+&amp;=\frac{d}{dx}[u(x)v(x)] \\
+&amp;=u'(x)v(x)+ u(x)v'(x)\\
+&amp;=(e^x+6x)(x^3-2\ln x)+ (e^x+3x^2)(3x^2-\frac{2}{x}).
+\end{align*}\]</span> We won’t simplify it any past this. Our goal is to just practice using the rules at this point.</p>
+</details>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Compute <span class="math inline">\(h'(x)\)</span> for <span class="math inline">\(h(x) = \dfrac{e^x+3x^2}{x^3-2\ln x}\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>Let <span class="math inline">\(u(x) = e^x+3x^2\)</span> and compute <span class="math inline">\(u'(x) = e^x+6x\)</span> using the sum, constant multiple, power, and exponential rules. Then let <span class="math inline">\(v(x) = x^3-2\ln x\)</span> and obtain <span class="math inline">\(v'(x) = 3x^2-\frac{2}{x}\)</span>, using the power, difference, and logarithm rules. The quotient rule then gives <span class="math display">\[\begin{align*}
+\frac{d}{dx}\left(\dfrac{e^x+3x^2}{x^3-2\ln x}\right)
+&amp;=\frac{d}{dx}\left(\dfrac{u(x)}{v(x)}\right)  \\
+&amp;=\left(\dfrac{u'(x)v(x) - u(x)v'(x)}{(v(x))^2}\right)  \\
+&amp;=\left(\dfrac{(e^x+6x)(x^3-2\ln x) - (e^x+3x^2)(3x^2-\frac{2}{x})}{(x^3-2\ln x)^2}\right).  
+\end{align*}\]</span> We won’t simplify it any past this. Our goal is to just practice using the rules at this point.</p>
+</details>
+</div>
+</div>
+<ol start="4" type="1">
+<li>For the function <span class="math inline">\(f(x) = x^4\)</span>, let <span class="math inline">\(g(x)=f'(x)\)</span>. Compute <span class="math inline">\(g'(x)\)</span>. Then compute <span class="math inline">\(D_x(g'(x))\)</span>. Finish by computing <span class="math inline">\(\frac{d}{dx}(D_xg')\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<ul>
+<li>$ g(x) = f’(x) = 4x^3 $</li>
+<li>$ g’(x) = 12x^2 $. We often write this as <span class="math inline">\(f''(x)\)</span> or <span class="math inline">\(\frac{d^2f}{dx^2}\)</span>.</li>
+<li>$ D_x(g’(x)) = 24x $. We often write this as <span class="math inline">\(f'''(x)\)</span> or <span class="math inline">\(\frac{d^3f}{dx^3}\)</span>.<br>
+</li>
+<li>$ (D_xg’(x)) = 24 $. We often write this as <span class="math inline">\(f^{ (4) }(x)\)</span> or <span class="math inline">\(\frac{d^4f}{dx^4}\)</span>. Once we pass 3 derivatives, prime notation changes - who wants to count the number of primes.</li>
+</ul>
+</details>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Give an equation of the linear approximation to <span class="math inline">\(f(x)=x^3\)</span> at <span class="math inline">\(x=2\)</span>. (What point does the line pass through? What is the slope of the line?)</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>We know <span class="math inline">\(f'(x) = 3x^2\)</span>, and so the slope of this line is <span class="math inline">\(f'(2) = 12\)</span>. The linearization (tangent line) passes through the point <span class="math inline">\((2,f(2))=(2,8)\)</span>. This gives an equation of the linearlization as <span class="math display">\[y-8=12(x-2).\]</span> We can solve for <span class="math inline">\(y\)</span> to obtain <span class="math display">\[y=8+12(x-2) \quad\text{or}\quad y=12x-16.\]</span> All three of the forms above are correct. We can plot the function along with it’s linearization in https://www.desmos.com/calculator/3bifvksxqy.</p>
+<p>We can also plot the function along with it’s linear approximation (tangent line) in R.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="fl">0.001</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x<span class="sc">^</span><span class="dv">3</span>,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">15</span>),<span class="at">ylab=</span><span class="st">"y"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="dv">8</span><span class="sc">+</span><span class="dv">12</span><span class="sc">*</span>(x<span class="dv">-2</span>),<span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+<ol start="6" type="1">
+<li>What is the late penalty for not getting your project work in by the Due Date?</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>There isn’t one. The point to the deadline is to help you keep up, and provide you time for revisions as needed.</p>
+<p>Once the “End Date” of each Task/Project passes, then no more submissions will be accepted. These end dates are listed in the syllabus.</p>
+<p>If you got stuck on something, it’s OK. There is time to ask questions. We’ll take time in class periodically to help each other.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
+<section id="activity---compute-derivatives" class="level3">
+<h3 class="anchored" data-anchor-id="activity---compute-derivatives">Activity - Compute derivatives</h3>
+<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p>Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 1. <span class="math inline">\(f(x) = (3x-2x^2)(5+4x)\)</span>. Remember to <strong>list each rule you used</strong>. Then pass the chalk (PTC) 1. <span class="math inline">\(f(x) = \frac{x-1}{2x+3}\)</span> (PTC) 1. <span class="math inline">\(f(x) = \left( \frac{1}{x} + 1 \right)(x-1)\)</span> (PTC) 1. <span class="math inline">\(f(t) = (2t^2 - 3)(4 - t^2 - t^4)\)</span> (PTC - I’ll stop writing this.) 1. <span class="math inline">\(f(p) = (p^3 - 2)^2\)</span> 1. <span class="math inline">\(f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}\)</span> 1. <span class="math inline">\(f(x) = \frac{7}{x^3}\)</span> 1. <span class="math inline">\(f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}\)</span> 1. <span class="math inline">\(f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)\)</span> 1. <span class="math inline">\(f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}\)</span> 1. <span class="math inline">\(f(x) = 5 x^3 e^x \ln x\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Final Answers
+</summary>
+<p>These are the final answers you should obtain after listing out each step. 1. <span class="math inline">\(\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)\)</span> 1. <span class="math inline">\(\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)\)</span> 1. <span class="math inline">\(\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }\)</span> 1. Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="activity---higher-order-derivatives" class="level3">
+<h3 class="anchored" data-anchor-id="activity---higher-order-derivatives">Activity - Higher Order Derivatives</h3>
+<p>Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative <span class="math inline">\(f\)</span> we can denote with <span class="math display">\[f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2} = D_x^2 f.\]</span> We use similar notation for higher order derivatives, such at <span class="math inline">\(f'''(x)\)</span> for the third derivative and <span class="math inline">\(\frac{d^4f}{dx^4}\)</span> for a 4th derivative. We avoid prime notation and use notation such as <span class="math inline">\(f^{ (7) }(x)\)</span> when the number of derivatives is quite large.</p>
+<p>Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
+</section>
+</section>
+<section id="bonus-problems" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-problems">Bonus Problems</h2>
+<p>Suppose we know that <span class="math inline">\(f_i(x)\)</span> is a differentiable function and <span class="math inline">\(c_i\)</span> is a constant for each integer <span class="math inline">\(i\)</span> from 1 to 4. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Let <span class="math inline">\(n\)</span> be a positive integer, and then repeat both of the above after replacing 4 with <span class="math inline">\(n\)</span>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

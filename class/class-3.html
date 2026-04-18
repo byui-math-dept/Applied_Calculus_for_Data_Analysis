@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 3 – Math 119 — Applied Calculus for Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Class Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
+        <li>
+    <a class="dropdown-item" href="../class/class-1.html">
+ <span class="dropdown-text">Class 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-2.html">
+ <span class="dropdown-text">Class 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-3.html">
+ <span class="dropdown-text">Class 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-4.html">
+ <span class="dropdown-text">Class 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-5.html">
+ <span class="dropdown-text">Class 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-6.html">
+ <span class="dropdown-text">Class 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-7.html">
+ <span class="dropdown-text">Class 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-8.html">
+ <span class="dropdown-text">Class 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-9.html">
+ <span class="dropdown-text">Class 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-10.html">
+ <span class="dropdown-text">Class 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-11.html">
+ <span class="dropdown-text">Class 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-12.html">
+ <span class="dropdown-text">Class 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-13.html">
+ <span class="dropdown-text">Class 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-14.html">
+ <span class="dropdown-text">Class 14</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-15.html">
+ <span class="dropdown-text">Class 15</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-16.html">
+ <span class="dropdown-text">Class 16</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-17.html">
+ <span class="dropdown-text">Class 17</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-18.html">
+ <span class="dropdown-text">Class 18</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-19.html">
+ <span class="dropdown-text">Class 19</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-20.html">
+ <span class="dropdown-text">Class 20</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-21.html">
+ <span class="dropdown-text">Class 21</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-22.html">
+ <span class="dropdown-text">Class 22</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-23.html">
+ <span class="dropdown-text">Class 23</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-24.html">
+ <span class="dropdown-text">Class 24</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-25.html">
+ <span class="dropdown-text">Class 25</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-26.html">
+ <span class="dropdown-text">Class 26</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-27.html">
+ <span class="dropdown-text">Class 27</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-28.html">
+ <span class="dropdown-text">Class 28</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-29.html">
+ <span class="dropdown-text">Class 29</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-30.html">
+ <span class="dropdown-text">Class 30</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-31.html">
+ <span class="dropdown-text">Class 31</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-32.html">
+ <span class="dropdown-text">Class 32</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-33.html">
+ <span class="dropdown-text">Class 33</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-34.html">
+ <span class="dropdown-text">Class 34</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-35.html">
+ <span class="dropdown-text">Class 35</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-36.html">
+ <span class="dropdown-text">Class 36</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-37.html">
+ <span class="dropdown-text">Class 37</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-38.html">
+ <span class="dropdown-text">Class 38</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-39.html">
+ <span class="dropdown-text">Class 39</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-40.html">
+ <span class="dropdown-text">Class 40</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-41.html">
+ <span class="dropdown-text">Class 41</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-42.html">
+ <span class="dropdown-text">Class 42</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-43.html">
+ <span class="dropdown-text">Class 43</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-44.html">
+ <span class="dropdown-text">Class 44</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-45.html">
+ <span class="dropdown-text">Class 45</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../class/class-46.html">
+ <span class="dropdown-text">Class 46</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Definitions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
+        <li>
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
+ <span class="dropdown-text">ConditionalProbability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
+ <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
+ <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/definition.html">
+ <span class="dropdown-text">Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
+ <span class="dropdown-text">ExponentialFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
+ <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/independentevents.html">
+ <span class="dropdown-text">IndependentEvents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithm.html">
+ <span class="dropdown-text">Logarithm</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
+ <span class="dropdown-text">LogarithmicFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
+ <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
+ <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
+ <span class="dropdown-text">PartialDerivative</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
+ <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
+ <span class="dropdown-text">RandomVariable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
+ <span class="dropdown-text">RulesOfProbabilty</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Flex Days</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
+        <li>
+    <a class="dropdown-item" href="../flex/flex-1.html">
+ <span class="dropdown-text">Flex 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flex/flex-2.html">
+ <span class="dropdown-text">Flex 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flex/flex-3.html">
+ <span class="dropdown-text">Flex 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flex/flex-4.html">
+ <span class="dropdown-text">Flex 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flex/flex-5.html">
+ <span class="dropdown-text">Flex 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../flex/flex-6.html">
+ <span class="dropdown-text">Flex 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#plotting-in-r" id="toc-plotting-in-r" class="nav-link" data-scroll-target="#plotting-in-r">Plotting in R</a></li>
+  <li><a href="#solving-equations" id="toc-solving-equations" class="nav-link" data-scroll-target="#solving-equations">Solving Equations</a></li>
+  <li><a href="#activity---exploring-functions" id="toc-activity---exploring-functions" class="nav-link" data-scroll-target="#activity---exploring-functions">Activity - Exploring Functions</a></li>
+  </ul></li>
+  <li><a href="#class-discussion" id="toc-class-discussion" class="nav-link" data-scroll-target="#class-discussion">Class Discussion</a>
+  <ul class="collapse">
+  <li><a href="#construct-a-scatter-plot" id="toc-construct-a-scatter-plot" class="nav-link" data-scroll-target="#construct-a-scatter-plot">Construct a Scatter Plot</a></li>
+  <li><a href="#rstudio-practice" id="toc-rstudio-practice" class="nav-link" data-scroll-target="#rstudio-practice">RStudio Practice</a></li>
+  </ul></li>
+  <li><a href="#code-for-thought" id="toc-code-for-thought" class="nav-link" data-scroll-target="#code-for-thought">Code for Thought…</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<ol type="1">
+<li><p>In R, compute the square of each of the numbers <span class="math inline">\(-2,-1,0,1,2,3,4,5\)</span>.</p></li>
+<li><p>In R, plot the function <span class="math inline">\(f(x) = x^2\)</span> for <span class="math inline">\(-2\leq x\leq 5\)</span>.</p></li>
+<li><p>In R, construct a graph of <span class="math inline">\(\ds f(x) = \begin{cases}2x&amp;x&lt;1\\3&amp;x\geq 1\end{cases}\)</span></p></li>
+<li><p>What is the difference between a power function and an exponential function?</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Some Solutions
+</summary>
+<p>We can use</p>
+<pre><code>seq</code></pre>
+<p>to create a sequence of numbers, save it as</p>
+<pre><code>x</code></pre>
+<p>, and then square</p>
+<pre><code>x</code></pre>
+<p>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here are several options for plotting, including adding a line and defining a function before plotting.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x<span class="sc">^</span><span class="dv">2</span>, <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>,<span class="fl">0.1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The ifelse command is perfect for plotting a piecewise defined function.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>,<span class="fl">0.1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">ifelse</span>(x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="dv">2</span><span class="sc">*</span>x,<span class="dv">3</span>)}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we don’t want the line connecting the two disconnected parts of the graph, then we’ll have to draw the two portions separately. Note that the plot bounds are set by the first plot created (so we have to specify them), followed by a lines command to add to the already existing plot.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="fl">0.999</span>,<span class="fl">0.1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="fl">0.1</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A power function takes a variable and raises it to a specific power (such as <span class="math inline">\(f(x;a) = x^a\)</span>), while an exponential function has a specific base with a variable power (such as <span class="math inline">\(f(x;a) = a^x\)</span>). If you did not remember all the definitions from last time in class, it’s completely fine.</p>
+<p>Using different letters (such as <span class="math inline">\(u,v\)</span>) for the variables and parameters, we can write the power function as <span class="math inline">\(f(u;v) = u^v\)</span> while we write the exponential function as <span class="math inline">\(g(v;u)=u^v\)</span>. The difference is what we consider to be a constant parameter or variable (with Javascript we use “let” or “const” for this difference).</p>
+</details>
+</div>
+</div>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
+<p>Remember to <strong>Pass The Chalk</strong> between each problem, giving everyone a chance to act as scribe. When you are the scribe, it’s fine to not know exactly how to proceed. The goal is to ask questions of each other and help each other. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
+<section id="plotting-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-in-r">Plotting in R</h3>
+<p>Help each other plot the following functions in R. - <span class="math inline">\(f(x) = x^2+3x\)</span> for <span class="math inline">\(-3\leq x \leq 3\)</span>. - <span class="math inline">\(g(x) = \sqrt{x+4}-\sqrt{x+1}\)</span> over a reasonable domain.</p>
+</section>
+<section id="solving-equations" class="level3">
+<h3 class="anchored" data-anchor-id="solving-equations">Solving Equations</h3>
+<p>The prep asked you to create and solve four types of equations. Start by addressing any question you had from the prep. Then solve each of the following at the chalk boards (remember to pass the chalk between each).</p>
+<ol type="1">
+<li><span class="math inline">\(3x+2=7x-10\)</span></li>
+<li><span class="math inline">\(x^2+3x=10\)</span></li>
+<li><span class="math inline">\(x^2+3x=12\)</span></li>
+<li><span class="math inline">\(\frac{1}{x+2} = \frac{3}{x+1}-1\)</span></li>
+<li><span class="math inline">\(\sqrt{x+4}-\sqrt{x+1}=1\)</span></li>
+</ol>
+<p>If some of the above are/were difficult to solve, it’s ok. We soon learn how to solve all of these using R, and then we’ll continue using software to solve equations for us throughout the semester.</p>
+</section>
+<section id="activity---exploring-functions" class="level3">
+<h3 class="anchored" data-anchor-id="activity---exploring-functions">Activity - Exploring Functions</h3>
+<p>Let <span class="math inline">\(f(x) = x^2\)</span>. Complete each of the following exercises below.</p>
+<ol type="1">
+<li>Complete each table below.</li>
+</ol>
+<p>| | <span class="math inline">\(x\)</span> | <span class="math inline">\(f(x)\)</span> | | — | — | | -2 | | | -1 | | | 0 | | | 1 | | | 2 | | | | <span class="math inline">\(x\)</span> | <span class="math inline">\(g(x) = f(x) + 2\)</span> | | — | — | | -2 | | | -1 | | | 0 | | | 1 | | | 2 | | | | <span class="math inline">\(x\)</span> | <span class="math inline">\(h(x) = f(x+2)\)</span> | | — | — | | | 4 | | | 1 | | | 0 | | | 1 | | | 4 |</p>
+<ol type="1">
+<li><p>Graph each of the functions from part 1.</p></li>
+<li><p>The graph of <span class="math inline">\(g\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>
+<li><p>The graph of <span class="math inline">\(h\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>
+<li><p>(True or False) Given <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants, is the statement <span class="math inline">\(f(a+b) = f(a) + f(b)\)</span> true or false.</p></li>
+<li><p>Repeat parts 1-5 for <span class="math inline">\(f_2(x) = \sqrt{x}\)</span></p></li>
+<li><p>Repeat parts A-E for <span class="math inline">\(f_3(x) = \frac{1}{x}\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section id="class-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="class-discussion">Class Discussion</h2>
+<section id="construct-a-scatter-plot" class="level3">
+<h3 class="anchored" data-anchor-id="construct-a-scatter-plot">Construct a Scatter Plot</h3>
+<p>What is a scatter plot?</p>
+<p>When we study the relationship between two variable, we describe the relationship with a (deterministic) function. When we collect data to study a relationship between two variable, we can display our data using a scatter plot (a plot of points).</p>
+<p>Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the relationship between car weight (stored in the wt column) and fuel efficiency (the mpg column), assuming fuel efficiency is a function of weight, we can visualize this data by constructing a plot with car weight in 1000’s of pounds on the horizontal axis and fuel efficiency in miles per US gallon on the vertical axis.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>wt</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can specify additional plot arguments if desired.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="fl">0.25</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>wt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">'weight (1000 lbs)'</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We can also put everything on a single line, as done below, but the above is easier to read.</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="st">'weight (1000 lbs)'</span>,<span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,<span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can examine the mtcars dataset with head(mtcars), and then construct scatterplots that compare other quantitative (numerical) variables.</p>
+</section>
+<section id="rstudio-practice" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-practice">RStudio Practice</h3>
+<p><strong>Evaluate Functions</strong> - Given <span class="math inline">\(h(x) = \sqrt{3-x}\)</span>, compute <span class="math inline">\(h(-4)\)</span> and <span class="math inline">\(h(5)\)</span>.</p>
+<p><strong>Create and Knit a RMarkdown file</strong> - Click the New File icon OR Click File -&gt; New File -&gt; R Markdown - Typing Math - Not required in Math 119 (You can insert an image with handwritten math.) - But you can copy Latex from our Wiki or Project Instructions.</p>
+<p>We’ll now use RStudio to calculate each value. - Let <span class="math inline">\(w(v) = v^2 - 5v -6\)</span> Compute the following values. - <span class="math inline">\(w(-1)\)</span> - <span class="math inline">\(w(-3)\)</span> - <span class="math inline">\(w(6)\)</span> - <span class="math inline">\(w(4)\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span>x <span class="sc">-</span> <span class="dv">6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">6</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">4</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+<ul>
+<li>Let <span class="math inline">\(f(x) = \frac{2x+4}{x^2}\)</span>. Find each of the following values.
+<ul>
+<li><span class="math inline">\(f(-4)\)</span></li>
+<li><span class="math inline">\(f(1)\)</span></li>
+<li><span class="math inline">\(f(0)\)</span></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">4</span>)<span class="sc">/</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">4</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">0</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: Make sure you know how to interpret the output from R. The value <span class="math inline">\(f(0)\)</span> is undefined. Infinity, <span class="math inline">\(\infty\)</span>, is not a number but a concept.</p>
+</details>
+</div>
+</div>
+<ul>
+<li>Let <span class="math inline">\(f(x) = 8x^2 - 15\)</span>. Find each of the following values.
+<ul>
+<li><span class="math inline">\(f(-2)\)</span></li>
+<li><span class="math inline">\(f(1)\)</span></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<p>Compute <span class="math inline">\(f(-2)\)</span></p>
+<pre><code>8*(-2)^2 - 15</code></pre>
+<p>Compute <span class="math inline">\(f(1)\)</span></p>
+<pre><code>8*(1)^2 - 15</code></pre>
+</details>
+</div>
+</div>
+<ul>
+<li>Consider the piecewise function <span class="math display">\[g(x) =
+\begin{cases}
+x^2 - 6 &amp; \quad x &lt; 0 \\ \\
+10 - x &amp; \quad x \geq 0.
+\end{cases}.\]</span> Find the following values.
+<ul>
+<li><span class="math inline">\(g(7)\)</span></li>
+<li><span class="math inline">\(g(-7)\)</span></li>
+<li><span class="math inline">\(g(-33)\)</span></li>
+<li><span class="math inline">\(g(0)\)</span></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, x<span class="sc">^</span><span class="dv">2-6</span>, <span class="dv">10</span><span class="sc">-</span>x) }</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="dv">7</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="sc">-</span><span class="dv">7</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="sc">-</span><span class="dv">33</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="dv">0</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="sc">-</span><span class="dv">33</span>,<span class="dv">0</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+<ul>
+<li>Consider the piecewise function <span class="math display">\[f(x) =
+\begin{cases}
+x^3 &amp; \quad x &lt; -1 \\ \\
+-2 &amp; \quad -1 &lt; x &lt; 4 \\ \\
+\sqrt{x} &amp; \quad x \geq 4.
+\end{cases}\]</span> Find the following values.
+<ul>
+<li><span class="math inline">\(f(-2)\)</span></li>
+<li><span class="math inline">\(f(-0.5)\)</span></li>
+<li><span class="math inline">\(f(3)\)</span></li>
+<li><span class="math inline">\(f(0)\)</span></li>
+<li><span class="math inline">\(f(5.2)\)</span></li>
+<li><span class="math inline">\(f(-1)\)</span></li>
+<li><span class="math inline">\(f(4)\)</span></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>, x<span class="sc">^</span><span class="dv">3</span>, <span class="fu">ifelse</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="fu">ifelse</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>         x <span class="sc">&gt;=</span> <span class="dv">4</span>, <span class="fu">sqrt</span>(x),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>         <span class="cn">NA</span>)))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">0</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="fl">0.5</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="fl">5.2</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</section>
+</section>
+<section id="code-for-thought" class="level2">
+<h2 class="anchored" data-anchor-id="code-for-thought">Code for Thought…</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Code for Thought…
+</summary>
+<p>How do the following functions compare to the functions f0, f1, and f2 we defined in our Brain Gains?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f2_g <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">0</span>,<span class="at">a1=</span><span class="dv">0</span>,<span class="at">a2=</span><span class="dv">1</span>){a0<span class="sc">+</span>a1<span class="sc">*</span>x<span class="sc">+</span>a2<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>f1_g <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">0</span>,<span class="at">a1=</span><span class="dv">2</span>){a0<span class="sc">+</span>a1<span class="sc">*</span>x}</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f0_g <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">3</span>){a0<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+More Code for Thought…
+</summary>
+<p>How do the following functions compare to any of the functions we looked at today in class?</p>
+<p>How do the following functions compare to each other?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f_p1a <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">ifelse</span>(x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="dv">2</span><span class="sc">*</span>x,<span class="dv">3</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x)}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_p1b <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="fu">length</span>(x))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&lt;</span> <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x[(x <span class="sc">&lt;</span> <span class="dv">1</span>)]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;=</span> <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x[(x <span class="sc">&gt;=</span> <span class="dv">1</span>)]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> <span class="fu">f.p1a</span>(X)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">f.p1b</span>(X)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y1,<span class="at">type=</span><span class="st">'l'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y2,<span class="at">type=</span><span class="st">'l'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y1,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">lwd=</span><span class="dv">5</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X,Y2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Math 119 — BYU-Idaho</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

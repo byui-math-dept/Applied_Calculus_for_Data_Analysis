@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Flex Day 4 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,27 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +107,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +167,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +358,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +429,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +474,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#change-of-variables" id="toc-change-of-variables" class="nav-link" data-scroll-target="#change-of-variables">Change of Variables</a></li>
+  <li><a href="#comparing-solutions" id="toc-comparing-solutions" class="nav-link" data-scroll-target="#comparing-solutions">Comparing Solutions</a></li>
+  </ul></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---integration-practice" id="toc-activity---integration-practice" class="nav-link" data-scroll-target="#activity---integration-practice">Activity - Integration Practice</a></li>
+  <li><a href="#computing-integrals-with-a-cas-computer-algebra-system" id="toc-computing-integrals-with-a-cas-computer-algebra-system" class="nav-link" data-scroll-target="#computing-integrals-with-a-cas-computer-algebra-system">Computing Integrals with a CAS (Computer Algebra System)</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Flex Day 4</h1>
 </div>
 
 
@@ -436,14 +512,191 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="change-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="change-of-variables">Change of Variables</h3>
+<p>Recall: We use the symbol, <span class="math inline">\(\int f(x) dx\)</span>, to represent the collection of all antiderivatives of the function <span class="math inline">\(f(x)\)</span>. Remember antiderivative means “undo” the derivative.</p>
+<p>We also read <span class="math inline">\(\int f(x) dx\)</span> as “the indefinite integral of <span class="math inline">\(f\)</span>”.</p>
+<p>Evaluate each indefinite integral. - <span class="math inline">\(\int (5x^2 + 1)^3 10x dx\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\int \frac{t}{\sqrt{t^2 - 1}} dt\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{t + 2t^2}{\sqrt{t}} dt\)</span></p></li>
+<li><p><span class="math inline">\(\int (5-x)^2 dx\)</span></p></li>
+</ul>
+</section>
+<section id="comparing-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-solutions">Comparing Solutions</h3>
+<p>When computing indefininte integrals, remember that answers computed by hand may appears very different than answer obtained with software such as Mathematica.</p>
+<ul>
+<li>Consider <span class="math inline">\(\int (7-x)^2 dx\)</span>.
+<ul>
+<li>Compute by hand, using substitution, to obtain <span class="math inline">\(\int (7-x)^2 dx = -\frac{1}{3}(7-x)^3 + C\)</span>.</li>
+<li>Compute in Mathematica to obtain <span class="math inline">\(\int (7-x)^2 dx = \frac{1}{3}x^3 - 7x^2 + 49x +C\)</span>. Does Mathematica remember the <span class="math inline">\(+C\)</span>? Here are some code examples that can help you make comparisons in Mathematica.</li>
+</ul></li>
+</ul>
+<pre><code>MyAnswer = -1/3*(7 - x)^3
+MathmaticaAnswer = Integrate[(7 - x)^2, x]
+Expand[MyAnswer]
+MyAnswer - MathmaticaAnswer
+Simplify[MyAnswer - MathmaticaAnswer]
+Simplify[MyAnswer - MathmaticaAnswer]
+Plot[{MyAnswer, MathmaticaAnswer}, {x, -10, 10}]
+Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]</code></pre>
+<ul>
+<li><p>Consider <span class="math inline">\(\int x(x-1)^3 dx\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
+<li><p>Consider <span class="math inline">\(\int \frac{y}{(y+1)^4} dy\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
+<li><p>Consider <span class="math inline">\(\int \frac{1}{x^2 + 8} dx\)</span>. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new or many of us. The function <span class="math inline">\(f(x) = \tan^{-1}(x)\)</span> is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -, ) $. We could use the following code to plot <span class="math inline">\(f(x) = \arctan(x)\)</span> in R.</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>Give each group member 1-2 minutes to share what they prepared from the between class work.</p>
+<p>Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
+<section id="activity---integration-practice" class="level3">
+<h3 class="anchored" data-anchor-id="activity---integration-practice">Activity - Integration Practice</h3>
+<p>Evaluate each indefinite integral (the complete “list” of antiderivatives or the most general antiderivative). When you are writing your answers <strong>don’t for get your “+C”</strong>. Then check your answer with Mathematica. 1. <span class="math inline">\(\int (3x^2 + 1)^3 6x dx\)</span> 1. <span class="math inline">\(\int x^2\sqrt{x^3 + 1} dx\)</span> 1. <span class="math inline">\(\int (5-2x)^2 dx\)</span> 1. <span class="math inline">\(\int x(x+2)^3 dx\)</span> 1. <span class="math inline">\(\int \frac{y}{(y-3)^2} dy\)</span> 1. <span class="math inline">\(\int \frac{5}{x^2 + 25} dx\)</span> 1. <span class="math inline">\(\int \frac{5x}{x^2 + 25} dx\)</span></p>
+</section>
+<section id="computing-integrals-with-a-cas-computer-algebra-system" class="level3">
+<h3 class="anchored">Computing Integrals with a CAS (Computer Algebra System)</h3>
+<p>Calculate each of the following indefinite integrals using Mathematica. When you are writing answers for indefinite integrals, <strong>don’t for get your “+C”</strong>. Along the way, you should encounter some new functions you’ve never seen before. - <span class="math inline">\(\int \frac{dx}{x^3 + 4x} = \int \frac{1}{x^3 + 4x} dx\)</span> - <span class="math inline">\(\int \frac{x^2}{2+4x} dx\)</span> - <span class="math inline">\(\int x^2 \ln x dx\)</span> - <span class="math inline">\(\int_{-2}^2 \frac{1}{x^2 + 25} dx\)</span> - <span class="math inline">\(\int_4^6 \frac{3}{32}x^2(x-4) dx\)</span> - <span class="math inline">\(\int_1^2 e^{-x^2} dx\)</span> (After typing this in and getting a wierd answer, try using N[ ] to get an approximate answer.) - <span class="math inline">\(\int \frac{5}{\sqrt{x^2 + 25}} dx\)</span> - <span class="math inline">\(\int_{-2}^2 \frac{5}{\sqrt{x^2 + 25}} dx\)</span></p>
+<p><a id="Prep"></a> # Between Class Sessions <a id="tasklist"></a> ## Semester Reflection - Consider the following questions. - How many can you answer? - How many could you answer at the beginning of the semester? - Can you see your growth?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Some Questions
+</summary>
+<blockquote class="blockquote">
+<ul>
+<li><p>What does it mean to fit a model?</p></li>
+<li><p>How is a general model different than a fitted model?</p></li>
+<li><p>What is a parameter? How is a parameter “different” than a variable?</p></li>
+<li><p>What is the different between “find <span class="math inline">\(f(7)\)</span>” and “solve <span class="math inline">\(f(x) = 7\)</span>”?</p></li>
+<li><p>What does the symbol <span class="math inline">\(\sum_{i=1}^n x_i\)</span> mean?</p></li>
+<li><p>What does the symbol <span class="math inline">\(\sum_{i=1}^n f(x_i)\Delta x\)</span> mean?</p></li>
+<li><p>What does the symbol <span class="math inline">\(\sum_{i=1}^n p_i\)</span> mean?</p></li>
+<li><p>What does the symbol <span class="math inline">\(\prod_{i=1}^n x_i\)</span> mean?</p></li>
+<li><p>Why do we care that <span class="math inline">\(\log(XYZ) = \log(X) + \log(Y) + \log(Z)\)</span>?</p></li>
+<li><p>What is a piece-wise function?</p></li>
+<li><p>Can you describe the concept of the derivative of a function?</p></li>
+<li><p>What is the local linear approximation of a function?</p></li>
+<li><p>What is a Riemann sum?</p></li>
+<li><p>What is a definite integral?</p></li>
+<li><p>What is an antiderivative? What is an indefinite integral?</p></li>
+<li><p>What is the Fundamental Theorem of Calculus?</p></li>
+<li><p>Can you calculate derivatives using the 8 derivative rules from class?</p></li>
+<li><p>Can you describe relationships between a function, its derivative, and its second derivative? (Why do we care about these relationships?)</p></li>
+<li><p>What is optimization?</p></li>
+<li><p>What is a critical point?</p></li>
+<li><p>What is the second derivative test?</p></li>
+<li><p>Can you give an example of when the derivative of a function does not exist?</p></li>
+<li><p>What is a random variable? What is a stochastic variable? ** What is the difference between a discrete random variable and a continuous random variable?</p></li>
+<li><p>What is a cumulative distribution function? ** What are some key properties of CDFs?</p></li>
+<li><p>What is a probability density function? Why do we call it probability density? ** What are some key properties of PDFs?</p></li>
+<li><p>How do you calculate probability of a random variable?</p></li>
+<li><p>How do you calculate expected value of a random variable?</p></li>
+<li><p>How do you calculate variance of a random variable?</p></li>
+<li><p>What is the relationship between the PDF and the CDF?</p></li>
+<li><p>What is a likelihood function?</p></li>
+<li><p>How is likelihood different than probability?</p></li>
+<li><p>What does it mean when we say two events are independent when calculating probability?</p></li>
+<li><p>What is a visual fit?</p></li>
+<li><p>What is the maximum likelihood method?</p></li>
+<li><p>What is the method of moments?</p></li>
+<li><p>Can you solve a linear system of equations?</p></li>
+<li><p>Can you solve a nonlinear system of equations?</p></li>
+<li><p>How do we find the system of equations to solve for the parameter values when using the maximum likelihood to fit a model?</p></li>
+<li><p>How do we find the system of equations to solve for the parameter values when using the modified method of moments to fit a model?</p></li>
+<li><p>Can you plot a function in R?</p></li>
+<li><p>Can you define a function in R?</p></li>
+<li><p>Can you use the uniroot() function in R to solve an equation?</p></li>
+<li><p>Can you use the sum(), prod(), mean(), and var() commands in R?</p></li>
+<li><p>Can you use R to help you with calculation to find the critical values of a loglikelihood function?</p></li>
+<li><p>Can you use Mathematica to calculate a definite integral? ** Can you use Mathematica to calculate a probability? ** Can you use Mathematica to calculate the expected value of a distribution? ** Can you use Mathematica to calculate the variance of a distribution?</p></li>
+<li><p>Can you use Mathematica to calculate an antiderivative or indefinite integral?</p></li>
+<li><p>Can you use Mathematica to calculate a percentile?</p></li>
+</ul>
+</blockquote></details>
+<p>:::</p>
+<ul>
+<li>Review the six Course Objectives for Math 119. ** Do you understand the ideas in these objectives? How has your understanding of these objectives change this semester? ** How have you accomplished these objectives this semester? ** Can you see your growth?</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+
+<details>
+<summary>
+Course Objectives
+</summary>
+<ol type="1">
+<li>Appreciate the power of mathematical notation’s role in data analytics.</li>
+<li>Communicate using correct mathematical notation.</li>
+<li>Utilize programming languages and mathematical software to apply calculus.</li>
+<li>Read, write, and manipulate functions for use in modeling.</li>
+<li>Use differentiation to optimize the model being used and simplify complex equations.</li>
+<li>Use integration to extract meaning from distributions.</li>
+</ol>
+</details>
+<p>:::</p>
+<section id="probability-and-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="probability-and-likelihood">Probability and Likelihood</h2>
+<ul>
+<li>Watch this <a href="https://www.youtube.com/watch?v=pYxNSUDSFH4" target="_blank">video</a> about Probability and Likelihood. (~5 minutes)
+<ul>
+<li>To learn more about another use for likelihood with Probability distributions, watch this <a href="https://www.youtube.com/watch?v=XepXtl9YKwc" target="_blank">video</a> about Maximum Likelihood. (~6 minutes)</li>
+</ul></li>
+</ul>
+</section>
+<section id="end-of-semester-announcements" class="level1">
+<h1>End of Semester Announcements</h1>
+<ul>
+<li>Last day of classes is April 5
+<ul>
+<li>Last day to work on Knewton Alta Homework is April 5.</li>
+<li>Last day to submit Project work is April 5.</li>
+</ul></li>
+<li>No Final Exam</li>
+</ul>
+<p><a id="PP"></a></p>
+<section id="skill-practice-ka-homework" class="level2">
+<h2 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h2>
+</section>
+<section id="applied-practice-project-work" class="level2">
+<h2 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h2>
 
 
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

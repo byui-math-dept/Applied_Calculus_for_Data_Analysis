@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math 119 — Applied Calculus for Data Analysis</title>
+<title>Class 41 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,8 +72,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
     </a>
   </div>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,187 +132,187 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
         <li>
-    <a class="dropdown-item" href="./class/class-1.html">
+    <a class="dropdown-item" href="../class/class-1.html">
  <span class="dropdown-text">Class 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-2.html">
+    <a class="dropdown-item" href="../class/class-2.html">
  <span class="dropdown-text">Class 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-3.html">
+    <a class="dropdown-item" href="../class/class-3.html">
  <span class="dropdown-text">Class 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-4.html">
+    <a class="dropdown-item" href="../class/class-4.html">
  <span class="dropdown-text">Class 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-5.html">
+    <a class="dropdown-item" href="../class/class-5.html">
  <span class="dropdown-text">Class 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-6.html">
+    <a class="dropdown-item" href="../class/class-6.html">
  <span class="dropdown-text">Class 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-7.html">
+    <a class="dropdown-item" href="../class/class-7.html">
  <span class="dropdown-text">Class 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-8.html">
+    <a class="dropdown-item" href="../class/class-8.html">
  <span class="dropdown-text">Class 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-9.html">
+    <a class="dropdown-item" href="../class/class-9.html">
  <span class="dropdown-text">Class 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-10.html">
+    <a class="dropdown-item" href="../class/class-10.html">
  <span class="dropdown-text">Class 10</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-11.html">
+    <a class="dropdown-item" href="../class/class-11.html">
  <span class="dropdown-text">Class 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-12.html">
+    <a class="dropdown-item" href="../class/class-12.html">
  <span class="dropdown-text">Class 12</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-13.html">
+    <a class="dropdown-item" href="../class/class-13.html">
  <span class="dropdown-text">Class 13</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-14.html">
+    <a class="dropdown-item" href="../class/class-14.html">
  <span class="dropdown-text">Class 14</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-15.html">
+    <a class="dropdown-item" href="../class/class-15.html">
  <span class="dropdown-text">Class 15</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-16.html">
+    <a class="dropdown-item" href="../class/class-16.html">
  <span class="dropdown-text">Class 16</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-17.html">
+    <a class="dropdown-item" href="../class/class-17.html">
  <span class="dropdown-text">Class 17</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-18.html">
+    <a class="dropdown-item" href="../class/class-18.html">
  <span class="dropdown-text">Class 18</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-19.html">
+    <a class="dropdown-item" href="../class/class-19.html">
  <span class="dropdown-text">Class 19</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-20.html">
+    <a class="dropdown-item" href="../class/class-20.html">
  <span class="dropdown-text">Class 20</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-21.html">
+    <a class="dropdown-item" href="../class/class-21.html">
  <span class="dropdown-text">Class 21</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-22.html">
+    <a class="dropdown-item" href="../class/class-22.html">
  <span class="dropdown-text">Class 22</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-23.html">
+    <a class="dropdown-item" href="../class/class-23.html">
  <span class="dropdown-text">Class 23</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-24.html">
+    <a class="dropdown-item" href="../class/class-24.html">
  <span class="dropdown-text">Class 24</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-25.html">
+    <a class="dropdown-item" href="../class/class-25.html">
  <span class="dropdown-text">Class 25</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-26.html">
+    <a class="dropdown-item" href="../class/class-26.html">
  <span class="dropdown-text">Class 26</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-27.html">
+    <a class="dropdown-item" href="../class/class-27.html">
  <span class="dropdown-text">Class 27</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-28.html">
+    <a class="dropdown-item" href="../class/class-28.html">
  <span class="dropdown-text">Class 28</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-29.html">
+    <a class="dropdown-item" href="../class/class-29.html">
  <span class="dropdown-text">Class 29</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-30.html">
+    <a class="dropdown-item" href="../class/class-30.html">
  <span class="dropdown-text">Class 30</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-31.html">
+    <a class="dropdown-item" href="../class/class-31.html">
  <span class="dropdown-text">Class 31</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-32.html">
+    <a class="dropdown-item" href="../class/class-32.html">
  <span class="dropdown-text">Class 32</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-33.html">
+    <a class="dropdown-item" href="../class/class-33.html">
  <span class="dropdown-text">Class 33</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-34.html">
+    <a class="dropdown-item" href="../class/class-34.html">
  <span class="dropdown-text">Class 34</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-35.html">
+    <a class="dropdown-item" href="../class/class-35.html">
  <span class="dropdown-text">Class 35</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-36.html">
+    <a class="dropdown-item" href="../class/class-36.html">
  <span class="dropdown-text">Class 36</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-37.html">
+    <a class="dropdown-item" href="../class/class-37.html">
  <span class="dropdown-text">Class 37</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-38.html">
+    <a class="dropdown-item" href="../class/class-38.html">
  <span class="dropdown-text">Class 38</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-39.html">
+    <a class="dropdown-item" href="../class/class-39.html">
  <span class="dropdown-text">Class 39</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-40.html">
+    <a class="dropdown-item" href="../class/class-40.html">
  <span class="dropdown-text">Class 40</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-41.html">
+    <a class="dropdown-item" href="../class/class-41.html">
  <span class="dropdown-text">Class 41</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-42.html">
+    <a class="dropdown-item" href="../class/class-42.html">
  <span class="dropdown-text">Class 42</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-43.html">
+    <a class="dropdown-item" href="../class/class-43.html">
  <span class="dropdown-text">Class 43</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-44.html">
+    <a class="dropdown-item" href="../class/class-44.html">
  <span class="dropdown-text">Class 44</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-45.html">
+    <a class="dropdown-item" href="../class/class-45.html">
  <span class="dropdown-text">Class 45</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./class/class-46.html">
+    <a class="dropdown-item" href="../class/class-46.html">
  <span class="dropdown-text">Class 46</span></a>
   </li>  
     </ul>
@@ -294,67 +323,67 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-definitions">    
         <li>
-    <a class="dropdown-item" href="./definitions/conditionalprobability.html">
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
  <span class="dropdown-text">ConditionalProbability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/constantontheintervali.html">
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
  <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/decreasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
  <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/definition.html">
+    <a class="dropdown-item" href="../definitions/definition.html">
  <span class="dropdown-text">Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/exponentialfunction.html">
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
  <span class="dropdown-text">ExponentialFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/increasingontheintervali.html">
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
  <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/independentevents.html">
+    <a class="dropdown-item" href="../definitions/independentevents.html">
  <span class="dropdown-text">IndependentEvents</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithm.html">
+    <a class="dropdown-item" href="../definitions/logarithm.html">
  <span class="dropdown-text">Logarithm</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/logarithmicfunction.html">
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
  <span class="dropdown-text">LogarithmicFunction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/negativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
  <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/nonnegativeontheintervali.html">
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
  <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/partialderivative.html">
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
  <span class="dropdown-text">PartialDerivative</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/positiveontheintervali.html">
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
  <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/probability.html">
+    <a class="dropdown-item" href="../definitions/probability.html">
  <span class="dropdown-text">Probability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/randomvariable.html">
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
  <span class="dropdown-text">RandomVariable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./definitions/rulesofprobabilty.html">
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
  <span class="dropdown-text">RulesOfProbabilty</span></a>
   </li>  
     </ul>
@@ -365,33 +394,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
         <li>
-    <a class="dropdown-item" href="./flex/flex-1.html">
+    <a class="dropdown-item" href="../flex/flex-1.html">
  <span class="dropdown-text">Flex 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-2.html">
+    <a class="dropdown-item" href="../flex/flex-2.html">
  <span class="dropdown-text">Flex 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-3.html">
+    <a class="dropdown-item" href="../flex/flex-3.html">
  <span class="dropdown-text">Flex 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-4.html">
+    <a class="dropdown-item" href="../flex/flex-4.html">
  <span class="dropdown-text">Flex 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-5.html">
+    <a class="dropdown-item" href="../flex/flex-5.html">
  <span class="dropdown-text">Flex 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./flex/flex-6.html">
+    <a class="dropdown-item" href="../flex/flex-6.html">
  <span class="dropdown-text">Flex 6</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
 </ul>
@@ -410,7 +439,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#no-class-today." id="toc-no-class-today." class="nav-link active" data-scroll-target="#no-class-today.">No class today.</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf" id="toc-continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf" class="nav-link" data-scroll-target="#continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf">Continuation from last time - More Practice with finding PDFs, Expected Value, Variance, and CDF</a></li>
+  <li><a href="#practice-definite-integrals-and-geometric-arguments" id="toc-practice-definite-integrals-and-geometric-arguments" class="nav-link" data-scroll-target="#practice-definite-integrals-and-geometric-arguments">Practice: Definite Integrals and Geometric arguments</a></li>
+  <li><a href="#work-on-project-3-task-2" id="toc-work-on-project-3-task-2" class="nav-link" data-scroll-target="#work-on-project-3-task-2">Work on Project 3 Task 2</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-the-definite-integral" id="toc-properties-of-the-definite-integral" class="nav-link" data-scroll-target="#properties-of-the-definite-integral">Properties of the Definite Integral</a></li>
+  <li><a href="#activity---definite-integrals" id="toc-activity---definite-integrals" class="nav-link" data-scroll-target="#activity---definite-integrals">Activity - Definite Integrals</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -419,7 +462,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Math 119 — Applied Calculus for Data Analysis</h1>
+<h1 class="title">Class 41</h1>
 </div>
 
 
@@ -436,14 +479,291 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="no-class-today." class="level2">
-<h2 class="anchored" data-anchor-id="no-class-today.">No class today.</h2>
-<p><strong>Next class:</strong> <a href="class/class-1.html">Class 1</a> — Monday, Apr 20</p>
-<hr>
-<p>Welcome to the Math 119 course site for BYU-Idaho.</p>
-<p>Use the navigation above to browse <strong>Class Sessions</strong>, <strong>Definitions</strong>, and the <strong>Schedule</strong>.</p>
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<ol type="1">
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-x/2} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.
+<ol type="a">
+<li>
+Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. Write down the function <span class="math inline">\(f\)</span>.
+</li>
+<li>
+Write down the definite integrals that give the expected value and variance of <span class="math inline">\(X\)</span>. Then use Mathematica to compute the expected value and variance of <span class="math inline">\(X\)</span>.
+</li>
+<li>
+Write down the definite integrals that give <span class="math inline">\(P(X\leq 1)\)</span> and <span class="math inline">\(P(X\leq 2)\)</span>. Then use Mathematica to compute these two probabilities.
+</li>
+<li>
+Write down the definite integral that gives <span class="math inline">\(F(x) = P(X\leq x)\)</span>, the cumulative distribution function for <span class="math inline">\(X\)</span>. Then use Mathematica to compute <span class="math inline">\(F(x)\)</span> for <span class="math inline">\(x\geq 0\)</span>.
+</li>
+<li>
+What is <span class="math inline">\(P(X = 2)\)</span>? Write down the definite integral that would give this probability.
+</li>
+<li>
+By hand, compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.
+</li>
+<li>
+Solve <span class="math inline">\(F(m) = 0.5\)</span> for <span class="math inline">\(m\)</span>. We call <span class="math inline">\(m\)</span> the 50th percentile, or the median, of <span class="math inline">\(X\)</span>.
+</li>
+<li>
+Solve <span class="math inline">\(F(p_{95}) = 0.95\)</span> for <span class="math inline">\(p_{95}\)</span>. We call <span class="math inline">\(p_{95}\)</span> the 95th percentile of <span class="math inline">\(X\)</span>.
+</li>
+</ol></li>
+</ol>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<section id="continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf">Continuation from last time - More Practice with finding PDFs, Expected Value, Variance, and CDF</h3>
+<p>These problems are a continuation from what we did last time in groups.</p>
+<ol start="2" type="1">
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit.</li>
+</ol>
+<pre><code>g = Exp[-\[Lambda] x]
+$Assumptions = \[Lambda] &gt; 0</code></pre>
+<ol type="a">
+<li>
+Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this an exponential random variable.
+</li>
+</ol>
+<ol type="1">
+<li><p>Write down the definite integrals that give the expected value and variance of <span class="math inline">\(X\)</span>. Then use Mathematica to compute the expected value and variance of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Write down the definite integral that gives <span class="math inline">\(F(x)\)</span>, the cumulative distribution function for <span class="math inline">\(X\)</span>. Then use Mathematica to compute <span class="math inline">\(F(x)\)</span> for <span class="math inline">\(x\geq 0\)</span>.</p></li>
+<li><p>By hand, compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(g(x) = \begin{cases}1 &amp; -3\leq x\leq 5\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.</p>
+<ol type="a">
+<li>
+<p>Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>.</p>
+</li>
+<li>
+<p>Write down the definite integrals that give the expected value and variance of <span class="math inline">\(X\)</span>. Then use Mathematica to compute the expected value and variance of <span class="math inline">\(X\)</span>.</p>
+</li>
+<li>
+<p>Write down the definite integral that gives <span class="math inline">\(F(x)\)</span>, the cumulative distribution function for <span class="math inline">\(X\)</span>. Then use Mathematica to compute <span class="math inline">\(F(x)\)</span> for <span class="math inline">\(-3\leq x\leq 5\)</span>. For <span class="math inline">\(x&lt;-3\)</span>, what is <span class="math inline">\(F(x)\)</span>? For <span class="math inline">\(x&gt;5\)</span>, what is <span class="math inline">\(F(x)\)</span>?</p>
+</li>
+<li>
+<p>By hand, compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</p>
+</li>
+</ol></li>
+<li><p>Let <span class="math inline">\(g(x) = \begin{cases}1 &amp; a\leq x\leq b\\ 0 &amp; \text{otherwise}\end{cases}\)</span> where <span class="math inline">\(a&lt;x&lt;b\)</span>.</p>
+<ol type="a">
+<li>
+<p>Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this a uniform random variable.</p>
+</li>
+<li>
+<p>Write down the definite integrals that give the expected value and variance of <span class="math inline">\(X\)</span>. Then use Mathematica to compute the expected value and variance of <span class="math inline">\(X\)</span>.</p>
+</li>
+<li>
+<p>Write down the definite integral that gives <span class="math inline">\(F(x)\)</span>, the cumulative distribution function for <span class="math inline">\(X\)</span>. Then use Mathematica to compute <span class="math inline">\(F(x)\)</span> for <span class="math inline">\(a\leq x\leq b\)</span>. For <span class="math inline">\(x&lt;a\)</span>, what is <span class="math inline">\(F(x)\)</span>? For <span class="math inline">\(x&gt;b\)</span>, what is <span class="math inline">\(F(x)\)</span>?</p>
+</li>
+<li>
+<p>By hand, compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</p>
+</li>
+</ol></li>
+<li><p>Let <span class="math inline">\(g(x) = \begin{cases}3 &amp; -2 \leq x &lt; 1\\ 5 &amp; 1 \leq x \leq 5\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.</p>
+<ol type="a">
+<li>
+<p>Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>.</p>
+</li>
+<li>
+<p>Write down the definite integrals that give the expected value and variance of <span class="math inline">\(X\)</span>. Then use Mathematica to compute the expected value and variance of <span class="math inline">\(X\)</span>.</p>
+</li>
+<li>
+<p>Compute <span class="math inline">\(F(x)\)</span>.</p>
+</li>
+<li>
+<p>By hand, compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</p>
+</li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Solution
+</summary>
+<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral.</p>
+<pre><code>$Assumptions = x \[Element] Reals
+g = Piecewise[{{3, -2 &lt;= x &amp;&amp; x &lt; 1}, {5, 1 &lt;= x &lt;= 5}, {0, True}}]
+Plot[g, {x, -5, 10}]
+A = Integrate[g, {x, -Infinity, Infinity}]
+k = 1/A
+f = k g
+1 == Integrate[ f, {x, -Infinity, Infinity}]
+EV = Integrate[x f, {x, -Infinity, Infinity}]
+Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
+F = Integrate[ f, {x, -Infinity, x}]
+D[F, x]</code></pre>
+</details>
+</div>
+</div>
+</section>
+<section id="practice-definite-integrals-and-geometric-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="practice-definite-integrals-and-geometric-arguments">Practice: Definite Integrals and Geometric arguments</h3>
+<p>Use a geometric argument to find the value of each integral. If needed, start by drawing the region over the specified bounds. Then use Mathematica to check your solution is correct.</p>
+<ol type="1">
+<li><span class="math inline">\(\displaystyle\int_2^5 7 dx\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Hint
+</summary>
+<p>This is a rectangle. What is the base? What is the height?</p>
+</details>
+</div>
+</div>
+<ol start="2" type="1">
+<li><span class="math inline">\(\displaystyle\int_0^4 f(x) dx\)</span> where <span class="math inline">\(f(x) = \begin{cases}3x &amp; 0\leq x\leq 1 \\ 4-x &amp; 1\leq x \leq 4\end{cases}\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Hint
+</summary>
+<p>This is a triangle. What is the base? What is the height?</p>
+</details>
+</div>
+</div>
+<ol start="3" type="1">
+<li><span class="math inline">\(\displaystyle\int_0^4 \sqrt{16-x^2} dx\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Hint
+</summary>
+<p>This is one fourth of a circle centered at (0,0) with radius 4. Note that <span class="math inline">\(y=\sqrt{16-x^2}\)</span> means <span class="math inline">\(y^2 = 16-x^2\)</span> or <span class="math inline">\(x^2+y^2=16\)</span>. You’ll encounter functions like this one when working on Knewton Alta homework.</p>
+</details>
+</div>
+</div>
+<ol start="4" type="1">
+<li><span class="math inline">\(\displaystyle\int_0^{10} \sqrt{25-(x-5)^2} dx\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Hint
+</summary>
+<p>This is one half of a circle centered at (5,0) with radius 5. Use software to draw the region if needed. You’ll encounter functions like this one when working on Knewton Alta homework.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="work-on-project-3-task-2" class="level3">
+<h3 class="anchored" data-anchor-id="work-on-project-3-task-2">Work on Project 3 Task 2</h3>
+<p>If you finish the above early, start working on Project 3 Task 2. You’ll find that you’ve already quite a bit of that project as you worked together over the last few days.</p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="properties-of-the-definite-integral" class="level3">
+<h3 class="anchored" data-anchor-id="properties-of-the-definite-integral">Properties of the Definite Integral</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+Definite Integral
+</summary>
+<p>For a function <span class="math inline">\(f(x)\)</span> defined on <span class="math inline">\(a \leq x \leq b\)</span>, <strong>the definite integral of <span class="math inline">\(f\)</span> from <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span></strong> is</p>
+<p><span class="math inline">\(\int_a^b f(x) dx = \lim_{n\to \infty }\sum_{i=1}^nf(x_i)\Delta x\)</span>,</p>
+<p>provided the limit exists. If the limit exists, we say that <span class="math inline">\(f\)</span> is integrable on $ [ a, b ] $.</p>
+<ul>
+<li><span class="math inline">\(f(x)\)</span> is the integrand</li>
+<li><span class="math inline">\(x\)</span> is the variable of integration</li>
+<li><span class="math inline">\(a\)</span> is the lower bound (or lower limit of integration)</li>
+<li><span class="math inline">\(b\)</span> is the upper bound (or upper limit of integration)</li>
+</ul>
+</details>
+</div>
+</div>
+<ul>
+<li><p>Given <span class="math inline">\(a &lt; c &lt; k &lt; b\)</span>, <br> <span class="math inline">\(\int_a^b f(x) dx = \int_a^c f(x) dx + \int_c^k f(x) dx + \int_k^b f(x) dx\)</span>.</p>
+<ul>
+<li>Note this property also holds when the inequality <span class="math inline">\(a &lt; c &lt; k &lt; b\)</span> does not hold as long as <span class="math inline">\(f(x)\)</span> is integrable (can be integrated) for all the necessary intervals.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^b f(x)dx = -\int_b^a f(x)dx\)</span>.</p>
+<ul>
+<li>One way to think about this property is that if the width for the “infinite” rectangles you are adding up are all negative for the definite integral on the right-hand side of the equation.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^a f(x)dx = 0\)</span>.</p>
+<ul>
+<li>Note this is related to the concept that <span class="math inline">\(P(X = c) = 0\)</span> for all values of <span class="math inline">\(c\)</span> when <span class="math inline">\(X\)</span> is a continuous random variable.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^b cf(x)dx = c\int_a^b f(x) dx\)</span></p></li>
+<li><p><span class="math inline">\(\int_a^b f(x) + g(x) dx = \int_a^b f(x) dx + \int_a^b g(x) dx\)</span> AND <span class="math inline">\(\int_a^b f(x) - g(x) dx = \int_a^b f(x) dx - \int_a^b g(x) dx\)</span></p></li>
+</ul>
+</section>
+<section id="activity---definite-integrals" class="level3">
+<h3 class="anchored" data-anchor-id="activity---definite-integrals">Activity - Definite Integrals</h3>
+<p>Given the function <span class="math display">\[g(x) =
+\begin{cases}
+2 &amp; 0 &lt; x &lt; 5 \\ \\
+0 &amp; \text{otherwise}
+\end{cases},\]</span> determine whether each statement is true or false. Discuss your reasoning with your neighbor.</p>
+<pre><code>- $\int_0^5 g(x)dx = 10$.
+- $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_3^{4.5} g(x)dx + \int_{4.5}^5 g(x)dx$.
+- $\int_0^5 g(x)dx = \int_{-\infty}^0 g(x)dx + \int_0^5 g(x)dx + \int_5^{\infty} g(x)dx$.
+- $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_1^5 g(x)dx$.
+- $\int_0^5 g(x)dx = \int_1^3 g(x)dx + \int_4^5 g(x)dx$.</code></pre>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
