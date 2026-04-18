@@ -1,0 +1,13 @@
+# Environment variables
+.env
+
+# Downloaded PMWiki data
+pmwiki_data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# AI files
+CLAUDE.md
