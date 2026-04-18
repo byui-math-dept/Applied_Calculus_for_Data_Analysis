@@ -45,3 +45,32 @@ table td:first-child, table th:first-child {
   min-width: 3rem;
   white-space: nowrap;
 }
+
+/* Left-align display math (MathJax centered by default looks odd in lists) */
+mjx-container[display="true"] {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* Schedule table borders */
+.schedule-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 600px;
+  display: table;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #dee2e6;
+  padding: 0.4rem 0.6rem;
+  vertical-align: top;
+  min-width: unset;
+  white-space: normal;
+}
+
+.schedule-table thead {
+  background: #e9ecef;
+  font-weight: 600;
+}
