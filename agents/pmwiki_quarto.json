@@ -1,0 +1,630 @@
+{
+  "_metadata": {
+    "template_version": "3.1",
+    "last_updated": "2026-04-17",
+    "description": "PMWiki → Quarto conversion agent for Math 119 course site. Converts pmwiki_data/ to a Quarto website deployed to GitHub Pages via GitHub Actions.",
+    "usage": "See pmwiki_quarto.md for narrative guide. Implementation in tools/pmwiki_to_quarto.py.",
+    "companion_files": {
+      "conceptual_guide": "agents/pmwiki_quarto.md",
+      "implementation": "tools/pmwiki_to_quarto.py",
+      "sftp_sync": "pull_wiki.py"
+    },
+    "agent_details": {
+      "agent_name": "PMWikiQuartoConverter",
+      "version": "1.0",
+      "last_updated": "2026-04-17",
+      "description": "Converts PMWiki flat files to a Quarto GitHub Pages site, handling Math 119 course markup idioms including LaTeX, toggle blocks, and image attachments.",
+      "owner": "Chaz Clark",
+      "complexity": "standard"
+    }
+  },
+
+  "agent_type": {
+    "_tier": "tier_1_core",
+    "type": "llm_agent",
+    "description": "LLM agent orchestrating a sequential conversion pipeline: sync → decode → convert → scaffold → publish. The LLM handles ambiguous markup decisions, site structure planning, and proposes before writing files. All file I/O and markup transformation is done via tools."
+  },
+
+  "implementation": {
+    "_tier": "tier_1_core",
+    "llm_agent": {
+      "model": "claude-sonnet-4-6",
+      "parameters": {
+        "temperature": 0.1,
+        "tool_choice": "auto",
+        "response_format": null,
+        "stop_sequences": [],
+        "disable_parallel_tool_use": false
+      },
+      "system_prompt": "You are an expert on PMWiki markup conversion and Quarto static site generation. You help convert Math 119 course content from PMWiki flat files to a Quarto website deployed to GitHub Pages.\n\nYour expertise:\n- PMWiki flat file format and URL-encoding\n- PmWiki markup rules (headers, lists, links, divs, conditionals)\n- Quarto project structure, _quarto.yml, QMD format, MathJax/KaTeX\n- GitHub Actions publish workflows using quarto-dev/quarto-actions\n- Math 119 course structure (36 class sessions, definitions, flex days)\n\nCRITICAL RULES:\n1. Always extract and placeholder-replace math regions before applying any other markup rules.\n2. Apply markup rules in the order listed in pmwiki_quarto.json → conversion_pipeline.rule_order.\n3. Never modify pmwiki_data/ — it is read-only source data.\n4. For toggle blocks (>>toggle<<), use <details><summary>Answers</summary>...</details>.\n5. Skip (:if false:)...(:if:) blocks entirely.\n6. Sort Class.* pages numerically (integer suffix), not lexicographically.\n7. Resolve Attach: image paths by looking up uploads/[GroupName]/filename.\n\nPropose structure changes before writing files. Execute conversion after approval.",
+      "tools": [
+        {
+          "name": "decode_pmwiki_file",
+          "description": "Reads a PMWiki flat file from pmwiki_data/wiki.d/ and extracts the URL-decoded page text from the 'text=' field. Returns the plain decoded text and page metadata (name, mtime, rev). Must be called before any conversion. Skips diff sections that follow the text field.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file_path": {
+                "type": "string",
+                "description": "Absolute path to the PMWiki flat file. Example: '/Users/chazclar/Documents/GitHub/m119_master/pmwiki_data/wiki.d/Class.1'"
+              }
+            },
+            "required": ["file_path"]
+          },
+          "input_examples": [
+            {
+              "file_path": "/Users/chazclar/Documents/GitHub/m119_master/pmwiki_data/wiki.d/Class.1"
+            }
+          ]
+        },
+        {
+          "name": "convert_pmwiki_to_qmd",
+          "description": "Converts decoded PmWiki markup text to Quarto QMD content. Applies markup rules in strict order: (1) extract math placeholders, (2) strip :if false: blocks, (3) apply block rules (toggles, notes, divs), (4) apply inline rules (headers, lists, links, images), (5) restore math placeholders. Returns QMD string with YAML frontmatter.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "pmwiki_text": {
+                "type": "string",
+                "description": "URL-decoded PmWiki page text extracted from the text= field."
+              },
+              "page_name": {
+                "type": "string",
+                "description": "PMWiki page name in Group.Name format. Example: 'Class.1', 'Definition.Logarithm'"
+              },
+              "output_path": {
+                "type": "string",
+                "description": "Relative output path within site/ for the generated QMD file. Example: 'class/class-1.qmd'"
+              },
+              "link_registry": {
+                "type": "object",
+                "description": "Map of PMWiki page names to their output QMD paths, used to resolve internal links. Example: {\"Class.5\": \"class/class-5.qmd\"}"
+              }
+            },
+            "required": ["pmwiki_text", "page_name", "output_path"]
+          },
+          "input_examples": [
+            {
+              "pmwiki_text": "!! Brain Gains\n1. Let $f(x) = x^2$. Find $f(3)$.\n(:note:)\n>>toggle<<\nAnswers\n# $f(3) = 9$\n>><<\n(:noteend:)",
+              "page_name": "Class.14",
+              "output_path": "class/class-14.qmd",
+              "link_registry": {"Class.1": "class/class-1.qmd", "Class.14": "class/class-14.qmd"}
+            }
+          ]
+        },
+        {
+          "name": "setup_quarto_project",
+          "description": "Scaffolds the Quarto project in site/: writes _quarto.yml from the template, creates folder structure (class/, definitions/, assets/uploads/), and generates index.qmd from Main.HomePage. Safe to re-run — only overwrites _quarto.yml and index.qmd, never deletes existing QMD files.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "site_dir": {
+                "type": "string",
+                "description": "Absolute path to the site output directory. Default: project_root/site/"
+              },
+              "site_title": {
+                "type": "string",
+                "description": "Site title for _quarto.yml. Example: 'Math 119 — Calculus I'"
+              },
+              "github_repo": {
+                "type": "string",
+                "description": "GitHub repo in owner/name format for site URL generation. Example: 'chazclar/m119'"
+              }
+            },
+            "required": ["site_dir", "site_title"]
+          },
+          "input_examples": [
+            {
+              "site_dir": "/Users/chazclar/Documents/GitHub/m119_master/site",
+              "site_title": "Math 119 — Calculus I",
+              "github_repo": "byui-math-dept/Applied_Calculus_for_Data_Analysis"
+            }
+          ]
+        },
+        {
+          "name": "build_navigation",
+          "description": "Generates the sidebar navigation structure for _quarto.yml from the list of converted pages. Class.* pages are sorted numerically and grouped under 'Class Sessions'. Definition.* pages are grouped under 'Definitions'. Returns a YAML-ready navigation structure.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "converted_pages": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "List of PMWiki page names that were successfully converted. Example: ['Class.1', 'Class.2', 'Definition.Logarithm']"
+              },
+              "link_registry": {
+                "type": "object",
+                "description": "Map of page names to output QMD paths."
+              }
+            },
+            "required": ["converted_pages", "link_registry"]
+          },
+          "input_examples": [
+            {
+              "converted_pages": ["Class.1", "Class.2", "Class.3", "Definition.Logarithm", "Definition.ExponentialFunction"],
+              "link_registry": {"Class.1": "class/class-1.qmd", "Class.2": "class/class-2.qmd", "Definition.Logarithm": "definitions/logarithm.qmd"}
+            }
+          ]
+        },
+        {
+          "name": "copy_uploads",
+          "description": "Copies all files from pmwiki_data/uploads/ to site/assets/uploads/, preserving the group subdirectory structure (Class/, Main/, Schedule/). Skips files already present with matching size. Returns a list of copied files.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "uploads_src": {
+                "type": "string",
+                "description": "Source uploads directory. Default: pmwiki_data/uploads/"
+              },
+              "uploads_dest": {
+                "type": "string",
+                "description": "Destination in site. Default: site/assets/uploads/"
+              }
+            },
+            "required": []
+          },
+          "input_examples": [
+            {
+              "uploads_src": "/Users/chazclar/Documents/GitHub/m119_master/pmwiki_data/uploads",
+              "uploads_dest": "/Users/chazclar/Documents/GitHub/m119_master/site/assets/uploads"
+            }
+          ]
+        },
+        {
+          "name": "write_github_actions_workflow",
+          "description": "Writes .github/workflows/publish.yml using the quarto-dev/quarto-actions/publish@v2 action targeting the gh-pages branch. Only writes if the file does not exist or --force is passed, to avoid overwriting manual customizations.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "project_root": {
+                "type": "string",
+                "description": "Absolute path to the repository root."
+              },
+              "force": {
+                "type": "boolean",
+                "description": "Overwrite existing workflow file. Default: false."
+              }
+            },
+            "required": ["project_root"]
+          }
+        }
+      ]
+    }
+  },
+
+  "conversion_pipeline": {
+    "_tier": "tier_1_core",
+    "description": "Ordered steps for converting a single PMWiki page. Step order is mandatory — do not reorder.",
+    "rule_order": [
+      "1_extract_math",
+      "2_strip_if_false",
+      "3_block_rules",
+      "4_inline_rules",
+      "5_restore_math"
+    ],
+    "step_detail": {
+      "1_extract_math": "Replace all $...$ and $$...$$ and \\begin{...}...\\end{...} with MATH_INLINE_N / MATH_BLOCK_N placeholders. Store originals in a dict keyed by placeholder.",
+      "2_strip_if_false": "Match and discard content between (:if false:) and (:if:) tags.",
+      "3_block_rules": "Apply block-level rules in order: toggle_div, note_block, indent_div, comment_div, attachlist.",
+      "4_inline_rules": "Apply inline rules in order: newwin_link, internal_link, plain_link, attach_image_sized, attach_image, alpha_list, ordered_list, unordered_list, h1, h2, h3, bold, italic, arrow_indent.",
+      "5_restore_math": "Replace all MATH_INLINE_N and MATH_BLOCK_N placeholders with original LaTeX."
+    }
+  },
+
+  "markup_rules": {
+    "_tier": "tier_1_core",
+    "description": "PmWiki markup → QMD/HTML translation rules. Apply in the order listed within each rule group.",
+    "block_rules": [
+      {
+        "name": "strip_if_false",
+        "description": "Remove hidden conditional blocks",
+        "pmwiki_pattern": "(?s)\\(:if false:\\).*?\\(:if:\\)",
+        "qmd_replacement": "",
+        "notes": "Apply before all other rules. Non-greedy multiline match."
+      },
+      {
+        "name": "toggle_div",
+        "description": "Collapsible answer block",
+        "pmwiki_pattern": "(?s)>>toggle<<\\s*\\n(.*?)\\n>><<",
+        "qmd_replacement": "<details>\n<summary>Answers</summary>\n\n{inner}\n\n</details>",
+        "notes": "inner content is already converted. Apply block rules to inner content recursively before wrapping."
+      },
+      {
+        "name": "note_block",
+        "description": "Instructor note aside",
+        "pmwiki_pattern": "(?s)\\(:note:\\)(.*?)\\(:noteend:\\)",
+        "qmd_replacement": "::: {.callout-note}\n{inner}\n:::",
+        "notes": "inner content is already converted."
+      },
+      {
+        "name": "indent_div",
+        "description": "Indented block",
+        "pmwiki_pattern": "(?s)>>indent<<\\s*\\n(.*?)\\n>><<",
+        "qmd_replacement": "> {inner}",
+        "notes": "Prefix each line of inner with '> '"
+      },
+      {
+        "name": "comment_div",
+        "description": "Instructor-only comment block (visible in wiki editing, not rendered to students)",
+        "pmwiki_pattern": "(?s)>>comment<<\\s*\\n(.*?)\\n>><<",
+        "qmd_replacement": "",
+        "notes": "Drop comment blocks entirely — they were visible only to wiki editors."
+      },
+      {
+        "name": "attachlist",
+        "description": "Dynamic attachment list (server-side PMWiki directive)",
+        "pmwiki_pattern": "\\(:attachlist:\\)",
+        "qmd_replacement": "<!-- attachlist: replaced by static file list during conversion -->",
+        "notes": "Replace with HTML comment; converter replaces with actual file listing."
+      }
+    ],
+    "inline_rules": [
+      {
+        "name": "newwin_link",
+        "description": "External link opening in new window",
+        "pmwiki_pattern": "%25newwin%25\\[\\[(.+?) -> (.+?)\\]\\]",
+        "qmd_replacement": "[{text}]({url}){target=\"_blank\"}",
+        "notes": "Must run before plain_link. %25 = URL-encoded %."
+      },
+      {
+        "name": "newwin_link_same",
+        "description": "New window link with same text as URL",
+        "pmwiki_pattern": "%25newwin%25\\[\\[(.+?)\\]\\]",
+        "qmd_replacement": "[{text}]({text}){target=\"_blank\"}",
+        "notes": "Fallback when -> form is not present."
+      },
+      {
+        "name": "internal_link_aliased",
+        "description": "Internal wiki link with display text",
+        "pmwiki_pattern": "\\[\\[(.+?) -> (Class|Definition|Flex|Schedule|Objectives|Plans|Prep)\\.(.+?)\\]\\]",
+        "qmd_replacement": "[{display}]({resolved_path})",
+        "notes": "Resolve target via link_registry. Omit anchor if present."
+      },
+      {
+        "name": "internal_link_bare",
+        "description": "Internal wiki link using page name as text",
+        "pmwiki_pattern": "\\[\\[(Class|Definition|Flex|Schedule)\\.(.+?)\\]\\]",
+        "qmd_replacement": "[{page_name}]({resolved_path})",
+        "notes": "Resolve via link_registry."
+      },
+      {
+        "name": "plain_link",
+        "description": "External link with display text",
+        "pmwiki_pattern": "\\[\\[(.+?) -> (https?://.+?)\\]\\]",
+        "qmd_replacement": "[{text}]({url})"
+      },
+      {
+        "name": "attach_image_sized",
+        "description": "Image attachment with explicit dimensions",
+        "pmwiki_pattern": "%25(width|height)=(\\d+px)%25Attach:(.+?\\.(?:png|jpg|gif|svg))",
+        "qmd_replacement": "![](../assets/uploads/{group}/{filename}){{.{dim_attr}=\"{dim_val}\"}}",
+        "notes": "Group inferred from current page group."
+      },
+      {
+        "name": "attach_image",
+        "description": "Simple image attachment",
+        "pmwiki_pattern": "Attach:(.+?\\.(?:png|jpg|gif|svg|PNG|JPG))",
+        "qmd_replacement": "![](../assets/uploads/{group}/{filename})",
+        "notes": "group = current page group (e.g., 'Class' for Class.1 pages)."
+      },
+      {
+        "name": "alpha_list_item",
+        "description": "Lettered list item (#%alpha% prefix)",
+        "pmwiki_pattern": "^#%alpha%\\s+(.+)$",
+        "qmd_replacement": "<li>{content}</li>",
+        "notes": "Consecutive alpha list items are wrapped in <ol type=\"a\">...</ol> by a post-pass."
+      },
+      {
+        "name": "ordered_list",
+        "description": "Numbered list item",
+        "pmwiki_pattern": "^#\\s+(.+)$",
+        "qmd_replacement": "1. {content}",
+        "notes": "Must run after alpha_list_item. Handles multi-level ## with indentation."
+      },
+      {
+        "name": "unordered_list",
+        "description": "Bullet list item",
+        "pmwiki_pattern": "^\\*\\s+(.+)$",
+        "qmd_replacement": "- {content}",
+        "notes": "** becomes two-space-indented nested list."
+      },
+      {
+        "name": "h1",
+        "description": "Level-1 heading",
+        "pmwiki_pattern": "^!\\s+(.+)$",
+        "qmd_replacement": "# {text}"
+      },
+      {
+        "name": "h2",
+        "description": "Level-2 heading",
+        "pmwiki_pattern": "^!!\\s+(.+)$",
+        "qmd_replacement": "## {text}"
+      },
+      {
+        "name": "h3",
+        "description": "Level-3 heading",
+        "pmwiki_pattern": "^!!!\\s+(.+)$",
+        "qmd_replacement": "### {text}"
+      },
+      {
+        "name": "bold",
+        "description": "Bold text",
+        "pmwiki_pattern": "'''(.+?)'''",
+        "qmd_replacement": "**{text}**"
+      },
+      {
+        "name": "italic",
+        "description": "Italic text",
+        "pmwiki_pattern": "''(.+?)''",
+        "qmd_replacement": "*{text}*"
+      },
+      {
+        "name": "arrow_indent",
+        "description": "Right-arrow indent (-> at line start)",
+        "pmwiki_pattern": "^->\\s+(.+)$",
+        "qmd_replacement": "::: {.indent}\n{content}\n:::",
+        "notes": "Requires custom CSS class .indent { margin-left: 2em; }"
+      }
+    ]
+  },
+
+  "site_structure": {
+    "_tier": "tier_1_core",
+    "output_root": "site/",
+    "folders": {
+      "class/": "One QMD per class session (class-1.qmd through class-36.qmd)",
+      "definitions/": "One QMD per Definition.* page",
+      "flex/": "Flex day pages (flex-1.qmd etc.)",
+      "assets/uploads/Class/": "Course images mirrored from pmwiki_data/uploads/Class/",
+      "assets/uploads/Main/": "Main group uploads",
+      "assets/notes/": "Additional instructor notes and board photos (manual addition)"
+    },
+    "root_files": {
+      "index.qmd": "Home page (converted from Main.HomePage)",
+      "_quarto.yml": "Project config (generated from template below)",
+      "styles.css": "Custom CSS for .indent class and any PMWiki-specific styling"
+    }
+  },
+
+  "quarto_yml_template": {
+    "_tier": "tier_1_core",
+    "template": {
+      "project": {
+        "type": "website",
+        "output-dir": "_site"
+      },
+      "website": {
+        "title": "Math 119 — Calculus I",
+        "favicon": "assets/uploads/Class/119-bmw.png",
+        "navbar": {
+          "left": [
+            {"text": "Home", "href": "index.qmd"},
+            {"text": "Class Sessions", "menu": "__CLASS_MENU__"},
+            {"text": "Definitions", "menu": "__DEFINITIONS_MENU__"},
+            {"text": "Schedule", "href": "schedule.qmd"}
+          ]
+        },
+        "sidebar": {
+          "style": "docked",
+          "contents": "__SIDEBAR_CONTENTS__"
+        }
+      },
+      "format": {
+        "html": {
+          "theme": "flatly",
+          "css": "styles.css",
+          "toc": true,
+          "html-math-method": "mathjax"
+        }
+      },
+      "execute": {
+        "freeze": "auto"
+      }
+    },
+    "notes": "Replace __CLASS_MENU__, __DEFINITIONS_MENU__, __SIDEBAR_CONTENTS__ with generated nav from build_navigation(). html-math-method: mathjax is required for LaTeX rendering."
+  },
+
+  "github_actions_template": {
+    "_tier": "tier_1_core",
+    "file_path": ".github/workflows/publish.yml",
+    "content": {
+      "name": "Publish Quarto Site",
+      "on": {
+        "push": {
+          "branches": ["main"]
+        },
+        "workflow_dispatch": null
+      },
+      "jobs": {
+        "build-deploy": {
+          "runs-on": "ubuntu-latest",
+          "permissions": {
+            "contents": "write"
+          },
+          "steps": [
+            {
+              "name": "Check out repository",
+              "uses": "actions/checkout@v4"
+            },
+            {
+              "name": "Set up Quarto",
+              "uses": "quarto-dev/quarto-actions/setup@v2"
+            },
+            {
+              "name": "Publish to GitHub Pages",
+              "uses": "quarto-dev/quarto-actions/publish@v2",
+              "with": {
+                "target": "gh-pages",
+                "path": "site"
+              },
+              "env": {
+                "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "notes": "Run 'cd site && quarto publish gh-pages' locally once to create the gh-pages branch before the first Actions run."
+  },
+
+  "io_contract": {
+    "_tier": "tier_1_core",
+    "inputs": {
+      "pmwiki_flat_files": "pmwiki_data/wiki.d/Group.PageName — URL-encoded PMWiki flat files",
+      "uploads_dir": "pmwiki_data/uploads/ — images and attachments by group subfolder",
+      "env_vars": "None required for conversion (SFTP vars only needed for pull_wiki.py)"
+    },
+    "outputs": {
+      "qmd_files": "site/class/class-N.qmd, site/definitions/*.qmd, site/index.qmd",
+      "quarto_config": "site/_quarto.yml",
+      "assets": "site/assets/uploads/ (mirrored from pmwiki_data/uploads/)",
+      "github_actions": ".github/workflows/publish.yml",
+      "styles": "site/styles.css"
+    }
+  },
+
+  "dependencies": {
+    "_tier": "tier_1_core",
+    "packages": [
+      "paramiko>=3.5.0",
+      "python-dotenv>=1.2.2"
+    ],
+    "system": [
+      "quarto>=1.4 (CLI — install from quarto.org, not pip)"
+    ],
+    "files": [
+      "pmwiki_data/wiki.d/ (populated by pull_wiki.py)",
+      "pmwiki_data/uploads/ (populated by pull_wiki.py)"
+    ],
+    "github": [
+      "GitHub repo with Pages enabled (Settings → Pages → Source: Deploy from branch gh-pages)",
+      "GITHUB_TOKEN secret (automatic for public repos, set explicitly for private)"
+    ]
+  },
+
+  "error_handling": {
+    "_tier": "tier_2_recommended",
+    "known_failures": [
+      {
+        "error": "Nested toggle blocks",
+        "cause": "A >>toggle<< block containing another >>toggle<< block — the outer regex closes on the inner >><<",
+        "fallback": "Log a warning and emit the raw block as a code fence for manual review"
+      },
+      {
+        "error": "Attach: file not found",
+        "cause": "PMWiki page references an image that was never uploaded or was uploaded to a different group",
+        "fallback": "Emit the img tag with a broken-image CSS class and log the missing file for manual review"
+      },
+      {
+        "error": "Unicode decode error on flat file",
+        "cause": "A small number of PMWiki files may have non-UTF-8 bytes despite charset=UTF-8 declaration",
+        "fallback": "Decode with errors='replace' and log the affected page name"
+      }
+    ],
+    "fallbacks": {
+      "quarto_cli_missing": "Emit a clear error: 'Install Quarto from https://quarto.org before running conversion.' Do not proceed.",
+      "pmwiki_data_empty": "Emit a clear error: 'Run uv run pull_wiki.py first to sync pmwiki_data/.' Do not proceed.",
+      "gh_pages_branch_missing": "Emit instructions: 'Run: cd site && quarto publish gh-pages (one time only to initialize branch).'"
+    }
+  },
+
+  "validation": {
+    "_tier": "tier_1_core",
+    "test_cases": [
+      {
+        "name": "Header conversion",
+        "input": "!! Brain Gains",
+        "expected_output": "## Brain Gains",
+        "validation_method": "exact_match"
+      },
+      {
+        "name": "Math preserved through list rules",
+        "input": "#%alpha% $f(3,2) = 16$",
+        "expected_output": "<li>$f(3,2) = 16$</li>",
+        "validation_method": "exact_match",
+        "notes": "Math inside alpha list items must not be altered"
+      },
+      {
+        "name": "Toggle block conversion",
+        "input": ">>toggle<<\nAnswers\n>>indent<<\n# $f(-2) = 2$\n>><<\n>><<",
+        "expected_output_contains": ["<details>", "<summary>Answers</summary>", "</details>"],
+        "validation_method": "contains_all"
+      },
+      {
+        "name": "if-false block stripped",
+        "input": "(:if false:)\nHidden content here\n(:if:)",
+        "expected_output": "",
+        "validation_method": "exact_match"
+      },
+      {
+        "name": "New-window external link",
+        "input": "%25newwin%25[[mastery learning -> https://youtu.be/abc123]]",
+        "expected_output": "[mastery learning](https://youtu.be/abc123){target=\"_blank\"}",
+        "validation_method": "exact_match"
+      },
+      {
+        "name": "Attach image with height",
+        "input": "%25height=100px%25Attach:119-bmw.png",
+        "expected_output_contains": "assets/uploads/Class/119-bmw.png",
+        "validation_method": "contains"
+      },
+      {
+        "name": "Class pages sort numerically",
+        "input": ["Class.1", "Class.10", "Class.2", "Class.9"],
+        "expected_output": ["Class.1", "Class.2", "Class.9", "Class.10"],
+        "validation_method": "order_check"
+      },
+      {
+        "name": "Piecewise math block preserved",
+        "input": "$$f(x) = \\begin{cases}\nx & \\quad x\\geq 0 \\\\ \\\\\n-x & \\quad x<0\n\\end{cases}.$$",
+        "expected_output_is_unchanged": true,
+        "validation_method": "passthrough",
+        "notes": "Multi-line display math must survive conversion untouched"
+      },
+      {
+        "name": "Bold text",
+        "input": "'''During Class'''",
+        "expected_output": "**During Class**",
+        "validation_method": "exact_match"
+      }
+    ],
+    "quality_checks": [
+      "No raw >> or << sequences in any output QMD file",
+      "No (:...:) directive sequences in any output QMD",
+      "No Attach: references in any output QMD",
+      "No %25 sequences remaining in any output QMD",
+      "All Class.N pages present (verify count matches wiki.d Class.* count)",
+      "quarto check passes in site/ directory",
+      "No MathJax console errors on quarto preview"
+    ]
+  },
+
+  "operational_guidance": {
+    "_tier": "tier_2_recommended",
+    "when_to_use": "Run the full conversion pipeline after any pull_wiki.py sync that downloads new or changed Class.* pages. For minor edits, convert just the changed page using --page flag.",
+    "when_not_to_use": "Do not run conversion if pmwiki_data/wiki.d/ is empty — pull first.",
+    "best_practices": [
+      "Always preview locally with 'quarto preview' before pushing to main",
+      "Commit _quarto.yml and all QMD source files but gitignore _site/",
+      "Run 'quarto check' after every _quarto.yml change",
+      "Add board photos and class notes to site/assets/notes/ manually with meaningful filenames"
+    ]
+  },
+
+  "cross_references": {
+    "_tier": "tier_2_recommended",
+    "related_agents": [
+      {
+        "name": "canvas_content_sync",
+        "relationship": "Complementary — Canvas is student delivery platform; Quarto site is open reference. Content flows from PMWiki → Quarto site, independently from Canvas."
+      }
+    ],
+    "source_documentation": [
+      "https://quarto.org/docs/websites/",
+      "https://quarto.org/docs/publishing/github-pages.html",
+      "https://github.com/quarto-dev/quarto-actions",
+      "https://www.pmwiki.org/wiki/PmWiki/TextFormattingRules",
+      "https://www.pmwiki.org/wiki/PmWiki/MarkupMasterIndex"
+    ]
+  }
+}

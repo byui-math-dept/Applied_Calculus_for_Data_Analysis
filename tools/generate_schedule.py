@@ -159,7 +159,7 @@ def _load_class_topics() -> dict[int, str]:
 
 
 def write_schedule_qmd(calendar: list[dict], config: dict):
-    """Overwrite site/schedule.qmd with a week × MTRF HTML table (equal column widths)."""
+    """Overwrite site/schedule.qmd with a week × MTRF markdown table."""
     out_path = SITE_DIR / "schedule.qmd"
     semester = config["semester"]
     start = date.fromisoformat(semester["start"])
@@ -171,15 +171,11 @@ def write_schedule_qmd(calendar: list[dict], config: dict):
     class_weekdays = [WEEKDAY_MAP[d] for d in semester["class_days"]]
     col_names = [d for d in ["Mon", "Tue", "Thu", "Fri"] if WEEKDAY_MAP[d] in class_weekdays]
     col_wdays = [WEEKDAY_MAP[n] for n in col_names]
-    n_day_cols = len(col_names)
 
-    # colgroup: Week col fixed narrow, day cols equal share of remainder
-    week_col_pct = 5
-    day_col_pct = (100 - week_col_pct) // n_day_cols
+    header = "| Week | " + " | ".join(col_names) + " |"
+    sep    = "| --- | " + " | ".join("---" for _ in col_names) + " |"
 
-    header_cells = "".join(f"<th>{n}</th>" for n in col_names)
-
-    rows_html = []
+    rows = []
     week_start = start - timedelta(days=start.weekday())
     week_num = 0
     current_week = week_start
@@ -193,54 +189,44 @@ def write_schedule_qmd(calendar: list[dict], config: dict):
             continue
 
         week_num += 1
-        cells_html = []
+        cells = []
         for wd in col_wdays:
             d = current_week + timedelta(days=wd - current_week.weekday())
             if d < start or d > end:
-                cells_html.append("<td>—</td>")
+                cells.append("—")
                 continue
             entry = by_date.get(d.isoformat())
             if entry is None:
-                cells_html.append("<td>—</td>")
+                cells.append("—")
             elif entry["is_holiday"]:
-                cells_html.append(f"<td>🚫 {entry['label']}</td>")
+                cells.append(f"🚫 {entry['label']}")
             elif entry["session"].startswith("class-"):
                 num = int(entry["session"].split("-")[1])
                 topic = topics.get(num, "")
                 date_str = d.strftime("%-m/%-d")
-                line1 = f'{date_str} <a href="{entry["link"]}">Day {num}</a>:'
-                inner = f"{line1}<br>{topic}" if topic else line1
-                cells_html.append(f"<td>{inner}</td>")
+                cell = f"{date_str} [{f'Day {num}'}]({entry['link']}):"
+                if topic:
+                    cell += f"<br>{topic}"
+                cells.append(cell)
             elif entry["session"].startswith("flex-"):
                 num = entry["session"].split("-")[1]
                 date_str = d.strftime("%-m/%-d")
-                cells_html.append(f'<td>{date_str} <a href="{entry["link"]}">Flex {num}</a></td>')
+                cells.append(f"{date_str} [Flex {num}]({entry['link']})")
             else:
                 label = SESSION_LABELS.get(entry["session"], entry["session"].title())
-                cells_html.append(f"<td>{d.strftime('%-m/%-d')} {label}</td>")
+                cells.append(f"{d.strftime('%-m/%-d')} {label}")
 
-        rows_html.append(
-            f"  <tr><td><strong>W{week_num}</strong></td>{''.join(cells_html)}</tr>"
-        )
+        rows.append("| **W" + str(week_num) + "** | " + " | ".join(cells) + " |")
         current_week += timedelta(weeks=1)
-
-    col_tags = f'<col style="width:{week_col_pct}%">' + "".join(
-        f'<col style="width:{day_col_pct}%">' for _ in col_names
-    )
 
     content = f"""---
 title: "Schedule"
 ---
 
-<div style="overflow-x:auto">
-<table class="table table-bordered table-sm schedule-table">
-<colgroup>{col_tags}</colgroup>
-<thead><tr><th>Week</th>{header_cells}</tr></thead>
-<tbody>
-{"".join(row + chr(10) for row in rows_html)}</tbody>
-</table>
-</div>
-"""
+{header}
+{sep}
+""" + "\n".join(rows) + "\n"
+
     out_path.write_text(content)
     print(f"Wrote {out_path.relative_to(REPO_ROOT)}")
 

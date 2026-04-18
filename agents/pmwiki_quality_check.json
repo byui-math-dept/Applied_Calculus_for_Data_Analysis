@@ -1,0 +1,357 @@
+{
+  "agent_name": "pmwiki_quality_check",
+  "version": "1.0",
+  "description": "Scans converted QMD files for leaked PMWiki markup and structural issues.",
+
+  "checks": {
+    "leak_patterns": [
+      {
+        "id": "G1",
+        "name": "Pipe Table Syntax",
+        "severity": "critical",
+        "pattern": "^\\|\\|",
+        "flags": "MULTILINE",
+        "description": "PMWiki ||...|| pipe table syntax survived conversion.",
+        "example_bad": "||!Expanded Expressions ||!Condensed Expressions ||",
+        "example_good": "| Expanded Expressions | Condensed Expressions |",
+        "notes": "Any line starting with || in a QMD file is a confirmed miss. Attribute rows (||border=1 width=80%||) should have been stripped by the converter."
+      },
+      {
+        "id": "G2",
+        "name": "List Items Without Space",
+        "severity": "critical",
+        "pattern": "^\\*[^*\\s][^*]*$|^#+[^#%\\s]",
+        "flags": "MULTILINE",
+        "description": "PMWiki list marker without space (*item or #item) passed through unconverted.",
+        "example_bad": "*Take turns acting as scribe",
+        "example_good": "- Take turns acting as scribe",
+        "notes": "Exclude lines inside fenced code blocks. #%alpha% is not a miss — it should have been converted to <ol type=\"a\">."
+      },
+      {
+        "id": "G3",
+        "name": "Unconverted Headers Inside Blocks",
+        "severity": "high",
+        "pattern": "^!!+",
+        "flags": "MULTILINE",
+        "description": "PMWiki !! or !!! header syntax survived inside a toggle or note block.",
+        "example_bad": "!!Group Discussion",
+        "example_good": "## Group Discussion",
+        "notes": "May occur if block processing extracted content before header rules fired."
+      },
+      {
+        "id": "G4",
+        "name": "Monospace / Inline Code (@@text@@)",
+        "severity": "high",
+        "pattern": "@@",
+        "flags": "",
+        "description": "PMWiki @@...@@ inline monospace markup not converted to backtick code.",
+        "example_bad": "@@draw_pmf@@",
+        "example_good": "`draw_pmf`",
+        "notes": "Skip occurrences inside fenced code blocks."
+      },
+      {
+        "id": "G5",
+        "name": "Superscript (^text^)",
+        "severity": "medium",
+        "pattern": "\\^[^\\^\\s$]+\\^",
+        "flags": "",
+        "description": "PMWiki ^text^ superscript — Quarto supports this natively but may conflict with adjacent math.",
+        "example_bad": "10^3^ meters",
+        "example_good": "10^3^ meters (actually valid in Quarto)",
+        "notes": "Flag only if inside a $...$ math region where ^ is LaTeX power syntax. Skip if outside math — Quarto ^text^ is correct output."
+      },
+      {
+        "id": "G6",
+        "name": "Strikethrough ({-text-})",
+        "severity": "medium",
+        "pattern": "\\{-.*?-\\}",
+        "flags": "DOTALL",
+        "description": "PMWiki {-text-} strikethrough not converted to Markdown ~~text~~.",
+        "example_bad": "{-old answer-}",
+        "example_good": "~~old answer~~",
+        "notes": "No known false positives — this pattern is unambiguous."
+      },
+      {
+        "id": "G7",
+        "name": "Definition Lists (:term:definition)",
+        "severity": "medium",
+        "pattern": "^:[^:]+:[^:]",
+        "flags": "MULTILINE",
+        "description": "PMWiki :term:definition list syntax survived in output.",
+        "example_bad": ":logarithm:The exponent to which a base must be raised",
+        "example_good": "**logarithm**\n: The exponent to which a base must be raised",
+        "notes": "Only flag lines that start with : and contain a second : before end-of-line. Avoid matching YAML colons in frontmatter."
+      },
+      {
+        "id": "G8",
+        "name": "Horizontal Rules (----)",
+        "severity": "low",
+        "pattern": "^----+$",
+        "flags": "MULTILINE",
+        "description": "PMWiki 4+ dash horizontal rule — also valid Markdown, but verify intent.",
+        "example_bad": "----",
+        "example_good": "--- (3 dashes is conventional Markdown)",
+        "notes": "4+ dashes render correctly in Markdown. Flag as informational only."
+      },
+      {
+        "id": "G9",
+        "name": "Force Line Break (\\\\)",
+        "severity": "low",
+        "pattern": "\\\\\\\\\\s*$",
+        "flags": "MULTILINE",
+        "description": "PMWiki \\\\ forced line break at end of line — renders as literal \\\\ in QMD.",
+        "example_bad": "See the board\\\\ for the sketch",
+        "example_good": "See the board  \nfor the sketch",
+        "notes": "Should be converted to two trailing spaces or <br>."
+      },
+      {
+        "id": "G10",
+        "name": "Text Size Markup ([+text+], [-text-])",
+        "severity": "low",
+        "pattern": "\\[[\\+\\-]{1,2}[^\\]]+[\\+\\-]{1,2}\\]",
+        "flags": "",
+        "description": "PMWiki [+larger+] or [-smaller-] text sizing passed through as literal brackets.",
+        "example_bad": "[+Important Note+]",
+        "example_good": "**Important Note** (or just plain text)",
+        "notes": "Purely cosmetic. No Quarto/Markdown equivalent — strip or convert to bold."
+      },
+      {
+        "id": "G11",
+        "name": "Pipe-Style Links ([[text | url]])",
+        "severity": "high",
+        "pattern": "\\[\\[[^\\]]+\\|[^\\]]+\\]\\]",
+        "flags": "",
+        "description": "PMWiki [[display | url]] link form using pipe separator instead of ->.",
+        "example_bad": "[[Syllabus | https://byui.instructure.com/courses/398938]]",
+        "example_good": "[Syllabus](https://byui.instructure.com/courses/398938)",
+        "notes": "Converter only handles [[ -> ]] form. Pipe form leaks through."
+      },
+      {
+        "id": "G12",
+        "name": "Compound % Style Markup",
+        "severity": "medium",
+        "pattern": "%[a-zA-Z][a-zA-Z0-9_= -]*%",
+        "flags": "",
+        "description": "Compound PMWiki % markup like %bgcolor=yellow% or %item value=3% survived stripping.",
+        "example_bad": "%bgcolor=yellow%",
+        "example_good": "(stripped — no Quarto equivalent)",
+        "notes": "Basic %word% forms are stripped; compound forms with = may survive. Skip math placeholders (XXMATHXX)."
+      },
+      {
+        "id": "G13",
+        "name": "PMWiki Directives ((:...:))",
+        "severity": "critical",
+        "pattern": "\\(:[a-zA-Z]",
+        "flags": "",
+        "description": "PMWiki server-side directive survived in output — students see raw command text.",
+        "example_bad": "(:pagelist group=Class order=name:)",
+        "example_good": "(stripped entirely)",
+        "notes": "Any (:word match is a confirmed critical issue. No false positives."
+      },
+      {
+        "id": "G14",
+        "name": "Raw Attach: References",
+        "severity": "critical",
+        "pattern": "\\bAttach:[A-Za-z]",
+        "flags": "",
+        "description": "Attach:filename not matched by image conversion rule — produces broken link.",
+        "example_bad": "Attach:class14-board.jpg",
+        "example_good": "![](../assets/uploads/Class/class14-board.jpg)",
+        "notes": "Check for unusual file extensions or Attach: in contexts the regex didn't reach."
+      },
+      {
+        "id": "G15",
+        "name": "URL-Encoded Sequences (%25, %0a, etc.)",
+        "severity": "high",
+        "pattern": "%25|%0a|%0A|%3c|%3C|%3e|%3E",
+        "flags": "",
+        "description": "URL-encoded sequences survived because URL decoding was partial or failed.",
+        "example_bad": "%25 of students",
+        "example_good": "% of students",
+        "notes": "These appear literally in output. Decode with urllib.parse.unquote."
+      },
+      {
+        "id": "G16",
+        "name": "Raw >>...<<  Div Tags",
+        "severity": "critical",
+        "pattern": ">>[a-z]+<<|>><<",
+        "flags": "",
+        "description": "Surviving >>word<< or >>><< means a div block was not processed.",
+        "example_bad": ">>toggle<<",
+        "example_good": "<details><summary>Show</summary>",
+        "notes": "Single > is Markdown blockquote — not a miss. Only double >> triggers this check."
+      },
+      {
+        "id": "G17",
+        "name": "Unclosed <details> Tags",
+        "severity": "high",
+        "pattern": null,
+        "flags": "",
+        "description": "Count <details> vs </details> per file — mismatch means a broken toggle block.",
+        "example_bad": "<details>\n<summary>Show</summary>\n\ncontent (no closing tag)",
+        "example_good": "<details>\n<summary>Show</summary>\n\ncontent\n\n</details>",
+        "notes": "Use count-based check: len(re.findall('<details>', text)) == len(re.findall('</details>', text)). Not a pattern scan — requires file-level count."
+      }
+    ],
+
+    "severity_policy": {
+      "critical": {
+        "description": "Broken output students will see — leaked directives, raw syntax, broken links.",
+        "action": "Block site push. Re-convert or hand-fix before deploying.",
+        "ids": ["G1", "G2", "G13", "G14", "G16"]
+      },
+      "high": {
+        "description": "Significantly degraded output — unconverted markup, broken structure.",
+        "action": "Block site push with --strict flag. Fix before next release.",
+        "ids": ["G3", "G4", "G11", "G15", "G17"]
+      },
+      "medium": {
+        "description": "Cosmetic or minor semantic issue — rendered output is readable but imperfect.",
+        "action": "Report but do not block. Fix in next converter update.",
+        "ids": ["G5", "G6", "G7", "G12"]
+      },
+      "low": {
+        "description": "Informational — usually valid output, flagged for awareness.",
+        "action": "Log only. No action required unless patterned.",
+        "ids": ["G8", "G9", "G10"]
+      }
+    },
+
+    "cross_reference_rules": {
+      "description": "When a leak is found in a QMD file, decode the corresponding wiki flat file to show the original source markup alongside the leak.",
+      "steps": [
+        "Map QMD filename back to wiki page name: site/class/class-N.qmd → Class.N",
+        "Read pmwiki_data/wiki.d/Class.N and decode: extract text= field, urllib.parse.unquote()",
+        "Find the original line containing the leaked markup (fuzzy match on surrounding words)",
+        "Include both the original wiki line and the current QMD line in the report"
+      ]
+    }
+  },
+
+  "report_format": {
+    "output_file": "quality_report.md",
+    "structure": [
+      "# Quality Check Report",
+      "Generated: {datetime}",
+      "Pages scanned: {count}",
+      "## Summary Table (severity × count)",
+      "## Critical Issues",
+      "## High Issues",
+      "## Medium Issues",
+      "## Low Issues",
+      "## Pages with No Issues"
+    ],
+    "finding_format": {
+      "fields": ["check_id", "severity", "file", "line_number", "qmd_text", "wiki_source_text", "suggested_fix"]
+    }
+  },
+
+  "validation_test_cases": [
+    {
+      "id": "TC01",
+      "check": "G1",
+      "input": "||!Expanded Expressions ||!Condensed Expressions ||\n|| $\\log 3 + \\log 2$ || A. $\\log 4$ ||",
+      "expected_detections": ["G1"],
+      "expected_severity": "critical"
+    },
+    {
+      "id": "TC02",
+      "check": "G2",
+      "input": "*Take turns acting as scribe\n#Complete the exit ticket",
+      "expected_detections": ["G2"],
+      "expected_severity": "critical"
+    },
+    {
+      "id": "TC03",
+      "check": "G3",
+      "input": "<details>\n<summary>Show answer</summary>\n\n!!Group Discussion\n\n</details>",
+      "expected_detections": ["G3"],
+      "expected_severity": "high"
+    },
+    {
+      "id": "TC04",
+      "check": "G4",
+      "input": "Call the function @@draw_pmf@@ with your data.",
+      "expected_detections": ["G4"],
+      "expected_severity": "high"
+    },
+    {
+      "id": "TC05",
+      "check": "G6",
+      "input": "The {-old answer-} was incorrect.",
+      "expected_detections": ["G6"],
+      "expected_severity": "medium"
+    },
+    {
+      "id": "TC06",
+      "check": "G11",
+      "input": "[[Syllabus | https://byui.instructure.com/courses/398938]]",
+      "expected_detections": ["G11"],
+      "expected_severity": "high"
+    },
+    {
+      "id": "TC07",
+      "check": "G13",
+      "input": "(:pagelist group=Class order=name:)",
+      "expected_detections": ["G13"],
+      "expected_severity": "critical"
+    },
+    {
+      "id": "TC08",
+      "check": "G14",
+      "input": "See Attach:class14-board.jpg for the diagram.",
+      "expected_detections": ["G14"],
+      "expected_severity": "critical"
+    },
+    {
+      "id": "TC09",
+      "check": "G16",
+      "input": ">>toggle<<\nShow Answer\n>>indent<<\nThe answer is 42.\n>><<\n>><<",
+      "expected_detections": ["G16"],
+      "expected_severity": "critical"
+    },
+    {
+      "id": "TC10",
+      "check": "G17",
+      "input": "<details>\n<summary>Show</summary>\n\nSome content here.\n",
+      "expected_detections": ["G17"],
+      "expected_severity": "high"
+    },
+    {
+      "id": "TC11",
+      "check": "false_positive_math",
+      "input": "$f(x) = x^2$ is a quadratic function.",
+      "expected_detections": [],
+      "notes": "^ inside math must NOT trigger G5 superscript check."
+    },
+    {
+      "id": "TC12",
+      "check": "false_positive_code_fence",
+      "input": "```r\n# This comment has a #\n*bold_var <- 1\n```",
+      "expected_detections": [],
+      "notes": "# and * inside code fences must NOT trigger G2 list checks."
+    },
+    {
+      "id": "TC13",
+      "check": "false_positive_blockquote",
+      "input": "> This is a Markdown blockquote, not a PMWiki div.",
+      "expected_detections": [],
+      "notes": "Single > must NOT trigger G16 raw div tag check."
+    }
+  ],
+
+  "implementation_notes": {
+    "preprocessing": [
+      "Before running any pattern checks, extract fenced code blocks (```...```) and [@...@] blocks into placeholders.",
+      "Extract $...$ and $$...$$ math into placeholders.",
+      "Run all checks against the placeholder-substituted text.",
+      "G17 (unclosed details) uses count comparison, not pattern scan — run separately."
+    ],
+    "cross_reference_map": {
+      "site/class/class-{N}.qmd": "pmwiki_data/wiki.d/Class.{N}",
+      "site/definitions/{name}.qmd": "pmwiki_data/wiki.d/Definition.{TitleCaseName}",
+      "site/flex/flex-{N}.qmd": "pmwiki_data/wiki.d/Flex.{N}"
+    },
+    "performance_target": "Under 10 seconds for all 68 pages on local machine."
+  }
+}
