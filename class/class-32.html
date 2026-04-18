@@ -337,112 +337,127 @@ c_{1,1}x + c_{1,2}y - b_1 &amp;= 0 \\
 c_{2,1}x + c_{2,2}y - b_2 &amp;= 0
 \end{align*}\]</span></li>
 </ol>
-<pre><code>Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]</code></pre>
-<p>When solving this by hand, here’s what we obtained.<br>
-- <span class="math inline">\(y = \frac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}\)</span> - <span class="math inline">\(x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1.2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}\)</span></p>
-<details>
-<summary>
-Answer
-</summary>
-<p>The solutions are the same, though you’ll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand.</p>
-<p>As reminder, here’s the R code we’ve been using to get the solution.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11, c12, b1, c21, c22, b2)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>sol</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Solve[{c11 x <span class="sc">+</span> c12 y <span class="sc">-</span> b1 <span class="sc">==</span> <span class="dv">0</span>, c21 x <span class="sc">+</span> c22 y <span class="sc">-</span> b2 <span class="sc">==</span> <span class="dv">0</span>}, {x, y}]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>When solving this by hand, here<span class="st">'s what we obtained.  </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">- $y = </span><span class="sc">\f</span><span class="st">rac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">- $x = </span><span class="sc">\f</span><span class="st">rac{b_1 - c_{1,2}y}{c_{1,1}} = </span><span class="sc">\f</span><span class="st">rac{b_{1}c_{2,2} - b_{2}c_{1.2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;details&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;summary&gt;Answer&lt;/summary&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">The solutions are the same, though you'</span>ll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand. </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>As reminder, here<span class="st">'s the R code we'</span>ve been using to get the solution.  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">r</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">c11 &lt;- </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">c12 &lt;- </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">b1 &lt;- </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">c21 &lt;- </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">c22 &lt;- </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">b2 &lt;- </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">sol &lt;- solvesystem(c11, c12, b1, c21, c22, b2)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">sol</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In Mathematica, sometimes we will have to make assumptions before we compute something (like assuming a parameter is positive). Here’s an example that assumes the denominator is not zero.</p>
-<pre><code>Assuming[c11 c22 - c21 c12 != 0, Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]]</code></pre>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Assuming[c11 c22 <span class="sc">-</span> c21 c12 <span class="sc">!=</span> <span class="dv">0</span>, Solve[{c11 x <span class="sc">+</span> c12 y <span class="sc">-</span> b1 <span class="sc">==</span> <span class="dv">0</span>, c21 x <span class="sc">+</span> c22 y <span class="sc">-</span> b2 <span class="sc">==</span> <span class="dv">0</span>}, {x, y}]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(:codemend:)</p>
+
 </section>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <section id="activity---compare-loglikelihood-and-least-squares" class="level3">
 <h3 class="anchored" data-anchor-id="activity---compare-loglikelihood-and-least-squares">Activity - Compare loglikelihood and least squares</h3>
-<p>Start by reading in the data below.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data4_ls.csv"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Consider the model <span class="math inline">\(f(x; a) = a e^x\)</span>. We will fit this model to our data. Work with your group on the chalkboard to obtain the best fit parameters for this model using both 1. the maximum likelihood method, and 1. least squares.</p>
-<section id="using-the-maximum-likelihood-method" class="level4">
-<h4 class="anchored" data-anchor-id="using-the-maximum-likelihood-method">Using the Maximum Likelihood Method</h4>
-<p>Fit <span class="math inline">\(f\)</span> to the data by maximizing the loglikelihood of the errors assuming the errors are independent and normally distributed. Note the likelihood function for the errors of <span class="math inline">\(f\)</span> is <span class="math inline">\(L(a; \mathbf{x},\mathbf{y}) = \prod_{i=1}^n\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - ae^{x_i})^2}\)</span>. And the loglikelihood for the errors of <span class="math inline">\(f\)</span> is <span class="math display">\[\ell(a; \mathbf{x},\mathbf{y}) = n\ln(\frac{1}{\sqrt{2\pi}}) + \left( -\frac{1}{2} \right)\sum_{i=1}^{n}(y_i - ae^{x_i})^2.\]</span></p>
-<p>Once you obtain your value for <span class="math inline">\(a\)</span>, remember to plot the data along with your fitted model to visually verify your fit.</p>
-</section>
-<section id="using-least-squares" class="level4">
-<h4 class="anchored" data-anchor-id="using-least-squares">Using Least Squares</h4>
-<p>Fit <span class="math inline">\(f\)</span> to the data by minimizing the sum of squared errors. <em>This assumes the errors are independent and normally distributed.</em> Note the sum of squared errors of <span class="math inline">\(f\)</span> is <span class="math display">\[S(a; \mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - ae^{x_i})^2.\]</span></p>
-</section>
-<section id="answer-questions-with-the-model" class="level4">
-<h4 class="anchored" data-anchor-id="answer-questions-with-the-model">Answer questions with the Model</h4>
-<p>Once you have your model, you can use it to answer questions.<br>
-1. What is <span class="math inline">\(f(4)\)</span>, the value predicted by the model at <span class="math inline">\(x=4\)</span>. 1. Find <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x) = 5\)</span>.</p>
-<details>
-<summary>
-Solutions
-</summary>
-<p>Using <span class="math inline">\(f(x) = 3.187972 e^x\)</span>, we have 1. <span class="math inline">\(f(4) = 174.0574\)</span> 1. uniroot yields about <span class="math inline">\(x = 0.45\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_a <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span><span class="fu">exp</span>(x))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>my_a  </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Start by reading in the data below. (:code:)[@ rm(list=ls()) data &lt;- read.csv(url(“https://byuistats.github.io/M119/data4_ls.csv”)) x &lt;- data<span class="math inline">\(x
+y &lt;- data\)</span>y</p>
+<pre><code>
+Consider the model $f(x; a) = a e^x$. We will fit this model to our data.
+Work with your group on the chalkboard to obtain the best fit parameters for this model using both 
+1. the maximum likelihood method, and
+1. least squares. 
+
+#### Using the Maximum Likelihood Method
+Fit $f$ to the data by maximizing the loglikelihood of the errors assuming the errors are independent and normally distributed.
+Note the likelihood function for the errors of $f$ is 
+$L(a; \mathbf{x},\mathbf{y}) = \prod_{i=1}^n\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - ae^{x_i})^2}$. 
+And the loglikelihood for the errors of $f$ is 
+$$\ell(a; \mathbf{x},\mathbf{y}) = n\ln(\frac{1}{\sqrt{2\pi}}) + \left( -\frac{1}{2} \right)\sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
+
+Once you obtain your value for $a$, remember to plot the data along with your fitted model to visually verify your fit. 
+
+#### Using Least Squares
+Fit $f$ to the data by minimizing the sum of squared errors. *This assumes the errors are independent and normally distributed.*
+Note the sum of squared errors of $f$ is $$S(a; \mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
+
+#### Answer questions with the Model
+Once you have your model, you can use it to answer questions.  
+1. What is $f(4)$, the value predicted by the model at $x=4$. 
+1. Find $x$ so that $f(x) = 5$. 
+
+&lt;details&gt;
+&lt;summary&gt;Solutions&lt;/summary&gt;
+
+Using $f(x) = 3.187972 e^x$, we have
+1. $f(4) = 174.0574$
+1. uniroot yields about $x = 0.45$.
+
+```r
+my_a &lt;- sum(y*exp(x))/sum(exp(x)^2)
+my_a  
+
+f(4)
+uniroot(function(x){f(x)-5},c(-2,2))$root</code></pre>
 <p>f &lt;- function(x,a = my_a){a*exp(x)} plot(x,y) t &lt;- seq(min(x),max(x),0.1) lines(t,f(t))</p>
-</details>
-</section>
+
 </section>
 <section id="another-model" class="level3">
 <h3 class="anchored" data-anchor-id="another-model">Another model</h3>
 <p>Reading in the data below.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This time use the model <span class="math inline">\(f(x;b,m) = b+mx\)</span>. - Fit this model to the data using either the Least Squares or or Maximum Likelihood method. - What is <span class="math inline">\(f(4)\)</span>, the value predicted by the model at <span class="math inline">\(x=4\)</span>. - Find <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x) = 5\)</span>.</p>
 <details>
 <summary>
 Solution
 </summary>
 <p>The code below gives <span class="math inline">\(y = 2.79 + 6.48x\)</span> (rounded to 3 sig figures) as the model, with <span class="math inline">\(f(4) = 28.72758\)</span> and <span class="math inline">\(f(0.3402777)=5\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>x)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11,c12,b1,c21,c22,b2)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>sol</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>my_b <span class="ot">&lt;-</span> sol[<span class="dv">1</span>]</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>my_m <span class="ot">&lt;-</span> sol[<span class="dv">2</span>]</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> my_b, <span class="at">m =</span> my_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="fl">0.1</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t,<span class="fu">f</span>(t),<span class="at">type =</span> <span class="st">"l"</span>) </span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>) <span class="co"># 28.72758</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root <span class="co"># 0.3402777</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>x)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11,c12,b1,c21,c22,b2)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>sol</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>my_b <span class="ot">&lt;-</span> sol[<span class="dv">1</span>]</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>my_m <span class="ot">&lt;-</span> sol[<span class="dv">2</span>]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> my_b, <span class="at">m =</span> my_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="fl">0.1</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t,<span class="fu">f</span>(t),<span class="at">type =</span> <span class="st">"l"</span>) </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>) <span class="co"># 28.72758</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root <span class="co"># 0.3402777</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 </section>

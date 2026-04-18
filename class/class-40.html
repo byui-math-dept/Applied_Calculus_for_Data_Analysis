@@ -284,6 +284,7 @@ Solution
 Solution
 </summary>
 <p>From the prep, we have the following code. The Assumptions command allows us to inform Mathematica about the fact that <span class="math inline">\(\lambda&gt;0\)</span>.</p>
+<p>(:codem:)</p>
 <pre><code>$Assumptions = \[Lambda] &gt; 0;
 f = \[Lambda]*Exp[-\[Lambda]*x];
 bounds = {x, 0, Infinity};
@@ -293,6 +294,7 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
+<p>(:codemend:)</p>
 </details>
 <ol start="3" type="1">
 <li>For the uniform distribution <span class="math inline">\(f_0(x; a,b) = \frac{1}{b-a}\)</span> for <span class="math inline">\(a &lt; x &lt; b\)</span> and 0 otherwise, write down integrals that give the expected value and variance, and then compute these integrals.</li>
@@ -302,7 +304,7 @@ $Assumptions = Null;</code></pre>
 Solution
 </summary>
 <p>We update the bounds to <span class="math inline">\(a\leq x\leq b\)</span> and function <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span> to obtain - <span class="math inline">\(\ds E[X] = \int_a^b x (\frac{1}{b-a}) dx\)</span> - <span class="math inline">\(\ds Var[X] = \int_a^b (x-E[X]])^2 (\frac{1}{b-a}) dx\)</span>.</p>
-<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later.</p>
+<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later. (:codem:)</p>
 <pre><code>$Assumptions = a &lt;= b;
 f = 1/(b - a);
 bounds = {x, a, b};
@@ -314,6 +316,7 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
+<p>(:codemend:)</p>
 </details>
 </section>
 <section id="group-meeting" class="level2">
@@ -369,7 +372,7 @@ We get <span class="math inline">\(A = \int_{-\infty}^{\infty}g(x)dx = \int_{0}^
 <li>We have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx\)</span>. If <span class="math inline">\(x&lt;0\)</span> then <span class="math inline">\(F(x)=0\)</span>, but for <span class="math inline">\(x\geq 0\)</span> we have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}\)</span>.</li>
 <li>The values are <span class="math inline">\(P(X\leq 10) = F(10) = 1-e^{-8}\)</span> and then <span class="math inline">\(P(X\geq 10)=1-F(10) = e^{-8}\)</span>.</li>
 <li>We need to solve <span class="math inline">\(0.90 = 1-e^{-4x}\)</span>. This means <span class="math inline">\(e^{-4x} = 0.1\)</span> which gives <span class="math inline">\(-4x = \ln(0.1)\)</span> or <span class="math inline">\(x = \ln(0.1)/(-4)\)</span>.</li>
-<li>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems.</li>
+<li>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems. (:codem:)</li>
 </ol>
 <pre><code>g = Exp[-4*x];
 a = 0;
@@ -385,12 +388,14 @@ Integrate[f, {x, a, 2}]
 1-Integrate[f, {x, a, 2}]
 Solve[Integrate[f, {x, a, c}]==0.9, c]
 D[F, x](*Computes derivative of F with respect to x. Should match f*)</code></pre>
+<p>(:codemend:)</p>
 </details>
 <ol start="2" type="1">
-<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit.</li>
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit. (:codem:)</li>
 </ol>
 <pre><code>g = Exp[-\[Lambda] x]
 $Assumptions = \[Lambda] &gt; 0</code></pre>
+(:codemend:)
 <ol type="a">
 <li>
 Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this an exponential random variable.
@@ -450,7 +455,7 @@ Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(
 <summary>
 Solution
 </summary>
-<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral.</p>
+<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral. (:codem:)</p>
 <pre><code>$Assumptions = x \[Element] Reals
 g = Piecewise[{{3, -2 &lt;= x &amp;&amp; x &lt; 1}, {5, 1 &lt;= x &lt;= 5}, {0, True}}]
 Plot[g, {x, -5, 10}]
@@ -462,6 +467,7 @@ EV = Integrate[x f, {x, -Infinity, Infinity}]
 Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
 F = Integrate[ f, {x, -Infinity, x}]
 D[F, x]</code></pre>
+<p>(:codemend:)</p>
 </details>
 </section>
 </section>

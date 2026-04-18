@@ -230,6 +230,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#teach-one-another" id="toc-teach-one-another" class="nav-link" data-scroll-target="#teach-one-another">Teach One Another</a></li>
   </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#summary---random-variables-and-the-functions-that-describe-them-key-ideas" id="toc-summary---random-variables-and-the-functions-that-describe-them-key-ideas" class="nav-link" data-scroll-target="#summary---random-variables-and-the-functions-that-describe-them-key-ideas">Summary - Random Variables (and the functions that describe them) – Key Ideas</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -261,225 +265,133 @@ window.Quarto = {
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <section id="teach-one-another" class="level3">
-<h3 class="anchored">Teach One Another</h3>
+<h3 class="anchored" data-anchor-id="teach-one-another">Teach One Another</h3>
 <p>Give each group member 1-2 minutes to share what they prepared from the between class work.</p>
 <p>Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them. ### Fundamental Theorem of Calculus</p>
 <details>
 <summary>
 Summary: Calculating Probability with the PDF and CDF
 </summary>
-<blockquote class="blockquote">
-<p>To calculate a probability with the PDF of a continuous random variable, we use the following: * <span class="math inline">\(P(X \leq a) = \int_{-\infty}^a f(x)dx\)</span>, * <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)dx\)</span>, * <span class="math inline">\(P(X \geq a) = \int_a^\infty f(x)dx\)</span>.</p>
-<p>To calculate a probability with the CDF of a continuous random variable, we use the following: * <span class="math inline">\(P(X \leq a) = F(a)\)</span> * <span class="math inline">\(P(a \leq X \leq b) = F(b) - F(a)\)</span> * <span class="math inline">\(P(X \geq a) = 1 - F(a)\)</span></p>
-</blockquote></details>
-<p>:::</p>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
+<p>To calculate a probability with the PDF of a continuous random variable, we use the following: - <span class="math inline">\(P(X \leq a) = \int_{-\infty}^a f(x)dx\)</span>, - <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x)dx\)</span>, - <span class="math inline">\(P(X \geq a) = \int_a^\infty f(x)dx\)</span>.</p>
+<p>To calculate a probability with the CDF of a continuous random variable, we use the following: - <span class="math inline">\(P(X \leq a) = F(a)\)</span> - <span class="math inline">\(P(a \leq X \leq b) = F(b) - F(a)\)</span> - <span class="math inline">\(P(X \geq a) = 1 - F(a)\)</span></p>
+</details>
 <details>
 <summary>
 Fundamental Theorem of Calculus (FTC)
 </summary>
-<blockquote class="blockquote">
 <p>(Part 1) If <span class="math inline">\(f(x)\)</span> is continuous over an interval $ [ a, b ] $, and the function <span class="math inline">\(F(x)\)</span> is defined by <span class="math inline">\(F(x) = \int_a^x f(t)dt\)</span>, then <span class="math inline">\(F'(x) = f(x)\)</span> over $ [ a, b ]$.<br> <em>Note this is Theorem 5.4 in Open Stax Calculus Volume 1.</em></p>
-<p>(Part 2) If <span class="math inline">\(f\)</span> is continuous over the interval $ [ a, b ] $ and <span class="math inline">\(F(x)\)</span> is any antiderivative of <span class="math inline">\(f(x)\)</span>, then <span class="math inline">\(\int_a^b f(x)dx = F(b) - F(a)\)</span>.<br> <em>Note this is Theorem 5.5 in Open Stax Calculus Volume 1.</em> * When you read <strong>antiderivative</strong> think “undo a derivative”.</p>
-</blockquote></details>
-<p>:::</p>
-<h1 id="let-ds-fx-begincasesfrac18x-3-leq-x-leq-5-0-textotherwiseendcases-be-a-pdf-for-a-continuous-random-variable-x.">Let <span class="math inline">\(\ds f(x) = \begin{cases}\frac{1}{8}x &amp; 3 \leq x \leq 5 \\0 &amp; \text{otherwise}\end{cases}\)</span> be a pdf for a continuous random variable <span class="math inline">\(X\)</span>.</h1>
-<h2 id="calculate-fx-px-leq-x-by-writing-down-an-appropriate-integral-an-accumulation-function-and-then-computing-that-integral-with-mathematica.-you-have-found-the-cdf-of-x." class="anchored" data-anchor-id="teach-one-another">Calculate <span class="math inline">\(F(x) = P(X \leq x)\)</span> by writing down an appropriate integral (an accumulation function) and then computing that integral with Mathematica. You have found the CDF of <span class="math inline">\(X\)</span>.</h2>
-<h2 id="compute-the-derivative-of-fx." class="anchored">Compute the derivative of <span class="math inline">\(F(x)\)</span>.</h2>
-<h2 id="explain-why-ds-fracddxleftint_3xfrac18t-dtright-frac18x-for-3leq-xleq-5." class="anchored">Explain why <span class="math inline">\(\ds \frac{d}{dx}\left(\int_3^x\frac{1}{8}t dt\right) = \frac{1}{8}x\)</span> for <span class="math inline">\(3\leq x\leq 5\)</span>.</h2>
-<h2 id="compute-p3-leq-x-leq-4-using-the-probability-density-function-fx." class="anchored">Compute <span class="math inline">\(P(3 \leq X \leq 4)\)</span> using the probability density function <span class="math inline">\(f(x)\)</span>.</h2>
-<h2 id="compute-p3-leq-x-leq-4-using-the-cumulative-distribution-function-fx." class="anchored">Compute <span class="math inline">\(P(3 \leq X \leq ​4)\)</span> using the cumulative distribution function <span class="math inline">\(F(x)\)</span>.</h2>
-<h2 id="verify-that-int_34-fx-dx-f4-f3." class="anchored">Verify that <span class="math inline">\(\int_3^4 f(x) dx = F(4)-F(3)\)</span>.</h2>
-<h1 id="let-ds-fx-begincaseslambda-e-lambda-x-x-geq-0-0-textotherwiseendcases-be-a-pdf-for-a-continuous-random-variable-x-for-some-lambda-0.">Let <span class="math inline">\(\ds f(x) = \begin{cases}\lambda e^{-\lambda x} &amp; x \geq 0 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> be a pdf for a continuous random variable <span class="math inline">\(X\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</h1>
-<h2 id="calculate-fx-px-leq-x-by-writing-down-an-appropriate-integral-an-accumulation-functionand-then-computing-that-integral-with-mathematica.-you-have-found-the-cdf-of-x." class="anchored">Calculate <span class="math inline">\(F(x) = P(X \leq x)\)</span> by writing down an appropriate integral (an accumulation function)and then computing that integral with Mathematica. You have found the CDF of <span class="math inline">\(X\)</span>.</h2>
-<h2 id="compute-the-derivative-of-fx.-1" class="anchored">Compute the derivative of <span class="math inline">\(F(x)\)</span>.</h2>
-<h2 id="explain-why-ds-fracddxleftint_0xlambda-e-lambda-t-dtright-lambda-e-lambda-x-for-x-." class="anchored">Explain why <span class="math inline">\(\ds \frac{d}{dx}\left(\int_0^x\lambda e^{-\lambda t} dt\right) = \lambda e^{-\lambda x}\)</span> for $ x $.</h2>
-<h2 id="compute-p1-leq-x-leq-5-using-the-probability-density-function-fx." class="anchored">Compute <span class="math inline">\(P(1 \leq X \leq 5)\)</span> using the probability density function <span class="math inline">\(f(x)\)</span>.</h2>
-<h2 id="compute-p1-leq-x-leq-5-using-the-cumulative-distribution-function-fx." class="anchored">Compute <span class="math inline">\(P(1 \leq X \leq ​5)\)</span> using the cumulative distribution function <span class="math inline">\(F(x)\)</span>.</h2>
-<h2 id="verify-that-int_15-fx-dx-f5-f1." class="anchored">Verify that <span class="math inline">\(\int_1^5 f(x) dx = F(5)-F(1)\)</span>.</h2>
-<p>#Let <span class="math inline">\(F(x) = \int_2^x \ln(t^4+5)\frac{3}{\ln(t^5)}dt\)</span>. Compute <span class="math inline">\(F'(x)\)</span>. (Check part 1 of the FTC if needed). #Let <span class="math inline">\(G(x) = \int_0^x \sqrt{5+e^{3t}}dt\)</span>. Compute <span class="math inline">\(G'(x)\)</span>. (Check part 1 of the FTC if needed). #Let <span class="math inline">\(h(x) = x^3\)</span>. Find an antiderivative of <span class="math inline">\(h\)</span>, and then use that antiderivative to compute <span class="math inline">\(\int_1^2 x^3dx\)</span>. Check your answer with Mathematica. #Compute <span class="math inline">\(\int \frac{2}{t^2} dt = \int 2t^{-2} dt\)</span>. (In other words find the collection of all antiderivatives of <span class="math inline">\(\frac{2}{t^2}\)</span>.) #Compute <span class="math inline">\(\int_1^2 \frac{2}{t^2} dt\)</span>.</p>
-<p>!! Discussion !!! Summary - Random Variables (and the functions that describe them) – Key Ideas * What is a difference between a discrete and continuous random variable?</p>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
+<p>(Part 2) If <span class="math inline">\(f\)</span> is continuous over the interval $ [ a, b ] $ and <span class="math inline">\(F(x)\)</span> is any antiderivative of <span class="math inline">\(f(x)\)</span>, then <span class="math inline">\(\int_a^b f(x)dx = F(b) - F(a)\)</span>.<br> <em>Note this is Theorem 5.5 in Open Stax Calculus Volume 1.</em> - When you read <strong>antiderivative</strong> think “undo a derivative”.</p>
+</details>
+<ol type="1">
+<li>Let <span class="math inline">\(\ds f(x) = \begin{cases}\frac{1}{8}x &amp; 3 \leq x \leq 5 \\0 &amp; \text{otherwise}\end{cases}\)</span> be a pdf for a continuous random variable <span class="math inline">\(X\)</span>.
+<ol type="1">
+<li>Calculate <span class="math inline">\(F(x) = P(X \leq x)\)</span> by writing down an appropriate integral (an accumulation function) and then computing that integral with Mathematica. You have found the CDF of <span class="math inline">\(X\)</span>.</li>
+<li>Compute the derivative of <span class="math inline">\(F(x)\)</span>.</li>
+<li>Explain why <span class="math inline">\(\ds \frac{d}{dx}\left(\int_3^x\frac{1}{8}t dt\right) = \frac{1}{8}x\)</span> for <span class="math inline">\(3\leq x\leq 5\)</span>.</li>
+<li>Compute <span class="math inline">\(P(3 \leq X \leq 4)\)</span> using the probability density function <span class="math inline">\(f(x)\)</span>.</li>
+<li>Compute <span class="math inline">\(P(3 \leq X \leq ​4)\)</span> using the cumulative distribution function <span class="math inline">\(F(x)\)</span>.</li>
+<li>Verify that <span class="math inline">\(\int_3^4 f(x) dx = F(4)-F(3)\)</span>.</li>
+</ol></li>
+<li>Let <span class="math inline">\(\ds f(x) = \begin{cases}\lambda e^{-\lambda x} &amp; x \geq 0 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> be a pdf for a continuous random variable <span class="math inline">\(X\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.
+<ol type="1">
+<li>Calculate <span class="math inline">\(F(x) = P(X \leq x)\)</span> by writing down an appropriate integral (an accumulation function)and then computing that integral with Mathematica. You have found the CDF of <span class="math inline">\(X\)</span>.</li>
+<li>Compute the derivative of <span class="math inline">\(F(x)\)</span>.</li>
+<li>Explain why <span class="math inline">\(\ds \frac{d}{dx}\left(\int_0^x\lambda e^{-\lambda t} dt\right) = \lambda e^{-\lambda x}\)</span> for $ x $.</li>
+<li>Compute <span class="math inline">\(P(1 \leq X \leq 5)\)</span> using the probability density function <span class="math inline">\(f(x)\)</span>.</li>
+<li>Compute <span class="math inline">\(P(1 \leq X \leq ​5)\)</span> using the cumulative distribution function <span class="math inline">\(F(x)\)</span>.</li>
+<li>Verify that <span class="math inline">\(\int_1^5 f(x) dx = F(5)-F(1)\)</span>.</li>
+</ol></li>
+<li>Let <span class="math inline">\(F(x) = \int_2^x \ln(t^4+5)\frac{3}{\ln(t^5)}dt\)</span>. Compute <span class="math inline">\(F'(x)\)</span>. (Check part 1 of the FTC if needed).</li>
+<li>Let <span class="math inline">\(G(x) = \int_0^x \sqrt{5+e^{3t}}dt\)</span>. Compute <span class="math inline">\(G'(x)\)</span>. (Check part 1 of the FTC if needed).</li>
+<li>Let <span class="math inline">\(h(x) = x^3\)</span>. Find an antiderivative of <span class="math inline">\(h\)</span>, and then use that antiderivative to compute <span class="math inline">\(\int_1^2 x^3dx\)</span>. Check your answer with Mathematica.</li>
+<li>Compute <span class="math inline">\(\int \frac{2}{t^2} dt = \int 2t^{-2} dt\)</span>. (In other words find the collection of all antiderivatives of <span class="math inline">\(\frac{2}{t^2}\)</span>.)</li>
+<li>Compute <span class="math inline">\(\int_1^2 \frac{2}{t^2} dt\)</span>.</li>
+</ol>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="summary---random-variables-and-the-functions-that-describe-them-key-ideas" class="level3">
+<h3 class="anchored" data-anchor-id="summary---random-variables-and-the-functions-that-describe-them-key-ideas">Summary - Random Variables (and the functions that describe them) – Key Ideas</h3>
+<ul>
+<li>What is a difference between a discrete and continuous random variable?</li>
+</ul>
 <details>
 <summary>
 One Answer
 </summary>
-<blockquote class="blockquote">
 <ul>
-<li>Continuous Random Variables take on values in an <strong>interval</strong> of real numbers. ** Note: <span class="math inline">\(P(X = x) = 0\)</span> for every real number <span class="math inline">\(x\)</span>.</li>
-<li>Discrete Random Variables take on only a finite (or countably infinite) <strong>list</strong> of values. ** Note: <span class="math inline">\(P(X = x)\)</span> is nonzero for some real numbers <span class="math inline">\(x\)</span>.</li>
+<li>Continuous Random Variables take on values in an <strong>interval</strong> of real numbers.
+<ul>
+<li>Note: <span class="math inline">\(P(X = x) = 0\)</span> for every real number <span class="math inline">\(x\)</span>.</li>
+</ul></li>
+<li>Discrete Random Variables take on only a finite (or countably infinite) <strong>list</strong> of values.
+<ul>
+<li>Note: <span class="math inline">\(P(X = x)\)</span> is nonzero for some real numbers <span class="math inline">\(x\)</span>.</li>
+</ul></li>
 </ul>
-</blockquote></details>
-<p>:::</p>
+</details>
 <ul>
 <li>What are two key characteristics of a probability density function of a continuous random variable?</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
 <details>
 <summary>
 One Answer
 </summary>
-<blockquote class="blockquote">
 <ul>
 <li>The PDF <span class="math inline">\(f(x)\)</span> is nonnegative for all real numbers (i.e.&nbsp;<span class="math inline">\(f(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb{R}\)</span>).</li>
 <li>The total area under <span class="math inline">\(f\)</span> above the <span class="math inline">\(x\)</span>-axis is one (i.e.&nbsp;<span class="math inline">\(\int_{-\infty}^\infty f(x) dx = 1\)</span>).</li>
 </ul>
-</blockquote></details>
-<p>:::</p>
+</details>
 <ul>
 <li>Describe two ways to calculate the PDF of <span class="math inline">\(X\)</span> given a CDF or a nonnegative function <span class="math inline">\(g(x)\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
 <details>
 <summary>
 Finding a PDF
 </summary>
-<blockquote class="blockquote">
-<h1 id="take-the-derivative-of-the-cdf-to-obtain-fx-fx.">Take the derivative of the CDF to obtain <span class="math inline">\(f(x) = F'(x)\)</span>.</h1>
-<p>** The CDF is <span class="math inline">\(F(x) = P(X \leq x)\)</span>, and the pdf is <span class="math inline">\(f(x) = F'(x) = \diff{}{x}(\int_{-\infty}^x f(s)ds)\)</span>. # Normalize a nonnegative function so the total area is one, e.g.&nbsp;<span class="math inline">\(f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)\)</span>.</p>
-</blockquote></details>
-<p>:::</p>
+<ol type="1">
+<li>Take the derivative of the CDF to obtain <span class="math inline">\(f(x) = F'(x)\)</span>.
+<ul>
+<li>The CDF is <span class="math inline">\(F(x) = P(X \leq x)\)</span>, and the pdf is <span class="math inline">\(f(x) = F'(x) = \diff{}{x}(\int_{-\infty}^x f(s)ds)\)</span>.</li>
+</ul></li>
+<li>Normalize a nonnegative function so the total area is one, e.g.&nbsp;<span class="math inline">\(f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)\)</span>.</li>
+</ol>
+</details>
 <ul>
 <li>Describe two ways to calculate the CDF of <span class="math inline">\(X\)</span> given a nonnegative function <span class="math inline">\(g(x)\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
 <details>
 <summary>
 Finding a CDF
 </summary>
-<blockquote class="blockquote">
-<h1 id="calculate-fx-px-leq-x-frac1int_-inftyinfty-gx-dxint_-inftyx-gtdt.">Calculate <span class="math inline">\(F(x) = P(X \leq x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}\int_{-\infty}^x g(t)dt\)</span>.</h1>
-<h1 id="find-the-pdf-fx-and-undo-the-derivative-to-find-fx.">Find the PDF, <span class="math inline">\(f(x)\)</span>, and undo the derivative to find <span class="math inline">\(F(x)\)</span>.</h1>
-<p>** <span class="math inline">\(F(x) = \int_{-\infty}^x f(s)ds\)</span> *** Normalize a nonnegative function so the total area is one to find the PDF, e.g.&nbsp;<span class="math inline">\(f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)\)</span>.</p>
-</blockquote></details>
-<p>:::</p>
+<ol type="1">
+<li>Calculate <span class="math inline">\(F(x) = P(X \leq x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}\int_{-\infty}^x g(t)dt\)</span>.</li>
+<li>Find the PDF, <span class="math inline">\(f(x)\)</span>, and undo the derivative to find <span class="math inline">\(F(x)\)</span>.
+<ul>
+<li><span class="math inline">\(F(x) = \int_{-\infty}^x f(s)ds\)</span>
+<ul>
+<li>Normalize a nonnegative function so the total area is one to find the PDF, e.g.&nbsp;<span class="math inline">\(f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)\)</span>.</li>
+</ul></li>
+</ul></li>
+</ol>
+</details>
 <ul>
 <li>Why do we call <span class="math inline">\(f(x)\)</span> a <strong>probability density</strong> function?</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
 <details>
 <summary>
 One Explanation
 </summary>
-<blockquote class="blockquote">
 <p>Since <span class="math inline">\(f(x) = F'(x)\)</span>, we know <span class="math inline">\(f(x) = F'(x) = \lim_{\Delta x \rightarrow 0}\frac{F(a + \Delta x) - F(a)}{\Delta x}\)</span> (this is the definition of derivative). Notice the right side of the equation <span class="math inline">\(\frac{F(a + \Delta x) - F(a)}{\Delta x}\)</span> has units probability per length. Probability per length is a density, a probability density. So the function <span class="math inline">\(f(x)\)</span> is called a probability density function.</p>
-</blockquote></details>
-<p>:::</p>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
+</details>
 <details>
 <summary>
 Fundamental Theorem of Calculus (FTC)
 </summary>
-<blockquote class="blockquote">
 <p>(Part 1) If <span class="math inline">\(f(x)\)</span> is continuous over an interval $ [ a, b ] $, and the function <span class="math inline">\(F(x)\)</span> is defined by <span class="math inline">\(F(x) = \int_a^x f(t)dt\)</span>, then <span class="math inline">\(F'(x) = f(x)\)</span> over $ [ a, b ]$.<br> <em>Note this is Theorem 5.4 in Open Stax Calculus Volume 1.</em></p>
-<p>(Part 2) If <span class="math inline">\(f\)</span> is continuous over the interval $ [ a, b ] $ and <span class="math inline">\(F(x)\)</span> is any antiderivative of <span class="math inline">\(f(x)\)</span>, then <span class="math inline">\(\int_a^b f(x)dx = F(b) - F(a)\)</span>.<br> <em>Note this is Theorem 5.5 in Open Stax Calculus Volume 1.</em> * When you read <strong>antiderivative</strong> think “undo a derivative”.</p>
-</blockquote></details>
-<p>:::</p>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
+<p>(Part 2) If <span class="math inline">\(f\)</span> is continuous over the interval $ [ a, b ] $ and <span class="math inline">\(F(x)\)</span> is any antiderivative of <span class="math inline">\(f(x)\)</span>, then <span class="math inline">\(\int_a^b f(x)dx = F(b) - F(a)\)</span>.<br> <em>Note this is Theorem 5.5 in Open Stax Calculus Volume 1.</em> - When you read <strong>antiderivative</strong> think “undo a derivative”.</p>
+</details>
 <details>
 <summary>
 Definition: Percentile

@@ -328,22 +328,25 @@ window.Quarto = {
 <li>Compute in Mathematica to obtain <span class="math inline">\(\int (7-x)^2 dx = \frac{1}{3}x^3 - 7x^2 + 49x +C\)</span>. Does Mathematica remember the <span class="math inline">\(+C\)</span>? Here are some code examples that can help you make comparisons in Mathematica.</li>
 </ul></li>
 </ul>
-<pre><code>MyAnswer = -1/3*(7 - x)^3
-MathmaticaAnswer = Integrate[(7 - x)^2, x]
-Expand[MyAnswer]
-MyAnswer - MathmaticaAnswer
-Simplify[MyAnswer - MathmaticaAnswer]
-Simplify[MyAnswer - MathmaticaAnswer]
-Plot[{MyAnswer, MathmaticaAnswer}, {x, -10, 10}]
-Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]</code></pre>
-<ul>
-<li><p>Consider <span class="math inline">\(\int x(x-1)^3 dx\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
-<li><p>Consider <span class="math inline">\(\int \frac{y}{(y+1)^4} dy\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
-<li><p>Consider <span class="math inline">\(\int \frac{1}{x^2 + 8} dx\)</span>. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new or many of us. The function <span class="math inline">\(f(x) = \tan^{-1}(x)\)</span> is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -, ) $. We could use the following code to plot <span class="math inline">\(f(x) = \arctan(x)\)</span> in R.</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MyAnswer <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span>(<span class="dv">7</span> <span class="sc">-</span> x)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>MathmaticaAnswer <span class="ot">=</span> Integrate[(<span class="dv">7</span> <span class="sc">-</span> x)<span class="sc">^</span><span class="dv">2</span>, x]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Expand[MyAnswer]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>MyAnswer <span class="sc">-</span> MathmaticaAnswer</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Simplify[MyAnswer <span class="sc">-</span> MathmaticaAnswer]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Simplify[MyAnswer <span class="sc">-</span> MathmaticaAnswer]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Plot[{MyAnswer, MathmaticaAnswer}, {x, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>}]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Plot[MyAnswer <span class="sc">-</span> MathmaticaAnswer, {x, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>}]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int <span class="fu">x</span>(x<span class="dv">-1</span>)<span class="sc">^</span><span class="dv">3</span> dx<span class="sc">$</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int \frac{y}{(y<span class="sc">+</span><span class="dv">1</span>)<span class="sc">^</span><span class="dv">4</span>} dy<span class="sc">$</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int \frac{<span class="dv">1</span>}{x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">8</span>} dx<span class="sc">$</span>. Computing the integral <span class="cf">in</span> Mathematica, and then plot the result. The ArcTan <span class="cf">function</span> may be new or many of us. The <span class="cf">function</span> <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \tan<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>}(x)<span class="sc">$</span> is called the arctangent <span class="cf">function</span> or inverse tangent function. The domain of the inverse tangent <span class="cf">function</span> is all real numbers. The range of the inverse tangent is <span class="sc">$</span> ( <span class="sc">-</span>\frac{\pi}{<span class="dv">2</span>}, \frac{\pi}{<span class="dv">2</span>} ) <span class="sc">$</span>.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>We could use the following code to plot <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \<span class="fu">arctan</span>(x)<span class="sc">$</span> <span class="cf">in</span> R.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)[<span class="sc">@</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="group-meeting" class="level2">
@@ -362,7 +365,6 @@ Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]</code></pre>
 <summary>
 Some Questions
 </summary>
-<blockquote class="blockquote">
 <ul>
 <li><p>What does it mean to fit a model?</p></li>
 <li><p>How is a general model different than a fitted model?</p></li>
@@ -386,9 +388,18 @@ Some Questions
 <li><p>What is a critical point?</p></li>
 <li><p>What is the second derivative test?</p></li>
 <li><p>Can you give an example of when the derivative of a function does not exist?</p></li>
-<li><p>What is a random variable? What is a stochastic variable? ** What is the difference between a discrete random variable and a continuous random variable?</p></li>
-<li><p>What is a cumulative distribution function? ** What are some key properties of CDFs?</p></li>
-<li><p>What is a probability density function? Why do we call it probability density? ** What are some key properties of PDFs?</p></li>
+<li><p>What is a random variable? What is a stochastic variable?</p>
+<ul>
+<li>What is the difference between a discrete random variable and a continuous random variable?</li>
+</ul></li>
+<li><p>What is a cumulative distribution function?</p>
+<ul>
+<li>What are some key properties of CDFs?</li>
+</ul></li>
+<li><p>What is a probability density function? Why do we call it probability density?</p>
+<ul>
+<li>What are some key properties of PDFs?</li>
+</ul></li>
 <li><p>How do you calculate probability of a random variable?</p></li>
 <li><p>How do you calculate expected value of a random variable?</p></li>
 <li><p>How do you calculate variance of a random variable?</p></li>
@@ -408,29 +419,24 @@ Some Questions
 <li><p>Can you use the uniroot() function in R to solve an equation?</p></li>
 <li><p>Can you use the sum(), prod(), mean(), and var() commands in R?</p></li>
 <li><p>Can you use R to help you with calculation to find the critical values of a loglikelihood function?</p></li>
-<li><p>Can you use Mathematica to calculate a definite integral? ** Can you use Mathematica to calculate a probability? ** Can you use Mathematica to calculate the expected value of a distribution? ** Can you use Mathematica to calculate the variance of a distribution?</p></li>
+<li><p>Can you use Mathematica to calculate a definite integral?</p>
+<ul>
+<li>Can you use Mathematica to calculate a probability?</li>
+<li>Can you use Mathematica to calculate the expected value of a distribution?</li>
+<li>Can you use Mathematica to calculate the variance of a distribution?</li>
+</ul></li>
 <li><p>Can you use Mathematica to calculate an antiderivative or indefinite integral?</p></li>
 <li><p>Can you use Mathematica to calculate a percentile?</p></li>
 </ul>
-</blockquote></details>
-<p>:::</p>
+</details>
 <ul>
-<li>Review the six Course Objectives for Math 119. ** Do you understand the ideas in these objectives? How has your understanding of these objectives change this semester? ** How have you accomplished these objectives this semester? ** Can you see your growth?</li>
+<li>Review the six Course Objectives for Math 119.
+<ul>
+<li>Do you understand the ideas in these objectives? How has your understanding of these objectives change this semester?</li>
+<li>How have you accomplished these objectives this semester?</li>
+<li>Can you see your growth?</li>
+</ul></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-
 <details>
 <summary>
 Course Objectives

@@ -231,6 +231,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#calculate-a-percentile" id="toc-calculate-a-percentile" class="nav-link" data-scroll-target="#calculate-a-percentile">Calculate a Percentile</a></li>
   </ul></li>
+  <li><a href="#group-discussion" id="toc-group-discussion" class="nav-link" data-scroll-target="#group-discussion">Group Discussion</a>
+  <ul class="collapse">
+  <li><a href="#act-scores-and-a-normal-distribution." id="toc-act-scores-and-a-normal-distribution." class="nav-link" data-scroll-target="#act-scores-and-a-normal-distribution.">ACT Scores and a normal distribution.</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -267,63 +271,36 @@ window.Quarto = {
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <section id="calculate-a-percentile" class="level3">
-<h3 class="anchored">Calculate a Percentile</h3>
+<h3 class="anchored" data-anchor-id="calculate-a-percentile">Calculate a Percentile</h3>
 <p>What is a percentile? - If a 2 month old baby has a weight that is at the 12th percentile, then that baby’s weight is greater than or equal to 12% of all other 2 month babies. - Scoring in the 95th percentile on an exam means your score was greater than or equal to 95% of all other people who took the exam.</p>
 <p>Let’s look at a formal definition.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Definition: Percentile
 </summary>
-<blockquote class="blockquote">
-<p>A percentile is a number, <span class="math inline">\(x_p\)</span>, that satisfies the equation <span class="math inline">\(P(X \leq x_p) = \frac{p}{100}\)</span>. In other words, a percentile is a number <span class="math inline">\(x_p\)</span> that satisfies the equation <span class="math inline">\(F(x_p) = \frac{p}{100})\)</span>. * A percentile divides ordered values (outcomes of a random variable) into 100 equal groups (per 100). * A percentile is a number, <span class="math inline">\(x_p\)</span>, such that <span class="math inline">\(p\)</span>% of the values (outcomes of a random variable) are at or below this number.</p>
-</blockquote></details>
-<p>:::</p>
-<p>There are two common ways we can compute a percentile. One way is to start with the cumulative distribution function. #Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 1 \\1-\frac{1}{x} &amp; x &gt; 1 \\\end{cases}\)</span>, find the 90th percentile. #Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 0 \\1 - e^{-\lambda x} &amp; x &gt; 0 \\\end{cases}\)</span>, find the 50th percentile.</p>
+<p>A percentile is a number, <span class="math inline">\(x_p\)</span>, that satisfies the equation <span class="math inline">\(P(X \leq x_p) = \frac{p}{100}\)</span>. In other words, a percentile is a number <span class="math inline">\(x_p\)</span> that satisfies the equation <span class="math inline">\(F(x_p) = \frac{p}{100})\)</span>. - A percentile divides ordered values (outcomes of a random variable) into 100 equal groups (per 100). - A percentile is a number, <span class="math inline">\(x_p\)</span>, such that <span class="math inline">\(p\)</span>% of the values (outcomes of a random variable) are at or below this number.</p>
+</details>
+<p>There are two common ways we can compute a percentile. One way is to start with the cumulative distribution function. 1. Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 1 \\1-\frac{1}{x} &amp; x &gt; 1 \\\end{cases}\)</span>, find the 90th percentile. 1. Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 0 \\1 - e^{-\lambda x} &amp; x &gt; 0 \\\end{cases}\)</span>, find the 50th percentile.</p>
 <p>If we are given a probability density function, then we can compute the percentile using an integral.<br>
-#Given the probability density function <span class="math inline">\(f(x) = \frac{64}{(x+2)^5}\)</span> for <span class="math inline">\(x &gt; 0\)</span> (and 0 otherwise), find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation.) ** 60th percentile ** 7th percentile ** 99th percentile</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+1. Given the probability density function <span class="math inline">\(f(x) = \frac{64}{(x+2)^5}\)</span> for <span class="math inline">\(x &gt; 0\)</span> (and 0 otherwise), find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation.) - 60th percentile - 7th percentile - 99th percentile</p>
 <details>
 <summary>
 Solutions
 </summary>
+<p>(:codem:)</p>
 <pre><code>Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.6, x, Reals]
 Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.07, x, Reals]
 Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.99, x, Reals]</code></pre>
+<p>(:codemend:)</p>
 </details>
-</div>
-</div>
-<p>When the PDF is complicated, sometimes we’ll need to employ alternate tools in Mathematica to compute the integrals and solve equations. Often adding an N before Solve is sufficient. The computer then uses a numerical approximation technique, rather than trying to find an exact solution. *Given the probability density function, <span class="math inline">\(f(x) = \frac{1}{\sqrt{37.5352\pi}}e^{-\frac{1}{37.5352}(x-3.2)^2}\)</span> for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation. <strong> 60th percentile </strong> 99th percentile</p>
+<p>When the PDF is complicated, sometimes we’ll need to employ alternate tools in Mathematica to compute the integrals and solve equations. Often adding an N before Solve is sufficient. The computer then uses a numerical approximation technique, rather than trying to find an exact solution. - Given the probability density function, <span class="math inline">\(f(x) = \frac{1}{\sqrt{37.5352\pi}}e^{-\frac{1}{37.5352}(x-3.2)^2}\)</span> for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation. - 60th percentile - 99th percentile (:codem:)</p>
 <pre><code>Solve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
 
 NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
 NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.99, xp, Reals]</code></pre>
-<p>Mathematica knows the formulas for the CDF of common distributions like the normal distribution. We can use these prebuilt functions, provided we know how to insert the correct parameters, to do the solving.</p>
-<pre><code>Sqrt[37.5352/2]
-Solve[CDF[NormalDistribution[3.2, 4.332157], x] == 0.6, x]
-InverseCDF[NormalDistribution[3.2, 4.332157], 0.6]
-
-Solve[CDF[NormalDistribution[3.2, 4.332157], x] == 0.99, x]
-InverseCDF[NormalDistribution[3.2, 4.332157], 0.99]</code></pre>
-
+<p>(:codemend:)</p>
+</section>
+</section>
 <section id="group-discussion" class="level2">
 <h2 class="anchored" data-anchor-id="group-discussion">Group Discussion</h2>
 <section id="act-scores-and-a-normal-distribution." class="level3">
@@ -340,14 +317,11 @@ InverseCDF[NormalDistribution[3.2, 4.332157], 0.99]</code></pre>
 <li>What percent of students score between 16 and 26?</li>
 <li>What percent of students score between 11 and 23?</li>
 </ol>
-<p>The PDF is given by the following.</p>
+<p>The PDF is given by the following. (:codem:)</p>
 <pre><code>f = 1/Sqrt[2 Pi \[Sigma]^2] Exp[-1/2 ((x - \[Mu])/ \[Sigma])^2]</code></pre>
+<p>(:codemend:)</p>
 
 
-</section>
-</section>
-</div>
-</div>
 </section>
 </section>
 </section>

@@ -359,14 +359,14 @@ Properties of Sum
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>[Identify the Function of Interest]%% (Project 2 Task 1)%% - Write down and simplify the loglikelihood function. Explain your steps. Be explicit. - Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1? - Where did you use the assumption that the errors are independent? - What properties of logarithms did you use to simplify? - What properties of sums did you use to simplify?</p>
+<p>[Identify the Function of Interest] (Project 2 Task 1) - Write down and simplify the loglikelihood function. Explain your steps. Be explicit. - Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1? - Where did you use the assumption that the errors are independent? - What properties of logarithms did you use to simplify? - What properties of sums did you use to simplify?</p>
 <details>
 <summary>
 Check Your Answer
 </summary>
 <p><span class="math inline">\(\ell(m, b; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i - b)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i - b)^2\)</span></p>
 </details>
-<p>[Optimize]%% – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2)%% - Write down and simplify the first and second partial derivatives of <span class="math inline">\(\ell\)</span>. Each of first partial derivatives should be of the form <span class="math inline">\(c_1 - c_2b - c_3m\)</span>. Each of the second partial derivatives should be a constant. - What derivative rules did you use? - What sum rules did you use?</p>
+<p>[Optimize] – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2) - Write down and simplify the first and second partial derivatives of <span class="math inline">\(\ell\)</span>. Each of first partial derivatives should be of the form <span class="math inline">\(c_1 - c_2b - c_3m\)</span>. Each of the second partial derivatives should be a constant. - What derivative rules did you use? - What sum rules did you use?</p>
 <details>
 <summary>
 Check Your Answer
@@ -379,7 +379,7 @@ Check Your Answer
 <li><p><span class="math inline">\(\frac{\partial^2 \ell}{\partial b \partial m} = -\sum_{i=1}^{50} x_i\)</span></p></li>
 </ul>
 </details>
-<p>[Optimize]%% – Find any critical point(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3)%% - Solve the system that results from setting the partial derivatives equal to zero.</p>
+<p>[Optimize] – Find any critical point(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3) - Solve the system that results from setting the partial derivatives equal to zero.</p>
 <details>
 <summary>
 Check Your Answer
@@ -439,7 +439,7 @@ Check Your Answer
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fxx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since <span class="math inline">\(D &gt; 0\)</span> and <span class="math inline">\(\frac{\partial^2 \ell}{\partial b^2} &lt; 0\)</span>, we know we have found the the location of a local maximum.</p>
 </details>
-<p>[Answer the Question]%% (Project 2 Task 3 &amp; Project 2)%% - Write down your fitted model. - Plot your model. - We could use this function to answer a question or make a prediction based on the data and the assumption that the process can be described by the general model <span class="math inline">\(f(x) = mx + b\)</span>. - Use R to graph your fitted model with the data.</p>
+<p>[Answer the Question] (Project 2 Task 3 &amp; Project 2) - Write down your fitted model. - Plot your model. - We could use this function to answer a question or make a prediction based on the data and the assumption that the process can be described by the general model <span class="math inline">\(f(x) = mx + b\)</span>. - Use R to graph your fitted model with the data.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> best_b, <span class="at">m =</span> best_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x_in <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x),<span class="fu">max</span>(x),<span class="fl">0.01</span>)</span>
@@ -463,7 +463,7 @@ Check Your Answer
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> data<span class="sc">$</span>y1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>[Identify the Function of Interest]%% (Project 2 Task 1)%% Write down and simplify the loglikelihood function. Explain your steps. Be explicit.
+<li>[Identify the Function of Interest] (Project 2 Task 1) Write down and simplify the loglikelihood function. Explain your steps. Be explicit.
 <ul>
 <li>Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1?</li>
 <li>Where did you use the assumption that the errors are independent?</li>
@@ -478,7 +478,7 @@ Check Your Answer
 <p><span class="math inline">\(\ell(m; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i)^2\)</span></p>
 </details>
 <ul>
-<li>[Optimize]%% – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2)%% Write down and simplify the first and second derivatives of <span class="math inline">\(\ell\)</span>. The first derivative should be of the form <span class="math inline">\(c_1 - c_2m\)</span>. The second derivative should be a constant.
+<li>[Optimize] – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2) Write down and simplify the first and second derivatives of <span class="math inline">\(\ell\)</span>. The first derivative should be of the form <span class="math inline">\(c_1 - c_2m\)</span>. The second derivative should be a constant.
 <ul>
 <li>What derivative rules did you use?</li>
 <li>What sum rules did you use?</li>
@@ -492,7 +492,7 @@ Check Your Answer
   - $\frac{d^2\ell}{dm^2} = -\sum_{i=1}^{50} x_i^2$</code></pre>
 </details>
 <ul>
-<li>[Optimize]%% – Find any critical value(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3)%%</li>
+<li>[Optimize] – Find any critical value(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3)</li>
 </ul>
 <details>
 <summary>
@@ -504,7 +504,7 @@ Check Your Answer
 </details>
 <pre><code>- How do we know $m = \frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}$ is the location of a maximum?</code></pre>
 <ul>
-<li>[Answer the Question]%% (Project 2 Task 3 &amp; Project 2)%%
+<li>[Answer the Question] (Project 2 Task 3 &amp; Project 2)
 <ul>
 <li>Write down your fitted model.</li>
 <li>Graph your fitted model with the data.</li>

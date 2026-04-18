@@ -373,7 +373,7 @@ draw_rect_approx() code
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p>Let’s recap Riemann Sums and Definite Integrals.</p>
-<p>| Let <span class="math inline">\(g(x) = x^2e^{-x}\)</span> for <span class="math inline">\(1\leq x\leq 4\)</span>, and zero otherwise. The code below draws the function <span class="math inline">\(g\)</span> and then uses 6 rectangles to approximate the area under <span class="math inline">\(g\)</span> where the height of each rectangle is the value of the function at the right endpoint of the rectangle. |</p>
+<p>Let <span class="math inline">\(g(x) = x^2e^{-x}\)</span> for <span class="math inline">\(1\leq x\leq 4\)</span>, and zero otherwise. The code below draws the function <span class="math inline">\(g\)</span> and then uses 6 rectangles to approximate the area under <span class="math inline">\(g\)</span> where the height of each rectangle is the value of the function at the right endpoint of the rectangle.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>x)}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">4</span></span>
@@ -383,37 +383,36 @@ draw_rect_approx() code
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)  <span class="co"># Can you tell what part of this line of code uses right endpoints? a+dx</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">right_point =</span> xi, <span class="at">function_at_xi =</span> <span class="fu">g</span>(xi), <span class="at">area_i =</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">riemann_sum_using_right_endpoints =</span> <span class="fu">sum</span>(<span class="fu">g</span>(xi)<span class="sc">*</span>dx))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| We can increase the number of rectangles for a better approximation. Here we use 10 million rectangles in the Riemann <span class="math inline">\(\sum g(x_i)\Delta x\)</span> to approximate the area under <span class="math inline">\(g\)</span>. |</p>
+<p>We can increase the number of rectangles for a better approximation. Here we use 10 million rectangles in the Riemann <span class="math inline">\(\sum g(x_i)\Delta x\)</span> to approximate the area under <span class="math inline">\(g\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000000</span> <span class="co"># Don't plot anymore</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)  </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">g</span>(xi)<span class="sc">*</span>dx)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| Because the area under <span class="math inline">\(g\)</span> is not 1, we multiply by <span class="math inline">\(k=\frac{1}{A}\)</span> to obtain the probability density function <span class="math inline">\(f(x) = k g(x)\)</span> of a random variable <span class="math inline">\(X\)</span>. Let’s check the area under <span class="math inline">\(f\)</span> is 1 using a Riemann sum <span class="math inline">\(\sum f(x_i)\Delta x\)</span>. |</p>
+<p>Because the area under <span class="math inline">\(g\)</span> is not 1, we multiply by <span class="math inline">\(k=\frac{1}{A}\)</span> to obtain the probability density function <span class="math inline">\(f(x) = k g(x)\)</span> of a random variable <span class="math inline">\(X\)</span>. Let’s check the area under <span class="math inline">\(f\)</span> is 1 using a Riemann sum <span class="math inline">\(\sum f(x_i)\Delta x\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>A</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){k<span class="sc">*</span><span class="fu">g</span>(x)}</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(xi)<span class="sc">*</span>dx) <span class="co">#Should be 1.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| We now approximate the expected value and variance of <span class="math inline">\(X\)</span> using - <span class="math inline">\(E[X]\approx \sum x_if(x_i)\Delta x\)</span> and - <span class="math inline">\(\text{Var}[X]\approx\sum (x_i-E[X])^2f(x_i)\Delta x\)</span>. Variance is a measure of how spread out a distribution is. |</p>
+<p>We now approximate the expected value and variance of <span class="math inline">\(X\)</span> using - <span class="math inline">\(E[X]\approx \sum x_if(x_i)\Delta x\)</span> and - <span class="math inline">\(\text{Var}[X]\approx\sum (x_i-E[X])^2f(x_i)\Delta x\)</span>. Variance is a measure of how spread out a distribution is.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">&lt;-</span> <span class="fu">sum</span>(xi<span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>EV</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">&lt;-</span> <span class="fu">sum</span>((xi<span class="sc">-</span>EV)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Var</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| Because the area under <span class="math inline">\(f\)</span> is 1, when we compute probabilities we don’t have to divide by area. Let’s compute <span class="math inline">\(P(X\leq 3)\)</span> using 10 million rectangles by letting <span class="math inline">\(b=3\)</span>.<br>
-|</p>
+<p>Because the area under <span class="math inline">\(f\)</span> is 1, when we compute probabilities we don’t have to divide by area. Let’s compute <span class="math inline">\(P(X\leq 3)\)</span> using 10 million rectangles by letting <span class="math inline">\(b=3\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="co"># Use 3 instead of 4.</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000000</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)  </span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(xi)<span class="sc">*</span>dx) <span class="co"># Probability won't be 1 anymore.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| With the PDF <span class="math inline">\(f\)</span>, we compute <span class="math inline">\(P(2\leq X\leq 3)\)</span> by updating the lower and upper bounds. |</p>
+<p>With the PDF <span class="math inline">\(f\)</span>, we compute <span class="math inline">\(P(2\leq X\leq 3)\)</span> by updating the lower and upper bounds.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># Use 2 instead of 1</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="co"># Use 3 instead of 4</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000000</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)  </span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| We now define the function <span class="math inline">\(P(a,b) = P(a\leq X\leq b)\)</span> and <span class="math inline">\(F(x) = P(X\leq x)\)</span> to simplify the computations above. |</p>
+<p>We now define the function <span class="math inline">\(P(a,b) = P(a\leq X\leq b)\)</span> and <span class="math inline">\(F(x) = P(X\leq x)\)</span> to simplify the computations above.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b,<span class="at">n=</span><span class="dv">10000000</span>){</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)  </span>
@@ -423,37 +422,47 @@ draw_rect_approx() code
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">P</span>(<span class="dv">1</span>,<span class="dv">4</span>)  </span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">P</span>(<span class="dv">1</span>,<span class="dv">3</span>)  </span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>| Why must we have <span class="math inline">\(P(2\leq X\leq 3) = F(3)-F(2)\)</span>? |</p>
+<p>Why must we have <span class="math inline">\(P(2\leq X\leq 3) = F(3)-F(2)\)</span>?</p>
 <pre><code>P(2,3)
 F(3)-F(2)
 all.equal(P(2,3),F(3)-F(2))</code></pre>
 <p>Now let’s swap to Mathematica and use definite integral notation <span class="math inline">\(\int_a^b f(x) dx\)</span> to do the same computations. Remember, a definite integral is just the symbol for letting the number of rectangles approach infinity, written symbolically as <span class="math display">\[\int_a^b f(x) dx =\lim_{n\to \infty} \sum_{i=1}^nf(x_i)\Delta x_i.\]</span></p>
-<p>| We first find the area under <span class="math inline">\(g\)</span>. (Remember to use shift + enter to run the command in Mathematica.)%% |</p>
+<p>We first find the area under <span class="math inline">\(g\)</span>. (Remember to use shift + enter to run the command in Mathematica.)</p>
+<p>(:codem:)</p>
 <pre><code>g = x^2 Exp[-x];
 a = 1
 b = 4
 A = Integrate[g, {x, a, b}]
 N[A, 7] (*This provides 7 significant figures*)
 Plot[g, {x, a, b}]</code></pre>
-<p>| With the area under <span class="math inline">\(g\)</span>, we obtain a probability density function <span class="math inline">\(f = kg\)</span> and check that the area under f is actually 1. |</p>
+<p>(:codemend:)</p>
+<p>With the area under <span class="math inline">\(g\)</span>, we obtain a probability density function <span class="math inline">\(f = kg\)</span> and check that the area under f is actually 1.</p>
+<p>(:codem:)</p>
 <pre><code>k = 1/A;
 f = k*g;
 Integrate[f, {x, a, b}]</code></pre>
-<p>| We now compute the expected value and variance of a random variable with pdf of <span class="math inline">\(f(x)\)</span>. We’ll give both exact and approximate answers to compare with R. |</p>
+<p>(:codemend:)</p>
+<p>We now compute the expected value and variance of a random variable with pdf of <span class="math inline">\(f(x)\)</span>. We’ll give both exact and approximate answers to compare with R.</p>
+<p>(:codem:)</p>
 <pre><code>EV = Integrate[x*f, {x, a, b}]
 EV // N (*This is another example of code to obtain a numerical approximation. Typing N[EV] gives the same result.*)
 Var = Integrate[(x - EV)^2*f, {x, a, b}]
 Var // N</code></pre>
-<p>| We can quickly compute various probabilities by adjusting the bounds of the definite integral. The probabilities <span class="math inline">\(P(X\leq 3)\)</span> and <span class="math inline">\(P(2\leq X\leq 3)\)</span> are given below. |</p>
+<p>(:codemend:)</p>
+<p>We can quickly compute various probabilities by adjusting the bounds of the definite integral. The probabilities <span class="math inline">\(P(X\leq 3)\)</span> and <span class="math inline">\(P(2\leq X\leq 3)\)</span> are given below.</p>
+<p>(:codem:)</p>
 <pre><code>Integrate[f, {x, a, 3}]
 % // N
 Integrate[f, {x, 2, 3}]
 % // N</code></pre>
-<p>| Mathematica has no problems working with symbols, something R is not designed to do. We can compute the cumulative distribution function <span class="math inline">\(F(x)\)</span> using Mathematica, as well as verify that <span class="math inline">\(F'(x) = f(x)\)</span>. |</p>
+<p>(:codemend:)</p>
+<p>Mathematica has no problems working with symbols, something R is not designed to do. We can compute the cumulative distribution function <span class="math inline">\(F(x)\)</span> using Mathematica, as well as verify that <span class="math inline">\(F'(x) = f(x)\)</span>.</p>
+<p>(:codem:)</p>
 <pre><code>F = Integrate[f, {x, a, x}] (*Make the right bound x, rather than a number*)
 D[F, x] (*Computes F'(x)*)
 f (*Compare to the previous*)
 f - D[F, x] // FullSimplify (*See if the difference is zero*)</code></pre>
+<p>(:codemend:)</p>
 </section>
 </section>
 <section id="group-meeting" class="level2">
@@ -463,16 +472,9 @@ f - D[F, x] // FullSimplify (*See if the difference is zero*)</code></pre>
 <p>Work together on your computers to help one another complete the following problems.</p>
 <p>For each function below, use Mathematica to compute - the area <span class="math inline">\(A = \int_a^b g(x) dx\)</span>, - the value <span class="math inline">\(k\)</span> so that <span class="math inline">\(f=kg\)</span> is a PDF for a random variable, - the expected value <span class="math inline">\(E[X] =\int_a^b xf(x)dx\)</span>, and - the variance <span class="math inline">\(\text{Var}[X]=\int_a^b (x-E[X])^2f(x)dx\)</span>.<br>
 1. Let <span class="math inline">\(g(x) = \sqrt{49-x^2}\)</span> for <span class="math inline">\(0\leq x\leq 7\)</span> - use ”</p>
-<pre><code>g=Sqrt[49-x^2]</code></pre>
-<p>“. The region under <span class="math inline">\(g(x)\)</span> is a quarter of the circle <span class="math inline">\(x^2+y^2=49\)</span>. You will see <span class="math inline">\(\pi\)</span> show up in lots of answers in Mathematica. Use”</p>
-<pre><code>%//N</code></pre>
-<p>” to approximate the output. 1. Let <span class="math inline">\(g(x) = \frac{\ln(x+1)}{x^2}\)</span> for <span class="math inline">\(1\leq x\leq 5\)</span> - use ”</p>
-<pre><code>g=Log[x+1]/x^2</code></pre>
-<p>“. 1. Let <span class="math inline">\(g(x) = e^{-3x}\)</span> for <span class="math inline">\(0\leq x\leq \infty\)</span> - use”</p>
-<pre><code>g=Exp[-3x]</code></pre>
-<p>“. You can enter</p>
-<pre><code>Infinity</code></pre>
-<p>as a value for the upper bound.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">=</span>Sqrt[<span class="dv">49</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>]<span class="sc">@</span>]<span class="st">". The region under $g(x)$ is a quarter of the circle $x^2+y^2=49$. You will see $\pi$ show up in lots of answers in Mathematica. Use "`</span><span class="at">%//N</span><span class="st">`" to approximate the output. </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">1. Let $g(x) = </span><span class="sc">\f</span><span class="st">rac{\ln(x+1)}{x^2}$ for $1\leq x\leq 5$ - use "</span>[<span class="sc">@</span>g<span class="ot">=</span>Log[x<span class="sc">+</span><span class="dv">1</span>]<span class="sc">/</span>x<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>“. 1. Let <span class="math inline">\(g(x) = e^{-3x}\)</span> for <span class="math inline">\(0\leq x\leq \infty\)</span> - use”<code>g=Exp[-3x]</code>“. You can enter <code>Infinity</code> as a value for the upper bound.</p>
 <details>
 <summary>
 Some Solutions

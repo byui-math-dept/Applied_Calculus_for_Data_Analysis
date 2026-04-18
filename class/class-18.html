@@ -294,7 +294,14 @@ Answer
 <h2 class="anchored" data-anchor-id="more-likelihood-practice">More Likelihood Practice</h2>
 <p>You have been given a list of data for 400 customers, <span class="math inline">\((x_i, t_i)\)</span>, were <span class="math inline">\(x_i\)</span> is the number of months the since the boot was purchased and <span class="math inline">\(t_i\)</span> is the tread thickness of the boot for the <span class="math inline">\(i^{\text{th}}\)</span> customer. A model for the tread thickness on the bottom of a boot is <span class="math inline">\(f(x;m,b) = mx+b\)</span>, where <span class="math inline">\(x\)</span> is the number of months since the date the boot was purchased. - Write the formula for the residuals.</p>
 <p>Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math inline">\(p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}\)</span>. Match each function below with a term on the right.</p>
-<p>| <span class="math inline">\(r_i(m, b; x_i, t_i) = t_i - f(x_i; m,b) = t_i - (mx_i+b) = t_i - mx_i - b\)</span> | Likelihood function | <span class="math inline">\(J(x_i,t_i;m,b) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\)</span> | <span class="math inline">\(i\)</span>th residual | <span class="math inline">\(L(m,b; x_i,t_i) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\)</span> | Loglikelihood function | <span class="math inline">\(\ell(m,b; x_i,t_i) = \ln\left(\prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\right)\)</span> | Joint Distribution</p>
+<p><span class="math inline">\(r_i(m, b; x_i, t_i) = t_i - f(x_i; m,b) = t_i - (mx_i+b) = t_i - mx_i - b\)</span></p>
+<p>Likelihood function</p>
+<p><span class="math inline">\(J(x_i,t_i;m,b) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\)</span></p>
+<p><span class="math inline">\(i\)</span>th residual</p>
+<p><span class="math inline">\(L(m,b; x_i,t_i) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\)</span></p>
+<p>Loglikelihood function</p>
+<p><span class="math inline">\(\ell(m,b; x_i,t_i) = \ln\left(\prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\right)\)</span></p>
+<p>Joint Distribution</p>
 <p>Now simplify the loglikelihood function using properties of logs and sums.</p>
 <details>
 <summary>

@@ -304,10 +304,11 @@ Solve <span class="math inline">\(F(p_{95}) = 0.95\)</span> for <span class="mat
 <h3 class="anchored" data-anchor-id="continuation-from-last-time---more-practice-with-finding-pdfs-expected-value-variance-and-cdf">Continuation from last time - More Practice with finding PDFs, Expected Value, Variance, and CDF</h3>
 <p>These problems are a continuation from what we did last time in groups.</p>
 <ol start="2" type="1">
-<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit.</li>
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit. (:codem:)</li>
 </ol>
 <pre><code>g = Exp[-\[Lambda] x]
 $Assumptions = \[Lambda] &gt; 0</code></pre>
+(:codemend:)
 <ol type="a">
 <li>
 Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this an exponential random variable.
@@ -367,7 +368,7 @@ Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(
 <summary>
 Solution
 </summary>
-<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral.</p>
+<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral. (:codem:)</p>
 <pre><code>$Assumptions = x \[Element] Reals
 g = Piecewise[{{3, -2 &lt;= x &amp;&amp; x &lt; 1}, {5, 1 &lt;= x &lt;= 5}, {0, True}}]
 Plot[g, {x, -5, 10}]
@@ -379,6 +380,7 @@ EV = Integrate[x f, {x, -Infinity, Infinity}]
 Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
 F = Integrate[ f, {x, -Infinity, x}]
 D[F, x]</code></pre>
+<p>(:codemend:)</p>
 </details>
 </section>
 <section id="practice-definite-integrals-and-geometric-arguments" class="level3">
