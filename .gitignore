@@ -11,3 +11,15 @@ __pycache__/
 
 # AI files
 CLAUDE.md
+
+# R
+.Rhistory
+.RData
+.RDataTmp
+.Ruserdata
+.Rproj.user/
+*_cache/
+*.utf8.md
+*.knit.md
+.Renviron
+rsconnect/
