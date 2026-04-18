@@ -53,6 +53,21 @@ mjx-container[display="true"] {
   margin-left: 0 !important;
 }
 
+/* Schedule grid: equal column widths */
+.schedule-grid table {
+  display: table !important;
+  table-layout: fixed;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.schedule-grid table th,
+.schedule-grid table td {
+  min-width: unset;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
 /* Schedule table borders */
 .schedule-table {
   border-collapse: collapse;

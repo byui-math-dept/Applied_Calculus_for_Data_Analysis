@@ -2,6 +2,7 @@
 title: "Schedule"
 ---
 
+::: {.schedule-grid}
 | Week | Mon | Tue | Thu | Fri |
 | --- | --- | --- | --- | --- |
 | **W1** | 4/20 [Day 1](class/class-1.html):<br>Mastery Learning - Specifications Grading | 4/21 [Day 2](class/class-2.html):<br>Activity - Reading Definitions and Classifying Functions | 4/23 [Day 3](class/class-3.html):<br>Plotting in R | 4/24 [Day 4](class/class-4.html):<br>Interactive Programming Activity |
@@ -18,3 +19,4 @@ title: "Schedule"
 | **W12** | 7/6 [Day 42](class/class-42.html):<br>Calculate a Percentile | 7/7 [Day 43](class/class-43.html):<br>Definite Integrals and Geometric arguments | 7/9 [Day 44](class/class-44.html):<br>Making Connections using CDFs and PDFs | 7/10 [Day 45](class/class-45.html):<br>Teach One Another |
 | **W13** | 7/13 [Day 46](class/class-46.html):<br>Change of Variables | 7/14 [Flex 1](flex/flex-1.html) | 7/16 [Flex 2](flex/flex-2.html) | 7/17 [Flex 3](flex/flex-3.html) |
 | **W14** | 7/20 Project Work Day | 7/21 Project Work Day | — | — |
+:::

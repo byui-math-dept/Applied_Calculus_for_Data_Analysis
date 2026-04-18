@@ -223,9 +223,10 @@ def write_schedule_qmd(calendar: list[dict], config: dict):
 title: "Schedule"
 ---
 
+::: {{.schedule-grid}}
 {header}
 {sep}
-""" + "\n".join(rows) + "\n"
+""" + "\n".join(rows) + "\n:::\n"
 
     out_path.write_text(content)
     print(f"Wrote {out_path.relative_to(REPO_ROOT)}")
