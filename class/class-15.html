@@ -309,11 +309,11 @@ window.Quarto = {
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ul>
-<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.
+<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.</li>
+</ul>
+<p><img src="../assets/uploads/Class/f5-fit1.png" class="img-fluid"></p>
+<p><img src="../assets/uploads/Class/f5-fit2.png" class="img-fluid"></p>
 <ul>
-<li>https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png</li>
-<li>https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png</li>
-</ul></li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(f(x) = b + mx\)</span> and data point <span class="math inline">\((x,y) = (4,7)\)</span>.</li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(g(x) = c + bx + a\ln(4x)\)</span> and data point <span class="math inline">\((x,y) = (x_3,y_3)\)</span>.</li>
 </ul>
@@ -330,7 +330,7 @@ Answers
 <li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> each element of x must be a whole number</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># each element of x must be a whole number</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
