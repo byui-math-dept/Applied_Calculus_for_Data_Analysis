@@ -1,0 +1,17 @@
+---
+title: "Definition: RulesOfProbabilty"
+---
+
+<details>
+<summary>Definition: Rules (or Axioms) of Probability</summary>
+
+- If $S$ is the samples space, $P(S) = 1$.
+- For any event $A$, $0 \leq P(A) \leq 1$.
+- If $A$ and $B$ are mutually exclusive events, $P(A \text{ or } B) = P(A) + P(B)$.
+    - If $A^c$ is the complement of $A$, then $P(A^c) = 1 - P(A)$.
+
+If two events $A$ and $B$ do not share any outcomes, $P(A \text{ and } B) = 0$, then they are **mutually exclusive** events (the events cannot occur at the same time).
+
+*Source: These definitions are taken from OpenStax Introductory Statistics and Statistics for Engineers and Scientists by Navidi.*
+
+</details>

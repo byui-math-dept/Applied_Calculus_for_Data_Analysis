@@ -1,0 +1,177 @@
+---
+title: "Class 25"
+---
+
+# During Class
+## Brain Gains
+1. A box with a square bottom and no top is to be built with 6 square feet of cardboard (so you need material for 5 sides).  Write a function that gives the volume of the box as a function of the side length of the square. 
+
+<details>
+<summary>Solution</summary>
+
+The base has area $x^2$. Letting $h$ be the height of the box, the volume of the box is $V(x,h) = x^2h$.  Each the sides has area $4xh$, which means the total area of 6 must satistify $6 = x^2+4xh$. From here we can get $h$ by itself as $ h =\frac{6-x^2}{4x}$.  This means the volume is $$V(x) = x^2h = x^2 \frac{6-x^2}{4x} = \frac{1}{4}x(6-x^2).$$
+
+</details>
+
+1.  Use R to plot the function above, and then guess the maximum possible volume along with the dimensions that correspond to this volume.
+1. Compute the derivative of the function above, and use it to find the maximum possible volume.
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Comparing Solutions
+Our goal today is to dig into the derivative relationships and associated vocabulary. Your assignment before class was to fill in as many of the blanks, as possible, from https://byuistats.github.io/M119/m119-docs/DerivativeRelationship_FillBlank.pdf. Compare your answers, discuss any questions, and have a scribe write your solutions on the board (so you can compare with other groups).
+
+You may need some of definitions, theorem, or tests below as you complete the next activity. Take a moment to open each item and review it.
+#### Theorems - Tests - Definitions
+
+<details>
+<summary>Intermediate Value Theorem (IVT)</summary>
+
+If $f(x)$ is a continuous function on a closed interval $ [a, b] $, where $f(a) \neq f(b)$, and $y_0$ is any $y$-value strictly between $f(a)$ and $f(b)$, then $y_0 = f(x_0)$ for some $x$-value, $x_0$, in $ [a, b] $.
+
+Note: While there is a rigorous mathematical definition for what it means to be a continuous function, for our purposes the following concept with suffice, a function is continuous on an interval if the graph of that function can be traced with a pencil without lifting the pencil from the page.
+
+</details>
+
+<details>
+<summary>Rolle's Theorem</summary>
+
+Let $f$ be a continuous function over the closed interval $ [ a, b ] $ and differentiable over the open interval $ ( a, b ) $ such that $f(a) = f(b)$. Then there exists at least one $ c \in ( a, b ) $ such that $f'(c) = 0$.
+
+</details>
+
+<details>
+<summary>Extreme Value Theorem</summary>
+
+If $f$ is a continuous function over the closed, bounded interval $ [a, b] $, then there is a point in $ [a, b] $ at which $f$ has an absolute maximum over $ [a, b] $ and there is a point in $ [a, b] $ at which $f$ has an absolute minimum over $ [a, b] $.
+
+</details>
+
+<details>
+<summary>First Derivative Test</summary>
+
+Suppose that $f$ is a continuous function over an interval $I$ containing a critical point $c$. If $f$ is differentiable over $I$, except possibly at point $c$, then $f(c)$ satisfies one of the following descriptions:
+- If $f'$ changes sign from positive when $x < c$ to negative when $x > c$, then $f(c)$ is a local maximum of $f$.
+- If $f'$ changes sign from negative when $x < c$ to positive when $x > c$, then $f(c)$ is a local minimum of $f$.
+- If $f'$ has the same sign for $x < c$ and $x > c$, then $f(c)$ is neither a local maximum nor a local minimum of $f$.
+
+</details>
+
+<details>
+<summary>Second Derivative Test</summary>
+
+Suppose that $f'(c) = 0$, $f''$ is continuous over an interval containing $c$.
+- If $f''(c) > 0$, then $f$ has a local minimum at $x=c$.
+- If $f''(c) < 0$, then $f$ has a local maximum at $x=c$.
+- If $f''(c) = 0$, then the test is inconclusive.
+
+</details>
+
+<details>
+<summary>Definition: Increasing (reminder)</summary>
+
+We say that a function $f$ is **increasing on the interval $I$** if for all $x_1, x_2 \in I$, $f(x_1) \leq f(x_2)$ when $x_1 < x_2$.
+
+</details>
+
+<details>
+<summary>Definition: Decreasing (reminder)</summary>
+
+We say that a function $f$ is **decreasing on the interval $I$** if for all $x_1, x_2 \in I$, $f(x_1) \geq f(x_2)$ when $x_1 < x_2$.
+
+</details>
+
+<details>
+<summary>Definition: Concavity</summary>
+
+Let $f$ be a function that is differentiable over an open interval $I$.<br>
+If $f'$ is increasing over $I$, we say $f$ is **concave up** over $I$.<br>
+If $f'$ is decreasing over $I$, we say $f$ is **concave down** over $I$.
+
+Let $f$ be a function that is twice differentiable of an interval $I$.
+- If $f''(x) > 0$ for all $x \in I$, then $f$ is concave up over $I$.
+- If $f''(x) < 0$ for all $x \in I$, then $f$ is concave down over $I$.
+
+</details>
+
+<details>
+<summary>Definition: Absolute Maximum</summary>
+
+Let $f$ be a function defined over an interval $I$ and let $c \in I$. We say $f$ has an **absolute maximum** on $I$ at $c$ if $f(c) \geq f(x)$ for all $x \in I$.
+
+</details>
+
+<details>
+<summary>Definition: Absolute Minimum</summary>
+
+Let $f$ be a function defined over an interval $I$ and let $c \in I$. We say $f$ has an **absolute minimum** on $I$ at $c$ if $f(c) \leq f(x)$ for all $x \in I$.
+
+</details>
+
+<details>
+<summary>Definition: Local Maximum</summary>
+
+A function $f$ has an **local maximum** at $c$ if there exists an open interval $I$ containing $c$ such that $I$ is contained in the domain of $f$ and $f(c) \geq f(x)$ for all $x \in I$.
+
+</details>
+
+<details>
+<summary>Definition: Local Minimum</summary>
+
+A function $f$ has an **local minimum** at $c$ if there exists an open interval $I$ containing $c$ such that $I$ is contained in the domain of $f$ and $f(c) \leq f(x)$ for all $x \in I$.
+
+</details>
+
+<details>
+<summary>Definition: Critical Point (or critical value)</summary>
+
+We say that $x=c$ is a **critical point** of $f$ if $f'(c) = 0$ or $f'(c)$ is undefined.
+
+</details>
+
+<details>
+<summary>Definition: Inflection Point</summary>
+
+If $f$ is continuous at $x=a$ and $f$ changes concavity at $x=a$, the point $(a, f(a))$ is an **inflection point** of $f$.
+
+</details>
+
+### Activity - Constructing Examples
+To help us understand derivative relationships and associated vocabulary, let's create sketches that illustrate the concepts. 
+At the chalk boards, take turns providing a rough sketch of a function with the properties listed (also sketch the derivative and/or second derivative if this helps you make sense of the properties).
+Number your graphs, keep them small-ish, and try to fill your board with examples that we can compare with others. Use the information above for reference. 
+1. $f$ is increasing and concave up for all $x$.
+1. $f$ so that $f'(x) > 0$ and $f''(x)<0$ for all $x$.
+1. $f$ has an inflection point at $x=4$.
+1. $f$ has a horizontal tangent line when $x=3$.
+1. $f$ so that $f'=0$ for all $x$.
+1. $f$ so that $f'=0$ and $f''>0$ at $x=-2$.
+1. $f$ is decreasing and concave down on the interval $ (-3,5) $.
+1. $f$ so that $f'$ has at least one change of sign and is always defined.
+1. $f$ so that $f'=0$ and $f''<0$ at $x=1$.
+1. $f$ so that -$f$ is concave down everywhere.
+
+When you finish, work on [this worksheet](https://byuistats.github.io/M119/m119-docs/GraphingUsingSigns.pdf){target="_blank"} together (remember to take turns).
+
+## Class Discussion
+### ElvesRUs Extended
+Last time we worked on a ElvesRUs loglikelihood (full problem statement included below). We found the loglikelihood of the errors, rewrote the function using the properties of logs and sums, and found the first partials of the loglikelihood function. 
+
+->You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we're assuming the probability model for the residuals is $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}$.
+
+Today let's compute the following second partial derivatives: $\frac{\partial^2\ell}{\partial A^2}$, $\frac{\partial^2 \ell}{\partial b \partial A}$, $\frac{\partial^2 \ell}{\partial k \partial A}$, $\frac{\partial^2 \ell}{\partial A \partial b}$, $\frac{\partial^2\ell}{\partial b^2}$, and $\frac{\partial^2 \ell}{\partial k \partial b}$ Is this all the partials? (No!)
+Turn back in your notes (or use the following link) to get the first partials.
+https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf
+
+<details>
+<summary>Answers</summary>
+
+- $\frac{\partial^2\ell}{\partial A^2} = \sum_{i=1}^{50} -e^{2bt_i}$
+- Use the fact that (for nice function) the mixed partials will be the same to check $\frac{\partial^2 \ell}{\partial b \partial A}$.
+- $\frac{\partial^2 \ell}{\partial k \partial A} = \sum_{i=1}^{50} -e^{bt_i}$
+- Use the fact that (for nice function) the mixed partials will be the same to check $\frac{\partial^2 \ell}{\partial A \partial b}$.
+- $\frac{\partial^2\ell}{\partial b^2} = \sum_{i=1}^{50} At_i^2(c_i -k)e^{bt_i} - 2t_i^2A^2e^{2bt_i}$
+- $\frac{\partial^2 \ell}{\partial k \partial b} = \sum_{i=1}^{50} -At_ie^{bt_i}$
+
+</details>

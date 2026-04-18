@@ -1,0 +1,105 @@
+---
+title: "Class 18"
+---
+
+# During Class
+## Brain Gains
+1. 
+Compute $\frac{df}{dx}$ for $f(x) = 5x^8+3e^x-7\ln x-4\sqrt{x}+\frac{5}{x^3}$. 
+
+<details>
+<summary>Answer</summary>
+
+$ f'(x) = 40x^7 + 3e^x -\frac{7}{x} - \frac{2}{\sqrt{x}} - \frac{15}{x^4} $
+
+</details>
+
+2. 
+Compute $g'(x)$ for $g(x) = (e^x)(x^3)$. 
+
+<details>
+<summary>Answer</summary>
+
+$ \frac{dg}{dx} = 3x^2e^x+x^3e^x $
+
+</details>
+
+3. 
+Compute $h'(x)$ for $h(x) = \dfrac{3x^2}{2\ln x}$. 
+
+<details>
+<summary>Answer</summary>
+
+$ D_xh(x) = \frac{3x}{\ln x} - \frac{3x}{2(\ln x)^2}$
+
+</details>
+
+## More Likelihood Practice
+You have been given a list of data for 400 customers, $(x_i, t_i)$, were $x_i$ is the number of months the since the boot was purchased and $t_i$ is the tread thickness of the boot for the $i^{\text{th}}$ customer. 
+A model for the tread thickness on the bottom of a boot is $f(x;m,b) = mx+b$, where $x$ is the number of months since the date the boot was purchased. 
+- Write the formula for the residuals.
+
+Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), 
+which means we're assuming the probability model for the residuals is $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}$. 
+Match each function below with a term on the right.
+
+$r_i(m, b; x_i, t_i) = t_i - f(x_i; m,b) = t_i - (mx_i+b) = t_i - mx_i - b$
+
+Likelihood function
+
+$J(x_i,t_i;m,b) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}$
+
+$i$th residual
+
+$L(m,b; x_i,t_i) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}$
+
+Loglikelihood function
+
+$\ell(m,b; x_i,t_i) = \ln\left(\prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\right)$
+
+Joint Distribution
+
+Now simplify the loglikelihood function using properties of logs and sums. 
+
+<details>
+<summary>Answers</summary>
+
+First we write a formula for the residuals (or errors) to obtain 
+$$r_i(m, b; x_i, t_i) = t_i - f(x_i; m,b) = t_i - (mx_i+b) = t_i - mx_i - b$$
+
+Because the errors are independent we can multiply the probability models to find the joint probability model as 
+$$J(x_i,t_i;m,b) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}.$$ 
+ 
+The likelihood function (interchange the role of variables and parameters) is then 
+$$L(m,b; x_i,t_i) = \prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}.$$
+
+The natural log of the likelihood function gives the loglikelihood function as 
+$$\ell(m,b; x_i,t_i) = \ln\left(\prod_{i=1}^{400} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(t_i - mx_i -b)^2}\right).$$
+
+Using the properties of logarithms and sums we find 
+$$\ell(m,b; x_i,t_i) = 400\ln\left(\frac{1}{\sqrt{2\pi}}\right) -\frac{1}{2}\sum_{i=1}^{400} (t_i - mx_i -b)^2.$$
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Computing Derivatives Practice
+Below is a list of derivative rules (most of which we have seen) that you are welcome to use as you complete this activity and any homework in Knewton Alta. It's not crucial that you memorize all these rules. Some you will memorize from just using them each time.  
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+- Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving theses problems.
+- After you've discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to *pass the chalk* after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.
+
+1. For $f(x) = (3x^2-7x+5)\ln(x)$, find $f'(x)$. Remember to **identify which rules** you used at each step (on this and each problem). 
+1. For $g(x) = \frac{3}{x}e^x$, find $g'(x)$. 
+1. For $h(x) = \frac{6\ln(x)}{5\sqrt{x}}$, find $\frac{dh}{dx}$. 
+1. For $r(t) = 7\ln t - \frac{3}{t^2}$, find $\frac{dr}{dt}$. 
+1. For $f(p) = \sum_{j=3}^7 4^jp^2$, find $f'(p)$. 
+1. For $h(r) = \sum_{n=1}^{40} n\ln(r)$, find $h'(r)$. 
+1. For $t(x) = \sum_{m=1}^{40}  m x^m$, find $\frac{dt}{dx}$. 
+1. For $p(x) = ax^2+be^x+c\ln(x)$, find $\frac{dp}{dx}$ assuming that $a,b,c$ are constants.
+1. For $p(a) = ax^2+be^x+c\ln(x)$, find $\frac{dp}{da}$ assuming that $x,b,c$ are constants.
+1. For $r(y) = \frac{6y^2e^y}{5\sqrt{y}}$, find $\frac{dr}{dy}$.
+1. For $q(t) = (3x+1)(x^2-4)(5x-3\sqrt{x})(1-e^x)$ find $D_t q$.

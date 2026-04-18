@@ -1,0 +1,12 @@
+---
+title: "Definition: DecreasingOnTheIntervalI"
+---
+
+<details>
+<summary>Definition: **Decreasing** on the Interval $I$ (from OpenStax textbook)</summary>
+
+We say a function $f$ is decreasing on the interval $I$ if for all $x_1$ and $x_2$ in the interval, $f(x_1) \geq f(x_2)$ when $x_1 < x_2$.
+
+Note: We say a function $f$ is strictly decreasing on the interval $I$ if for all $x_1$ and $x_2$ in the interval, $f(x_1) > f(x_2)$ when $x_1 < x_2$.
+
+</details>

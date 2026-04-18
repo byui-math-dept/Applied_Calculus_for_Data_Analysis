@@ -1,0 +1,163 @@
+---
+title: "Class 45"
+---
+
+# During Class
+## Group Meeting 
+### Teach One Another
+Give each group member 1-2 minutes to share what they prepared from the between class work.
+
+Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+### Fundamental Theorem of Calculus
+
+<details>
+<summary>Summary: Calculating Probability with the PDF and CDF</summary>
+
+To calculate a probability with the PDF of a continuous random variable, we use the following:
+- $P(X \leq a) = \int_{-\infty}^a f(x)dx$,
+- $P(a \leq X \leq b) = \int_a^b f(x)dx$,
+- $P(X \geq a) = \int_a^\infty f(x)dx$.
+
+To calculate a probability with the CDF of a continuous random variable, we use the following:
+- $P(X \leq a) = F(a)$
+- $P(a \leq X \leq b) = F(b) - F(a)$
+- $P(X \geq a) = 1 - F(a)$
+
+</details>
+
+<details>
+<summary>Fundamental Theorem of Calculus (FTC)</summary>
+
+(Part 1)
+If $f(x)$ is continuous over an interval $ [ a, b ] $, and the function $F(x)$ is defined by $F(x) = \int_a^x f(t)dt$, then $F'(x) = f(x)$ over $ [ a, b ]$.<br>
+*Note this is Theorem 5.4 in Open Stax Calculus Volume 1.*
+
+(Part 2)
+If $f$ is continuous over the interval $ [ a, b ] $ and $F(x)$ is any antiderivative of $f(x)$, then $\int_a^b f(x)dx = F(b) - F(a)$.<br>
+*Note this is Theorem 5.5 in Open Stax Calculus Volume 1.*
+- When you read **antiderivative** think "undo a derivative".
+
+</details>
+
+1. Let $\ds f(x) = \begin{cases}\frac{1}{8}x & 3 \leq x \leq 5 \\0 & \text{otherwise}\end{cases}$ be a pdf for a continuous random variable $X$. 
+    1. Calculate $F(x) = P(X \leq x)$ by writing down an appropriate integral (an accumulation function) and then computing that integral with Mathematica. You have found the CDF of $X$. 
+    1. Compute the derivative of $F(x)$. 
+    1. Explain why $\ds \frac{d}{dx}\left(\int_3^x\frac{1}{8}t dt\right) = \frac{1}{8}x$ for $3\leq x\leq 5$. 
+    1. Compute $P(3 \leq X \leq 4)$ using the probability density function $f(x)$.
+    1. Compute $P(3 \leq X \leq ​4)$ using the cumulative distribution function $F(x)$.
+    1. Verify that $\int_3^4 f(x) dx = F(4)-F(3)$.
+
+1. Let $\ds f(x) = \begin{cases}\lambda e^{-\lambda x} & x \geq 0 \\ 0 & \text{otherwise}\end{cases}$ be a pdf for a continuous random variable $X$, for some $\lambda >0$.
+    1. Calculate $F(x) = P(X \leq x)$ by writing down an appropriate integral (an accumulation function)and then computing that integral with Mathematica. You have found the CDF of $X$. 
+    1. Compute the derivative of $F(x)$. 
+    1. Explain why $\ds \frac{d}{dx}\left(\int_0^x\lambda e^{-\lambda t} dt\right) = \lambda e^{-\lambda x}$ for $ x \geq 0 $. 
+    1. Compute $P(1 \leq X \leq 5)$ using the probability density function $f(x)$.
+    1. Compute $P(1 \leq X \leq ​5)$ using the cumulative distribution function $F(x)$.
+    1. Verify that $\int_1^5 f(x) dx = F(5)-F(1)$.
+
+1. Let $F(x) = \int_2^x \ln(t^4+5)\frac{3}{\ln(t^5)}dt$.  Compute $F'(x)$. (Check part 1 of the FTC if needed). 
+1. Let $G(x) = \int_0^x \sqrt{5+e^{3t}}dt$.  Compute $G'(x)$. (Check part 1 of the FTC if needed). 
+1. Let $h(x) = x^3$.  Find an antiderivative of $h$, and then use that antiderivative to compute $\int_1^2 x^3dx$. Check your answer with Mathematica. 
+1. Compute $\int \frac{2}{t^2} dt = \int 2t^{-2} dt$. (In other words find the collection of all antiderivatives of $\frac{2}{t^2}$.)
+1. Compute $\int_1^2 \frac{2}{t^2} dt$.
+
+## Discussion 
+### Summary - Random Variables (and the functions that describe them) -- Key Ideas
+- What is a difference between a discrete and continuous random variable?
+
+<details>
+<summary>One Answer</summary>
+
+- Continuous Random Variables take on values in an **interval** of real numbers.
+    - Note: $P(X = x) = 0$ for every real number $x$.
+- Discrete Random Variables take on only a finite (or countably infinite) **list** of values.
+    - Note: $P(X = x)$ is nonzero for some real numbers $x$.
+
+</details>
+
+- What are two key characteristics of a probability density function of a continuous random variable?
+
+<details>
+<summary>One Answer</summary>
+
+- The PDF $f(x)$ is nonnegative for all real numbers (i.e. $f(x) \geq 0$ for $x \in \mathbb{R}$).
+- The total area under $f$ above the $x$-axis is one (i.e. $\int_{-\infty}^\infty f(x) dx = 1$).
+
+</details>
+
+- Describe two ways to calculate the PDF of $X$ given a CDF or a nonnegative function $g(x)$.
+
+<details>
+<summary>Finding a PDF</summary>
+
+1. Take the derivative of the CDF to obtain $f(x) = F'(x)$.
+    - The CDF is $F(x) = P(X \leq x)$, and the pdf is $f(x) = F'(x) = \diff{}{x}(\int_{-\infty}^x f(s)ds)$.
+1. Normalize a nonnegative function so the total area is one, e.g. $f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)$.
+
+</details>
+
+- Describe two ways to calculate the CDF of $X$ given a nonnegative function $g(x)$.
+
+<details>
+<summary>Finding a CDF</summary>
+
+1. Calculate $F(x) = P(X \leq x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}\int_{-\infty}^x g(t)dt$.
+1. Find the PDF, $f(x)$, and undo the derivative to find $F(x)$.
+    - $F(x) = \int_{-\infty}^x f(s)ds$
+      - Normalize a nonnegative function so the total area is one to find the PDF, e.g. $f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)$.
+
+</details>
+
+- Why do we call $f(x)$ a **probability density** function?
+
+<details>
+<summary>One Explanation</summary>
+
+Since $f(x) = F'(x)$, we know $f(x) = F'(x) = \lim_{\Delta x \rightarrow 0}\frac{F(a + \Delta x) - F(a)}{\Delta x}$ (this is the definition of derivative). Notice the right side of the equation $\frac{F(a + \Delta x) - F(a)}{\Delta x}$ has units probability per length. Probability per length is a density, a probability density. So the function $f(x)$ is called a probability density function.
+
+</details>
+
+<details>
+<summary>Fundamental Theorem of Calculus (FTC)</summary>
+
+(Part 1) If $f(x)$ is continuous over an interval $ [ a, b ] $, and the function $F(x)$ is defined by $F(x) = \int_a^x f(t)dt$, then $F'(x) = f(x)$ over $ [ a, b ]$.<br>
+*Note this is Theorem 5.4 in Open Stax Calculus Volume 1.*
+
+(Part 2) If $f$ is continuous over the interval $ [ a, b ] $ and $F(x)$ is any antiderivative of $f(x)$, then $\int_a^b f(x)dx = F(b) - F(a)$.<br>
+*Note this is Theorem 5.5 in Open Stax Calculus Volume 1.*
+- When you read **antiderivative** think "undo a derivative".
+
+</details>
+
+<details>
+<summary>Definition: Percentile</summary>
+
+Let $X$ be a random variable. 
+- A percentile is a number $x_p$ that satisfies the equation $P(X \leq x_p) = \frac{p}{100}$. 
+    - This means $x_p$ satisfies the equation $F(x_p) = \frac{p}{100}$ where $F(x)$ is the cumulative distribution function for $X$.
+    - This means $x_p$ satisfies the equation $\int_{-\infty}^{x_p}f(t)dt = \frac{p}{100}$ where $f(x)$ is the probability density function for $X$.
+
+- A percentile divides probability into 100 equal groups (per 100).
+- A percentile is a number $x_p$ such that $p$% of the probability is at or below this number.
+
+</details>
+
+<details>
+<summary>Expected Value (continuous random variable)</summary>
+
+The **expected value** (or mean) of a *continuous* random variable $X$ with probability density function $f(x)$ is
+
+$E[X] = \int_{-\infty}^{\infty} x f(x) dx$.
+
+</details>
+
+<details>
+<summary>Variance (continuous random variable)</summary>
+
+The **variance** of a *continuous* random variable $X$ with probability density function $f(x)$ is
+
+$Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2 f(x) dx$.
+
+Note: The standard deviation is equal to the square root of the variance, $\sigma_X = \sqrt{Var[X]}$.
+
+</details>

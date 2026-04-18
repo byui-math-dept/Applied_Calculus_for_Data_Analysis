@@ -1,0 +1,183 @@
+---
+title: "Flex Day 4"
+---
+
+# During Class
+## Discussion
+### Change of Variables
+Recall: We use the symbol, $\int f(x) dx$, to represent the collection of all antiderivatives of the function $f(x)$. Remember antiderivative means "undo" the derivative.
+
+We also read $\int f(x) dx$ as "the indefinite integral of $f$".
+
+Evaluate each indefinite integral.
+- $\int (5x^2 + 1)^3 10x dx$
+
+- $\int \frac{t}{\sqrt{t^2 - 1}} dt$
+
+- $\int \frac{t + 2t^2}{\sqrt{t}} dt$
+
+- $\int (5-x)^2 dx$
+
+### Comparing Solutions
+When computing indefininte integrals, remember that answers computed by hand may appears very different than answer obtained with software such as Mathematica.  
+
+- Consider $\int (7-x)^2 dx$.
+    - Compute by hand, using substitution, to obtain $\int (7-x)^2 dx = -\frac{1}{3}(7-x)^3 + C$.
+    - Compute in Mathematica to obtain $\int (7-x)^2 dx = \frac{1}{3}x^3 - 7x^2 + 49x +C$. Does Mathematica remember the $+C$?
+Here are some code examples that can help you make comparisons in Mathematica.
+
+```r
+MyAnswer = -1/3*(7 - x)^3
+MathmaticaAnswer = Integrate[(7 - x)^2, x]
+Expand[MyAnswer]
+MyAnswer - MathmaticaAnswer
+Simplify[MyAnswer - MathmaticaAnswer]
+Simplify[MyAnswer - MathmaticaAnswer]
+Plot[{MyAnswer, MathmaticaAnswer}, {x, -10, 10}]
+Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]
+@](:codemend:)
+
+- Consider $\int x(x-1)^3 dx$. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. 
+- Consider $\int \frac{y}{(y+1)^4} dy$. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. 
+
+- Consider $\int \frac{1}{x^2 + 8} dx$. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new or many of us. The function $f(x) = \tan^{-1}(x)$ is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -\frac{\pi}{2}, \frac{\pi}{2} ) $.
+We could use the following code to plot $f(x) = \arctan(x)$ in R.
+(:code:)[@
+inpt <- seq(-25,30,0.1)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(inpt,atan(inpt),type='l',ylim=c(-5,5))
+```
+
+## Group Meeting 
+Give each group member 1-2 minutes to share what they prepared from the between class work.
+
+Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+
+### Activity - Integration Practice
+Evaluate each indefinite integral (the complete "list" of antiderivatives or the most general antiderivative). When you are writing your answers **don't for get your "+C"**. Then check your answer with Mathematica. 
+1. $\int (3x^2 + 1)^3 6x dx$
+1. $\int x^2\sqrt{x^3 + 1} dx$
+1. $\int (5-2x)^2 dx$
+1. $\int x(x+2)^3 dx$
+1. $\int \frac{y}{(y-3)^2} dy$
+1. $\int \frac{5}{x^2 + 25} dx$ 
+1. $\int \frac{5x}{x^2 + 25} dx$ 
+
+### Computing Integrals with a CAS (Computer Algebra System)
+Calculate each of the following indefinite integrals using Mathematica. When you are writing answers for indefinite integrals, **don't for get your "+C"**. Along the way, you should encounter some new functions you've never seen before. 
+- $\int \frac{dx}{x^3 + 4x} = \int \frac{1}{x^3 + 4x} dx$
+- $\int \frac{x^2}{2+4x} dx$
+- $\int x^2 \ln x dx$
+- $\int_{-2}^2 \frac{1}{x^2 + 25} dx$
+- $\int_4^6 \frac{3}{32}x^2(x-4) dx$
+- $\int_1^2 e^{-x^2} dx$ (After typing this in and getting a wierd answer, try using N[ ] to get an approximate answer.)
+- $\int \frac{5}{\sqrt{x^2 + 25}} dx$
+- $\int_{-2}^2 \frac{5}{\sqrt{x^2 + 25}} dx$
+
+<a id="Prep"></a>
+# Between Class Sessions <a id="tasklist"></a>
+## Semester Reflection
+- Consider the following questions.
+    - How many can you answer?
+    - How many could you answer at the beginning of the semester?
+    - Can you see your growth?
+
+<details>
+<summary>Some Questions</summary>
+
+- What does it mean to fit a model?
+- How is a general model different than a fitted model?
+- What is a parameter? How is a parameter "different" than a variable?
+
+- What is the different between "find $f(7)$" and "solve $f(x) = 7$"?
+- What does the symbol $\sum_{i=1}^n x_i$ mean?
+- What does the symbol $\sum_{i=1}^n f(x_i)\Delta x$ mean?
+- What does the symbol $\sum_{i=1}^n p_i$ mean?
+- What does the symbol $\prod_{i=1}^n x_i$ mean?
+- Why do we care that $\log(XYZ) = \log(X) + \log(Y) + \log(Z)$?
+- What is a piece-wise function?
+
+- Can you describe the concept of the derivative of a function?
+- What is the local linear approximation of a function?
+- What is a Riemann sum?
+- What is a definite integral?
+- What is an antiderivative? What is an indefinite integral?
+- What is the Fundamental Theorem of Calculus?
+
+- Can you calculate derivatives using the 8 derivative rules from class?
+- Can you describe relationships between a function, its derivative, and its second derivative? (Why do we care about these relationships?)
+- What is optimization?
+- What is a critical point?
+- What is the second derivative test?
+- Can you give an example of when the derivative of a function does not exist?
+
+- What is a random variable? What is a stochastic variable?
+    - What is the difference between a discrete random variable and a continuous random variable?
+- What is a cumulative distribution function?
+    - What are some key properties of CDFs?
+- What is a probability density function? Why do we call it probability density?
+    - What are some key properties of PDFs?
+- How do you calculate probability of a random variable?
+- How do you calculate expected value of a random variable?
+- How do you calculate variance of a random variable?
+- What is the relationship between the PDF and the CDF?
+
+- What is a likelihood function?
+- How is likelihood different than probability?
+- What does it mean when we say two events are independent when calculating probability?
+
+- What is a visual fit?
+- What is the maximum likelihood method?
+- What is the method of moments?
+
+- Can you solve a linear system of equations?
+- Can you solve a nonlinear system of equations?
+- How do we find the system of equations to solve for the parameter values when using the maximum likelihood to fit a model?
+- How do we find the system of equations to solve for the parameter values when using the modified method of moments to fit a model?
+
+- Can you plot a function in R?
+- Can you define a function in R?
+- Can you use the uniroot() function in R to solve an equation?
+- Can you use the sum(), prod(), mean(), and var() commands in R?
+- Can you use R to help you with calculation to find the critical values of a loglikelihood function?
+- Can you use Mathematica to calculate a definite integral?
+    - Can you use Mathematica to calculate a probability?
+    - Can you use Mathematica to calculate the expected value of a distribution?
+    - Can you use Mathematica to calculate the variance of a distribution?
+- Can you use Mathematica to calculate an antiderivative or indefinite integral?
+- Can you use Mathematica to calculate a percentile?
+
+</details>
+
+- Review the six Course Objectives for Math 119. 
+    - Do you understand the ideas in these objectives? How has your understanding of these objectives change this semester?
+    - How have you accomplished these objectives this semester?
+    - Can you see your growth?
+
+<details>
+<summary>Course Objectives</summary>
+
+1. Appreciate the power of mathematical notation’s role in data analytics.
+1. Communicate using correct mathematical notation.
+1. Utilize programming languages and mathematical software to apply calculus.
+1. Read, write, and manipulate functions for use in modeling.
+1. Use differentiation to optimize the model being used and simplify complex equations.
+1. Use integration to extract meaning from distributions.
+
+</details>
+
+## Probability and Likelihood
+- Watch this [video](https://www.youtube.com/watch?v=pYxNSUDSFH4){target="_blank"} about Probability and Likelihood. (~5 minutes)
+    - To learn more about another use for likelihood with Probability distributions, watch this [video](https://www.youtube.com/watch?v=XepXtl9YKwc){target="_blank"} about Maximum Likelihood. (~6 minutes)
+
+# End of Semester Announcements
+- Last day of classes is April 5
+    - Last day to work on Knewton Alta Homework is April 5.
+    - Last day to submit Project work is April 5.
+- No Final Exam
+
+<a id="PP"></a>
+
+## Skill Practice (KA Homework)
+
+## Applied Practice (Project Work)

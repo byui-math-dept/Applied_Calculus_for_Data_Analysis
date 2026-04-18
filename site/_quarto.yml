@@ -1,0 +1,73 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Math 119 — Applied Calculus for Data Analysis"
+  favicon: assets/uploads/Class/119-bmw.png
+  navbar:
+    right:
+      - text: "Home"
+        href: index.qmd
+      - text: "Definitions"
+        menu:
+        - text: "ConditionalProbability"
+          href: definitions/conditionalprobability.qmd
+        - text: "ConstantOnTheIntervalI"
+          href: definitions/constantontheintervali.qmd
+        - text: "DecreasingOnTheIntervalI"
+          href: definitions/decreasingontheintervali.qmd
+        - text: "Definition"
+          href: definitions/definition.qmd
+        - text: "ExponentialFunction"
+          href: definitions/exponentialfunction.qmd
+        - text: "IncreasingOnTheIntervalI"
+          href: definitions/increasingontheintervali.qmd
+        - text: "IndependentEvents"
+          href: definitions/independentevents.qmd
+        - text: "Logarithm"
+          href: definitions/logarithm.qmd
+        - text: "LogarithmicFunction"
+          href: definitions/logarithmicfunction.qmd
+        - text: "NegativeOnTheIntervalI"
+          href: definitions/negativeontheintervali.qmd
+        - text: "NonnegativeOnTheIntervalI"
+          href: definitions/nonnegativeontheintervali.qmd
+        - text: "PartialDerivative"
+          href: definitions/partialderivative.qmd
+        - text: "PositiveOnTheIntervalI"
+          href: definitions/positiveontheintervali.qmd
+        - text: "Probability"
+          href: definitions/probability.qmd
+        - text: "RandomVariable"
+          href: definitions/randomvariable.qmd
+        - text: "RulesOfProbabilty"
+          href: definitions/rulesofprobabilty.qmd
+      - text: "Schedule"
+        href: schedule.qmd
+  page-footer:
+    center: "Math 119 — BYU-Idaho"
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    html-math-method:
+      method: mathjax
+      url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+    include-in-header:
+      text: |
+        <script>
+        window.MathJax = {
+          tex: {
+            macros: {
+              ds: "\\displaystyle"
+            }
+          }
+        };
+        </script>
+
+execute:
+  freeze: auto

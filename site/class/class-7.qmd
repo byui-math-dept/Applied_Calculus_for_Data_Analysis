@@ -1,0 +1,151 @@
+---
+title: "Class 7"
+---
+
+# During Class - Day {$Name}
+## Brain Gains
+Write in expanded form and then calculate each of the following.
+1. $\sum_{k=4}^{8} (5-k)$
+1. $\prod_{n=1}^4 n$
+1. $\frac{1}{3}\sum_{i=3}^{7} (2+i^2)$
+When you finish, check your solution using R.
+
+<details>
+<summary>Solution</summary>
+
+- We find $\sum_{k=4}^{8} (5-k) = (5-4) + (5-5) + (5-6) + (5-7) + (5-8) = -5$.
+
+```r
+x <- c(4,5,6,7,8)
+sum(5-x)
+```
+
+- We compute $\prod_{n=1}^4 n = 1(2)(3)(4) = 24$. 
+
+```
+prod(1:4)
+```
+
+Since $4! = \prod_{n=1}^4 n$, you can also use the factorial command in R to commute this product.
+
+```
+factorial(4)
+```
+
+- We see $\frac{1}{3}\sum_{i=3}^{7} (2+i^2) = \frac{1}{3}\left( (2+3^2) + (2+4^2) + (2+5^2) + (2+6)^2 + (2+7^2)\right) = \frac{145}{3}.$
+
+```r
+i <- 3:7
+sum((2+i^2))
+sum((2+i^2))/3
+```
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Describing Functions (practice Reading Mathematics)
+The prep for yesterday involved reading and coming up with examples related to 6 definitions. 
+<!-- include: Definition.ConstantOnTheIntervalI -->
+<!-- include: Definition.IncreasingOnTheIntervalI -->
+<!-- include: Definition.DecreasingOnTheIntervalI -->
+<!-- include: Definition.PositiveOnTheIntervalI -->
+<!-- include: Definition.NonnegativeOnTheIntervalI -->
+<!-- include: Definition.NegativeOnTheIntervalI -->
+
+Let's apply these definitions to some examples. 
+1. Consider the function $\ds f(x) = \begin{cases}-x-4 & x<-2\\-2 & -2\leq x\leq 2\\x-4 & 2<x\\\end{cases}.$
+    1. Sketch the graph of $f$.
+    1. Give an interval on which $f$ is constant. Then give another. 
+    1. Give an interval on which $f$ is increasing.  Then give another. 
+    1. Give an interval on which $f$ is decreasing.  Then give another. 
+    1. Give an interval on which $f$ is positive.  Then give another. 
+    1. Give an interval on which $f$ is non-negative.  Then give another. 
+    1. Give an interval on which $f$ is negative.  Then give another. 
+    1. Give an interval on which $f$ is both increasing and decreasing. 
+1. Draw the graph of a function that  is constant on $ (0,2) $, strictly increasing on $ (2,5) $, decreasing on $ (5,10) $, nonnegative on $ [4,7] $, and negative on both $ [0,4) $ and $ (7,10] $.
+
+### Sum and Product Notation
+Start by discussing any questions from the prep. The complete the following with your team. 
+1. Writing the expression in expanded form, then compute the sum or product, and finish by checking with R. 
+    1.  $\sum_{k=2}^{4} (2k-3)$
+    1. $\prod_{k=2}^4 (2k-3)$
+    1. $\sum_{k=3}^{8} (k-5)^2$
+    1. $\prod_{n=3}^8 (n-5)^2$
+1. Write out each sum in expanded form (or at least show the pattern), and then use R to compute the sum. 
+    1.  $\sum_{k=1}^{1} (2k-1)$
+    1. $\sum_{k=1}^{2} (2k-1)$
+    1. $\sum_{k=1}^{3} (2k-1)$
+    1. $\sum_{k=1}^{4} (2k-1)$
+    1. $\sum_{k=1}^{5} (2k-1)$
+    1. $\sum_{k=1}^{6} (2k-1)$
+1. Make a guess, based on the patterns from above, for $\sum_{k=1}^{20} (2k-1)$. Then check with R. 
+1. Compute $1+3+5+\cdots+97+99$.
+
+### Systems of Equations (videos)
+Solve each system of equations for $x$ and $y$. The variables $a,b,c,d,e,f$ below are constants. 
+- $3x + 2y = -4, -x + 7y = 9$
+- $x+2y=3, 4x+5y=6$
+- $x+by=3, 4x+5y=6$
+- $x+by=c, 4x+5y=6$
+- $x+by=c, dx+5y=6$
+- $x+by=c, dx+ey=6$
+- $x+by=c, dx+ey=f$
+- $ax+by=c, dx+ey=f$
+
+## Discusion
+- Reminder of what the parameters in the general transformation form do.
+$$ T(x) = af(b(x-h))+k $$
+- Let's think about the general quadratic $f(x) = a_2x^2 + a_1x + a_0$.
+    - Recall the example. $q(x) = x^2 + 4x + 9$. We wrote $q(x) = (x-2)^2+5$ by completing the square.
+    - Consider $g(x) = x^2 - 5x - 1$ or $h(x) = 2x^2 + 14x + 3$. 
+      - $g(x) = (x - \frac{5}{2})^2 - \frac{29}{4}$
+      - $h(x) = 2(x + \frac{7}{2})^2 - \frac{86}{4}$
+    - Open the [Desmos](https://www.desmos.com/calculator/sfm0h6cq1f){target="_blank"}.
+
+## Discussion - Project 1 Task 2 and the Example Project. 
+If you haven't yet found the worked examples in Canvas, note that there are examples for a few tasks in the Additional resources module. Here is an example for project 1 task 2, which shows how you can put multiple plots together in the same figure, using the par(mfrow()) command, something required for the task.  Note that the example below shows far more plots than are required for the actual tasks.   
+- https://byuistats.github.io/M119/m119-docs/Project1_Task2_f2_example.html
+
+We'll spend the rest of class examining the example project's Task 2. 
+- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2
+- Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
+    - Use the slider to alter the values of $a$ and $b$. Discuss how these parameters alter the graph of $f_0$.
+    - Use the slider to alter the values of $h$ and $a$. Discuss how these parameters alter the graph of $f_1$.
+    - Use the slider to alter the values of $h$, $a$, and $b$. Discuss how these parameters alter the graph of $f_2$.
+
+We'll have a discussion in class about what you observed.  
+Our goal is to understand enough about the general functions $f_0$, $f_1$, and $f_2$ and their parameters to be able to identify specific functions (so specified parameters) of the forms $f_0$, $f_1$, and $f_2$ that looks like the density histogram of our light bulb data.  The code below will regenerate this histogram for us. 
+
+```r
+library(data4led)
+dist <- led_time(2100)
+hist(dist$percent_intensity,probability = TRUE)
+```
+
+If we have time today, we'll make a summary plot using the par(mfrow()) command to show what we learned. 
+
+```r
+rm(list=ls())
+f0 <- function(x,a=0,b=1){
+  # Make sure a < b when using this function.
+  ifelse(x < a,NaN, ifelse(x <= b, 1/(b-a), NaN))
+}
+
+a <- 98
+b <- 102
+x <- seq(a,b,0.1)
+y <- f0(x,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(x,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('For f0: a=98, b=102', side = 3, line = 0)
+
+a <- 100
+x <- seq(a,b,0.1)
+y <- f0(x,a,b)
+
+plot(x,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('change a=100 (keep b=102)', side = 3, line = 0)
+```

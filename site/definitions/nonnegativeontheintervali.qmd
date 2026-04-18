@@ -1,0 +1,10 @@
+---
+title: "Definition: NonnegativeOnTheIntervalI"
+---
+
+<details>
+<summary>Definition: **Nonnegative** on the interval $I$</summary>
+
+We say a function $f$ is nonnegative on the interval $I$ if for all $x_1$ in the interval, $f(x_1) \geq 0$.
+
+</details>

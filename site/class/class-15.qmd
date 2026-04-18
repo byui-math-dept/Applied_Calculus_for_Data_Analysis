@@ -1,0 +1,273 @@
+---
+title: "Class 15"
+---
+
+# During Class
+## Brain Gains
+- Critique the following visual fits for $f_5$. 
+    - https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png
+    - https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png
+
+- Write down a formula for the residual, $y - \hat{y}$, given the model $f(x) = b + mx$ and data point $(x,y) = (4,7)$.
+- Write down a formula for the residual, $y - \hat{y}$, given the model $g(x) = c + bx + a\ln(4x)$ and data point $(x,y) = (x_3,y_3)$. 
+
+<details>
+<summary>Answers</summary>
+
+- Given the model $f(x) = b + mx$ and the data point $(x,y) = (4,7)$, the residual is $y−\hat{y} = y−f(x) =7−(b + m4)=7−b−4m$.
+- Given the model $g(x) = c + bx + a\ln(4x)$ and the data point $(x,y) = (x_3,y_3)$, the residual is $y−\hat{y} = y_3−g(x_3) =y_3−(c + bx_3 + a\ln(4x_3))=y_3−c-bx_3-a\ln(4x_3)$.
+In the formula $r=y−f(x)$, we just replace $x$, $y$, and $f(x)$ with what they equal.  We are computing the ERROR between an observed value $y$ and predicted value $f(x)$.
+
+</details>
+
+- The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of $\lambda$, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of $\lambda$ versus the probability of seeing 7, 13, and then 3 storms, for that value of $\lambda$. What is your guess for the best choice of parameter $\lambda$?
+
+```r
+p3v1 <- function(x,lambda=2){
+1. each element of x must be a whole number
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+lambda <- seq(0,15,0.01)
+x <- c(8,2,8) #how many storms
+probs <- sapply(lambda, p3v1, x = x)
+plot(lambda,probs,type='l')
+```
+
+## Discussion
+### Likelihood
+The **Poisson distribution** is modeled using the function (called a *probability mass function*)
+- $p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}$ for every $x = 0, 1, 2, 3, ...$, for some $\lambda > 0$.
+
+The likelihood function for the Poisson distribution is the function
+- $L_1(\lambda; x) = \frac{\lambda^x}{x!}e^{-\lambda}$ for every $\lambda > 0$, for some $x = 0, 1, 2, 3, ...$. 
+
+What do you notice about $L_1$ and $p$? What are the similarities? What are the differences?
+
+- Each value of $\lambda$ gives a specific probability function $p$. 
+- Each value of $x$ is an observation made. We can plug $x$ into a specific probability function, to get a probability, or we can use that value of $x$ to create a specific likelihood function.
+
+----
+We created the *joint probability mass function* for three independent Poisson Random variables by multiplying three functions together to obtain 
+- $p_3(x_1, x_2, x_3; \lambda) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}$ for every $x_1 = 0, 1, 2, 3, ...$, $x_2 = 0, 1, 2, 3, ...$, and $x_3 = 0, 1, 2, 3, ...$, for some $\lambda > 0$. 
+
+Consider the function 
+- $L_3(\lambda; x_1, x_2, x_3) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}$ for every $\lambda > 0$, for some $x_1 = 0, 1, 2, 3, ...$, $x_2 = 0, 1, 2, 3, ...$, and $x_3 = 0, 1, 2, 3, ...$.
+
+What do you notice about $L_3$ and $p_3$? What are the similarities? What are the differences?
+
+- Each value of the parameter $\lambda$ gives a specific probability function $p_3$.
+- Each set of values $x_1$, $x_2$, $x_3$ is a potential outcome from the chance experiment (how many storms). These values can be inserted into a specific probability function to compute a single probability, or they can be used to create a likelihood function. 
+
+When calculating probability we use $p$ (or $p_3$) and we assume the parameter selected is trustworthy. We are assuming a specific model and then calculate probabilities using the specific model (we selected and fixed the parameter $\lambda$).
+
+When calculating likelihood we use $L_1$ (or $L_3$) and we are trying to determine the trustworthiness of each potential choice for $\lambda$ given what we have observed (our data). We are fixing the value of $x$ and considering how trustworthy each value of $\lambda$ is, given that specific $x$ we observed.
+
+<details>
+<summary>Likelihood Function</summary>
+
+The **likelihood function** gives the likelihood, or probability (in these examples), of the data as a function of the unknown parameter value(s).
+
+*Source: These definitions are taken from OpenStax Introductory Statistics and Modeling the Dynamics of Life by Adler.*
+
+</details>
+
+We can use the likelihood function to answer the question, "What is the most likely parameter value(s) given the data?" or "Which parameter value(s) should we trust the most given what we have observed?"
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Residual Practice
+
+<details>
+<summary>Residuals</summary>
+
+The **residual** for an observation is defined as the vertical distance between the observed value, $y$, and value predicted by a fitted model, represented with a $\hat{y}$ (read "y hat"). 
+
+Examples:
+- Given the model $f(x) = ax^2 + bx + c$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c).$
+- Given the model $g(x) = k$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - g(x) = y - k.$
+- Given the model $h(x) = ae^{-bx} + cxe^{-bx}$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.$
+
+</details>
+
+- Consider the 6 functions you have been fitting in https://byuistats.github.io/M119/project1.html. 
+    - On the chalkboard, write down a formula for the residual given the general model $f_4$ and data point $(x_i,y_i)$.
+    - On the chalkboard, write down a formula for the residual given the general model $f_5$ and data point $(x_j,y_j)$.
+
+### Activity - Likelihood Practice
+
+Use the storms listed on Wikipedia's https://tinyurl.com/51vyiwjw page to answer the questions below. Feel free to head to yesterday's page to grab code examples to help you work on the things below. 
+
+- Using the data from 2005-2009, what is the likelihood that $\lambda =2$?
+    - Define the likelihood function for this 5 year time period and plot it in R.
+
+- Using the data from 2010-2016, what is the likelihood that $\lambda =5$?
+    - Define the likelihood function for this 7 year time period and plot it in R.
+
+Work together to develop code in R that will allow you to quickly use any given time period of $k$ years to construct a graph of the likelihood function for $k$ Poisson random variables. 
+
+## Discussion
+### Likelihood (not just for Poisson Random Variables)
+**Key Idea:** We can use the likelihood function to answer the question, "What is the most likely parameter value(s) given the data?" or "Which parameter value(s) should we trust the most given what we have observed?"
+
+Likelihood is *not* probability but it is related to probability.
+
+#### Poisson Distribution 
+This is a **Poisson distribution**. (A common probability model.)
+- $p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}$ for every $x = 0, 1, 2, 3, ...$, for some $\lambda > 0$.
+
+If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, *the joint probability mass function for $n$ **Poisson** random variables (all with the same $\lambda$)*.
+- $F_P(\mathbf{x}; \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}$ for every $x_i = 0, 1, 2, 3, ...$ with $i = 1, 2, ... n$, for some $\lambda > 0$.
+
+How do we go from a distribution to a likelihood function? We reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for $n$ **Poisson** random variables (all with the same $\lambda$).
+- $L_P(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}$ for every $\lambda > 0$, for some $x_i = 0, 1, 2, 3, ...$ with $i = 1, 2, ... n$.
+
+We can use the following code to plot this function in R.
+
+<details>
+<summary>Click to view the code.</summary>
+
+```r
+rm(list=ls())
+
+    1. #Define the distribution###
+p <- function(x,lambda=1){
+1. x must be a whole number
+  (lambda^x/factorial(x))*exp(-lambda)
+}
+
+    1. #Define the likelihood function###
+LP <- function(lambda,x){
+1. The element of x must be a whole numbers.
+  prod(p(x,lambda))
+}
+
+    1. #Possible Parameter Values###
+lambda <- seq(0,10,0.001)
+
+    1. #Data###
+1. Florida Hurricane Data (2000-2022)
+data <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,2,4,6,7,4,7,13,3,3)
+
+1. Here we calculate the output from the likelihood function given the observed data.
+y <- sapply(lambda,FUN=LP,x=data)
+
+1. We plot the likelihood function.
+par(mar=c(2.5,2.5,3,0.25))
+plot(lambda,y,type='l',main='Poisson Likelihood')
+```
+
+</details>
+
+#### Exponential Distribution 
+This is an **Exponential distribution**. (A common probability model.)
+- $f_2(x; \lambda) = \lambda e^{-\lambda x}$ for every $x > 0$, for some $\lambda >0$.
+
+When we have more than one observation, and we assume the observations come from independent random variables, then we can multiply the probability functions to find the joint probability function. This is a probability model, *the joint probability density function for $n$ **Exponential** random variables (all with the same $\lambda$)*.
+- $F_E(\mathbf{x}; \lambda) = \prod_{i=1}^n \lambda e^{-\lambda x_i}$ for every $x_i > 0$ with $i = 1, 2, ... n$, for some $\lambda >0$.
+
+How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for $n$ **Exponential** random variables (all with the same $\lambda$).
+- $L_E(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}$ for every $\lambda >0$, for some $x_i > 0$ with $i = 1, 2, ... n$.
+
+We can use the following code to plot this function in R.
+
+<details>
+<summary>Click to view the code.</summary>
+
+```r
+    1. #Define the distribution###
+f2 <- function(x,lambda=1){
+1. x and lambda must be positive
+  lambda*exp(-lambda*x)
+}
+
+    1. #Define the Likelihood function###
+LE <- function(lambda,x){
+1. The elements of x must be positive.
+  prod(f2(x,lambda))
+}
+
+    1. #Possible Parameter Values###
+lambda <- seq(0,10,0.001)
+
+    1. #Data###
+1. Some Simulated Data (This is data from an Exponential random variable.)
+data <- c(0.45729967, 0.47156107, 1.21461705, 0.20539769, 1.78975399, 0.09095850, 0.64675475, 1.60109333, 1.57752679, 0.01238945)
+
+1. Here we calculate the output from the likelihood function given the observed data.
+y <- sapply(lambda,FUN=LE,x=data)
+
+1. We plot the likelihood function.
+par(mar=c(2.5,2.5,3,0.25))
+plot(lambda,y,type='l',main='Exponential Likelihood')
+```
+
+</details>
+
+#### Normal Distribution 
+This is a **Normal distribution**. (A common probability model.)
+- $f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ for every real number $x$, for some real number $\mu$ and real number $\sigma > 0$.
+
+If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, *the joint probability density function for $n$ **Normal** random variables (all with the same $\mu$ and $\sigma$).*
+- $F_N(\mathbf{x}; \mu, \sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}$ for every real number $x_i$ with $i = 1, 2, ... n$, for some real number $\mu$ and real number $\sigma > 0$.
+
+How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for $n$ **Normal** random variables (all with the same $\mu$ and $\sigma$).
+- $L_N(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}$ for every real number $\mu$ and real number $\sigma > 0$, for some real numbers $x_i$ with $i = 1, 2, ... n$.
+
+We can use the following code to plot this function in R.
+
+<details>
+<summary>Click to view the code.</summary>
+
+```r
+    1. #Define the distribution###
+f3 <- function(x,mu=0,s=1){
+  (1/sqrt(2*pi*s^2))*exp(-(x-mu)^2/(2*s^2))
+}
+
+    1. #Define the likelihood function###
+1. For simplicity, we'll assume sigma is 1.
+LN <- function(mu,sigma=1,x){
+  prod(f3(x,mu,sigma))
+}
+
+    1. #Possible Parameter Values###
+mu <- seq(-10,10,0.001)
+
+    1. #Data###
+1. Some more Simulated Data (This is data from a Normal random variable.)
+data <- c(-3.77117676, -2.91429587, -2.02774901, -0.23984575, -1.41960740, -3.17490528, -3.21755276, -0.06442566, -1.92134953, -0.93160739)
+
+1. Here we calculate the output from the likelihood function given the observed data.
+y <- sapply(mu,FUN=LN,x=data,sigma=1)
+
+1. We plot the likelihood function.
+par(mar=c(2.5,2.5,3,0.25))
+plot(mu,y,type='l',main='Normal Likelihood')
+```
+
+</details>
+
+### Deterministic vs Probability Models
+Deterministic models describe relationships between quantities.
+- time a light bulb is on (quantity 1) and the brightness of the bulb (quantity 2)
+- number of months since purchase (quantity 1) and the thickness of a shoe tread (quantity 2)
+- number of years (quantity 1) and number of elves (quantity 2)
+- distance travel (quantity 2) and wear on vehicle (quantity 2)
+- money spent (quantity 1) and money earned (quantity 2)
+- time spent studying (quantity 1) and skills learned (quantity 2)
+- amount of butter (quantity 1) and chewiness of cookie (quantity 2)
+
+Probability models describe probability information for a measurement.<br>
+Measurements have variation. There is always some uncertainty in measurement. Even if we are capable of measuring precisely there can still be variation. For example, we can count with precision how many heads there are in 100 coin flips. But if we repeat the experiment (flipping a coin 100 more times and counting) we could get a different number of heads. If we are measuring the weight of an object, there can be variation in the weights based on precision of the scale and other factors (which scale is used, calibration, temperature, vibrations, user error,...). Because there is variation in measurement we often think of measurements as random (or stochastic) variables and use probability distributions to describe the values and associated probabilities.
+- Some Common Probability Models
+    - Poisson distribution (discrete)
+      - the number of events that occur during a fixed time interval
+    - Normal distribution (continuous)
+    - Exponential distribution (continuous)
+    - Binomial distribution (discrete)
+    - Uniform distribution (continuous)
+    - Gamma distribution (continuous)
+
+Our focus in Math 119 will be fitting models (extracting information from data and encoding it into parameter values) and using fitted models to answer questions. We will only touch briefly the lowest level of evaluating models (does the story the fitted model tells match already known information).

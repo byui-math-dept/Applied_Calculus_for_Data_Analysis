@@ -1,0 +1,84 @@
+# Math 119 — Spring 2026 Schedule Configuration
+#
+# HOW TO EDIT:
+#   - To slow down: insert a session twice, or insert "flex-N" / "review" / "project"
+#   - To skip a class: add the date to holidays
+#   - Sessions are assigned to MTRF dates in order, skipping holidays
+#   - Run: uv run python tools/generate_schedule.py  to regenerate site/_today.qmd
+
+semester:
+  start: "2026-04-20"
+  end:   "2026-07-22"
+  class_days: [Mon, Tue, Thu, Fri]  # MTRF
+
+holidays:
+  - date: "2026-05-25"
+    name: "Memorial Day"
+  - date: "2026-06-19"
+    name: "Juneteenth"
+  - date: "2026-07-03"
+    name: "Independence Day"
+
+# Sessions in order — one entry per class meeting.
+# Each entry is either:
+#   class-N     → links to site/class/class-N.qmd
+#   flex-N      → links to site/flex/flex-N.qmd
+#   review      → no link, shows "Review Day"
+#   project     → no link, shows "Project Work Day"
+#   testing     → no link, shows "Testing Day"
+#   holiday     → skip this slot (alternative to adding to holidays above)
+#
+# Edit this list to adjust pacing. The script handles the date math.
+
+sessions:
+  - class-1
+  - class-2
+  - class-3
+  - class-4
+  - class-5
+  - class-6
+  - class-7
+  - class-8
+  - class-9
+  - class-10
+  - class-11
+  - class-12
+  - class-13
+  - class-14
+  - class-15
+  - class-16
+  - class-17
+  - class-18
+  - class-19
+  - class-20
+  - class-21
+  - class-22
+  - class-23
+  - class-24
+  - class-25
+  - class-26
+  - class-27
+  - class-28
+  - class-29
+  - class-30
+  - class-31
+  - class-32
+  - class-33
+  - class-34
+  - class-35
+  - class-36
+  - class-37
+  - class-38
+  - class-39
+  - class-40
+  - class-41
+  - class-42
+  - class-43
+  - class-44
+  - class-45
+  - class-46
+  - flex-1
+  - flex-2
+  - flex-3
+  - project
+  - project

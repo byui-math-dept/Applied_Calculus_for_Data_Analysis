@@ -1,0 +1,324 @@
+---
+title: "Class 39"
+---
+
+# During Class
+We'll start in groups today, to help review setting up and computing integrals.
+
+## Group Meeting 
+
+### Activity - Practice with PDFs, CDFs, Expected Value, Variance, and Probabilities
+Consider the target with top defined by 
+$$g(x) = 
+\begin{cases}
+x - 1 & 1 \leq x \leq 3 \\
+0 & \text{otherwise}
+\end{cases}.$$
+When a dart hits the point $(x,y)$, we'll record just the $x$-coordinate and let $X$ represent this random variable. As you complete the exercises below, write any integrals you need to compute on the board, and then compute them with Mathematica. 
+
+1. Draw the function $g(x)$. 
+1. Find the area below $g(x)$ and above the $x$-axis. 
+    - Find this area using a geometric argument. 
+    - Find this area using Mathematica's Integrate command. 
+1. State $k$ so that $f(x) = k g(x)$ is the probability density function (PDF) of $X$, and then state $f(x)$.
+1. Show the expected value of $X$ is $E[X] = \frac{7}{3}$. 
+    - First use https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf to obtain the expected value.
+    - Then use Mathematica to compute the expected value using the formula $\ds E[X]= \int_{-\infty}^{\infty}xf(x)dx$, where you appropriately adapt the bounds of the integral. 
+1. Compute the variance of $X$ in Mathematica by computing $\ds \text{Var}[X]= \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx$.
+1. Use Mathematica to show that $P(1.5\leq X\leq 2.6)= 0.5775$.
+1. Use Mathematica to show that the cumulative distribution function is $\ds F(x) = P(X\leq x) = \frac{x^2}{4}-\frac{x}{2}+\frac{1}{4}$. 
+1. Compute $F'(x)$ and compare it to $f(x)$. 
+1. Now let $g(x) = \begin{cases}x^2 & 0\leq x\leq 7\\ 0 & \text{otherwise}\end{cases}$
+    - Find the value $k$ that makes $f = k g(x)$ a probability density function for a random variable $X$. Write the function $f(x)$ on the board.
+    - Compute the expected value of $X$, so compute $\text{E}[X]$ (use Mathematica).
+    - Compute the variance of $X$, written $\text{Var}[X]$, and the standard deviation $\sigma = \sqrt{\text{Var}[X]}$.
+    - Use Mathematica to show that $P(2\leq X\leq 4) = 8/49$. 
+    - Use Mathematica to show that the cumulative distribution function is $\ds F(x) = P(X\leq x) = \frac{x^3}{343}$. 
+    - Compute $F'(x)$ and compare it to $f(x)$. 
+1. Now let $g(x) = \begin{cases}e^{-4x} & 0\leq x\leq \infty\\ 0 & \text{otherwise}\end{cases}$.
+    - Find the value $k$ that makes $f = k g(x)$ a probability density function for a random variable $X$. Write the function $f(x)$ on the board.
+    - Compute the expected value of $X$, written $\text{E}[X]$ (use Mathematica).
+    - Compute the variance of $X$, written $\text{Var}[X]$, and the standard deviation $\sigma = \sqrt{\text{Var}[X]}$.
+    - Use Mathematica to show that $P(2\leq X\leq 4) \approx 0.00033535$. 
+    - Use Mathematica to show that the cumulative distribution function is $\ds F(x) = P(X\leq x) = 1-e^{-4x}$. 
+    - Compute $F'(x)$ and compare it to $f(x)$. 
+
+## Definition Reminder
+
+<details>
+<summary>Probability Density Function (PDF)</summary>
+
+A **probability density function** $f(x)$ is a nonnegative function that satisfies $\displaystyle\int_{-\infty}^{\infty}f(x)dx = 1$.
+- Remember the description "nonnegative function" means all the outputs of $f$ are positive or zero, $f(x) \geq 0$.
+- Important note: If a function is zero everywhere except on an interval $a \leq x \leq b$, then $\int_{-\infty}^{\infty}f(x)dx = \int_{a}^{b}f(x)dx$.
+
+</details>
+
+<details>
+<summary>Expected Value (continuous random variable)</summary>
+
+The **expected value** (or mean) of a *continuous* random variable $X$ with probability density function $f(x)$ is
+$$\text{E}[X] = \int_{-\infty}^{\infty} x f(x) dx.$$
+
+</details>
+
+<details>
+<summary>Variance (continuous random variable)</summary>
+
+The **variance** of a *continuous* random variable $X$ with probability density function $f(x)$ is
+$$\text{Var}[X] = \int_{-\infty}^{\infty} (x - \text{E}[X])^2 f(x) dx.$$
+Note: The standard deviation is equal to the square root of the variance, $\sigma_X = \sqrt{\text{Var}[X]}$.
+
+</details>
+
+You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Methos of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.
+
+## Discussion - Method of Moments Big Idea
+The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution (or model) with these characteristics from the data, and use this to determine unknown parameters in a probability model (or distribution). 
+
+### Normal Distribution
+The normal distribution has probability density function $f_1(x; \mu,\sigma) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$ for $-\infty <x<\infty$ with $\sigma >0$. 
+
+- Compute the expected value and variance of this distribution. 
+
+<details>
+<summary>Solution</summary>
+
+We have already performed this computation in a previous class using Mathematica to obtain $E[X] = \mu$ and $\text{Var}[X] = \sigma^2$. 
+The Mathematica code below gives the solution. 
+
+```r
+$Assumptions = \[Sigma] > 0;
+f = 1/Sqrt[2*\[Pi]*\[Sigma]^2] Exp[-1/2*((x - \[Mu])/\[Sigma])^2];
+bounds = {x, -Infinity, Infinity};
+EV = Integrate[x f, bounds]
+Var = Integrate[(x - EV)^2 f, bounds]
+$Assumptions = Null
+@](:codemend:)
+
+</details>
+
+- Use the method of moments to obtain the best fit parameters for $\mu$ and $\sigma$. 
+
+<details>
+<summary>Solution</summary>
+
+(:code:)
+```r
+rm(list=ls())
+library(data4soils)
+Ng <- cfbp_fpjuliet$ng
+
+mean(Ng)
+var(Ng)
+```
+
+We must solve $\mu = 2.79164$ and $\sigma^2 = 10.97915$.  This gives $\mu = 2.79$ and $\sigma = \sqrt{10.97915} = 3.31348$.
+
+</details>
+
+### Gamma Distribution
+Let's fit the Gamma Distribution to these 100 Nitroglycerin measurement from soil samples. 
+
+The gamma distribution is $f_2(m; \alpha,\beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}m^{\alpha-1}e^{-\beta m}$ for $m \geq 0$ where $\alpha > 0$ and $\beta > 0$.
+
+- Compute the expected value and variance of this distribution. 
+
+<details>
+<summary>Click to expand</summary>
+
+Now we can compute the expected value and variance from the distribution using Mathematica. 
+The code below gives $\text{E}[X]=\frac{\alpha}{\beta}$ and $\text{Var}[X] = \frac{\alpha}{\beta^2}$. 
+
+```r
+$Assumptions = \[Alpha] > 0 && \[Beta] > 0;
+f = (\[Beta]^\[Alpha]/Gamma[\[Alpha]]) x^(\[Alpha] - 1) Exp[-\[Beta]*x];
+bounds = {x, 0, Infinity};
+EV = Integrate[x f, bounds]
+Var = Integrate[(x - EV)^2 f, bounds]
+$Assumptions = Null
+```
+(:codemend:)
+
+</details>
+
+- Use the method of moments to obtain the best fit parameters for $\alpha$ and $\beta$. 
+
+<details>
+<summary>Solution</summary>
+
+We now solve the system obtained by letting (1) the mean of the data equal the expected value of the probability model and (2) 
+and the variance of the data equal the variance of the probability model. 
+This means we will solve the system
+$$\text{mean(Ng)}=\frac{\alpha}{\beta}\text{ and } \text{var(Ng)} = \frac{\alpha}{\beta^2}$$ 
+for the parameters $\alpha$ and $\beta$.  
+
+To simplify notation, let $m = \text{mean(Ng)}$ and $v = \text{var(Ng)}$. 
+We then must solve $m=\frac{\alpha}{\beta}$ and $v = \frac{\alpha}{\beta^2}$ for $\alpha$ and $\beta$. 
+This is the same as solving the system $\alpha = m\beta$ and $\alpha = v\beta ^2$. 
+In particular, this means that $m\beta = v\beta^2$, which solving for $\beta$ yields $\beta = \frac{m}{v}$. 
+Plugging this value for $\beta$ into $\alpha = m\beta$, gives $\alpha = \frac{m^2}{v}$. 
+Our solution to this system is 
+$$\alpha = \frac{m^2}{v} \text{ and }\beta = \frac{m}{v}.$$
+(:code:)
+```r
+alpha <- mean(Ng)^2/var(Ng)
+alpha
+beta <- mean(Ng)/var(Ng)
+beta
+```
+
+We have obtained parameters for our distribution using the method of moments. 
+
+The Mathematica code below solves the system as well. 
+
+```r
+Solve[{EV == meanNg, Var == varNg}, {\[Alpha], \[Beta]}]
+```
+(:codemend:)
+
+</details>
+
+#### Plotting our fitted models.
+Let's now use the information above to compare the data to the model with a plot.
+
+The best fit model is $f_1(x) = \frac{1}{\sqrt{2\pi 10.979}}e^{-\frac{1}{2}\left(\frac{x-2.792}{3.313}\right)^2}$ where $-\infty < x < \infty$.
+ 
+We now plot this model, along with the data, using the code below. 
+
+<details>
+<summary>Fitted $f_1$. (Click to expand)</summary>
+
+(:code:)
+```r
+f1 <- function(x,m=0,s=1){1/(sqrt(2*pi*s^2))*exp(-0.5*((x-m)/s)^2)}
+
+mu <- mean(Ng)
+sigma <- sqrt(var(Ng))
+1. sigma <- sd(Ng)
+
+x1 <- seq(-20,20,0.1)
+y1 <- f1(x1,m=mu,s=sigma)
+
+par(mfrow=c(1,1),mar=c(2.5,2.5,1,0.25))
+hist(Ng, probability = TRUE, main="Fitted Normal",xlim=c(-5,12))
+lines(x1,y1,col=2)
+```
+
+</details>
+
+The best fit model is $f_2(x) = \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}$ where $x \geq 0$. 
+
+We now plot this model, along with the data, using the code below.
+
+<details>
+<summary>Fitted $f_2$. (Click to expand)</summary>
+
+```r
+f2 <- function(x,a=1,b=1){b^a/gamma(a)*(x)^(a-1)*exp(-b*x)}
+
+alpha <- mean(Ng)^2/var(Ng)
+alpha
+beta <- mean(Ng)/var(Ng)
+beta
+
+x2 <- seq(0,20,0.1)
+y2 <- f2(x2,a=alpha,b=beta)
+
+par(mfrow=c(1,1),mar=c(2.5,2.5,1,0.25))
+hist(Ng, probability = TRUE, main="Fitted Gamma")
+lines(x2,y2,col=2)
+```
+
+</details>
+
+#### Using our fitted models.
+We can use this fitted model to help answer questions about probability. 
+For example, what is the probability that the concentration of explosives in a soil sample will be more than 10 mg/kg? 
+
+There is code below to computes this probability in two ways (for each model), first using an integral of our fitted model (something you'll do in the last part of Project 3), and second by random sampling from the distribution (which you did in Project 3 Task 1). 
+
+- Assuming our data follows our fitted $f_1$ probability model (a probability density function), let's use a simulation to estimate the probability of observing a nitroglycerin concentration above 10 mg/kg.
+
+<details>
+<summary>Solution</summary>
+
+```r
+m = mean(Ng)
+s = sqrt(var(Ng))
+
+set.seed(123)
+tmp <- rnorm(25000, mean=m, sd=s)
+
+x <- length(which(tmp > 10))
+p <- x/length(tmp)
+p
+```
+
+</details>
+
+- Assuming our data follows fitted $f_1$ distribution, compute the probability of observing a nitroglycerin concentration above 10 mg/kg. 
+
+<details>
+<summary>Solution</summary>
+
+We compute 
+$$P(X > 10) = \int_{10}^{\infty}\frac{1}{\sqrt{2\pi 10.979}}e^{-\frac{1}{2}\left(\frac{x-2.792}{3.313}\right)^2}dx= 0.0147976.$$
+The Mathematica code chunk below gives the solution above. 
+
+```r
+f1Fitted = 1/Sqrt[2*\[Pi]*10.97915]*Exp[-1/2*((x - 2.79164)/Sqrt[10.97915])^2];
+Integrate[f1Fitted, {x, 10, Infinity}]
+Re[Integrate[f1Fitted, {x, 10, Infinity}]]
+Integrate[f1Fitted, {x, 10, 1000}]
+```
+(:codemend:)
+The last line of code above shows that by replacing $\infty$ with  large number, we can obtain a similar answer without needing to use the Re[] command.  Sometimes when the output of software appears off, using approximations is a viable alternative.
+
+</details>
+
+- Assuming our data follows our fitted $f_2$ probability model (a probability density function), let's use a simulation to estimate the probability of observing a nitroglycerin concentration above 10 mg/kg.
+
+<details>
+<summary>Solution</summary>
+
+(:code:)
+```r
+alpha <- mean(Ng)^2/var(Ng)
+beta <- mean(Ng)/var(Ng)
+
+set.seed(123)
+tmp <- rgamma(25000, shape = alpha, rate = beta)
+
+x <- length(which(tmp > 10))
+p <- x/length(tmp)
+p
+```
+
+</details>
+
+- Assuming our data follows fitted $f_2$ distribution, compute the probability of observing a nitroglycerin concentration above 10 mg/kg. 
+
+<details>
+<summary>Solution</summary>
+
+To compute the probability that a the concentration of explosives in a soil sample will be more than 10mg/kg, we compute $$P(X > 10)=\int_{10}^\infty \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}dx.$$
+Mathematica code for computing this definite integral is given below. 
+(:codem:)[@
+Integrate[(0.2542674^0.709823/Gamma[0.709823])*x^(0.709823 - 1)*Exp[-0.2542674*x], {x, 10, Infinity}]
+```
+(:codemend:)
+
+</details>
+
+### Summary: Method of Moments
+The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. 
+Here are the steps:
+1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.
+1. Calculate the variance of the distribution as a function of the parameters of the distribution.
+1. Set the mean of the distribution equal to the mean of the data.
+1. Set the variance of the distribution equal to the variance of the data.
+1. Solve the system of equations for the parameter values.
+Note: 
+- If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.
+- If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.

@@ -1,0 +1,197 @@
+---
+title: "Class 1"
+---
+
+# During Class
+## Welcome! 
+
+- The address for this site is [here](https://miniature-adventure-g44yz51.pages.github.io){target="_blank"}.
+![](../assets/uploads/Class/119-bmw.png){height="100px"}
+- First Day Challenge: Exchange name and contact information with at least 1 other student in this class during our work today.
+
+## Brain Gains
+
+1. Let $f(x,y) = 4x^2 -5y\sqrt{x+1}$. Find each of the following values.
+<ol type="a">
+  <li>$f(3,2)$</li>
+  <li>$f(0,-2.1)$</li>
+  <li>$f(-2.1,5)$</li>
+</ol>
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(3,2) = 16$</li>
+  <li>$f(0,-2.1) = 10.5$</li>
+  <li>$f(-2.1,5)$ is undefined</li>
+</ol>
+
+Note: The terms "undefined" and "no solution" have different meanings mathematically. In this case, $f(-2.1,5)$ is undefined because when we try to evaluate $f(-2.1,5)$, we see $f(-2.1,5) = 4(-2.1)^2 - 5(5)\sqrt{-2.1+1} = 17.64 - 25\sqrt{-1.1}$. Since there is no real number such that when you square the number you get -1.1, we see $\sqrt{-1.1}$ is undefined when we are working with real number. You can assume that we will always be working with real numbers in this class, unless otherwise specified.
+
+</details>
+
+2. 
+Consider the piecewise function
+$$f(x) = 
+\begin{cases}
+x & \quad x\geq 0 \\ \\
+-x & \quad x<0
+\end{cases}.$$
+Find the following values.
+<ol type="a">
+  <li>$f(-2)$</li>
+  <li>$f(-27)$</li>
+  <li>$f(0)$</li>
+  <li>$f(\sqrt{3})$</li>
+</ol>
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(-2) = 2$</li>
+  <li>$f(-27) = 27$</li>
+  <li>$f(0) = 0$</li>
+  <li>$f(\sqrt{3}) = \sqrt{3} \approx 1.732051$</li>
+</ol>
+The number $f(3)$ an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol $\sqrt{3}$ which represents the positive real number that when you square it you get exactly 3.
+
+</details>
+
+## Group Discussion
+We'll split into randomized groups every day of class. Jot your name on the board to help us all learn each other's names.  
+Then work through the following problems. 
+- Take turns acting as scribe for the group. When you are the scribe, it's fine to not know exactly how to proceed. 
+- The goal is to ask questions of each other and help each other. 
+- Leave up your work so that you can compare your answers with neighbors. 
+
+1. 
+Let $f(x) = \frac{2x+4}{x^2}$. Find each of the following values.
+<ol type="a">
+  <li>$f(-4)$</li>
+</ol>
+1. $f(1)$
+1. $f(0)$
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(-4) = -0.25$</li>
+  <li>$f(1) = 6$</li>
+  <li>$f(0)$ is undefined</li>
+</ol>
+
+Note: The number $f(0)$ is undefined in this case because when we try to evaluate $f(0)$ we see $f(0) = \frac{2(0)+4}{0^2} = \frac{4}{0}$. What does it mean to divide the quantity 4 into 0 parts? This operation is not defined. Some of you may have had calculus before and tried to give an answer of infinity. Note that infinity is a concept, not a number. 
+
+Another way to think of division is that we are looking for a number $k$ so that $k = \frac{n}{d}$. Thus $k$ multiplied by $d$ would need to be equal to $n$, in other words $k d = n$. If the numerator is 4, $n=4$, and the denominator is 0, $d = 0$, this would mean $0 = 4$ ($k \cdot 0 = 4$) for any choice of $k$, which doesn't make any sense (we have a contradiction). So we say division by zero is undefined.
+
+</details>
+
+2. 
+Let $f(x) = 8x^2 - 15$. Find each of the following values.
+<ol type="a">
+  <li>$f(-2)$</li>
+  <li>$f(1)$</li>
+</ol>
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(-2) = 17$</li>
+  <li>$f(1) = -7$</li>
+</ol>
+
+</details>
+
+3.
+Consider the piecewise function
+$f(x) = 
+\begin{cases}
+x^2 & \quad x\geq 0 \\ \\
+-x+4 & \quad x<0
+\end{cases}.$<br>
+Find the following values.
+<ol type="a">
+  <li>$f(-2)$</li>
+  <li>$f(-27)$</li>
+  <li>$f(0)$</li>
+  <li>$f(\sqrt{3})$</li>
+</ol>
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(-2) = 6$</li>
+  <li>$f(-27) = 31$</li>
+  <li>$f(0) = 0$</li>
+  <li>$f(\sqrt{3}) = 3$</li>
+</ol>
+
+</details>
+
+4.  
+Consider the piecewise function
+$f(x) = 
+\begin{cases}
+x^3 & \quad x < -1 \\ \\
+-2 & \quad -1 < x < 4 \\ \\
+\sqrt{x} & \quad x \geq 4
+\end{cases}.$<br>
+Find the following values.
+<ol type="a">
+  <li>$f(-2)$</li>
+  <li>$f(-0.5)$</li>
+  <li>$f(3)$</li>
+  <li>$f(0)$</li>
+  <li>$f(5.2)$</li>
+  <li>$f(-1)$</li>
+  <li>$f(4)$</li>
+</ol>
+
+<details>
+<summary>Answers</summary>
+
+<ol type="a">
+  <li>$f(-2) = -8$</li>
+  <li>$f(-0.5) = -2$</li>
+  <li>$f(3) = -2$</li>
+  <li>$f(0) = -2$</li>
+  <li>$f(5.2) \approx 2.280351$. The number $f(5.2)$ an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol $\sqrt{5.2}$ which represents the positive real number that when you square it you get exactly 5.2.</li>
+  <li>$f(-1)$ is undefined. We have no rule that tells us what we the output will be when the input is -1. Generally in situations like this, we assume that -1 is not in the domain of $f$ rather than that the author just forgot to tell us the rule for the output connected to the input -1.</li>
+  <li>$f(4) = 2$</li>
+</ol>
+
+</details>
+
+5.
+Let $f(x) = x^2$. Determine whether or not $f(a+b) = f(a) + f(b)$. Carefully explain your answer. While an example is not an explanation, sometimes examples can be a helpful part of an explanation.
+
+<details>
+<summary>Possible Explanation</summary>
+
+Given $f(x) = x^2$, we will show $f(a+b) = f(a) + f(b)$ is not true for all values of $a$ and $b$ by providing a pair of number $a$ and $b$ such that $(a+b)^2 \neq a^2 + b^2$ (a counter example). Let $a=1$ and $b=7$. We see $(a+b)^2 = (1+7)^2 = 8^2 = 64$ and $a^2 + b^2 = 1^2 + 7^2 = 1 + 49 = 50$. We see $(a+b)^2 = 64 \neq 50 = a^2 + b^2$ or $(a+b)^2 \neq a^2 + b^2$.
+
+We can also show that $f(a+b) = f(a) + f(b)$ is not a true statement by showing that $f(a+b) \neq f(a) + f(b)$ in general when $f(x) = x^2$. We see $f(a) = a^2$ and $f(b) = b^2$. Now we compute $f(a+b) = (a+b)^2 = (a+b)(a+b) = a^2 + 2ab + b^2 \neq a^2 + b^2 = f(a) + f(b)$ when $2ab \neq 0$. Thus we see that $f(a+b) \neq f(a) + f(b)$ unless $2ab = 0$.
+
+Important take away:
+- The square of a sum is NOT the sum of the squares, $(a + b)^2 \neq a^2 + b^2$. 
+- The operation of addition must happen before the power. The order of operations is grouping and then exponents.
+
+</details>
+
+6. Construct a plot of as many of the functions above as you have time. Use whatever software package you are comfortable with, helping each other to replicate the plot.
+
+## Class Discussion
+### Mastery Learning - Specifications Grading
+1. What is [mastery learning](https://youtu.be/-MTRxRO5SRA?t=137){target="_blank"}?
+1. What is [specifications grading](https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay){target="_blank"}?
+1. Course Introduction and [Syllabus](https://byui.instructure.com/courses/398938/assignments/syllabus){target="_blank"}.
+    - Are you in the right class?
+    - [Weekly rhythm](https://byui.instructure.com/courses/398938/pages/math-119-weekly-rhythm?module_item_id=33584172){target="_blank"}, what should I be doing between class? 
+        1. Attendance & Preparation - #tasklist
+        1. Knewton-Alta
+        1. Projects

@@ -1,0 +1,10 @@
+---
+title: "Definition: PositiveOnTheIntervalI"
+---
+
+<details>
+<summary>Definition: **Positive** on the interval $I$</summary>
+
+We say a function $f$ is positive on the interval $I$ if for all $x_1$ in the interval, $f(x_1) > 0$.
+
+</details>

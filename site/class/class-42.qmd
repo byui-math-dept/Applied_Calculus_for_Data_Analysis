@@ -1,0 +1,93 @@
+---
+title: "Class 42"
+---
+
+# During Class
+## Brain Gains
+We'll do this in small groups at the board, and then have a discussion.  Take turns acting as scribe, and help each other complete the following. Remember anytime you need an to compute an integral to first write the integral on the board and then compute it with Mathematica. 
+
+Consider the random variable $X$ whose probability density function is $f(x) = k(15-x)$ for $0\leq x\leq 15$. 
+1. Find the value of $k$.
+1. Compute the expected value and variance of $X$ (write down the integral needed, and then compute it with Mathematica).
+1. Compute $P(X\leq 1)$, $P(X\leq 2)$ and then $F(x) = P(X\leq x)$. 
+1. The 60th percentile is the value $x$ so that $P(X\leq x)=0.60$, in other words the value $x$ so that $F(x) = 0.6$.  Find the 60th percentile of this random variable.
+1. Find the 95th percentile of $X$. 
+1. What's the probability that $X$ takes on a value greater than 10? 
+1. What's the probability that $X$ takes on a value between -3 and 3?
+
+  
+## Discussion
+### Calculate a Percentile
+What is a percentile?
+- If a 2 month old baby has a weight that is at the 12th percentile, then that baby's weight is greater than or equal to 12% of all other 2 month babies. 
+- Scoring in the 95th percentile on an exam means your score was greater than or equal to 95% of all other people who took the exam.  
+
+Let's look at a formal definition. 
+
+<details>
+<summary>Definition: Percentile</summary>
+
+A percentile is a number, $x_p$, that satisfies the equation $P(X \leq x_p) = \frac{p}{100}$. 
+In other words, a percentile is a number $x_p$ that satisfies the equation $F(x_p) = \frac{p}{100})$.
+- A percentile divides ordered values (outcomes of a random variable) into 100 equal groups (per 100).
+- A percentile is a number, $x_p$, such that $p$% of the values (outcomes of a random variable) are at or below this number.
+
+</details>
+
+There are two common ways we can compute a percentile. One way is to start with the cumulative distribution function. 
+1. Given the cumulative distribution function $F(x) = \begin{cases}0 & x \leq 1 \\1-\frac{1}{x} & x > 1 \\\end{cases}$, find the 90th percentile.
+1. Given the cumulative distribution function $F(x) = \begin{cases}0 & x \leq 0 \\1 - e^{-\lambda x} & x > 0 \\\end{cases}$, find the 50th percentile.
+
+If we are given a probability density function, then we can compute the percentile using an integral.  
+1. Given the probability density function $f(x) = \frac{64}{(x+2)^5}$ for $x > 0$ (and 0 otherwise), find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation.)
+    - 60th percentile
+    - 7th percentile
+    - 99th percentile
+
+<details>
+<summary>Solutions</summary>
+
+(:codem:)
+```
+Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.6, x, Reals]
+Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.07, x, Reals]
+Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.99, x, Reals]
+```
+(:codemend:)
+
+</details>
+
+When the PDF is complicated, sometimes we'll need to employ alternate tools in Mathematica to compute the integrals and solve equations. Often adding an N before Solve is sufficient. The computer then uses a numerical approximation technique, rather than trying to find an exact solution.
+- Given the probability density function, $f(x) = \frac{1}{\sqrt{37.5352\pi}}e^{-\frac{1}{37.5352}(x-3.2)^2}$ for $-\infty < x < \infty$, find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation.
+    - 60th percentile
+    - 99th percentile
+(:codem:)
+```
+Solve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
+
+NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
+NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.99, xp, Reals]
+```
+(:codemend:)
+
+## Group Discussion
+### ACT Scores and a normal distribution.
+The ACT is a standardized exam offered to US residents at the end of high school. Scores on the exam can be approximated roughly by a normal distribution with a mean of the exam around $\mu = 21$ and a standard deviation close to $\sigma = 5$. These values vary each year, but for today they provide a sufficient approximation. Answer each of the following questions by (1) writing down the integral equation that needs to be solved, and then (2) solving the equation for the unknown variable.
+
+1. A student scores a 22 on the ACT.  What is their percentile?
+1. A student scores a 23 on the ACT.  What is their percentile?
+1. A student scores a 32 on the ACT.  What is their percentile?
+1. A student scores a 12 on the ACT.  What is their percentile?
+1. What score corresponds to the 80th percentile?
+1. What score corresponds to the 5th percentile?
+1. What score corresponds to the 90th percentile?
+1. What percent of students score between 16 and 26?
+1. What percent of students score between 11 and 23?
+
+The PDF is given by the following.
+(:codem:)
+```
+f = 1/Sqrt[2 Pi \[Sigma]^2] Exp[-1/2 ((x - \[Mu])/ \[Sigma])^2]
+```
+
+(:codemend:)

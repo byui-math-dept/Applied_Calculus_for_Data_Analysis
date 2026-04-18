@@ -1,0 +1,140 @@
+---
+title: "Flex Day 2"
+---
+
+# During Class
+We will not meet together today. Complete the following exercises individually (or if you would like to organize a meeting with your group you can meet and complete the exercises together).
+
+### Activity -- Construct a Histogram
+What is a histogram?
+
+When we study a measurement (rather than a relationship between two measurements), we describe characteristics intrinsic to that measurement using a probability model. When we collect data to study a measurement, we can display our data using a histogram (we group the data values in "bins").
+
+Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the measurement (weight of a car), we can visualize this data by constructing a histogram. Use the following code to create a histogram.
+
+```
+hist(mtcars$wt)
+```
+
+Compare plot created by the previous code to the plot created by the following code.
+
+```
+hist(mtcars$wt,probability=TRUE)
+```
+
+The first code produces a counts (or frequency) histogram. The second code produces a density histogram. What do you notice? How is a density histogram different from a frequency histogram.
+
+When trying to model a measurement (using a probability model) we use a density histogram to visualize our data.
+
+Use the following code read data measuring the brightness of 202 different lightbulb 2104 hours (approximately 88 days or almost 3 months) after they are turned on.
+
+```r
+library(data4led)
+dist <- led_time(2100)
+```
+
+Use the hist() command in R to create a density histogram for the light bulb intensity as a percent of initial lumens.
+
+This completes [Example Project Task 1](https://byuistats.github.io/M119/example_project.html){target="_blank"}. Here is [an example](https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html){target="_blank"} of a cohesive analysis of this task.
+
+### Activity - Exploring some Probability Models using Desmos (Example Project Task 2) and Visually Fitting a Model (Example Project Task 3)
+- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2
+- Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
+    - Use the slider to alter the values of $a$ and $b$. Summarize in your notes how these parameters alter the graph of $f_0$.
+    - Use the slider to alter the values of $h$ and $a$.  Summarize in your notes how these parameters alter the graph of $f_1$.
+    - Use the slider to alter the values of $h$, $a$, and $b$.  Summarize in your notes how these parameters alter the graph of $f_2$.
+ 
+Our goal is to understand enough about the general functions $f_0$, $f_1$, and $f_2$ and their parameters to be able to identify specific functions (so specified parameters) of the forms $f_0$, $f_1$, and $f_2$ that looks like the density histogram of our light bulb data.  The code below will regenerate this histogram for us. 
+
+```r
+library(data4led)
+dist <- led_time(2100)
+hist(dist$percent_intensity,probability = TRUE)
+```
+
+Consider the function $ f_2(x; h,a,b) = \frac{b^a}{\Gamma(a)}(x-h)^{a-1}e^{-b(x-h)} $ where $x \geq h$. Read this [cohesive analysis](https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html){target="_blank"} describing how the parameters $a$, $b$ and $h$ change the behavior of the function $f_2$.
+
+Starting with the parameter values $a = 10$, $b=4.8$, and $h=101$ use what you learned from the cohesive analysis to adapt the following code to find a visual fit of the function $f_2$ to the data (visualized with the histogram).
+
+```r
+f2 <- function(x,h=0,a=1,b=5){
+1. Make sure a > 0 and b > 0.
+
+out <- rep(-1,length(x))
+out[(x < h)] <- 0*x[(x < h)]
+out[(x >= h)] <- b^a/gamma(a)*(x[(x >= h)]-h)^(a-1)*exp(-b*(x[(x >= h)]-h))
+
+return(out)
+}
+
+a <- 10
+b <- 4.8
+h <- 101
+x1 <- seq(h,120,0.1)
+y1 <- f2(x1,h,a,b)
+
+hist(dist$percent_intensity,probability = TRUE)
+lines(x1,y1,col=4)
+```
+
+Use your work on these exercises to inform your work on Project 1 Task 2 and Project 1 Task 3.
+
+# Between Class Sessions
+<a id="PP"></a>
+## Intermediate Value Theorem
+
+<details>
+<summary>Intermediate Value Theorem (IVT)</summary>
+
+If $f(x)$ is a continuous function on a closed interval $ [a, b] $, where $f(a) \neq f(b)$, and $y_0$ is any $y$-value strictly between $f(a)$ and $f(b)$, then $y_0 = f(x_0)$ for some $x$-value, $x_0$, in $ [a, b] $.
+
+Note: While there is a rigorous mathematical definition for what it means to be a continuous function, for our purposes the following concept with suffice, a function is continuous on an interval if the graph of that function can be traced with a pencil without lifting the pencil from the page.
+
+</details>
+
+Consider the function $f(x) = (-13 + 2x)e^{-0.05x}$ and the interval $ [ 3, 50 ] $.  
+- What does the IVT say about this function over this interval?
+
+<details>
+<summary>Expand for a plot of the function.</summary>
+
+```r
+rm(list=ls())
+f <- function(x){ (-13 + 2*x)*exp(-0.05*x) }
+
+x <- seq(0,60,0.1)
+par(mar=c(2.5,2.5,0.5,0.5))
+plot(x, f(x), type='l')
+abline(h=0,col='gray',lty=3)
+abline(v=0,col='gray',lty=3)
+abline(v=3,col='red',lty=3)
+abline(v=50,col='red',lty=3)
+abline(h=f(3),col='blue',lty=3)
+abline(h=f(50),col='blue',lty=3)
+```
+
+</details>
+
+- We currently have $f(x) = (-13 + 2x)e^{-0.05x}$ with $ [a, b] = [ 3, 50 ] $, which means $a = 3$ and $b = 50$.  
+- We can compute know $f(a) = f(3) \approx -6.024956$ and $f(b) = f(50) \approx 7.141395$. Note that $f(3) \neq f(50)$. 
+- We can pick $y_0 = 0$ because we know $f(a)<0<f(b)$ (as $-6.024956 < 0 < 7.141395$).
+- The intermediate value theorem states that there must exist some $x$-value, which we'll call $x_0$, so that $f(x_0) = y_0 = 0$. 
+- We can solve $(-13 + 2x+0)e^{-0.05x_0}=0$ for $x_0$ and get an exact solution (or analytic solution). 
+
+<details>
+<summary>Expand to see an exact solution to $f(x_0) = 0$, obtaining $x_0=6.5$.</summary>
+
+We want to solve $(-13 + 2x_0) e^{-0.05x_0} = 0$. 
+Since we have two things that multiply to zero, we know one of the quantities must be zero.
+We see $-13 + 2x_0 = 0$ or $e^{-0.05x_0} = 0$.
+Since the range of an exponential function is strictly positive numbers, we know $e^{-0.05x_0} \neq 0$.
+So we only have to determine when $-13 + 2x_0 = 0$. 
+This means $2x_0 = 13$, or $x_0 = \frac{13}{2} = 6.5$.
+
+</details>
+
+## Skill Practice (KA Homework)
+- Finish any of the log assignments if you have not already finished them.
+
+## Applied Practice (Project Work)
+- Continue working on Project 1 Task 3

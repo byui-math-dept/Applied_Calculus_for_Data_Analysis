@@ -1,0 +1,166 @@
+---
+title: "Class 19"
+---
+
+# During Class
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+## Brain Gains 
+
+1.
+Compute $k'(x)$ for $k(x) = (4x^3-7x)^5$. 
+
+<details>
+<summary>Solution</summary>
+
+We can let $y(u) = u^5$ and $u(x) = 4x^3-7x$. The then compute
+$$
+\begin{align*}
+k'(x) 
+&= \frac{dy}{du}\frac{du}{dx} &\text{(chain rule)} \\
+&= (5u^4)(12x^2-7) &\text{(power rule)}\\
+&= (5(4x^3-7x)^4)(12x^2-7) &\text{(write in terms of $x$)}.
+\end{align*}
+$$
+
+</details>
+
+2. 
+Compute $g'(x)$ for $g(x) = (e^x+3x^2)(x^3-2\ln x)$. 
+
+<details>
+<summary>Solution</summary>
+
+Let $u(x) = e^x+3x^2$ and compute $u'(x) = e^x+6x$ using the sum, constant multiple, power, and exponential rules. 
+Then let $v(x) = x^3-2\ln x$ and obtain $v'(x) = 3x^2-\frac{2}{x}$, using the power, difference, and logarithm rules. 
+The product rule then gives
+$$\begin{align*}
+\frac{d}{dx}[(e^x+3x^2)(x^3-2\ln x)] 
+&=\frac{d}{dx}[u(x)v(x)] \\
+&=u'(x)v(x)+ u(x)v'(x)\\
+&=(e^x+6x)(x^3-2\ln x)+ (e^x+3x^2)(3x^2-\frac{2}{x}).
+\end{align*}$$
+We won't simplify it any past this. Our goal is to just practice using the rules at this point.
+
+</details>
+
+3. 
+Compute $h'(x)$ for $h(x) = \dfrac{e^x+3x^2}{x^3-2\ln x}$. 
+
+<details>
+<summary>Solution</summary>
+
+Let $u(x) = e^x+3x^2$ and compute $u'(x) = e^x+6x$ using the sum, constant multiple, power, and exponential rules. 
+Then let $v(x) = x^3-2\ln x$ and obtain $v'(x) = 3x^2-\frac{2}{x}$, using the power, difference, and logarithm rules. 
+The quotient rule then gives
+$$\begin{align*}
+\frac{d}{dx}\left(\dfrac{e^x+3x^2}{x^3-2\ln x}\right) 
+&=\frac{d}{dx}\left(\dfrac{u(x)}{v(x)}\right)  \\
+&=\left(\dfrac{u'(x)v(x) - u(x)v'(x)}{(v(x))^2}\right)  \\
+&=\left(\dfrac{(e^x+6x)(x^3-2\ln x) - (e^x+3x^2)(3x^2-\frac{2}{x})}{(x^3-2\ln x)^2}\right).  
+\end{align*}$$
+We won't simplify it any past this. Our goal is to just practice using the rules at this point.
+
+</details>
+
+4. 
+For the function $f(x) = x^4$, let $g(x)=f'(x)$.  Compute $g'(x)$.  Then compute $D_x(g'(x))$.   Finish by computing $\frac{d}{dx}(D_xg')$.  
+
+<details>
+<summary>Answers</summary>
+
+- $ g(x) = f'(x) = 4x^3 $
+- $ g'(x) = 12x^2 $. We often write this as $f''(x)$ or $\frac{d^2f}{dx^2}$. 
+- $ D_x(g'(x)) = 24x $. We often write this as  $f'''(x)$ or $\frac{d^3f}{dx^3}$.  
+- $ \frac{d}{dx}(D_xg'(x)) = 24 $. We often write this as  $f^{ (4) }(x)$ or $\frac{d^4f}{dx^4}$.  Once we pass 3 derivatives, prime notation changes - who wants to count the number of primes.
+
+</details>
+
+5. Give an equation of the linear approximation to $f(x)=x^3$ at $x=2$. (What point does the line pass through? What is the slope of the line?)
+
+<details>
+<summary>Solution</summary>
+
+We know $f'(x) = 3x^2$, and so the slope of this line is $f'(2) = 12$.  The linearization (tangent line) passes through the point $(2,f(2))=(2,8)$.  This gives an equation of the linearlization as
+$$y-8=12(x-2).$$
+We can solve for $y$ to obtain 
+$$y=8+12(x-2) \quad\text{or}\quad y=12x-16.$$
+All three of the forms above are correct. 
+We can plot the function along with it's linearization in https://www.desmos.com/calculator/3bifvksxqy. 
+
+We can also plot the function along with it's linear approximation (tangent line) in R.
+
+```r
+x <- seq(-2,4,0.001)
+plot(x,x^3,type='l',ylim=c(-5,15),ylab="y")
+lines(x,8+12*(x-2),col=4)
+points(2,8,pch=16,col=2)
+abline(h=0,col='gray',lty=3)
+abline(v=0,col='gray',lty=3)
+```
+
+</details>
+
+6. What is the late penalty for not getting your project work in by the Due Date?
+
+<details>
+<summary>Solution</summary>
+
+There isn't one. The point to the deadline is to help you keep up, and provide you time for revisions as needed. 
+
+Once the "End Date" of each Task/Project passes, then no more submissions will be accepted. These end dates are listed in the syllabus. 
+
+If you got stuck on something, it's OK. There is time to ask questions. We'll take time in class periodically to help each other.
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Compute derivatives
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 
+1. $f(x) = (3x-2x^2)(5+4x)$. Remember to **list each rule you used**. Then pass the chalk (PTC)
+1. $f(x) = \frac{x-1}{2x+3}$ (PTC)
+1. $f(x) = \left( \frac{1}{x} + 1 \right)(x-1)$ (PTC)
+1. $f(t) = (2t^2 - 3)(4 - t^2 - t^4)$ (PTC - I'll stop writing this.)
+1. $f(p) = (p^3 - 2)^2$
+1. $f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}$
+1. $f(x) = \frac{7}{x^3}$
+1. $f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}$
+1. $f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)$
+1. $f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}$
+1. $f(x) = 5 x^3 e^x \ln x$
+
+<details>
+<summary>Final Answers</summary>
+
+These are the final answers you should obtain after listing out each step.
+1. $\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)$
+1. $\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }$
+1. $\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)$
+1. $\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)$
+1. $\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)$
+1. $\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }$
+1. $\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }$
+1. $\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }$
+1. $\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)$
+1. $\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }$
+1. Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.
+
+</details>
+
+### Activity - Higher Order Derivatives
+Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative $f$ we can denote with $$f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2} = D_x^2 f.$$
+We use similar notation for higher order derivatives, such at $f'''(x)$ for the third derivative and $\frac{d^4f}{dx^4}$ for a 4th derivative. We avoid prime notation and use notation such as $f^{ (7) }(x)$ when the number of derivatives is quite large. 
+
+Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem. 
+
+## Bonus Problems
+Suppose we know that $f_i(x)$ is a differentiable function and $c_i$ is a constant for each integer $i$ from 1 to 4.
+1. Compute $\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)$.
+1. Compute $\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)$.
+1. Let $n$ be a positive integer, and then repeat both of the above after replacing 4 with $n$.

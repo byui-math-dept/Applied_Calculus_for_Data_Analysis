@@ -1,0 +1,180 @@
+---
+title: "Class 34"
+---
+
+# During Class
+ 
+## Brain Gains
+Inside a box are 10 strips of paper. On each strip of paper is an integer between 1 and 4.  One strip of paper has the number 1 on it, while there are three strips of paper with a 2, three with a 3, and three with a 4.  Let $X$ be the random variable obtained by drawing one strip of paper from this box and writing down the number. The probability mass function for this random variable is 
+$$f(x) = \begin{cases}
+0.1& x=1\\
+0.3& x=2\\
+0.3& x=3\\
+0.3& x=4\\
+\end{cases}.$$
+The code below constructs a graphical representation of this pmf. 
+
+```r
+1. Shades a target diagram for a probability mass function. 
+1. Inputs: 
+1. x - a vector of data points
+1. p - a corresponding vector of probabilities or frequencies
+1. All widths are 1 unit wide. 
+draw_pmf <- function(x,p){
+  xs <- c(rbind(x-1/2,x-1/2,x+1/2,x+1/2))
+  px <- c(rbind(0,p,p,0))
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot.new()
+  plot(xs,px,type="l")
+  polygon(xs,px,col="gray")
+}
+
+x <- c(  1,  2,  3,  4)
+p <- c(0.1,0.3,0.3,0.3)
+draw_pmf(x,p)
+```
+
+1. Estimate the $x$-coordinate of the geometric center of the target. In particular, is it above or below 2.5?
+1. Compute $E[X]$, the expected value of $X$. 
+1. Interpret the expected value by writing a sentence that explain what this value means. 
+
+## Group Discussion
+Give each group member 1-2 minutes to share what they prepared from the between class work.
+- [Rectangles, Targets, and Sums](https://byuistats.github.io/M119/unit3/probability.html){target="_blank"}
+
+### Activity - Targets for Continuous Random Variables
+Work on the chalkboard as you complete these problems, and pass the chalk as you finish each part. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+
+#### A Rectangular Target
+Let's suppose for a minute that we have a target, as shown using the code below.
+
+```r
+1. Shades a target diagram (shades area under) for a function f from a to b. 
+1. Inputs: 
+1. f - a function f(x)
+1. a - left end of the target
+1. b - right end of the target
+1. num_points - how many point are sent into f for plotting. 
+draw_target <- function(f,a,b,num_points=100){
+  x <- c(a,seq(a,b,(b-a)/num_points),b,a)
+  y <- c(0,f(seq(a,b,(b-a)/num_points)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+  polygon(x,y,col="gray")
+}
+
+g <- function(x){5+x*0}
+draw_target(g,0,6)
+```
+
+- Each time we throw a dart, it hits a random spot on the target.
+- Assume the target is oriented on the coordinate plane with the lower left corner at the origin and the bottom side of the target along the x-axis. (We will always think of our target as having the bottom side of the target along the x-axis.) Each point on the target has the same probability of being hit as any other.
+- When a dart falls on the point $(x,y)$, we'll record just the $x$-coordinate and let $X$ represent this random variable.
+
+The top of the target is given by the function 
+$$g(x) = 
+\begin{cases}
+5 & \quad 0 \leq x \leq 6 \\ \\
+0 & \quad \text{otherwise}.
+\end{cases}.$$
+1. Find the total area of the target. 
+1. Compute the probability that a dart will land with an $x$ coordinate at most 4, so compute $P(X\leq 4)$. 
+1. Recall that the cumulative distribution function of $X$ is the function $F(x)= P(X\leq x)$.  Above we computed $F(4)$. 
+    - Compute $F(1)$, so compute $P(X\leq 1)$.
+    - Compute $F(2)$.  
+    - Compute $F(3)$.  
+    - Compute $F(3.5)$.  
+    - Compute $F(10)$.  
+    - Compute $F(-3)$.  
+1. Obtain a formula that gives $F(x)$ for any real number $x$. You can check work work in the solution box below. 
+1. Find a constant $k$ so that the area under $f(x) = k g(x)$ is 1, in other words find the normalized target function. 
+1. Compute the derivative of $F(x)$, and then compare it to the normalized target function.  
+
+<details>
+<summary>Solutions for 4 - 6</summary>
+
+The cumulative distribution function is
+$$F(x) = 
+\begin{cases}
+0 & \quad x < 0 \\ \\
+\frac{x}{6} & \quad 0 \leq x \leq 6 \\ \\
+1 & \quad x > 6.
+\end{cases}.$$
+The constant $k$ is $k = \frac{1}{30}$, namely 1 divided by the area of the original target.
+This gives the normalized target function as
+$$f(x) = kg(x) = 
+\begin{cases}
+\frac{1}{6} & \quad 0 \leq x \leq 6 \\ \\
+0 & \quad \text{otherwise}
+\end{cases}.$$
+The derivative of $F$ is 
+$$\frac{dF}{dx}(x) = 
+\begin{cases}
+0 & \quad x < 0 \\ \\
+\frac{1}{6} & \quad 0 < x < 6 \\ \\
+0 & \quad x > 6
+\end{cases}.$$
+Notice that $f(x) = F'(x)$ at the points where $F(x)$ is differentiable.
+
+</details>
+
+#### A Triangular Target
+We now use a triangular target that lies under the function
+$$g(x) = 
+\begin{cases}
+2x & \quad 0 \leq x \leq 6 \\ \\
+0 & \quad \text{otherwise}
+\end{cases}.$$
+We can graph this target using the code below. 
+
+```r
+g <- function(x){2*x}
+draw_target(g,0,6)
+```
+
+When a dart falls on the point $(x,y)$, we'll record just the $x$-coordinate and let $X$ represent this random variable.
+
+1. What is the total area of this target?
+1. Explain why $x$-values on the right side of the target are more frequent outcomes than $x$-values on the left side of the target?
+    - Calculate $P(X \leq 3)$. Then calculate $P(X > 3)$.
+1. Find $k$ so that the area under the normalized target function $f(x) = kg(x)$ is 1. How does $k$ compare to the total area of the target?
+1. Remember $F(x) = P(X \leq x)$.
+    - What is $F(2.5)$?
+    - Calculate $F(1)$, $F(4)$, and $F(5)$.
+    - Calculate $F(10)$ and $F(-1)$.
+1. For $0 \leq x \leq 6$, explain why $F(x) = \frac{x^2}{36}$. Then explain why $$F(x) = 
+\begin{cases}
+0 & \quad x < 0 \\ \\
+\frac{x^2}{36} & \quad 0 \leq x \leq 6 \\ \\
+1 & \quad x > 6
+\end{cases}.$$
+1. Calculate the derivative of $F(x)$ with respect to $x$.
+    - How does $F'(x)$ compare to the normalized target function $f(x)$ where $k$ is $\frac{1}{\text{area of the target}}$?
+1. Use this [link](https://en.wikipedia.org/wiki/List_of_centroids){target="_blank"} to look up the formula for the $x$-coordinate of the centroid of a right triangle. Explain why the $x$-coordinate of the centroid of this right triangular target is $4$.
+1. State the expected value $E[X]$. Remember the expected value of $X$ is the $x$-value of the centroid of the right triangular target.
+
+#### A Parabolic Spandrel target
+Head to section 2.3 of [Rectangles, Targets, and Sums](https://byuistats.github.io/M119/unit3/probability.html){target="_blank"} and complete the exercises together. 
+
+## Discussion 
+### Key Ideas (Targets & Continuous Random Variables)
+
+<details>
+<summary>The cumulative distribution function (CDF) of a random variable</summary>
+
+The **cumulative distribution function** of a random variable $X$ is the function $F(x) = P(X \leq x)$.
+
+</details>
+
+<details>
+<summary>The probability density function (PDF) of a continuous random variable</summary>
+
+The **probability density function**, $f(x)$, of a *continuous* random variable $X$ with cumulative distribution function $F(x)$, is the derivative of $F(x)$.
+
+- Every probability density function is non-negative, in other words $f(x) \geq 0$.
+- The total area under a probability density function always equals 1.
+
+</details>
+
+- Any function that is non-negative with a total area of 1 can be interpreted as the probability density function of some random variable.
+- If a function $g(x)$ is non-negative and has a finite total area, we can normalize the function (dividing by the area), like we have been doing with our target functions, to make a PDF.

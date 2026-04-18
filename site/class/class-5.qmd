@@ -1,0 +1,204 @@
+---
+title: "Class 5"
+---
+
+# During Class
+## Brain Gains
+Many functions we use in the sciences are transformations of a basic function. For example, we can transform the power function $f(x) = x^2$ (often called a parent function) into the more complex function $g(x) = 3(x-4)^2+5$.  A general form for such a transformation is $$T(x;a,b,c,d) = af(b(x+c))+d,$$ using the parent function $f$ with parameters $a$, $b$, $c$, and $d$. One of our goals this semester is to identify a parent function with appropriate parameters so that we can use the transformed function as a model for data. 
+
+Using the general transformation $T(x) = af(b(x+c))+d$, identify the parameters $a$, $b$, $c$, and $d$ needed to transform $f(u)$ into the provided function. 
+1. $g(x) = 8(x+5)^3 - 2$ where $f(u) = u^3$
+1. $h(x) = 4\sqrt{2x-6} +7$ where $f(u) = \sqrt{u}$
+
+<details>
+<summary>Possible Solutions</summary>
+
+For $g(x) = 8(x+5)^3 - 2$ we can chose $8=2, b=1, c=5, d=-2$.  The function $T(x)$ using $f(u)=u^3$ is $$
+\begin{align*}
+T(x;a,b,c,d) 
+&= af(b(x+c))+d \\
+&= a(b(x+c))^3+d \\
+&= 8(1(x+5))^3+(-2) &&\text{using }a=8, b=1, c=5, d=-2 \\
+&= 8(x+5)^3 - 2\\
+&= h(x). 
+\end{align*}$$
+There is more than one correct answer. Another completely valid solution is $a=1, b=2, c=5, d=-2$, as $$T(x;1,2,5,-2) = 1(2(x+5))^3+(-2) = 8(x+5)^3 - 2.$$
+
+For $h(x) = 4\sqrt{2x-6} +7$ we can chose $a=4, b=2, c=-3, d=7$. The function $T(x)$ using $f(u)=\sqrt{u}$ is $$
+\begin{align*}
+T(x;a,b,c,d) 
+&= af(b(x+c))+d \\
+&= a\sqrt{b(x+c)}+d \\
+&= 4\sqrt{2(x-3)}+7 &&\text{using }a=2, b=1, c=5, d=-2 \\
+&= 4\sqrt{2x-6}+7\\
+&= h(x). 
+\end{align*}$$
+It's common to guess $c=-6$ at first, but then we compute $T(x;4,2,-6,7) = 4\sqrt{2(x-6)}+7 = 4\sqrt{2x-12}+7,$$ which is incorrect. A guess, followed by an informed update, is a completely valid way to solve this problem.
+
+</details>
+
+## Group Meeting 
+
+### Project Work (Cohesive Analysis)
+Compare and contrast your Project 1 Task 1 cohesive analyses. Are all plots introduced with words. Do you have sentences, outside of the code chunks, describing what is happening? If not, help each other add appropriate sentences. 
+
+### Transformations of a function
+1. Given a general form for a transformation of a function $T(x) = af(b(x+c))+d$ and the parent function $f$, identify $a$, $b$, $c$, and $d$ for each of the transformations below. 
+    1. $r(x) = \frac{1}{4x} - 5$ where $f(u) = \frac{1}{u}$
+    1. $t(x) = \frac{1}{2}|3-x|+7$ where $f(u) = |u|$
+    1. $p(x) = -3x^5 -1$ where $f(u) = u^5$
+    1. $q(x) = x^2 - 4x + 9$ where $f(u) = u^2$
+
+1. Let $f(x;a,b) = ax^b$, a generic power function. Consider the transformation $T(x;a,b,A,B,C,D) = Af(B(x-C);a,b)+D$. For each set of values for $a,b,A,B,C,D$ below, do the following. 
+    1.  Identify the parent function, $ f(x; a,b) $. For example, if $a=2$ and $b=5$, then the parent function is $f(x;2,5) = f(x) = 2x^5$. 
+    1. Write down the specific function $T(x;A,B,C,D)$ produced from the given values for the parameters $A,B,C,D$. 
+    1. Adapt this https://www.desmos.com/calculator/5jc00j0rpr to plot and compare the two functions. 
+    - $a=1,b=2,A=1,B=1,C=0,D=0$
+
+<details>
+<summary>Check</summary>
+
+$ a = 1 $<br>
+$ b = 2 $<br>
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
+\end{aligned}$
+
+$ A = 1 $<br>
+$ B = 1 $<br>
+$ C = 0 $<br>
+$ D = 0 $<br>
+$\begin{aligned} 
+T(x) &= 1f(1(x-0)) + 0 \\ 
+&= 1[1(1(x-0))^2] + 0 \\ 
+&= 1[1(1(x))^2] + 0 \\ 
+&= 1[1(x)^2] + 0 \\ 
+&= x^2
+\end{aligned}$
+
+Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function", there is "no" transformation (or only a trivial transformation) in this case.
+
+</details>
+
+    - $a=1,b=2,A=1,B=1,C=3,D=4$
+
+<details>
+<summary>Check</summary>
+
+$ a = 1 $<br>
+$ b = 2 $<br>
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
+\end{aligned}$
+
+$ A = 1 $<br>
+$ B = 1 $<br>
+$ C = 3 $<br>
+$ D = 4 $<br>
+$\begin{aligned} 
+T(x) &= 1f(1(x-3)) + 4 \\ 
+&= 1(1(x-3))^2 + 4 \\ 
+&= (x-3)^2 + 4
+\end{aligned}$
+
+</details>
+ 
+
+    - $a=1,b=2,A=3,B=4,C=0,D=0$
+
+<details>
+<summary>Check</summary>
+
+$ a = 1 $<br>
+$ b = 2 $<br>
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
+\end{aligned}$
+
+$ A = 3 $<br>
+$ B = 4 $<br>
+$ C = 0 $<br>
+$ D = 0 $<br>
+$\begin{aligned} 
+T(x) &= 3f(4(x-0)) + 0 \\ 
+&= 3f(4x) \\ 
+&= 3(4x)^2 \\ 
+&= 3(16x^2) \\ 
+&= 48x^2 
+\end{aligned}$
+
+</details>
+
+    - $a=3,b=4,A=1,B=1,C=0,D=0$
+
+<details>
+<summary>Check</summary>
+
+$ a = 3 $<br>
+$ b = 4 $<br>
+$ f(x) = 3x^4 $
+
+$ A = 1 $<br>
+$ B = 1 $<br>
+$ C = 0 $<br>
+$ D = 0 $<br>
+$\begin{aligned} 
+T(x) &= 1f(1(x-0)) + 0 \\ 
+&= 1f(x) \\ 
+&= 3x^4 
+\end{aligned}$
+
+Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function", there is "no" transformation (or only a trivial transformation) in this case.
+
+</details>
+
+    - $a=-1,b=3,A=2,B=-4,C=5,D=-6$
+
+<details>
+<summary>Check</summary>
+
+$ a = -1 $<br>
+$ b = 3 $<br>
+$ \begin{aligned}
+f(x) &= -1x^3 \\ 
+&= -x^3 
+\end{aligned}$
+
+$ A = 2 $<br>
+$ B = -4 $<br>
+$ C = 5 $<br>
+$ D = -6 $<br>
+$\begin{aligned} 
+T(x) &= 2f(-4(x-5)) + (-6) \\ 
+&= 2[-1(-4(x-5))^3] - 6 \\ 
+&= -2((-4)^3(x-5)^3) - 6 \\ 
+&= -2(-64(x-5)^3) - 6 \\ 
+&= 128(x-5)^3 - 6
+\end{aligned}$
+
+</details>
+
+1.  Each parameter ( $A$, $B$, $C$, and $D$ ) above controls some aspect of the graph of the function. Explore changing these parameters and write a description of what each parameter controls. 
+1. Replace $f(x;a,b) = ax^b$ above with $f(x;a,b) = a(b^x)$ and then repeat the second exercise. Do your conclusions from part 3 still hold? 
+
+## Discussion
+### Project 1 Task 1 discussion
+- What questions do you have about the assignment?
+- Are there any things you realized you needed to add after you shared your work with your peers?
+- How much can we use AI?
+
+### Example Project (Cohesive Analysis)
+We will complete Example Project Task 1 together and then put together a cohesive analysis to complete task 1 of the example project.  We'll be building a histogram as we complete the example project.  You built a scatter plot when you complete Project 1 Task 1. 
+- We'll open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}
+- Use our work on this Example Project and the feedback you receive from your peer feedback to guide in your revisions on Project 1 Task 1. Remember, you can revise and resubmit your Project 1 Task 1 today if you have found something you need to change in order to meet the specs (or if there is something you would like to update).
+- Are there any questions about the expectations for the project tasks? 
+
+### Functions, Transformations, Parameters 
+1. How do we find the domain (implied domain) of a function?
+1. What is the difference between a power function and an exponential function? Give an example of each. 
+1. Give an example of a transformed power function. 
+1. Give an example of a transformed exponential function. 
+1. Let's use https://www.desmos.com/calculator/5jc00j0rpr and create some examples, exploring how parameters transform a function.

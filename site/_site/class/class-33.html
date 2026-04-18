@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 33 – Math 119 — Applied Calculus for Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Definitions</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-definitions">    
+        <li>
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
+ <span class="dropdown-text">ConditionalProbability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
+ <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
+ <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/definition.html">
+ <span class="dropdown-text">Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
+ <span class="dropdown-text">ExponentialFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
+ <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/independentevents.html">
+ <span class="dropdown-text">IndependentEvents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithm.html">
+ <span class="dropdown-text">Logarithm</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
+ <span class="dropdown-text">LogarithmicFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
+ <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
+ <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
+ <span class="dropdown-text">PartialDerivative</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
+ <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
+ <span class="dropdown-text">RandomVariable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
+ <span class="dropdown-text">RulesOfProbabilty</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---complete-exercises-in-1.8-and-1.9" id="toc-activity---complete-exercises-in-1.8-and-1.9" class="nav-link" data-scroll-target="#activity---complete-exercises-in-1.8-and-1.9">Activity - Complete Exercises in 1.8 and 1.9</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#key-ideas-means-expected-value-and-discrete-random-variables" id="toc-key-ideas-means-expected-value-and-discrete-random-variables" class="nav-link" data-scroll-target="#key-ideas-means-expected-value-and-discrete-random-variables">Key Ideas (Means, Expected Value, and Discrete Random Variables)</a></li>
+  <li><a href="#exercises-1.1---averaging-test-scores" id="toc-exercises-1.1---averaging-test-scores" class="nav-link" data-scroll-target="#exercises-1.1---averaging-test-scores">Exercises 1.1 - Averaging Test Scores</a></li>
+  <li><a href="#exercises-1.4---tossing-a-coin-three-times-and-counting-heads" id="toc-exercises-1.4---tossing-a-coin-three-times-and-counting-heads" class="nav-link" data-scroll-target="#exercises-1.4---tossing-a-coin-three-times-and-counting-heads">Exercises 1.4 - Tossing a coin three times and counting heads</a></li>
+  <li><a href="#exercises-1.5---rolling-two-dice-and-summing-them" id="toc-exercises-1.5---rolling-two-dice-and-summing-them" class="nav-link" data-scroll-target="#exercises-1.5---rolling-two-dice-and-summing-them">Exercises 1.5 - Rolling two dice and summing them</a></li>
+  <li><a href="#exercises-1.6---avoid-gambling" id="toc-exercises-1.6---avoid-gambling" class="nav-link" data-scroll-target="#exercises-1.6---avoid-gambling">Exercises 1.6 - Avoid Gambling</a></li>
+  <li><a href="#exercises-1.7---how-many-tropical-storms---poisson" id="toc-exercises-1.7---how-many-tropical-storms---poisson" class="nav-link" data-scroll-target="#exercises-1.7---how-many-tropical-storms---poisson">Exercises 1.7 - How many tropical storms - Poisson</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 33</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<ul>
+<li>The prep involved reading https://byuistats.github.io/M119/unit3/probability.html and completing some of the exercises there.</li>
+</ul>
+<p>The following problem builds upon and use the ideas from the reading. ### Activity - Balls in a Bag As you work through the problems below, please refer to https://byuistats.github.io/M119/unit3/probability.html as needed. Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
+<section id="grab-one-ball" class="level4">
+<h4 class="anchored" data-anchor-id="grab-one-ball">Grab one ball</h4>
+<p>There are 10 balls in a bag, three red, one blue, and six green. Your friend proposes to play a game of chance, and the rules go as follows. You reach into the bag and pull out a single ball. Pull out a red and you get 2 points. Pull out a blue and you lose 10 points. Pull out a green you get 1 point. We can think of this as a random variable <span class="math inline">\(X\)</span> where the outcomes correspond to the point values -10, 1, 2, and a probability mass function for this random variable is <span class="math display">\[f(x) =
+\begin{cases}
+0.1 &amp; x=-10 \\
+0.6   &amp; x=1 \\
+???   &amp; x=2 \\
+\end{cases}.
+\]</span> 1. Fill in the <span class="math inline">\(???\)</span> above so that <span class="math inline">\(f(x)\)</span> is a probability mass function. (Hint: what must the sum of the probabilities equal?) 1. What is the probability that you’ll end up with a positive score? In other words, compute <span class="math inline">\(P(X &gt; 0)\)</span>. 1. If you played this game many times (replacing the ball each time), do you think the average score will be positive or negative? Discuss this together as a group. (It’s fine to have an incorrect guess here. The point is to give a gut reaction. What do you think, and why?) - Now use the formula <span class="math inline">\(E[X] = \sum x_i p_i\)</span> to compute the expected value of <span class="math inline">\(X\)</span>. Is the expected score positive or negative? 1. Let <span class="math inline">\(F(x)\)</span> be the cumulative distribution function for <span class="math inline">\(X\)</span>. This means <span class="math inline">\(F(x) = P(X\leq x)\)</span>.<br>
+- Compute <span class="math inline">\(F(0)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 0)\)</span> that the score will be zero or less. - Compute <span class="math inline">\(F(1)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 1)\)</span> that the score will be one or less. - Compute <span class="math inline">\(F(1.5)\)</span>. - Compute <span class="math inline">\(F(2)\)</span>. - Compute <span class="math inline">\(F(100)\)</span>. - Compute <span class="math inline">\(F(-15)\)</span>. - Compute <span class="math inline">\(F(-10)\)</span>. - Compute <span class="math inline">\(F(-8.3)\)</span>. 1. Notice above that we can compute the cumulative distribution function for every real number <span class="math inline">\(x\)</span>. Construct a graph of <span class="math inline">\(F(x)\)</span> (it will look like a bunch of steps with jumps at a few points). As a challenge, write a formula for <span class="math inline">\(F\)</span> using piecewise function notation. - What’s the minimum value for <span class="math inline">\(F(x)\)</span>. - What’s the maximum value for <span class="math inline">\(F(x)\)</span>?</p>
+</section>
+<section id="activity---complete-exercises-in-1.8-and-1.9" class="level3">
+<h3 class="anchored" data-anchor-id="activity---complete-exercises-in-1.8-and-1.9">Activity - Complete Exercises in 1.8 and 1.9</h3>
+<p>Complete the exercises in sections 1.8 and 1.9. - https://byuistats.github.io/M119/unit3/probability.html</p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<ul>
+<li>What is a probability mass function? What do their graphs look like?</li>
+<li>What is the expected value geometrically? How do we interpret an expected value?</li>
+<li>What is a cumulative distribution function? Must it be increasing/nondecreasing? What is the max? What is the min? Let’s examine the 3 pmfs we explored above. The draw_pmf function is provided at the start of the reading in https://byuistats.github.io/M119/unit3/probability.html.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Shades a target diagram <span class="cf">for</span> a probability mass function. </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Inputs<span class="sc">:</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x <span class="sc">-</span> a vector of data points</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> p <span class="sc">-</span> a corresponding vector of probabilities or frequencies</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> All widths are <span class="dv">1</span> unit wide. </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>draw_pmf <span class="ot">&lt;-</span> <span class="cf">function</span>(x,p){</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  xs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  px <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(<span class="dv">0</span>,p,p,<span class="dv">0</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot.new</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(xs,px,<span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(xs,px,<span class="at">col=</span><span class="st">"gray"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.6</span>,<span class="fl">0.3</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="dv">6</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">21</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">21</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">21</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">21</span>,<span class="dv">5</span><span class="sc">/</span><span class="dv">21</span>,<span class="dv">6</span><span class="sc">/</span><span class="dv">21</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="key-ideas-means-expected-value-and-discrete-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="key-ideas-means-expected-value-and-discrete-random-variables">Key Ideas (Means, Expected Value, and Discrete Random Variables)</h3>
+<details>
+<summary>
+The probability mass function (PMF) of a discrete random variable
+</summary>
+<p>The <strong>probability mass function</strong> of a <em>discrete</em> random variable <span class="math inline">\(X\)</span> is the function <span class="math inline">\(f(x) = P(X = x)\)</span>.</p>
+<ul>
+<li>Each outcome <span class="math inline">\(x_i\)</span> has probability <span class="math inline">\(p_i = f(x_i) = P(X = x_i)\)</span>.</li>
+<li>Each probability is between zero and one, including zero and one.
+<ul>
+<li><span class="math inline">\(0 \leq p_i \leq 1\)</span></li>
+</ul></li>
+<li>The sum of the probabilities is one.
+<ul>
+<li><span class="math inline">\(\sum p_i = 1\)</span></li>
+</ul></li>
+</ul>
+</details>
+<details>
+<summary>
+Expected Value of a discrete random variable
+</summary>
+<p>Given a <em>discrete</em> random variable, <span class="math inline">\(X\)</span>, with outcomes <span class="math inline">\(x_i\)</span> having probability <span class="math inline">\(p_i\)</span> the <strong>expected value</strong> is <span class="math inline">\(E[X] = \sum x_ip_i\)</span>. The symbols <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\mu_X\)</span> are also used to represent the expected value of a random variable.</p>
+</details>
+<details>
+<summary>
+The cumulative distribution function (CDF) of a random variable
+</summary>
+<p>The <strong>cumulative distribution function</strong> of a random variable <span class="math inline">\(X\)</span> is the function <span class="math inline">\(F(x) = P(X \leq x)\)</span>.</p>
+</details>
+</section>
+<section id="exercises-1.1---averaging-test-scores" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1.1---averaging-test-scores">Exercises 1.1 - Averaging Test Scores</h3>
+<ul>
+<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises</li>
+</ul>
+<ol type="1">
+<li>Consider the vector of integers c(2,2,2,3,3,5,5,5,5,7,8,8,9,9,9).
+<ul>
+<li>Find the mean of the values by summing the values and then dividing by the number of values.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">9</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>- Use the values vector c(2,3,5,7,8,9) and frequencies vector c(3,2,4,1,2,3) to compute the mean of integers.</code></pre>
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val<span class="sc">*</span>freq)<span class="sc">/</span><span class="fu">sum</span>(freq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>- Use the values vector c(2,3,5,7,8,9) and proportions vector c(3/15,2/15,4/15,1/15,2/15,3/15) to compute the mean of integers.</code></pre>
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">15</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">15</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">15</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">15</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">15</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">15</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val<span class="sc">*</span>prop)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol type="1">
+<li>Construct your own vector, and write code that computes the mean of the values in the vector using each of the 3 methods in this section.</li>
+</ol>
+<details>
+<summary>
+Sample Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>val.y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>freq.y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>prop.y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(y)<span class="sc">/</span><span class="fu">length</span>(y)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val.y<span class="sc">*</span>freq.y)<span class="sc">/</span><span class="fu">sum</span>(freq.y)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val.y<span class="sc">*</span>prop.y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads">Exercises 1.4 - Tossing a coin three times and counting heads</h3>
+<ul>
+<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises9</li>
+</ul>
+<p>Suppose we toss a coin three times and record the number of heads. Let the random variable <span class="math inline">\(X\)</span> represent this total number of heads. Note that possible outcomes of counting the number of heads are 0,1,2,3 (these are discrete values, hence we call this a discrete random variable). These outcomes arise from the 8 possible results of tossing a coin three times (TTT,TTH,THT, THH,HTT,HTH,HHT, HHH). 1. Verify by hand that F(1)=0.5. 1. Locate F(2) in the table above. 1. Compute F(1.7). Explain. 1. What is F(3)? Give several reasons for your answer. 1. The table tells us F(0)=0.125. Compute P(X&gt;0) using this fact. 1. What is F(23.6)? What is F(−113)?</p>
+<details>
+<summary>
+Answers
+</summary>
+<ol type="1">
+<li><span class="math inline">\(F(1) = P(X \leq 1) = P(X=0) + P(X=1) = 0.125 + 0.375 = 0.5\)</span></li>
+<li><span class="math inline">\(F(2) = 0.875\)</span></li>
+<li><span class="math inline">\(F(1.7) = P(X \leq 1.7) = P(X=0) + P(X=1) = 0.5\)</span></li>
+<li><span class="math inline">\(F(3) = 1\)</span>
+<ul>
+<li>The CDF of X evaluated at 3 is 1, see the table.</li>
+<li>There is not chance the random variable <span class="math inline">\(X\)</span> will take on a value larger than 3.</li>
+<li>All values of the random variable <span class="math inline">\(X\)</span> are less than or equal to 3. The sum of probabilities for all possible event is 1.</li>
+</ul></li>
+<li><span class="math inline">\(P(X &gt; 0) = 1 - P(X \leq 0) = 1 - F(0) = 1-0.125 = 0.875\)</span></li>
+<li><span class="math inline">\(F(23.6) = 1\)</span>, <span class="math inline">\(F(-113) = 0\)</span></li>
+</ol>
+</details>
+</section>
+<section id="exercises-1.5---rolling-two-dice-and-summing-them" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1.5---rolling-two-dice-and-summing-them">Exercises 1.5 - Rolling two dice and summing them</h3>
+<ul>
+<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises11</li>
+</ul>
+<p>We now let <span class="math inline">\(X\)</span> be the discrete random variable obtained by rolling two 6-sided dice and recording their sum. The possible outcomes are the integers from 2 up to 12. (If you’ve played Settler’s of Catan before, then the dots on the number cards provide a visual of the probability mass function). There are 36 results for rolling two six-sided fair dice, and the probability mass function for <span class="math inline">\(X\)</span> is given below.</p>
+<p><span class="math display">\[f(x) =
+\begin{cases}
+\frac{1}{36} &amp; \quad x = 2 \\
+\frac{2}{36} &amp; \quad x = 3 \\
+\frac{3}{36} &amp; \quad x = 4 \\
+\frac{4}{36} &amp; \quad x = 5 \\
+\frac{5}{36} &amp; \quad x = 6 \\
+\frac{6}{36} &amp; \quad x = 7 \\
+\frac{5}{36} &amp; \quad x = 8 \\
+\frac{4}{36} &amp; \quad x = 9 \\
+\frac{3}{36} &amp; \quad x = 10 \\
+\frac{2}{36} &amp; \quad x = 11 \\
+\frac{1}{36} &amp; \quad x = 12.
+\end{cases}\]</span></p>
+<ol type="1">
+<li>What is the expected value of this random variable? Try to spot the value both visually (locating a centroid) and the verify your computation is correct using <span class="math inline">\(\text{E}[X] = \sum x_ip_i\)</span>.</li>
+<li>Recall that <span class="math inline">\(F(x) = P(X \leq x)\)</span> is the cumulative distribution function for <span class="math inline">\(X\)</span>. Compute <span class="math inline">\(F(x)\)</span> for each <span class="math inline">\(x\)</span> from 2 up to 12.</li>
+<li>Why do we know <span class="math inline">\(F(12)=1\)</span>.</li>
+<li>What is <span class="math inline">\(F(15)\)</span>?</li>
+<li>State <span class="math inline">\(P(X \leq 4)\)</span> and <span class="math inline">\(P(X \leq 9)\)</span> from the CDF table.
+<ul>
+<li>Explain why <span class="math inline">\(P(4 &lt; X \leq 9) = P(X \leq 9) − P(X \leq 4)\)</span>.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Answers
+</summary>
+<ol type="1">
+<li>Looks like the figure could balance at 7.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">12</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">5</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">6</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">5</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><span class="math inline">\(F(2) = \frac{1}{36} = 0.02777778\)</span>, <span class="math inline">\(F(3) = \frac{3}{36} = 0.08333333\)</span>, <span class="math inline">\(F(4) = \frac{6}{36} = 0.1666667\)</span>, <span class="math inline">\(F(5) = \frac{10}{36} = 0.2777778\)</span>, <span class="math inline">\(F(6) = \frac{15}{36} = 0.4166667\)</span>, <span class="math inline">\(F(7) = \frac{21}{36} = 0.58333333\)</span>, <span class="math inline">\(F(8) = \frac{26}{36} = 0.72222222\)</span>, <span class="math inline">\(F(9) = \frac{30}{36} = 0.83333333\)</span>, <span class="math inline">\(F(10) = \frac{33}{36} = 0.91666667\)</span>, <span class="math inline">\(F(11) = \frac{35}{36} = 0.97222222\)</span>, and <span class="math inline">\(F(12) = \frac{36}{36} = 1\)</span>.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">5</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">6</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">5</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p><span class="math inline">\(F(12) = 1\)</span></p>
+<ul>
+<li>The CDF of X evaluated at 12 is 1, see the table.</li>
+<li>There is not chance the random variable <span class="math inline">\(X\)</span> will take on a value larger than 12.</li>
+<li>All values of the random variable <span class="math inline">\(X\)</span> are less than or equal to 12. The sum of probabilities for all possible event is 1.</li>
+</ul></li>
+<li><p><span class="math inline">\(F(15) = 1\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 4) = F(4) = \frac{6}{36} = 0.1666667\)</span> and <span class="math inline">\(P(X \leq 9) = F(9) = \frac{30}{36} = 0.83333333\)</span>.</p>
+<ul>
+<li><span class="math inline">\(P(4 &lt; X \leq 9) = P(X \leq 9) - P(X \leq 4)\)</span> because <span class="math inline">\(P(X \leq 9)\)</span> includes the <span class="math inline">\(P(X \leq 4)\)</span> and if we get rid of the stuff to the left of and including 4 we will have the outcomes between 4 and 9.</li>
+</ul></li>
+</ol>
+</details>
+</section>
+<section id="exercises-1.6---avoid-gambling" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1.6---avoid-gambling">Exercises 1.6 - Avoid Gambling</h3>
+<ul>
+<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises13</li>
+</ul>
+<p>Here’s a simple gambling game we’ll explore. You pay 1 dollar to play. Your roll two dice and multiply the result together. If you roll a product of 20 or more, you get $4 (your dollar back, plus 3 more). Otherwise, you get nothing (you lost a dollar). There are two outcomes, namely you lose a buck, or you gain 3 bucks. We’ll let <span class="math inline">\(X\)</span> be the random variable with outcomes of −1 and 3 resulting from this game.</p>
+<p><span class="math display">\[f(x) =
+\begin{cases}
+\frac{7}{9} &amp; \quad x = -1 \\
+\frac{2}{9} &amp; \quad x = 3.
+\end{cases}\]</span></p>
+<ol type="1">
+<li>Verify that for <span class="math inline">\(X\)</span>, the sum of the probabilities is 1.</li>
+<li>Verify the expected value of <span class="math inline">\(X\)</span> is <span class="math inline">\(E[X] = -0.11\overline{1}\)</span>.
+<ul>
+<li>This means that if you play the game many times, you can expect to lose on average about 11 cents each game. Casinos make money because they arrange the games to guarantee a negative expected value for the people playing. Yes, occasionally someone will walk away having won more than they paid (which the casino wants advertised), but the truth is that when you look at the long term average of all played games, the casino comes out ahead.</li>
+</ul></li>
+<li>Let <span class="math inline">\(Y\)</span> be the random variable which is the product of rolling two dice. Use the following code to show the probability mass function for <span class="math inline">\(Y\)</span>. Compute <span class="math inline">\(E[Y]\)</span>.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">36</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>py <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">outcome=</span>y, <span class="at">prob =</span> py)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>tbl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- This isn’t needed to answer the gambling question, but we want to recognize $Y$ as its own random variable.</code></pre>
+<details>
+<summary>
+Answers
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">9</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">9</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>data.frame(outcome = x, prob = p)
+
+draw_pmf(x,p)</code></pre>
+<p>To use the function draw_pmf(x,p), you’ll have to copy the code https://byuistats.github.io/M119/unit3/probability.html.</p>
+<ul>
+<li>We expected <span class="math inline">\(E[X]\)</span> to be closer to -1 than to 3 when we look at the target diagram.</li>
+</ul>
+<pre><code>sum(x*p)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>E.Y <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>py)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>E.Y</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(y,py)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>E.Y, <span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="exercises-1.7---how-many-tropical-storms---poisson" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1.7---how-many-tropical-storms---poisson">Exercises 1.7 - How many tropical storms - Poisson</h3>
+<ul>
+<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises15</li>
+</ul>
+<p>We’ll look at another example related to the tropical storms example we did earlier this semester. Let <span class="math inline">\(X\)</span> represent the number of hurricane’s in a year that make landfall in Florida. We already saw that this discrete random variable follows a Poison distribution <span class="math inline">\(f(x;\lambda)=\frac{\lambda^xe^{-\lambda}}{x!}\)</span> where <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span>, and we estimated the parameter to be <span class="math inline">\(\lambda \approx 5.904762\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> lambda<span class="sc">^</span>x <span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,p,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Use the <span class="math inline">\(x\)</span>-vales from 0 to 20 to estimate <span class="math inline">\(E[X]\)</span>.
+<ul>
+<li><p>How many possible <span class="math inline">\(x\)</span>-values are there for <span class="math inline">\(X\)</span> (what is the domain of the pmf of <span class="math inline">\(X\)</span>)?</p></li>
+<li><p>Adjust the code to use the x-vales from 0 to 30 to estimate E[X].</p></li>
+</ul></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,n)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> lambda<span class="sc">^</span>x <span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- Adjust the code to use the x-vales from 0 to 50 to estimate E[X].</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,n)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> lambda<span class="sc">^</span>x <span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- What do you notice?</code></pre>
+<ol type="1">
+<li>Compute <span class="math inline">\(P(X=7)\)</span>, the probability that their will be 7 tropical storms in Florida in a year.
+<ul>
+<li>Compute <span class="math inline">\(F(7)\)</span>, the probability that the number of tropical storms in Florida will be less than or equal to 7 in a year.</li>
+<li>What is the difference between <span class="math inline">\(P(X=7)\)</span> and <span class="math inline">\(F(7)\)</span>?</li>
+<li>Compute <span class="math inline">\(P(X &gt; 7)\)</span>.</li>
+</ul></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,n)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> lambda<span class="sc">^</span>x <span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">7</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">outcome =</span> x, <span class="at">prob =</span> p, <span class="at">cdf =</span> <span class="fu">cumsum</span>(p))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">sum</span>(p[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.</span> Compare to </span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="dv">9</span><span class="sc">:</span><span class="dv">21</span>])</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Compute the probability that there will be 10 or more tropical storms in Florida in a given year.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,n)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> lambda<span class="sc">^</span>x <span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">sum</span>(p[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Make up your own probability questions about how many tropical storms there might be, and answer them.</li>
+</ol>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Math 119 — BYU-Idaho</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

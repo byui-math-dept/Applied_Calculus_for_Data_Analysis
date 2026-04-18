@@ -1,0 +1,17 @@
+---
+title: "Definition: Probability"
+---
+
+<details>
+<summary>Definition: Probability</summary>
+
+- An **experiment** is a process that produces an observation.
+- An **outcome** is a possible observation.
+- The set of all possible outcomes is called the **sample space**.
+- An **event** is a subset of the sample space.
+
+The **probability** of any outcome is the long-term relative frequency of that outcome. 
+
+*Source: These definitions are taken from OpenStax Introductory Statistics and Foundations of Statistics with R by Speegle & Clair.*
+
+</details>

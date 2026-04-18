@@ -1,0 +1,317 @@
+---
+title: "Class 26"
+---
+
+# During Class
+## Brain Gains
+1. 
+Explain why $\ds\sum_{i=1}^{44}\ln(2x_i^3) = 44\ln 2+3\sum_{i=1}^{44}\ln(x_i)$.
+
+<details>
+<summary>Solution</summary>
+
+Because the logarithm of a product is a sum of the logarithms, we have
+$$\ds\sum_{i=1}^{44}\ln(2x_i^3) =\sum_{i=1}^{44}(\ln 2+\ln(x_i^3)).$$
+Addition can happen in any order, so we can add the $\ln 2$ terms up separately from the logarithm terms, which gives 
+$$\ds\sum_{i=1}^{44}\ln(2x_i^3) =\sum_{i=1}^{44}\ln 2+\sum_{i=1}^{44}\ln(x_i^3).$$
+Because of the rule $\log_a(M^p) = p\log_a(M)$, we can move the 3 to obtain
+$$\ds\sum_{i=1}^{44}\ln(2x_i^3) =\sum_{i=1}^{44}\ln 2+\sum_{i=1}^{44}3\ln(x_i).$$
+Each term in latter sum is multiplied by 3, so we can factor out the 3 to obtain
+$$\ds\sum_{i=1}^{44}\ln(2x_i^3) =\sum_{i=1}^{44}\ln 2+3\sum_{i=1}^{44}\ln(x_i).$$
+The last thing to note is that we are adding $\ln 2$ up 44 times, which allows us to remove the sum and obtain 
+$$\ds\sum_{i=1}^{44}\ln(2x_i^3) = 44\ln 2+3\sum_{i=1}^{44}\ln(x_i).$$
+
+</details>
+
+2. 
+A twice differentiable function $f(x)$ satisfies $f'(4.2)=0$ and $f'(6.3)=0$. The second derivatives at these points are $f' '(4.2)=7.8$ and $f' '(6.3)=-1.9$.  
+- At which $x$ value(s) does $f$ have a local maximum?
+- At which $x$ value(s) does $f$ have a local minimum?
+
+3. 
+Consider the function $f(x) = xe^{-x}$. The function, its first derivative, and its second derivative, are given in the R code below. 
+
+```r
+f <- function(x){x*exp(-x)}
+Df <- function(x){1*exp(-x) - x*(exp(-x))}
+D2f <- function(x){-2*exp(-x) + x*exp(-x)}
+```
+
+Use uniroot to find the location of any local extreme values of $f$, and then use the second derivative test to classify the value(s)  as a local maximum or a local minimum. 
+
+<details>
+<summary>Solution</summary>
+
+Let's locate the maximum using uniroot to approximate the zeros of the first derivative (critical values). 
+
+```r
+uniroot(Df,c(-10,10))$root
+cv <- uniroot(Df,c(-10,10))$root
+Df(cv) #Check we get Df = 0
+Df(1) #Uniroot gives approximates, so we may need to round.
+```
+
+We now evaluate the second derivative at the critical value to determine if $f''$ is positive or negative at the critical value. This tells us the concavity at the critical value, which let's us quickly state whether there is a local maximum, or local minimum, at the critical value using the second derivative test. 
+
+```r
+D2f(1)
+D2f(cv)
+1. OR
+-2*exp(-1) + 1*exp(-1)
+```
+
+Because $f''(1)=-0.3678794$ is negative, then the function is concave downwards at $x=1$ with a horizontal tangent line, which means there is a maximum at $x=1$. 
+At this point, we're done. 
+
+Let's use R to graph $f$ to determine if $x=1$ is also a global maximum. 
+Here's code similar to what we've used all semester. 
+
+```r
+x <- seq(-10,10,0.001)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,f(x),type = "l")
+```
+
+From the above graph it does not look like there is a maximum at $x=1$. Maybe there is a better viewing window. Larger negative values for $x$ lead to extremely large negative values for $y$, so let's avoid them. 
+
+```r
+x <- seq(-1,10,0.001)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,f(x),type = "l",xlim=c(-1,10),ylim=c(-3,1))
+```
+
+This window allows us to visualize the maximum at $x=1$ better. Let's strip off any negative values for $x$ to zoom in on the location of the maximum.
+
+```r
+x <- seq(0,10,0.001)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,f(x),type = "l",xlim=c(0,10),ylim=c(0,0.5))
+```
+
+We can reuse the same code above every time we plot.
+Let's define our own function to reduce duplication. 
+We can also add a my_lines version, so we can add on extra plots to the same graph.
+
+```r
+my_plot <- function(f,left_bound,right_bound,gap = (right_bound-left_bound)/100, mar = c(2.5,2.5,0.25,0.25), type = "l",... ){
+  x <- seq(left_bound,right_bound,gap)
+  par(mar=mar)
+  plot(x,f(x),type = type,...)
+}
+my_lines <- function(f,left_bound,right_bound,gap = (right_bound-left_bound)/100, type = "l",... ){
+  x <- seq(left_bound,right_bound,gap)
+  lines(x,f(x),type = type,...)
+}
+```
+
+Now we can repeat the previous graphs with much shorter code. 
+
+```r
+par(mfrow=c(2,3))
+my_plot(f,-10,10,0.001) #We specify plotting another point every 0.0001. 
+my_plot(f,-10,10) #The default in our custom function uses 101 points. 
+my_plot(f,-10,10,2) #We specify plotting another point every 2. 
+my_plot(f,-1,10)
+my_plot(f,-1,10,ylim=c(-3,1))
+my_plot(f,0,10,ylim=c(0,0.5))
+```
+
+Let's plot the function, first, and second derivatives, as well as the values of each at the critical point, to provide a nice visual of what we just did. 
+
+```r
+a<-0
+b<-10
+par(mfrow=c(1,1))
+my_plot(f,a,b,ylim=c(-0.5,0.5))
+my_lines(Df,a,b,col = "red")
+abline(h=0, lty = 2)
+my_lines(D2f,a,b, col = "green")
+abline(v=cv,col="blue",lty = 2)
+points(cv,f(cv))
+points(cv,Df(cv),col="red")
+points(cv,D2f(cv),col="green")
+legend(6, -.2, legend=c("f", "f\'", "f\'\'"),
+       col=c("black","red", "green"), lty=1, cex=0.8)
+```
+
+</details>
+
+## Discussion
+### Find any extrema of $g(x) = x(1-x)$.
+
+This section continues what we did from the last brain gains question today.
+To use some of the custom plotting functions, we must first run the code from there.
+
+We now swap to a new function $g(x) = x(1-x)$.  
+We can use a new variable $g$, or we could use the same name $f$ as before.
+I'll use $g$ just so we can see things update in our R environment, but we could easily just reuse $f$. 
+
+We compute the first and second derivative.
+
+```r
+g <- function(x){x*(1-x)}
+Dg <- function(x){1-2*x}
+D2g <- function(x){0*x-2} #Is the zero important?
+```
+
+We approximate the critical values using uniroot. 
+
+```r
+uniroot(Dg,c(-10,10))$root
+cv <- uniroot(Dg,c(-10,10))$root
+cv
+```
+
+We evaluate the second derivative at critical values to determine concavity. 
+
+```
+D2g(1/2)
+D2g(cv)
+```
+
+Let's use our custom my_plot function to graph $g$ along with the critical value and maximum. 
+
+```
+my_plot(g,-2,2)
+points(cv,g(cv))
+```
+
+We can also add on lots of bells and whistles for a pretty plot, as done with this code below. 
+
+```r
+a <- -2
+b <- 2
+my_plot(g,a,b)
+my_lines(Dg,a,b,col = "red")
+abline(h=0, lty = 2)
+my_lines(D2g,a,b, col = "green")
+abline(v=cv,col="blue",lty = 2)
+points(cv,g(cv))
+points(cv,Dg(cv),col="red")
+points(cv,D2g(cv),col="green")
+legend((a+b)/2, (g(a)+g(b))/2, legend=c("f", "f\'", "f\'\'"),
+       col=c("black","red", "green"), lty=1, cex=0.8)
+```
+
+We could even turn the above sequences of plots into a new function (some of you may choose to tackle this as your own challenge). 
+We would need to supply the function as well as the first and second derivatives. 
+We also need to provide the $x$ and $y$ bounds for our graph. 
+This is a completely optional exercise.
+
+### Find any extrema of $h(x) = x^3-x$.
+
+We start by defining $h(x) = x^3-x$ and its first two derivatives. 
+
+```r
+h <- function(x){x^3-x}
+Dh <- function(x){3*x^2-1}
+D2h <- function(x){6*x}
+```
+
+Let's plot the function. Update the bounds if needed.
+
+```
+my_plot(h,-2,2)
+```
+
+There appear to be two spots where there is a horizontal tangent line. Let's locate them visually first.  
+We can graph the first derivative, as well as $y=0$, to visually see the two critical points. 
+
+```
+my_plot(Dh,-2,2)
+abline(h=0)
+```
+
+We can solve Dh=0 by hand to get 
+
+```
+-sqrt(1/3)
+sqrt(1/3)
+```
+
+Using uniroot gives us two approximate critical values.
+
+```r
+cv <- uniroot(Dh,c(-10,10))$root
+cv.1 <- uniroot(Dh,c(-10,0))$root
+cv.2 <- uniroot(Dh,c(0,10))$root
+
+cv.1
+-sqrt(1/3)
+cv.2
+sqrt(1/3)
+```
+
+We evaluate the second derivative at each critical value to determine concavity.
+
+```
+D2h(-sqrt(1/3))
+D2h(cv.1)
+
+D2h(sqrt(1/3))
+D2h(cv.2)
+```
+
+### Find any extrema of $h(x) = x^3-x$ on the interval $ [-1, 2] $.
+This is almost the same as the previous problem, except that now the function's domain has been restricted to only include $ [-1, 2] $.  As such, the function is no longer differentiable at the end points, which means $x=-1$ and $x=2$ become critical values as well. 
+
+We can use R to graph $h$ on $ [-1, 2] $. 
+
+```
+my_plot(h,-1,2)
+```
+
+There are 4 critical points.  We found approximations to two of these in the previous code chunks.  Let's evaluate $h$ at each critical value to determine the absolute maximum, and absolute minimum. 
+
+```
+h(-1)
+h(-sqrt(1/3))
+h(cv.1)
+h(sqrt(1/3))
+h(cv.2)
+h(2)
+```
+
+We can do this as a vector as well, or even use a data.frame, as shown below. 
+
+```r
+cvs <- c(-1,-sqrt(1/3),cv.1, sqrt(1/3),cv.2,2)
+cvs
+h(cvs)
+max(h(cvs))
+min(h(cvs))
+
+data.frame(x = cvs, y = h(cvs))
+```
+
+We see there is an absolute maximum of 6 at $x=2$, $h(2)=6$. We see there is an absolute minimum of approximately -0.3849 at $x = \sqrt{\frac{1}{3}}$, $h(\sqrt{\frac{1}{3}}) \approx -0.3849$.
+
+## Group Meeting
+
+We'll spend the day working through various parts of Project 2. The work below was part of the prep for today. It's crucial, so we'll work through it together. The point is to help each other by asking and answering questions. We'll focus on the first model $f_1(t; a_1) = 100 + a_1t$. 
+
+1. Assume the errors are independent and normally distributed (with mean of 0 and standard deviation of 1). Assume $(t_i,y_i)$ is a list of 44 data points to be provided. Show that the loglikelihood function for the errors when fitting $f_1$ to the 44 data points is $$ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.$$  This was part of Task 1, so please revisit the computation together. 
+1. Compute the first derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.$$
+1. Compute the second derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.$$
+1. Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:
+    - $ \frac{d\ell_1}{da_1} = 172746.8 - 328767530 a_1 $
+    - $ \frac{d^2\ell_1}{da_1^2} = -328767530 $
+1. Find the critical points of $\ell_1$, so set the first derivative equal to zero and solve. 
+1. Use the second derivative test to determine if the critical points are locations of maxima or minima.
+1. State the value of $a_1$ that gives the location of maximum loglikelihood.
+    - Note: This is the same value that give the location maximum likelihood.
+1. Plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $. The code below may help you get started.
+
+```r
+rm(list=ls())
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+ti <- bulb$hours
+yi <- bulb$percent_intensity
+plot(ti,yi)
+
+f1 <- function(t,a1){100+a1*t}
+a1 <- 0.0002 #Will need to be updated
+x <- seq(0,5000,10) 
+lines(x,f1(x,a1))
+```

@@ -1,0 +1,380 @@
+[
+  {
+    "date": "2026-04-20",
+    "session": "class-1",
+    "is_holiday": false,
+    "label": "Class 1",
+    "link": "class/class-1.html"
+  },
+  {
+    "date": "2026-04-21",
+    "session": "class-2",
+    "is_holiday": false,
+    "label": "Class 2",
+    "link": "class/class-2.html"
+  },
+  {
+    "date": "2026-04-23",
+    "session": "class-3",
+    "is_holiday": false,
+    "label": "Class 3",
+    "link": "class/class-3.html"
+  },
+  {
+    "date": "2026-04-24",
+    "session": "class-4",
+    "is_holiday": false,
+    "label": "Class 4",
+    "link": "class/class-4.html"
+  },
+  {
+    "date": "2026-04-27",
+    "session": "class-5",
+    "is_holiday": false,
+    "label": "Class 5",
+    "link": "class/class-5.html"
+  },
+  {
+    "date": "2026-04-28",
+    "session": "class-6",
+    "is_holiday": false,
+    "label": "Class 6",
+    "link": "class/class-6.html"
+  },
+  {
+    "date": "2026-04-30",
+    "session": "class-7",
+    "is_holiday": false,
+    "label": "Class 7",
+    "link": "class/class-7.html"
+  },
+  {
+    "date": "2026-05-01",
+    "session": "class-8",
+    "is_holiday": false,
+    "label": "Class 8",
+    "link": "class/class-8.html"
+  },
+  {
+    "date": "2026-05-04",
+    "session": "class-9",
+    "is_holiday": false,
+    "label": "Class 9",
+    "link": "class/class-9.html"
+  },
+  {
+    "date": "2026-05-05",
+    "session": "class-10",
+    "is_holiday": false,
+    "label": "Class 10",
+    "link": "class/class-10.html"
+  },
+  {
+    "date": "2026-05-07",
+    "session": "class-11",
+    "is_holiday": false,
+    "label": "Class 11",
+    "link": "class/class-11.html"
+  },
+  {
+    "date": "2026-05-08",
+    "session": "class-12",
+    "is_holiday": false,
+    "label": "Class 12",
+    "link": "class/class-12.html"
+  },
+  {
+    "date": "2026-05-11",
+    "session": "class-13",
+    "is_holiday": false,
+    "label": "Class 13",
+    "link": "class/class-13.html"
+  },
+  {
+    "date": "2026-05-12",
+    "session": "class-14",
+    "is_holiday": false,
+    "label": "Class 14",
+    "link": "class/class-14.html"
+  },
+  {
+    "date": "2026-05-14",
+    "session": "class-15",
+    "is_holiday": false,
+    "label": "Class 15",
+    "link": "class/class-15.html"
+  },
+  {
+    "date": "2026-05-15",
+    "session": "class-16",
+    "is_holiday": false,
+    "label": "Class 16",
+    "link": "class/class-16.html"
+  },
+  {
+    "date": "2026-05-18",
+    "session": "class-17",
+    "is_holiday": false,
+    "label": "Class 17",
+    "link": "class/class-17.html"
+  },
+  {
+    "date": "2026-05-19",
+    "session": "class-18",
+    "is_holiday": false,
+    "label": "Class 18",
+    "link": "class/class-18.html"
+  },
+  {
+    "date": "2026-05-21",
+    "session": "class-19",
+    "is_holiday": false,
+    "label": "Class 19",
+    "link": "class/class-19.html"
+  },
+  {
+    "date": "2026-05-22",
+    "session": "class-20",
+    "is_holiday": false,
+    "label": "Class 20",
+    "link": "class/class-20.html"
+  },
+  {
+    "date": "2026-05-25",
+    "session": "holiday",
+    "label": "Memorial Day",
+    "link": null,
+    "is_holiday": true
+  },
+  {
+    "date": "2026-05-26",
+    "session": "class-21",
+    "is_holiday": false,
+    "label": "Class 21",
+    "link": "class/class-21.html"
+  },
+  {
+    "date": "2026-05-28",
+    "session": "class-22",
+    "is_holiday": false,
+    "label": "Class 22",
+    "link": "class/class-22.html"
+  },
+  {
+    "date": "2026-05-29",
+    "session": "class-23",
+    "is_holiday": false,
+    "label": "Class 23",
+    "link": "class/class-23.html"
+  },
+  {
+    "date": "2026-06-01",
+    "session": "class-24",
+    "is_holiday": false,
+    "label": "Class 24",
+    "link": "class/class-24.html"
+  },
+  {
+    "date": "2026-06-02",
+    "session": "class-25",
+    "is_holiday": false,
+    "label": "Class 25",
+    "link": "class/class-25.html"
+  },
+  {
+    "date": "2026-06-04",
+    "session": "class-26",
+    "is_holiday": false,
+    "label": "Class 26",
+    "link": "class/class-26.html"
+  },
+  {
+    "date": "2026-06-05",
+    "session": "class-27",
+    "is_holiday": false,
+    "label": "Class 27",
+    "link": "class/class-27.html"
+  },
+  {
+    "date": "2026-06-08",
+    "session": "class-28",
+    "is_holiday": false,
+    "label": "Class 28",
+    "link": "class/class-28.html"
+  },
+  {
+    "date": "2026-06-09",
+    "session": "class-29",
+    "is_holiday": false,
+    "label": "Class 29",
+    "link": "class/class-29.html"
+  },
+  {
+    "date": "2026-06-11",
+    "session": "class-30",
+    "is_holiday": false,
+    "label": "Class 30",
+    "link": "class/class-30.html"
+  },
+  {
+    "date": "2026-06-12",
+    "session": "class-31",
+    "is_holiday": false,
+    "label": "Class 31",
+    "link": "class/class-31.html"
+  },
+  {
+    "date": "2026-06-15",
+    "session": "class-32",
+    "is_holiday": false,
+    "label": "Class 32",
+    "link": "class/class-32.html"
+  },
+  {
+    "date": "2026-06-16",
+    "session": "class-33",
+    "is_holiday": false,
+    "label": "Class 33",
+    "link": "class/class-33.html"
+  },
+  {
+    "date": "2026-06-18",
+    "session": "class-34",
+    "is_holiday": false,
+    "label": "Class 34",
+    "link": "class/class-34.html"
+  },
+  {
+    "date": "2026-06-19",
+    "session": "holiday",
+    "label": "Juneteenth",
+    "link": null,
+    "is_holiday": true
+  },
+  {
+    "date": "2026-06-22",
+    "session": "class-35",
+    "is_holiday": false,
+    "label": "Class 35",
+    "link": "class/class-35.html"
+  },
+  {
+    "date": "2026-06-23",
+    "session": "class-36",
+    "is_holiday": false,
+    "label": "Class 36",
+    "link": "class/class-36.html"
+  },
+  {
+    "date": "2026-06-25",
+    "session": "class-37",
+    "is_holiday": false,
+    "label": "Class 37",
+    "link": "class/class-37.html"
+  },
+  {
+    "date": "2026-06-26",
+    "session": "class-38",
+    "is_holiday": false,
+    "label": "Class 38",
+    "link": "class/class-38.html"
+  },
+  {
+    "date": "2026-06-29",
+    "session": "class-39",
+    "is_holiday": false,
+    "label": "Class 39",
+    "link": "class/class-39.html"
+  },
+  {
+    "date": "2026-06-30",
+    "session": "class-40",
+    "is_holiday": false,
+    "label": "Class 40",
+    "link": "class/class-40.html"
+  },
+  {
+    "date": "2026-07-02",
+    "session": "class-41",
+    "is_holiday": false,
+    "label": "Class 41",
+    "link": "class/class-41.html"
+  },
+  {
+    "date": "2026-07-03",
+    "session": "holiday",
+    "label": "Independence Day",
+    "link": null,
+    "is_holiday": true
+  },
+  {
+    "date": "2026-07-06",
+    "session": "class-42",
+    "is_holiday": false,
+    "label": "Class 42",
+    "link": "class/class-42.html"
+  },
+  {
+    "date": "2026-07-07",
+    "session": "class-43",
+    "is_holiday": false,
+    "label": "Class 43",
+    "link": "class/class-43.html"
+  },
+  {
+    "date": "2026-07-09",
+    "session": "class-44",
+    "is_holiday": false,
+    "label": "Class 44",
+    "link": "class/class-44.html"
+  },
+  {
+    "date": "2026-07-10",
+    "session": "class-45",
+    "is_holiday": false,
+    "label": "Class 45",
+    "link": "class/class-45.html"
+  },
+  {
+    "date": "2026-07-13",
+    "session": "class-46",
+    "is_holiday": false,
+    "label": "Class 46",
+    "link": "class/class-46.html"
+  },
+  {
+    "date": "2026-07-14",
+    "session": "flex-1",
+    "is_holiday": false,
+    "label": "Flex Day 1",
+    "link": "flex/flex-1.html"
+  },
+  {
+    "date": "2026-07-16",
+    "session": "flex-2",
+    "is_holiday": false,
+    "label": "Flex Day 2",
+    "link": "flex/flex-2.html"
+  },
+  {
+    "date": "2026-07-17",
+    "session": "flex-3",
+    "is_holiday": false,
+    "label": "Flex Day 3",
+    "link": "flex/flex-3.html"
+  },
+  {
+    "date": "2026-07-20",
+    "session": "project",
+    "is_holiday": false,
+    "label": "Project Work Day",
+    "link": null
+  },
+  {
+    "date": "2026-07-21",
+    "session": "project",
+    "is_holiday": false,
+    "label": "Project Work Day",
+    "link": null
+  }
+]

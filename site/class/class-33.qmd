@@ -1,0 +1,397 @@
+---
+title: "Class 33"
+---
+
+# During Class
+## Group Meeting 
+
+- The prep involved reading https://byuistats.github.io/M119/unit3/probability.html and completing some of the exercises there. 
+
+The following problem builds upon and use the ideas from the reading. 
+### Activity - Balls in a Bag
+As you work through the problems below, please refer to https://byuistats.github.io/M119/unit3/probability.html as needed. 
+Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. 
+Leave up your work so that you can compare your answers with your neighbors. 
+If you notice an answer differs from a neighboring group's, then have a discussion with them.  
+
+#### Grab one ball
+There are 10 balls in a bag, three red, one blue, and six green. Your friend proposes to play a game of chance, and the rules go as follows. You reach into the bag and pull out a single ball.  Pull out a red and you get 2 points. Pull out a blue and you lose 10 points. Pull out a green you get 1 point. We can think of this as a random variable $X$ where the outcomes correspond to the point values -10, 1, 2, and a probability mass function for this random variable is
+$$f(x) = 
+\begin{cases}
+0.1 & x=-10 \\
+0.6   & x=1 \\
+???   & x=2 \\
+\end{cases}.
+$$
+1. Fill in the $???$ above so that $f(x)$ is a probability mass function. (Hint: what must the sum of the probabilities equal?)
+1. What is the probability that you'll end up with a positive score?  In other words, compute $P(X > 0)$.
+1. If you played this game many times (replacing the ball each time), do you think the average score will be positive or negative?  Discuss this together as a group. (It's fine to have an incorrect guess here. The point is to give a gut reaction. What do you think, and why?) 
+    - Now use the formula $E[X] = \sum x_i p_i$ to compute the expected value of $X$. Is the expected score positive or negative?
+1. Let $F(x)$ be the cumulative distribution function for $X$.  This means $F(x) = P(X\leq x)$.  
+    - Compute $F(0)$. So compute the probability $P(X\leq 0)$ that the score will be zero or less.
+    - Compute $F(1)$.  So compute the probability $P(X\leq 1)$ that the score will be one or less.
+    - Compute $F(1.5)$.
+    - Compute $F(2)$.
+    - Compute $F(100)$.
+    - Compute $F(-15)$.
+    - Compute $F(-10)$.
+    - Compute $F(-8.3)$.
+1. Notice above that we can compute the cumulative distribution function for every real number $x$.  Construct a graph of $F(x)$ (it will look like a bunch of steps with jumps at a few points). As a challenge, write a formula for $F$ using piecewise function notation.
+    - What's the minimum value for $F(x)$. 
+    - What's the maximum value for $F(x)$?
+
+### Activity - Complete Exercises in 1.8 and 1.9
+Complete the exercises in sections 1.8 and 1.9. 
+- https://byuistats.github.io/M119/unit3/probability.html
+
+## Discussion 
+- What is a probability mass function?  What do their graphs look like? 
+- What is the expected value geometrically? How do we interpret an expected value?
+- What is a cumulative distribution function? Must it be increasing/nondecreasing? What is the max? What is the min?
+Let's examine the 3 pmfs we explored above. The draw_pmf function is provided at the start of the reading in https://byuistats.github.io/M119/unit3/probability.html.
+
+```r
+1. Shades a target diagram for a probability mass function. 
+1. Inputs: 
+1. x - a vector of data points
+1. p - a corresponding vector of probabilities or frequencies
+1. All widths are 1 unit wide. 
+draw_pmf <- function(x,p){
+  xs <- c(rbind(x-1/2,x-1/2,x+1/2,x+1/2))
+  px <- c(rbind(0,p,p,0))
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot.new()
+  plot(xs,px,type="l")
+  polygon(xs,px,col="gray")
+}
+
+x <- c(-10,1,2)
+p <- c(0.1,0.6,0.3)
+draw_pmf(x,p)
+
+x <- seq(1,6)
+p <- rep(1/6,6)
+draw_pmf(x,p)
+
+x <- seq(1,6)
+p <- c(1/21,2/21,3/21,4/21,5/21,6/21)
+draw_pmf(x,p)
+```
+
+### Key Ideas (Means, Expected Value, and Discrete Random Variables)
+
+<details>
+<summary>The probability mass function (PMF) of a discrete random variable</summary>
+
+The **probability mass function** of a *discrete* random variable $X$ is the function $f(x) = P(X = x)$.
+
+- Each outcome $x_i$ has probability $p_i = f(x_i) = P(X = x_i)$.
+- Each probability is between zero and one, including zero and one.
+    - $0 \leq p_i \leq 1$
+- The sum of the probabilities is one.
+    - $\sum p_i = 1$
+
+</details>
+
+<details>
+<summary>Expected Value of a discrete random variable</summary>
+
+Given a *discrete* random variable, $X$, with outcomes $x_i$ having probability $p_i$ the **expected value** is $E[X] = \sum x_ip_i$. The symbols $\mu$ and $\mu_X$ are also used to represent the expected value of a random variable.
+
+</details>
+
+<details>
+<summary>The cumulative distribution function (CDF) of a random variable</summary>
+
+The **cumulative distribution function** of a random variable $X$ is the function $F(x) = P(X \leq x)$.
+
+</details>
+
+### Exercises 1.1 - Averaging Test Scores
+- https://byuistats.github.io/M119/unit3/probability.html#Exercises
+
+1.  Consider the vector of integers c(2,2,2,3,3,5,5,5,5,7,8,8,9,9,9).
+    - Find the mean of the values by summing the values and then dividing by the number of values.
+
+<details>
+<summary>Answers</summary>
+
+```r
+x <- c(2,2,2,3,3,5,5,5,5,7,8,8,9,9,9)
+sum(x)
+length(x)
+sum(x)/length(x)
+mean(x)
+```
+
+</details>
+
+    - Use the values vector c(2,3,5,7,8,9) and frequencies vector c(3,2,4,1,2,3) to compute the mean of integers.
+
+<details>
+<summary>Answers</summary>
+
+```r
+val <- c(2,3,5,7,8,9)
+freq <- c(3,2,4,1,2,3)
+
+sum(val*freq)/sum(freq)
+```
+
+</details>
+
+    - Use the values vector c(2,3,5,7,8,9) and proportions vector c(3/15,2/15,4/15,1/15,2/15,3/15) to compute the mean of integers.
+
+<details>
+<summary>Answers</summary>
+
+```r
+val <- c(2,3,5,7,8,9)
+prop <- c(3/15,2/15,4/15,1/15,2/15,3/15)
+
+sum(val*prop)
+```
+
+</details>
+
+1.  Construct your own vector, and write code that computes the mean of the values in the vector using each of the 3 methods in this section.
+
+<details>
+<summary>Sample Answers</summary>
+
+```r
+y <- c(3,4,6,6,2,2,3,4,-1,-1,3,4)
+
+val.y <- c(-1,2,3,4,6)
+freq.y <- c(2,2,3,3,2)
+prop.y <- c(1/6,1/6,1/4,1/4,1/6)
+
+sum(y)/length(y)
+sum(val.y*freq.y)/sum(freq.y)
+sum(val.y*prop.y)
+```
+
+</details>
+
+### Exercises 1.4 - Tossing a coin three times and counting heads
+- https://byuistats.github.io/M119/unit3/probability.html#Exercises9
+
+ Suppose we toss a coin three times and record the number of heads. Let the random variable $X$ represent this total number of heads. Note that possible outcomes of counting the number of heads are 0,1,2,3 (these are discrete values, hence we call this a discrete random variable). These outcomes arise from the 8 possible results of tossing a coin three times (TTT,TTH,THT, THH,HTT,HTH,HHT, HHH).
+1. Verify by hand that F(1)=0.5.
+1. Locate F(2) in the table above.
+1. Compute F(1.7). Explain.
+1. What is F(3)? Give several reasons for your answer.
+1. The table tells us F(0)=0.125. Compute P(X>0) using this fact.
+1. What is F(23.6)? What is F(−113)?
+
+<details>
+<summary>Answers</summary>
+
+1. $F(1) = P(X \leq 1) = P(X=0) + P(X=1) = 0.125 + 0.375 = 0.5$
+1. $F(2) = 0.875$
+1. $F(1.7) = P(X \leq 1.7) = P(X=0) + P(X=1) = 0.5$
+1. $F(3) = 1$
+    - The CDF of X evaluated at 3 is 1, see the table.
+    - There is not chance the random variable $X$ will take on a value larger than 3.
+    - All values of the random variable $X$ are less than or equal to 3. The sum of probabilities for all possible event is 1.
+1. $P(X > 0) = 1 - P(X \leq 0) = 1 - F(0) = 1-0.125 = 0.875$
+1. $F(23.6) = 1$, $F(-113) = 0$
+
+</details>
+
+### Exercises 1.5 - Rolling two dice and summing them
+- https://byuistats.github.io/M119/unit3/probability.html#Exercises11
+
+We now let $X$ be the discrete random variable obtained by rolling two 6-sided dice and recording their sum. The possible outcomes are the integers from 2 up to 12. (If you’ve played Settler’s of Catan before, then the dots on the number cards provide a visual of the probability mass function). There are 36 results for rolling two six-sided fair dice, and the probability mass function for $X$ is given below.
+
+$$f(x) = 
+\begin{cases}
+\frac{1}{36} & \quad x = 2 \\ 
+\frac{2}{36} & \quad x = 3 \\ 
+\frac{3}{36} & \quad x = 4 \\ 
+\frac{4}{36} & \quad x = 5 \\ 
+\frac{5}{36} & \quad x = 6 \\ 
+\frac{6}{36} & \quad x = 7 \\ 
+\frac{5}{36} & \quad x = 8 \\ 
+\frac{4}{36} & \quad x = 9 \\ 
+\frac{3}{36} & \quad x = 10 \\ 
+\frac{2}{36} & \quad x = 11 \\ 
+\frac{1}{36} & \quad x = 12.
+\end{cases}$$
+
+1. What is the expected value of this random variable? Try to spot the value both visually (locating a centroid) and the verify your computation is correct using $\text{E}[X] = \sum x_ip_i$.
+1. Recall that $F(x) = P(X \leq x)$ is the cumulative distribution function for $X$. Compute $F(x)$ for each $x$ from 2 up to 12.
+1. Why do we know $F(12)=1$.
+1. What is $F(15)$?
+1. State $P(X \leq 4)$ and $P(X \leq 9)$ from the CDF table. 
+    - Explain why $P(4 < X \leq 9) = P(X \leq 9) − P(X \leq 4)$.
+
+<details>
+<summary>Answers</summary>
+
+1.  Looks like the figure could balance at 7.
+
+```r
+x <- seq(2,12)
+p <- c(1/36,2/36,3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36)
+
+sum(x*p)
+```
+
+1.  $F(2) = \frac{1}{36} = 0.02777778$, $F(3) = \frac{3}{36} = 0.08333333$, $F(4) = \frac{6}{36} = 0.1666667$, $F(5) = \frac{10}{36} = 0.2777778$, $F(6) = \frac{15}{36} = 0.4166667$, $F(7) = \frac{21}{36} = 0.58333333$, $F(8) = \frac{26}{36} = 0.72222222$, $F(9) = \frac{30}{36} = 0.83333333$, $F(10) = \frac{33}{36} = 0.91666667$, $F(11) = \frac{35}{36} = 0.97222222$, and $F(12) = \frac{36}{36} = 1$.
+
+```r
+p <- c(1/36,2/36,3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36)
+
+cumsum(p)
+```
+
+1.  $F(12) = 1$
+    - The CDF of X evaluated at 12 is 1, see the table.
+    - There is not chance the random variable $X$ will take on a value larger than 12.
+    - All values of the random variable $X$ are less than or equal to 12. The sum of probabilities for all possible event is 1.
+
+1.  $F(15) = 1$
+
+1.  $P(X \leq 4) = F(4) = \frac{6}{36} = 0.1666667$ and $P(X \leq 9) = F(9) = \frac{30}{36} = 0.83333333$.
+    - $P(4 < X \leq 9) = P(X \leq 9) - P(X \leq 4)$ because $P(X \leq 9)$ includes the $P(X \leq 4)$ and if we get rid of the stuff to the left of and including 4 we will have the outcomes between 4 and 9.
+
+</details>
+
+### Exercises 1.6 - Avoid Gambling
+- https://byuistats.github.io/M119/unit3/probability.html#Exercises13
+
+Here’s a simple gambling game we’ll explore. You pay 1 dollar to play. Your roll two dice and multiply the result together. If you roll a product of 20 or more, you get \$4 (your dollar back, plus 3 more). Otherwise, you get nothing (you lost a dollar). There are two outcomes, namely you lose a buck, or you gain 3 bucks. We’ll let $X$ be the random variable with outcomes of −1 and 3 resulting from this game.
+
+$$f(x) = 
+\begin{cases}
+\frac{7}{9} & \quad x = -1 \\
+\frac{2}{9} & \quad x = 3.
+\end{cases}$$
+
+1.  Verify that for $X$, the sum of the probabilities is 1.
+1.  Verify the expected value of $X$ is $E[X] = -0.11\overline{1}$.
+    - This means that if you play the game many times, you can expect to lose on average about 11 cents each game. Casinos make money because they arrange the games to guarantee a negative expected value for the people playing. Yes, occasionally someone will walk away having won more than they paid (which the casino wants advertised), but the truth is that when you look at the long term average of all played games, the casino comes out ahead.
+1.  Let $Y$ be the random variable which is the product of rolling two dice. Use the following code to show the probability mass function for $Y$. Compute $E[Y]$.
+
+```r
+y <- c(1,2,3,4,5,6,8,9,10,12,15,16,18,20,24,25,30,36)
+py <- c(1/36,2/36,2/36,3/36,2/36,4/36,2/36,1/36,2/36,4/36,2/36,1/36,2/36,2/36,2/36,1/36,2/36,1/36)
+
+tbl <- data.frame(outcome=y, prob = py)
+tbl
+```
+
+    - This isn’t needed to answer the gambling question, but we want to recognize $Y$ as its own random variable.
+
+<details>
+<summary>Answers</summary>
+
+```r
+x <- c(-1, 3)
+p <- c(7/9, 2/9)
+
+sum(p)
+```
+
+```
+data.frame(outcome = x, prob = p)
+
+draw_pmf(x,p)
+```
+
+To use the function draw_pmf(x,p), you'll have to copy the code https://byuistats.github.io/M119/unit3/probability.html.
+
+- We expected $E[X]$ to be closer to -1 than to 3 when we look at the target diagram.
+
+```
+sum(x*p)
+```
+
+```r
+E.Y <- sum(y*py)
+E.Y
+
+draw_pmf(y,py)
+abline(v=E.Y, col=2)
+```
+
+</details>
+
+### Exercises 1.7 - How many tropical storms - Poisson
+- https://byuistats.github.io/M119/unit3/probability.html#Exercises15
+
+We’ll look at another example related to the tropical storms example we did earlier this semester. Let $X$ represent the number of hurricane’s in a year that make landfall in Florida. We already saw that this discrete random variable follows a Poison distribution $f(x;\lambda)=\frac{\lambda^xe^{-\lambda}}{x!}$ where $x = 0, 1, 2, 3, ...$, and we estimated the parameter to be $\lambda \approx 5.904762$.
+
+```r
+lambda <- 5.904762
+x <- seq(0,20)
+p <- lambda^x *exp(-lambda)/factorial(x)
+
+plot(x,p,pch=16)
+draw_pmf(x,p)
+
+sum(x*p)
+```
+
+1.  Use the $x$-vales from 0 to 20 to estimate $E[X]$.
+    - How many possible $x$-values are there for $X$ (what is the domain of the pmf of $X$)?
+
+    - Adjust the code to use the x-vales from 0 to 30 to estimate E[X].
+
+```r
+lambda <- 5.904762
+n <- 30
+x <- seq(0,n)
+p <- lambda^x *exp(-lambda)/factorial(x)
+
+sum(x*p)
+```
+
+    - Adjust the code to use the x-vales from 0 to 50 to estimate E[X].
+
+```r
+lambda <- 5.904762
+n <- 50
+x <- seq(0,n)
+p <- lambda^x *exp(-lambda)/factorial(x)
+
+sum(x*p)
+```
+
+    - What do you notice?
+
+1.  Compute $P(X=7)$, the probability that their will be 7 tropical storms in Florida in a year.
+    - Compute $F(7)$, the probability that the number of tropical storms in Florida will be less than or equal to 7 in a year. 
+    - What is the difference between $P(X=7)$ and $F(7)$?
+    - Compute $P(X > 7)$.
+
+```r
+lambda <- 5.904762
+n <- 20
+x <- seq(0,n)
+p <- lambda^x *exp(-lambda)/factorial(x)
+
+p(7)
+
+data.frame(outcome = x, prob = p, cdf = cumsum(p))
+sum(p[1:8])
+
+1-sum(p[1:8])
+        1. Compare to 
+sum(p[9:21])
+sum(p[-(1:8)])
+```
+
+1.  Compute the probability that there will be 10 or more tropical storms in Florida in a given year.
+
+```r
+lambda <- 5.904762
+n <- 20
+x <- seq(0,n)
+p <- lambda^x *exp(-lambda)/factorial(x)
+
+1-sum(p[1:9])
+```
+
+1.  Make up your own probability questions about how many tropical storms there might be, and answer them.

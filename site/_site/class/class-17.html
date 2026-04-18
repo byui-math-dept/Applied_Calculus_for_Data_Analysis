@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 17 – Math 119 — Applied Calculus for Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Math 119 — Applied Calculus for Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Definitions</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-definitions">    
+        <li>
+    <a class="dropdown-item" href="../definitions/conditionalprobability.html">
+ <span class="dropdown-text">ConditionalProbability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/constantontheintervali.html">
+ <span class="dropdown-text">ConstantOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/decreasingontheintervali.html">
+ <span class="dropdown-text">DecreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/definition.html">
+ <span class="dropdown-text">Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/exponentialfunction.html">
+ <span class="dropdown-text">ExponentialFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/increasingontheintervali.html">
+ <span class="dropdown-text">IncreasingOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/independentevents.html">
+ <span class="dropdown-text">IndependentEvents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithm.html">
+ <span class="dropdown-text">Logarithm</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/logarithmicfunction.html">
+ <span class="dropdown-text">LogarithmicFunction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/negativeontheintervali.html">
+ <span class="dropdown-text">NegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/nonnegativeontheintervali.html">
+ <span class="dropdown-text">NonnegativeOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/partialderivative.html">
+ <span class="dropdown-text">PartialDerivative</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/positiveontheintervali.html">
+ <span class="dropdown-text">PositiveOnTheIntervalI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/probability.html">
+ <span class="dropdown-text">Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/randomvariable.html">
+ <span class="dropdown-text">RandomVariable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../definitions/rulesofprobabilty.html">
+ <span class="dropdown-text">RulesOfProbabilty</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <ul class="collapse">
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#summary-what-is-a-derivative" id="toc-summary-what-is-a-derivative" class="nav-link" data-scroll-target="#summary-what-is-a-derivative">Summary (What is a derivative?)</a>
+  <ul class="collapse">
+  <li><a href="#class-discussion---the-derivative-is-a-function-applet" id="toc-class-discussion---the-derivative-is-a-function-applet" class="nav-link" data-scroll-target="#class-discussion---the-derivative-is-a-function-applet">Class Discussion - The derivative is a function applet</a></li>
+  </ul></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#activity---computing-derivatives-practice" id="toc-activity---computing-derivatives-practice" class="nav-link" data-scroll-target="#activity---computing-derivatives-practice">Activity - Computing Derivatives Practice</a></li>
+  </ul></li>
+  <li><a href="#using-a-model-practice-with-project-1" id="toc-using-a-model-practice-with-project-1" class="nav-link" data-scroll-target="#using-a-model-practice-with-project-1">Using a model (practice with Project 1)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 17</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="during-class" class="level1">
+<h1>During Class</h1>
+<section id="brain-gains" class="level2">
+<h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
+<ol type="1">
+<li>Residuals (or errors) revisited. Given a measurement <span class="math inline">\((x_i, y_i)\)</span>, write down a formula for the residual, <span class="math inline">\(r_i=y_i - \hat{y_i} = y_i - f(x_i)\)</span>, for each of the following models.
+<ol type="1">
+<li><span class="math inline">\(f(x) = 30 - 2x\)</span></li>
+<li><span class="math inline">\(f(x) = 100 - 3\sqrt{x+4}\)</span></li>
+<li><span class="math inline">\(f(x) = -0.0002x^2 + 100\)</span></li>
+</ol></li>
+<li>The probability model for one normal random variable with mean 0 and standard deviation 1 is <span class="math inline">\(p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}\)</span>.
+<ol type="1">
+<li>Write down the loglikelihood function for <span class="math inline">\(n\)</span> <strong>independent</strong> normal random variables, each with mean 0 and standard deviation 1 (so they all have the same probability model <span class="math inline">\(p(r)\)</span>). What does the word <strong>independent</strong> allow us to do?</li>
+</ol></li>
+</ol>
+</section>
+<section id="summary-what-is-a-derivative" class="level2">
+<h2 class="anchored" data-anchor-id="summary-what-is-a-derivative">Summary (What is a derivative?)</h2>
+<ul>
+<li>Many nonlinear functions look linear when we zoom in far enough at a location <span class="math inline">\(x=a\)</span>.</li>
+<li>We can make a guess for what the <strong>local rate of change</strong> (or slope) of a function is at <span class="math inline">\(x=a\)</span> by constructing a table and looking at what happens when the <span class="math inline">\(x\)</span>-values get close to the location of interest (<span class="math inline">\(x=a\)</span>).</li>
+<li>With the slope (or a guess for the slope) and the point $ (a,f(a)) $ we can write the equation the <strong>linearization</strong> (or <strong>local linear approximation</strong> or <strong>“tangent line”</strong>), the line that the function looks like when we zoom in.</li>
+<li>The <strong>derivative</strong> of <span class="math inline">\(f\)</span> at a point (<span class="math inline">\(x=a\)</span>) is the <strong>local rate of change</strong> of <span class="math inline">\(f\)</span> at that location.
+<ul>
+<li>The derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span> is the slope of the line that approximates <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span>.</li>
+<li>The derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span> is the slope of the local linear approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span>.</li>
+<li>The derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span> is the slope of the linearization of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span>.</li>
+<li>The derivative of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span> is the slope of the “tangent line” of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span>.</li>
+<li>The derivative at a point is calculated using a limit.</li>
+<li>Note: The <strong>derivative</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x=a\)</span> is <strong>a number</strong>.</li>
+</ul></li>
+<li>The collection of <strong>local rates of changes</strong> corresponding to each location, <span class="math inline">\(x\)</span>, is the <strong>derivative</strong> of <span class="math inline">\(f\)</span>, a function.
+<ul>
+<li>By definition the derivative is a limit. In our class we will learn rules to compute the derivatives, we will not calculate derivatives using the definition directly.</li>
+<li>Some notation people use for the derivative function, or the derivative of <span class="math inline">\(f\)</span>, include: <span class="math inline">\(f'(x)\)</span>, <span class="math inline">\(\frac{df}{dx}\)</span>, <span class="math inline">\(D_xf\)</span>, and <span class="math inline">\(\frac{d}{dx}(f(x))\)</span>. We’ll use each of these notations throughout the semester.</li>
+<li>Note: The <strong>derivative</strong> of <span class="math inline">\(f\)</span> is <strong>a function</strong>.</li>
+</ul></li>
+</ul>
+<section id="class-discussion---the-derivative-is-a-function-applet" class="level3">
+<h3 class="anchored" data-anchor-id="class-discussion---the-derivative-is-a-function-applet">Class Discussion - The derivative is a function applet</h3>
+<p>We’ll open this <a href="https://content.byui.edu/file/10e044c5-3381-4f0d-9e3f-8442d010a196/1/index.html?f=functions" target="_blank">graphical representation of the derivative applet</a>. I’ll have a few volunteers help use the applet to discover the derivative, as a function, for each of the functions from the drop down menu. We will skip the sine and cosine functions (we won’t be using trigonometry in our class).</p>
+<p>When we’re finished, we will have seen that the derivative of <span class="math inline">\(e^x\)</span> is <span class="math inline">\(e^x\)</span> itself. This is the only function whose derivative is itself. This is the reason we use base <span class="math inline">\(e\)</span> when working with exponential and logarithmic functions.</p>
+</section>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
+<section id="activity---computing-derivatives-practice" class="level3">
+<h3 class="anchored" data-anchor-id="activity---computing-derivatives-practice">Activity - Computing Derivatives Practice</h3>
+<p>Below is a list of derivative rules (most of which we have seen) that you are welcome to use as you complete this activity and any homework in Knewton Alta. It’s not crucial that you memorize all these rules. Some you will memorize from just using them each time.</p>
+<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<ul>
+<li>Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving these problems.</li>
+<li>After you’ve discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to <em>pass the chalk</em> after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.</li>
+</ul>
+<ol type="1">
+<li>For <span class="math inline">\(f(x) = 3x^2-7x+5\)</span>, find <span class="math inline">\(f'(x)\)</span>. Remember to <strong>identify which rules</strong> you used at each step (on this and each problem).</li>
+<li>For <span class="math inline">\(g(x) = 4e^x-6\ln x\)</span>, find <span class="math inline">\(g'(x)\)</span>.</li>
+<li>For <span class="math inline">\(h(x) = 5\sqrt{x}-\frac{3}{x}\)</span>, find <span class="math inline">\(\frac{dh}{dx}\)</span>.</li>
+<li>For <span class="math inline">\(r(t) = 7\ln t - \frac{3}{t^2}\)</span>, find <span class="math inline">\(\frac{dr}{dt}\)</span>.</li>
+<li>For <span class="math inline">\(f(p) = \sum_{j=3}^7 4^jp\)</span>, find <span class="math inline">\(f'(p)\)</span>.</li>
+<li>For <span class="math inline">\(p(x) = ax^2+bx+c\)</span>, find <span class="math inline">\(\frac{dp}{dx}\)</span> assuming that <span class="math inline">\(a,b,c\)</span> are constants.</li>
+<li>For <span class="math inline">\(h(r) = \sum_{n=1}^{40} n\ln(r)\)</span>, find <span class="math inline">\(h'(r)\)</span>.</li>
+<li>For <span class="math inline">\(t(x) = \sum_{m=1}^{40}  m x^m\)</span>, find <span class="math inline">\(\frac{dt}{dx}\)</span>.</li>
+</ol>
+<p>https://byuistats.github.io/M119/m119-docs/DerRules_Power_Constant_Sum.pdf</p>
+</section>
+</section>
+<section id="using-a-model-practice-with-project-1" class="level2">
+<h2 class="anchored" data-anchor-id="using-a-model-practice-with-project-1">Using a model (practice with Project 1)</h2>
+<p>Consider the following fitted models. <em>These models were fit to the data obtained using seed=123.</em> - <span class="math inline">\(f_2(x) = 100 + 0.0011x - 0.00000015x^2\)</span> where <span class="math inline">\(x \geq 0\)</span> - <span class="math inline">\(f_3(x) = 101.9 - 1.9e^{-0.00114x}\)</span> where <span class="math inline">\(x \geq 0\)</span> - <span class="math inline">\(f_4(x) = 100 - 0.000181x + 0.83\ln(0.005x+1)\)</span> where <span class="math inline">\(x \geq 0\)</span> - <span class="math inline">\(f_5(x) = (100 + 0.00623x)e^{-0.0000506x}\)</span> where <span class="math inline">\(x \geq 0\)</span></p>
+<details>
+<summary>
+Graphs of these Functions
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed =</span> <span class="dv">123</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="dv">0</span>){ a0 <span class="sc">+</span> a1<span class="sc">*</span>x }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="fl">7e-4</span>){ a0 <span class="sc">+</span> a1<span class="sc">*</span>x }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="fl">1.1e-3</span>,<span class="at">a2=</span><span class="sc">-</span><span class="fl">1.5e-7</span>){ a0 <span class="sc">+</span> a1<span class="sc">*</span>x <span class="sc">+</span> a2<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span> }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a1=</span><span class="sc">-</span><span class="fl">1.9</span>,<span class="at">a2=</span><span class="fl">0.00114</span>){ (<span class="dv">100</span><span class="sc">-</span>a1) <span class="sc">+</span> a1<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>a2<span class="sc">*</span>x) }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="sc">-</span><span class="fl">1.81e-4</span>,<span class="at">a2=</span><span class="fl">0.83</span>){a0<span class="sc">+</span>a1<span class="sc">*</span>x<span class="sc">+</span>a2<span class="sc">*</span><span class="fu">log</span>(<span class="fl">0.005</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>)}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>f5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="fl">6.23e-3</span>,<span class="at">a2=</span><span class="fl">5.06e-5</span>){ (a0 <span class="sc">+</span> a1<span class="sc">*</span>x)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>a2<span class="sc">*</span>x) }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80001</span>,<span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">f3</span>(x)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> <span class="fu">f4</span>(x)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>y5 <span class="ot">&lt;-</span> <span class="fu">f5</span>(x)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f0'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y0,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y0,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f1'</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y1,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y1,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f2'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y2,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y2,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f3'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y3,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y3,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f4'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f5'</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y5,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y5,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Use the model <span class="math inline">\(f_4\)</span> to answer the question, What is the intensity of the bulb after 12000 hours?</p>
+<p>Use the model <span class="math inline">\(f_3\)</span> to answer the question, When is the intensity of the bulb 90% of its original intensity?</p>
+<p>Use the model <span class="math inline">\(f_2\)</span> to answer the question, When is the intensity of the bulb 97% of its original intensity?</p>
+<p>Use the model <span class="math inline">\(f_5\)</span> to answer the question, When is the intensity of the bulb 95% of its original intensity?</p>
+<p>Use the model <span class="math inline">\(f_5\)</span> to answer the question, What is the intensity of the bulb after 25000 hours?</p>
+<details>
+<summary>
+Solutions
+</summary>
+<p>Run the code below to obtain the solutions.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f4</span>(<span class="dv">12000</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f3</span>(x)<span class="sc">-</span><span class="dv">90</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10000</span>,<span class="dv">100</span>))<span class="sc">$</span>root</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f2</span>(x)<span class="sc">-</span><span class="dv">97</span>},<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>))<span class="sc">$</span>root</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f5</span>(x)<span class="sc">-</span><span class="dv">95</span>},<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">80000</span>))<span class="sc">$</span>root</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">f5</span>(<span class="dv">25000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Math 119 — BYU-Idaho</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

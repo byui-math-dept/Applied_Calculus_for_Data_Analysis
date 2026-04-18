@@ -1,0 +1,186 @@
+---
+title: "Class 41"
+---
+
+# During Class
+
+## Brain Gains
+
+1. 
+Let $g(x) = \begin{cases}e^{-x/2} & x \geq 0\\ 0 & \text{otherwise}\end{cases}$. 
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. Write down the function $f$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integrals that give $P(X\leq 1)$ and $P(X\leq 2)$. Then use Mathematica to compute these two probabilities.</li>
+  <li>Write down the definite integral that gives $F(x) = P(X\leq x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $x\geq 0$.</li>
+  <li>What is $P(X = 2)$? Write down the definite integral that would give this probability. </li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+  <li>Solve $F(m) = 0.5$ for $m$. We call $m$ the 50th percentile, or the median, of $X$. </li>
+  <li>Solve $F(p_{95}) = 0.95$ for $p_{95}$. We call $p_{95}$ the 95th percentile of $X$. </li>
+</ol>
+
+## Group Meeting
+
+### Continuation from last time - More Practice with finding PDFs, Expected Value, Variance, and CDF
+These problems are a continuation from what we did last time in groups. 
+
+2. 
+Let $g(x) = \begin{cases}e^{-\lambda x} & x \geq 0\\ 0 & \text{otherwise}\end{cases}$ with $\lambda >0$. In Mathematica, the following code tells the computer that $\lambda$ is positive, which will simplifies the output quite a bit. 
+(:codem:)
+```
+g = Exp[-\[Lambda] x]
+$Assumptions = \[Lambda] > 0
+```
+(:codemend:)
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. We call this an exponential random variable. </li>
+</ol>
+
+1. Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.
+1. Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $x\geq 0$.
+1. By hand, compute $F'(x)$ and compare it to $f(x)$.  
+
+3. 
+Let $g(x) = \begin{cases}1 & -3\leq x\leq 5\\ 0 & \text{otherwise}\end{cases}$.
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $-3\leq x\leq 5$. For $x<-3$, what is $F(x)$?  For $x>5$, what is $F(x)$?</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+4. 
+Let $g(x) = \begin{cases}1 & a\leq x\leq b\\ 0 & \text{otherwise}\end{cases}$ where $a<x<b$. 
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. We call this a uniform random variable. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $a\leq x\leq b$. For $x<a$, what is $F(x)$?  For $x>b$, what is $F(x)$?</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+5. 
+Let $g(x) = \begin{cases}3 & -2 \leq x < 1\\ 5 & 1 \leq x \leq 5\\ 0 & \text{otherwise}\end{cases}$.
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Compute $F(x)$.</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+<details>
+<summary>Solution</summary>
+
+We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that $x$ is a real number to compute the CDF $F$ and actually have Mathematica do the integral. 
+(:codem:)
+```
+$Assumptions = x \[Element] Reals
+g = Piecewise[{{3, -2 <= x && x < 1}, {5, 1 <= x <= 5}, {0, True}}]
+Plot[g, {x, -5, 10}]
+A = Integrate[g, {x, -Infinity, Infinity}]
+k = 1/A
+f = k g
+1 == Integrate[ f, {x, -Infinity, Infinity}]
+EV = Integrate[x f, {x, -Infinity, Infinity}]
+Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
+F = Integrate[ f, {x, -Infinity, x}]
+D[F, x]
+```
+(:codemend:)
+
+</details>
+
+### Practice: Definite Integrals and Geometric arguments
+Use a geometric argument to find the value of each integral. If needed, start by drawing the region over the specified bounds. Then use Mathematica to check your solution is correct.  
+
+1.
+$\displaystyle\int_2^5 7 dx$
+
+<details>
+<summary>Hint</summary>
+
+This is a rectangle. What is the base? What is the height?
+
+</details>
+
+2.
+$\displaystyle\int_0^4 f(x) dx$ where $f(x) = \begin{cases}3x & 0\leq x\leq 1 \\ 4-x & 1\leq x \leq 4\end{cases}$
+
+<details>
+<summary>Hint</summary>
+
+This is a triangle. What is the base? What is the height?
+
+</details>
+
+3.
+$\displaystyle\int_0^4 \sqrt{16-x^2} dx$
+
+<details>
+<summary>Hint</summary>
+
+This is one fourth of a circle centered at (0,0) with radius 4.  Note that $y=\sqrt{16-x^2}$ means $y^2 = 16-x^2$ or $x^2+y^2=16$. 
+You'll encounter functions like this one when working on Knewton Alta homework.
+
+</details>
+
+4.
+$\displaystyle\int_0^{10} \sqrt{25-(x-5)^2} dx$
+
+<details>
+<summary>Hint</summary>
+
+This is one half of a circle centered at (5,0) with radius 5.  Use software to draw the region if needed.
+You'll encounter functions like this one when working on Knewton Alta homework.
+
+</details>
+
+### Work on Project 3 Task 2 
+If you finish the above early, start working on Project 3 Task 2.  You'll find that you've already quite a bit of that project as you worked together over the last few days. 
+
+## Discussion
+### Properties of the Definite Integral
+
+<details>
+<summary>Definite Integral</summary>
+
+For a function $f(x)$ defined on $a \leq x \leq b$, **the definite integral of $f$ from $a$ to $b$** is 
+
+$\int_a^b f(x) dx = \lim_{n\to \infty }\sum_{i=1}^nf(x_i)\Delta x$,
+
+provided the limit exists. If the limit exists, we say that $f$ is integrable on $ [ a, b ] $.
+
+- $f(x)$ is the integrand
+- $x$ is the variable of integration
+- $a$ is the lower bound (or lower limit of integration)
+- $b$ is the upper bound (or upper limit of integration)
+
+</details>
+
+- Given $a < c < k < b$, <br>
+$\int_a^b f(x) dx = \int_a^c f(x) dx + \int_c^k f(x) dx + \int_k^b f(x) dx$.
+    - Note this property also holds when the inequality $a < c < k < b$ does not hold as long as $f(x)$ is integrable (can be integrated) for all the necessary intervals.
+
+- $\int_a^b f(x)dx = -\int_b^a f(x)dx$.
+    - One way to think about this property is that if the width for the "infinite" rectangles you are adding up are all negative for the definite integral on the right-hand side of the equation.
+
+- $\int_a^a f(x)dx = 0$.
+    - Note this is related to the concept that $P(X = c) = 0$ for all values of $c$ when $X$ is a continuous random variable.
+
+- $\int_a^b cf(x)dx = c\int_a^b f(x) dx$
+
+- $\int_a^b f(x) + g(x) dx = \int_a^b f(x) dx + \int_a^b g(x) dx$ AND $\int_a^b f(x) - g(x) dx = \int_a^b f(x) dx - \int_a^b g(x) dx$
+
+### Activity - Definite Integrals
+Given the function
+$$g(x) = 
+\begin{cases}
+2 & 0 < x < 5 \\ \\
+0 & \text{otherwise}
+\end{cases},$$
+determine whether each statement is true or false. Discuss your reasoning with your neighbor.
+
+    - $\int_0^5 g(x)dx = 10$.
+    - $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_3^{4.5} g(x)dx + \int_{4.5}^5 g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_{-\infty}^0 g(x)dx + \int_0^5 g(x)dx + \int_5^{\infty} g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_1^5 g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_1^3 g(x)dx + \int_4^5 g(x)dx$.

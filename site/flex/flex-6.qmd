@@ -1,0 +1,339 @@
+---
+title: "Flex Day 6"
+---
+
+# During Class
+## Probability Models
+### Experiments
+**Experiment 1:** Roll your die 7 times. Count the number of 2's.
+
+- Let $X$ be the random variable that counts the number of 2's in 7 rolls of a fair six-sided die. 
+    - Compute $P(X = 12)$.
+      - What are the values that will have nonzero probability?
+
+Note: $X$ is a Bionomial Random Variable
+
+Let's plot the probability model for a Binomial Random Variable
+
+```r
+f1 <- function(x,n=20,p=0.5){
+  # x must be an whole number between 0 and n, endpoints included
+  factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
+}
+
+n <- 20
+p <- 0.25
+x <- 0:n
+barplot(f1(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
+```
+
+We can simulate this random variable using the rbinom() function in R.
+
+```r
+tmp <- rbinom(10,7,1/6)
+
+tmp <- rbinom(100000,7,1/6)
+```
+
+Let's take a look this data
+
+```
+hist(tmp,probability=TRUE)
+```
+
+    - Use your simulated data to compute $P(X=4)$.
+
+```r
+1. count the number of 4's in the simulated data
+obs <- length(which(tmp == 4))
+1. count how many simulated data
+tot <- length(tmp)
+
+prob <- obs/tot
+```
+
+    - Use your simulated data to compute $P(X > 5.3)$.
+
+```r
+1. count the number of 6's and 7's in the simulated data
+obs <- length(which(tmp > 5.3))
+1. count how many simulated data
+tot <- length(tmp)
+
+prob <- obs/tot
+
+1. Calculating this another way... P(X > 5.3) = 1 - P(X <= 5.3)
+1. count the number of 0's, 1's, 2's, 3's, 4's, and 5's in the simulated data
+obs <- length(which(tmp < 5.3))
+1. count how many simulated data
+tot <- length(tmp)
+
+prob <- obs/tot
+1-prob
+```
+
+Let's calculate the mean, variance, and standard deviation of our data.
+
+```
+mean(tmp)
+
+var(tmp)
+
+sd(tmp)
+
+sqrt(var(tmp))
+```
+
+**Experiement 2:** Roll your die until you roll a 4. Count the total number of rolls required to get the 4, including the last roll in which the 4 appeared.
+
+- Let $X$ be the random variable that counts the number of rolls until you roll a 4 using a fair six-sided die.
+    - Compute $P(X = -3)$.
+      - What are the values that will have nonzero probability?
+ 
+Note: $X$ is a Geometric Random Variable
+
+Let's plot the probability model for a Geometric Random Variable
+
+```r
+f2 <- function(x,p=0.5){
+  # x must be an positive integer
+  p*(1-p)^(x-1)
+}
+
+p <- 0.25
+x <- 1:50
+barplot(f2(x,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
+```
+
+We can simulate this random variable using the rgeom() function in R.
+
+```r
+tmp <- rgeom(10,1/6)+1
+
+tmp <- rgeom(100000,1/6)+1
+
+1. Why +1? This has to do with matching the why the probability model is programed in R with the way the probability model is given here.
+```
+
+Let's take a look this data
+
+```
+hist(tmp,probability=TRUE)
+```
+
+    - Use your simulated data to compute $P(X=3)$.
+
+```r
+1. count the number of 4's in the simulated data
+obs <- length(which(tmp == 3))
+1. count how many simulated data
+tot <- length(tmp)
+
+prob <- obs/tot
+```
+
+    - Use your simulated data to compute the probability you have to roll the die at least 10 times before you get a 4.
+
+```r
+1. P(X > 10) = 1 - P(X <= 10)
+1. count the number of 1's, 2's, 3's, 4's, 5's, 6's, 7's, 8's, 9's, and 10's in the simulated data
+obs <- length(which(tmp <= 10))
+1. count how many simulated data
+tot <- length(tmp)
+
+prob <- obs/tot
+1-prob
+```
+
+Let's calculate the mean, variance, and standard deviation of our data.
+
+```
+mean(tmp)
+
+var(tmp)
+
+sd(tmp)
+
+sqrt(var(tmp))
+```
+
+### Some Common Probability Models
+1. $f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x) }$ with $x = 0, 1, 2, 3, ... , n$ where $n$ is a positive integer and $0 \leq p \leq 1$.
+    - This function is a called Binomial Distribution. It contains probability information about a Binomial random variable.
+    - In R we use the rbinom() function to simulate this random variable. 
+1. $f_2(x; p) = p(1-p)^{ (x-1) }$ with $x = 1, 2, 3, ... $ where $0 \leq p \leq 1$.
+    - This function is called a Geometric Distribution. It contains probability information about a Geometric random variable.
+    - In R we use the rgeom() function +1 to simulate this random variable.
+1. $f_3(x; \lambda) = e^{-\lambda}\frac{\lambda^x}{x!}$ with $x = 0, 1, 2, 3, ... $ where $\lambda > 0$.
+    - This function is called a Poisson Distribution. It contains probability information about a Poisson random variable.
+    - In R we use the rpois() function to simulate this random variable.
+
+1. $f_4(x; \lambda) = \lambda e^{-\lambda x}$ with $x > 0$ where $\lambda >0$.
+    - This function is called an Exponential Distribution. It contains probability information about an Exponential random variable.
+    - In R we use the rexp() function to simulate this random variable.
+1. $f_5(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},$ where $\mu$ is a real number and $\sigma > 0$.
+    - This function is called a Normal Distribution. It contains probability information about a Normal random variable.
+    - In R we use the rnorm() function to simulate this random variable.
+1. $f_6(x; a,b) = \frac{1}{b-a}$, with $a \leq x \leq b$ where $a$ and $b$ are real numbers.
+    - This function is called a Uniform Distribution. It contains probability information about a Uniform random variable.
+    - In R we use the runif() function to simulate this random variable.
+
+You can use the following code to define these functions in R.
+
+```r
+f1 <- function(x,n=20,p=0.5){
+1. x must be an whole number between 0 and n, endpoints included
+  factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
+}
+
+f2 <- function(x,p=0.5){
+1. x must be an postive integer
+  p*(1-p)^(x-1)
+}
+
+f3 <- function(x,lambda=1){
+1. x must be a nonegative integer
+  exp(-lambda)*lambda^x/factorial(x)
+}
+
+f4 <- function(x,lambda=1){
+1. x must be positive
+  lambda*exp(-lambda*x)
+}
+
+f5 <- function(x,mu=0,s=1){
+  (1/sqrt(2*pi*s^2))*exp(-(x-mu)^2/(2*s^2))
+}
+
+f6 <- function(x,a=0,b=1){
+  
+  out <- rep(0,length(x))
+  out[(a <= x) & (x <= b)] <- 0*x[(a <= x) & (x <= b)] + 1/(b-a)
+
+  return(out)
+}
+```
+
+You can use the following code to plot these functions in R.
+
+```r
+1. f1 has discrete inputs 
+n <- 30
+p <- 0.4
+x <- 0:n
+barplot(f1(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
+
+1. f2 has discrete inputs
+p <- 0.2
+x <- 1:50
+barplot(f2(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
+
+1. f3 has discrete inputs
+lambda <- 12
+x <- 0:50
+barplot(f3(x,lambda),ylim=c(0,1),width=rep(1,length(x)),space=1)
+
+1. f4 has continuous inputs
+lambda <- 3
+x <- seq(0,5,0.01)
+plot(x,f4(x,lambda),type='l')
+
+1. f5 has continuous inputs
+mu <- 3
+s <- 0.2
+x <- seq(-1,7,0.001)
+plot(x,f5(x,mu,s),type='l')
+
+1. f6 has continuous inputs
+a <- -4
+b <- 2
+x <- seq(-5,5,0.01)
+plot(x,f6(x,a,b),type='l')
+```
+
+## Group Meeting
+*Give each group member 1-2 minutes to share what they prepared from the between class work.*
+
+*Work on the chalkboard with your group. Everyone needs to practice communicating mathematics (sharing their ideas, writing mathematics, articulating what they understand, articulating what they don't understand yet). Everyone needs practice listening and contributing to their group by engaging with their peers' work. Remember to **Pass The Chalk** between each problem, giving everyone a chance to act as scribe. When you are the scribe, it's fine to not know exactly how to proceed. The goal is to ask questions of each other and help each other.*
+
+*Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.*
+
+Take turns writing your **solutions** on the chalk board and discussing any questions. Show your work, step-by-step, listing the rules you use at each stage.
+
+Let's play with simulation in R some more.
+1. Select one of the following common probability models.
+    - Poisson
+    - Exponential
+    - Normal
+    - Uniform
+
+2. Adapt the following code to plot the probability model you selected.
+
+```r
+1. If the inputs are discrete use and adapt this code.
+f1 <- function(x,n=20,p=0.5){
+  # x must be an whole number between 0 and n, endpoints included
+  factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
+}
+
+n <- 20
+p <- 0.25
+x <- 0:n
+barplot(f1(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
+```
+
+```r
+1. If the inputs are continuous use and adapt this code.
+f4 <- function(x,lambda=1){
+  # x must be positive
+  lambda*exp(-lambda*x)
+}
+
+lambda <- 3
+x <- seq(0,5,0.01)
+plot(x,f4(x,lambda),type='l')
+```
+
+3. Simulate this random variable you selected by adapting the code below.
+
+```r
+tmp <- rbinom(100000,7,1/6)
+```
+
+4. Visualize your simulated data by creating a histogram.
+
+5. Calculate the mean, variance, and standard deviation for your simulated data.
+
+6. Adapt the following code to approximate the following probabilities using your simulated data.
+    - $P(X < 3)$
+    - $P(X > 6)$
+
+```r
+obs <- length(which(tmp < 10))
+tot <- length(tmp)
+
+prob <- obs/tot
+```
+
+7. Select another model and **repeat**.
+
+## Discussion
+- Deterministic models describe relationships between quantities.
+    - time a light bulb is on (quantity 1) and the brightness of the bulb (quantity 2)
+    - number of months since purchase (quantity 1) and the thickness of a shoe tread (quantity 2)
+    - distance traveled (quantity 2) and wear on vehicle (quantity 2)
+    - amount of butter (quantity 1) and chewiness of cookie (quantity 2)
+
+- Probability models describe probability information for a measurement.
+    - Binomial distribution
+      - number of "successes" in $n$ trials
+    - Geometric distribution
+      - number of trials until the first success
+    - Poisson distribution
+      - number of events during a fixed time interval (assuming events occur at a constant rate)
+    - Exponential distribution
+      - amount of time until the next event happens (assuming events occur at a constant rate)
+    - Normal distribution
+      - a machine part is manufactured to a specified length with some tolerance (most parts will be close to the specified length with some parts longer or shorter)
+    - Uniform distribution
+      - every value has an equal chance of getting picked

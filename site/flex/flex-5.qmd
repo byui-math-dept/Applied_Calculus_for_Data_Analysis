@@ -1,0 +1,63 @@
+---
+title: "Flex Day 5"
+---
+
+# Applying Mathematics to Data Analytics -- Course Reflection
+## Mathematica Modeling
+
+<details>
+<summary>Deterministic Models</summary>
+
+When we study a relationship between quantities, we gather observations of the relationship. These observations are a list of ordered pairs with elements $(x_i, y_i)$. We want to study a "true" relationship, one we don't know but we believe exists and we are trying to understand. One tool we can use to study the relationship is mathematical modeling. We can consider one (or more) mathematical model(s) and fit the model(s) to the data. When we fit a model to data we assume the relationship we are considering is (or can be) described by the model. Once we fit a model(s) to data we can use the "specific" model (or fitted model) to answer questions about the relationship (or use the assumed relationship to predict or extrapolate).
+
+</details>
+
+<details>
+<summary>Stochastic Models</summary>
+
+Similarly, when we study a measurement with uncertainty, we gather observations of the measurement. These observations are a list of measurements with elements $x_i$. We want to study a "true" random variable, one we don't know but we want to understand. Recall that a random variable is a collection of possible values with associated probability information. One tool we can use to study the unknown random variable is mathematical modeling. We can consider one (or more) distribution(s). We compare the observations of the unknown random variable to common random variables we know, thus using these distributions as models. When we fit a distribution (or model) to the observed values (data) we assume the unknown random variable is (or could be) the specific type of random variable described by the distribution. Once we fit a distribution(s) to data we can use the "specific" distribution (or fitted distribution) to answer questions about the measurement (calculating probabilities and percentiles etc).
+
+</details>
+
+<details>
+<summary>Comparing Models</summary>
+
+- The results (answers) we find, depend on the assumptions we make!
+    - The results we find when we evaluating a deterministic function at a specific input value will depend on the model we assume (and fit). These results will not be the same for all functions we choose to fit.
+    - The results we find when we solve a deterministic function equal to a specific output value will depend on the model we assume (and fit). These results will not be the same for all functions we choose to fit.
+    - The results we find when we calculate a probability will depend on the model we assume (and fit). The results from a Uniform random variable will not the same as the results from a Normal, Gamma, or Exponential distribution. 
+    - The results we find when we calculate a percentile will depend on the model we assume (and fit). The results from a Uniform random variable will not the same as the results from a Normal, Gamma, or Exponential distribution. 
+- Just because we assume a certain general model, does not actually mean that model is a good way to model the measurement or relationship we want to study.
+
+So you might ask, 
+- How do we decide what models to assume? (or How do we decide which model to use?)
+- How do we compare multiple fitted models?
+- How do we use information from multiple fitted models?
+- How do we use information from fitting the same models to multiple data sets measuring the same process?
+I am pleased you recognize there is much to learn about using models in data analysis. You will need to take additional classes and keep gathering information and tools to answer that question. Keep learning. Mathematics can help us answer many questions but you have to put in the time if you want to use the tools. One could make an argument that learning to read Mathematics is more important than learning a particular type of mathematics because if you can read you can learn. Don't be intimidated by the symbols remember that is where the information is in mathematics, take it slow and work through the meaning of the symbols.
+
+</details>
+
+## Topics & Tools
+- Function
+- Function Transformations
+- Parameters
+- General Forms
+- Evaluate a Function
+- Solve and Equation
+- Derivative
+- Integral
+    - Definite Integral
+    - Antiderivative & Indefinite Integral 
+- Sum Notation
+- Product Notation
+- System of Equations
+- Random Variable
+- Probability
+- Likelihood
+
+# End of Semester Announcements
+- Last day of classes is July 18
+    - Last day to work on Knewton Alta Homework is July 18
+    - Last day to submit Project work is July 18
+- No Final Exam

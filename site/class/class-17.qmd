@@ -1,0 +1,156 @@
+---
+title: "Class 17"
+---
+
+# During Class
+## Brain Gains
+1. Residuals (or errors) revisited. Given a measurement $(x_i, y_i)$, write down a formula for the residual, $r_i=y_i - \hat{y_i} = y_i - f(x_i)$, for each of the following models.
+    1.  $f(x) = 30 - 2x$
+    1. $f(x) = 100 - 3\sqrt{x+4}$
+    1. $f(x) = -0.0002x^2 + 100$
+1. The probability model for one normal random variable with mean 0 and standard deviation 1 is $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}$. 
+    1.  Write down the loglikelihood function for $n$ **independent** normal random variables, each with mean 0 and standard deviation 1 (so they all have the same probability model $p(r)$). What does the word **independent** allow us to do?
+
+## Summary (What is a derivative?)
+- Many nonlinear functions look linear when we zoom in far enough at a location $x=a$.
+- We can make a guess for what the **local rate of change** (or slope) of a function is at $x=a$ by constructing a table and looking at what happens when the $x$-values get close to the location of interest ($x=a$).
+- With the slope (or a guess for the slope) and the point $ (a,f(a)) $ we can write the equation the **linearization** (or **local linear approximation** or **"tangent line"**), the line that the function looks like when we zoom in. 
+- The **derivative** of $f$ at a point ($x=a$) is the **local rate of change** of $f$ at that location.
+    - The derivative of $f$ at $x=a$ is the slope of the line that approximates $f$ at $x=a$.
+    - The derivative of $f$ at $x=a$ is the slope of the local linear approximation of $f$ at $x=a$.
+    - The derivative of $f$ at $x=a$ is the slope of the linearization of $f$ at $x=a$.
+    - The derivative of $f$ at $x=a$ is the slope of the "tangent line" of $f$ at $x=a$.
+    - The derivative at a point is calculated using a limit.
+    - Note: The **derivative** of $f$ at $x=a$ is **a number**.
+- The collection of **local rates of changes** corresponding to each location, $x$, is the **derivative** of $f$, a function.
+    - By definition the derivative is a limit. In our class we will learn rules to compute the derivatives, we will not calculate derivatives using the definition directly.
+    - Some notation people use for the derivative function, or the derivative of $f$, include: $f'(x)$, $\frac{df}{dx}$, $D_xf$, and $\frac{d}{dx}(f(x))$. We'll use each of these notations throughout the semester. 
+    - Note: The **derivative** of $f$ is **a function**.
+
+### Class Discussion - The derivative is a function applet
+We'll open this [graphical representation of the derivative applet](https://content.byui.edu/file/10e044c5-3381-4f0d-9e3f-8442d010a196/1/index.html?f=functions){target="_blank"}. I'll have a few volunteers help use the applet to discover the derivative, as a function, for each of the functions from the drop down menu. We will skip the sine and cosine functions (we won't be using trigonometry in our class). 
+
+When we're finished, we will have seen that the derivative of $e^x$ is $e^x$ itself.  This is the only function whose derivative is itself. This is the reason we use base $e$ when working with exponential and logarithmic functions. 
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Computing Derivatives Practice
+Below is a list of derivative rules (most of which we have seen) that you are welcome to use as you complete this activity and any homework in Knewton Alta. It's not crucial that you memorize all these rules. Some you will memorize from just using them each time.  
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+- Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving these problems.
+- After you've discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to *pass the chalk* after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.
+
+1. For $f(x) = 3x^2-7x+5$, find $f'(x)$. Remember to **identify which rules** you used at each step (on this and each problem).
+1. For $g(x) = 4e^x-6\ln x$, find $g'(x)$. 
+1. For $h(x) = 5\sqrt{x}-\frac{3}{x}$, find $\frac{dh}{dx}$. 
+1. For $r(t) = 7\ln t - \frac{3}{t^2}$, find $\frac{dr}{dt}$. 
+1. For $f(p) = \sum_{j=3}^7 4^jp$, find $f'(p)$. 
+1. For $p(x) = ax^2+bx+c$, find $\frac{dp}{dx}$ assuming that $a,b,c$ are constants.
+1. For $h(r) = \sum_{n=1}^{40} n\ln(r)$, find $h'(r)$. 
+1. For $t(x) = \sum_{m=1}^{40}  m x^m$, find $\frac{dt}{dx}$. 
+
+https://byuistats.github.io/M119/m119-docs/DerRules_Power_Constant_Sum.pdf
+
+## Using a model (practice with Project 1)
+Consider the following fitted models. *These models were fit to the data obtained using seed=123.*
+- $f_2(x) = 100 + 0.0011x - 0.00000015x^2$ where $x \geq 0$
+- $f_3(x) = 101.9 - 1.9e^{-0.00114x}$ where $x \geq 0$
+- $f_4(x) = 100 - 0.000181x + 0.83\ln(0.005x+1)$ where $x \geq 0$
+- $f_5(x) = (100 + 0.00623x)e^{-0.0000506x}$ where $x \geq 0$
+
+<details>
+<summary>Graphs of these Functions</summary>
+
+```r
+rm(list=ls())
+library(data4led)
+bulb <- led_bulb(1,seed = 123)
+
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+f0 <- function(x,a0=100,a1=0){ a0 + a1*x }
+f1 <- function(x,a0=100,a1=7e-4){ a0 + a1*x }
+f2 <- function(x,a0=100,a1=1.1e-3,a2=-1.5e-7){ a0 + a1*x + a2*x^2 }
+f3 <- function(x,a1=-1.9,a2=0.00114){ (100-a1) + a1*exp(-a2*x) }
+f4 <- function(x,a0=100,a1=-1.81e-4,a2=0.83){a0+a1*x+a2*log(0.005*x+1)}
+f5 <- function(x,a0=100,a1=6.23e-3,a2=5.06e-5){ (a0 + a1*x)*exp(-a2*x) }
+
+x <- seq(-10,80001,2)
+y0 <- f2(x)
+y1 <- f2(x)
+y2 <- f2(x)
+y3 <- f3(x)
+y4 <- f4(x)
+y5 <- f5(x)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f0')
+lines(x,y0,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y0,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f1')
+lines(x,y1,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y1,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f2')
+lines(x,y2,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y2,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f3')
+lines(x,y3,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y3,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f4')
+lines(x,y4,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y4,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f5')
+lines(x,y5,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y5,col=2)
+```
+
+</details>
+
+Use the model $f_4$ to answer the question, What is the intensity of the bulb after 12000 hours?
+
+Use the model $f_3$ to answer the question, When is the intensity of the bulb 90% of its original intensity?
+
+Use the model $f_2$ to answer the question, When is the intensity of the bulb 97% of its original intensity?
+
+Use the model $f_5$ to answer the question, When is the intensity of the bulb 95% of its original intensity?
+
+Use the model $f_5$ to answer the question, What is the intensity of the bulb after 25000 hours?
+
+<details>
+<summary>Solutions</summary>
+
+Run the code below to obtain the solutions. 
+
+```r
+f4(12000)
+
+uniroot(function(x){f3(x)-90},c(-10000,100))$root
+
+uniroot(function(x){f2(x)-97},c(0,10000))$root
+
+uniroot(function(x){f5(x)-95},c(0,80000))$root
+
+f5(25000)
+```
+
+</details>

@@ -1,0 +1,409 @@
+---
+title: "Class 36"
+---
+
+# During Class
+
+<details>
+<summary>Code chunks from Rectangles, Targets, and Sums</summary>
+
+```r
+1. Shades a target diagram for a probability mass function. 
+1. Inputs: 
+1. x - a vector of data points
+1. p - a corresponding vector of probabilities or frequencies
+1. All widths are 1 unit wide. 
+draw_pmf <- function(x,p){
+  xs <- c(rbind(x-1/2,x-1/2,x+1/2,x+1/2))
+  px <- c(rbind(0,p,p,0))
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot.new()
+  plot(xs,px,type="l")
+  polygon(xs,px,col="gray")
+}
+
+1. Shades a target diagram (shades area under) for a function f from a to b. 
+1. Inputs: 
+1. f - a function f(x)
+1. a - left end of the target
+1. b - right end of the target
+1. num_points - how many point are sent into f for plotting. 
+draw_target <- function(f,a,b,num_points=100){
+  x <- c(a,seq(a,b,(b-a)/num_points),b,a)
+  y <- c(0,f(seq(a,b,(b-a)/num_points)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+  polygon(x,y,col="gray")
+}
+
+1. Draws rectangles over the top of a given function.
+1. The midpoint of top of each rectangle passes through the function. 
+1. f - a function f(x)
+1. a - left end of graph
+1. b - right end of graph
+1. num_rectangles - how many rectangles to plot.
+1. method - One of "left", "right", or "mid".  Defaults to mid.
+draw_rect_approx <- function(f,a,b,num_rectangles, method = "mid"){
+  n <- num_rectangles
+  dx <- (b-a)/n
+  x <- c(a,seq(a,b,dx/100),b,a)
+  y <- c(0,f(seq(a,b,dx/100)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+
+  if(method == "left"){
+    xi <- seq(a+0*dx/2,b-dx/2,dx)
+    lines(xi,f(xi),type = "h")
+    lines(xi,f(xi),type = "s")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "h")
+  }
+  else if(method == "right"){
+    xi <- seq(a+dx,b+dx/2,dx)
+    lines(xi-dx,f(xi),type = "h")
+    lines(xi-dx,f(xi),type = "s")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "h")
+  } 
+  else{#Use midpoint
+    xi <- seq(a+dx/2,b,dx)
+    lines(xi-dx/2,f(xi),type = "h")
+    lines(xi-dx/2,f(xi),type = "s")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "h")
+  }
+}
+```
+
+</details>
+
+## Brain Gains
+- Use the two properties of probability density functions to explain why $f$ **is not** a PDF.
+$f(x) = 
+\begin{cases}
+2 & \quad 0 \leq x \leq 6 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+```r
+f <- function(x){2 + 0*x}
+draw_target(f,0,6)
+```
+
+- Find the value $k$ so that this function is a PDF.
+$f(x) = 
+\begin{cases}
+2k & \quad 0 \leq x \leq 6 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+- Use the following code to plot the function $ f_0(x) = \frac{1}{3} $ for $ -1 < x < 2 $ and 0 otherwise. This is the uniform probability model (or distribution) with parameters $ a = -1 $ and $ b = 2 $. 
+
+```r
+f0 <- function(x,a=0,b=1){(1/(b-a))+0*x}
+
+x <- seq(-1,2,0.1)
+y <- f0(x,-1,2)
+
+plot(x,y,type='l',xlim=c(-2,3),ylim=c(0,0.5))
+```
+
+Then simulate a sample of 25000 random measurements from this distribution (use the seed 123) and calculate the probability that a measurement in our sample will be less than 1.2.
+
+```r
+set.seed(123)
+tmp <- runif(25000,a,b)
+```
+
+<details>
+<summary>Answers</summary>
+
+- The function $f$ is nonnegative (or $ f(x) \geq 0 $) but the area under the function $ f $ is $ A = 2(6) = 12 $ which is not 1. So $ f $ is not a probability density function.
+
+- The function $f$ is nonnegative (or $ f(x) \geq 0 $) as long as $ k > 0 $ (and we get to pick $k$). If $ k = \frac{1}{12} $ then the area under the function $ f $ is $ A = (\frac{2}{12})(6) = 1 $. Since $ f $ satisfies the two properties of a pdf it is a pdf.
+
+- The total number of measurements in our sample less than or equal to 1.2 is 18327. Comparing this to the number of measurements in our sample we find the probability is 18327/25000 = 0.73308.
+
+```r
+set.seed(123)
+tmp <- runif(25000,-1,2)
+x <- length(which(tmp <= 1.2))
+p <- x/length(tmp)
+p
+```
+
+    - Note if we let $X$ be the random variable which records the $x$-coordinate of dropping a dart on the target defined by $f_0$ we could calculate this same probability $P(X \leq 1.2)$ from the model.
+$$ P(X \leq 1.2) = \frac{(1/3)*(1.2+1)}{1} = \frac{11}{15} \approx 0.733333 $$
+
+</details>
+
+## Key Ideas (Targets & Continuous Random Variables)
+
+<details>
+<summary>The cumulative distribution function (CDF) of a random variable</summary>
+
+The **cumulative distribution function** of a random variable $X$ is the function $F(x) = P(X \leq x)$.
+
+</details>
+
+<details>
+<summary>The probability density function (PDF) of a continuous random variable</summary>
+
+The **probability density function**, $f(x)$ of a *continuous* random variable $X$ with cumulative distribution function $F(x)$, is the derivative of $F(x)$.
+
+- Every probability density function is non-negative, in other words $f(x) \geq 0$.
+- The total area under a probability density function always equals 1.
+
+</details>
+
+- Any function that is non-negative with a total area of 1 can be interpreted as the probability density function of some random variable.
+- If a function $g(x)$ is non-negative and has a finite total area, we can normalize the function (dividing by the area), like we have been doing with our target functions, to make a PDF.
+
+- To normalize means to multiply by a factor to make some quantity a desired value. Examples from this semester:
+    - Compare the intensity of a light bulb to the original intensity. Thus the normalized intensity will be 1 (as a proportion) or 100 (as a percent) when t=0 hours. The "normalization" factor here is $\frac{1}{\text{original intensity}}$.
+    - Scale a target so that it has area 1. The "normalization" factor here is $\frac{1}{\text{total area of original target}}$.
+
+## Riemann Sums & Definite Integrals
+
+<details>
+<summary>Riemann sum for $f$</summary>
+
+Let $f(x)$ be defined on $a \leq x \leq b$. Let $n$ be a positive integer, and divide the interval $ [ a, b ] $ into $n$ subintervals of equal width. From each subinterval choose a point $x_i$. We call
+
+$\sum_{i=1}^{n} f(x_i)\Delta x$
+
+a **Riemann sum for $f$**.
+
+</details>
+
+### Example 1
+Let $g(x) = 4 - x^2$ for $-1 \leq x \leq 2$ and 0 otherwise. 
+
+- Using a Riemann Sum with $n=10$ and $x_i$ as the **midpoints**, approximate the area between $g$ and the $x$-axis.
+
+```r
+g <- function(x){4-x^2}
+a <- -1
+b <- 2
+n <- 10
+dx <- (b-a)/n
+draw_rect_approx(g,a,b,n) 
+
+1. Start at half of dx to the right of a, and then step by dx.
+xi <- seq(a+dx/2,b,dx)
+points(xi,g(xi),pch=16,col=2)
+segments(xi,rep(0,length(xi)),xi,g(xi),col=2)
+
+Ai <- g(xi)*dx
+sum(Ai)
+```
+
+- Using a Riemann Sum with $n=10$ and $x_i$ as the **left end points**, approximate the area between $g$ and the $x$-axis.
+
+```r
+draw_rect_approx(g,a,b,n,method='left') 
+
+1. Start a, and then step by dx.
+xi <- seq(a,b-dx,dx)
+points(xi,g(xi),pch=16,col=2)
+segments(xi,rep(0,length(xi)),xi,g(xi),col=2)
+
+Ai <- g(xi)*dx
+sum(Ai)
+```
+
+- Using a Riemann Sum with $n=10$ and $x_i$ as the **right end points**, approximate the area between $g$ and the $x$-axis.
+
+```r
+draw_rect_approx(g,a,b,n,method='right') 
+
+1. Start a plus dx, and then step by dx.
+xi <- seq(a+dx,b,dx)
+points(xi,g(xi),pch=16,col=2)
+segments(xi,rep(0,length(xi)),xi,g(xi),col=2)
+
+Ai <- g(xi)*dx
+sum(Ai)
+```
+
+Notice each of these approximations are different. **What happens when we increase $n$?**<br>
+Complete the table with $n = 10, 75, 100, 1000, 50000, 750000,$ and $4000000$.
+
+```r
+g <- function(x){4-x^2}
+a <- -1
+b <- 2
+n <- 10
+dx <- (b-a)/n
+
+1. Mid: Start at half of dx to the right of a, and then step by dx.
+xi.m <- seq(a+dx/2,b,dx)
+1. Left: Start a, and then step by dx.
+xi.L <- seq(a,b-dx,dx)
+1. Start a plus dx, and then step by dx.
+xi.R <- seq(a+dx,b,dx)
+
+Ai.m <- g(xi.m)*dx
+Ai.L <- g(xi.L)*dx
+Ai.R <- g(xi.R)*dx
+sum(Ai.m)
+sum(Ai.L)
+sum(Ai.R)
+```
+
+Using the information from our table, what do you think is the exact area?
+
+It appears that $\lim_{n \rightarrow \infty} \sum_{i=1}^n g(x_i)\Delta x = 9$.
+
+<details>
+<summary>Definite Integral</summary>
+
+For a function $f(x)$ defined on $a \leq x \leq b$, **the definite integral of $f$ from $a$ to $b$** is 
+
+$\int_a^b f(x) dx = \lim_{n\to \infty }\sum_{i=1}^nf(x_i)\Delta x$,
+
+provided the limit exists. If the limit exists, we say that $f$ is integrable on $ [ a, b ] $.
+
+- $f(x)$ is the integrand
+- $x$ is the variable of integration
+- $a$ is the lower bound (or lower limit of integration)
+- $b$ is the upper bound (or upper limit of integration)
+
+</details>
+
+- Compute $\int_{-1}^{2} 4 - x^2 dx$ using Mathematica.
+*(Remember to use shift + enter to run the command in Mathematica.)*
+
+```r
+Integrate[4-x^2,{x,-1,2}]
+@](:codemend:)
+
+- Is $g$ the PDF of some random variable? If so, explain. If not, then find a value $k$ so that $f(x) = k g(x)$ is the PDF of some random variable. 
+
+<details>
+<summary>Solution</summary>
+
+The function $g$ is nonnegative, but the area under $g$ and above the $x$-axis is 9. As such, the function $g$ is NOT the PDF of some random variable. Letting $k=\frac{1}{9}$ gives the function $f(x) = \frac{1}{9}(4 - x^2)$ for $-1 \leq x \leq 2$ and 0 otherwise. The function $f$ is the PDF of some random variable.
+
+</details>
+
+## Group Meeting
+
+### Practice with Riemann Sums
+- Use a Riemann sum with $n=25$ to approximate $E[X]$ for the target function $f(x) =  \frac{1}{2}(x-1)$ for $1\leq x\leq 3$.
+
+<details>
+<summary>Solution</summary>
+
+We can use the formula $\frac{\sum{x_iA_i}}{\sum{A_i}} = \frac{\sum{x_if(x_i)dx}}{\sum{f(x_i)dx}}$ from Section 1.2 to compute the expected value, which is done below. 
+(:code:)
+```r
+f <- function(x){(1/2)*(x-1)}
+a <- 1
+b <- 3
+n <- 25
+dx <- (b-a)/n
+draw_rect_approx(f,a,b,n) 
+
+xi <- seq(a+dx/2,b,dx)
+Ai <- f(xi)*dx
+
+sum(xi*Ai)/sum(Ai)
+```
+
+</details>
+
+- The limit of this Riemann Sum as $n$ goes to infinite is a definite integral. Write down the definite integral that is equal to $\ds \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \frac{1}{2}(x-1)x \Delta x $.
+
+- Approximate the definite integral above by increasing the value of $n$ from 25 to 50, then 100, etc., until you have a good estimate for limit. 
+
+- Compute exactly the limit of this Riemann sum (the definite integral) using Mathematica.
+*(Remember to use shift + enter to run the command in Mathematica.)*
+
+```r
+Integrate[(1/2)*(x-1)*x,{x,1,3}]
+```
+(:codemend:)
+
+### Practice with identifying PDFs
+Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+
+- Use the two properties of probability density functions to explain why $f$ **is not** a PDF.
+$f(x) = 
+\begin{cases}
+x & \quad 0 \leq x \leq 3 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+(:code:)[@
+f <- function(x){x}
+draw_target(f,0,3)
+```
+
+- Find the value $k$ so that this function is a PDF.
+$f(x) = 
+\begin{cases}
+kx & \quad 0 \leq x \leq 3 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+- Use the two properties of probability density functions to explain why $f$ **is not** a PDF.
+$f(x) = 
+\begin{cases}
+-\frac{1}{2} & \quad 0 \leq x \leq 2 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+```r
+f <- function(x){-0.5+0*x}
+draw_target(f,0,2)
+```
+
+- Use the two properties of probability density functions to explain why $f$ **is not** a PDF.
+$f(x) = 
+\begin{cases}
+\frac{1}{4}(x-2) & \quad 1 \leq x \leq 5 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+```r
+f <- function(x){0.25*(x-2)}
+draw_target(f,1,5)
+```
+
+- Use the two properties of probability density functions to determine whether or not $f$ is a PDF.
+$f(x) = 
+\begin{cases}
+\frac{1}{8}(x+1) & \quad -1 \leq x \leq 3 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+```r
+f <- function(x){(1/8)*(x+1)}
+draw_target(f,-1,3)
+```
+
+- Use the two properties of probability density functions to determine whether or not $f$ is a PDF.
+$f(x) = 
+\begin{cases}
+5-x & \quad 2 \leq x \leq 5 \\ \\
+0 & \text{otherwise}.
+\end{cases}$
+
+```r
+f <- function(x){5-x}
+draw_target(f,2,5)
+```
+
+- Consider the target with top defined by $ f $ (given below). When a dart falls on the point $( x , y )$, we'll record just the $x$-coordinate and let $X$ represent this random variable.
+$f(x) = 
+\begin{cases}
+kx - k & \quad 1 \leq x \leq 3 \\ \\
+0 & \quad \text{otherwise}.
+\end{cases}$
+
+    - Select $k$ so $f$ is the PDF of $X$.
+
+```r
+f <- function(x){x-1}
+draw_target(f,1,3)
+```

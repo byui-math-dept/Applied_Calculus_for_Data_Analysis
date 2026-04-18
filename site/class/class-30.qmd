@@ -1,0 +1,364 @@
+---
+title: "Class 30"
+---
+
+# During Class
+
+<details>
+<summary>Steps of Optimization</summary>
+
+- Identify the Function of Interest (the objective function)
+    - This is the function you want to make big (maximize) or small (minimize).
+- Optimize
+    - Take the first and second derivatives.
+    - Set the first derivative (or first partial derivatives) equal to zero and solve to find the critical point(s).
+    - Use the second derivative test to verify you found the location of a maximum (or minimum).
+- Answer the Question
+
+</details>
+
+<details>
+<summary>Steps for writing down the loglikelihood function</summary>
+
+- Calculate the residuals (or errors), $r_i = y_i - f(x_i)$, where $f$ is the model you are trying to fit to your data and $(x_i, y_i)$ is the given data where $i = 1, 2, 3, ... , m$.
+- If we assume the residuals are observations from normal random variables each with mean zero and standard deviation one, we are assuming the probability model $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}r^2}$ describes each of residuals. This probability model is the same model for each of the $m$ random variables and each $r_i$ is an observation from one of these random variables.
+- If we assume the residuals are independent (these $m$ random variables are independent) we can calculate the combined probability model (or joint probability model) for all the residuals together by multiplying their individual probability models to get $$J(\mathbf{x}, \mathbf{y}; \text{parameters of } f) = \prod_{i=1}^m \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}r_i^2}.$$ This function can be used to calculate probability information about various combined lists of data $\mathbf{x}$ and $\mathbf{y}$ provided specific values of the parameters for $f$ have already been selected (this function assumes the parameters of $f$ are known and the data is unknown).
+- The likelihood function assumes the data is known but the parameters of the model $f$ have not been determined. The roles of the parameters of $f$ and the data have switched. The likelihood function is $$L(\text{parameters of } f; \mathbf{x}, \mathbf{y}) = \prod_{i=1}^m \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}r_i^2} = \prod_{i=1}^m \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f(x_i))^2}.$$ Notice the only difference between $J$ and $L$ is whether we know the data or the parameters of $f$.
+- The loglikelihood function is the natural log of the likelihood function which gives $$\ell(\text{parameters of } f; \mathbf{x}, \mathbf{y}) = \ln \prod_{i=1}^m \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f(x_i))^2}.$$ We can simplify the loglikelihood function by writing it in a more convenient form using the properties of logarithms and properties of sums. We find $$\ell(\text{parameters of } f; \mathbf{x}, \mathbf{y}) = m\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2} \sum_{i=1}^m (y_i - f(x_i))^2.$$
+
+</details>
+
+<details>
+<summary>Properties of Logs</summary>
+
+- $\log(AB) = \log(A) + \log(B)$
+- $\log\left(\frac{A}{B}\right) = \log(A) - \log(B)$
+- $\log(A^n) = n\log(A)$
+- $\log_b(b^x) = x$
+
+</details>
+
+<details>
+<summary>Properties of Sum</summary>
+
+- $\sum_{i=1}^m c = mc$
+- $\sum_{i=1}^m ca_i = c\left(\sum_{i=1}^m a_i\right)$
+- $\sum_{i=1}^m a_i + b_i = \left(\sum_{i=1}^m a_i\right) + \left(\sum_{i=1}^m b_i\right)$
+- $\sum_{i=1}^m a_i - b_i = \left(\sum_{i=1}^m a_i\right) - \left(\sum_{i=1}^m b_i\right)$
+
+</details>
+
+## Brain Gains
+We would like to fit the model  $h(x) = mx + b$ (or $h(x) = b + mx $) to the following data $(x_i,y_i)$ using the maximum likelihood method, where we will assume the errors are independent and follow a standard normal distribution (this means a normal distribution with mean 0 and standard deviation 1, hence $p(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}$).
+
+```r
+data <- read.csv(url("https://byuistats.github.io/M119/logLikelihood_practice.csv"))
+
+x <- data$x
+y <- data$y2
+```
+
+[Identify the Function of Interest] (Project 2 Task 1)
+- Write down and simplify the loglikelihood function. Explain your steps. Be explicit.
+    - Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1?
+    - Where did you use the assumption that the errors are independent?
+    - What properties of logarithms did you use to simplify?
+    - What properties of sums did you use to simplify?
+
+<details>
+<summary>Check Your Answer</summary>
+
+$\ell(m, b; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i - b)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i - b)^2$
+
+</details>
+
+[Optimize] -- Find the first and second derivatives of $\ell$. (Project 2 Task 2)
+- Write down and simplify the first and second partial derivatives of $\ell$. Each of first partial derivatives should be of the form $c_1 - c_2b - c_3m$. Each of the second partial derivatives should be a constant.
+    - What derivative rules did you use?
+    - What sum rules did you use?
+
+<details>
+<summary>Check Your Answer</summary>
+
+- $\frac{\partial \ell}{\partial b} = \left(\sum_{i=1}^{50} y_i\right) - 50b - \left(\sum_{i=1}^{50} x_i\right)m$
+- $\frac{\partial \ell}{\partial m} = \left(\sum_{i=1}^{50} x_iy_i\right) - \left(\sum_{i=1}^{50} x_i\right)b - \left(\sum_{i=1}^{50} x_i^2\right)m$
+
+- $\frac{\partial^2 \ell}{\partial b^2} = -50$
+- $\frac{\partial^2 \ell}{\partial m^2} = -\sum_{i=1}^{50} x_i^2$
+- $\frac{\partial^2 \ell}{\partial b \partial m} = -\sum_{i=1}^{50} x_i$
+
+</details>
+
+[Optimize] -- Find any critical point(s) of $\ell$. (Project 2 Task 3)
+- Solve the system that results from setting the partial derivatives equal to zero. 
+
+<details>
+<summary>Check Your Answer</summary>
+
+We set the first partial derivatives equal to zero and solve to find the critical values of $\ell$, so we need to solve
+$$\left\{
+\begin{align*}
+\frac{\partial \ell}{\partial b} &= 0 \\
+\frac{\partial \ell}{\partial m} &= 0.
+\end{align*} 
+\right.$$
+This means we need to solve the system
+$$\left\{
+\begin{array}{ll}
+\left(\sum_{i=1}^{50} y_i\right) - 50b - \left(\sum_{i=1}^{50} x_i\right)m &= 0 \\ 
+\left(\sum_{i=1}^{50} x_iy_i\right) - \left(\sum_{i=1}^{50} x_i\right)b - \left(\sum_{i=1}^{50} x_i^2\right)m &= 0.
+\end{array} 
+\right.$$
+
+We notice that this system is of the form
+$$\left\{
+\begin{array}{ll}
+b_1 - c_{11}b - c_{12}m &= 0 \\ 
+b_2 - c_{21}b - c_{22}m &= 0,
+\end{array} 
+\right.$$
+with
+- $b_1 = \sum_{i=1}^{50} y_i$,
+- $c_{11} = 50$,
+- $c_{12} = c_{21} = \sum_{i=1}^{50} x_i$,
+- $b_2 = \sum_{i=1}^{50} x_iy_i$, and 
+- $c_{22} = \sum_{i=1}^{50} x_i^2$.
+
+From previous work we know the solution to this system of equations is $m = \frac{c_{11}b_2 - c_{12}b_1}{c_{11}c_{22} - c_{12}^2}$ and $b = \frac{b_1 - c_{12}m}{c_{11}}$.
+
+When we substitute in the formulas for the constants $c_{11}$, $c_{12}$, $c_{22}$, $b_1$, and $b_2$ we see 
+$m = \frac{50\sum_{i=1}^{50} x_iy_i - \sum_{i=1}^{50} x_i\sum_{i=1}^{50} y_i}{50\sum_{i=1}^{50} x_i^2 - \left(\sum_{i=1}^{50} x_i\right)^2} = \frac{\left(\sum_{i=1}^{50} x_iy_i\right) - 50\overline{x}\overline{y}}{\sum_{i=1}^{50} x_i^2 - 50\overline{x}^2}$ and 
+$b = \frac{b_1 - c_2m}{c_1} = \frac{\sum_{i=1}^{50} y_i - \left(\sum_{i=1}^{50} x_i\right)m}{50} = \overline{y} -  m\overline{x}$.
+
+We can use the following code to calculate $m$ and $b$.
+
+```r
+c11 <- 50
+c12 <- sum(x)
+c21 <- c12
+c22 <- sum(x^2)
+b1 <- sum(y)
+b2 <- sum(x*y)
+
+    1. Create a function to solve a system of equations. 
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+
+sol <- solvesystem(c11, c12, b1, c12, c22, b2)
+best_b <- sol[1] 
+best_m <- sol[2] 
+
+best_b
+best_m
+```
+
+</details>
+
+    - How do we know we have found the location of a maximum?
+
+<details>
+<summary>Check Your Answer</summary>
+
+We use the second derivative test.
+
+We need to calculate $D$, as well as $\frac{\partial^2 \ell}{\partial b^2}$.
+
+```r
+fxx <- -c11 
+fxy <- -c12 
+fyy <- -c22
+D <- fxx*fyy - fxy^2
+D
+fxx
+```
+
+Since $D > 0$ and $\frac{\partial^2 \ell}{\partial b^2} < 0$, we know we have found the the location of a local maximum.
+
+</details>
+
+[Answer the Question] (Project 2 Task 3 & Project 2)
+- Write down your fitted model.
+    - Plot your model.
+    - We could use this function to answer a question or make a prediction based on the data and the assumption that the process can be described by the general model $f(x) = mx + b$.
+- Use R to graph your fitted model with the data.
+
+```r
+h <- function(x, b = best_b, m = best_m){b + m*x}
+
+x_in <- seq(min(x),max(x),0.01)
+par(mfrow=c(1,1),mar=c(2.5,2.5,0.25,0.25))
+plot(x,y,type='p',pch=16)
+lines(x_in,h(x_in),col=3)
+abline(h=0,lty=3,col='gray')
+abline(v=0,lty=3,col='gray')
+```
+
+## Discussion
+### Activity - More Practice with Maximum Likelihood Method
+Our goal is to practice fitting deterministic models to data using the maximum likelihood method (an optimization method).
+We will assume the errors are independent and normally distributed with mean 0 and standard deviation 1.
+
+#### Consider the model $f(x) = mx$. 
+We would like to fit this model to the following data $(x_i,y_i)$ using the maximum likelihood method.
+- Read in the data with the following code.
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/logLikelihood_practice.csv"))
+
+x <- data$x
+y1 <- data$y1
+```
+
+- [Identify the Function of Interest] (Project 2 Task 1)
+Write down and simplify the loglikelihood function. Explain your steps. Be explicit.
+    - Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1?
+    - Where did you use the assumption that the errors are independent?
+    - What properties of logarithms did you use to simplify?
+    - What properties of sums did you use to simplify?
+
+<details>
+<summary>Check Your Answer</summary>
+
+$\ell(m; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i)^2$
+
+</details>
+
+- [Optimize] -- Find the first and second derivatives of $\ell$. (Project 2 Task 2)
+Write down and simplify the first and second derivatives of $\ell$. The first derivative should be of the form $c_1 - c_2m$. The second derivative should be a constant.
+    - What derivative rules did you use?
+    - What sum rules did you use?
+
+<details>
+<summary>Check Your Answer</summary>
+
+      - $\frac{d\ell}{dm} = \left(\sum_{i=1}^{50} x_iy_i\right) - \left(\sum_{i=1}^{50} x_i^2\right) m$
+      - $\frac{d^2\ell}{dm^2} = -\sum_{i=1}^{50} x_i^2$
+
+</details>
+
+- [Optimize] -- Find any critical value(s) of $\ell$. (Project 2 Task 3)
+
+<details>
+<summary>Check Your Answer</summary>
+
+$m = \frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}$
+
+**CAUTION:** $\frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}$ is **NOT equal** to $\frac{\sum_{i=1}^{50} y_i}{\sum_{i=1}^{50} x_i}$
+
+```r
+m_best <- sum(x*y1)/sum(x^2)
+```
+
+</details>
+
+    - How do we know $m = \frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}$ is the location of a maximum?
+
+- [Answer the Question] (Project 2 Task 3 & Project 2)
+    - Write down your fitted model.
+    - Graph your fitted model with the data.
+
+```r
+f <- function(x,b=0,m=m_best){b + m*x}
+
+x_in <- seq(-10,10,0.01)
+par(mfrow=c(1,1),mar=c(2.5,2.5,0.25,0.25))
+plot(x,y1,type='p',pch=16)
+lines(x_in,f(x_in),col=3)
+abline(h=0,lty=3,col='gray')
+abline(v=0,lty=3,col='gray')
+```
+
+We could now use this function to answer a question or make a prediction based on the data and the assumption that the process we are studying can be described by the general model $f(x) = mx$.
+
+- Use R to graph the likelihood function and the loglikelihood function.
+
+```r
+L <- function(m,x,y){ prod((1/sqrt(2*pi))*exp(-(y-m*x)^2/2)) }
+logL <- function(m,x,y){ log(prod((1/sqrt(2*pi))*exp(-(y-m*x)^2/2)))}
+
+x_val <- seq(-2,2,0.01)
+y_L <- sapply(x_val,FUN=L,x=x,y=y1)
+y_logL <- sapply(x_val,FUN=logL,x=x,y=y1)
+
+par(mfrow=c(1,2))
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x_val,y_L,type='l')
+abline(v=m_best,col=4)
+plot(x_val,y_logL,type='l')
+abline(v=m_best,col=4)
+```
+
+    - Is the location of the maximum the same for the likelihood function and loglikelihood function?
+    - Is the value of the maximum the same for the likelihood function and the loglikelihood function?
+
+## Group Meeting 
+
+### Activity - More Practice with Maximum Likelihood Method
+#### Consider the model $f(x) = be^{-x}$. 
+We would like to fit this model to the following data $(x_i,y_i)$ using the maximum likelihood method. Work together at the boards, as appropriate, to complete the following.
+
+- Read in the data with the following code.
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/logLikelihood_practice2.csv"))
+
+x <- data$x
+y1 <- data$y1
+```
+
+- Write down and simplify the loglikelihood function.
+- Write down and simplify the first and derivatives of the loglikelihood function.
+- Find any critical point(s) of the loglikelihood function.
+- Verify you have found a maximum using the second derivative.
+- Write down the fitted model.
+
+#### Consider the model $h(x) = a + be^{-x}$. 
+We would like to fit this model to the following data $(x_i,y_i)$ using the maximum likelihood method.
+
+As you work on examples in pairs or groups as assigned. Write down your work and be prepared to share with the class ideas, questions, and solutions from your discussion.
+
+- Read in the data with the following code.
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/logLikelihood_practice2.csv"))
+
+x <- data$x
+y1 <- data$y1
+```
+
+- Write down and simplify the loglikelihood function.
+- Write down and simplify the first and derivatives of the loglikelihood function.
+- Find any critical point(s) of the loglikelihood function.
+- Verify you have found a maximum using the second derivative.
+- Write down the fitted model.
+
+#### Consider the model $h(x) = 100 + be^{-x}$. 
+We would like to fit this model to the following data $(x_i,y_i)$ using the maximum likelihood method.
+
+As you work on examples in pairs or groups as assigned. Write down your work and be prepared to share with the class ideas, questions, and solutions from your discussion.
+
+- Read in the data with the following code.
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/logLikelihood_practice2.csv"))
+
+x <- data$x
+y1 <- data$y1
+```
+
+- Write down and simplify the loglikelihood function.
+- Write down and simplify the first and derivatives of the loglikelihood function.
+- Find any critical point(s) of the loglikelihood function.
+- Verify you have found a maximum using the second derivative.
+- Write down the fitted model.
+
+### Project 2 Task 3 WrapUp
+Check-in with your group. Take a little time to help wrap up any lingering questions related to Project 2 Task 1-3. 
+
+## Discussion

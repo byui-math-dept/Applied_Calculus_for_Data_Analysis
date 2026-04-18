@@ -1,0 +1,229 @@
+---
+title: "Class 27"
+---
+
+# During Class
+## Brain Gains
+In the prep for class, we found that the system of equations 
+$$\left\{
+\begin{array}{ll}
+b_{1,1}x + b_{1,2}y &= c_1 \\ 
+b_{2,1}x + b_{2,2}y &= c_2
+\end{array} 
+\right.$$ 
+has the solution
+$$x = \frac{c_1b_{2,2} - b_{1,2}c_2}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}},\quad y = \frac{b_{1,1}c_2 - c_1b_{2,1}}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}.$$
+
+1.
+Solve $2x+3y=4,5x+6y=7$.
+
+<details>
+<summary>Solution</summary>
+
+We'll use the solution $x = \dfrac{c_1b_{2,2} - b_{1,2}c_2}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}$ and $y = \dfrac{b_{1,1}c_2 - c_1b_{2,1}}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}.$ 
+This gives $$x = \dfrac{ (4)(6) - (3)(7) }{ (2)(6) - (3)(5)}\quad\text{and}\quad y = \dfrac{ (2)(7) - (4)(5)}{(2)(6) - (3)(5) }.$$
+
+</details>
+
+2.
+Solve $\pi a_1+a_2\ln 2 =7,(\sum_{i=1}^3i^2)a_1+(\sum_{i=1}^3(i-1))a_2=\sum_{i=1}^3 (i-i^2)$.
+
+<details>
+<summary>Solution</summary>
+
+Again we'll use the solution $x = \dfrac{c_1b_{2,2} - b_{1,2}c_2}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}$ and $y = \dfrac{b_{1,1}c_2 - c_1b_{2,1}}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}.$ 
+This gives 
+$$x = \dfrac{ (7)(\sum_{i=1}^3(i-1)) - (\ln 2)(\sum_{i=1}^3 (i-i^2)) }{ (\pi)(\sum_{i=1}^3(i-1)) - (\ln 2)(\sum_{i=1}^3i^2) }
+\quad\text{and}\quad 
+y = \dfrac{ (\pi)(\sum_{i=1}^3 (i-i^2)) - (7)(\sum_{i=1}^3i^2) }{ (\pi)(\sum_{i=1}^3(i-1)) - (\ln 2)(\sum_{i=1}^3i^2) }.$$
+
+</details>
+
+3.
+Solve $\sum_{n=1}^{44}(nx+3y-7)=0,\sum_{n=1}^{44}(n^2-5x-ny)=0$.
+
+<details>
+<summary>Solution</summary>
+
+Again we'll use the solution $x = \dfrac{c_1b_{2,2} - b_{1,2}c_2}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}$ and $y = \dfrac{b_{1,1}c_2 - c_1b_{2,1}}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}.$ However, this time, we first need to do some rewriting before we can. 
+By summing each term individually, and factoring out common terms we have 
+$$\sum_{n=1}^{44}(nx+3y-7)=(\sum_{n=1}^{44}n)x+(\sum_{n=1}^{44}3)y-(\sum_{n=1}^{44}7)$$ 
+and
+$$\sum_{n=1}^{44}(n^2-5x-ny)=(\sum_{n=1}^{44}n^2)-(\sum_{n=1}^{44}5)x-(\sum_{n=1}^{44}n)y.$$
+As such, we need to solve the system 
+$$
+\begin{align*}
+(\sum_{n=1}^{44}n)x+(\sum_{n=1}^{44}3)y&=(\sum_{n=1}^{44}7)\\
+(\sum_{n=1}^{44}5)x+(\sum_{n=1}^{44}n)y&=(\sum_{n=1}^{44}n^2)
+\end{align*}
+$$
+The solution then takes the same from as the previous solutions, with 
+- $b_{1,1}=(\sum_{n=1}^{44}n)$,
+- $b_{1,2}=(\sum_{n=1}^{44}3)$,
+- $c_{1}=(\sum_{n=1}^{44}7)$,
+- $b_{2,1}=(\sum_{n=1}^{44}5)$,
+- $b_{2,2}=(\sum_{n=1}^{44}n)$,
+- $c_{2}=(\sum_{n=1}^{44}n^2)$.
+This means the solution is 
+$$
+x = \dfrac{ (\sum_{n=1}^{44}7)(\sum_{n=1}^{44}n) - (\sum_{n=1}^{44}3)(\sum_{n=1}^{44}n^2) }{ (\sum_{n=1}^{44}n)(\sum_{n=1}^{44}n) - (\sum_{n=1}^{44}3)(\sum_{n=1}^{44}5) }
+\quad\text{and}\quad
+y = \dfrac{ (\sum_{n=1}^{44}n)(\sum_{n=1}^{44}n^2) - (\sum_{n=1}^{44}7)(\sum_{n=1}^{44}5) }{ (\sum_{n=1}^{44}n)(\sum_{n=1}^{44}n) - (\sum_{n=1}^{44}3)(\sum_{n=1}^{44}5) }.
+$$
+We can use R to compute the solution, using 
+
+```r
+n <- seq(1,44)
+b11 <- sum(n)
+b12 <- sum(3+0*n) #Why have 0*n?
+c1 <- sum(7+0*n)
+b21 <- sum(5+0*n)
+b22 <- sum(n)
+c2 <- sum(n^2)
+
+x <- (c1*b22 - b12*c2)/(b11*b22 - b12*b21)
+y <- (b11*c2 - c1*b21)/(b11*b22 - b12*b21)
+
+1. Check
+b11*x+b12*y == c1
+b21*x+b22*y == c2
+
+1. Remember floating point arithmetic can cause a problem with the logic checks above. 
+b11*x+b12*y - c1
+b21*x+b22*y - c2
+
+1. R has a function to help with this, called all.equal()
+all.equal(b11*x+b12*y,c1)
+all.equal(b21*x+b22*y,c2)
+```
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Practice with Optimization
+1.
+A farmer has 2400 feet of fencing to build a fence creating a rectangular corral (or pen) for some of the animals. What are the dimensions of the pen of largest area satisfying these conditions? What is the area of the pen?
+
+<details>
+<summary>Answers</summary>
+
+- $A_1(x) = x(1200-x) = 1200x - x^2$ where $0 < x < 1200$.
+- $\diff{A_1}{x} = 1200-2x$ and $x = 600$ is the location of a maximum since $\frac{d^2A_2}{dx^2}(600) = -2 < 0$.
+- The largest pen will have dimensions 600ft by 600ft and an area of 360,000 square feet.
+
+</details>
+
+2.
+A different farmer also has 2400 feet of fencing to build a fence creating a rectangular corral, but she plans to use the wall of a long group of buildings as one of the sides of the rectangular corral. What are the dimensions of the pen of largest area satisfying these conditions? What is the area of the pen?
+
+<details>
+<summary>Answers</summary>
+
+- $A_2(x) = x(2400-2x) = 2400x - 2x^2$ where $0 < x < 1200$.
+- $\diff{A_2}{x} = 2400-4x$ and $x = 600$ is the location of a maximum since $\frac{d^2A_2}{dx^2}(600) = -4 < 0$.
+- The largest pen will have dimensions 600ft by 1200ft and an area of 720,000 square feet.
+
+</details>
+
+3.
+The product of two numbers $n$ and $m$ is 100, and $n$ must be positive. What is the smallest sum?
+
+<details>
+<summary>Answers</summary>
+
+- The sum of the two numbers is $S(n) = n + \frac{100}{n}$ where $n > 0$.
+- We see $\diff{S}{n} = 1 - \frac{100}{n^2} = \frac{n^2 - 100}{n^2}$ and $\frac{d^2S}{dn^2} = \frac{200}{n^3}$.
+- The critical values of $S(n)$ are $n = 0$, where $\diff{S}{n}(n)$ is undefined (and an endpoint), and $n = 10$ (and $n = -10$ ), where $\diff{S}{n}(n) = 0$ (of course $n = -10$ is not in the domain of $S(n)$ since the domain is $n > 0$).
+- Since $\frac{d^2S}{dn^2}(10) = \frac{200}{10^3} > 0$, we know that the function is concave upwards at $n = 10$ and this is the location of a local minimum of $S(n)$.
+- Since $\diff{S}{n}$ is continuous for $n > 0$ and $\diff{S}{n}(1) = 1 - \frac{100}{1^2} = -99 < 0$, we know that $S(n)$ is decreasing on the interval $( 0, 10) $. 
+- Since $\diff{S}{n}$ is continuous for $n > 0$ and $\diff{S}{n}(20) = 1 - \frac{100}{20^2} = \frac{3}{4} > 0$, we know that $S(n)$ is increasing on the interval $( 10, \infty) $.
+- This tells us that $n = 10$ is the location of the absolute minimum of $S(n)$. The smallest sum is $S(10) = 20$.
+
+</details>
+
+4.
+A company is building square-bottomed boxes with no tops. The material for the bottom costs \$2 per cm'^2^' and the material for the sides costs \$1 per cm'^2^'. The company has budgeted \$96 to build one box. What is the box of largest volume the company can build for \$96?
+
+<details>
+<summary>Answers</summary>
+
+- The volume is $V(x) = 24x - \frac{1}{2}x^3$ where $0 < x < 4\sqrt{3} \approx 6.928$.
+- We compute $\diff{V}{x} = 24 - \frac{3}{2}x^2$ and $\frac{d^2V}{dx^2} = -3x$.
+- The critical values of $V(x)$ are $x = 4$ (and $x = -4$ ), where $\diff{V}{x}(x) = 0$ (of course $x = -4$ is not in the domain of $V(x)$ since the domain is $0 < x < 4\sqrt{3} \approx 6.928$). Note that $\diff{V}{x}$ is never undefined.
+- Since $\frac{d^2V}{dx^2}(4) = -3(4) < 0$ (so concave downwards), we know that $x = 4$ is the location of a local maximum of $V$.
+- Since $V(0) = 0$ and $V(4\sqrt{3}) = 0$, we see that $x = 4$ is the location of the absolute maximum of $V$. 
+- The box of largest volume the company can build for \$96 has a base 4cm by 4cm and a height of 4cm. The volume of this box is 64 cubic centimeters.
+
+</details>
+
+### Activity - Project 2 Practice with $f_1$
+We'll spend some time working through parts of project 2. The point is to help each other by asking and answering questions. We'll focus on the first model $f_1(t; a_1) = 100 + a_1t$. The loglikelihood function, which task 1 has you derive, is 
+$$ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.$$ 
+1. Compute the first derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.$$
+1. Compute the second derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.$$
+1. Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:
+    - $ \frac{d\ell_1}{da_1} = 172746.8 - 328767530 a_1 $
+    - $ \frac{d^2\ell_1}{da_1^2} = -328767530 $
+1. Find the critical points of $\ell_1$. This means you must set the first derivative equal to zero and solve for $a_1$. 
+1. Use the second derivative test to determine if the critical point is the location of maxima or minima.
+1. State the value of $a_1$ that gives the location of maximum loglikelihood.
+1. Use the code below to plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $.
+
+```r
+rm(list=ls())
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+ti <- bulb$hours
+yi <- bulb$percent_intensity
+plot(ti,yi)
+
+my_a1 <- 0.0002 #Will need to be updated
+f1 <- function(t,a1=my_a1){100+a1*t}
+x <- seq(0,5000,10) 
+lines(x,f1(x,a1))
+```
+
+### Activity - Project 2 Practice with $f_2$
+
+Now focus on $f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2$. The loglikelihood function is 
+$$ \ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) =
+44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
+- 100 - a_1t_i - a_2t_i^2)^2.$$
+
+1. Compute the both first partials $\frac{partial \ell_2}{\partial a_1}$ and $\frac{partial \ell_2}{\partial a_2}$. Simplify your work to match the values given in Project 2 Task 2. 
+1. Compute and correctly label all 4 second partials, namely $\frac{\partial^ \ell_2}{\partial a_1^2}$, $\frac{\partial^ \ell_2}{\partial a_2\partial a_1}$, $\frac{\partial^2 \ell_2}{\partial a_1\partial a_2}$, and $\frac{\partial^ \ell_2}{\partial a_2^2}$. Simplify your work to match the values given in Project 2 Task 2.
+1. Use the seed 123 to compute all of the coefficients in the first and second partials. We'll compare answers in class to see how we did. 
+1. Find the critical values by letting both first partials equal zero.  You will obtain a system of equations.  Solve that system using the code from the brain gains. 
+
+We have not yet discussed a second derivative test when there is more than one variable.  We'll be doing that next week. 
+
+### Activity - Reflection on Loglikelihood and Optimization
+1. What are the steps needed to obtain the loglikelihood function given some data $(x_i,y_i)$, a deterministic model $f(x)$, and a probability model $g(r)$ for the residuals. This is precisely part of what you did for Project 2 Task 1.
+1. What are the steps needed to locate and classify extrema for a function, so what are the steps to optimization? This is part of what you did for Project 2 Task 2 and what you will do for Project 2 Task 3.
+
+## Discussion 
+### Summary: Steps to obtain loglikelihood.
+1. Identify the deterministic model $f$ and stochasitic model $p$. 
+1. Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as $L = \prod_i p(r_i)$. 
+1. The loglikelihood function is $\ell = \ln(\prod_i p(r_i))$. 
+
+### Summary: Steps of Optimization
+1. Identify the Function of Interest (the objective function)
+    - This is the function you want to make big (maximize) or small (minimize).
+1. Optimize
+    - Take the first and second derivatives.
+    - Set the first derivative (or derivatives) equal to zero and solve to find the critical values.
+    - Use the second derivative test to make sure you found the maximum (or minimum).
+1. Answer the Question
+
+### Analyzing Waiting times - Using the exponential distribution for our stochastic model. 
+How long do people wait in a line when they head to the bank?  
+- We'll use the deterministic model $f(x) = 0$ to predict how long someone has to wait (where $x$ represents the time of day). What does this model really say in plain english? 
+    - What are your thoughts about our choice of models?
+- We'll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
+- Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where $x_i$ is the time of day the $i^{\text{th}}$ person comes into the bank and $y_i$ is the amount of time that person waits in line).
+- Find the location of the maximum of the loglikelihood function. 
+
+[This article](https://www.statlect.com/fundamentals-of-statistics/exponential-distribution-maximum-likelihood){target="_blank"} goes through all the computations above.

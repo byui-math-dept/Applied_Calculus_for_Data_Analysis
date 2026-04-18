@@ -1,0 +1,15 @@
+---
+title: "Definition: ExponentialFunction"
+---
+
+<details>
+<summary>Definition: Exponential Function (OpenStax Textbook)</summary>
+
+An **exponential function** is of the form $b^x$ where $b>0$ and $b \neq 1$.
+
+Note: An exponential function is not an algebraic function.
+
+</details>
+
+<!-- include: Page.KeyCharacteristicsOfExponentialFunction -->
+<!-- include: Page.PropertiesOfExponents -->

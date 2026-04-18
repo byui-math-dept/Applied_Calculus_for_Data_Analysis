@@ -1,0 +1,238 @@
+---
+title: "Class 10"
+---
+
+# During Class - Day 10
+## Brain Gains
+- Write in expanded form.
+    - $\sum_{i=5}^{10} 3i^2$
+    - $\prod_{k=1}^{4}(100-k^2)$
+- Use log properties to write $\ln\left(\prod_{k=1}^{4}(100-k^2)\right)$ as a sum of logarithms. 
+- Solve $2^x = 37$
+- Solve $\log(x)+\log(x-1) = \log(6)$. 
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Solving Equations
+Solve the following equations for $x$. Write down the exact answer and decimal approximation (round to 4 decimal places).
+1. $3^x = 17 $
+1. $\ln(4x-2) = 5$ 
+1. $\log(5x-30) = 1$
+1. $9^x = 49$
+1. $2^x = 56$
+1. $-2\log_5(7x) = 2$
+1. $\log_3(x-3) - 4 = 12$
+1. $\log_2(x-1) + \log_2(x+5) = 4$
+1. $e^{x-1}-5 = 5$
+1. $3(4^{2-5x})-7=8$
+1. $\ln(x+5) + \ln(x) = \ln(12x)$
+
+### Activity - Solving Exponential and Log Equations using Uniroot
+Let's now solve some equations in R using uniroot. To solve the equation $3^b=17$ with uniroot, the key is to create a function whose zero is the solution we want.  So we rewrite this as $f(b) = 3^b-17$, and we want to solve $3^b-17=0$.  From there, we must give an interval in which we believe the root lies, and then uniroot will find the zero. Because $3^2 = 9$ and $3^3=27$, we know the zero is in the interval $(2,3)$.  Below is the code for using uniroot to solve $3^b=17$. 
+
+```r
+f <- function(x){3^x-17}
+interval <- c(2,3)
+my_root <- uniroot(f, interval)$root
+
+1. The code below produces a plot that illustrates what uniroot found. 
+x<-seq(interval[1],interval[2],0.1)
+plot(x,f(x),type="l")
+abline(h=0,col = "gray")
+abline(v=my_root,col = "gray")
+points(my_root,0, col = "red")
+```
+
+As a team, try adapting the code above to find the zeros of the problems you solved by hand in the previous activity. 
+
+## Discussion 
+
+### Solving equations with uniroot
+What does uniroot do?
+
+```
+?uniroot
+```
+
+The key to using uniroot is to pick two $x$-values where you know the values of the function differ in sign. If needed, construct a plot to help you pick them. Let's look at a few code examples. 
+
+- Solve $h(x) = 0$ given $h(x) = 3x - 15$.
+
+```r
+rm(list=ls()) #Clears the environment
+
+h <- function(x){
+  3*x -15
+}
+
+1. What does the $root code do below?
+uniroot(h,c(0,30))
+uniroot(h,c(0,30))$root
+```
+
+If needed, remember to construct a plot. 
+
+```r
+x <-seq(0,30,1)
+plot(x,h(x), type="l")
+abline(h=0, col = "lightgray")
+```
+
+- Solve $h(x) = 4$ given $h(x) = 3x - 15$.
+
+```r
+h.shift <- function(x){
+  h(x) - 4
+}
+
+uniroot(h.shift,c(0,5))$root
+
+uniroot(h.shift,c(0,10))$root
+```
+
+- Let's solve $3x - 15 = e^{-x+6}$ using uniroot. Note that this function doesn't have a by-hand solution technique. We'll have to update the bounds in uniroot below, using the graph. 
+
+```r
+g <- function(x){
+  3*x-15-exp(-x+6)
+}
+
+uniroot(g,c(0,5))$root
+
+x <-seq(0,30,1)
+plot(x,g(x), type="l")
+abline(h=0, col = "lightgray")
+```
+
+- What happens when we try to solve something impossible, such as $\frac{1}{x} = 0$.
+
+```r
+f <- function(x){
+  1/x
+}
+
+uniroot(f,c(-10,-3))$root
+
+uniroot(f,c(-1,1))$root
+
+uniroot(f,c(-1,1))
+```
+
+Let's practice using uniroot to solve some of the equations below. 
+Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. 
+If needed, we can make a plot first to figure out an interval where the zero should appear. 
+1. $3x-5=0$
+1. $3x-5=7$
+1. $3x-5=e^{-x}$  (Remember to use exp(-x)) for $e^{-x}$ )
+1. $3x-5=\ln(x)$ (Remember to use log(x) for $\ln(x)$). 
+1. $x^2+x-6=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
+1. $x^2-8x+12=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
+
+### Intermediate Value Theorem
+
+<details>
+<summary>Intermediate Value Theorem (IVT)</summary>
+
+If $f(x)$ is a continuous function on a closed interval $ [a, b] $, where $f(a) \neq f(b)$, and $y_0$ is any $y$-value strictly between $f(a)$ and $f(b)$, then $y_0 = f(x_0)$ for some $x$-value, $x_0$, in $ [a, b] $.
+
+Note: While there is a rigorous mathematical definition for what it means to be a continuous function, for our purposes the following concept with suffice, a function is continuous on an interval if the graph of that function can be traced with a pencil without lifting the pencil from the page.
+
+</details>
+
+Consider the function $f(x) = (-13 + 2x)e^{-0.05x}$ and the interval $ [ 3, 50 ] $.  
+- What does the IVT say about this function over this interval?
+
+<details>
+<summary>Expand for a plot of the function.</summary>
+
+```r
+rm(list=ls())
+f <- function(x){ (-13 + 2*x)*exp(-0.05*x) }
+
+x <- seq(0,60,0.1)
+par(mar=c(2.5,2.5,0.5,0.5))
+plot(x, f(x), type='l')
+abline(h=0,col='gray',lty=3)
+abline(v=0,col='gray',lty=3)
+abline(v=3,col='red',lty=3)
+abline(v=50,col='red',lty=3)
+abline(h=f(3),col='blue',lty=3)
+abline(h=f(50),col='blue',lty=3)
+```
+
+</details>
+
+- We currently have $f(x) = (-13 + 2x)e^{-0.05x}$ with $ [a, b] = [ 3, 50 ] $, which means $a = 3$ and $b = 50$.  
+- We can compute know $f(a) = f(3) \approx -6.024956$ and $f(b) = f(50) \approx 7.141395$. Note that $f(3) \neq f(50)$. 
+- We can pick $y_0 = 0$ because we know $f(a)<0<f(b)$ (as $-6.024956 < 0 < 7.141395$).
+- The intermediate value theorem states that there must exist some $x$-value, which we'll call $x_0$, so that $f(x_0) = y_0 = 0$. 
+- We can solve $(-13 + 2x+0)e^{-0.05x_0}=0$ for $x_0$ and get an exact solution (or analytic solution). 
+
+<details>
+<summary>Expand to see an exact solution to $f(x_0) = 0$, obtaining $x_0=6.5$.</summary>
+
+We want to solve $(-13 + 2x_0) e^{-0.05x_0} = 0$. 
+Since we have two things that multiply to zero, we know one of the quantities must be zero.
+We see $-13 + 2x_0 = 0$ or $e^{-0.05x_0} = 0$.
+Since the range of an exponential function is strictly positive numbers, we know $e^{-0.05x_0} \neq 0$.
+So we only have to determine when $-13 + 2x_0 = 0$. 
+This means $2x_0 = 13$, or $x_0 = \frac{13}{2} = 6.5$.
+
+</details>
+
+The intermediate value theorem does not require that we pick $y_0 = 0$.
+- What values can we choose for $y_0$?
+Let's choose $y_0 = 5$, and repeat what we did above. 
+- Why is $y_0=5$ a valid choice?
+- Let's try solving $f(x_0) = y_0 = 5$ by hand for $x_0$. (Unfortunately we will fail when trying to solve this equation exactly.)
+
+<details>
+<summary>Expand to see an attempt at solving $f(x_0) = 5$ exactly.</summary>
+
+We wish to solve $(-13 + 2x_0) e^{-0.05x_0} = 5$. 
+We want to isolate $x_0$, so let's start by expanding the left-hand side (LHS) of the equation.
+This gives us $$-13e^{-0.05x_0} + 2x_0e^{-0.05x_0}  = 5.$$
+That didn't help much. While all of the $x_0$'s are on the LHS, there are no like terms. 
+The equation looks different but we are no closer to our goal of isolating $x_0$.
+
+Instead, let's try isolating the exponential and using a logarithm to rewrite the equation.
+Isolating the exponential term in $(-13 + 2x_0) e^{-0.05x_0} = 5$ gives 
+$$e^{0.05x_0} = \frac{-13 + 2x_0}{5}.$$
+From here we can rewrite in logarithmic form to obtain 
+$0.05x_0 = \ln \left(\frac{-13 + 2x_0}{5} \right)$, which requires $-13 + 2x_0 > 0$ as we cannot compute logarithm of a negative number. 
+We can rewrite this as $$x_0 = \frac{1}{0.05}\ln \left(\frac{-13 + 2x_0}{5} \right),$$
+but this doesn't provide a solution as we still have an $x_0$ trapped in a logarithm.  This approach failed as well. 
+
+It turns out that there is no known solution technique for finding an exact solution to this type of problem. 
+We've already entered a realm where current knowledge has failed to find exact solutions.
+
+</details>
+ 
+- While we cannot obtain an exact solution to $(-13 + 2x_0) e^{-0.05x_0} = 5$, let's solve numerically using R. 
+- Remember that to use the uniroot() function, we need to have one side of the equation be zero (we need to be looking for a root). We see $f(x_0) = 5$ is equivalent to $f(x_0) - 5 = 0$. The function $f(x_0) - 5$ is a new function, let's call it $g$. Notice that $g$ is a transformation of $f$. To get $g$ from $f$ we just shift down 5. 
+
+<details>
+<summary>Expand for the solution to $f(x_0) = 5$ using uniroot.</summary>
+
+```r
+I may call on people to the share in class.
+par(mar=c(2.5,2.5,0.5,0.5))
+plot(x, f(x), type='l',col='gray')
+abline(h=0,col='gray',lty=3)
+abline(v=0,col='gray',lty=3)
+
+a <- 3
+b <- 50
+y0 <- 5
+g <- function(x,y0){f(x)-y0}
+x0 <- uniroot(g,c(a,b),y0=y0)$root
+lines(x, g(x,y0))
+points(c(a,b,a,b), c(f(a),f(b),g(a,y0),g(b,y0)),pch=16,col=2)
+points(x0,f(x0),pch=16,col='blue')
+points(x0,g(x0,y0),pch=16,col='blue')
+
+x0
+```
+
+</details>

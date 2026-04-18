@@ -1,0 +1,348 @@
+---
+title: "Class 3"
+---
+
+# During Class
+
+## Brain Gains
+1. In R, compute the square of each of the numbers $-2,-1,0,1,2,3,4,5$. 
+
+1. In R, plot the function $f(x) = x^2$ for $-2\leq x\leq 5$.
+
+1. In R, construct a graph of $\ds f(x) = \begin{cases}2x&x<1\\3&x\geq 1\end{cases}$
+
+1. What is the difference between a power function and an exponential function?
+
+<details>
+<summary>Some Solutions</summary>
+
+We can use `seq` to create a sequence of numbers, save it as `x`, and then square `x`. 
+
+```r
+x <- seq(-2,5)
+x^2
+```
+
+Here are several options for plotting, including adding a line and defining a function before plotting. 
+
+```r
+plot(x,x^2)
+plot(x,x^2, type = "l")
+
+x <- seq(-2,5,0.1)
+f <- function(x){x^2}
+plot(x,f(x), type = "l")
+```
+
+The ifelse command is perfect for plotting a piecewise defined function. 
+
+```r
+x <- seq(-2,5,0.1)
+f <- function(x){ifelse(x<1,2*x,3)}
+plot(x,f(x), type = "l")
+```
+
+If we don't want the line connecting the two disconnected parts of the graph, then we'll have to draw the two portions separately.
+Note that the plot bounds are set by the first plot created (so we have to specify them), followed by a lines command to add to the already existing plot. 
+
+```r
+x <- seq(-2,0.999,0.1)
+plot(x,f(x), 
+     type = "l", 
+     xlim = c(-2,5),
+     ylim = c(-4,3))
+x <- seq(1,5,0.1)
+lines(x,f(x), type = "l")
+```
+
+A power function takes a variable and raises it to a specific power (such as $f(x;a) = x^a$), while an exponential function has a specific base with a variable power (such as $f(x;a) = a^x$). If you did not remember all the definitions from last time in class, it's completely fine.  
+
+Using different letters (such as $u,v$) for the variables and parameters, we can write the power function as $f(u;v) = u^v$ while we write the exponential function as $g(v;u)=u^v$. The difference is what we consider to be a constant parameter or variable (with Javascript we use "let" or "const" for this difference).
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities. 
+
+Remember to **Pass The Chalk** between each problem, giving everyone a chance to act as scribe. When you are the scribe, it's fine to not know exactly how to proceed. The goal is to ask questions of each other and help each other. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+
+### Plotting in R 
+Help each other plot the following functions in R.
+- $f(x) = x^2+3x$ for $-3\leq x \leq 3$.
+- $g(x) = \sqrt{x+4}-\sqrt{x+1}$ over a reasonable domain. 
+
+### Solving Equations
+The prep asked you to create and solve four types of equations.  Start by addressing any question you had from the prep. 
+Then solve each of the following at the chalk boards (remember to pass the chalk between each). 
+
+1. $3x+2=7x-10$
+1. $x^2+3x=10$
+1. $x^2+3x=12$
+1. $\frac{1}{x+2} = \frac{3}{x+1}-1$
+1. $\sqrt{x+4}-\sqrt{x+1}=1$
+
+If some of the above are/were difficult to solve, it's ok.  We soon learn how to solve all of these using R, and then we'll continue using software to solve equations for us throughout the semester. 
+
+### Activity - Exploring Functions
+Let $f(x) = x^2$. Complete each of the following exercises below.
+
+1. Complete each table below.
+
+| $x$ | $f(x)$ |
+| --- | --- |
+| -2 |  |
+| -1 |  |
+| 0 |  |
+| 1 |  |
+| 2 |  |
+
+| $x$ | $g(x) = f(x) + 2$ |
+| --- | --- |
+| -2 |  |
+| -1 |  |
+| 0 |  |
+| 1 |  |
+| 2 |  |
+
+| $x$ | $h(x) = f(x+2)$ |
+| --- | --- |
+|  | 4 |
+|  | 1 |
+|  | 0 |
+|  | 1 |
+|  | 4 |
+
+1.  Graph each of the functions from part 1. 
+1. The graph of $g$ is the same as the graph of $f$ but shifted _________________.
+1. The graph of $h$ is the same as the graph of $f$ but shifted _________________.
+1. (True or False) Given $a$ and $b$ are constants, is the statement $f(a+b) = f(a) + f(b)$ true or false.
+
+1. Repeat parts 1-5 for $f_2(x) = \sqrt{x}$ 
+1. Repeat parts A-E for $f_3(x) = \frac{1}{x}$.
+
+## Class Discussion
+
+### Construct a Scatter Plot
+What is a scatter plot?
+
+When we study the relationship between two variable, we describe the relationship with a (deterministic) function. When we collect data to study a relationship between two variable, we can display our data using a scatter plot (a plot of points).
+
+Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the relationship between car weight (stored in the wt column) and fuel efficiency (the mpg column), assuming fuel efficiency is a function of weight, we can visualize this data by constructing a plot with car weight in 1000's of pounds on the horizontal axis and fuel efficiency in miles per US gallon on the vertical axis.
+
+```r
+par(mar=c(4,4,0.25,0.25))
+x <- mtcars$wt
+y <- mtcars$mpg
+plot(x,y)
+```
+
+We can specify additional plot arguments if desired.
+
+```r
+par(mar=c(4,4,2,0.25))
+x <- mtcars$wt
+y <- mtcars$mpg
+plot(x,y,
+     pch=16,
+     xlab='weight (1000 lbs)',
+     ylab='Miles per US gallon',
+     main='Our 1st Scatter Plot')
+
+1. We can also put everything on a single line, as done below, but the above is easier to read.
+plot(x,y,pch=16,xlab='weight (1000 lbs)',ylab='Miles per US gallon',main='Our 1st Scatter Plot')
+```
+
+We can examine the mtcars dataset with head(mtcars), and then construct scatterplots that compare other quantitative (numerical) variables. 
+
+### RStudio Practice
+**Evaluate Functions**
+- Given $h(x) = \sqrt{3-x}$, compute $h(-4)$ and $h(5)$.
+
+**Create and Knit a RMarkdown file**
+- Click the New File icon OR Click File -> New File -> R Markdown
+- Typing Math
+    - Not required in Math 119 (You can insert an image with handwritten math.)
+    - But you can copy Latex from our Wiki or Project Instructions.
+
+We'll now use RStudio to calculate each value.
+- Let $w(v) = v^2 - 5v -6$ Compute the following values.
+    - $w(-1)$
+    - $w(-3)$
+    - $w(6)$
+    - $w(4)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+w <- function(x){
+x^2 - 5*x - 6
+}
+
+w(-1)
+w(-3)
+w(6)
+w(4)
+
+1. Or all at once.
+x <- c(-1,-3,6,4)
+w(x)
+```
+
+</details>
+
+- Let $f(x) = \frac{2x+4}{x^2}$. Find each of the following values.
+    - $f(-4)$
+    - $f(1)$
+    - $f(0)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+f <- function(x){
+(2*x + 4)/(x^2)
+}
+
+f(-4)
+f(1)
+f(0)
+
+1. Or all at once.
+x <- c(-4,1,0)
+f(x)
+```
+ 
+
+Note: Make sure you know how to interpret the output from R. The value $f(0)$ is undefined. Infinity, $\infty$, is not a number but a concept.
+
+</details>
+
+- Let $f(x) = 8x^2 - 15$. Find each of the following values.
+    - $f(-2)$
+    - $f(1)$
+
+<details>
+<summary>Answers</summary>
+
+Compute $f(-2)$
+
+```
+8*(-2)^2 - 15
+```
+
+Compute $f(1)$
+
+```
+8*(1)^2 - 15
+```
+
+</details>
+
+- Consider the piecewise function $$g(x) = 
+\begin{cases}
+x^2 - 6 & \quad x < 0 \\ \\
+10 - x & \quad x \geq 0.
+\end{cases}.$$ Find the following values.
+    - $g(7)$
+    - $g(-7)$
+    - $g(-33)$
+    - $g(0)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+g <- function(x){ ifelse(x < 0, x^2-6, 10-x) }
+
+g(7)
+g(-7)
+g(-33)
+g(0)
+
+x <- c(7,-7,-33,0)
+g(x)
+```
+
+</details>
+
+- Consider the piecewise function $$f(x) = 
+\begin{cases}
+x^3 & \quad x < -1 \\ \\
+-2 & \quad -1 < x < 4 \\ \\
+\sqrt{x} & \quad x \geq 4.
+\end{cases}$$ Find the following values.
+    - $f(-2)$
+    - $f(-0.5)$
+    - $f(3)$
+    - $f(0)$
+    - $f(5.2)$
+    - $f(-1)$
+    - $f(4)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+f <- function(x){
+  ifelse(x < -1, x^3, ifelse(
+         x > -1 & x < 4, -2, ifelse(
+         x >= 4, sqrt(x),
+         NA)))
+}
+
+f(-2)
+f(-1)
+f(0)
+
+x <- c(-2,-0.5,3,0,5.2,-1,4)
+f(x)
+```
+
+</details>
+
+## Code for Thought...
+
+<details>
+<summary>Code for Thought...</summary>
+
+How do the following functions compare to the functions f0, f1, and f2 we defined in our Brain Gains?
+
+```r
+f2_g <- function(x,a0=0,a1=0,a2=1){a0+a1*x+a2*x^2}
+f1_g <- function(x,a0=0,a1=2){a0+a1*x}
+f0_g <- function(x,a0=3){a0+0*x}
+```
+
+</details>
+
+<details>
+<summary>More Code for Thought...</summary>
+
+How do the following functions compare to any of the functions we looked at today in class?
+
+How do the following functions compare to each other?
+
+```r
+f_p1a <- function(x){ifelse(x<1,2*x,3+0*x)}
+
+f_p1b <- function(x){
+  out <- rep(5,length(x))
+  out[(x < 1)] <- 2*x[(x < 1)]
+  out[(x >= 1)] <- 3 + 0*x[(x >= 1)]
+  
+  return(out)
+}
+
+X <- -10:10
+Y1 <- f.p1a(X)
+Y2 <- f.p1b(X)
+
+plot(X,Y1,type='l')
+plot(X,Y2,type='l')
+
+plot(X,Y1,type='l',lwd=5,col='gray')
+lines(X,Y2)
+```
+
+</details>

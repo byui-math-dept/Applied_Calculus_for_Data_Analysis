@@ -1,0 +1,11 @@
+---
+title: "Math 119 — Applied Calculus for Data Analysis"
+---
+
+{{< include _today.qmd >}}
+
+---
+
+Welcome to the Math 119 course site for BYU-Idaho.
+
+Use the navigation above to browse **Class Sessions**, **Definitions**, and the **Schedule**.

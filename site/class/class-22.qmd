@@ -1,0 +1,137 @@
+---
+title: "Class 22"
+---
+
+# During Class
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+## Brain Gains
+
+<details>
+<summary>Definition: Partial Derivative</summary>
+
+Consider a function of several variables $f(x,y)$. 
+- The symbol $\frac{\partial f}{\partial x}$ is read "the partial derivative of $f$ with respect to $x$" or "the partial of $f$ with respect to $x$". 
+- The symbol $\frac{\partial f}{\partial y}$ is read "the partial derivative of $f$ with respect to $y$" or "the partial of $f$ with respect to $y$". 
+To calculate a partial derivative we treat all independent variables, except the one we are differentiating with respect to, as constants and use the derivative rules for a single variable function.
+
+Let's look at an example that includes the chain rule. Consider the function $S(x,y) = 3(\pi x + 4y)^3$. 
+- The partial of $S$ with respect to $x$ is $\frac{\partial S}{\partial x} = 3(3(\pi x + 4y)^{2})(\pi)$. 
+- And the partial of $S$ with respect to $y$ is $\frac{\partial S}{\partial y} = 3(3(\pi x + 4y)^{2})(4)$.
+
+</details>
+
+1. For the function $g(x) = e^{3x^2}$, identify two functions $f(u)$ and $u(x)$ so that $g(x) = f(u(x))$.  Then compute $\frac{dg}{dx} = \frac{df}{du}\frac{du}{dx}$. 
+
+2.
+Use the information about $f$ and $f'$ in the table and $g$ to find each of the following values.
+ http://byuimath.com/bmw/all/119/uploads/Class/chain_rule_exercise.png
+
+    - Given $h(x) = g(f(x))$, find $h'(3)$.
+    - Given $k(x) = f(g(x))$, find $k'(1)$.
+
+<details>
+<summary>Solution</summary>
+
+Each of these problems focus on using the chain rule. We will use $g(1) = 2$ and $g'(1)=3$ (slope of the line). 
+- We have $h'(x) = g'(f(x))f'(x)$, which means $h'(3) = g'(f(3))f'(3) = g'(1)(6) = (3)(6) = 18$.
+- We get  $k'(x) = f'(g(x))g'(x)$, and so $k'(1) = f'(g(1))g'(1) = f'(2)(3) = (5)(3) = 15$.
+
+</details>
+
+3.
+Given $f(a; \textbf{x}) = \sum_{i=1}^{3} (ax_i + 2)^5$, find $\frac{df}{da}$.
+
+<details>
+<summary>Answer</summary>
+
+We see $\frac{df}{da} = 5x_1(ax_1 + 2)^4 + 5x_2(ax_2 + 2)^4 + 5x_3(ax_3 + 2)^4 = \sum_{i=1}^3 5x_i(ax_i + 2)^4$.
+
+</details>
+
+4. 
+For the function $f(x) = e^{3x}$ and $g(x) = x^4 - 1$, write out both $f(g(x))$ and $g(f(x))$, and then compute the derivative of each composite function. 
+
+<details>
+<summary>Solution</summary>
+
+The composite functions are 
+- $f(g(x)) = e^{3(x^4 - 1)}$ and
+- $g(f(x)) =  (e^{3x})^4 - 1$.
+The derivatives of $f$ and $g$ are $f'(x) = 3e^{3x}$ and $g'(x) = 4x^3$. The chain rule then gives us
+- $\ds\frac{d}{dx}[f(g(x))] = f'(g(x))g'(x) = 3e^{3(g(x))}4x^3 = 3e^{3(x^4 - 1)}4x^3.$
+- $\ds\frac{d}{dx}[g(f(x))] = g'(f(x))f'(x) = 4(f(x))^33e^{3x} = 4(e^{3x})^33e^{3x}.$
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Chain Rule Practice
+For each function $g(x)$, identify two functions $f(u)$ and $u(x)$ so that $g(x) = f(u(x))$ and  then compute $\frac{dg}{dx} = \frac{df}{du}\frac{du}{dx}$. 
+1. $g(x) = (x^2-3)^4$
+1. $g(x) = \ln(4x+3)$
+1. $g(x) = e^{4x+3}$
+1. $g(x) = (x^3+\ln x)^2$
+1. $g(x) = \ln (e^{2x} + 1)$
+1. $g(x) = e^{4\ln{5x}+3}$
+
+### Activity - Partial Derivatives with the Chain Rule
+1. Given $S(x, y; a, b) = 3(ax + by)^{-3}$, find $\diff{S}{x}$ assuming all other variables and parameters are constant then find $\diff{S}{y}$ assuming all other variables and parameters are constant. (Yes, these are long-winded ways of saying compute  $\frac{\partial S}{\partial x}$ and  $\frac{\partial S}{\partial y}$.)
+1. Given $g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}$, find $\frac{\partial g}{\partial a_1}$ and $\frac{\partial g}{\partial a_2}$.
+1. Given $h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}$, find $\frac{\partial h}{\partial x}$ and $\frac{\partial h}{\partial y}$.
+
+<details>
+<summary>Answer</summary>
+
+1. We have $\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}$ and $\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}$.
+1. We find $\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{x_i}{2\sqrt{a_1x_i + a_2y_i}}$ and $\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{y_i}{2\sqrt{a_1x_i + a_2y_i}}$.
+1. We compute $\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}$ and $\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}$
+
+</details>
+
+### Activity - Graphing a Second Derivative
+For the function below, graph the first and second derivative. 
+https://byuimath.com/bmw/all/119/uploads/Class/Second-Derivative-Exercise.png
+
+<details>
+<summary>Solution</summary>
+
+See https://www.desmos.com/calculator/nrd4njagea.
+
+</details>
+
+### Activity - Loglikelihood
+
+You have been given a list of 44 data points, $(t_i, y_i)$, were $t_i$ is the time in hours since the light was turned on and $y_i$ is the percent intensity of the bulb after $t_i$ hours. 
+A model for the percent intensity of the bulb is $f(x;m,b) = mx+b$, where $t$ is the time in hours since the light was turned on. 
+- Write the formula for the residuals.
+
+Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1).
+- Write down the probability model we are using for one of the residuals.
+- What does knowing the residuals are independent allow us to do?
+    - Use the assumption of independent residuals to write the joint probability function.
+- Write the likelihood function for the residuals in this situation.
+- Write the loglikelihood function for the errors in this situation.
+- Rewrite the loglikelihood function using the properties of logs and sums.
+
+### Activity - Chain Rule Practice
+For each pair of functions $f(x)$ and $g(x)$ below, write out the compositions $f(g(x))$ and $g(f(x))$. 
+Then compute the derivative of each composite function. As a suggestion, compute both $f'(x)$ and $g'(x)$ first, and then show how you can combine $f,g,f',g'$ to get the derivative of each composite function.  
+Remember to pass the chalk between each problem. 
+1. $f(x) = 3x + 4$, $g(x) = x^2 + 1$
+1. $f(x) = e^x$, $g(x) = \sqrt{2x-5}$
+1. $f(x) = \frac{1}{x}$, $g(x) = 2\ln(x)$
+1. $f(x) = (x-5)^4$, $g(x) = \sqrt[3]{x^2}$
+1. $f(x) = e^{3x}$, $g(x) = x^4 - 1$
+1. $f(x) = \frac{x}{x-3}$, $g(x) = \ln(5x)$
+1. $f(x) = 2x^3 - 10x^2 + 2x$, $g(x) = \sqrt{\frac{x-4}{2}}$
+1. $f(x) = \frac{1}{x^5}$, $g(x) = 4e^x$
+1. $f(x) = \sqrt{8-x}$, $g(x) = (2x-1)(x+5)$
+1. $f(x) = e^{x/2}$, $g(x) = 5x^3$
+1. $f(x) = 1 - \frac{3}{x^4}$, $g(x) = 2 - \sqrt{x}$
+1. $f(x) = \frac{3}{x^2}$, $g(x) = \ln(x)$
+1. $f(x) = 27 - x^3$, $g(x) = x^2 - x - 12$
+1. $f(x) = \sqrt[3]{4-x^2}$, $g(x) = 5x + 7$
+1. $f(x) = \frac{x+1}{x-2}$, $g(x) = e^{-x}$

@@ -1,0 +1,43 @@
+name: Daily Schedule Update
+
+on:
+  schedule:
+    - cron: "0 14 * * 1-5"  # 8am MT (UTC-6) Mon-Fri
+  workflow_dispatch:          # allow manual trigger
+
+jobs:
+  update-schedule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate today's schedule
+        run: python tools/generate_schedule.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet site/_today.qmd site/schedule.qmd site/schedule_full.json \
+            && echo "changed=false" >> $GITHUB_OUTPUT \
+            || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/_today.qmd site/schedule.qmd site/schedule_full.json
+          git commit -m "chore: daily schedule update $(date -u +%Y-%m-%d)"
+          git push

@@ -1,0 +1,114 @@
+---
+title: "Class 44"
+---
+
+# During Class
+## Brain Gains
+
+1. Consider a random variable $X$ with probability density function $g(x) = \frac{2x}{9}$ for $0\leq x\leq 3$. 
+    1.  State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?
+    1. Compute $G(x)-G(0)$. 
+    1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
+    1. Compute $P(1\leq X\leq 2)$ using the function $G(x)$. 
+
+1. Consider a random variable $X$ with probability density function $g(x) = \frac{3x^2}{64}$ for $0\leq x\leq 4$. 
+    1.  State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?
+    1. Compute $G(x)-G(0)$. 
+    1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
+    1. Compute $P(1\leq X\leq 3)$ using the function $G(x)$. 
+
+## Group Meeting 
+
+### Making Connections using CDFs and PDFs
+1. Consider a random variable $X$ with probability density function $g(x) = \frac{2x}{21}$ for $2\leq x\leq 5$. 
+    1.  State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?
+    1. Compute $G(x)-G(2)$.
+    1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
+    1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$. 
+
+1. Consider a random variable $X$ with probability density function $g(x) = \frac{x^2}{39}$ for $2\leq x\leq 5$. 
+    1.  State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?
+    1. Compute $G(x)-G(2)$. 
+    1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
+    1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$. 
+
+### Antiderivative Practice
+An **antiderivative** is a function that reverses what the derivative did, the result we get when we "undo" a derivative is called an antiderivative.
+Drawing on your knowledge of derivatives, for each expression below, please "undo" the derivative. 
+In other words answer the question, "What function did we take the derivative of to get this function?"
+1. $3x^2$
+1. $4e^{x}$
+1. $4e^{4x}$
+1. $5x^{-2}$
+1. $x^{-3} + x - 1$
+1. $x^7 - 4x + 2$
+1. $\sqrt[7]{x} + \frac{1}{\sqrt[7]{x}}$
+1. $x^{-1}$
+
+### Fundamental Theorem of Calculus
+- We have computed probabilities with the pdf, $ P(a \leq X \leq b) = \int_a^b f(x) dx $.
+- We have computed probabilities with the cdf, $ P(a \leq X \leq b) = F(b) - F(a) $.
+- Putting these together, we see $ \int_a^b f(x) dx = F(b) - F(a) $ when the $f(x)$ is the pdf of a random variable and $F(x)$ is the cdf of a random variable.
+- We know the probability density function of a random variable is the derivative of the cumulative distribution function of that random variable.
+
+Combining the above facts, we see that $ \int_a^b f(x) dx = F(b) - F(a) $ provided $F'(x) = f(x)$ (so $F$ is an antiderivative of $f$). All our computations have assumed that $f(x)$ was a pdf for a random variable. What if $f$ is not a pdf? Let's verify this rule holds for a few functions. 
+
+Compute each definite integral in 2 ways, namely (1) use Mathematica and then (2) find an antiderivative $G$ of the integrand $g$ and then evaluate $G(b)-G(a)$. Show your work for the second part on the chalkboard. 
+1. Compute $\int_1^4 5 dx$.
+1. Compute $\int_1^4 x dx$.
+1. Compute $\int_1^4 x^2 dx$.
+1. Compute $\int_1^4 e^{-2x} dx$.
+1. Compute $\int_0^5 e^{-7x} dx$.
+1. Compute $\int_2^5 \frac{1}{x} dx$.
+1. Compute $\int_1^2 4-2x+3x^2 dx$.
+
+## Discussion 
+### Why "Density" in Probability Density Function
+
+What does the word "density" mean?  Which is more dense, water or air?  Why?  Have a brief discussion about what this word means. Is the population density higher or lower in New York City or Rexburg?
+
+<details>
+<summary>Some examples</summary>
+
+Density is a measure of compactness.
+- mass per length
+- mass per volume
+- people per area (population density)
+- probability per length (probability density)
+- molecules per volume (concentration)
+The point of a density is to measure how much of something occurs in relation to another variable. The numerator is generally something we want to understand better, while the denominator is often a spacial quantity such as length, area, volume, etc..  A light and fluffy cake is less dense than a moist brownie.  Large cities have a higher population density than small cities. Airborne viruses spread from an infected person to others more rapidly in compact spaces because the molecules per volume (concentration) of the virus is higher when the space (denominator) is small - this is why outdoor activities are safer than indoor activities during a pandemic.
+
+</details>
+
+Consider the random variable $X$ with the probability density function $$f(x) = 
+\begin{cases}
+\frac{1}{6} &  1 \leq x \leq 7\\
+0 &  \text{otherwise}
+\end{cases}.$$
+We can think of this as a target function
+- Explain why $P(3 \leq X \leq 5) = \frac{2}{6}$. 
+We have connected probabilities to areas. Rectangles have area = height x width. In the computation above note that $f = \frac{1}{6}$ gives the height whereas the distance from 3 to 5 (a change in $x$ we can write as $\Delta x$) gives the width. So we have  $\text{probability}=f(x) \Delta x$. Using $p$ for probability, this means that $f(x) = \frac{p}{\Delta x}$.
+- What are the units of $f(x)$?
+
+<details>
+<summary>Some Solutions</summary>
+
+The numerator is a probability, while the denominator is a length.  The units are probability per length.
+
+</details>
+
+- Let $\Delta x$ be a small number (less than 1). If needed, feel free to use $\Delta x = 0.01$. Explain why $P(3 \leq X \leq 3 + \Delta x) = \frac{\Delta x}{6}$.
+- Explain why $P(X = 3) = 0$.
+
+<details>
+<summary>Some solutions</summary>
+
+To compute probability, we again compute an area. The height is $f(x) = \frac{1}{6}$ while the width is $\Delta x$, which gives the probability $\frac{\Delta x}{6}$. 
+
+To compute $P(X = 3) = 0$, the width is $\Delta x=0$, and so the corresponding area is 0. 
+
+Could a dart actually land on $x=3$?  Yes. However, there are infinitely many possibilities and the probability that the exact $x$-coordinate of the dart's landing location is 3 is just 1 of infinitely many possibilities. By saying $P(X = 3) = 0$, we are saying that this event is extremely unlikely.
+
+</details>
+
+Remember that the probability density $f$ does not give us a probability, rather we need an interval of $x$-values (a width $\Delta x$) to get a probability from a probability density function. For a continuous probability distribution, the probability that $X$ takes on a single value will always be zero.

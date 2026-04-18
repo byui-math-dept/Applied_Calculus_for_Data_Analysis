@@ -1,0 +1,228 @@
+---
+title: "Class 2"
+---
+
+# During Class
+## Brain Gains
+- For the function $$\ds f(x) = 
+\begin{cases}
+x^3 & \quad x < -1 \\ \\
+-2 & \quad -1 < x < 4 \\ \\
+\sqrt{x} & \quad x \geq 4.
+\end{cases},$$ find $f(-2)$, $f(-1)$, and $f(4)$. 
+
+<details>
+<summary>Possible Solution</summary>
+
+- We have $f(-2) = (-2)^3 = -8$ because $x=-2$ satisfies $x<-1$. 
+- Note that $-1$ does not lie in any of the three given regions, which means $f(-1)$ is undefinded.  
+- We know $f(4) = \sqrt{4} = 2$ as $x=4$ satisfies $x\geq 4$.
+
+</details>
+
+- Let $f(x) = x^2$. Determine whether or not $f(3+4) = f(3) + f(4)$.
+
+<details>
+<summary>Possible Solution</summary>
+
+Given $f(x) = x^2$, we know $f(3) = 9$, $f(4) = 16$, and $f(3+4)=f(7)=49$.  Since $9+16 = 25\neq 49$, then we know $f(3+4) \neq f(3) + f(4)$.
+
+Important take away:
+- In general, the square of a sum is NOT the sum of the squares, $(a + b)^2 \neq a^2 + b^2$. 
+- The operation of addition must happen before the power. The order of operations is grouping and then exponents.
+
+There is an entire class of functions for which $f(a+b) = f(a)+f(b)$.  We call these "linear functions" and they are studied in depth in Math 341: Linear Algebra.
+
+</details>
+
+ 
+
+## Group Discussion
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities. 
+
+### Activity - Reading Definitions and Classifying Functions
+Read the following definitions and then use them to classify each of the functions in the table.
+
+<details>
+<summary>Line</summary>
+
+A line is a function that can be written in the form $f(x) = mx+b$, where $m$ and $b$ are constants.
+
+Note: The input to this function $x$ is a variable and the constants $m$ and $b$ are parameters of this function $f$. To make this explicit mathematically we can write $f(x; m, b) = mx + b$. The colon separates the variables from the parameters.
+
+</details>
+
+<details>
+<summary>Quadratic Function</summary>
+
+A quadratic function is a function that can be written in the form $f(x) = ax^2 + bx + c$, where $a$, $b$, and $c$ are constants with $a \neq 0$.
+
+</details>
+
+<details>
+<summary>Polynomial Function</summary>
+
+A polynomial function is any function that can be written in the form $f(x) = a_nx^n + a_{n-1}x^{n-1} + ... + a_1x + a_0 = \sum_{k=0}^n a_kx^k$ for some integer $n \geq 0$ and constants $a_0$, $a_1$, ... $a_{n-1}$, $a_n$ (with $a_n \neq 0$). The integer $n$ we call the degree of the polynomial.
+
+When $n=0$, we relax the condition ($a_n \neq 0$) and allow $a_0 = 0$. The function $f(x) = 0$ is called the zero function.
+
+</details>
+
+<details>
+<summary>Power Function</summary>
+
+A power function is any function of the form $f(x) = ax^b$ where $a\neq 0$ and $b$ are real numbers.
+
+</details>
+
+<details>
+<summary>Root Function</summary>
+
+A root function is a power function of the form $f(x) = x^{1/n}$ where $n$ is a positive integer greater than one.
+
+</details>
+
+<details>
+<summary>Rational Function</summary>
+
+A rational function is any function of the form $f(x) = \frac{p(x)}{q(x)}$ where $p(x)$ and $q(x)$ are polynomials.
+
+</details>
+
+<details>
+<summary>Exponential Function</summary>
+
+An exponential function is any function of the form $f(x) = b^x$ where $b > 0$ and $b \neq 1$.
+
+</details>
+
+As a group, discuss whether each function is a power function, quadratic function, polynomial function, root function, and/or a rational function. Record your solutions in a table similar to the following. Note a function can be classified as multiple types.
+
+|  | power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |
+| --- | --- | --- | --- | --- | --- |
+| $f(x) = x^2$ |  |  |  |  |  |
+| $g(x) = \sqrt{x}$ |  |  |  |  |  |
+| $h(x) = x^3$ |  |  |  |  |  |
+| $p(x) = \sqrt{3x+1}$ |  |  |  |  |  |
+| $q(x) = x^3 - 3x + 2$ |  |  |  |  |  |
+| $A(x) = (x-1)^2$ |  |  |  |  |  |
+| $r(x) = \frac{2x+3}{x^2+1}$ |  |  |  |  |  |
+| $w(x) = 5^x$ |  |  |  |  |  |
+
+After you've finished classifying the functions, first compare your results with the other groups in class.  Discuss any changes you believe need to be made.  Then expand the solution below and discuss any questions you have. 
+
+<details>
+<summary>Answer</summary>
+
+|  | power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |
+| --- | --- | --- | --- | --- | --- |
+| $f(x) = x^2$ | X | X | X |  | X |
+| $g(x) = \sqrt{x}$ | X |  |  | X |  |
+| $h(x) = x^3$ | X |  | X |  | X |
+| $p(x) = \sqrt{3x+1}$ |  |  |  |  |  |
+| $q(x) = x^3 - 3x + 2$ |  |  | X |  | X |
+| $A(x) = (x-1)^2$ |  | X | X |  | X |
+| $r(x) = \frac{2x+3}{x^2+1}$ |  |  |  |  | X |
+| $w(x) = 5^x$ |  |  |  |  |  |
+The function $w(x) = 5^x$ is an exponential function.
+
+</details>
+
+**Examples and Nonexamples**
+- Give an example of a polynomial that is NOT a power function.
+- Give an example of a power function that is NOT a polynomial.
+
+<details>
+<summary>Possible Solutions</summary>
+
+These are some solutions to the questions above.  Come up with your own, and jot them on the chalk board. 
+- Examples of polynomials that are NOT power functions.
+    - $q(x) = x^3 - 3x + 2$
+    - $A(x) = (x-1)^2$
+
+- Examples of power functions that are NOT polynomials
+    - $g(x) = \sqrt{x}$
+    - $f(x) = -2x^{-4}$
+
+</details>
+
+### Activity - Exploring Functions
+Let $f(x) = x^2$. Complete each of the following exercises below.
+
+1. Complete each table below.
+
+| $x$ | $f(x)$ |
+| --- | --- |
+| -2 |  |
+| -1 |  |
+| 0 |  |
+| 1 |  |
+| 2 |  |
+
+| $x$ | $g(x) = f(x) + 2$ |
+| --- | --- |
+| -2 |  |
+| -1 |  |
+| 0 |  |
+| 1 |  |
+| 2 |  |
+
+| $x$ | $h(x) = f(x+2)$ |
+| --- | --- |
+|  | 4 |
+|  | 1 |
+|  | 0 |
+|  | 1 |
+|  | 4 |
+
+1.  Graph each of the functions from part 1. 
+1. The graph of $g$ is the same as the graph of $f$ but shifted _________________.
+1. The graph of $h$ is the same as the graph of $f$ but shifted _________________.
+1. (True or False) Given $a$ and $b$ are constants, is the statement $f(a+b) = f(a) + f(b)$ true or false.
+
+1. Repeat parts 1-5 for $f_2(x) = \sqrt{x}$ 
+1. Repeat parts A-E for $f_3(x) = \frac{1}{x}$.
+
+## Class Discussion
+### Function Definitions
+What is a function? Consider the following definitions of the mathematical object, a function.
+
+<details>
+<summary>Definition 1 (from OpenStax textbook)</summary>
+
+A **function** $f$ consists of a set of inputs, a set of outputs, and a rule for assigning each input to exactly one output. The set of inputs is called the **domain** of the function. The set of outputs is called the **range** of the function.
+
+</details>
+
+<details>
+<summary>Definition 2 (Sister Johnson's definition)</summary>
+
+A *function from **set D** to a **set Y*** is **a rule** that assigns each element in **set D** exactly one element from **set Y**.
+
+Note:
+- The *domain* of a function from set D to a set Y is the set of inputs of the function. Notice all the values of set D must be used as inputs so the domain is the set D.
+- The *range* of a function from set D to a set Y is the **set of outputs** of the function. Notice the range of the function is not necessarily set Y, not all the value of set Y must be used as outputs.
+
+</details>
+
+<details>
+<summary>Definition 3 (Another Instructor's definition)</summary>
+
+A **function** is a rule that assigns to every value of the domain just one value in the range. The domain is the inputs of the function. The range is the outputs of the function.
+
+</details>
+
+All of these definitions are correct.
+- What similarities do you notice?
+- What differences do you notice?
+- What are the key characteristics of the mathematical object, a **function**?
+- What questions do you have? 
+
+- There are at least four ways to represent a function:
+    - Algebraic (symbolic)
+    - Graph (visual)
+    - Table (numeric)
+    - Words (verbal)
+
+### Plotting with R
+We'll spend the rest of class time using R to plot functions from the work we've done in class today.

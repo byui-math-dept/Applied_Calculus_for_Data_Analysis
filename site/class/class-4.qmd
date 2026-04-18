@@ -1,0 +1,227 @@
+---
+title: "Class 4"
+---
+
+# During Class
+## Brain Gains
+- In R, plot the function $f(x) = 3x$ for $-4\leq x\leq 7$.
+
+<details>
+<summary>Solution</summary>
+
+There are many ways to do this.  Here is one.
+
+```r
+f <- function(x){3*x}
+x <- seq(-4,7,0.1)
+plot(x,f(x), type = "l")
+```
+
+</details>
+
+- In R, plot the function $g(x) = -2$ for $-5\leq x\leq 5$.
+
+<details>
+<summary>Solution</summary>
+
+Again there are many ways to do this. The following option, which tries to mimic the previous, will fail. 
+
+```r
+f <- function(x){-2}
+x <- seq(-5,5,0.1)
+plot(x,f(x), type = "l")
+
+1. Error in xy.coords(x, y, xlabel, ylabel, log) : 'x' and 'y' lengths differ
+```
+
+Why did it fail? Because the output is $-2$ regardless of how many elements are passed into the function with the vector $x$. The output is a single number, not $-2$ for each input. This is what the error message "'x' and 'y' lengths differ" means. 
+
+One way to fix the problem above is to multiply $x$ by 0, preserving the number of elements in $x$, and then subtracting 2. 
+
+```r
+f <- function(x){0*x -2}
+x <- seq(-5,5,0.1)
+plot(x,f(x), type = "l")
+```
+
+We can actually complete both of the above exercises with a single function, where we use $m$ and $b$ as parameters for the slope and intercept of a line, and then pass these parameters into the function. 
+
+```r
+f <- function(x, m, b){m*x + b}
+x <- seq(-4,7,0.1)
+plot(x,f(x,3,0), type = "l")
+x <- seq(-5,5,0.1)
+plot(x,f(x,0,-2), type = "l")
+```
+
+</details>
+
+## Discussion - Create and Knit an RMarkdown
+- Click the New File icon OR Click File -> New File -> R Markdown
+- Knit the document, so verify you can get HTML output. 
+    - Typing Math
+      - Not required in Math 119 (You can insert an imagine with handwritten math.) 
+      - But you can copy Latex from our Wiki or Project Instructions.
+
+**Practice creating HTML with RMarkdown**
+- Given $h(x) = \sqrt{3-x}$, let's compute $h(-4)$ and $h(5)$ inside an R coding chunk.
+- Now let's write a cohesive analysis to explain what we're doing. 
+- We'll then knit our RMarkdown file, and knit it. 
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Interactive Programming Activity
+The prep for today included completing an interactive programming activity (see above). 
+As a group, discuss each question below. 
+- What does the seq() command do?
+- How does the plot() command work?
+- What does c() command do?
+- What does the <- symbol do?
+- How was the $ symbol used?
+- What does the head() command do?
+
+### Activity - RStudio Practice
+Help each other use RStudio to calculate each value, by first defining a function, and then evaluating the function at various inputs.  Practice putting your work in an RMarkdown file and writing a cohesive analysis to introduce each computation in a code chunk. 
+
+- Let $w(v) = v^2 - 5v -6$ Compute the following values.
+    - $w(-1)$
+    - $w(-3)$
+    - $w(6)$
+    - $w(4)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+w <- function(x){
+x^2 - 5*x - 6
+}
+
+w(-1)
+w(-3)
+w(6)
+w(4)
+
+1. Or all at once.
+x <- c(-1,-3,6,4)
+w(x)
+```
+
+</details>
+
+- Let $f(x) = \frac{2x+4}{x^2}$. Find each of the following values.
+    - $f(-4)$
+    - $f(1)$
+    - $f(0)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+f <- function(x){
+(2*x + 4)/(x^2)
+}
+
+f(-4)
+f(1)
+f(0)
+
+1. Or all at once.
+x <- c(-4,1,0)
+f(x)
+```
+ 
+
+Note: Make sure you know how to interpret the output from R. The value $f(0)$ is undefined. Infinity, $\infty$, is not a number but a concept.
+
+</details>
+
+- Let $f(x) = 8x^2 - 15$. Find each of the following values.
+    - $f(-2)$
+    - $f(1)$
+
+<details>
+<summary>Answers</summary>
+
+Compute $f(-2)$
+
+```
+8*(-2)^2 - 15
+```
+
+Compute $f(1)$
+
+```
+8*(1)^2 - 15
+```
+
+</details>
+
+- Consider the piecewise function $$g(x) = 
+\begin{cases}
+x^2 - 6 & \quad x < 0 \\ \\
+10 - x & \quad x \geq 0.
+\end{cases}.$$ Find the following values.
+    - $g(7)$
+    - $g(-7)$
+    - $g(-33)$
+    - $g(0)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+g <- function(x){ ifelse(x < 0, x^2-6, 10-x) }
+
+g(7)
+g(-7)
+g(-33)
+g(0)
+
+x <- c(7,-7,-33,0)
+g(x)
+```
+
+</details>
+
+- Consider the piecewise function $$f(x) = 
+\begin{cases}
+x^3 & \quad x < -1 \\ \\
+-2 & \quad -1 < x < 4 \\ \\
+\sqrt{x} & \quad x \geq 4.
+\end{cases}$$ Find the following values.
+    - $f(-2)$
+    - $f(-0.5)$
+    - $f(3)$
+    - $f(0)$
+    - $f(5.2)$
+    - $f(-1)$
+    - $f(4)$
+
+<details>
+<summary>Answers</summary>
+
+```r
+f <- function(x){
+  ifelse(x < -1, x^3, ifelse(
+         x > -1 & x < 4, -2, ifelse(
+         x >= 4, sqrt(x),
+         NA)))
+}
+
+f(-2)
+f(-1)
+f(0)
+
+x <- c(-2,-0.5,3,0,5.2,-1,4)
+f(x)
+```
+
+</details>
+
+## Discussion
+### Prepare for our Project work
+[Project 1](https://byuistats.github.io/M119/project.html){target="_blank"}
+
+We'll have a brief discussion about the project work, and start looking at the example project.

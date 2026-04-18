@@ -1,0 +1,218 @@
+---
+title: "Class 40"
+---
+
+# During Class
+## Brain Gains
+
+1. For the exponential distribution $f_3(x; \lambda) = \lambda e^{-\lambda x}$ with $\lambda >0 $ and $x\geq 0$ (and 0 otherwise), write down integrals that give the expected value and variance. 
+
+<details>
+<summary>Solution</summary>
+
+The general formulas are 
+$\ds E[X] = \int_{-\infty}^\infty x f(x) dx$ 
+and 
+$\ds Var[X] = \int_{-\infty}^\infty (x-E[X]])^2 f(x) dx$. 
+We update the bounds 
+$0\leq x<\infty$ 
+and function 
+$f(x) =  \lambda e^(-\lambda x)$ to obtain 
+- $\ds E[X] = \int_0^\infty x (\lambda e^{-\lambda x}) dx$ 
+- $\ds Var[X] = \int_{0}^\infty (x-E[X]])^2 (\lambda e^{-\lambda x}) dx$.
+
+</details>
+
+2. Compute both the integrals above with Mathematica. 
+
+<details>
+<summary>Solution</summary>
+
+From the prep, we have the following code. The Assumptions command allows us to inform Mathematica about the fact that $\lambda>0$. 
+
+(:codem:)
+```
+$Assumptions = \[Lambda] > 0;
+f = \[Lambda]*Exp[-\[Lambda]*x];
+bounds = {x, 0, Infinity};
+A = Integrate[f, bounds]
+EV = Integrate[x*f, bounds]
+Var = Integrate[(x - EV)^2*f, bounds]
+StDev = Sqrt[Var]
+% // Simplify
+$Assumptions = Null;
+```
+(:codemend:)
+
+</details>
+
+3. For the uniform distribution $f_0(x; a,b) = \frac{1}{b-a}$ for $a < x < b$ and 0 otherwise, write down integrals that give the expected value and variance, and then compute these integrals. 
+
+<details>
+<summary>Solution</summary>
+
+We update the bounds to
+$a\leq x\leq b$ 
+and function 
+$f(x) = \frac{1}{b-a}$ to obtain 
+- $\ds E[X] = \int_a^b x (\frac{1}{b-a}) dx$ 
+- $\ds Var[X] = \int_a^b (x-E[X]])^2 (\frac{1}{b-a}) dx$. 
+
+The code chunk below computes these values, with some "%//Simplify" commands after the results to make them easier to work with later. 
+(:codem:)
+```
+$Assumptions = a <= b;
+f = 1/(b - a);
+bounds = {x, a, b};
+A = Integrate[f, bounds]
+EV = Integrate[x*f, bounds]
+% // Simplify
+Var = Integrate[(x - EV)^2*f, bounds]
+% // Simplify
+StDev = Sqrt[Var]
+% // Simplify
+$Assumptions = Null;
+```
+(:codemend:)
+
+</details>
+
+## Group Meeting 
+
+### Solving a System of Equations
+
+1. Solve the system $ \left\{\begin{array}{ll}\frac{1}{2}(x+y) = 2 \\ \frac{1}{12}(x-y)^2 = 3\end{array} \right.$ for $x$ and $y$, assuming $x<y$.
+
+1. Solve the system $ \left\{\begin{array}{ll}\frac{1}{2}(a+b) = 2.7 \\ \frac{1}{12}(a-b)^2 = 10.2\end{array} \right.$ for $a$ and $b$, assuming $a<b$. 
+
+Have you seen the quantities $\frac{1}{2}(a+b)$ and $\frac{1}{12}(a-b)^2$ somewhere before?
+
+### Activity - More Practice with finding PDFs, Expected Value, Variance, and CDF
+1. 
+Let $g(x) = \begin{cases}e^{-4x} & x \geq 0 \\ 0 & \text{otherwise}\end{cases}$.
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $x\geq 0$.</li>
+  <li>Compute $P(X\leq 2)$ and then $P(X\geq 2)$. </li>
+  <li>Find a value $c$ so that $P(X\leq c)=0.90$ (we call this the 90th percentile).</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+<details>
+<summary>Solution</summary>
+
+<ol type="a">
+  <li>We get $A = \int_{-\infty}^{\infty}g(x)dx = \int_{0}^{\infty}e^{-4x}dx = \frac{1}{4}$, which means $k=\frac{1}{A} = 4$ and $f(x) = \begin{cases}4e^{-4x} & 0\leq x<\infty\\ 0 & \text{otherwise}\end{cases}$.</li>
+</ol>
+1. We have $E[X] = \int_{-\infty}^{\infty}xf(x)dx = \int_{0}^{\infty}x4e^{-4x}dx = \frac{1}{4}$ and $\text{Var}[X] = \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx = \int_{0}^{\infty}(x-\frac{1}{4})^2 4e^{-4x}dx = \frac{1}{16}$. 
+1. We have $F(x) = \int_{-\infty}^{x}f(x)dx$. If $x<0$ then $F(x)=0$, but for $x\geq 0$ we have $F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}$.
+1. The values are $P(X\leq 10) = F(10) = 1-e^{-8}$ and then $P(X\geq 10)=1-F(10) = e^{-8}$.
+1. We need to solve $0.90 = 1-e^{-4x}$.  This means $e^{-4x} = 0.1$ which gives $-4x = \ln(0.1)$ or $x = \ln(0.1)/(-4)$. 
+1. The derivative is $F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)$ for $x\geq 0$ (and zero otherwise). 
+The Mathematica code computes all of the above.  Feel free to adapt this code as you tackle other problems.
+(:codem:)
+```
+g = Exp[-4*x];
+a = 0;
+b = Infinity;
+bounds = {x, a, b};
+A = Integrate[g, bounds]
+k = 1/A
+f = k g
+EV = Integrate[x f, bounds]
+Var = Integrate[(x - EV)^2 f, bounds]
+F = Integrate[f, {x, a, x}]
+Integrate[f, {x, a, 2}]
+1-Integrate[f, {x, a, 2}]
+Solve[Integrate[f, {x, a, c}]==0.9, c]
+D[F, x](*Computes derivative of F with respect to x. Should match f*)
+```
+(:codemend:)
+
+</details>
+
+2. 
+Let $g(x) = \begin{cases}e^{-\lambda x} & x \geq 0\\ 0 & \text{otherwise}\end{cases}$ with $\lambda >0$. In Mathematica, the following code tells the computer that $\lambda$ is positive, which will simplifies the output quite a bit. 
+(:codem:)
+```
+g = Exp[-\[Lambda] x]
+$Assumptions = \[Lambda] > 0
+```
+(:codemend:)
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. We call this an exponential random variable. </li>
+</ol>
+
+1. Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.
+1. Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $x\geq 0$.
+1. By hand, compute $F'(x)$ and compare it to $f(x)$.  
+
+3. 
+Let $g(x) = \begin{cases}1 & -3\leq x\leq 5\\ 0 & \text{otherwise}\end{cases}$.
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $-3\leq x\leq 5$. For $x<-3$, what is $F(x)$?  For $x>5$, what is $F(x)$?</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+4. 
+Let $g(x) = \begin{cases}1 & a\leq x\leq b\\ 0 & \text{otherwise}\end{cases}$ where $a<x<b$. 
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. We call this a uniform random variable. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $a\leq x\leq b$. For $x<a$, what is $F(x)$?  For $x>b$, what is $F(x)$?</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+5. 
+Let $g(x) = \begin{cases}3 & -2 \leq x < 1\\ 5 & 1 \leq x \leq 5\\ 0 & \text{otherwise}\end{cases}$.
+<ol type="a">
+  <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. </li>
+  <li>Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.</li>
+  <li>Compute $F(x)$.</li>
+  <li>By hand, compute $F'(x)$ and compare it to $f(x)$.  </li>
+</ol>
+
+<details>
+<summary>Solution</summary>
+
+We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that $x$ is a real number to compute the CDF $F$ and actually have Mathematica do the integral. 
+(:codem:)
+```
+$Assumptions = x \[Element] Reals
+g = Piecewise[{{3, -2 <= x && x < 1}, {5, 1 <= x <= 5}, {0, True}}]
+Plot[g, {x, -5, 10}]
+A = Integrate[g, {x, -Infinity, Infinity}]
+k = 1/A
+f = k g
+1 == Integrate[ f, {x, -Infinity, Infinity}]
+EV = Integrate[x f, {x, -Infinity, Infinity}]
+Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
+F = Integrate[ f, {x, -Infinity, x}]
+D[F, x]
+```
+(:codemend:)
+
+</details>
+
+## Discussion 
+### Expected Value and Variance of Common Distributions
+We found the expected value and variance for 4 common probability distributions.  Let's recap what we found. 
+1. For an exponential distribution, we have $E[X] = ...$ and $\text{Var}[X] = ...$. (Where did we compute these?)
+1. For a uniform distribution, we have $E[X] = ...$ and $\text{Var}[X] = ...$. (Where did we compute these?)
+1. For a normal distribution with mean $\mu$ and standard deviation $\sigma$, we have $E[X] = \mu$ and $\text{Var}[X] = \sigma^2$.
+1. For a gamma distribution with shape $\alpha$ and rate $\beta$, we have $E[X] = \frac{\alpha}{\beta}$ and $\text{Var}[X] = \frac{\alpha}{\beta^2}$.
+
+### Method of Moments
+The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. 
+Here are the steps:
+1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.
+1. Calculate the variance of the distribution as a function of the parameters of the distribution.
+1. Set the mean of the distribution equal to the mean of the data.
+1. Set the variance of the distribution equal to the variance of the data.
+1. Solve the system of equations for the parameter values.
+Note: 
+- If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.
+- If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.

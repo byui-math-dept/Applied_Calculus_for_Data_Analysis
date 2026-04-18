@@ -1,0 +1,203 @@
+---
+title: "Class 31"
+---
+
+# During Class
+## Brain Gains
+1. 
+Any questions from https://byuistats.github.io/M119/m119-docs/SecondDerTest_BrianSittinger.pdf?  Any new terms you weren't sure what they meant?
+Complete as much of the following as you can.
+- Compute all the first and second partial derivatives of $f(x,y,z) = x^2+4xy+y^2+z^2+2yz$. 
+- Show that $(0,0,0)$ is a critical point of this function. 
+- Then use the second derivative test to classify this point as a local maximum, local minimum, or saddle point. 
+
+<details>
+<summary>Solution</summary>
+
+The first partial derivatives are
+- $f_x = 2x+4y$, 
+- $f_y = 4x+2y+2z$, 
+- $f_z = 2y+2z$,
+- $f_{xx} = 2$
+- $f_{xy} = f_{yx} = 4$
+- $f_{xz} = f_{zx} = 0$
+- $f_{yy} = 2$
+- $f_{yz} = f_{zy} = 2$
+- $f_{zz} = 2$
+
+Note that if you let $(x,y,z)=(0,0,0)$, then we do get $f_x=0$, $f_y=0$, and $f_z=0$. This shows that $(0,0,0)$ is a critical point of $f$. 
+
+To determine if the point corresponds to a local maximum, local minimum, or saddle point, we must compute the following 3 terms. 
+
+```r
+fxx <- 2
+fxy <- 4
+fxz <- 0
+fyy <- 2
+fyz <- 2
+fzz <- 2
+
+(D1 <- fxx)
+(D2 <- det(matrix(c(fxx,fxy,fxy,fyy),2,2,byrow=TRUE)))
+(D3 <- det(matrix(c(fxx,fxy,fxz, fxy,fyy,fyz, fxz,fyz,fzz),3,3,byrow=TRUE)))
+```
+
+We then consult the reading for the day, and notice that $D_2<0$ means we are at a saddle point.
+
+</details>
+
+2. 
+Have you heard the term least squares regression?
+The goal in linear regression is to to *minimize* the sum of the squared errors (the squared residuals), so it's another optimization problem. 
+To minimize the sum of the squared errors we must minimize
+$$S(\text{parameters of $f$};\mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - f(x_i))^2.$$
+Consider the model $f_5(x; a) = ae^{-x}$ and data set given below. 
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data3_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Find the coefficient $a$ that minimizes the sum of the squared residuals, and verify that this coefficient does indeed minimize $S$. 
+
+<details>
+<summary>Solution</summary>
+
+What are the key steps ?
+- Determine the equation for the objective function (so the function of interest).
+    - Do we want to maximize or minimize something?
+    - In this case, we seek to minimize the sum of the squared errors. This means we must minimize
+$$S(\text{parameters of $f$};\mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - f(x_i))^2.$$
+
+- Optimize
+    - Find the first and second derivative(s)
+    - Find the critical values (or critical points) by setting the first derivative (or all the first partial derivatives) equal to zero.
+    - Verify you have a maximum or minimum using the second derivative test.
+
+- Use the fitted model to answer question(s) of interest.
+
+The deterministic function is $f_5(x; a) = ae^{-x}$.
+The objective function is $$S(\text{parameters of $f$};\mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - f(x_i))^2 = \sum_{i=1}^{n}(y_i - ae^{-x_i})^2 .$$
+We then have 
+$$\frac{dS}{da} = \sum_{i=1}^{n}2(y_i - ae^{-x_i})^1(-e^{-x_i}) = -2\sum_{i=1}^{n}(y_ie^{-x_i}) + 2a\sum_{i=1}^n (e^{-x_i})^2$$
+and
+$$\frac{d^2 S}{da^2} = 2\sum_{i=1}^n (e^{-x_i})^2.$$ 
+The critical points occur when $-2\sum_{i=1}^{n}(y_ie^{-x_i}) + 2a\sum_{i=1}^n (e^{-x_i})^2=0$, which means 
+$$a = \frac{2\sum_{i=1}^{n}(y_ie^{-x_i})}{ 2\sum_{i=1}^n (e^{-x_i})^2} = \frac{\sum_{i=1}^{n}(y_ie^{-x_i})}{ \sum_{i=1}^n (e^{-x_i})^2}.$$
+Because we're summing only nonnegative numbers in $\frac{d^2 S}{da^2} = 2\sum_{i=1}^n (e^{-x_i})^2$, it's clear that $\frac{d^2 S}{da^2}>0$, which means we have found a local minimum (we wanted to minimize the sum of the squared residuals).  
+
+Using R, we can compute $a$ (as well as plot the original data) as given below. 
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data3_ls.csv"))
+x <- data$x
+y <- data$y
+plot(x,y)
+
+a <- sum(y*exp(-x))/sum(exp(-x)^2)
+a
+```
+
+This gives $a = -20.75074$, which means our model is $f(x) = -20.75074 e^{-x}$. 
+We can then plot the model with the data, using the code chunk below. 
+
+```r
+f <- function(x,a){a*exp(-x)}
+plot(x,y)
+t <- seq(min(x),max(x),0.1)
+lines(t,f(t,a))
+```
+
+</details>
+
+## Group Meeting 
+
+### Activity - Least Squares Regression: Another method for fitting a model to data
+We have 25 possible linear regression examples to work through today. These examples come by considering 5 deterministic models and 5 data sets.  
+We finished 5 of these already as a class, namely the ones corresponding to the model $f_5(x; a) = ae^{-x}$. 
+The goal is to help everyone ask and answer questions related to the optimization process, and we'll do it by examining the least squares process today. 
+
+Here are the instructions. 
+1.  Select a data set (from the list of 5 below) and read the data into R.
+
+<details>
+<summary>Code for reading in the data sets.</summary>
+
+Data Set 1
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data1_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Data Set 2
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data2_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Data Set 3
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data3_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Data Set 4
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data4_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Data Set 5
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data5_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+</details>
+
+1.  Plot your data. You can use the following code, or make your own.
+
+```
+par(mfrow=c(1,1),mar=c(2,2,0.5,0.5))
+plot(x,y,pch=16)
+```
+
+1.  Select one of the following models to fit to your data, and write down this model on your chalkboard.
+    - $f_1(x; m) = mx$
+    - $f_2(x; b, m) = b + mx$
+    - $f_3(x; a) = ae^{-x}$
+    - $f_4(x; a) = ae^{x}$
+    - $f_5(x; a) = a\ln(x)$
+
+1.  Fit the model you selected to the data you selected by minimizing the sum of the squared errors, so $$S(\text{parameters of $f$};\mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - f(x_i))^2.$$
+    - This is an optimization problem. Follow the optimization steps. Show your work on your chalkboard, and discuss any questions as you complete each step. 
+    - Did you verify that you found a local minimum?
+    - Note that $f_2$ is the only model with two parameters, which means it will be the only model that requires working with partial derivatives. 
+
+1.  Write down your fitted model, using the parameters you obtained via optimization.
+
+1.  Plot your fitted model along with the data.
+
+1.  Select another model and corresponding data set and **repeat**.
+
+## Discussion 
+
+**Wrap up class by directing attention to code in prep.**

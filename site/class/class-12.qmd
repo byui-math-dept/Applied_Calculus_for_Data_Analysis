@@ -1,0 +1,160 @@
+---
+title: "Class 12"
+---
+
+# During Class - Day 12
+## Brain Gains
+- For the function $f(x) = -2\sqrt[3]{x+6}$, identify some power functions and then use appropriate operations to show how to construct $f$ from these power functions. (There are many correct ways to do this.) 
+- Let $ f(t) = \log_2{3t-2} $.
+    - Compute $ f(2) $.
+    - Solve $ f(t) = 2 $ for $ t $.
+      - Check your answer using uniroot() in R.
+      - Construct a plot in R that shows where $f(t)$ and $y=2$ intersect.  
+- Rewrite the following expressions using the properties of logarithms.
+    - $\log \left( \prod_{j=1}^{3} (x + j) \right)$
+    - $\log_4 \left( \prod_{k=1}^{5} (y_k + b x_k)^2 \right)$
+    - $\ln \left( \prod_{k=1}^{4}(100-k^2) \right)$
+    - $\ln \left( \prod_{i=1}^{500} (y_i + a x_i)^2 \right)$
+
+<details>
+<summary>Possible Solutions</summary>
+
+    - $\sum_{j=1}^{3} \log(x + j) $
+    - $\sum_{k=1}^{5} \log_4((y_k + b x_k)^2) = \sum_{k=1}^{5} 2\log_4(y_k + b x_k) = 2\sum_{k=1}^{5} \log_4(y_k + b x_k) $
+    - $\sum_{k=1}^{4} \ln(100-k^2) $
+    - $\sum_{i=1}^{500} \ln((y_i + a x_i)^2) = \sum_{i=1}^{500} 2\ln(y_i + a x_i) = 2\sum_{i=1}^{500} \ln(y_i + a x_i)$
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### See the Pieces
+For each function given below, identify power functions and operations used to build (or construct) the function.
+1. $f(x) = 7\sqrt[5]{4x-6}$
+1. $g(x) = \frac{7x^2 + 42x +63}{3x-5}$
+1. $h(x) = \frac{4}{x-1}$
+
+### Uniroot Practice
+
+Remember that one key to using uniroot is to pick two $x$-values where you know the values of the function differ in sign. If needed, start by constructing a plot to help you pick these values.
+
+- Let's solve $3x - 15 = e^{-x+6}$ using uniroot. Note that this function doesn't have a by-hand solution technique. We'll have to update the bounds in uniroot below, using the graph. You will obtain an error on the second line of the code below. Use the last 3 lines to create a plot, and then update the bounds in uniroot. 
+
+```r
+g <- function(x){ 3*x-15-exp(-x+6) }
+uniroot(g,c(0,5))$root
+
+x <-seq(0,30,1)
+plot(x,g(x), type="l")
+abline(h=0, col = "lightgray")
+```
+
+Now practice using uniroot to solve some of the equations below. 
+Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. 
+If needed, make a plot first to figure out an interval where the zero should appear. 
+1. $3x-5=0$
+1. $3x-5=7$
+1. $3x-5=e^{-x}$  (Remember to use exp(-x)) for $e^{-x}$ )
+1. $3x-5=\ln(x)$ (Remember to use log(x) for $\ln(x)$). 
+1. $x^2+x-6=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
+1. $x^2-8x+12=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
+
+- What happens when we try to solve something impossible, such as $\frac{1}{x} = 0$.
+
+```r
+f <- function(x){
+  1/x
+}
+
+uniroot(f,c(-10,-3))$root
+
+uniroot(f,c(-1,1))$root
+
+uniroot(f,c(-1,1))
+```
+
+### Using a model
+Consider the following fitted models. These models were fit to the data for Project 1 Task 3 using seed=123.
+- $f_2(x) = 100 + 0.0011x - 0.00000015x^2$ where $x \geq 0$
+- $f_3(x) = 101.9 - 1.9e^{-0.00114x}$ where $x \geq 0$
+- $f_4(x) = 100 - 0.000181x + 0.83\ln(0.005x+1)$ where $x \geq 0$
+- $f_5(x) = (100 + 0.00623x)e^{-0.0000506x}$ where $x \geq 0$
+
+<details>
+<summary>Graphs of these Functions in R</summary>
+
+```r
+rm(list=ls())
+library(data4led)
+bulb <- led_bulb(1,seed = 123)
+
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+f0 <- function(x,a0=100 + 0*x ){ a0 }
+f1 <- function(x,a0=100,a1=7e-4){ a0 + a1*x }
+f2 <- function(x,a0=100,a1=1.1e-3,a2=-1.5e-7){ a0 + a1*x + a2*x^2 }
+f3 <- function(x,a1=-1.9,a2=0.00114){ (100-a1) + a1*exp(-a2*x) }
+f4 <- function(x,a0=100,a1=-1.81e-4,a2=0.83){a0+a1*x+a2*log(0.005*x+1)}
+f5 <- function(x,a0=100,a1=6.23e-3,a2=5.06e-5){ (a0 + a1*x)*exp(-a2*x) }
+
+x <- seq(-10,80001,2)
+y0 <- f0(x)
+y1 <- f1(x)
+y2 <- f2(x)
+y3 <- f3(x)
+y4 <- f4(x)
+y5 <- f5(x)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f0')
+lines(x,y0,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y0,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f1')
+lines(x,y1,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y1,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f2')
+lines(x,y2,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y2,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f3')
+lines(x,y3,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y3,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f4')
+lines(x,y4,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y4,col=2)
+
+par(mfrow=c(1,2),mar=c(2,2,3,0.25),oma=rep(0.5,4))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f5')
+lines(x,y5,col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,y5,col=2)
+```
+
+</details>
+
+The code above provides, for each model, a plot of the data along with the model (similar to Task 3) and the line $y=80$ in light gray. As a group, answer the following questions. For some of these questions, you will need to use uniroot. 
+
+1. Use the model $f_4$ to answer the question, What is the intensity of the bulb after 12000 hours?
+1. Use the model $f_3$ to answer the question, When is the intensity of the bulb 90% of its original intensity?
+1. Use the model $f_2$ to answer the question, When is the intensity of the bulb 97% of its original intensity?
+1. Use the model $f_5$ to answer the question, When is the intensity of the bulb 95% of its original intensity?
+1. Use the model $f_5$ to answer the question, What is the intensity of the bulb after 25000 hours?
+
+1. For each model (all 6), answer the question, "When does the bulb burn out (the intensity is 80% of the original)?"
+
+## Discussion
+We'll wrap up today by having a discussion about the topics you discussed in your Group Meeting.

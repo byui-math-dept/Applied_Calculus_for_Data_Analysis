@@ -1,0 +1,76 @@
+/* Math 119 Quarto Site Styles */
+
+details {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: #f8f9fa;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #495057;
+  padding: 0.25rem 0;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.indent {
+  margin-left: 2em;
+}
+
+ol[type="a"] {
+  list-style-type: lower-alpha;
+}
+
+/* Prevent wide tables from breaking layout — scroll horizontally */
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+table td, table th {
+  white-space: normal;
+  word-wrap: break-word;
+  min-width: 120px;
+}
+
+table td:first-child, table th:first-child {
+  min-width: 3rem;
+  white-space: nowrap;
+}
+
+/* Left-align display math (MathJax centered by default looks odd in lists) */
+mjx-container[display="true"] {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* Schedule table borders */
+.schedule-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 600px;
+  display: table;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #dee2e6;
+  padding: 0.4rem 0.6rem;
+  vertical-align: top;
+  min-width: unset;
+  white-space: normal;
+}
+
+.schedule-table thead {
+  background: #e9ecef;
+  font-weight: 600;
+}

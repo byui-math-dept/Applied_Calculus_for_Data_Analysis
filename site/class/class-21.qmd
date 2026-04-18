@@ -1,0 +1,127 @@
+---
+title: "Class 21"
+---
+
+# During Class
+
+[Derivative Rules](https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html){target="_blank"}
+
+## Brain Gains
+1.  Let $g(y;a) = a^2+5ay-y^3$.
+    - Find the derivative of $g$ with respect to $y$ assuming $a$ is constant.
+    - Find the derivative of $g$ with respect to $a$ assuming $y$ is constant.
+
+<details>
+<summary>Solution</summary>
+
+- We have $\frac{dg}{dy} = 0+5a(1)-3y^2$ given $a$ is constant. Soon we will write this using partial derivative notation as $\frac{\partial g}{\partial y}=5a-3y^2$. The stylied $d$ written as  $\partial$ means that you assume all other variables are constant.
+- We have $\frac{dg}{da} = 2a+5(1)y-0$ given $y$ is constant. We can write this as $\frac{\partial g}{\partial a}=2a+5y$.
+
+</details>
+
+1.  Let $f(x) = x^2-x$. Give an equation of the linearization of $f(x)$ at $x=-2$.
+
+<details>
+<summary>Solution</summary>
+
+The derivative is $f'(x) = 2x-1$.  
+At $x=-2$, this gives the slope of the linearization as $f'(-2) = -5$. 
+The value of the function at $x=-2$ is $f(-2) = 4+2 = 6$. 
+An equation of the line that passes through the point $(-2,6)$ and has slope $-5$ is 
+$$y-6=(-5)(x+2).$$
+The above is sufficient, though we can also write this as
+- $y=6+(-5)(x+2)$ or
+- $y=-5x-4$.
+
+</details>
+
+1.  Given the graph of a function $h(x)$ below, draw $h'(x)$. 
+https://byuimath.com/bmw/all/119/uploads/Class/Draw-Derivative.png
+
+<details>
+<summary>Solution</summary>
+
+Here is a solution in https://www.desmos.com/calculator/pnwcoyxmry.
+Note that the derivative passes through $y=0$ at 3 $x$-values. (We call places where the derivative has an output of zero, critical values). 
+These 3 values correspond precisely to the spots on the function when the function may switch from increasing to decreasing, or vice-versa.
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Derivative Practice with Parameters
+Take turns writing your **solutions** on the chalk board and discussing any questions. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. This is a time to practice the derivative rules. A time to practice communicating mathematics (sharing their ideas, writing mathematics, articulating what they understand, articulating what they don't understand yet). A time to practice listening and contributing to you group by engaging with their peers' work.
+1.  Let $g(x,y) = x^3y^3 - 5y + 1$.
+    - Find the derivative of $g$ with respect to $x$ assuming $y$ is constant.
+    - Find the derivative of $g$ with respect to $y$ assuming $x$ is constant.
+
+<details>
+<summary>Solutions</summary>
+
+- We have $\frac{dg}{dx} = 3x^2y^3$ given $y$ is constant. We can write this as $\frac{\partial g}{\partial x}=3x^2y^3$.
+- We have $\frac{dg}{dy} = 3x^3y^2 - 5$ given $x$ is constant. We can write this as $\frac{\partial g}{\partial y}=3x^3y^2 - 5$.
+
+</details>
+
+1.  Given $h(x,y;a) = (x^2 e^y - a\ln(x) - 10)^5$.
+    - Find the derivative of $h$ with respect to $x$ assuming $y$ and $a$ are constant.
+    - Find the derivative of $h$ with respect to $y$ assuming $x$ and $a$ are constant.
+    - Find the derivative of $h$ with respect to $a$ assuming $x$ and $y$ are constant.
+
+<details>
+<summary>Solutions</summary>
+
+- We have $\frac{dh}{dx} = 5(x^2e^y - a\ln(x) - 10)^4(2x e^y - \frac{a}{x})$ given $y$ and $a$ are constant, or simply $\frac{\partial h}{\partial x} = 5(x^2e^y - a\ln(x) - 10)^4(2x e^y - \frac{a}{x})$.
+- We have $\frac{dh}{dy} = 5(x^2e^y - a\ln(x) - 10)^4(x^2 e^y)$ given $x$ and $a$ are constant, or simply $\frac{\partial h}{\partial y} = 5(x^2e^y - a\ln(x) - 10)^4(x^2 e^y)$.
+- We have $\frac{dh}{da} = 5(x^2e^y - a\ln(x) - 10)^4(-\ln(x))$ given $x$ and $y$ are constant, or simply $\frac{\partial h}{\partial a} = 5(x^2e^y - a\ln(x) - 10)^4(-\ln(x))$.
+
+</details>
+
+### Activity - Loglikelihood
+
+You have been given a list of 44 data points, $(t_i, y_i)$, were $t_i$ is the time in hours since the light was turned on and $y_i$ is the percent intensity of the bulb after $t_i$ hours. 
+A model for the percent intensity of the bulb is $f(x;m,b) = mx+b$, where $t$ is the time in hours since the light was turned on. 
+- Write the formula for the residuals.
+
+Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1).
+- Write down the probability model we are using for one of the residuals.
+- What does knowing the residuals are independent allow us to do?
+    - Use the assumption of independent residuals to write the joint probability function.
+- Write the likelihood function for the residuals in this situation.
+- Write the loglikelihood function for the errors in this situation.
+- Rewrite the loglikelihood function using the properties of logs and sums.
+
+## Discussion 
+Let's sketch the derivative of
+https://byuimath.com/bmw/all/119/uploads/Class/Desmos-Graph-Together.png
+
+<details>
+<summary>Solution</summary>
+
+See https://www.desmos.com/calculator/yzgdfwn6eb.
+
+</details>
+
+We'll discuss any questions you have, model the first problem from the next activity, and then head back to the board for more practice. 
+
+### Activity - Practice with the Chain rule. 
+
+For each pair of functions $f(x)$ and $g(x)$ below, write out the compositions $f(g(x))$ and $g(f(x))$. 
+Then compute the derivative of each composite function. 
+Remember to pass the chalk between each problem. 
+1. $f(x) = 3x + 4$, $g(x) = x^2 + 1$
+1. $f(x) = e^x$, $g(x) = \sqrt{2x-5}$
+1. $f(x) = \frac{1}{x}$, $g(x) = 2\ln(x)$
+1. $f(x) = (x-5)^4$, $g(x) = \sqrt[3]{x^2}$
+1. $f(x) = e^{3x}$, $g(x) = x^4 - 1$
+1. $f(x) = \frac{x}{x-3}$, $g(x) = \ln(5x)$
+1. $f(x) = 2x^3 - 10x^2 + 2x$, $g(x) = \sqrt{\frac{x-4}{2}}$
+1. $f(x) = \frac{1}{x^5}$, $g(x) = 4e^x$
+1. $f(x) = \sqrt{8-x}$, $g(x) = (2x-1)(x+5)$
+1. $f(x) = e^{x/2}$, $g(x) = 5x^3$
+1. $f(x) = 1 - \frac{3}{x^4}$, $g(x) = 2 - \sqrt{x}$
+1. $f(x) = \frac{3}{x^2}$, $g(x) = \ln(x)$
+1. $f(x) = 27 - x^3$, $g(x) = x^2 - x - 12$
+1. $f(x) = \sqrt[3]{4-x^2}$, $g(x) = 5x + 7$
+1. $f(x) = \frac{x+1}{x-2}$, $g(x) = e^{-x}$

@@ -1,0 +1,352 @@
+---
+title: "Class 38"
+---
+
+# During Class
+## Summary of Key Points (Rectangles, Targets, and Sums)
+A **random variable** is a collection of measurements and their associated probability information.
+
+<details>
+<summary>The cumulative distribution function (CDF) of a random variable</summary>
+
+The **cumulative distribution function** of a random variable $X$ is the function $F(x) = P(X \leq x)$.
+
+The following statements are true of cumulative distribution functions (CDF).
+- If $f$ is a PDF, then $F(x) = P(X \leq x) = \int_{-\infty}^x f(x)dx$.
+- It is not required that $F$ is continuous.
+- Every cumulative distribution function is nondecreasing.
+    - When we look at the graph of $F$, as we move to the left, the outputs will get closer and closer to 0.
+      - Sometimes we write this idea with the following notation, $F(x) \rightarrow 0$ as $x \rightarrow -\infty$. 
+      - It is not required that 0 is in the range of $F(x)$.
+    - When we look at the graph of $F$, as we move to the right, the outputs will get closer and closer to 1.
+      - Sometimes we write this idea with the following notation, $F(x) \rightarrow 1$ as $x \rightarrow \infty$. 
+      - It is not required that 1 is in the range of $F(x)$.
+    - We know the range of $F(x)$ will be a subset of $ [ 0, 1 ] $.
+      - In other words, we know the outputs of a CDF will only include values between 0 and 1. Sometimes we write this idea with the following notation, $0 \leq F(x) \leq 1$.
+
+</details>
+
+We can calculate probabilities (using the CDF). Below are three examples. 
+- $ P(X \leq 2) = F(2) $ 
+- $ P(X > 3) = 1 - P(X \leq 3) = 1 - F(3) $
+- $ P(2 < X \leq 3) = P(X \leq 3) - P(X \leq 2) = F(3) - F(2) $
+
+Rectangular approximations for expected value (and area) give us Riemann sums and the definite integral.
+
+<details>
+<summary>Riemann sum for $f$</summary>
+
+Let $f(x)$ be defined on $a \leq x \leq b$. Let $n$ be a positive integer, and divide the interval $ [ a, b ] $ into $n$ subintervals of equal width. From each subinterval choose a point $x_i$. We call
+$$\sum_{i=1}^{n} f(x_i)\Delta x$$
+a **Riemann sum for $f$**.
+
+</details>
+
+<details>
+<summary>Definite Integral (a number, the limit of a Riemann Sum)</summary>
+
+For a function $f(x)$ defined on $a \leq x \leq b$, **the definite integral of $f$ from $a$ to $b$** is 
+$$\int_a^b f(x) dx = \lim_{n\to \infty }\sum_{i=1}^nf(x_i)\Delta x,$$
+provided the limit exists. If the limit exists, we say that $f$ is integrable on $ [ a, b ] $.
+- $f(x)$ is the integrand
+- $x$ is the variable of integration
+- $a$ is the lower bound (or lower limit of integration)
+- $b$ is the upper bound (or upper limit of integration)
+
+</details>
+
+The derivative of a cumulative distribution function of a continuous random variable is a probability density function (PDF). 
+
+<details>
+<summary>The probability density function of a continuous random variable with cumulative distribution function $F(x)$.</summary>
+
+The **probability density function** $f(x)$ of a *continuous* random variable $X$ with cumulative distribution function $F(x)$ is the derivative of $F(x)$, $f(x) = F'(x)$.
+- Every probability density function is nonnegative, in other words $f(x) \geq 0$.
+- The total area under a probability density function always equals 1.
+
+</details>
+
+<details>
+<summary>Probability Density Function (PDF)</summary>
+
+A **probability density function** $f(x)$ is a nonnegative function that satisfies $\displaystyle\int_{-\infty}^{\infty}f(x)dx = 1$.
+- Remember the description "nonnegative function" means all the outputs of $f$ are positive or zero, so $f(x) \geq 0$.
+- Important note: If a function is zero everywhere except on an interval $a \leq x \leq b$, then $\int_{-\infty}^{\infty}f(x)dx = \int_{a}^{b}f(x)dx = 1$.
+
+</details>
+
+Any nonnegative function with finite area can be normalized to make a pdf, $f(x) = kg(x) $ where $k = \frac{1}{\text{Total Area of } g} = \frac{1}{\int_{-\infty}^{\infty} g(x) dx} $.
+
+We can calculating probabilities (using the PDF). Below are several examples. 
+- $ P(X \leq 2) = \int_{-\infty}^2 f(x) dx $ 
+- $ P(X > 3) = \int_{3}^{\infty} f(x) dx $
+- $ P(2 < X \leq 3) = \int_2^3 f(x) dx$
+And notice that we can obtain the CDF from the PDF using 
+- $F(x) = P(X \leq x) = \int_{-\infty}^x f(x) dx$. 
+
+Look above at how we computed $P(a < X \leq b)$. 
+- We have $ P(a < X \leq b) = \int_a^b f(x) dx$ using the PDF. 
+- We have $ P(a < X \leq b) = F(b) - F(a) $ using the CDF. 
+Combining these facts gives $$\int_a^b f(x) dx = F(b) - F(a).$$
+This fact, where $F'=f$, is "The Fundamental Theorem of Calculus" (part 2). We'll see part 1 later. 
+
+Given a probability model for a continuous random variable, we'll use the expected value and variance to help us fit data to the model. 
+
+<details>
+<summary>Expected Value (continuous random variable)</summary>
+
+The **expected value** (or mean) of a *continuous* random variable $X$ with probability density function $f(x)$ is
+$$E[X] = \int_{-\infty}^{\infty} x f(x) dx.$$
+
+- The expected value is a characteristic of a random variable.
+- The expected value is the average value of a random variable.
+- The expected value is a measure of "center".
+- If you roll a die many many many times and then average all the values, this is the expected value.
+- If you throw a dart many times and record the $x$-coordinate each time, the average all these values is the expected value.
+- You can use the horizontal centroid of the graph of a PMF or PDF to visualize the expected value of a random variable.
+- You can calculate an approximation for the expected value of a continuous random variable with a weighted average of the centroids of rectangles, namely $ E[X] \approx \frac{\sum x_i A_i}{\sum A_i} $ where $ A_i = f(x_i)\Delta x.$
+    - If the total area is 1, so $\sum A_i = 1$, this becomes  $ E[X] \approx \sum x_i A_i = \sum x_i f(x_i) \Delta x .$
+    - The limit of this Riemann sum is the definite integral $E[X] = \lim_{n \rightarrow \infty} \sum x_i f(x_i) \Delta x = \int_a^b xf(x) dx .$
+
+</details>
+
+<details>
+<summary>Variance (continuous random variable)</summary>
+
+The **variance** of a *continuous* random variable $X$ with probability density function $f(x)$ is
+$$Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2 f(x) dx.$$
+The standard deviation is equal to the square root of the variance, which we write as $\sigma_X = \sqrt{Var[X]}$.
+- The variance is characteristic of a random variable.
+- The variance is a measure of how spread out the data is. The more spread out the data is, the larger the variance.
+
+</details>
+
+## Brain Gains
+We'll complete this as groups at the boards.
+
+Consider the function $g(x) = 9-x^2$ for $0\leq x\leq 3$ and 0 otherwise. As you complete each exercise below, first write on the board any integral you need to compute. Then use Mathematica to compute it. 
+1. Draw the function $g$. 
+1. Is $g(x)$ the PDF of a random variable $X$?  Explain.
+1. Find a constant $k$ so that $f(x) = k g(x)$ is the PDF of a random variable $X$.
+1. Compute $P(X\leq 1)$. 
+1. Compute $P(X\leq 2)$. 
+1. Compute $P(1<X\leq 2)$. 
+1. Compute the cumulative distribution function (CDF), so find $F(x) = P(X\leq x)$. [You found $F(1)$ and $F(2)$ above.]
+1. Compute the expected value $E[X]$. 
+1. Compute the variance $Var[X]$. 
+1. Compute the standard deviation of $X$. 
+1. Pick another function $g(x)$ and bounds for $x$, and then repeat the above.
+
+<details>
+<summary>Answers</summary>
+
+1. It's a parabola open downwards starting at height 9. The following code plots $g$ with Mathematica. 
+
+```r
+Plot[9-x^2,{x,0,3}]
+@](:codemend:)
+
+1.  $\int_{-\infty}^{\infty} g(x) dx = \int_0^3 9-x^2 = 18 \neq 1$, so $g$ is not a probability density function.
+(:codem:)
+```
+Integrate[9-x^2,{x,0,3}]
+```
+(:codemend:)
+
+1.  $k = \frac{1}{18}$.
+
+1.  $\int_{-\infty}^{1} f(x)dx = \int_0^1 \frac{1}{18}(9-x^2)dx = \frac{13}{27} \approx 0.481$
+(:codem:)
+```
+Integrate[(1/18)*(9-x^2),{x,0,1}]
+```
+(:codemend:)
+Note that $\int_{-\infty}^{1} f(x)dx \neq \int_{-\infty}^1 \frac{1}{18}(9-x^2)dx$, as you MUST change the $-\infty$ to 0 to capture the domain of $f$. 
+Note also that we computed the CDF at 1 and have $F(1) = P(X \leq 1) = \frac{13}{27}$. 
+
+1.  $\int_{-\infty}^{2} f(x)dx = \int_0^2 \frac{1}{18}(9-x^2)dx = \frac{23}{27} \approx 0.852$ which means $F(2) = \frac{23}{27}$.
+(:codem:)
+```
+Integrate[(1/18)*(9-x^2),{x,0,2}]
+```
+(:codemend:)
+
+1.  $\int_1^2 \frac{1}{18}(9-x^2)dx = \frac{10}{27} \approx 0.370$
+(:codem:)
+```
+Integrate[(1/18)*(9-x^2),{x,1,2}]
+```
+(:codemend:)
+Note that $P(1\leq X\leq 2) = F(2) - F(1)$
+
+1.  There 3 regions to consider. First, when $x<0$. Second, when $0\leq x \leq 3$. And third, when $x>3$.<br>
+When $x<0$, $F(x) = 0$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^x 0 dx = 0$).<br>
+When $x>3$, $F(x) = 1$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^0 0dx + \int_0^3 \frac{1}{18}(9-x^2)dx + \int_3^x 0 dx = 0+1+0=1$).<br>
+When $0\leq x\leq 3$, $F(x) = \int_{-\infty}^x f(x) dx = \int_0^x \frac{1}{18}(9-t^2)dt = \frac{1}{2}x - \frac{1}{54}x^3$.
+(:codem:)
+```
+Integrate[(1/18)*(9-t^2),{t,0,x}]
+```
+(:codemend:)
+OR
+(:codem:)
+```
+Integrate[(1/18)*(9-x^2),{x,0,x}]
+```
+(:codemend:)
+Note: $F'(x) = f(x)$
+
+1.  $E[X] = \int_{-\infty}^{\infty} xf(x)dx = \int_0^3 x(\frac{1}{18}(9-x^2)) dx = \frac{9}{8} = 1.125$
+(:codem:)
+```
+Integrate[x*(1/18)*(9-x^2),{x,0,3}]
+```
+(:codemend:)
+
+1.  $Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2f(x)dx = \int_0^3 (x-\frac{9}{8})^2(\frac{1}{18}(9-x^2)) dx = \frac{171}{320} \approx 0.534$
+(:codem:)
+```
+Integrate[(x-9/8)^2*(1/18)(9-x^2),{x,0,3}]
+```
+(:codemend:)
+
+1.  $\sigma_X = \sqrt{Var[X]} = \sqrt{\frac{171}{320}} \approx 0.731$
+(:codem:)
+```
+N[Sqrt[171/320]]
+```
+(:codemend:)
+
+</details>
+
+## Discussion 
+### "Infinite targets" and Rectangles - An Exponential Random Variable
+Consider the random variable $X$ with the PDF $$f(x) = 
+\begin{cases}
+5e^{-5x} &  x \geq 0 \\
+0 &  \text{otherwise}
+\end{cases}.$$
+
+- Why do we know the area under the "infinite" target is 1?
+
+Let's approximate the area under $f$ using rectangles (so a Riemann sum).
+(:code:)
+```r
+f <- function(x){5*exp(-5*x)}
+
+a <- 0
+1. b should be infinity, but infinity is a concept (not a number) and the computer program needs a number to complete the calculation... so we pick a large but finite value for b
+b <- 30 
+n <- 1000
+dx <- (b-a)/n
+draw_rect_approx(f,a,b,n) 
+
+xi <- seq(a+dx/2,b,dx)
+A <- sum(f(xi)*dx)
+A
+```
+
+We know the exact area is 1 and see that our approximation with 1000 rectangles, 0.9990631, is pretty good. 
+
+Now let's use rectangles to approximate the expected value using the Riemann sum $E[X]\approx \sum x_i f(x_i) \Delta x$, and the variance using the Riemann sum $\text{Var}[X]\approx \sum (x_i-E[X])^2 f(x_i) \Delta x$.
+
+```r
+EV <- sum(xi*f(xi)*dx)
+EV
+Var <- sum((xi-EV)^2*f(xi)*dx)
+Var
+```
+
+The "target" seems to have more weight on the left, so $E[X]\approx 0.2003749$ seems like a reasonable approximation for $E[X]$. This shape is not on any of our list of centroids so we don't have a formula find the exact value for our expected value of $E[X]$. But the exact expected value can be computed using a definite integral with Mathematica. 
+
+We now compute $A=\int_0^{\infty}f(x) dx$, $E[X]=\int_0^{\infty}xf(x) dx$, and $\text{Var}[X]=\int_0^{\infty}(x-E[X])^2f(x) dx$ with Mathematica.  
+
+```r
+f = 5 Exp[-5 x]
+A = Integrate[f, {x, 0, Infinity}]
+EV = Integrate[x*f, {x, 0, Infinity}]
+Var = Integrate[(x - EV)^2*f, {x, 0, Infinity}]
+```
+(:codemend:)
+
+### Project 3 and Knewton Alta Tips
+- Let's plot some of the probability models from Project 3.
+(:code:)
+```r
+f0 <- function(x,a=0,b=1){1/(b-a)+0*x}
+
+x0 <- seq(a,b,0.1)
+y0 <- f0(x0,a,b)
+
+plot(x0,y0,type='l')
+```
+
+```r
+f1 <- function(x,m=0,s=1){1/(sqrt(2*pi*s^2))*exp(-0.5*((x-m)/s)^2)}
+
+x1 <- seq(-20,20,0.1)
+y1 <- f1(x1,m,s)
+
+plot(x1,y1,type='l')
+```
+
+```r
+f2 <- function(x,a=1,b=1){b^a/gamma(a)*(x)^(a-1)*exp(-b*x)}
+
+x2 <- seq(0,20,0.1)
+y2 <- f2(x2,a,b)
+
+plot(x2,y2,type='l')
+```
+
+```r
+f3 <- function(x,lambda=1){lambda*exp(-lambda*x)}
+
+x3 <- seq(0,20,0.1)
+y3 <- f3(x3,lambda)
+
+plot(x3,y3,type='l')
+```
+
+    - What is dexp()? What is rexp()?
+
+- Let's compare f1 and dnorm().
+
+```r
+y <- dnorm(x1,mean=m,sd=s)
+ 
+plot(x1,y1,type='l,lwd=5,col='gray')
+lines(x1,y,col=4)
+```
+
+- Let's do some Knewton Alta exercises together.
+    - 3 -- Compute Probability Continuous Random Variables
+    - 3 -- Riemann Sums & Definite Integrals 
+    - 3 -- Calculate Parameters of Continuous Random Variables Identifying Expected Value and Variance
+
+- Let's calculate $\int_{-\infty}^\infty f(x) dx $, $ E[X] $, $ Var[X] $, and standard deviation of X for $f_3$ and $f_1$.
+(:codem:)[@
+$Assumptions = \[Lambda] > 0;
+Integrate[\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
+Integrate[x*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
+
+m=Integrate[x*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}];
+Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
+
+Sqrt[Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]]
+```
+(:codemend:)
+
+(:codem:)
+```
+$Assumptions = \[Sigma] > 0;
+Integrate[1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+Integrate[x*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+
+m = Integrate[x*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}];
+Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+
+V = Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}];
+Simplify[Sqrt[V]]
+```
+(:codemend:)

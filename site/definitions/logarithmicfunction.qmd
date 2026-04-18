@@ -1,0 +1,15 @@
+---
+title: "Definition: LogarithmicFunction"
+---
+
+<details>
+<summary>Definition: Logarithmic Function</summary>
+
+A **logarithmic function** is of the form $\log_b(x)$ where $b>0$ and $b \neq 1$.
+
+Note: A logarithmic function is not an algebraic function.
+
+</details>
+
+<!-- include: Page.KeyCharacteristicsOfLogarithmicFunction -->
+<!-- include: Page.PropertiesOfLogarithms -->

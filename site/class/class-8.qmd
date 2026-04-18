@@ -1,0 +1,320 @@
+---
+title: "Class 8"
+---
+
+# During Class - Day 8
+## Brain Gains
+1. Consider the function $f(x; a,b) = a + bx^2$. If we know $f(0) = 10$ and $f(5) = 510$, what are the values of $a$ and $b$.
+
+<details>
+<summary>Answers</summary>
+
+Since $f(0) = a + b(0)^2 = 10$, we see $a = 10$. Since $f(5) = 10 + b(25) = 510$, we see $b = 20$. Note: We have used the method of substitution to solve the linear system of equations for the parameters $a$ and $b$.
+$\left\{
+\begin{array}{ll}
+a + b(0) &= 10 \\ 
+a + b(25) &= 510.
+\end{array} 
+\right.$
+
+</details>
+
+2. Construct a graph of $f(x) = 3^{-x}$ for $-2\leq x\leq 2$. 
+
+<details>
+<summary>Solution</summary>
+
+Making a table of 5 points (using $x=-2,-1,0,1,2$) is a simple way to complete this. We can also rapidly do this in R. 
+
+```r
+f <- function(x){3^(-x)}
+x <- seq(-2,2,0.1)
+plot(x,f(x),type = "l")
+```
+
+</details>
+
+3. Give a numerical approximation to $e^{2}$ using R.  
+
+<details>
+<summary>Solution</summary>
+
+The function $e^{ ( ) }$ in R is given using the exp() function. 
+
+```r
+exp(2)
+1. 7.389056
+```
+
+What is $e$? It's a number. 
+
+```r
+exp(1)
+1. 2.718282
+```
+
+The number arises from calculus, and we'll see in a few weeks why $e$ is special.
+
+</details>
+
+## Group Meeting
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Compare your Project 1 Task 2
+Share with each other what you did for project 1 task 2.  Help address any questions you have. After class today, please make any needed revisions and then resubmit. 
+
+### Graph Exponential Functions
+Graph each function below, showing at least 2 points, and any horizontal asymptote. End by stating the $y$ intercept. 
+- $f(x) = 2^{x-3}$
+- $f(x) = (1/3)^{x}+4$
+
+### Example Project Tasks 2 and 3
+- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
+- Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
+    - Use the slider to alter the values of $a$ and $b$. Discuss how these parameters alter the graph of $f_0$.
+    - Use the slider to alter the values of $h$ and $a$. Discuss how these parameters alter the graph of $f_1$.
+    - Use the slider to alter the values of $h$, $a$, and $b$. Discuss how these parameters alter the graph of $f_2$.
+
+## Discussion
+### Deterministic Versus Probabilistic Models
+We'll have a high level discussion about where we are headed with the the projects. 
+- What is a deterministic model?
+- What is a probabilistic model?
+
+How does AI fit into this?
+
+### Function "Mad Libs"
+Let's list several quantities that we can measure. We'll use these to construct madlibs with mathematics.  Functions tell a story, and we need to learn to tell that story.  
+- Quantity 1:
+- Quantity 2:
+
+For the model $y=f(x;a=10,b=4)=10-\sqrt{x+4}$, we'll tell the story that occurs if we let $x$ be quantity 1, and $y$ be quantity 2. 
+- Use the code below to plot this function in R, and then tell the story.
+
+```r
+x <- seq(-4,20,0.1)
+y <- 10-sqrt(x+4)
+par(mar=c(2.5,2.5,0.5,0.5))
+plot(x,y,type='l')
+```
+
+```r
+x <- seq(-4,200,0.1)
+y <- 10-sqrt(x+4)
+par(mar=c(2.5,2.5,0.5,0.5))
+plot(x,y,type='l')
+```
+
+- How could we interpret $x=0$?
+- How could we describe the meaning of $x=-4$?
+- What's the story when $x=21$?
+- What does this story mean if $x=117$
+
+#### Summary
+A function tells a story about a relationship between two quantities, whether that relationship is realistic or not.  
+- Telling the story given by a model is a skill different from but related to the skill of determining whether the model is a good description of a relationship being studied.
+- Telling the story given by a model is a skill different from but related to adjusting the model to better describe a relationship being studied.
+- Telling the story given by the model (no matter how ridiculous) is a skill that takes practice.
+- To use a model there are two translation steps required. (We focus on the second translation step in this class.)
+    - Translate the story to mathematics
+    - Use some mathematics to study the relationship (or process)
+    - Translate the mathematics back to a story.
+- Can you tell the story given by the function, regardless of how absurd that story is?
+
+### Example Project Tasks 2 and 3
+- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
+- Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
+    - Use the slider to alter the values of $a$ and $b$. Discuss how these parameters alter the graph of $f_0$.
+    - Use the slider to alter the values of $h$ and $a$. Discuss how these parameters alter the graph of $f_1$.
+    - Use the slider to alter the values of $h$, $a$, and $b$. Discuss how these parameters alter the graph of $f_2$.
+
+We'll now have a discussion in class about what you observed. 
+ 
+Our goal is to understand enough about the general functions $f_0$, $f_1$, and $f_2$ and their parameters to be able to identify specific functions (so specified parameters) of the forms $f_0$, $f_1$, and $f_2$ that looks like the density histogram of our light bulb data.  The code below will regenerate this histogram for us. 
+
+```r
+library(data4led)
+dist <- led_time(2100)
+hist(dist$percent_intensity,probability = TRUE)
+```
+
+- For each of the 3 functions, use the sliders in Desmos to try and pick reasonable values for the parameters to provide a reasonable visual fit to the probability histogram. 
+
+#### Summary Plots
+We'll spend some time today in class discussing the https://byuistats.github.io/M119/example_project.html. Here's a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.  
+
+```r
+library(data4led)
+dist <- led_time(2100)
+hist(dist$percent_intensity,probability = TRUE)
+```
+
+- What characteristics do you notice about the density histogram of our data? By identifying the characteristics we see in the data we know what behavior we would like the function curve to have.
+    - What is the smallest value?
+    - What is the largest value?
+    - What is the location of the peak?
+    - What is the width of the peak?
+
+Let's look at the first model $f_0$. 
+
+- What did you notice about the general model $f_0$ and its parameters?
+    - What is the domain of $f_0$?
+    - What does $a$ do?
+    - What does $b$ do?
+    - Try to pick some values for the parameters that provide a visual fit to the data. 
+    - What story does this model tell, in the context of percent intensities of light bulbs?
+
+Let's summarize our observations with a few plots.
+Run this code in your Console to plot representative curves for the parameter $a$ in function $f_0$.
+
+```r
+rm(list=ls())
+f0 <- function(L,a=0,b=1){
+  # Make sure a < b when using this function.
+  ifelse(L < a,NaN, ifelse(L <= b, 1/(b-a), NaN))
+}
+
+a <- [your selected value]
+b <- [your selected value]
+L <- seq(a,b,0.1)
+y <- f0(L,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('For f0: a=, b=', side = 3, line = 0)
+
+a <- [another selected value]
+L <- seq(a,b,0.1)
+y <- f0(L,a,b)
+
+plot(L,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('change a= (keep b=)', side = 3, line = 0)@]
+(:codeend:)
+
+Now let's look at the second model $f_1$. 
+- What did you notice about the general model $f_1$ and its parameters?
+    - What is the domain of $f_1$?
+    - What does $h$ do?
+    - What does $a$ do?
+    - Try to pick some values for the parameters that provide a visual fit to the data. 
+    - What story does this model tell, in the context of percent intensities of light bulbs?
+
+Let's summarize our observations with a few plots.
+Run this code in your Console to plot representative curves for the parameter $h$ in function $f_1$.
+(:code:)[@
+rm(list=ls())
+f1 <- function(L,h=0,a=1){
+1. Make sure h > 0 and a > 0.
+1/sqrt(2*pi*a)*exp(-(L-h)^2/(2*a))
+}
+
+a <- [your selected value]
+L <- seq(80,120,0.1)
+h <- [your selected value]
+y <- f1(L,h,a)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(80,120))
+mtext('plot f1 with h= and a=', side = 3, line = 0)
+
+h <- [another selected value]
+y <- f1(L,h,a)
+
+plot(L,y,type='l',xlim=c(80,120))
+mtext('change h=, keep a=', side = 3, line = 0)
+```
+
+Run this code in your Console to plot representative curves for the parameter $a$ in function $f_1$.
+
+```r
+h <- [your selected value]
+L <- seq(80,120,0.1)
+a1 <- [your selected value]
+y3 <- f1(L,h,a1)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y3,type='l',xlim=c(80,120))
+
+a2 <- [your selected value]
+y4 <- f1(L,h,a2)
+
+plot(L,y4,type='l',xlim=c(80,120))
+mtext('change h=, keep a=', side = 3, line = 0)
+```
+
+- What did you notice about the general model $f_2$ and its parameters?
+    - What is the domain of $f_2$?
+    - How do the parameters of $f_2$ change the behavior of $f_2$?
+    - Try to pick some values for the parameters that provide a visual fit to the data. 
+    - What story does this model tell, in the context of percent intensities of light bulbs?
+
+Let's summarize our observations with a few plots.
+
+Run this code in your Console to plot representative curves for the parameter $h$ in function $f_2$.
+
+```r
+rm(list=ls())
+f2 <- function(L,h=0,a=1,b=5){
+1. Make sure a > 0 and b > 0.
+
+out <- rep(-1,length(L))
+out[(L < h)] <- 0*L[(L < h)]
+out[(L >= h)] <- b^a/gamma(a)*(L[(L >= h)]-h)^(a-1)*exp(-b*(L[(L >= h)]-h))
+
+return(out)
+}
+
+a <- [your selected value]
+b <- [your selected value]
+h <- [your selected value]
+L <- seq(h,120,0.1)
+y <- f2(L,h,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(80,120))
+
+h <- [your selected value]
+L <- seq(h,120,0.1)
+y <- f2(L,h,a,b)
+
+plot(L,y,type='l',xlim=c(80,120))
+mtext('Changing h in f2', side = 3, line = 0, outer = TRUE)
+```
+
+Run this code in your Console to plot representative curves for the parameter $a$ in function $f_2$.
+
+```r
+h <- [your selected value]
+b <- [your selected value]
+L <- seq(h,120,0.1)
+a <- [your selected value]
+y <- f2(L,h,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(80,120))
+
+a <- [your selected value]
+y <- f2(L,h,a,b)
+
+plot(L,y,type='l',xlim=c(80,120))
+mtext('Changing a in f2', side = 3, line = 0, outer = TRUE)
+```
+
+Run this code in your Console to plot representative curves for the parameter $b$ in function $f_2$.
+
+```r
+h <- [your selected value]
+a <- [your selected value]
+L <- seq(h,120,0.1)
+b <- [your selected value]
+y <- f2(L,h,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(80,120))
+
+b <- [your selected value]
+y <- f2(L,h,a,b)
+
+plot(L,y,type='l',xlim=c(80,120))
+mtext('Changing b in f2', side = 3, line = 0, outer = TRUE)
+```

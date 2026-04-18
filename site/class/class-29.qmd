@@ -1,0 +1,223 @@
+---
+title: "Class 29"
+---
+
+# During Class
+## Brain Gains
+
+<details>
+<summary>Definition: Critical Points (2 dimensions)</summary>
+
+Let $f(x,y)$ be a function of two variables that id defined on an open set containing the point $(x_0,y_0)$. We say that $(x_0,y_0)$ is a **critical point** of $f(x,y)$ if any of the following condition are true. 
+- $\pd{f}{x}{}(x_0,y_0) = 0$ and $\pd{f}{y}{}(x_0,y_0) = 0$ 
+- $f_x(x_0,y_0)$ is undefined
+- $f_y(x_0,y_0)$ is undefined
+
+</details>
+
+<details>
+<summary>Second Derivative Test (2 dimensions)</summary>
+
+Given $f(x,y)$ where $f_x$, $f_y$, $f_{xx}$, $f_{xy}$, $f_{yx}$, and $f_{yy}$ are continuous near $(x_0,y_0)$, continuous on some disk containing the point $(x_0,y_0)$. Suppose that $f_x(x_0,y_0) = 0$ and $f_y(x_0,y_0) = 0$.<br>
+Consider $D = f_{xx}(x_0,y_0)f_{yy}(x_0,y_0) - (f_{xy}(x_0,y_0))^2$.
+- If $D > 0$ and $f_{xx}(x_0,y_0)>0$, then $f$ has a local minimum at $(x_0,y_0)$.
+- If $D > 0$ and $f_{xx}(x_0,y_0)<0$, then $f$ has a local maximum at $(x_0,y_0)$.
+- If $D < 0$, then $f$ has a saddle point at $(x_0,y_0)$.
+- If $D = 0$, then the test is inconclusive.
+
+</details>
+
+1. Suppose $(3,-4)$ is a critical point of the function $\ell$ with continuous second derivatives $\frac{\partial^2\ell}{\partial a_1^2}(3,-4) = -5$, $\frac{\partial^2\ell}{\partial a_1\partial a_2}(3,-4) = 3$,  $\frac{\partial^2\ell}{\partial a_2^2}(3,-4) = -2$.  Is there a local maximum, local minimum, or saddle point at $(3,-4)$?
+
+<details>
+<summary>Solution</summary>
+
+We compute (letting $x=a_1$ and $y=a_2)$
+$$D = f_{xx}(3,-4)f_{yy}(3,-4) - (f_{xy}(3,-4))^2 = (-5)(-2)-(3)^2=1>0.$$
+Because $D>0$, then the function is either concave up, or concave down, in all directions.  Because $\frac{\partial^2\ell}{\partial a_1^2}(3,-4) = -5$ is negative, we know that the point is a maximum.
+
+</details>
+
+<details>
+<summary>Steps of Optimization</summary>
+
+- Identify the Function of Interest (the objective function)
+    - This is the function you want to make big (maximize) or small (minimize).
+- Optimize
+    - Take the first and second derivatives.
+    - Set the first derivative (or first partial derivatives) equal to zero and solve to find the critical point(s).
+    - Use the second derivative test to make sure you found a maximum (or minimum).
+- Answer the Question
+
+</details>
+
+We'll walk through the maximum likelihood method today for $f_2$ using the data from 44 measurements on the bulb that corresponds to seed 123. 
+
+```r
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+```
+
+ 
+
+1. Consider the model $f_2(t; a_1, a_2) = 100 + a_1t + a_2t^2$. Assuming the residuals follow a standard normal distribution (so the probability model is given by $g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}$, find the loglikelihood function for $f_2$. 
+
+<details>
+<summary>Solution</summary>
+
+$$\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right).$$
+
+</details>
+
+1.  Compute the partial derivatives of $\ell_2$. 
+
+<details>
+<summary>Solution</summary>
+
+- $\frac{\partial\ell_2}{\partial a_1} = \left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2$
+- $\frac{\partial\ell_2}{\partial a_2} = \left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2$
+
+</details>
+
+1.  Find the critical points of $\ell_2$ by solving the system $$
+\left\{
+\begin{align*}
+\left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2 &= 0 \\ 
+\left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2 &= 0.
+\end{align*} 
+\right.$$ Feel free to appropriately adapt the code below. 
+
+```r
+1. Make sure you've loaded the data from above. 
+
+c11 <- 
+c12 <- 
+b1 <- 
+c21 <- 
+c22 <- 
+b2 <- 
+
+1. Create a function to solve a system of equations. 
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+1. Check the function. The solution to 2x+3y=4, 5x+6y=7 is simple. 
+solvesystem(2,3,4,5,6,7)
+
+sol <- solvesystem(c11, c12, b1, c21, c22, b2)
+sol
+sol[1] 
+sol[2]
+```
+ 
+
+<details>
+<summary>Solution</summary>
+
+The updated code above with these values for the coefficients, and the solution is $(a_1, a_2) = (1.190918e-03, -1.743522e-07)$. 
+
+```r
+c11 <- sum(t^2)
+c12 <- sum(t^3)
+b1 <- sum((y-100)*t)
+c21 <- c12
+c22 <- sum(t^4)
+b2 <- sum((y-100)*t^2)
+```
+
+</details>
+
+1.  Compute the second partial derivatives of $\ell_2$.
+
+<details>
+<summary>Solution</summary>
+
+- $\frac{\partial^2\ell_2}{\partial a_1^2} = - \sum_{i=1}^{44}t_i^2$, which is the same as $-c11$. 
+- $\frac{\partial^2\ell_2}{\partial a_2^2} = - \sum_{i=1}^{44}t_i^4$, which is the same as $-c22$. 
+- $\frac{\partial^2\ell_2}{\partial a_2 \partial a_1} = -\sum_{i=1}^{44}t_i^3$, which is the same as $-c12$.
+
+</details>
+
+1.  Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood. This requires we adapt and compute $D = f_{xx}f_{yy}-f_{xy}^2$ (is it positive) and then check $f_{xx}$. 
+
+<details>
+<summary>Solution</summary>
+
+In this problem the variables are $a_1$ and $a_2$ instead of $x$ and $y$. We compute 
+$$D = \left(\frac{\partial^2\ell_2}{\partial a_1^2}\right)\left( \frac{\partial^2\ell_2}{\partial a_2^2}\right) - \left(\frac{\partial^2\ell_2}{\partial a_2 \partial a_1}\right)^2 = \left(- \sum_{i=1}^{44}t_i^2\right)\left(- \sum_{i=1}^{44}t_i^4\right) - \left(- \sum_{i=1}^{44}t_i^3\right)^2.$$
+This gives $D = 1.23003e+23$. The code computes $D$ using the common syntax $D = f_{xx}f_{yy}-f_{xy}^2$, and checks $fxx$. 
+
+```r
+fxx <- -c11
+fyy <- -c22
+fxy <- -c12
+D <- fxx*fyy - fxy^2
+D
+D>0
+fxx
+fxx<0
+```
+
+Because $D>0$, and $\frac{\partial^2\ell_2}{\partial a_1^2} <0$, the second derivative test states our critical point corresponds to a local maximum.
+
+</details>
+
+1.  Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit. 
+
+<details>
+<summary>Solution</summary>
+
+The following R code will do this. 
+
+```r
+f2 <- function(x, a0=100, a1=sol[1], a2=sol[2]){a0 + a1*x + a2*x^2}
+
+x <- seq(-10,80001,2)
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16,main='f2')
+lines(x,f2(x),col=2)
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f2(x),col=2)
+```
+
+</details>
+
+1.  Using this model, how long until the bulb burns out (reaches 80% intensity). 
+
+<details>
+<summary>Solution</summary>
+
+We solve $f_2(x) = 80$ using uniroot. The code below gives (14656.9) and plots the result. 
+
+```r
+solveme <- function(x){f2(x)-80}
+burnouttime <- uniroot(solveme, c(0,50000))$root
+burnouttime
+
+par(mfrow=c(1,1),mar=c(2.5,2.5,1,0.25))
+plot(t,y,xlab="Hour ", ylab="Intensity(%) ", pch=16, xlim = c(-10,80000),ylim = c(-10,120))
+lines(x,f2(x),col=2)
+abline(h=80,v=burnouttime)
+```
+
+</details>
+
+## Group Meeting
+
+### Activity - Maximum likelihood Method for $f_6$
+Work through the computations of the maximum likelihood method for $f_6$. As you work, you can check how you are doing by comparing your work to the complete solution for $f_6$ provided under https://tinyurl.com/4c5bxady.
+ 
+1. Consider the model $f_6(t; a_1, a_2)$. Assuming the residuals follow a standard normal distribution (so the probability model is given by $g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}$, state the loglikelihood function for $f_6$. Discuss any questions. This was part of Project 2 Task 1. 
+1. Obtain the partial derivatives of $\ell_6$. Discuss any questions. This was part of Project 2 Task 2. 
+1. Obtain the second partial derivatives of $\ell_6$. Discuss any questions. This was part of Project 2 Task 2. 
+1. To find the critical points of $\ell_6$, write the system of equations you will need to solve. Give names to all the coefficients and organize your work so that you can use `solvesystem` function.
+1. Find the critical points of $\ell_6$. So that you can compare results, use seed 123 for all remaining parts of this activity. 
+1. Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood. 
+1. Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit. 
+
+When you finish, start working on $f_4$. 
+
+## Discussion

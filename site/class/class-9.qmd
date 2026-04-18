@@ -1,0 +1,215 @@
+---
+title: "Class 9"
+---
+
+# During Class - Day 9
+## Brain Gains
+1. The local elvish population is modeled by the function $P(x;a,b) = ax+b$, where $x$ is the number of years since 2000 (this means the domain is $ x \geq 0 $).
+
+ Letting $a=5$ and $b=10$, we have $P(x) = 5x+10$. Plot this function and tell the story given by this model. How many elves does this model say were alive in 2020? 
+
+<details>
+<summary>Solution</summary>
+
+The population started at 10 elves in 2000, and grows by 5 each year to reach 110 in 2020. Note that the domain of this problem specifically prevents me from letting $x$ be negative (the "since 2000" comment), so we don't have to worry about interpreting something like $x=-20$ which could mean there are -10 elves in 1980. 
+
+The code below graphs the function. 
+
+```r
+p <- function(x,a=2,b=30){a*x+b}
+
+x <- seq(-4,200,0.1)
+plot(x,p(x,5,10),type='l',ylim=c(0,500))
+abline(h=0,col='gray')
+abline(v=0,col='gray')
+
+p(20,5,10)
+```
+
+</details>
+
+2. Solve for $x$ in each of the following.
+<ol type="a">
+  <li>$2^x=8$</li>
+</ol>
+1. $2^x = \frac{1}{16}$
+1. $2^x = 17$
+1. $e^x = 1$
+1. $e^x = 2$
+
+<details>
+<summary>Solutions</summary>
+
+1. Because $2^3=8$, we know $x=3$.
+1. Because $2^{-4}=\frac{1}{16}$, we know $x=-4$.
+1. This one isn't guessable.  We know $2^4=16$ and $2^5=32$, so we know $4<x<5$. How do we get the solution?  This is what logarithms are for.  We'll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach.  We can rewrite the exponential form $2^x = 17$  in the log form $x = \log_2(17)$, which is the solution. 
+1. Anything nonzero, raised to the zero, is 1, so the solution is $x=0$. 
+1. Rewriting in log form gives us $\log_e(2)=x$.  We use $\ln$ as shorthand for $\log_e$. 
+
+In general, we rewrite $a^\text{input} = \text{output}$ in log form as $\log_a\text{output} = \text{input}$.  Exponential and logarithmic functions are inverses of each other.  They undo what the other function did, which is why the inputs and outputs swap spots. 
+
+Most computer languages use $\exp(x)$ for $e^x$ and $\log(x)$ for $\log_e(x)$. When using $\exp$ and $\log$, we can remember the rewriting rule as 
+$$y = \exp(x) \quad \text{means} \quad x = \log(y).$$
+Notice that when the inputs and outputs swap, the function changes from $\exp$ to $\log$ or vice versa.
+
+</details>
+
+## Definitions and Reminders
+
+<details>
+<summary>Definition: Exponential Function (OpenStax Textbook)</summary>
+
+An **exponential function** is of the form $b^x$ where $b>0$ and $b \neq 1$.
+
+Note: An exponential function is not an algebraic function.
+
+</details>
+
+<details>
+<summary>Key Characteristics of Exponential Function</summary>
+
+- Domain is all real numbers
+- Range is positive real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output gets close to zero.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output grows without bound.
+    - As $x$ increases the output gets close to zero.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+
+</details>
+
+<details>
+<summary>Properties of Exponents</summary>
+
+If $a > 0$, $b >0$, and $m$ and $n$ are any real number, then 
+- $a^m \cdot a^n = a^{m+n}$
+- $\frac{a^m}{a^n} = a^{m-n}$
+- $(a^m)^n = a^{mn}$
+- $\frac{1}{a^n} = a^{-n}$
+- $\sqrt[n]{a} = a^{1/n}$
+- $\sqrt[n]{a^m} = a^{m/n}$
+- $a^m \cdot b^m = (a \cdot b)^m$
+- $\frac{a^m}{b^m} = \left(\frac{a}{b}\right)^m$
+
+</details>
+
+<details>
+<summary>Definition: Logarithm (OpenStax Textbook)</summary>
+
+A **logarithm** base $b$ of a positive number satisfies the following definition.
+
+For $x>0$, $b>0$, and $b \neq 1$, $y = \log_b(x)$ is equivalent to $b^y = x$
+
+- We read $\log_b(x)$ as, "the log base $b$ of $x$" or "the logarithm with base $b$ of $x$".
+- The logarithm is the exponent that $b$ must be raised to get $x$.
+- When we evaluate $\log_b(x)$ we answer the question, "To what exponent must $b$ be raised to in order to get $x$?"
+
+</details>
+
+The key idea is that we can rewrite any logarithm in exponential form, as
+$$\huge{y = \log_b(x) \Leftrightarrow b^y = x}.$$
+
+<details>
+<summary>Definition: Logarithmic Function</summary>
+
+A **logarithmic function** is of the form $\log_b(x)$ where $b>0$ and $b \neq 1$.
+
+Note: A logarithmic function is not an algebraic function.
+
+</details>
+
+<details>
+<summary>Key Characteristics of Logarithmic Function</summary>
+
+- Domain is positive real numbers
+- Range is all real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ gets close to zero from the right the output approaches negative infinity.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave down.
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ gets close to zero from the right the output grows without bound (approaches infinity).
+    - As $x$ increases the output approaches negative infinity.
+    - These functions are concave up.
+
+</details>
+
+<details>
+<summary>Properties of Logarithms</summary>
+
+If $a>0$, $b > 0$, $c > 0$, $b \neq 1$, and $n$ is any real number, then
+- $\log_b b^x = x$ and $b^{\log_b x} = x$ (inverse property)
+    - Special Cases
+      - $\log_b b = \log_b b^1 = 1$
+      - $\log_b 1 = \log_b b^0 = 0$
+- $\log_b(ac) = \log_b(a) + \log_b(c)$ (product property)
+- $\log_b\left(\frac{a}{c}\right) = \log_b(a) - \log_b(c)$ (quotient property)
+- $\log_b(a^n) = n\log_b(a)$ (power property)
+
+</details>
+
+$\huge{\text{Logs turn multiplication into addition!}}$
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Practice with Logarithms
+Go to the Additional Resources module in our Canvas course. Click on the Review Center. Open the Unit 1 - Functions (Review). Complete 2-5 problems from each of the objectives listed below.
+
+- Relate Logarithms and Exponent (in other words use the definition of logarithm)
+->Complete at least one problem from each of the following sub-objectives.
+    - Convert from logarithmic to exponential form
+    - Convert from exponential to logarithmic form
+
+- Evaluate Logarithmic Expressions
+->Complete at least one problem from each of the following sub-objectives.
+    - Evaluate logarithms with positive integer solutions
+    - Evaluate logarithms with negative integer solutions
+
+- Basic Properties of Logarithms
+->Complete at least one problem from each of the following sub-objectives.
+    - Understand the basic properties of logarithms
+    - Use the product rule for logarithms
+    - Use the quotient rule for logarithms
+    - Use the power rule for logarithms
+
+### Activity - Logs with $\prod$ and $\sum$ notation
+Rewrite the following expressions using log properties.
+    - $\ln \left(\prod_{m=1}^7(mx + 1)\right)$
+    - $\ln \left(\prod_{i=1}^5((y_i - 3)^2) \right)$
+    - $\ln \left(\prod_{i=1}^n((ax_i+b-y_i)^2) \right)$
+
+$\huge{\text{Logs turn multiplication into addition!}}$
+
+### Activity - Transformations of Exponential Functions
+Consider the general form $Q(x;a,c,h,k) = af(c(x-h))+k$ for a transformation of a function $f(u)$. 
+- Identify $a$, $c$, $h$, and $k$ and describe the transformations on $f$ to obtain $Q$ for each function below. Then state the domain and range of $Q$. Finish by graphing $Q$. 
+    - $Q(x) = 4 \cdot 2^x$ where $f(u) = 2^u$
+    - $Q(x) = (\frac{1}{2})^x - 2$ where $f(u) = (\frac{1}{2})^u$
+    - $Q(x) = \frac{1}{2}3^{x-1}$ where $f(u) = 3^u$
+    - $Q(x) = 2^{3-x}+5$ where $f(u) = 2^u$
+
+Use this code to define the functions above.
+
+```r
+fun.1 <- function(x){ 4*2^x }
+fun.2 <- function(x){ (1/2)^x - 2 }
+fun.3 <- function(x){ (1/2)*3^(x-1) }
+fun.4a <- function(x){ 2^(3-x)+5 }
+fun.4b <- function(x){ (1/2)^(x-3)+5 }
+```
+
+Use (and adapt) this code to plot the functions above.
+
+```r
+x <- seq(-5,5,0.1)
+y <- fun.1(x)
+
+par(mar=c(2.5,2.5,1,0.25))
+plot(x,y,type="l",ylim=c(-10,30))
+abline(h=0,col='gray',lty=3)
+abline(v=0,col='gray',lty=3)
+```

@@ -1,0 +1,295 @@
+---
+title: "Class 37"
+---
+
+# During Class
+## Brain Gains
+
+<details>
+<summary>draw_target Code</summary>
+
+```r
+draw_target <- function(f,a,b,num_points=100){
+  x <- c(a,seq(a,b,(b-a)/num_points),b,a)
+  y <- c(0,f(seq(a,b,(b-a)/num_points)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+  polygon(x,y,col="gray")
+}
+```
+
+</details>
+
+- Use the two properties of probability density functions to determine if $f$ a PDF, where $$f(x) = 
+\begin{cases}
+5-x & \quad 2 \leq x \leq 5 \\ \\
+0 & \text{otherwise}.
+\end{cases}$$
+
+```r
+f <- function(x){5-x}
+draw_target(f,2,5)
+```
+
+- Consider the target with top defined by $ f $. When a dart hits the point $ (x , y ) $, we'll record the $x$-coordinate and let $X$ represent this random variable. A PDF for this random variable is $$f(x) = 
+\begin{cases}
+kx - k & \quad 1 \leq x \leq 3 \\ \\
+0 & \quad \text{otherwise}.
+\end{cases}$$ Compute the value of $k$.
+
+```r
+f <- function(x){x-1}
+draw_target(f,1,3)
+```
+
+## Dicsussion
+
+### Riemann Sums with R, Definite integrals with Mathematica
+
+<details>
+<summary>draw_rect_approx() code</summary>
+
+```r
+draw_rect_approx <- function(f,a,b,num_rectangles, method = "mid"){
+  n <- num_rectangles
+  dx <- (b-a)/n
+  x <- c(a,seq(a,b,dx/100),b,a)
+  y <- c(0,f(seq(a,b,dx/100)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+
+  if(method == "left"){
+    xi <- seq(a+0*dx/2,b-dx/2,dx)
+    lines(xi,f(xi),type = "h")
+    lines(xi,f(xi),type = "s")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "h")
+  }
+  else if(method == "right"){
+    xi <- seq(a+dx,b+dx/2,dx)
+    lines(xi-dx,f(xi),type = "h")
+    lines(xi-dx,f(xi),type = "s")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "h")
+  } 
+  else{#Use midpoint
+    xi <- seq(a+dx/2,b,dx)
+    lines(xi-dx/2,f(xi),type = "h")
+    lines(xi-dx/2,f(xi),type = "s")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "h")
+  }
+}
+```
+
+</details>
+
+Let's recap Riemann Sums and Definite Integrals.
+
+Let $g(x) = x^2e^{-x}$ for $1\leq x\leq 4$, and zero otherwise. The code below draws the function $g$ and then uses 6 rectangles to approximate the area under $g$ where the height of each rectangle is the value of the function at the right endpoint of the rectangle. 
+
+```r
+g <- function(x){x^2*exp(-x)}
+a <- 1
+b <- 4
+n <- 6
+draw_rect_approx(g,a,b,n,method = "right")
+dx <- (b-a)/n
+xi <- seq(a+dx,b,dx)  # Can you tell what part of this line of code uses right endpoints? a+dx
+data.frame(right_point = xi, function_at_xi = g(xi), area_i = g(xi)*dx)
+c(riemann_sum_using_right_endpoints = sum(g(xi)*dx))
+```
+
+We can increase the number of rectangles for a better approximation. 
+Here we use 10 million rectangles in the Riemann $\sum g(x_i)\Delta x$ to approximate the area under $g$. 
+
+```r
+n <- 10000000 # Don't plot anymore
+dx <- (b-a)/n
+xi <- seq(a+dx,b,dx)  
+A <- sum(g(xi)*dx)
+A
+```
+
+Because the area under $g$ is not 1, we multiply by $k=\frac{1}{A}$ to obtain the probability density function $f(x) = k g(x)$ of a random variable $X$. Let's check the area under $f$ is 1 using a Riemann sum $\sum f(x_i)\Delta x$. 
+
+```r
+k <- 1/A
+f <- function(x){k*g(x)}
+sum(f(xi)*dx) #Should be 1.
+```
+
+We now approximate the expected value and variance of $X$ using 
+- $E[X]\approx \sum x_if(x_i)\Delta x$ and 
+- $\text{Var}[X]\approx\sum (x_i-E[X])^2f(x_i)\Delta x$.
+Variance is a measure of how spread out a distribution is.
+
+ 
+
+```r
+EV <- sum(xi*f(xi)*dx)
+EV
+Var <- sum((xi-EV)^2*f(xi)*dx)
+Var
+```
+
+Because the area under $f$ is 1, when we compute probabilities we don't have to divide by area. 
+Let's compute $P(X\leq 3)$ using 10 million rectangles by letting $b=3$.  
+
+```r
+a <- 1
+b <- 3 # Use 3 instead of 4.
+n <- 10000000
+dx <- (b-a)/n
+xi <- seq(a+dx,b,dx)  
+sum(f(xi)*dx) # Probability won't be 1 anymore.
+```
+
+With the PDF $f$, we compute $P(2\leq X\leq 3)$ by updating the lower and upper bounds. 
+
+```r
+a <- 2 # Use 2 instead of 1
+b <- 3 # Use 3 instead of 4
+n <- 10000000
+dx <- (b-a)/n
+xi <- seq(a+dx,b,dx)  
+sum(f(xi)*dx)
+```
+
+We now define the function $P(a,b) = P(a\leq X\leq b)$ and $F(x) = P(X\leq x)$ to simplify the computations above.
+
+```r
+P <- function(a,b,n=10000000){
+  dx <- (b-a)/n
+  xi <- seq(a+dx,b,dx)  
+  sum(f(xi)*dx)
+}
+F <- function(x,a=1){P(a,x)}
+P(1,4)  
+P(1,3)  
+F(3)
+```
+
+Why must we have $P(2\leq X\leq 3) = F(3)-F(2)$?
+
+```
+P(2,3)
+F(3)-F(2)
+all.equal(P(2,3),F(3)-F(2))
+```
+
+Now let's swap to Mathematica and use definite integral notation $\int_a^b f(x) dx$ to do the same computations.
+Remember, a definite integral is just the symbol for letting the number of rectangles approach infinity, written symbolically as
+$$\int_a^b f(x) dx =\lim_{n\to \infty} \sum_{i=1}^nf(x_i)\Delta x_i.$$
+
+We first find the area under $g$. 
+(Remember to use shift + enter to run the command in Mathematica.)
+
+(:codem:)
+```
+g = x^2 Exp[-x];
+a = 1
+b = 4
+A = Integrate[g, {x, a, b}]
+N[A, 7] (*This provides 7 significant figures*)
+Plot[g, {x, a, b}]
+```
+(:codemend:)
+
+With the area under $g$, we obtain a probability density function $f = kg$ and check that the area under f is actually 1.
+
+(:codem:)
+```
+k = 1/A;
+f = k*g;
+Integrate[f, {x, a, b}]
+```
+(:codemend:)
+
+We now compute the expected value and variance of a random variable with pdf of $f(x)$. We'll give both exact and approximate answers to compare with R. 
+
+(:codem:)
+```
+EV = Integrate[x*f, {x, a, b}]
+EV // N (*This is another example of code to obtain a numerical approximation. Typing N[EV] gives the same result.*)
+Var = Integrate[(x - EV)^2*f, {x, a, b}]
+Var // N
+```
+(:codemend:)
+
+We can quickly compute various probabilities by adjusting the bounds of the definite integral.  The probabilities $P(X\leq 3)$ and $P(2\leq X\leq 3)$ are given below. 
+
+(:codem:)
+```
+Integrate[f, {x, a, 3}]
+% // N
+Integrate[f, {x, 2, 3}]
+% // N
+```
+(:codemend:)
+
+Mathematica has no problems working with symbols, something R is not designed to do.  We can compute the cumulative distribution function $F(x)$ using Mathematica, as well as verify that $F'(x) = f(x)$. 
+
+(:codem:)
+```
+F = Integrate[f, {x, a, x}] (*Make the right bound x, rather than a number*)
+D[F, x] (*Computes F'(x)*)
+f (*Compare to the previous*)
+f - D[F, x] // FullSimplify (*See if the difference is zero*)
+```
+(:codemend:)
+
+## Group Meeting 
+
+### Practice with some other functions
+Work together on your computers to help one another complete the following problems. 
+
+For each function below, use Mathematica to compute 
+- the area $A = \int_a^b g(x) dx$, 
+- the value $k$ so that $f=kg$ is a PDF for a random variable, 
+- the expected value $E[X] =\int_a^b xf(x)dx$, and 
+- the variance $\text{Var}[X]=\int_a^b (x-E[X])^2f(x)dx$.    
+1. Let $g(x) = \sqrt{49-x^2}$ for $0\leq x\leq 7$ - use "
+```r
+g=Sqrt[49-x^2]@]". The region under $g(x)$ is a quarter of the circle $x^2+y^2=49$. You will see $\pi$ show up in lots of answers in Mathematica. Use "`%//N`" to approximate the output. 
+1. Let $g(x) = \frac{\ln(x+1)}{x^2}$ for $1\leq x\leq 5$ - use "[@g=Log[x+1]/x^2
+```
+". 
+1. Let $g(x) = e^{-3x}$ for $0\leq x\leq \infty$ - use "`g=Exp[-3x]`". You can enter `Infinity` as a value for the upper bound.
+
+<details>
+<summary>Some Solutions</summary>
+
+1. $A\approx 38.4845$, $E[X]\approx 2.97089$, $\text{Var}[X]\approx 3.4238$.
+1. $A\approx 0.845621$, $E[X]\approx 2.27858$, $\text{Var}[X]\approx 1.15167$.
+1. $A=\frac{1}{3}$, $E[X]=\frac{1}{3}$, $\text{Var}[X]=\frac{1}{9}$.
+
+</details>
+
+### Computing Probabilities using a Probability Density function
+Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
+
+Consider the function $g(x) = 2x$ for $0\leq x\leq 5$, and 0 otherwise.    
+1. Find the area under $g$ using a geometric argument.  Then compute $A=\int_0^5 2x dx$ with Mathematica to verify you have the same answer. Then let $k=\frac{1}{A}$ so that $f(x) = k g(x)$ is a probability density function for a random variable $X$.
+1. Explain why $P(X\leq 2) = \frac{4}{25}$ by using a geometric argument. Then use Mathematica to verify that $\int_0^2 f(x) dx = \frac{4}{25}$. 
+1. Explain why $P(X\leq 3) = \frac{9}{25}$ by using a geometric argument. Then use Mathematica to verify that $\int_0^3 f(x) dx = \frac{9}{25}$. 
+1. Explain why $P(2<X\leq 3) = P(X\leq 3) - P(X\leq 2)$. 
+1. Explain why $P(2<X\leq 3) = P(2\leq X\leq 3)$. 
+1. Explain why $P(2\leq X\leq 3) = \int_2^3 f(x) dx$. 
+1. Use Mathematica to show that $P(1.2\leq X\leq 3.7) = 0.49$.
+1. Use Mathematica to show that $P(X\leq x) = \frac{x^2}{25}$.
+1. Use Mathematica to show that $P(a\leq X\leq b) = \frac{b^2}{25}-\frac{a^2}{25}$, provided $0\leq a\leq b\leq 5$.
+1. Explain why $\int_a^b f(x) dx = F(b)-F(a)$.
+
+If you finish early, swap to the function $g(x) = 7-x$ for $0\leq x\leq 4$ and 0 otherwise.    
+1. Find the area under $g$ using a geometric argument.  Then compute $A=\int_0^4 g dx$ with Mathematica to verify you have the same answer. Then let $k=\frac{1}{A}$ so that $f(x) = k g(x)$ is a probability density function for a random variable $X$.
+1. Compute $P(X\leq 2)$ using a geometric argument. Then use Mathematica to verify your result. 
+1. Compute $P(X\leq 3)$ using a geometric argument. Then use Mathematica to verify your result. 
+1. Compute $P(2\leq X\leq 3)$ using a geometric argument. Then use Mathematica to verify your result. 
+1. Verify that $\int_2^3 f(x) dx = P(X\leq 3) - P(X\leq 2)$ by computing each side with Mathematica. 
+1. Use Mathematica to compute $F(x) = P(X\leq x)$.  [Hint, compute $\int_0^x f(x) dx$.
+1. Use Mathematica to compute $P(a\leq X\leq b)$.  [Hint, compute $\int_a^b f(x) dx$.
+1. Explain why $\int_a^b f(x) dx = F(b)-F(a)$. 
+
+## Discussion 
+We'll discuss some of the above, if/as needed.

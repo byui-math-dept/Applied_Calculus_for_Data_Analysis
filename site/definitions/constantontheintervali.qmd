@@ -1,0 +1,10 @@
+---
+title: "Definition: ConstantOnTheIntervalI"
+---
+
+<details>
+<summary>Definition: **Constant** on the Interval $I$</summary>
+
+We say a function $f$ is constant on the interval $I$ if for all $x_1$ and $x_2$ in the interval, $f(x_1) = f(x_2)$.
+
+</details>

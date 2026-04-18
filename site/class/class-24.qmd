@@ -1,0 +1,145 @@
+---
+title: "Class 24"
+---
+
+# During Class
+## Brain Gains
+
+1. 
+Consider the curve $y=8/x$ for $x>0$. Write down a function $f(x)$ that gives the distance from the origin $(0,0)$ to a point on the curve $y=8/x$. A plot of the curve is shown below, along with a right triangle that has one vertex at $(0,0)$ and another at a point $(x,8/x)$ on the curve. (Hint: The Pythagorean theorem $a^2+b^2=c^2$ will help.)  
+ https://byuimath.com/bmw/all/119/uploads/Class/8overx.png
+
+<details>
+<summary>Solution</summary>
+
+The Pythagorean theorem here gives $d^2 = x^2+y^2$. Because $y=8/x$, we have $d^2 = x^2+(8/x)^2$. Solving for $d$ gives the function as $f(x) = \sqrt{ (x)^2 + (8/x)^2 }$.
+
+</details>
+
+2. Use R to plot the curve $y=8/x$ as well as the function $f(x)$ from the previous question. Does $f(x)$ have a maximum or minimum?  Explain. 
+
+<details>
+<summary>Solution</summary>
+
+We now use R to graph both the equation $y=8/x$ and the distance function. 
+
+```r
+f <- function(x){sqrt(x^2 + (8/x)^2)}
+
+1. We first plot y = 8/x. Using asp=1 equalizes x and y distances.
+x <- seq(0,5, 0.01)
+plot(x,8/x, ylim=c(0,5), asp = 1, type = "l")
+
+1. Let's add concentric circles to see how far from the origin points are.
+symbols(x = rep(0,5), y =rep(0,5), circles = seq(1,5), add = TRUE, inches = FALSE)
+1. Let's guess x = 3 as the closest spot.  We can see it's a bit to large. 
+abline(v=3)
+
+1. Now let's plot f and add x=3 for comparison 
+plot(x,f(x), ylim=c(0,30), type = "l")
+abline(v=3)
+1. The value x=3 is too large.
+
+1. Zoom in. 
+x <- seq(2.5,3, 0.01)
+plot(x,f(x), ylim=c(3,5), type = "l")
+abline(v=2.82)
+abline(v=2.84)
+
+1. Zoom in. 
+x <- seq(2.82, 2.84, 0.001)
+plot(x,f(x), ylim=c(3.999,4.001), type = "l")
+```
+
+The plot has a minimum value somewhere a bit less than 3.  There has to be a better way to find the minimum than zooming in. This is where derivatives come to the rescue.
+
+</details>
+
+3. Compute the derivative of $f(x) = \sqrt{x^2+(8/x)^2}$. Then solve $f'(x) = 0$ using uniroot.
+
+<details>
+<summary>Solution</summary>
+
+We first rewrite $f(x) = \sqrt{x^2+(8/x)^2}$ as $f(x) = (x^2+64x^{-2})^{1/2}$. 
+The derivative is $f'(x) = \frac{1}{2}(x^2+64x^{-2})^{-1/2}(2x - 128x^{-3})$.
+Using uniroot, we obtain $x = 2.828428$. 
+
+```r
+f_x <- function(x){1/2*(x^2+64*x^(-2))^(-1/2)*(2*x - 128*x^(-3))}
+uniroot(f_x,c(2,3))$root
+```
+
+</details>
+
+## Discussion  
+You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee.
+The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. 
+Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we're assuming the probability model for the residuals is $$p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.$$
+1. Write the loglikelihood function for the errors in this situation.
+1. Rewrite the loglikelihood function using the properties of logs and sums.
+1. Compute the first partial derivatives of the loglikelihood function.  (We'll do one together.  The solutions for all three of them are in the file below.)
+https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Activity - Loglikelihood Practice, Derivatives, Optimization, and Project 2
+You will be working together to revisit Task 1 and complete part of Task 2 for https://byuistats.github.io/M119/project2.html.  The prep for today asked you to watch some videos related to $f_2$. 
+
+Consider the model $f_1(t; a_1) = 100 + a_1t$. 
+1. On the chalk board, as a group, go through the computations needed to obtain the loglikelihood function. Your job is to perform the needed computations and include enough explanations to show that $$\ell_1(a_1; \mathbf{t},\mathbf{y}) =
+44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
+- 100 - a_1t_i)^2.$$ 
+1. Compute the first derivative of the loglikelihood function, so compute $\frac{d\ell_1}{da_1}$. The solution is provided in Task 2.
+1. Now compute the second derivative $\frac{d^2\ell_1}{da_1^2}$. Again, the solution is provided in Task 2. 
+1. Use the following code to plot the loglikelihood function.
+
+```r
+rm(list=ls())  #clear the environment
+library(data4led) #load the library
+1. read in the data set, using seed 123 for class comparisons
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+1. define the loglikelihood function
+l <- function(p,t,y){ 44*log(1/sqrt(2*pi)) - (1/2)*sum((y-100-p*t)^2) } 
+
+1. create a list of inputs for our plot of the loglikelihood function
+a1 <- seq(-0.005,0.005,1e-5)
+1. use those inputs to calculate outputs for our plot of the loglikelihood function
+Y <- as.vector(lapply(a1,FUN=l,t=t,y=y))
+
+1. plot the loglikelihood function
+plot(a1,Y,type='l')
+```
+
+1.  Adapt the inputs vector above to make a guess for what you think is the best value for $a_1$. How did you decide on that value?
+    - *Remember, the likelihood function (and the loglikelihood function) can be used to answer the questions, "What is the most likely value for the parameter(s) given our data?" Look at your plot of the loglikelihood function. Remember the loglikelihood function is a function of $a_1$.* 
+
+1. Use uniroot to find where the derivative of the loglikelihood function is equal to zero. 
+
+As a group, you have complete parts of Project 2 Tasks 1, 2 and 3 for the function $f_1$. 
+
+### Activity - Work on Project 2 Task 2
+As a group, spend any remaining class time working on Project 2 Task 2. Start with the loglikelihood function 
+$$\ell_4(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2\ln(0.005t_i+1))^2$$
+and compute the two first partial derivatives as well as all second partial derivatives. A full solution for $\ell_6$ is provided for you, and may help you with $\ell_4$. 
+The solutions are provided in the task instructions. 
+
+### Activity - Derivative Matching
+Your task in this activity is to match the graph of each function $ f(x) $ (pink cards) with that of its derivative $ f'(x) $ (yellow cards). Thus, when you have completed the activity, you will have fifteen matched function/derivative pairs.
+
+These [tiles](http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf){target="_blank"} can be printed and cut out if you are completing the activity on your own. You will only need the first two pages of the file.
+
+*Source: University of Colorado and BOALA (Active Calculus)*
+
+[Tiles](http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf){target="_blank"}
+
+->[User's Guide](http://math.colorado.edu/activecalc1/Derivative_matching_guide.pdf){target="_blank"}
+
+[My electronic adaptation of this activity](https://docs.google.com/presentation/d/1YWrE5RVdg6rNlB8MJ41ckWWz0kkVIStqHJJZVmj0QhE/edit#slide=id.gba65dd33e3_0_77){target="_blank"}
+
+->[Instructor copy with key](https://docs.google.com/presentation/d/1x2UH5BmZQY_olf8ZSh5xzGFrBXTRlLpO9wLGWIB0J4U/edit#slide=id.gba65dd33e3_0_77){target="_blank"}
+
+## Discussion

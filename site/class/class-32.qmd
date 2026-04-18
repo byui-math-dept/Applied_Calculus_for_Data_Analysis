@@ -1,0 +1,236 @@
+---
+title: "Class 32"
+---
+
+# During Class
+## Brain Gains
+1. Given a general form for a transformation of a function $T(x) = af(b(x-h))+k$ and the parent function $f$, identify $a$, $b$, $h$, and $k$ for the transformation below.
+- $g(x) = 4\sqrt{x-1} -2$ where $f(u) = \sqrt{u}$
+- $\ell(z) = 53\ln(\frac{1}{\sqrt{2\pi}}) + -\frac{1}{2}z^2 $ where $f(u) = u^2$
+
+<details>
+<summary>Answers</summary>
+
+For $g(x)$:
+- $a=4$
+- $b=1$
+- $h=1$
+- $k=-2$
+
+For $\ell(z)$
+- $a=-\frac{1}{2}$
+- $b=1$
+- $h=0$
+- $k=53\ln\left(\frac{1}{\sqrt{2\pi}}\right)$
+
+</details>
+
+2. Given $S(a) = \sum_{i=0}^n(y_i - ax_i)^2$, write out the following transformations of $S$.
+- $ T_1(a) = 132.74 - 0.5S(a) $
+- $ T_2(a) = 2 + S(a-4) $
+
+<details>
+<summary>Answers</summary>
+
+$T_1(a) = 132.74 - 0.5\sum_{i=0}^n(y_i - ax_i)^2$
+
+$T_2(a) = 2 + \sum_{i=0}^n(y_i - (a-4)x_i)^2$
+
+</details>
+
+3. Enter the following code into Mathematica and click Shift+Enter to solve the following system of equations, and then compare it with the solution we already obtained. (Note that spaces are treated as multiplication in Mathematica.)
+\begin{align*}
+c_{1,1}x + c_{1,2}y - b_1 &= 0 \\ 
+c_{2,1}x + c_{2,2}y - b_2 &= 0
+\end{align*} 
+
+```r
+Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]
+@](:codemend:)
+When solving this by hand, here's what we obtained.  
+- $y = \frac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
+- $x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1.2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
+
+<details>
+<summary>Answer</summary>
+
+The solutions are the same, though you'll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand. 
+
+As reminder, here's the R code we've been using to get the solution.  
+(:code:)
+```r
+c11 <- 
+c12 <- 
+b1 <- 
+c21 <- 
+c22 <- 
+b2 <- 
+
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+
+sol <- solvesystem(c11, c12, b1, c21, c22, b2)
+sol
+```
+
+In Mathematica, sometimes we will have to make assumptions before we compute something (like assuming a parameter is positive). Here's an example that assumes the denominator is not zero. 
+
+```r
+Assuming[c11 c22 - c21 c12 != 0, Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]]
+```
+(:codemend:)
+
+</details>
+
+## Group Meeting
+ 
+### Activity - Compare loglikelihood and least squares
+Start by reading in the data below.
+(:code:)[@
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data4_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+Consider the model $f(x; a) = a e^x$. We will fit this model to our data.
+Work with your group on the chalkboard to obtain the best fit parameters for this model using both 
+1. the maximum likelihood method, and
+1. least squares. 
+
+#### Using the Maximum Likelihood Method
+Fit $f$ to the data by maximizing the loglikelihood of the errors assuming the errors are independent and normally distributed.
+Note the likelihood function for the errors of $f$ is 
+$L(a; \mathbf{x},\mathbf{y}) = \prod_{i=1}^n\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - ae^{x_i})^2}$. 
+And the loglikelihood for the errors of $f$ is 
+$$\ell(a; \mathbf{x},\mathbf{y}) = n\ln(\frac{1}{\sqrt{2\pi}}) + \left( -\frac{1}{2} \right)\sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
+
+Once you obtain your value for $a$, remember to plot the data along with your fitted model to visually verify your fit. 
+
+#### Using Least Squares
+Fit $f$ to the data by minimizing the sum of squared errors. *This assumes the errors are independent and normally distributed.*
+Note the sum of squared errors of $f$ is $$S(a; \mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
+
+#### Answer questions with the Model
+Once you have your model, you can use it to answer questions.  
+1. What is $f(4)$, the value predicted by the model at $x=4$. 
+1. Find $x$ so that $f(x) = 5$. 
+
+<details>
+<summary>Solutions</summary>
+
+Using $f(x) = 3.187972 e^x$, we have
+1. $f(4) = 174.0574$
+1. uniroot yields about $x = 0.45$.
+
+```r
+my_a <- sum(y*exp(x))/sum(exp(x)^2)
+my_a  
+
+f(4)
+uniroot(function(x){f(x)-5},c(-2,2))$root
+```
+
+f <- function(x,a = my_a){a*exp(x)}
+plot(x,y)
+t <- seq(min(x),max(x),0.1)
+lines(t,f(t))
+
+</details>
+
+### Another model
+Reading in the data below.
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data2_ls.csv"))
+x <- data$x
+y <- data$y
+```
+
+This time use the model $f(x;b,m) = b+mx$.
+- Fit this model to the data using either the Least Squares or or Maximum Likelihood method.
+- What is $f(4)$, the value predicted by the model at $x=4$. 
+- Find $x$ so that $f(x) = 5$.
+
+<details>
+<summary>Solution</summary>
+
+The code below gives $y = 2.79 + 6.48x$ (rounded to 3 sig figures) as the model, with $f(4) = 28.72758$ and $f(0.3402777)=5$. 
+
+```r
+rm(list=ls())
+data <- read.csv(url("https://byuistats.github.io/M119/data2_ls.csv"))
+x <- data$x
+y <- data$y
+
+c11 <- sum(1+0*x)
+c12 <- sum(x)
+b1 <- sum(y)
+c21 <- sum(x)
+c22 <- sum(x^2)
+b2 <- sum(y*x)
+
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+
+sol <- solvesystem(c11,c12,b1,c21,c22,b2)
+sol
+my_b <- sol[1]
+my_m <- sol[2]
+
+f <- function(x, b = my_b, m = my_m){b + m*x}
+t <- seq(-6,6,0.1)
+plot(x,y)
+lines(t,f(t),type = "l") 
+
+f(4) # 28.72758
+uniroot(function(x){f(x)-5},c(-2,2))$root # 0.3402777
+```
+
+</details>
+
+## Discussion 
+### Reflection
+- The loglikelihood function, $\ell$, is a transformation of the sum of the squared errors function $S$.
+    - What transformation(s) do you recognize?
+
+- Why are the fitted models the same using the Maximum Likelihood and Least Squares methods the same? In other words, why is the answer to the two optimization problem the same in this case?
+
+- Where do we see the assumption of independent errors in the likelihood function?
+- Where do we see the assumption of the probability model used (standard normal errors) in the likelihood function? 
+    - Standard normal probability model is $n(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}$. 
+    - *Standard normal probability model is a normal probability model with mean 0 and standard deviation 1.*
+
+- Where do we see the assumption of independent errors in the sum of squared errors function?
+- Where do we see the assumption of standard normal errors in the sum of squared errors function? 
+
+### Summary
+- Suppose the model we want to fit to the data is $f(x; b, m) = b + mx$.
+- The formula for the $i$th error will be error$_i = y_i - b - mx_i$.
+- Assuming the errors are independent and normally distributed with mean 0 and standard deviation 1:
+    - The loglikelihood function is $\ell(b, m; x_i,y_i) = n\ln(\frac{1}{\sqrt{2\pi}}) + -\frac{1}{2}\sum_{i=1}^{n}(y_i - b - mx_i)^2$.
+    - The sum of the squared errors is $S(b, m; x_i,y_i) = \sum_{i=1}^{n}(y_i - b - mx_i)^2$
+
+Because the loglikelihood function, in this case, is a transformation of the sum of the squared errors function, $\ell(b, m; x_i,y_i) = n\ln(\frac{1}{\sqrt{2\pi}}) - \frac{1}{2}S(b, m; x_i,y_i)$. The answer for the location of the extrema for both optimization problems is the same.
+- Since the answers using both methods are the same, what are the pros and cons of each method?
+    - The loglikelihood method is more general. Since you see where the assumptions are used to write the loglikelihood function you can identify what you need to change in the likelihood function if the assumptions are changed.
+      - While writing the objective function for least squares requires less thought work, this comes at a cost -- we cannot see where the assumptions are acting in the objective function.
+    - Learning about the loglikelihood function gives you exposure to another common function used with random variables.
+    - Learning about the loglikelihood function gave us an opportunity to dig in with the mathematical notation (using logarithms and summation and product notation), which are show up in many contexts related to data science.
+
+### Using the term the "best fit"
+The term "best fit" can be used in multiple context and thus has context specific meaning.
+- When we use the loglikelihood method (or least squares method) to fit a model to data, we are looking for the "best fit" of a deterministic model to data. 
+    - We are looking for the "best" choice of parameters out of all possible values for the parameters that could be used in the general form of the deterministic model.
+    - We are **not** looking for the "best" choice out of all possible deterministic models, because we have made an assumption about the form for the deterministic model we are fitting when we wrote down the error term formula.
+      - Fitting different deterministic models to data and then determining which out of all those fitted model "best fits" the data is another question. 
+      - How to use the combine information when fitting different deterministic models to data is also another question.
+
+Important Note: When we use the term "best" in mathematics we have to define precisely what we mean by "best" before we can use the tools of optimization to find the best thing we have defined.
+    - Best is defined as the **most** "trusted" parameters given our observed sample when using the Maximum Likelihood method.
+    - Best is defined as the **smallest** "collective error" between the observed values in the data and the values predicted from the fitted model.

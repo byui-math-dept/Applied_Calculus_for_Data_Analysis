@@ -1,0 +1,17 @@
+---
+title: "Definition: PartialDerivative"
+---
+
+<details>
+<summary>Definition: Partial Derivative</summary>
+
+Consider a function of several variables $f(x,y)$. 
+- The symbol $\frac{\partial f}{\partial x}$ is read "the partial derivative of $f$ with respect to $x$" or "the partial of $f$ with respect to $x$". 
+- The symbol $\frac{\partial f}{\partial y}$ is read "the partial derivative of $f$ with respect to $y$" or "the partial of $f$ with respect to $y$". 
+To calculate a partial derivative we treat all independent variables, except the one we are differentiating with respect to, as constants and use the derivative rules for a single variable function.
+
+Let's look at an example that includes the chain rule. Consider the function $S(x,y) = 3(\pi x + 4y)^3$. 
+- The partial of $S$ with respect to $x$ is $\frac{\partial S}{\partial x} = 3(3(\pi x + 4y)^{2})(\pi)$. 
+- And the partial of $S$ with respect to $y$ is $\frac{\partial S}{\partial y} = 3(3(\pi x + 4y)^{2})(4)$.
+
+</details>

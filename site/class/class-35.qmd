@@ -1,0 +1,156 @@
+---
+title: "Class 35"
+---
+
+# During Class
+
+## Brain Gains
+We're learning new vocabulary in this unit.  What we need is some repeated practice to help us cement what that vocabulary means.
+
+0. What is the expected value for the random variable obtained by recording the $x$-coordinate of a dart thrown at a rectangular target?
+
+1. Let $X$ represent the random variable obtained by recording the $x$-coordinate of a dart that is randomly thrown at a target that lies under the function $\ds g(x) = \begin{cases}4&0\leq x \leq 2\\1&2 < x\leq 5 \\ 0 &\text{otherwise} \end{cases}$. 
+<ol type="a">
+  <li>Draw the function. </li>
+</ol>
+1. Find the area under $g$.
+1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
+1. Compute $P(X\leq 3)$. 
+1. Calculate the expected value of $X$, so compute $E[X] $. 
+1. Give a formula for $F(x)$, the cumulative distribution function.  
+1. Compute $F'(x)$. 
+
+<details>
+<summary>Solutions</summary>
+
+<ol type="a">
+  <li>I'll let you graph it. </li>
+</ol>
+
+1. The area is $A = 11$. 
+
+1. The value $k$ is always $k =\frac{1}{A}$, which gives $k = \frac{1}{11}$ and so $$\ds f(x) = \begin{cases}\frac{4}{11}&0\leq x\leq 2\\\frac{1}{11}&2 < x\leq 5 \\ 0 &\text{otherwise} \end{cases}.$$ 
+
+1. There are two ways to finish this.  One is to use the original graph and from it we obtain $P(X\leq 3) = \frac{8+1}{11} = \frac{9}{11}$ where the numerator is the area to the left of 3.  The second option is to use the graph of $f$, and then compute areas using it.  Using the formula for $f$, the area to the left of 3 is $(2)\frac{4}{11} + (1)\frac{1}{11}=\frac{9}{11}$.
+
+1. Calculate the expected value of $X$. We have lots of options, either using $g$ with the formula $\frac{\sum x_i A_i}{\sum A_i}$, or use $f$ with the formula $\sum x_i A_i$. The normalized function $f$ removes the need to divide by the total area.   
+
+Regardless of which option we choose, we must decide how many rectangles to use and then find the area and centroid of each. 
+    - We can use $f$ with two rectangles. The left rectangle has area $A_1 = 8/11$ and centroid at $x_1=1$. The right rectangle has area $A_2=3/11$ and centroid $x_2 = 3.5$.  We then compute $$E[X] = (1)\frac{8}{11} + (3.5)\frac{3}{11}.$$
+    - We can use $f$ with 5 rectangles. Using equal sized rectangles makes this quick. The areas are A = c(4,4,1,1,1) centered at x = c(0.5,1.5,2.5,3.5,4.5). In R we can type sum(x*A) to rapidly compute the numerator and sum(A) to compute the denominator. $\frac{\sum x_i A_i}{\sum A_i}$
+
+1. To give a formula for $F(x)$, we need to compute $P(X\leq x)$. We can do this by calculating ratios of areas using either $f$ or $g$. Using $g$, note that the area of a rectangle from 0 to $x$ (for $0\leq x\leq 2$) is $A=4x$.  Dividing by the total area of 11 gives $P(X\leq x) = \frac{4x}{11}$ for $0\leq x\leq 2$.  For $2<x\leq 5$, we have a total area of $A = 8+(x-2)*1 = x+6$, which means $P(X\leq x) = \frac{x+6}{11}$ for $2< x\leq 5$.  This gives $$F(x) = \begin{cases}\frac{4x}{11}&0\leq x\leq 2\\\frac{x+6}{11}&2\leq x\leq 5\\0&x<0\\1&x>5\end{cases}.$$ Notice that plugging in 5 does gives us a probability of 1, as it should. 
+1. The derivative of $F$, where it is nonzero and defined, is $$\ds F'(x) = \begin{cases}\frac{4}{11}&0< x< 2\\\frac{1}{11}&2< x< 5 \end{cases}$$ 
+Notice again $ F'(x) = f(x) $.
+
+</details>
+
+## Group Meeting
+We'll continue practicing using our new vocabulary.
+
+2. Let $X$ represent the random variable obtained by recording the $x$-coordinate of a dart that is randomly thrown at a target that lies under the function $\ds g(x) = \begin{cases}2x&0\leq x\leq 5\\0 &\text{otherwise} \end{cases}$.  
+<ol type="a">
+  <li>Draw the function. </li>
+</ol>
+1. Find the area under $g$.
+1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
+1. Compute $P(X\leq 3)$. 
+1. Calculate the expected value of $X$. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.  
+1. Give a formula for $F(x)$, the cumulative distribution function. 
+1. Compute $F'(x)$. 
+
+<details>
+<summary>Solutions</summary>
+
+Compare your work with your group. Put agreed upon solutions on the chalkboard so you can compare with other teams.
+
+</details>
+
+3. Let $X$ represent the random variable obtained by recording the $x$-coordinate of a dart that is randomly thrown at a target that lies under the function $\ds g(x) = \begin{cases}x^2&0\leq x\leq 5\\0 &\text{otherwise} \end{cases}$.  
+<ol type="a">
+  <li>Draw the function. </li>
+</ol>
+1. Find the area under $g$. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.
+1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
+1. Compute $P(X\leq 3)$. 
+1. Calculate the expected value of $X$.   
+1. Give a formula for $F(x)$, the cumulative distribution function. 
+1. Compute $F'(x)$. 
+
+### Activity - Calculating Expected Value using Rectangular Approximations
+We computed expected values in the warm up today by referring to a list of geometric facts. What do we do if the region  we're interested in examining is not a simple geometric object? One option is to approximate the expect value using multiple rectangles. You'll need to run the function below in R to complete the activity that follows. 
+
+<details>
+<summary>draw_rect_approx() code</summary>
+
+```r
+draw_rect_approx <- function(f,a,b,num_rectangles, method = "mid"){
+  n <- num_rectangles
+  dx <- (b-a)/n
+  x <- c(a,seq(a,b,dx/100),b,a)
+  y <- c(0,f(seq(a,b,dx/100)),0,0)
+  par(mar=c(2.5,2.5,0.25,0.25))
+  plot(x,y,type = "l")
+
+  if(method == "left"){
+    xi <- seq(a+0*dx/2,b-dx/2,dx)
+    lines(xi,f(xi),type = "h")
+    lines(xi,f(xi),type = "s")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n],xi[n]+dx),f(c(xi[n],xi[n])),type = "h")
+  }
+  else if(method == "right"){
+    xi <- seq(a+dx,b+dx/2,dx)
+    lines(xi-dx,f(xi),type = "h")
+    lines(xi-dx,f(xi),type = "s")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx,xi[n]),f(c(xi[n],xi[n])),type = "h")
+  } 
+  else{#Use midpoint
+    xi <- seq(a+dx/2,b,dx)
+    lines(xi-dx/2,f(xi),type = "h")
+    lines(xi-dx/2,f(xi),type = "s")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "l")
+    lines(c(xi[n]-dx/2,xi[n]+dx/2),f(c(xi[n],xi[n])),type = "h")
+  }
+}
+```
+
+</details>
+
+For the function $\ds g(x) = \begin{cases}2x&0\leq x\leq 5\\0 &\text{otherwise} \end{cases}$, the code below approximates the total area under $g$ and expected value (of the corresponding random variable $X$) by treating the triangular target instead as 10 rectangular targets sewn together. 
+
+```r
+g <- function(x){2*x}
+a <- 0
+b <- 5
+n <- 5
+dx <- (b-a)/n
+draw_rect_approx(g,a,b,n) 
+
+xi <- seq(a+dx/2,b,dx)  #Center of each rectangle
+Ai <- g(xi)*dx          #Area of each rectangle
+data.frame(x_i = xi, A_i = Ai)
+
+c(total_area =sum(Ai),  
+  expected_value = sum(xi*Ai)/sum(Ai))
+```
+
+1. Change the code above to use n=10 rectangular regions, then 50, then 100, then 1000. Discuss as a team why these approximations suggest that the expected value is $\frac{10}{3} = 3.3\bar3$. 
+
+2. Change the function above to $\ds g(x) = \begin{cases}x^2&0\leq x\leq 5\\0 &\text{otherwise} \end{cases}$. Then use several values of n (start with small values and then increase them) to obtain approximations for the total area under $g$ as well as the expected value of $X$. Continue increasing the number of rectangular regions till you see the expected value is $\frac{15}{4} = 3.75$. Note this is the same value we find if we use the table of centroids formula to find the expected value. 
+
+We're ready to apply what we're learning now to any function. 
+
+3. Consider the target function $\ds g(x) = \begin{cases}x^3&0\leq x\leq 4\\0 &\text{otherwise} \end{cases}$ and corresponding random variable $X$ obtained by throwing darts at the target and recording the $x$-coordinate. 
+- Find a constant $k$ so that the area under $f(x) = k g(x)$ is one (so find the normalized target function). 
+- Compute $P(X\leq 3)$ (you'll need to compute two areas, and then divide them). 
+- Calculate $E[X] $.
+
+4. Consider the target function $\ds g(x) = \begin{cases}5x e^{-x}&2\leq x\leq 8\\0 &\text{otherwise} \end{cases}$ and corresponding random variable $X$ obtained by throwing darts at the target and recording the $x$-coordinate. 
+- Find a constant $k$ so that the area under $f(x) = k g(x)$ is one (so find the normalized target function). 
+- Compute $P(X\leq 3)$ (you'll need to compute two areas, and then divide them). 
+- Calculate $E[X] $.
+
+## Discussion 
+We'll have a wrap up discussion.

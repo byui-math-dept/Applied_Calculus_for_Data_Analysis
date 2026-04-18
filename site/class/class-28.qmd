@@ -1,0 +1,273 @@
+---
+title: "Class 28"
+---
+
+# During Class
+## Brain Gains
+
+1. Solve the system of equations $ax+by=c$ and $dx+ey=f$ for $x$ and $y$.  Hint: Multiply both sides of the first equation by $d$ and both sides of the second equation by $a$, and then subtract the results to eliminate $x$.  
+
+We'll use the lightbulb data, with seed 123, for the brain gain questions below. 
+
+```r
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+```
+
+2. 
+For the function $f_1(t; a_1) = 100 + a_1t$, we found the loglikelihood function to be 
+$$\ell_1(a_1; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.$$
+Find the value for $a_1$ that maximizes the loglikelihood. 
+
+<details>
+<summary>Solution</summary>
+
+We compute the derivative to obtain 
+$$\begin{align*}
+\frac{d\ell_1}{da_1} 
+&= -\frac{1}{2}\sum_{i}^{44} 2(y_i - 100 - a_1t_i)(-t_i)\\
+&= \sum_{i}^{44} (y_i - 100 - a_1t_i)(t_i)\\
+&= \sum_{i}^{44} [(y_i - 100)t_i - a_1t_i^2]\\
+&= \left(\sum_{i}^{44} (y_i - 100)t_i\right) - a_1\left(\sum_{i}^{44}t_i^2\right)
+\end{align*}$$
+We need to find where the derivative equals zero, which means we must solve 
+$$\left(\sum_{i}^{44} (y_i - 100)t_i\right) - a_1\left(\sum_{i}^{44}t_i^2\right)=0.$$
+Note that this is of the form $b-a_1 d=0$ (I'm avoiding the letter $c$ because $c()$ is a command in R).
+The solution is simply $b/d$ where $b = \left(\sum_{i}^{44} (y_i - 100)t_i\right)$ and $d =  \left(\sum_{i}^{44}t_i^2\right)$.
+The code below computes this value, obtaining $a_1 = 0.0005254377$. 
+
+```r
+    1. If not done already, load the data. 
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+    1. Solve the system
+b <- sum((y-100)*t)
+d <- sum(t^2)
+b/d
+```
+
+We can plot the data along with the model $f_1$, using this new value for $a_1$.
+
+```r
+f1 <- function(x, a1 = b/d){100 + a1*x}
+x <- seq(0,5000,10)
+plot(t,y)
+lines(x,f1(x),type = "l")
+```
+
+</details>
+
+3. 
+For the model $f_2(t; a_1, a_2) = 100 + a_1t + a_2t^2$, the loglikelihood function for these errors is $$\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right).$$ The first partials of $\ell_2$ are
+    - $\pd{\ell_2}{a_1}{} = \left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2$ and
+    - $\pd{\ell_2}{a_2}{} = \left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2$.
+We find the location of maximum likelihood by locating the values $a_1$ and $a_2$ where the two partial derivatives are both equal to zero, we means we must solve the system of equations that results from $\frac{d\ell_2}{da_1} = 0$ and $\frac{d\ell_2}{da_2} = 0$. We must solve the linear system of equations 
+$$\left\{
+\begin{align*}
+\left(\sum_{i=1}^{44} (y_i - 100)t_i\right) - \left(\sum_{i=1}^{44}t_i^2\right)a_1 - \left(\sum_{i=1}^{44}t_i^3\right)a_2 &= 0 \\ 
+\left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right) - \left(\sum_{i=1}^{44}t_i^3\right)a_1 - \left(\sum_{i=1}^{44}t_i^4\right)a_2 &= 0.
+\end{align*}
+\right.$$
+We can write the system above in the form
+$$\left\{
+\begin{align*}
+\left(\sum_{i=1}^{44}t_i^2\right)a_1 + \left(\sum_{i=1}^{44}t_i^3\right)a_2 &= \left(\sum_{i=1}^{44} (y_i - 100)t_i\right)  \\ 
+\left(\sum_{i=1}^{44}t_i^3\right)a_1 + \left(\sum_{i=1}^{44}t_i^4\right)a_2 &= \left(\sum_{i=1}^{44} (y_i - 100)t_i^2\right).
+\end{align*}
+\right. $$
+This is a system of the form 
+$$
+\left\{
+\begin{align*}
+c_{1,1}x + c_{1,2}y = b_1 \\ 
+c_{2,1}x + c_{2,2}y = b_2
+\end{align*} 
+\right.$$
+whose solution we can quickly find using the results of our previous work. Solve this system.
+
+<details>
+<summary>Solution</summary>
+
+We have to identify the coefficients and enter them into R.  We'll do that together in class, and fill in the code below. 
+
+```r
+    1. Let's create a function to solve this system of equations. 
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+    1. Before moving forward, let's verify that the function works.
+    1. The solution to $2x+3y=4$, $5x+6y=7$ is $(-1,2)$.  
+    1. Does this function yield the same result?
+solvesystem(2,3,4,5,6,7)
+
+    1. Now we can solve the problem at hand. 
+c11 <- 
+c12 <- 
+b1 <- 
+c21 <- 
+c22 <- 
+b2 <- 
+
+sol <- solvesystem(c11,c12,b1,c21,c22,b2)
+sol
+a1 <- sol[1]
+a2 <- sol[2]
+```
+
+</details>
+
+4.
+We have now maximized the loglikelihood function.  Use R to plot the data, along with the model $f_2(t; a_1, a_2) = 100 + a_1t + a_2t^2$ using the parameters values that maximize the loglikelihood.
+
+<details>
+<summary>Solution</summary>
+
+```r
+    1. If not done already, you'll need to load the data. 
+library(data4led)
+bulb <- led_bulb(1,seed=123)
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+    1. If not done already, define the solvesystem function and find the critical values. 
+solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
+  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
+    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
+}
+c11 <- sum(t^2)
+c12 <- sum(t^3)
+b1 <- sum((y-100)*t)
+c21 <- sum(t^3)
+c22 <- sum(t^4)
+b2 <- sum((y-100)*t^2)
+sol <- solvesystem(c11,c12,b1,c21,c22,b2)
+sol
+
+    1. Define the model f2, and and create the plot. 
+f2 <- function(x, a1 = sol[1], a2 = sol[2]){100 + a1*x + a2*x^2}
+x <- seq(0,5000,10)
+plot(t,y)
+lines(x,f2(x),type = "l")
+```
+
+</details>
+ 
+
+## Discussion
+
+### Summary: Steps to obtain loglikelihood.
+1. Identify the deterministic model $f$ and stochasitic model $p$.
+    - Given data of the form $(x,y)$, the residuals (or errors) will be $r_i = y_i - f(x_i)$. 
+1. Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as $J = L = \prod_i p(r_i)$. 
+1. The loglikelihood function is $\ell = \ln(\prod_i p(r_i))$. 
+
+### Summary: Steps of Optimization
+1. Identify the Function of Interest (the objective function)
+    - This is the function you want to make big (maximize) or small (minimize).
+1. Optimize
+    - Take the first and second derivatives.
+    - Set the first derivative (or derivatives) equal to zero and solve to find the critical values.
+    - Use the second derivative test to make sure you found the maximum (or minimum).
+1. Answer the Question
+
+#### Analyzing Waiting times - The exponential distribution
+How long do people wait in a line when they head to the bank?  
+- We'll use the deterministic model $f(x) = 0$ to predict how long someone has to wait (where $x$ represents the time of day). What does this model really say in plain english? 
+    - What are your thoughts about our choice of models?
+- We'll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
+- Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where $x_i$ is the time of day the $i^{\text{th}}$ person comes into the bank and $y_i$ is the amount of time that person waits in line).
+- Find the location of the maximum of the loglikelihood function. 
+
+[This article](https://www.statlect.com/fundamentals-of-statistics/exponential-distribution-maximum-likelihood){target="_blank"} goes through all the computations above.  
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.
+
+### Activity - Method of Maximum Likelihood - Florida Tropical Storms
+- [Florida Hurricanes (wikipedia)](https://tinyurl.com/51vyiwjw){target="_blank"} lists the tropical storms in Florida each year from 2000 to 2020.
+
+Let $X_i$ be the stochastic variable that counts the number of tropical storms in Florida during the $i^{\text{th}}$ year (with $i=1$ corresponding to 2000). Assume the $X_i$ are independent Poisson stochastic variables each with the parameter $\lambda$. Previously, we found the likelihood function $L(\lambda; \mathbf{x})$ to be given by 
+->$L(\lambda; \mathbf{x}) = \prod_{i=1}^{21} \frac{ \lambda^{x_i} }{ x_i! }e^{ -\lambda }$ where the $x_i$'s are nonnegative integers for $i = 1, 2, ... 21$ and $\lambda > 0$.
+The loglikelihood function is given by 
+- $\ell(\lambda; \mathbf{x}) = \ln \left(\prod_{i=1}^{21} \frac{\lambda^{x_i}}{x_i!}e^{-\lambda} \right) = \left(\sum_{i=1}^{21} x_i \right) \ln\lambda - \sum_{i=1}^{21}\ln(x_i!) - 21\lambda$ where the $x_i$'s are nonnegative integers for $i = 1, 2, ... 21$ and $\lambda > 0$.
+
+1. 
+We can rewrite 
+$$\begin{align*}\ell(\lambda; \mathbf{x}) &= \left(\sum_{i=1}^{21} x_i \right) \ln\lambda - \sum_{i=1}^{21}\ln(x_i!) - 21\lambda\\ &= a\ln\lambda - b-21\lambda\end{align*}$$ for with $a=\sum_{i=1}^{21} x_i$ and $b=\sum_{i=1}^{21}\ln(x_i!)$ being just constants. Use R to compute these constants.
+
+```r
+1. Florida Tropical Storm Data (2000-2020) from Wikipedia
+year <- seq(2000,2020,1)
+storms <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
+
+a <-
+b <- 
+1. You should get a=124 and b=144.5211. 
+1. You'll need the factorial() when entering x! into R.
+```
+
+2. 
+Compute $\dfrac{d\ell}{d\lambda}$ and $\dfrac{d^2\ell}{d\lambda^2}$. 
+
+3. 
+Find the critical values of $\ell$. You should get $\lambda =5.904762$.
+
+4. 
+Use the second derivative to show that at $\lambda = 5.904762$ we have found a local maximum for the likelihood. 
+
+### Maximizing Likelihood 
+What we did today in class can be repeated in general to locate the parameters which yield maximum likelihood (by maximizing loglikelihood).
+
+#### Maximizing $\ell_5$
+For the function $f_5(t; a_1) = 100e^{-0.00005t} + a_1te^{-0.00005t}$, we found the loglikelihood function to be 
+$$\ell_5(a_1; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i=1}^{44} (y_i - 100e^{-0.00005t_i} - a_1t_ie^{-0.00005t_i})^2.$$
+Find the value for $a_1$ that maximizes the loglikelihood. 
+
+#### Locating Critical Values of $\ell_6$
+In project 2 Task 1 we obtained 
+$$\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t_i}))^2.$$
+1. Compute $\frac{\partial\ell_6}{\partial a_1}$ and $\frac{\partial\ell_6}{\partial a_2}$.
+1. Use seed 123 to solve the system of equations $\frac{\partial\ell_6}{\partial a_1} = 0$ and $\frac{\partial\ell_6}{\partial a_2} = 0$.  You should obtain $a_1=-0.0008219878$ and $a_2=7.442637$.  
+
+## Discussion 
+### Graphically comparing Likelihood and Loglikelihood functions
+We can use the following code to visually show the location for the maximum of the likelihood function and the location for the maximum of the loglikelihood function are the same. The code below uses the Florida Tropical Storm Data
+
+```r
+rm(list=ls())
+1. Florida Tropical Storm Data (2000-2020)
+storms <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
+
+L <- function(lambda,x){
+  # Remember x must be a whole number.
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+logL <- function(lambda,x){
+  # Remember x must be a whole number.
+  sum(log((lambda^x/factorial(x))*exp(-lambda)))
+}
+
+parm.l <- seq(0,10,0.001)
+
+c <- sum(storms)
+best.l <- c/21
+
+y.L <- as.numeric(lapply(parm.l,FUN=L,x=storms))
+y.logL <- as.numeric(lapply(parm.l,FUN=logL,x=storms))
+
+par(mfrow = c(1,2), mar=c(2.5,2.5,3,0.25))
+plot(parm.l,y.logL,type='l',main='logLikelihood',ylim=c(-100,-40))
+abline(v=best.l,col=2)
+plot(parm.l,y.L,type='l',main='Likelihood')
+abline(v=best.l,col=2)
+
+best.l
+mean(storms)
+```

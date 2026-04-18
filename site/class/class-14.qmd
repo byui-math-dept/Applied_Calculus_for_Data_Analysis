@@ -1,0 +1,173 @@
+---
+title: "Class 14"
+---
+
+# During Class
+## Brain Gains
+Let $ h(t) = \sqrt{3t+1} $.
+- Compute $ h(2) $.
+- Solve $ h(t) = 2 $ for $ t $. 
+Let $X_1$, $X_2$, and $X_3$ be independent random variables which each return the value of a single toss of one fair six-sided die. 
+- Compute $P(X_1 = 1, X_2 = 4, \text{ and } X_3 = 5)$. 
+- Compute $P(X_1 \leq 3, X_2\leq 3,\text{ and }X_3\leq 3)$. 
+Recall that the probability mass function (pmf) for a Poisson distribution is $p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}$ with $x = 0, 1, 2, 3, ...$ where $\lambda > 0$.  Suppose that $Y$ is a random variable with a Poisson distribution with $\lambda = 1$. 
+- Compute $P(Y=1)$.
+- Compute $P(Y=0)$.
+- Compute $P(Y>1)$.
+
+You may use the code below to help you code in the Poisson distribution. 
+
+```r
+p <- function(x,lambda=2){
+1. x must be a whole number
+  (lambda^x/factorial(x))*exp(-lambda)
+}
+```
+
+<details>
+<summary>Answers</summary>
+
+- $ h(2) = \sqrt{7} $
+- $ t = 1 $
+
+- $P(X_1 = 1, X_2 = 4, \text{ and } X_3 = 5) = \frac{1}{216} \approx 0.00463 $
+- $P(X_1 \leq 3, X_2\leq 3,\text{ and }X_3\leq 3) = \frac{1}{8} = 0.125 $
+
+- Compute $P(Y=1) \approx 0.3679$.
+- Compute $P(Y=0) \approx 0.3679$.
+- Compute $P(Y>1) \approx 0.2642$.
+
+```
+p(1,1)
+p(0,1)
+1-(p(0,1)+p(1,1))
+```
+
+</details>
+
+## Group Meeting 
+Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
+
+### Probability Exercise (Tropical Storms Example from Prep)
+Between class we worked with a https://en.wikipedia.org/wiki/Poisson_distribution to model the number of tropical storms in Florida in a given year. The probability mass function for a Poisson distribution is given by 
+$p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}$ with $x = 0, 1, 2, 3, ...$ where $\lambda > 0$.
+You can use the following code to use this function in R. 
+
+```r
+p <- function(x,lambda=2){
+1. x must be a whole number
+  (lambda^x/factorial(x))*exp(-lambda)
+}
+```
+
+Compare your answers that you got for the last 4 questions of yesterday's prep work. These 4 problems asked you to compute each of the things below. 
+- The probability of less than 8 Florida tropical storms this year using $\lambda = 3$.
+- The probability of less than 8 Florida tropical storms this year using $\lambda = 6$.
+- The probability of at least 8 Florida tropical storms this year using $\lambda = 6$.
+- The probability of more than 12 Florida tropical storms this year using $\lambda  = 5$.
+
+### Activity - Florida Tropical Storms Revisited
+Read through the following work, execute the code chunks, and then complete the additional calculations and discuss the questions shown at the end. 
+
+Let $X$ be the random variable that counts the number of tropical storms in Florida this year. Assuming the parameter $\lambda = 2$, we calculate the following:
+
+```r
+1. Define the Poisson distribution with a default value for lambda
+p <- function(x,lambda=2){
+1. x must be a whole number
+  (lambda^x/factorial(x))*exp(-lambda)
+}
+
+1. The probability of 4 Florida tropical storms this year (lambda = 2 is assumed)
+p(4) 
+
+1. The probability of 4 Florida tropical storms this year (lambda = 2 is assigned - should match above. )
+p(4,2) 
+
+1. The probability of 5 Florida tropical storms this year (lambda = 2 is assumed)
+p(5)
+
+1. The probability of 2 Florida tropical storms this year (lambda = 2 is assumed)
+p(2)
+
+1. The probability of $x$ Florida tropical storms this year (lambda = 2 is assumed) for each x from 0 to 10
+p(0:10)
+```
+
+The value for $\lambda$ does not have to be 2.  We can instead change it to 5, or some other value, and repeat the computations above. 
+
+```r
+1. The probability of 4 Florida tropical storms this year, using lambda = 5. 
+p(4,5) 
+
+1. The probability of $x$ Florida tropical storms this year, using lambda = 5, for each x from 0 to 10
+p(0:10,5)
+
+1. The probability of $x$ Florida tropical storms this year, using lambda = 1, for each x from 0 to 10
+p(0:10,1)
+```
+
+#### Additional Calculations and Questions
+- Compute the probability of 7 Florida tropical storms in a year assuming $\lambda  = 8$.
+- Compute the probability of 7 Florida tropical storms in a year assuming $\lambda  = 4$.
+- If we actually observed of 7 Florida tropical storms in a year, would you be more likely to say that $\lambda =8$ or $\lambda = 4$?  Why?
+- Compute the probability of 7 Florida tropical storms in a year assuming $\lambda  = 6.3$. (Wait, can we use decimals for $\lambda$?)
+- Compute the probability of 7 Florida tropical storms in a year using various values for $\lambda$.  Then as a group decide what value you think is the best value to assume for $\lambda$ if we actually did see 7 tropical storms in a year.
+- Construct a plot that has $\lambda$ on the horizontal($x$) axis, and on the vertical($y$) axis we place the probability of 7 Florida tropical storms in a year assuming that value for $\lambda$. Describe the shape of this plot, and how can we use it to find the "best value" for $\lambda$.
+- How does your choice of "best" $\lambda$ change if we know there will be 4 tropical storms (rather than 7 storms)?  
+- How does your choice for $\lambda$ change if we know there will be 5 tropical storms (rather than 7 storms)?
+
+### Activity - Florida Tropical Storms Extended
+Let $X_1$ be the random variable that counts the number of tropical storms in Florida this year, $X_2$ be the random variable that counts the number of tropical storms in Florida next year, and $X_3$ be the random variable that counts the number of tropical storms in Florida the year after. 
+Assuming $X_1$, $X_2$, and $X_3$ are independent Poisson random variables each with the the same parameter $\lambda = 2$. 
+This means we have 
+$$p_{3yr}(x_1, x_2, x_3; \lambda) = \left(\frac{\lambda^{x_1}}{x_1!}e^{-\lambda}\right) \left(\frac{\lambda^{x_2}}{x_2!}e^{-\lambda}\right) \left(\frac{\lambda^{x_3}}{x_3!}e^{-\lambda}\right) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}$$
+with $x_1 = 0, 1, 2, 3, ...$,  $x_2 = 0, 1, 2, 3, ...$, and $x_3 = 0, 1, 2, 3, ...$, (and zero otherwise) where $\lambda > 0.$
+The following code chunk provides two versions to input this function.  The first requires you input a vector $x$ consisting of the number of tropical storms that occurred each year (and can be used if you want to look at a period of 3 years, or even 7 years, by just changing the number of inputs to the vector).  The second version will only work with a 3 year period. 
+
+```r
+p3v1 <- function(x,lambda=2){
+1. each element of x must be a whole number
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+p3v2 <- function(x1,x2,x3,lambda=2){
+1. x1, x2, and x3 must be whole numbers
+  (lambda^(x1+x2+x3)/(factorial(x1)*factorial(x2)*factorial(x3)))*exp(-3*lambda)
+}
+```
+
+We can now calculate the following probabilities:
+
+```r
+1. The probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after (using $\lambda = 2$ as assumed).
+p3v1(c(4,4,8))
+1. The same probability as above, using the other version
+p3v2(4,4,8)
+1. The same probabilty as above by just multiplying probabilities of independent events together. 
+p(4)*p(4)*p(8)
+
+1. The probability of 2 Florida tropical storms this year, 5 Florida tropical storms next year, and 3 Florida tropical storms the year after.
+p3v1(c(2,5,3))
+```
+
+Again, we can change  $\lambda$ to another value, and see how these probabilities change. 
+
+```r
+1. The probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after, assuming the parameter $\lambda = 5$.
+p3v1(c(4,4,8),5)
+
+1. Repeat the above, but with lambda = 1, and then with lambda = 10
+p3v1(c(4,4,8),1)
+p3v1(c(4,4,8),10)
+
+p3v2(4,4,8,1)
+p3v2(4,4,8,10)
+```
+
+If we know there will be 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after, then our calculations above can help us determine a good value for the parameter $\lambda$. The value $\lambda=10$ is a better option that $\lambda = 1$ because $p3(4,4,8,10) = 4.029234e-05 > 2.143747e-09 = p3(4,4,8,1)$. 
+- Try various other values for $\lambda$ and calculate the probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after. 
+- What criteria would you use to decide "what is the best value for the parameter $\lambda$?"
+- Construct a plot (use p3v2) that has $\lambda$ on the horizontal($x$) axis, and on the vertical($y$) axis we place the probability of 4, then 4, then 8 Florida tropical storms for the next three years assuming that value for $\lambda$. Describe the shape of this plot, and how can we use it to find the "best value" for $\lambda$. 
+- In the plot you made, update your code to use p3v1 instead of p3v2. If you notice an error, that's OK.  The problem is that R does not know how to use two vectors as an input to $p$ without more information. The sapply function deals with this and shows up in the prep tomorrow. 
+- Use the data from https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present) for the years 2000-2005 (6 years) to estimate a good value for lambda (you'll need to use p3v1 now, as there are 6 data points instead of 3).

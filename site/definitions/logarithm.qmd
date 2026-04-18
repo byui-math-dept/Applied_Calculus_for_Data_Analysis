@@ -1,0 +1,19 @@
+---
+title: "Definition: Logarithm"
+---
+
+<details>
+<summary>Definition: Logarithm (OpenStax Textbook)</summary>
+
+A **logarithm** base $b$ of a positive number satisfies the following definition.
+
+For $x>0$, $b>0$, and $b \neq 1$, $y = \log_b(x)$ is equivalent to $b^y = x$
+
+- We read $\log_b(x)$ as, "the log base $b$ of $x$" or "the logarithm with base $b$ of $x$".
+- The logarithm is the exponent that $b$ must be raised to get $x$.
+- When we evaluate $\log_b(x)$ we answer the question, "To what exponent must $b$ be raised to in order to get $x$?"
+
+</details>
+
+The key idea is that we can rewrite any logarithm in exponential form, as
+$$\huge{y = \log_b(x) \Leftrightarrow b^y = x}.$$

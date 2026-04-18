@@ -1,0 +1,15 @@
+---
+title: "Definition: IndependentEvents"
+---
+
+<details>
+<summary>Definition: Independent Events</summary>
+
+Two events $A$ and $B$ are independent if the knowledge that one occurred does not affect the chance the other occurs. This means:
+- $P(A | B) = P(A)$
+- $P(B | A) = P(B)$
+- $P(A \text{ and } B) = P(A)P(B)$
+
+*Source: This definition is taken from OpenStax Introductory Statistics.*
+
+</details>

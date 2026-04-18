@@ -1,0 +1,202 @@
+---
+title: "Flex Day 1"
+---
+
+# During Class
+## Brain Gains
+Match the expanded log expressions in the left column with the condensed log expressions in the right column.
+| Expanded Expressions | Condensed Expressions |
+| --- | --- |
+| 1. $\log 3 + \log 2$ | A. $\log 4$ |
+| 2. $\log 10 - \log 2$ | B. $\log 5$ |
+| 3. $3\log 2$ | C. $\log 6$ |
+| 4. $\frac{2}{3}\log 27$ | D. $\log 8$ |
+| 5. $\log 24 - \log 6$ | E. $\log 9$ |
+| 6. $\log 6 + \log 3$ | F. $\log 18$ |  |
+
+<details>
+<summary>Solution</summary>
+
+1. C<br>
+2. B<br>
+3. D<br>
+4. E<br>
+5. A<br>
+6. F
+
+We can use R to calculate approximations for each expression.
+
+```
+log(3,10) + log(2,10)
+log(6,10)
+
+log10(10) - log10(2)
+log(5,10)
+
+3*log(2,10)
+log10(8)
+
+(2/3)*log(27,10)
+log(9,10)
+
+log(24,10)-log10(6)
+log10(4)
+
+log(6,10)+log10(3)
+log(18,10)
+```
+
+</details>
+
+## Definitions and Reminders
+
+<details>
+<summary>Definition: Exponential Function (OpenStax Textbook)</summary>
+
+An **exponential function** is of the form $b^x$ where $b>0$ and $b \neq 1$.
+
+Note: An exponential function is not an algebraic function.
+
+</details>
+
+<details>
+<summary>Key Characteristics of Exponential Function</summary>
+
+- Domain is all real numbers
+- Range is positive real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output gets close to zero.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output grows without bound.
+    - As $x$ increases the output gets close to zero.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+
+</details>
+
+<details>
+<summary>Properties of Exponents</summary>
+
+If $a > 0$, $b >0$, and $m$ and $n$ are any real number, then 
+- $a^m \cdot a^n = a^{m+n}$
+- $\frac{a^m}{a^n} = a^{m-n}$
+- $(a^m)^n = a^{mn}$
+- $\frac{1}{a^n} = a^{-n}$
+- $\sqrt[n]{a} = a^{1/n}$
+- $\sqrt[n]{a^m} = a^{m/n}$
+- $a^m \cdot b^m = (a \cdot b)^m$
+- $\frac{a^m}{b^m} = \left(\frac{a}{b}\right)^m$
+
+</details>
+
+<details>
+<summary>Definition: Logarithm (OpenStax Textbook)</summary>
+
+A **logarithm** base $b$ of a positive number satisfies the following definition.
+
+For $x>0$, $b>0$, and $b \neq 1$, $y = \log_b(x)$ is equivalent to $b^y = x$
+
+- We read $\log_b(x)$ as, "the log base $b$ of $x$" or "the logarithm with base $b$ of $x$".
+- The logarithm is the exponent that $b$ must be raised to get $x$.
+- When we evaluate $\log_b(x)$ we answer the question, "To what exponent must $b$ be raised to in order to get $x$?"
+
+</details>
+
+The key idea is that we can rewrite any logarithm in exponential form, as
+$$\huge{y = \log_b(x) \Leftrightarrow b^y = x}.$$
+
+<details>
+<summary>Definition: Logarithmic Function</summary>
+
+A **logarithmic function** is of the form $\log_b(x)$ where $b>0$ and $b \neq 1$.
+
+Note: A logarithmic function is not an algebraic function.
+
+</details>
+
+<details>
+<summary>Key Characteristics of Logarithmic Function</summary>
+
+- Domain is positive real numbers
+- Range is all real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ gets close to zero from the right the output approaches negative infinity.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave down.
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ gets close to zero from the right the output grows without bound (approaches infinity).
+    - As $x$ increases the output approaches negative infinity.
+    - These functions are concave up.
+
+</details>
+
+<details>
+<summary>Properties of Logarithms</summary>
+
+If $a>0$, $b > 0$, $c > 0$, $b \neq 1$, and $n$ is any real number, then
+- $\log_b b^x = x$ and $b^{\log_b x} = x$ (inverse property)
+    - Special Cases
+      - $\log_b b = \log_b b^1 = 1$
+      - $\log_b 1 = \log_b b^0 = 0$
+- $\log_b(ac) = \log_b(a) + \log_b(c)$ (product property)
+- $\log_b\left(\frac{a}{c}\right) = \log_b(a) - \log_b(c)$ (quotient property)
+- $\log_b(a^n) = n\log_b(a)$ (power property)
+
+</details>
+
+$\huge{\text{Logs turn multiplication into addtion!}}$
+
+## Group Meeting 
+General Instructions
+- Give each group member a several minutes to share.
+
+### Activity - Logs with $\prod$ and $\sum$ notation
+Write in expanded form.
+- $\prod_{m=1}^2(mx + 1)$
+- $\prod_{m=1}^3(mx + 1)$
+- $\sum_{m=1}^3(mx + 1)$
+- $\sum_{m=1}^3\ln(mx + 1)$
+- $\sum_{m=1}^3(x_m + 1)$
+- $\sum_{m=1}^3\ln(x_m + 1)$
+
+Rewrite the following expressions using log properties.
+- $\ln \left(\prod_{m=1}^2(mx + 1)\right)$
+- $\ln \left(\prod_{m=1}^7(mx + 1)\right)$
+- $\ln \left(\prod_{i=1}^5((y_i - 3)^2) \right)$
+- $\ln \left(\prod_{i=1}^n((ax_i+b-y_i)^2) \right)$
+
+$\huge{\text{Logs turn multiplication into addtion!}}$
+
+### Activity - Practice with Logarithms
+Use R to plot the functions $f(x) = 2^x$, $g(x) = e^x$, and $h(x) = 10^x$. Then answer the following questions.
+- What is the domain of an exponential function?
+- What is the range of an exponential function?
+- Give an example of a power function. What is the difference between a power function and an exponential function?
+
+Use R to plot the function $F(x) = \log_2(x)$, $G(x) = \ln(x)$, and $H(x) = \log(x)$. Then answer the following questions.
+- What is the domain of a logarithmic function?
+- What is the range of a logarithmic function?
+
+### Activity - Solving Equations
+Solve the following equations for $x$. Write down the exact answer and decimal approximation (round to 4 decimal places).
+- $\ln(4x-2) = 5$ 
+- $\log(5x-30) = 1$
+- $9^x = 49$
+- $2^x = 56$
+- $-2\log_5(7x) = 2$
+- $\log_3(x-3) - 4 = 12$
+- $\log_2(x-1) + \log_2(x+5) = 4$
+- $e^{x-1}-5 = 5$
+- $3(4^{2-5x})-7=8$
+- $\ln(x+5) + \ln(x) = \ln(12x)$
+
+# Between Class Sessions
+<a id="PP"></a>
+
+## Skill Practice (KA Homework)
+- Finish any of the first three log assignments if you have not already finished them.
+- Continue working on 1 -- Solve Logarithmic Equations (and IVT) assignment
+
+## Applied Practice (Project Work)
+- Continue working on Project 1 Task 3
