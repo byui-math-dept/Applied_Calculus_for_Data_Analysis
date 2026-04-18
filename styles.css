@@ -27,3 +27,22 @@ details[open] summary {
 ol[type="a"] {
   list-style-type: lower-alpha;
 }
+
+/* Prevent wide tables from breaking layout — scroll horizontally */
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* But allow text in cells to wrap normally */
+table td, table th {
+  white-space: normal;
+  min-width: 4rem;
+}
+
+/* Schedule date column: don't wrap "Mon Apr 20" */
+table td:first-child {
+  white-space: nowrap;
+}

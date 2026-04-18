@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 36 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -515,16 +300,6 @@ window.Quarto = {
 
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Code chunks from Rectangles, Targets, and Sums
@@ -595,8 +370,6 @@ Code chunks from Rectangles, Targets, and Sums
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ul>
@@ -625,16 +398,6 @@ Code chunks from Rectangles, Targets, and Sums
 <p>Then simulate a sample of 25000 random measurements from this distribution (use the seed 123) and calculate the probability that a measurement in our sample will be less than 1.2.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25000</span>,a,b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -652,39 +415,15 @@ Answers
 <pre><code>- Note if we let $X$ be the random variable which records the $x$-coordinate of dropping a dart on the target defined by $f_0$ we could calculate this same probability $P(X \leq 1.2)$ from the model.</code></pre>
 <p><span class="math display">\[ P(X \leq 1.2) = \frac{(1/3)*(1.2+1)}{1} = \frac{11}{15} \approx 0.733333 \]</span></p>
 </details>
-</div>
-</div>
 </section>
 <section id="key-ideas-targets-continuous-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="key-ideas-targets-continuous-random-variables">Key Ideas (Targets &amp; Continuous Random Variables)</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 The cumulative distribution function (CDF) of a random variable
 </summary>
 <p>The <strong>cumulative distribution function</strong> of a random variable <span class="math inline">\(X\)</span> is the function <span class="math inline">\(F(x) = P(X \leq x)\)</span>.</p>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 The probability density function (PDF) of a continuous random variable
@@ -695,8 +434,6 @@ The probability density function (PDF) of a continuous random variable
 <li>The total area under a probability density function always equals 1.</li>
 </ul>
 </details>
-</div>
-</div>
 <ul>
 <li><p>Any function that is non-negative with a total area of 1 can be interpreted as the probability density function of some random variable.</p></li>
 <li><p>If a function <span class="math inline">\(g(x)\)</span> is non-negative and has a finite total area, we can normalize the function (dividing by the area), like we have been doing with our target functions, to make a PDF.</p></li>
@@ -709,16 +446,6 @@ The probability density function (PDF) of a continuous random variable
 </section>
 <section id="riemann-sums-definite-integrals" class="level2">
 <h2 class="anchored" data-anchor-id="riemann-sums-definite-integrals">Riemann Sums &amp; Definite Integrals</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Riemann sum for <span class="math inline">\(f\)</span>
@@ -727,8 +454,6 @@ Riemann sum for <span class="math inline">\(f\)</span>
 <p><span class="math inline">\(\sum_{i=1}^{n} f(x_i)\Delta x\)</span></p>
 <p>a <strong>Riemann sum for <span class="math inline">\(f\)</span></strong>.</p>
 </details>
-</div>
-</div>
 <section id="example-1" class="level3">
 <h3 class="anchored" data-anchor-id="example-1">Example 1</h3>
 <p>Let <span class="math inline">\(g(x) = 4 - x^2\)</span> for <span class="math inline">\(-1 \leq x \leq 2\)</span> and 0 otherwise.</p>
@@ -795,16 +520,6 @@ Riemann sum for <span class="math inline">\(f\)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.R)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Using the information from our table, what do you think is the exact area?</p>
 <p>It appears that <span class="math inline">\(\lim_{n \rightarrow \infty} \sum_{i=1}^n g(x_i)\Delta x = 9\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Definite Integral
@@ -819,8 +534,6 @@ Definite Integral
 <li><span class="math inline">\(b\)</span> is the upper bound (or upper limit of integration)</li>
 </ul>
 </details>
-</div>
-</div>
 <ul>
 <li>Compute <span class="math inline">\(\int_{-1}^{2} 4 - x^2 dx\)</span> using Mathematica. <em>(Remember to use shift + enter to run the command in Mathematica.)</em>%%</li>
 </ul>
@@ -828,24 +541,12 @@ Definite Integral
 <ul>
 <li>Is <span class="math inline">\(g\)</span> the PDF of some random variable? If so, explain. If not, then find a value <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the PDF of some random variable.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
 </summary>
 <p>The function <span class="math inline">\(g\)</span> is nonnegative, but the area under <span class="math inline">\(g\)</span> and above the <span class="math inline">\(x\)</span>-axis is 9. As such, the function <span class="math inline">\(g\)</span> is NOT the PDF of some random variable. Letting <span class="math inline">\(k=\frac{1}{9}\)</span> gives the function <span class="math inline">\(f(x) = \frac{1}{9}(4 - x^2)\)</span> for <span class="math inline">\(-1 \leq x \leq 2\)</span> and 0 otherwise. The function <span class="math inline">\(f\)</span> is the PDF of some random variable.</p>
 </details>
-</div>
-</div>
 </section>
 </section>
 <section id="group-meeting" class="level2">
@@ -855,16 +556,6 @@ Solution
 <ul>
 <li>Use a Riemann sum with <span class="math inline">\(n=25\)</span> to approximate <span class="math inline">\(E[X]\)</span> for the target function <span class="math inline">\(f(x) =  \frac{1}{2}(x-1)\)</span> for <span class="math inline">\(1\leq x\leq 3\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -882,8 +573,6 @@ Solution
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(xi<span class="sc">*</span>Ai)<span class="sc">/</span><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <ul>
 <li><p>The limit of this Riemann Sum as <span class="math inline">\(n\)</span> goes to infinite is a definite integral. Write down the definite integral that is equal to $<em>{n } </em>{i=1}^{n} (x-1)x x $.</p></li>
 <li><p>Approximate the definite integral above by increasing the value of <span class="math inline">\(n\)</span> from 25 to 50, then 100, etc., until you have a good estimate for limit.</p></li>
@@ -1036,7 +725,7 @@ kx - k &amp; \quad 1 \leq x \leq 3 \\ \\
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

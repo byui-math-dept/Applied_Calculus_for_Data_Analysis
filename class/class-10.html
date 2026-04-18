@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 10 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -612,16 +397,6 @@ window.Quarto = {
 </section>
 <section id="intermediate-value-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="intermediate-value-theorem">Intermediate Value Theorem</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Intermediate Value Theorem (IVT)
@@ -629,20 +404,8 @@ Intermediate Value Theorem (IVT)
 <p>If <span class="math inline">\(f(x)\)</span> is a continuous function on a closed interval $ [a, b] $, where <span class="math inline">\(f(a) \neq f(b)\)</span>, and <span class="math inline">\(y_0\)</span> is any <span class="math inline">\(y\)</span>-value strictly between <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>, then <span class="math inline">\(y_0 = f(x_0)\)</span> for some <span class="math inline">\(x\)</span>-value, <span class="math inline">\(x_0\)</span>, in $ [a, b] $.</p>
 <p>Note: While there is a rigorous mathematical definition for what it means to be a continuous function, for our purposes the following concept with suffice, a function is continuous on an interval if the graph of that function can be traced with a pencil without lifting the pencil from the page.</p>
 </details>
-</div>
-</div>
 <p>Consider the function <span class="math inline">\(f(x) = (-13 + 2x)e^{-0.05x}\)</span> and the interval $ [ 3, 50 ] $.<br>
 - What does the IVT say about this function over this interval?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expand for a plot of the function.
@@ -660,8 +423,6 @@ Expand for a plot of the function.
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">3</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">50</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <ul>
 <li>We currently have <span class="math inline">\(f(x) = (-13 + 2x)e^{-0.05x}\)</span> with $ [a, b] = [ 3, 50 ] $, which means <span class="math inline">\(a = 3\)</span> and <span class="math inline">\(b = 50\)</span>.<br>
 </li>
@@ -670,35 +431,13 @@ Expand for a plot of the function.
 <li>The intermediate value theorem states that there must exist some <span class="math inline">\(x\)</span>-value, which we’ll call <span class="math inline">\(x_0\)</span>, so that <span class="math inline">\(f(x_0) = y_0 = 0\)</span>.</li>
 <li>We can solve <span class="math inline">\((-13 + 2x+0)e^{-0.05x_0}=0\)</span> for <span class="math inline">\(x_0\)</span> and get an exact solution (or analytic solution).</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expand to see an exact solution to <span class="math inline">\(f(x_0) = 0\)</span>, obtaining <span class="math inline">\(x_0=6.5\)</span>.
 </summary>
 <p>We want to solve <span class="math inline">\((-13 + 2x_0) e^{-0.05x_0} = 0\)</span>. Since we have two things that multiply to zero, we know one of the quantities must be zero. We see <span class="math inline">\(-13 + 2x_0 = 0\)</span> or <span class="math inline">\(e^{-0.05x_0} = 0\)</span>. Since the range of an exponential function is strictly positive numbers, we know <span class="math inline">\(e^{-0.05x_0} \neq 0\)</span>. So we only have to determine when <span class="math inline">\(-13 + 2x_0 = 0\)</span>. This means <span class="math inline">\(2x_0 = 13\)</span>, or <span class="math inline">\(x_0 = \frac{13}{2} = 6.5\)</span>.</p>
 </details>
-</div>
-</div>
 <p>The intermediate value theorem does not require that we pick <span class="math inline">\(y_0 = 0\)</span>. - What values can we choose for <span class="math inline">\(y_0\)</span>? Let’s choose <span class="math inline">\(y_0 = 5\)</span>, and repeat what we did above. - Why is <span class="math inline">\(y_0=5\)</span> a valid choice? - Let’s try solving <span class="math inline">\(f(x_0) = y_0 = 5\)</span> by hand for <span class="math inline">\(x_0\)</span>. (Unfortunately we will fail when trying to solve this equation exactly.)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expand to see an attempt at solving <span class="math inline">\(f(x_0) = 5\)</span> exactly.
@@ -707,22 +446,10 @@ Expand to see an attempt at solving <span class="math inline">\(f(x_0) = 5\)</sp
 <p>Instead, let’s try isolating the exponential and using a logarithm to rewrite the equation. Isolating the exponential term in <span class="math inline">\((-13 + 2x_0) e^{-0.05x_0} = 5\)</span> gives <span class="math display">\[e^{0.05x_0} = \frac{-13 + 2x_0}{5}.\]</span> From here we can rewrite in logarithmic form to obtain <span class="math inline">\(0.05x_0 = \ln \left(\frac{-13 + 2x_0}{5} \right)\)</span>, which requires <span class="math inline">\(-13 + 2x_0 &gt; 0\)</span> as we cannot compute logarithm of a negative number. We can rewrite this as <span class="math display">\[x_0 = \frac{1}{0.05}\ln \left(\frac{-13 + 2x_0}{5} \right),\]</span> but this doesn’t provide a solution as we still have an <span class="math inline">\(x_0\)</span> trapped in a logarithm. This approach failed as well.</p>
 <p>It turns out that there is no known solution technique for finding an exact solution to this type of problem. We’ve already entered a realm where current knowledge has failed to find exact solutions.</p>
 </details>
-</div>
-</div>
 <ul>
 <li>While we cannot obtain an exact solution to <span class="math inline">\((-13 + 2x_0) e^{-0.05x_0} = 5\)</span>, let’s solve numerically using R.</li>
 <li>Remember that to use the uniroot() function, we need to have one side of the equation be zero (we need to be looking for a root). We see <span class="math inline">\(f(x_0) = 5\)</span> is equivalent to <span class="math inline">\(f(x_0) - 5 = 0\)</span>. The function <span class="math inline">\(f(x_0) - 5\)</span> is a new function, let’s call it <span class="math inline">\(g\)</span>. Notice that <span class="math inline">\(g\)</span> is a transformation of <span class="math inline">\(f\)</span>. To get <span class="math inline">\(g\)</span> from <span class="math inline">\(f\)</span> we just shift down 5.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expand for the solution to <span class="math inline">\(f(x_0) = 5\)</span> using uniroot.
@@ -745,8 +472,6 @@ Expand for the solution to <span class="math inline">\(f(x_0) = 5\)</span> using
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>x0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 
 
 </section>
@@ -827,7 +552,7 @@ Expand for the solution to <span class="math inline">\(f(x_0) = 5\)</span> using
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

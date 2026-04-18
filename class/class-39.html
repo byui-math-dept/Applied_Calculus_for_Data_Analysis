@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 39 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -565,60 +350,24 @@ x - 1 &amp; 1 \leq x \leq 3 \\
 </section>
 <section id="definition-reminder" class="level2">
 <h2 class="anchored" data-anchor-id="definition-reminder">Definition Reminder</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Probability Density Function (PDF)
 </summary>
 <p>A <strong>probability density function</strong> <span class="math inline">\(f(x)\)</span> is a nonnegative function that satisfies <span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}f(x)dx = 1\)</span>. - Remember the description “nonnegative function” means all the outputs of <span class="math inline">\(f\)</span> are positive or zero, <span class="math inline">\(f(x) \geq 0\)</span>. - Important note: If a function is zero everywhere except on an interval <span class="math inline">\(a \leq x \leq b\)</span>, then <span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{a}^{b}f(x)dx\)</span>.</p>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expected Value (continuous random variable)
 </summary>
 <p>The <strong>expected value</strong> (or mean) of a <em>continuous</em> random variable <span class="math inline">\(X\)</span> with probability density function <span class="math inline">\(f(x)\)</span> is <span class="math display">\[\text{E}[X] = \int_{-\infty}^{\infty} x f(x) dx.\]</span></p>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Variance (continuous random variable)
 </summary>
 <p>The <strong>variance</strong> of a <em>continuous</em> random variable <span class="math inline">\(X\)</span> with probability density function <span class="math inline">\(f(x)\)</span> is <span class="math display">\[\text{Var}[X] = \int_{-\infty}^{\infty} (x - \text{E}[X])^2 f(x) dx.\]</span> Note: The standard deviation is equal to the square root of the variance, <span class="math inline">\(\sigma_X = \sqrt{\text{Var}[X]}\)</span>.</p>
 </details>
-</div>
-</div>
 <p>You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Methos of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.</p>
 </section>
 <section id="discussion---method-of-moments-big-idea" class="level2">
@@ -630,16 +379,6 @@ Variance (continuous random variable)
 <ul>
 <li>Compute the expected value and variance of this distribution.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -652,21 +391,9 @@ EV = Integrate[x f, bounds]
 Var = Integrate[(x - EV)^2 f, bounds]
 $Assumptions = Null</code></pre>
 </details>
-</div>
-</div>
 <ul>
 <li>Use the method of moments to obtain the best fit parameters for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -679,8 +406,6 @@ Solution
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Ng)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We must solve <span class="math inline">\(\mu = 2.79164\)</span> and <span class="math inline">\(\sigma^2 = 10.97915\)</span>. This gives <span class="math inline">\(\mu = 2.79\)</span> and <span class="math inline">\(\sigma = \sqrt{10.97915} = 3.31348\)</span>.</p>
 </details>
-</div>
-</div>
 </section>
 <section id="gamma-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="gamma-distribution">Gamma Distribution</h3>
@@ -689,16 +414,6 @@ Solution
 <ul>
 <li>Compute the expected value and variance of this distribution.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Click to expand
@@ -711,21 +426,9 @@ EV = Integrate[x f, bounds]
 Var = Integrate[(x - EV)^2 f, bounds]
 $Assumptions = Null</code></pre>
 </details>
-</div>
-</div>
 <ul>
 <li>Use the method of moments to obtain the best fit parameters for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -740,23 +443,11 @@ Solution
 <p>The Mathematica code below solves the system as well.</p>
 <pre><code>Solve[{EV == meanNg, Var == varNg}, {\[Alpha], \[Beta]}]</code></pre>
 </details>
-</div>
-</div>
 <section id="plotting-our-fitted-models." class="level4">
 <h4 class="anchored" data-anchor-id="plotting-our-fitted-models.">Plotting our fitted models.</h4>
 <p>Let’s now use the information above to compare the data to the model with a plot.</p>
 <p>The best fit model is <span class="math inline">\(f_1(x) = \frac{1}{\sqrt{2\pi 10.979}}e^{-\frac{1}{2}\left(\frac{x-2.792}{3.313}\right)^2}\)</span> where <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>.</p>
 <p>We now plot this model, along with the data, using the code below.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Fitted <span class="math inline">\(f_1\)</span>. (Click to expand)
@@ -774,20 +465,8 @@ Fitted <span class="math inline">\(f_1\)</span>. (Click to expand)
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Normal"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">12</span>))</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x1,y1,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <p>The best fit model is <span class="math inline">\(f_2(x) = \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}\)</span> where <span class="math inline">\(x \geq 0\)</span>.</p>
 <p>We now plot this model, along with the data, using the code below.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Fitted <span class="math inline">\(f_2\)</span>. (Click to expand)
@@ -806,8 +485,6 @@ Fitted <span class="math inline">\(f_2\)</span>. (Click to expand)
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Gamma"</span>)</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x2,y2,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 <section id="using-our-fitted-models." class="level4">
 <h4 class="anchored" data-anchor-id="using-our-fitted-models.">Using our fitted models.</h4>
@@ -816,16 +493,6 @@ Fitted <span class="math inline">\(f_2\)</span>. (Click to expand)
 <ul>
 <li>Assuming our data follows our fitted <span class="math inline">\(f_1\)</span> probability model (a probability density function), let’s use a simulation to estimate the probability%% of observing a nitroglycerin concentration above 10 mg/kg.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -840,21 +507,9 @@ Solution
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <ul>
 <li>Assuming our data follows fitted <span class="math inline">\(f_1\)</span> distribution, compute the probability%% of observing a nitroglycerin concentration above 10 mg/kg.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -866,21 +521,9 @@ Re[Integrate[f1Fitted, {x, 10, Infinity}]]
 Integrate[f1Fitted, {x, 10, 1000}]</code></pre>
 <p>The last line of code above shows that by replacing <span class="math inline">\(\infty\)</span> with large number, we can obtain a similar answer without needing to use the Re[] command. Sometimes when the output of software appears off, using approximations is a viable alternative.</p>
 </details>
-</div>
-</div>
 <ul>
 <li>Assuming our data follows our fitted <span class="math inline">\(f_2\)</span> probability model (a probability density function), let’s use a simulation to estimate the probability%% of observing a nitroglycerin concentration above 10 mg/kg.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -895,21 +538,9 @@ Solution
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <ul>
 <li>Assuming our data follows fitted <span class="math inline">\(f_2\)</span> distribution, compute the probability%% of observing a nitroglycerin concentration above 10 mg/kg.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Solution
@@ -917,8 +548,6 @@ Solution
 <p>To compute the probability that a the concentration of explosives in a soil sample will be more than 10mg/kg, we compute <span class="math display">\[P(X &gt; 10)=\int_{10}^\infty \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}dx.\]</span> Mathematica code for computing this definite integral is given below.</p>
 <pre><code>Integrate[(0.2542674^0.709823/Gamma[0.709823])*x^(0.709823 - 1)*Exp[-0.2542674*x], {x, 10, Infinity}]</code></pre>
 </details>
-</div>
-</div>
 </section>
 </section>
 <section id="summary-method-of-moments" class="level3">
@@ -1004,7 +633,7 @@ Solution
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 33 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -573,16 +358,6 @@ window.Quarto = {
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="key-ideas-means-expected-value-and-discrete-random-variables" class="level3">
 <h3 class="anchored" data-anchor-id="key-ideas-means-expected-value-and-discrete-random-variables">Key Ideas (Means, Expected Value, and Discrete Random Variables)</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 The probability mass function (PMF) of a discrete random variable
@@ -600,44 +375,18 @@ The probability mass function (PMF) of a discrete random variable
 </ul></li>
 </ul>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Expected Value of a discrete random variable
 </summary>
 <p>Given a <em>discrete</em> random variable, <span class="math inline">\(X\)</span>, with outcomes <span class="math inline">\(x_i\)</span> having probability <span class="math inline">\(p_i\)</span> the <strong>expected value</strong> is <span class="math inline">\(E[X] = \sum x_ip_i\)</span>. The symbols <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\mu_X\)</span> are also used to represent the expected value of a random variable.</p>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 The cumulative distribution function (CDF) of a random variable
 </summary>
 <p>The <strong>cumulative distribution function</strong> of a random variable <span class="math inline">\(X\)</span> is the function <span class="math inline">\(F(x) = P(X \leq x)\)</span>.</p>
 </details>
-</div>
-</div>
 </section>
 <section id="exercises-1.1---averaging-test-scores" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.1---averaging-test-scores">Exercises 1.1 - Averaging Test Scores</h3>
@@ -650,16 +399,6 @@ The cumulative distribution function (CDF) of a random variable
 <li>Find the mean of the values by summing the values and then dividing by the number of values.</li>
 </ul></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -670,19 +409,7 @@ Answers
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <pre><code>- Use the values vector c(2,3,5,7,8,9) and frequencies vector c(3,2,4,1,2,3) to compute the mean of integers.</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -692,19 +419,7 @@ Answers
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val<span class="sc">*</span>freq)<span class="sc">/</span><span class="fu">sum</span>(freq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <pre><code>- Use the values vector c(2,3,5,7,8,9) and proportions vector c(3/15,2/15,4/15,1/15,2/15,3/15) to compute the mean of integers.</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -714,21 +429,9 @@ Answers
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val<span class="sc">*</span>prop)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <ol type="1">
 <li>Construct your own vector, and write code that computes the mean of the values in the vector using each of the 3 methods in this section.</li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Sample Answers
@@ -743,8 +446,6 @@ Sample Answers
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val.y<span class="sc">*</span>freq.y)<span class="sc">/</span><span class="fu">sum</span>(freq.y)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(val.y<span class="sc">*</span>prop.y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 <section id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads">Exercises 1.4 - Tossing a coin three times and counting heads</h3>
@@ -752,16 +453,6 @@ Sample Answers
 <li>https://byuistats.github.io/M119/unit3/probability.html#Exercises9</li>
 </ul>
 <p>Suppose we toss a coin three times and record the number of heads. Let the random variable <span class="math inline">\(X\)</span> represent this total number of heads. Note that possible outcomes of counting the number of heads are 0,1,2,3 (these are discrete values, hence we call this a discrete random variable). These outcomes arise from the 8 possible results of tossing a coin three times (TTT,TTH,THT, THH,HTT,HTH,HHT, HHH). 1. Verify by hand that F(1)=0.5. 1. Locate F(2) in the table above. 1. Compute F(1.7). Explain. 1. What is F(3)? Give several reasons for your answer. 1. The table tells us F(0)=0.125. Compute P(X&gt;0) using this fact. 1. What is F(23.6)? What is F(−113)?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -780,8 +471,6 @@ Answers
 <li><span class="math inline">\(F(23.6) = 1\)</span>, <span class="math inline">\(F(-113) = 0\)</span></li>
 </ol>
 </details>
-</div>
-</div>
 </section>
 <section id="exercises-1.5---rolling-two-dice-and-summing-them" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.5---rolling-two-dice-and-summing-them">Exercises 1.5 - Rolling two dice and summing them</h3>
@@ -813,16 +502,6 @@ Answers
 <li>Explain why <span class="math inline">\(P(4 &lt; X \leq 9) = P(X \leq 9) − P(X \leq 4)\)</span>.</li>
 </ul></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -854,8 +533,6 @@ Answers
 </ul></li>
 </ol>
 </details>
-</div>
-</div>
 </section>
 <section id="exercises-1.6---avoid-gambling" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.6---avoid-gambling">Exercises 1.6 - Avoid Gambling</h3>
@@ -882,16 +559,6 @@ Answers
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">outcome=</span>y, <span class="at">prob =</span> py)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>tbl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>- This isn’t needed to answer the gambling question, but we want to recognize $Y$ as its own random variable.</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -914,8 +581,6 @@ draw_pmf(x,p)</code></pre>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(y,py)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>E.Y, <span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 <section id="exercises-1.7---how-many-tropical-storms---poisson" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.7---how-many-tropical-storms---poisson">Exercises 1.7 - How many tropical storms - Poisson</h3>
@@ -1066,7 +731,7 @@ draw_pmf(x,p)</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

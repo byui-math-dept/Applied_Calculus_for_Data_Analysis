@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 30 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -515,16 +300,6 @@ window.Quarto = {
 
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Steps of Optimization
@@ -543,18 +318,6 @@ Steps of Optimization
 <li>Answer the Question</li>
 </ul>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Steps for writing down the loglikelihood function
@@ -567,18 +330,6 @@ Steps for writing down the loglikelihood function
 <li>The loglikelihood function is the natural log of the likelihood function which gives <span class="math display">\[\ell(\text{parameters of } f; \mathbf{x}, \mathbf{y}) = \ln \prod_{i=1}^m \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - f(x_i))^2}.\]</span> We can simplify the loglikelihood function by writing it in a more convenient form using the properties of logarithms and properties of sums. We find <span class="math display">\[\ell(\text{parameters of } f; \mathbf{x}, \mathbf{y}) = m\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2} \sum_{i=1}^m (y_i - f(x_i))^2.\]</span></li>
 </ul>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Properties of Logs
@@ -590,18 +341,6 @@ Properties of Logs
 <li><span class="math inline">\(\log_b(b^x) = x\)</span></li>
 </ul>
 </details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Properties of Sum
@@ -613,8 +352,6 @@ Properties of Sum
 <li><span class="math inline">\(\sum_{i=1}^m a_i - b_i = \left(\sum_{i=1}^m a_i\right) - \left(\sum_{i=1}^m b_i\right)\)</span></li>
 </ul>
 </details>
-</div>
-</div>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>We would like to fit the model <span class="math inline">\(h(x) = mx + b\)</span> (or $h(x) = b + mx $) to the following data <span class="math inline">\((x_i,y_i)\)</span> using the maximum likelihood method, where we will assume the errors are independent and follow a standard normal distribution (this means a normal distribution with mean 0 and standard deviation 1, hence <span class="math inline">\(p(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}\)</span>).</p>
@@ -623,35 +360,13 @@ Properties of Sum
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>[Identify the Function of Interest]%% (Project 2 Task 1)%% - Write down and simplify the loglikelihood function. Explain your steps. Be explicit. - Where did you use the assumption that the errors are normal with mean 0 and standard deviation 1? - Where did you use the assumption that the errors are independent? - What properties of logarithms did you use to simplify? - What properties of sums did you use to simplify?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
 </summary>
 <p><span class="math inline">\(\ell(m, b; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i - b)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i - b)^2\)</span></p>
 </details>
-</div>
-</div>
 <p>[Optimize]%% – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2)%% - Write down and simplify the first and second partial derivatives of <span class="math inline">\(\ell\)</span>. Each of first partial derivatives should be of the form <span class="math inline">\(c_1 - c_2b - c_3m\)</span>. Each of the second partial derivatives should be a constant. - What derivative rules did you use? - What sum rules did you use?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
@@ -664,19 +379,7 @@ Check Your Answer
 <li><p><span class="math inline">\(\frac{\partial^2 \ell}{\partial b \partial m} = -\sum_{i=1}^{50} x_i\)</span></p></li>
 </ul>
 </details>
-</div>
-</div>
 <p>[Optimize]%% – Find any critical point(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3)%% - Solve the system that results from setting the partial derivatives equal to zero.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
@@ -721,19 +424,7 @@ b_2 - c_{21}b - c_{22}m &amp;= 0,
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>best_b</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>best_m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <pre><code>- How do we know we have found the location of a maximum?</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
@@ -748,8 +439,6 @@ Check Your Answer
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fxx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since <span class="math inline">\(D &gt; 0\)</span> and <span class="math inline">\(\frac{\partial^2 \ell}{\partial b^2} &lt; 0\)</span>, we know we have found the the location of a local maximum.</p>
 </details>
-</div>
-</div>
 <p>[Answer the Question]%% (Project 2 Task 3 &amp; Project 2)%% - Write down your fitted model. - Plot your model. - We could use this function to answer a question or make a prediction based on the data and the assumption that the process can be described by the general model <span class="math inline">\(f(x) = mx + b\)</span>. - Use R to graph your fitted model with the data.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> best_b, <span class="at">m =</span> best_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -782,24 +471,12 @@ Check Your Answer
 <li>What properties of sums did you use to simplify?</li>
 </ul></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
 </summary>
 <p><span class="math inline">\(\ell(m; \mathbf{x}, \mathbf{y}) = \ln\left(\prod_{i=1}^{50} \frac{1}{\sqrt{2\pi}}e^{-(y_i - mx_i)^2/2}\right) = 50\ln(\frac{1}{\sqrt{2\pi}}) + \sum_{i=1}^{50} -\frac{1}{2}(y_i - mx_i)^2\)</span></p>
 </details>
-</div>
-</div>
 <ul>
 <li>[Optimize]%% – Find the first and second derivatives of <span class="math inline">\(\ell\)</span>. (Project 2 Task 2)%% Write down and simplify the first and second derivatives of <span class="math inline">\(\ell\)</span>. The first derivative should be of the form <span class="math inline">\(c_1 - c_2m\)</span>. The second derivative should be a constant.
 <ul>
@@ -807,16 +484,6 @@ Check Your Answer
 <li>What sum rules did you use?</li>
 </ul></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
@@ -824,21 +491,9 @@ Check Your Answer
 <pre><code>  - $\frac{d\ell}{dm} = \left(\sum_{i=1}^{50} x_iy_i\right) - \left(\sum_{i=1}^{50} x_i^2\right) m$
   - $\frac{d^2\ell}{dm^2} = -\sum_{i=1}^{50} x_i^2$</code></pre>
 </details>
-</div>
-</div>
 <ul>
 <li>[Optimize]%% – Find any critical value(s) of <span class="math inline">\(\ell\)</span>. (Project 2 Task 3)%%</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Check Your Answer
@@ -847,8 +502,6 @@ Check Your Answer
 <p><strong>CAUTION:</strong> <span class="math inline">\(\frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}\)</span> is <strong>NOT equal</strong> to <span class="math inline">\(\frac{\sum_{i=1}^{50} y_i}{\sum_{i=1}^{50} x_i}\)</span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m_best <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">*</span>y1)<span class="sc">/</span><span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 <pre><code>- How do we know $m = \frac{\sum_{i=1}^{50} x_iy_i}{\sum_{i=1}^{50} x_i^2}$ is the location of a maximum?</code></pre>
 <ul>
 <li>[Answer the Question]%% (Project 2 Task 3 &amp; Project 2)%%
@@ -1037,7 +690,7 @@ Check Your Answer
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

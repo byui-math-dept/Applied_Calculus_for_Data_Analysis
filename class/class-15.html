@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Class 15 – Math 119 — Applied Calculus for Data Analysis</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/uploads/Class/119-bmw.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,9 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      ds: "\\displaystyle"
+    }
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -161,197 +168,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Sessions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-class-sessions">    
-        <li>
-    <a class="dropdown-item" href="../class/class-1.html">
- <span class="dropdown-text">Class 1</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-2.html">
- <span class="dropdown-text">Class 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-3.html">
- <span class="dropdown-text">Class 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-4.html">
- <span class="dropdown-text">Class 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-5.html">
- <span class="dropdown-text">Class 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-6.html">
- <span class="dropdown-text">Class 6</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-7.html">
- <span class="dropdown-text">Class 7</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-8.html">
- <span class="dropdown-text">Class 8</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-9.html">
- <span class="dropdown-text">Class 9</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-10.html">
- <span class="dropdown-text">Class 10</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-11.html">
- <span class="dropdown-text">Class 11</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-12.html">
- <span class="dropdown-text">Class 12</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-13.html">
- <span class="dropdown-text">Class 13</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-14.html">
- <span class="dropdown-text">Class 14</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-15.html">
- <span class="dropdown-text">Class 15</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-16.html">
- <span class="dropdown-text">Class 16</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-17.html">
- <span class="dropdown-text">Class 17</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-18.html">
- <span class="dropdown-text">Class 18</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-19.html">
- <span class="dropdown-text">Class 19</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-20.html">
- <span class="dropdown-text">Class 20</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-21.html">
- <span class="dropdown-text">Class 21</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-22.html">
- <span class="dropdown-text">Class 22</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-23.html">
- <span class="dropdown-text">Class 23</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-24.html">
- <span class="dropdown-text">Class 24</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-25.html">
- <span class="dropdown-text">Class 25</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-26.html">
- <span class="dropdown-text">Class 26</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-27.html">
- <span class="dropdown-text">Class 27</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-28.html">
- <span class="dropdown-text">Class 28</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-29.html">
- <span class="dropdown-text">Class 29</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-30.html">
- <span class="dropdown-text">Class 30</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-31.html">
- <span class="dropdown-text">Class 31</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-32.html">
- <span class="dropdown-text">Class 32</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-33.html">
- <span class="dropdown-text">Class 33</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-34.html">
- <span class="dropdown-text">Class 34</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-35.html">
- <span class="dropdown-text">Class 35</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-36.html">
- <span class="dropdown-text">Class 36</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-37.html">
- <span class="dropdown-text">Class 37</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-38.html">
- <span class="dropdown-text">Class 38</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-39.html">
- <span class="dropdown-text">Class 39</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-40.html">
- <span class="dropdown-text">Class 40</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-41.html">
- <span class="dropdown-text">Class 41</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-42.html">
- <span class="dropdown-text">Class 42</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-43.html">
- <span class="dropdown-text">Class 43</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-44.html">
- <span class="dropdown-text">Class 44</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-45.html">
- <span class="dropdown-text">Class 45</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../class/class-46.html">
- <span class="dropdown-text">Class 46</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-definitions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Definitions</span>
@@ -423,41 +243,6 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-flex-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Flex Days</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-flex-days">    
-        <li>
-    <a class="dropdown-item" href="../flex/flex-1.html">
- <span class="dropdown-text">Flex 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-2.html">
- <span class="dropdown-text">Flex 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-3.html">
- <span class="dropdown-text">Flex 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-4.html">
- <span class="dropdown-text">Flex 4</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-5.html">
- <span class="dropdown-text">Flex 5</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../flex/flex-6.html">
- <span class="dropdown-text">Flex 6</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -530,16 +315,6 @@ window.Quarto = {
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(f(x) = b + mx\)</span> and data point <span class="math inline">\((x,y) = (4,7)\)</span>.</li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(g(x) = c + bx + a\ln(4x)\)</span> and data point <span class="math inline">\((x,y) = (x_3,y_3)\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Answers
@@ -549,8 +324,6 @@ Answers
 <li>Given the model <span class="math inline">\(g(x) = c + bx + a\ln(4x)\)</span> and the data point <span class="math inline">\((x,y) = (x_3,y_3)\)</span>, the residual is <span class="math inline">\(y−\hat{y} = y_3−g(x_3) =y_3−(c + bx_3 + a\ln(4x_3))=y_3−c-bx_3-a\ln(4x_3)\)</span>. In the formula <span class="math inline">\(r=y−f(x)\)</span>, we just replace <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(f(x)\)</span> with what they equal. We are computing the ERROR between an observed value <span class="math inline">\(y\)</span> and predicted value <span class="math inline">\(f(x)\)</span>.</li>
 </ul>
 </details>
-</div>
-</div>
 <ul>
 <li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
 </ul>
@@ -585,16 +358,6 @@ Answers
 </ul>
 <p>When calculating probability we use <span class="math inline">\(p\)</span> (or <span class="math inline">\(p_3\)</span>) and we assume the parameter selected is trustworthy. We are assuming a specific model and then calculate probabilities using the specific model (we selected and fixed the parameter <span class="math inline">\(\lambda\)</span>).</p>
 <p>When calculating likelihood we use <span class="math inline">\(L_1\)</span> (or <span class="math inline">\(L_3\)</span>) and we are trying to determine the trustworthiness of each potential choice for <span class="math inline">\(\lambda\)</span> given what we have observed (our data). We are fixing the value of <span class="math inline">\(x\)</span> and considering how trustworthy each value of <span class="math inline">\(\lambda\)</span> is, given that specific <span class="math inline">\(x\)</span> we observed.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Likelihood Function
@@ -602,8 +365,6 @@ Likelihood Function
 <p>The <strong>likelihood function</strong> gives the likelihood, or probability (in these examples), of the data as a function of the unknown parameter value(s).</p>
 <p><em>Source: These definitions are taken from OpenStax Introductory Statistics and Modeling the Dynamics of Life by Adler.</em></p>
 </details>
-</div>
-</div>
 <p>We can use the likelihood function to answer the question, “What is the most likely parameter value(s) given the data?” or “Which parameter value(s) should we trust the most given what we have observed?”</p>
 </section>
 </section>
@@ -612,16 +373,6 @@ Likelihood Function
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---residual-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---residual-practice">Activity - Residual Practice</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Residuals
@@ -629,8 +380,6 @@ Residuals
 <p>The <strong>residual</strong> for an observation is defined as the vertical distance between the observed value, <span class="math inline">\(y\)</span>, and value predicted by a fitted model, represented with a <span class="math inline">\(\hat{y}\)</span> (read “y hat”).</p>
 <p>Examples: - Given the model <span class="math inline">\(f(x) = ax^2 + bx + c\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c).\)</span> - Given the model <span class="math inline">\(g(x) = k\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - g(x) = y - k.\)</span> - Given the model <span class="math inline">\(h(x) = ae^{-bx} + cxe^{-bx}\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.\)</span></p>
 </details>
-</div>
-</div>
 <ul>
 <li>Consider the 6 functions you have been fitting in https://byuistats.github.io/M119/project1.html.
 <ul>
@@ -667,16 +416,6 @@ Residuals
 <p>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability mass function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_P(\mathbf{x}; \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
 <p>How do we go from a distribution to a likelihood function? We reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_P(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(\lambda &gt; 0\)</span>, for some <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
 <p>We can use the following code to plot this function in R.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Click to view the code.
@@ -709,8 +448,6 @@ Click to view the code.
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Poisson Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 <section id="exponential-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="exponential-distribution">Exponential Distribution</h4>
@@ -718,16 +455,6 @@ Click to view the code.
 <p>When we have more than one observation, and we assume the observations come from independent random variables, then we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_E(\mathbf{x}; \lambda) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</p>
 <p>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_E(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(\lambda &gt;0\)</span>, for some <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
 <p>We can use the following code to plot this function in R.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Click to view the code.
@@ -758,8 +485,6 @@ Click to view the code.
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Exponential Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 <section id="normal-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="normal-distribution">Normal Distribution</h4>
@@ -767,16 +492,6 @@ Click to view the code.
 <p>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</em> - <span class="math inline">\(F_N(\mathbf{x}; \mu, \sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>.</p>
 <p>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>). - <span class="math inline">\(L_N(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>, for some real numbers <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
 <p>We can use the following code to plot this function in R.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <details>
 <summary>
 Click to view the code.
@@ -806,8 +521,6 @@ Click to view the code.
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">par(mar=c(2.5,2.5,3,0.25))</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">plot(mu,y,type='</span>l<span class="st">',main='</span>Normal Likelihood<span class="st">')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-</div>
 </section>
 </section>
 <section id="deterministic-vs-probability-models" class="level3">
@@ -895,7 +608,7 @@ Click to view the code.
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byui-math-dept\.github\.io\/Applied_Calculus_for_Data_Analysis\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
