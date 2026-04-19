@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -338,11 +339,11 @@ Solution
 Solution
 </summary>
 <p>The function <span class="math inline">\(e^{ ( ) }\)</span> in R is given using the exp() function.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">2</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="fl">7.389056</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>exp(2)
+#7.389056</code></pre>
 <p>What is <span class="math inline">\(e\)</span>? It’s a number.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="fl">2.718282</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>exp(1)
+#2.718282</code></pre>
 <p>The number arises from calculus, and we’ll see in a few weeks why <span class="math inline">\(e\)</span> is special.</p>
 </details>
 </section>
@@ -360,7 +361,7 @@ Solution
 <section id="example-project-tasks-2-and-3" class="level3">
 <h3 class="anchored" data-anchor-id="example-project-tasks-2-and-3">Example Project Tasks 2 and 3</h3>
 <ul>
-<li>Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
+<li>Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
 <li>Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>.
 <ul>
 <li>Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>.</li>
@@ -405,7 +406,7 @@ Solution
 <section id="example-project-tasks-2-and-3-1" class="level3">
 <h3 class="anchored" data-anchor-id="example-project-tasks-2-and-3-1">Example Project Tasks 2 and 3</h3>
 <ul>
-<li>Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
+<li>Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
 <li>Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>.
 <ul>
 <li>Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>.</li>
@@ -423,7 +424,7 @@ Solution
 </ul>
 <section id="summary-plots" class="level4">
 <h4 class="anchored" data-anchor-id="summary-plots">Summary Plots</h4>
-<p>We’ll spend some time today in class discussing the https://byuistats.github.io/M119/example_project.html. Here’s a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.</p>
+<p>We’ll spend some time today in class discussing the &lt;../assets/docs/example_project.html.&gt; Here’s a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dist<span class="sc">$</span>percent_intensity,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -472,19 +473,19 @@ Solution
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>codeend<span class="sc">:</span>)</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Now let<span class="st">'s look at the second model $f_1$. </span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="st">- What did you notice about the general model $f_1$ and its parameters?</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">    - What is the domain of $f_1$?</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">    - What does $h$ do?</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">    - What does $a$ do?</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">    - Try to pick some values for the parameters that provide a visual fit to the data. </span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="st">    - What story does this model tell, in the context of percent intensities of light bulbs?</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="st">* What did you notice about the general model $f_1$ and its parameters?</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">** What is the domain of $f_1$?</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">** What does $h$ do?</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">** What does $a$ do?</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">** Try to pick some values for the parameters that provide a visual fit to the data. </span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="st">** What story does this model tell, in the context of percent intensities of light bulbs?</span></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="st">Let'</span>s summarize our observations with a few plots.</span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>Run this code <span class="cf">in</span> your Console to plot representative curves <span class="cf">for</span> the parameter <span class="sc">$</span>h<span class="sc">$</span> <span class="cf">in</span> <span class="cf">function</span> <span class="sc">$</span>f_1<span class="sc">$</span>.</span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)[<span class="sc">@</span></span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>){</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure h <span class="sc">&gt;</span> <span class="dv">0</span> and a <span class="sc">&gt;</span> <span class="fl">0.</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Make sure h &gt; 0 and a &gt; 0.</span></span>
 <span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>a)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(L<span class="sc">-</span>h)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>a))</span>
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
@@ -529,7 +530,7 @@ Solution
 <p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(h\)</span> in function <span class="math inline">\(f_2\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">5</span>){</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure a <span class="sc">&gt;</span> <span class="dv">0</span> and b <span class="sc">&gt;</span> <span class="fl">0.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure a &gt; 0 and b &gt; 0.</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fu">length</span>(L))</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>out[(L <span class="sc">&lt;</span> h)] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>L[(L <span class="sc">&lt;</span> h)]</span>

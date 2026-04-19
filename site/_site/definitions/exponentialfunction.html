@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -251,8 +252,35 @@ Definition: Exponential Function (OpenStax Textbook)
 <p>An <strong>exponential function</strong> is of the form <span class="math inline">\(b^x\)</span> where <span class="math inline">\(b&gt;0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
 <p>Note: An exponential function is not an algebraic function.</p>
 </details>
-<!-- include: Page.KeyCharacteristicsOfExponentialFunction -->
-<!-- include: Page.PropertiesOfExponents -->
+<!-- from Page.KeyCharacteristicsOfExponentialFunction -->
+<details>
+<summary>
+Key Characteristics of Exponential Function
+</summary>
+<ul>
+<li>Domain is all real numbers</li>
+<li>Range is positive real numbers</li>
+<li>When <span class="math inline">\(b &gt; 1\)</span> the function is increasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> decreases (approaches negative infinity) the output gets close to zero.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output increases without bound.</li>
+<li>These functions are concave up. (We will learn the precise meaning of concavity later this semester.)</li>
+</ul></li>
+<li>When <span class="math inline">\(0&lt; b &lt; 1\)</span> the function is decreasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> decreases (approaches negative infinity) the output grows without bound.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output gets close to zero.</li>
+<li>These functions are concave up. (We will learn the precise meaning of concavity later this semester.)</li>
+</ul></li>
+</ul>
+</details>
+<!-- from Page.PropertiesOfExponents -->
+<details>
+<summary>
+Properties of Exponents
+</summary>
+<p>If <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(b &gt;0\)</span>, and <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are any real number, then - <span class="math inline">\(a^m \cdot a^n = a^{m+n}\)</span> - <span class="math inline">\(\frac{a^m}{a^n} = a^{m-n}\)</span> - <span class="math inline">\((a^m)^n = a^{mn}\)</span> - <span class="math inline">\(\frac{1}{a^n} = a^{-n}\)</span> - <span class="math inline">\(\sqrt[n]{a} = a^{1/n}\)</span> - <span class="math inline">\(\sqrt[n]{a^m} = a^{m/n}\)</span> - <span class="math inline">\(a^m \cdot b^m = (a \cdot b)^m\)</span> - <span class="math inline">\(\frac{a^m}{b^m} = \left(\frac{a}{b}\right)^m\)</span></p>
+</details>
 
 
 

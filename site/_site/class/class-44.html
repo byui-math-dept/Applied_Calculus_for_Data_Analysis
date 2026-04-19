@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -307,7 +308,16 @@ window.Quarto = {
 </section>
 <section id="antiderivative-practice" class="level3">
 <h3 class="anchored" data-anchor-id="antiderivative-practice">Antiderivative Practice</h3>
-<p>An <strong>antiderivative</strong> is a function that reverses what the derivative did, the result we get when we “undo” a derivative is called an antiderivative. Drawing on your knowledge of derivatives, for each expression below, please “undo” the derivative. In other words answer the question, “What function did we take the derivative of to get this function?” 1. <span class="math inline">\(3x^2\)</span> 1. <span class="math inline">\(4e^{x}\)</span> 1. <span class="math inline">\(4e^{4x}\)</span> 1. <span class="math inline">\(5x^{-2}\)</span> 1. <span class="math inline">\(x^{-3} + x - 1\)</span> 1. <span class="math inline">\(x^7 - 4x + 2\)</span> 1. <span class="math inline">\(\sqrt[7]{x} + \frac{1}{\sqrt[7]{x}}\)</span> 1. <span class="math inline">\(x^{-1}\)</span></p>
+<p>An <strong>antiderivative</strong> is a function that reverses what the derivative did, the result we get when we “undo” a derivative is called an antiderivative. Drawing on your knowledge of derivatives, for each expression below, please “undo” the derivative. In other words answer the question, “What function did we take the derivative of to get this function?” 1. <span class="math inline">\(3x^2\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(4e^{x}\)</span></p></li>
+<li><p><span class="math inline">\(4e^{4x}\)</span></p></li>
+<li><p><span class="math inline">\(5x^{-2}\)</span></p></li>
+<li><p><span class="math inline">\(x^{-3} + x - 1\)</span></p></li>
+<li><p><span class="math inline">\(x^7 - 4x + 2\)</span></p></li>
+<li><p><span class="math inline">\(\sqrt[7]{x} + \frac{1}{\sqrt[7]{x}}\)</span></p></li>
+<li><p><span class="math inline">\(x^{-1}\)</span></p></li>
+</ol>
 </section>
 <section id="fundamental-theorem-of-calculus" class="level3">
 <h3 class="anchored" data-anchor-id="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</h3>
@@ -318,7 +328,15 @@ window.Quarto = {
 <li>We know the probability density function of a random variable is the derivative of the cumulative distribution function of that random variable.</li>
 </ul>
 <p>Combining the above facts, we see that $ _a^b f(x) dx = F(b) - F(a) $ provided <span class="math inline">\(F'(x) = f(x)\)</span> (so <span class="math inline">\(F\)</span> is an antiderivative of <span class="math inline">\(f\)</span>). All our computations have assumed that <span class="math inline">\(f(x)\)</span> was a pdf for a random variable. What if <span class="math inline">\(f\)</span> is not a pdf? Let’s verify this rule holds for a few functions.</p>
-<p>Compute each definite integral in 2 ways, namely (1) use Mathematica and then (2) find an antiderivative <span class="math inline">\(G\)</span> of the integrand <span class="math inline">\(g\)</span> and then evaluate <span class="math inline">\(G(b)-G(a)\)</span>. Show your work for the second part on the chalkboard. 1. Compute <span class="math inline">\(\int_1^4 5 dx\)</span>. 1. Compute <span class="math inline">\(\int_1^4 x dx\)</span>. 1. Compute <span class="math inline">\(\int_1^4 x^2 dx\)</span>. 1. Compute <span class="math inline">\(\int_1^4 e^{-2x} dx\)</span>. 1. Compute <span class="math inline">\(\int_0^5 e^{-7x} dx\)</span>. 1. Compute <span class="math inline">\(\int_2^5 \frac{1}{x} dx\)</span>. 1. Compute <span class="math inline">\(\int_1^2 4-2x+3x^2 dx\)</span>.</p>
+<p>Compute each definite integral in 2 ways, namely (1) use Mathematica and then (2) find an antiderivative <span class="math inline">\(G\)</span> of the integrand <span class="math inline">\(g\)</span> and then evaluate <span class="math inline">\(G(b)-G(a)\)</span>. Show your work for the second part on the chalkboard. 1. Compute <span class="math inline">\(\int_1^4 5 dx\)</span>.</p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\(\int_1^4 x dx\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_1^4 x^2 dx\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_1^4 e^{-2x} dx\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_0^5 e^{-7x} dx\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_2^5 \frac{1}{x} dx\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_1^2 4-2x+3x^2 dx\)</span>.</p></li>
+</ol>
 </section>
 </section>
 <section id="discussion" class="level2">

@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -359,15 +360,15 @@ y = \dfrac{ (\sum_{n=1}^{44}n)(\sum_{n=1}^{44}n^2) - (\sum_{n=1}^{44}7)(\sum_{n=
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> (c1<span class="sc">*</span>b22 <span class="sc">-</span> b12<span class="sc">*</span>c2)<span class="sc">/</span>(b11<span class="sc">*</span>b22 <span class="sc">-</span> b12<span class="sc">*</span>b21)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> (b11<span class="sc">*</span>c2 <span class="sc">-</span> c1<span class="sc">*</span>b21)<span class="sc">/</span>(b11<span class="sc">*</span>b22 <span class="sc">-</span> b12<span class="sc">*</span>b21)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Check</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Check</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>b11<span class="sc">*</span>x<span class="sc">+</span>b12<span class="sc">*</span>y <span class="sc">==</span> c1</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>b21<span class="sc">*</span>x<span class="sc">+</span>b22<span class="sc">*</span>y <span class="sc">==</span> c2</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Remember floating point arithmetic can cause a problem with the logic checks above. </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Remember floating point arithmetic can cause a problem with the logic checks above. </span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>b11<span class="sc">*</span>x<span class="sc">+</span>b12<span class="sc">*</span>y <span class="sc">-</span> c1</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>b21<span class="sc">*</span>x<span class="sc">+</span>b22<span class="sc">*</span>y <span class="sc">-</span> c2</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> R has a <span class="cf">function</span> to help with this, called <span class="fu">all.equal</span>()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#R has a function to help with this, called all.equal()</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(b11<span class="sc">*</span>x<span class="sc">+</span>b12<span class="sc">*</span>y,c1)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(b21<span class="sc">*</span>x<span class="sc">+</span>b22<span class="sc">*</span>y,c2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -439,7 +440,19 @@ Answers
 </section>
 <section id="activity---project-2-practice-with-f_1" class="level3">
 <h3 class="anchored" data-anchor-id="activity---project-2-practice-with-f_1">Activity - Project 2 Practice with <span class="math inline">\(f_1\)</span></h3>
-<p>We’ll spend some time working through parts of project 2. The point is to help each other by asking and answering questions. We’ll focus on the first model <span class="math inline">\(f_1(t; a_1) = 100 + a_1t\)</span>. The loglikelihood function, which task 1 has you derive, is <span class="math display">\[ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.\]</span> 1. Compute the second derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.\]</span> 1. Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following: - $ = 172746.8 - 328767530 a_1 $ - $ = -328767530 $ 1. Find the critical points of <span class="math inline">\(\ell_1\)</span>. This means you must set the first derivative equal to zero and solve for <span class="math inline">\(a_1\)</span>. 1. Use the second derivative test to determine if the critical point is the location of maxima or minima. 1. State the value of <span class="math inline">\(a_1\)</span> that gives the location of maximum loglikelihood. 1. Use the code below to plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $.</p>
+<p>We’ll spend some time working through parts of project 2. The point is to help each other by asking and answering questions. We’ll focus on the first model <span class="math inline">\(f_1(t; a_1) = 100 + a_1t\)</span>. The loglikelihood function, which task 1 has you derive, is <span class="math display">\[ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.\]</span></p>
+<ol type="1">
+<li><p>Compute the second derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.\]</span></p></li>
+<li><p>Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:</p>
+<ul>
+<li>$ = 172746.8 - 328767530 a_1 $</li>
+<li>$ = -328767530 $</li>
+</ul></li>
+<li><p>Find the critical points of <span class="math inline">\(\ell_1\)</span>. This means you must set the first derivative equal to zero and solve for <span class="math inline">\(a_1\)</span>.</p></li>
+<li><p>Use the second derivative test to determine if the critical point is the location of maxima or minima.</p></li>
+<li><p>State the value of <span class="math inline">\(a_1\)</span> that gives the location of maximum loglikelihood.</p></li>
+<li><p>Use the code below to plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $.</p></li>
+</ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
@@ -458,18 +471,18 @@ Answers
 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
 - 100 - a_1t_i - a_2t_i^2)^2.\]</span></p>
 <ol type="1">
-<li>Compute the both first partials <span class="math inline">\(\frac{partial \ell_2}{\partial a_1}\)</span> and <span class="math inline">\(\frac{partial \ell_2}{\partial a_2}\)</span>. Simplify your work to match the values given in Project 2 Task 2.</li>
-<li>Compute and correctly label all 4 second partials, namely <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_1^2}\)</span>, <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_2\partial a_1}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>, and <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_2^2}\)</span>. Simplify your work to match the values given in Project 2 Task 2.</li>
-<li>Use the seed 123 to compute all of the coefficients in the first and second partials. We’ll compare answers in class to see how we did.</li>
-<li>Find the critical values by letting both first partials equal zero. You will obtain a system of equations. Solve that system using the code from the brain gains.</li>
+<li><p>Compute the both first partials <span class="math inline">\(\frac{partial \ell_2}{\partial a_1}\)</span> and <span class="math inline">\(\frac{partial \ell_2}{\partial a_2}\)</span>. Simplify your work to match the values given in Project 2 Task 2.</p></li>
+<li><p>Compute and correctly label all 4 second partials, namely <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_1^2}\)</span>, <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_2\partial a_1}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>, and <span class="math inline">\(\frac{\partial^ \ell_2}{\partial a_2^2}\)</span>. Simplify your work to match the values given in Project 2 Task 2.</p></li>
+<li><p>Use the seed 123 to compute all of the coefficients in the first and second partials. We’ll compare answers in class to see how we did.</p></li>
+<li><p>Find the critical values by letting both first partials equal zero. You will obtain a system of equations. Solve that system using the code from the brain gains.</p></li>
 </ol>
 <p>We have not yet discussed a second derivative test when there is more than one variable. We’ll be doing that next week.</p>
 </section>
 <section id="activity---reflection-on-loglikelihood-and-optimization" class="level3">
 <h3 class="anchored" data-anchor-id="activity---reflection-on-loglikelihood-and-optimization">Activity - Reflection on Loglikelihood and Optimization</h3>
 <ol type="1">
-<li>What are the steps needed to obtain the loglikelihood function given some data <span class="math inline">\((x_i,y_i)\)</span>, a deterministic model <span class="math inline">\(f(x)\)</span>, and a probability model <span class="math inline">\(g(r)\)</span> for the residuals. This is precisely part of what you did for Project 2 Task 1.</li>
-<li>What are the steps needed to locate and classify extrema for a function, so what are the steps to optimization? This is part of what you did for Project 2 Task 2 and what you will do for Project 2 Task 3.</li>
+<li><p>What are the steps needed to obtain the loglikelihood function given some data <span class="math inline">\((x_i,y_i)\)</span>, a deterministic model <span class="math inline">\(f(x)\)</span>, and a probability model <span class="math inline">\(g(r)\)</span> for the residuals. This is precisely part of what you did for Project 2 Task 1.</p></li>
+<li><p>What are the steps needed to locate and classify extrema for a function, so what are the steps to optimization? This is part of what you did for Project 2 Task 2 and what you will do for Project 2 Task 3.</p></li>
 </ol>
 </section>
 </section>
@@ -478,9 +491,9 @@ Answers
 <section id="summary-steps-to-obtain-loglikelihood." class="level3">
 <h3 class="anchored" data-anchor-id="summary-steps-to-obtain-loglikelihood.">Summary: Steps to obtain loglikelihood.</h3>
 <ol type="1">
-<li>Identify the deterministic model <span class="math inline">\(f\)</span> and stochasitic model <span class="math inline">\(p\)</span>.</li>
-<li>Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as <span class="math inline">\(L = \prod_i p(r_i)\)</span>.</li>
-<li>The loglikelihood function is <span class="math inline">\(\ell = \ln(\prod_i p(r_i))\)</span>.</li>
+<li><p>Identify the deterministic model <span class="math inline">\(f\)</span> and stochasitic model <span class="math inline">\(p\)</span>.</p></li>
+<li><p>Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as <span class="math inline">\(L = \prod_i p(r_i)\)</span>.</p></li>
+<li><p>The loglikelihood function is <span class="math inline">\(\ell = \ln(\prod_i p(r_i))\)</span>.</p></li>
 </ol>
 </section>
 <section id="summary-steps-of-optimization" class="level3">
@@ -502,7 +515,7 @@ Answers
 <section id="analyzing-waiting-times---using-the-exponential-distribution-for-our-stochastic-model." class="level3">
 <h3 class="anchored" data-anchor-id="analyzing-waiting-times---using-the-exponential-distribution-for-our-stochastic-model.">Analyzing Waiting times - Using the exponential distribution for our stochastic model.</h3>
 <p>How long do people wait in a line when they head to the bank?<br>
-- We’ll use the deterministic model <span class="math inline">\(f(x) = 0\)</span> to predict how long someone has to wait (where <span class="math inline">\(x\)</span> represents the time of day). What does this model really say in plain english? - What are your thoughts about our choice of models? - We’ll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution <span class="math inline">\(p(r) = \lambda e^{-\lambda r}\)</span> to model the residuals. - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where <span class="math inline">\(x_i\)</span> is the time of day the <span class="math inline">\(i^{\text{th}}\)</span> person comes into the bank and <span class="math inline">\(y_i\)</span> is the amount of time that person waits in line). - Find the location of the maximum of the loglikelihood function.</p>
+- We’ll use the deterministic model <span class="math inline">\(f(x) = 0\)</span> to predict how long someone has to wait (where <span class="math inline">\(x\)</span> represents the time of day). What does this model really say in plain english? - What are your thoughts about our choice of models? - We’ll use the <a href="https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution" class="uri">https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution</a> <span class="math inline">\(p(r) = \lambda e^{-\lambda r}\)</span> to model the residuals. - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where <span class="math inline">\(x_i\)</span> is the time of day the <span class="math inline">\(i^{\text{th}}\)</span> person comes into the bank and <span class="math inline">\(y_i\)</span> is the amount of time that person waits in line). - Find the location of the maximum of the loglikelihood function.</p>
 <p><a href="https://www.statlect.com/fundamentals-of-statistics/exponential-distribution-maximum-likelihood" target="_blank">This article</a> goes through all the computations above.</p>
 
 

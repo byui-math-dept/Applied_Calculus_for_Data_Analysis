@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -334,7 +335,11 @@ Possible Solutions
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="see-the-pieces" class="level3">
 <h3 class="anchored" data-anchor-id="see-the-pieces">See the Pieces</h3>
-<p>For each function given below, identify power functions and operations used to build (or construct) the function. 1. <span class="math inline">\(f(x) = 7\sqrt[5]{4x-6}\)</span> 1. <span class="math inline">\(g(x) = \frac{7x^2 + 42x +63}{3x-5}\)</span> 1. <span class="math inline">\(h(x) = \frac{4}{x-1}\)</span></p>
+<p>For each function given below, identify power functions and operations used to build (or construct) the function. 1. <span class="math inline">\(f(x) = 7\sqrt[5]{4x-6}\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(g(x) = \frac{7x^2 + 42x +63}{3x-5}\)</span></li>
+<li><span class="math inline">\(h(x) = \frac{4}{x-1}\)</span></li>
+</ol>
 </section>
 <section id="uniroot-practice" class="level3">
 <h3 class="anchored" data-anchor-id="uniroot-practice">Uniroot Practice</h3>
@@ -348,7 +353,14 @@ Possible Solutions
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">g</span>(x), <span class="at">type=</span><span class="st">"l"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now practice using uniroot to solve some of the equations below. Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. If needed, make a plot first to figure out an interval where the zero should appear. 1. <span class="math inline">\(3x-5=0\)</span> 1. <span class="math inline">\(3x-5=7\)</span> 1. <span class="math inline">\(3x-5=e^{-x}\)</span> (Remember to use exp(-x)) for <span class="math inline">\(e^{-x}\)</span> ) 1. <span class="math inline">\(3x-5=\ln(x)\)</span> (Remember to use log(x) for <span class="math inline">\(\ln(x)\)</span>). 1. <span class="math inline">\(x^2+x-6=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits. 1. <span class="math inline">\(x^2-8x+12=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p>
+<p>Now practice using uniroot to solve some of the equations below. Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. If needed, make a plot first to figure out an interval where the zero should appear. 1. <span class="math inline">\(3x-5=0\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(3x-5=7\)</span></p></li>
+<li><p><span class="math inline">\(3x-5=e^{-x}\)</span> (Remember to use exp(-x)) for <span class="math inline">\(e^{-x}\)</span> )</p></li>
+<li><p><span class="math inline">\(3x-5=\ln(x)\)</span> (Remember to use log(x) for <span class="math inline">\(\ln(x)\)</span>).</p></li>
+<li><p><span class="math inline">\(x^2+x-6=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p></li>
+<li><p><span class="math inline">\(x^2-8x+12=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p></li>
+</ol>
 <ul>
 <li>What happens when we try to solve something impossible, such as <span class="math inline">\(\frac{1}{x} = 0\)</span>.</li>
 </ul>

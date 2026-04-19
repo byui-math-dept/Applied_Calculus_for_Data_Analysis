@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -302,10 +303,10 @@ window.Quarto = {
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
-<li>Suppose <span class="math inline">\(f(x;a,b) = a e^{b x}\)</span>. If <span class="math inline">\(f(0)=7\)</span>, then what must <span class="math inline">\(a\)</span> equal?</li>
-<li>Suppose <span class="math inline">\(f(x;a,b) = a+b e^{x}\)</span>. If <span class="math inline">\(f(0)=7\)</span>, then what must <span class="math inline">\(a\)</span> equal?</li>
-<li>Use uniroot to solve for <span class="math inline">\(x\)</span> in <span class="math inline">\(7 = 5+3 e^{2 x}\)</span>. Check your solution by finding the exact solution, if possible.</li>
-<li>Use uniroot to solve for <span class="math inline">\(x\)</span> in <span class="math inline">\((-13 + 2x)e^{-0.05x} = 0\)</span>. Check your solution by finding the exact solution, if possible.
+<li><p>Suppose <span class="math inline">\(f(x;a,b) = a e^{b x}\)</span>. If <span class="math inline">\(f(0)=7\)</span>, then what must <span class="math inline">\(a\)</span> equal?</p></li>
+<li><p>Suppose <span class="math inline">\(f(x;a,b) = a+b e^{x}\)</span>. If <span class="math inline">\(f(0)=7\)</span>, then what must <span class="math inline">\(a\)</span> equal?</p></li>
+<li><p>Use uniroot to solve for <span class="math inline">\(x\)</span> in <span class="math inline">\(7 = 5+3 e^{2 x}\)</span>. Check your solution by finding the exact solution, if possible.</p></li>
+<li><p>Use uniroot to solve for <span class="math inline">\(x\)</span> in <span class="math inline">\((-13 + 2x)e^{-0.05x} = 0\)</span>. Check your solution by finding the exact solution, if possible.</p>
 <ul>
 <li>Use uniroot to solve for <span class="math inline">\(x\)</span> in <span class="math inline">\((-13 + 2x)e^{-0.05x} = 5\)</span>. Check your solution by finding the exact solution, if possible.</li>
 </ul></li>
@@ -335,7 +336,7 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>((a <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> b), <span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a) <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x[(a <span class="sc">&lt;</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> b)],<span class="cn">NaN</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Change these values as needed to compare plots. </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Change these values as needed to compare plots. </span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="dv">92</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="dv">98</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -416,7 +417,7 @@ window.Quarto = {
 <ol start="2" type="1">
 <li><p>Tell the story given by the model provided above? What story does the model give at time 0? What story does the model tell as time increases?</p></li>
 <li><p>What story does the data tell at time 0? Does the story told by the model match the information from the data at time 0?</p></li>
-<li><p>Update the parameters above to obtain a visual fit that satisfies <span class="math inline">\(f_1(0)=100\)</span>. Then use the https://shiny.byui.edu/connect/#/apps/0d605bec-7069-4d67-8129-8716269e8816/access to check your work.</p></li>
+<li><p>Update the parameters above to obtain a visual fit that satisfies <span class="math inline">\(f_1(0)=100\)</span>. Then use the <a href="https://shiny.byui.edu/connect/#/apps/0d605bec-7069-4d67-8129-8716269e8816/access" class="uri">https://shiny.byui.edu/connect/#/apps/0d605bec-7069-4d67-8129-8716269e8816/access</a> to check your work.</p></li>
 <li><p>Using the seed 123, adapt the code above to provide a good fit for model <span class="math inline">\(f_4\)</span>. By using the same seed, you can compare your plots and work together to find reasonable values for each parameter. When you complete the project, you’ll need to change the seed to yours, and then make some minor modifications to your parameters.</p></li>
 <li><p>What story is told by the visual fit you found for <span class="math inline">\(f_4\)</span>?</p></li>
 <li><p>With any time remaining, tackle the other models together, obtaining reasonable fits using the seed 123.</p></li>

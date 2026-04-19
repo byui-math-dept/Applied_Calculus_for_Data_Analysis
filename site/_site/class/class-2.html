@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -349,183 +350,31 @@ Exponential Function
 <p>An exponential function is any function of the form <span class="math inline">\(f(x) = b^x\)</span> where <span class="math inline">\(b &gt; 0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
 </details>
 <p>As a group, discuss whether each function is a power function, quadratic function, polynomial function, root function, and/or a rational function. Record your solutions in a table similar to the following. Note a function can be classified as multiple types.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>power fn.</th>
-<th>quadratic fn.</th>
-<th>polynomial fn.</th>
-<th>root fn.</th>
-<th>rational fn.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(f(x) = x^2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(g(x) = \sqrt{x}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(h(x) = x^3\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(A(x) = (x-1)^2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(w(x) = 5^x\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">&nbsp;| power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |</div>
+<div class="line-block">— | — | — | — | — | — |</div>
+<div class="line-block"><span class="math inline">\(f(x) = x^2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(g(x) = \sqrt{x}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(h(x) = x^3\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(A(x) = (x-1)^2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(w(x) = 5^x\)</span> | | | | | |</div>
 <p>After you’ve finished classifying the functions, first compare your results with the other groups in class. Discuss any changes you believe need to be made. Then expand the solution below and discuss any questions you have.</p>
 <details>
 <summary>
 Answer
 </summary>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>power fn.</th>
-<th>quadratic fn.</th>
-<th>polynomial fn.</th>
-<th>root fn.</th>
-<th>rational fn.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(f(x) = x^2\)</span></td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(g(x) = \sqrt{x}\)</span></td>
-<td>X</td>
-<td></td>
-<td></td>
-<td>X</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(h(x) = x^3\)</span></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span></td>
-<td></td>
-<td></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(A(x) = (x-1)^2\)</span></td>
-<td></td>
-<td>X</td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(w(x) = 5^x\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">&nbsp;| power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |</div>
+<div class="line-block">— | — | — | — | — | — |</div>
+<div class="line-block"><span class="math inline">\(f(x) = x^2\)</span> | X | X | X | | X |</div>
+<div class="line-block"><span class="math inline">\(g(x) = \sqrt{x}\)</span> | X | | | X | |</div>
+<div class="line-block"><span class="math inline">\(h(x) = x^3\)</span> | X | | X | | X |</div>
+<div class="line-block"><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span> | | | X | | X |</div>
+<div class="line-block"><span class="math inline">\(A(x) = (x-1)^2\)</span> | | X | X | | X |</div>
+<div class="line-block"><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span> | | | | | X |</div>
+<div class="line-block"><span class="math inline">\(w(x) = 5^x\)</span> | | | | | |</div>
 <p>The function <span class="math inline">\(w(x) = 5^x\)</span> is an exponential function.</p>
 </details>
 <p><strong>Examples and Nonexamples</strong> - Give an example of a polynomial that is NOT a power function. - Give an example of a power function that is NOT a polynomial.</p>
@@ -549,96 +398,27 @@ Possible Solutions
 <ol type="1">
 <li>Complete each table below.</li>
 </ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(f(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(g(x) = f(x) + 2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(h(x) = f(x+2)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(f(x)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(g(x) = f(x) + 2\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(h(x) = f(x+2)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">&nbsp;| 4 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 0 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 4 |</div>
 <ol type="1">
 <li><p>Graph each of the functions from part 1.</p></li>
 <li><p>The graph of <span class="math inline">\(g\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>

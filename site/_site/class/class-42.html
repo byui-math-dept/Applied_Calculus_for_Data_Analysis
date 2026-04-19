@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -266,7 +267,15 @@ window.Quarto = {
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>We’ll do this in small groups at the board, and then have a discussion. Take turns acting as scribe, and help each other complete the following. Remember anytime you need an to compute an integral to first write the integral on the board and then compute it with Mathematica.</p>
-<p>Consider the random variable <span class="math inline">\(X\)</span> whose probability density function is <span class="math inline">\(f(x) = k(15-x)\)</span> for <span class="math inline">\(0\leq x\leq 15\)</span>. 1. Find the value of <span class="math inline">\(k\)</span>. 1. Compute the expected value and variance of <span class="math inline">\(X\)</span> (write down the integral needed, and then compute it with Mathematica). 1. Compute <span class="math inline">\(P(X\leq 1)\)</span>, <span class="math inline">\(P(X\leq 2)\)</span> and then <span class="math inline">\(F(x) = P(X\leq x)\)</span>. 1. The 60th percentile is the value <span class="math inline">\(x\)</span> so that <span class="math inline">\(P(X\leq x)=0.60\)</span>, in other words the value <span class="math inline">\(x\)</span> so that <span class="math inline">\(F(x) = 0.6\)</span>. Find the 60th percentile of this random variable. 1. Find the 95th percentile of <span class="math inline">\(X\)</span>. 1. What’s the probability that <span class="math inline">\(X\)</span> takes on a value greater than 10? 1. What’s the probability that <span class="math inline">\(X\)</span> takes on a value between -3 and 3?</p>
+<p>Consider the random variable <span class="math inline">\(X\)</span> whose probability density function is <span class="math inline">\(f(x) = k(15-x)\)</span> for <span class="math inline">\(0\leq x\leq 15\)</span>. 1. Find the value of <span class="math inline">\(k\)</span>.</p>
+<ol type="1">
+<li><p>Compute the expected value and variance of <span class="math inline">\(X\)</span> (write down the integral needed, and then compute it with Mathematica).</p></li>
+<li><p>Compute <span class="math inline">\(P(X\leq 1)\)</span>, <span class="math inline">\(P(X\leq 2)\)</span> and then <span class="math inline">\(F(x) = P(X\leq x)\)</span>.</p></li>
+<li><p>The 60th percentile is the value <span class="math inline">\(x\)</span> so that <span class="math inline">\(P(X\leq x)=0.60\)</span>, in other words the value <span class="math inline">\(x\)</span> so that <span class="math inline">\(F(x) = 0.6\)</span>. Find the 60th percentile of this random variable.</p></li>
+<li><p>Find the 95th percentile of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>What’s the probability that <span class="math inline">\(X\)</span> takes on a value greater than 10?</p></li>
+<li><p>What’s the probability that <span class="math inline">\(X\)</span> takes on a value between -3 and 3?</p></li>
+</ol>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
@@ -280,25 +289,25 @@ Definition: Percentile
 </summary>
 <p>A percentile is a number, <span class="math inline">\(x_p\)</span>, that satisfies the equation <span class="math inline">\(P(X \leq x_p) = \frac{p}{100}\)</span>. In other words, a percentile is a number <span class="math inline">\(x_p\)</span> that satisfies the equation <span class="math inline">\(F(x_p) = \frac{p}{100})\)</span>. - A percentile divides ordered values (outcomes of a random variable) into 100 equal groups (per 100). - A percentile is a number, <span class="math inline">\(x_p\)</span>, such that <span class="math inline">\(p\)</span>% of the values (outcomes of a random variable) are at or below this number.</p>
 </details>
-<p>There are two common ways we can compute a percentile. One way is to start with the cumulative distribution function. 1. Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 1 \\1-\frac{1}{x} &amp; x &gt; 1 \\\end{cases}\)</span>, find the 90th percentile. 1. Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 0 \\1 - e^{-\lambda x} &amp; x &gt; 0 \\\end{cases}\)</span>, find the 50th percentile.</p>
+<p>There are two common ways we can compute a percentile. One way is to start with the cumulative distribution function. 1. Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 1 \\1-\frac{1}{x} &amp; x &gt; 1 \\\end{cases}\)</span>, find the 90th percentile.</p>
+<ol type="1">
+<li>Given the cumulative distribution function <span class="math inline">\(F(x) = \begin{cases}0 &amp; x \leq 0 \\1 - e^{-\lambda x} &amp; x &gt; 0 \\\end{cases}\)</span>, find the 50th percentile.</li>
+</ol>
 <p>If we are given a probability density function, then we can compute the percentile using an integral.<br>
 1. Given the probability density function <span class="math inline">\(f(x) = \frac{64}{(x+2)^5}\)</span> for <span class="math inline">\(x &gt; 0\)</span> (and 0 otherwise), find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation.) - 60th percentile - 7th percentile - 99th percentile</p>
 <details>
 <summary>
 Solutions
 </summary>
-<p>(:codem:)</p>
 <pre><code>Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.6, x, Reals]
 Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.07, x, Reals]
 Solve[Integrate[64/(s + 2)^5, {s, 0, x}] == 0.99, x, Reals]</code></pre>
-<p>(:codemend:)</p>
 </details>
-<p>When the PDF is complicated, sometimes we’ll need to employ alternate tools in Mathematica to compute the integrals and solve equations. Often adding an N before Solve is sufficient. The computer then uses a numerical approximation technique, rather than trying to find an exact solution. - Given the probability density function, <span class="math inline">\(f(x) = \frac{1}{\sqrt{37.5352\pi}}e^{-\frac{1}{37.5352}(x-3.2)^2}\)</span> for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation. - 60th percentile - 99th percentile (:codem:)</p>
+<p>When the PDF is complicated, sometimes we’ll need to employ alternate tools in Mathematica to compute the integrals and solve equations. Often adding an N before Solve is sufficient. The computer then uses a numerical approximation technique, rather than trying to find an exact solution. - Given the probability density function, <span class="math inline">\(f(x) = \frac{1}{\sqrt{37.5352\pi}}e^{-\frac{1}{37.5352}(x-3.2)^2}\)</span> for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, find each of the following percentiles. (Write down the equation you need to solve and then use Mathematica to solve the integral equation. - 60th percentile - 99th percentile</p>
 <pre><code>Solve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
 
 NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.6, xp, Reals]
 NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinity, xp}] == 0.99, xp, Reals]</code></pre>
-<p>(:codemend:)</p>
 </section>
 </section>
 <section id="group-discussion" class="level2">
@@ -307,19 +316,19 @@ NSolve[Integrate[1/Sqrt[37.5352*\[Pi]]*Exp[-(1/37.5352)*(x-3.2)^2], {x, -Infinit
 <h3 class="anchored" data-anchor-id="act-scores-and-a-normal-distribution.">ACT Scores and a normal distribution.</h3>
 <p>The ACT is a standardized exam offered to US residents at the end of high school. Scores on the exam can be approximated roughly by a normal distribution with a mean of the exam around <span class="math inline">\(\mu = 21\)</span> and a standard deviation close to <span class="math inline">\(\sigma = 5\)</span>. These values vary each year, but for today they provide a sufficient approximation. Answer each of the following questions by (1) writing down the integral equation that needs to be solved, and then (2) solving the equation for the unknown variable.</p>
 <ol type="1">
-<li>A student scores a 22 on the ACT. What is their percentile?</li>
-<li>A student scores a 23 on the ACT. What is their percentile?</li>
-<li>A student scores a 32 on the ACT. What is their percentile?</li>
-<li>A student scores a 12 on the ACT. What is their percentile?</li>
-<li>What score corresponds to the 80th percentile?</li>
-<li>What score corresponds to the 5th percentile?</li>
-<li>What score corresponds to the 90th percentile?</li>
-<li>What percent of students score between 16 and 26?</li>
-<li>What percent of students score between 11 and 23?</li>
+<li><p>A student scores a 22 on the ACT. What is their percentile?</p></li>
+<li><p>A student scores a 23 on the ACT. What is their percentile?</p></li>
+<li><p>A student scores a 32 on the ACT. What is their percentile?</p></li>
+<li><p>A student scores a 12 on the ACT. What is their percentile?</p></li>
+<li><p>What score corresponds to the 80th percentile?</p></li>
+<li><p>What score corresponds to the 5th percentile?</p></li>
+<li><p>What score corresponds to the 90th percentile?</p></li>
+<li><p>What percent of students score between 16 and 26?</p></li>
+<li><p>What percent of students score between 11 and 23?</p></li>
 </ol>
 <p>The PDF is given by the following. (:codem:)</p>
 <pre><code>f = 1/Sqrt[2 Pi \[Sigma]^2] Exp[-1/2 ((x - \[Mu])/ \[Sigma])^2]</code></pre>
-<p>(:codemend:)</p>
+<p>(:codeend:)</p>
 
 
 </section>

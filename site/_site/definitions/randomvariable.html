@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -249,8 +250,8 @@ window.Quarto = {
 Definition: Random (or Stochastic) Variable
 </summary>
 <ol type="1">
-<li>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</li>
-<li>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the stochastic variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</li>
+<li><p>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</p></li>
+<li><p>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the stochastic variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</p></li>
 </ol>
 <p><em>Source: These definitions are from Probability &amp; Statistics with R by Akritas and Foundations of Statistics with R by Speegle &amp; Clair.</em></p>
 </details>

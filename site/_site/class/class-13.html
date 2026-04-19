@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -332,7 +333,13 @@ window.Quarto = {
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="exploring-new-functions" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-new-functions">Exploring new functions</h3>
-<p>The prep for today involved exploring the 5 new functions below. 1. <span class="math inline">\(f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ... , n\)</span> where <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(0 \leq p \leq 1\)</span>. 1. <span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> with <span class="math inline">\(x &gt; 0\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>. 1. <span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>. 1. <span class="math inline">\(f_4(x; \lambda) = \begin{cases}0 &amp; x \leq 0 \\ \\1 - e^{-\lambda x} &amp; x &gt; 0\end{cases},\)</span> where where <span class="math inline">\(\lambda &gt;0\)</span>. 1. <span class="math inline">\(f_5(x; a,b) =\begin{cases}0 &amp; x &lt; a \\ \\\frac{x-a}{b-a} &amp; a \leq x \leq b \\ \\1 &amp; x &gt;b\end{cases},\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real numbers with <span class="math inline">\(a &lt; b\)</span>.</p>
+<p>The prep for today involved exploring the 5 new functions below. 1. <span class="math inline">\(f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ... , n\)</span> where <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(0 \leq p \leq 1\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> with <span class="math inline">\(x &gt; 0\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_4(x; \lambda) = \begin{cases}0 &amp; x \leq 0 \\ \\1 - e^{-\lambda x} &amp; x &gt; 0\end{cases},\)</span> where where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_5(x; a,b) =\begin{cases}0 &amp; x &lt; a \\ \\\frac{x-a}{b-a} &amp; a \leq x \leq b \\ \\1 &amp; x &gt;b\end{cases},\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real numbers with <span class="math inline">\(a &lt; b\)</span>.</p></li>
+</ol>
 <p>What do you do when you encounter a new function? One option is to start plotting it and changing parameters to get a feel for how the parameters affect a graph of the function. It’s OK if you don’t initially know what a function is useful for. You can gain intuition and sometimes discover the use as you explore changing parameters of the function.</p>
 <p>As a group, spend 5-10 minutes exploring what the parameters control in a graph of the functions above. The code below defines each function and generates a few plots to help you get started. Explore the functions.</p>
 <details>
@@ -366,45 +373,45 @@ Code for functions and some plots.
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f1</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Note that the input must be an integer. </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f1</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the input must be an integer. </span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">1</span>)</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x))</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">10</span>))</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">30</span>,<span class="at">p=</span><span class="fl">0.2</span>))</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f2</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Note that the input cannot be negative.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f2</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the input cannot be negative.</span></span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f3</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The input can be negative, so let<span class="st">'s allow that.</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(-10,10,0.1)</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x), type = "l")</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, mu=3), type = "l")</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=0.5), type = "l")</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=3), type = "l")</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=1), type = "l", ylim = c(0,1))</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=3), type = "l", ylim = c(0,1))</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=0.5), type = "l", ylim = c(0,1))</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f3</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The input can be negative, so let's allow that.</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">mu=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">1</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="st">1. Plots for f4</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="st">1. The input cannot be negative.</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(0,10,0.1)</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x), type = "l")</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x, lambda=3), type = "l")</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x, lambda=0.5), type = "l")</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f4</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># The input cannot be negative.</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x, <span class="at">lambda=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x, <span class="at">lambda=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="st">1. Plots for f5</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(0,10,0.1)</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x), type = "l")</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=3, b=7), type = "l")</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=1, b=3), type = "l")</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(-20,20,0.1)</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=-3, b=15), type = "l")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f5</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="dv">3</span>, <span class="at">b=</span><span class="dv">7</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="dv">1</span>, <span class="at">b=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="sc">-</span><span class="dv">3</span>, <span class="at">b=</span><span class="dv">15</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="activity---practice-with-probability" class="level3">
@@ -428,8 +435,8 @@ Definition: Probability
 Definition: Random (or Stochastic) Variable
 </summary>
 <ol type="1">
-<li>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</li>
-<li>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</li>
+<li><p>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</p></li>
+<li><p>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</p></li>
 </ol>
 <p><em>Source: These definitions are from Probability &amp; Statistics with R by Akritas and Foundations of Statistics with R by Speegle &amp; Clair.</em></p>
 </details>
@@ -467,9 +474,9 @@ Definition: Independent Events
 <h4 class="anchored" data-anchor-id="example-1">Example 1</h4>
 <p>Let <span class="math inline">\(R\)</span> be the random variable that represents that value of the roll of a fair 6-sided die. So <span class="math inline">\(R\)</span> is a function whose domain is the possible outcomes that can result from rolling a fair 6-sided die, and the range is the values of any possible roll, or <span class="math inline">\(\{1,2,3,4,5,6\}\)</span>. Note that we use <span class="math inline">\(R\)</span> to represent the random variable, but we use <span class="math inline">\(r=3\)</span> to represent an observation where the outcome resulted in a value of 3. The probability mass function (pmf) describing the random variable <span class="math inline">\(R\)</span> is given by <span class="math inline">\(f(r) = \frac{1}{6}\)</span> for <span class="math inline">\(r\)</span> in <span class="math inline">\(\{1,2,3,4,5,6 \}\)</span>. The inputs (or domain) of the pmf are the possible values of <span class="math inline">\(R\)</span>, or <span class="math inline">\(\{1,2,3,4,5,6\}\)</span>. The outputs of the pmf are the probabilities corresponding to each outcome when <span class="math inline">\(R=r\)</span>.</p>
 <ol type="1">
-<li>What is the domain of <span class="math inline">\(f\)</span> (the collection of inputs)?</li>
-<li>What is the range of <span class="math inline">\(f\)</span> (the collection of outputs)?</li>
-<li>Compute each of the following:
+<li><p>What is the domain of <span class="math inline">\(f\)</span> (the collection of inputs)?</p></li>
+<li><p>What is the range of <span class="math inline">\(f\)</span> (the collection of outputs)?</p></li>
+<li><p>Compute each of the following:</p>
 <ol type="1">
 <li><span class="math inline">\(P(R=1)\)</span></li>
 <li><span class="math inline">\(P(R=2)\)</span></li>
@@ -482,15 +489,15 @@ Definition: Independent Events
 <li><span class="math inline">\(P(R\leq 5.1)\)</span></li>
 <li><span class="math inline">\(P(R\leq 8)\)</span></li>
 </ol></li>
-<li>Given <span class="math inline">\(A\)</span> is the event that <span class="math inline">\(R\)</span> is an odd number, calculate <span class="math inline">\(P(A)\)</span>.</li>
+<li><p>Given <span class="math inline">\(A\)</span> is the event that <span class="math inline">\(R\)</span> is an odd number, calculate <span class="math inline">\(P(A)\)</span>.</p></li>
 </ol>
 <details>
 <summary>
 Answers
 </summary>
 <ol type="1">
-<li>The domain of <span class="math inline">\(f\)</span> is the set $ { 1, 2, 3, 4, 5, 6 } $, so the collection of possible outcomes of the random variable <span class="math inline">\(R\)</span>.</li>
-<li>The range of <span class="math inline">\(f\)</span> is the set $ { } $. #
+<li><p>The domain of <span class="math inline">\(f\)</span> is the set $ { 1, 2, 3, 4, 5, 6 } $, so the collection of possible outcomes of the random variable <span class="math inline">\(R\)</span>.</p></li>
+<li><p>The range of <span class="math inline">\(f\)</span> is the set $ { } $.</p>
 <ol type="1">
 <li><span class="math inline">\(P(R=1) = \frac{1}{6}\)</span></li>
 <li><span class="math inline">\(P(R=2) = \frac{1}{6}\)</span></li>
@@ -503,7 +510,7 @@ Answers
 <li><span class="math inline">\(P(R \leq 5.1) = \sum_{i=1}^5P(R=i) = \sum_{i=1}^5\frac{1}{6} = 5(\frac{1}{6}) = \frac{5}{6}\)</span></li>
 <li><span class="math inline">\(P(R\leq 8) = \sum_{i=1}^8P(R=i) = \sum_{i=1}^6\frac{1}{6} + \sum_{i=7}^8 0 = 6(\frac{1}{6}) + 0 = 1\)</span></li>
 </ol></li>
-<li><span class="math inline">\(P(A) = P(R = 1) + P(R = 3) + P(R = 5) = 3\left(\frac{1}{6}\right) = \frac{1}{2}\)</span></li>
+<li><p><span class="math inline">\(P(A) = P(R = 1) + P(R = 3) + P(R = 5) = 3\left(\frac{1}{6}\right) = \frac{1}{2}\)</span></p></li>
 </ol>
 </details>
 </section>
@@ -516,24 +523,39 @@ Answers
 0.19 &amp; \quad x = 6 \\ \\
 0.03 &amp; \quad x = 9 \\ \\
 0.2 &amp; \quad x=12
-\end{cases}.\]</span> Compute the probabilities requested below: 1. <span class="math inline">\(P(x \leq 6)\)</span> 1. <span class="math inline">\(P(x = 9)\)</span> 1. <span class="math inline">\(P(x = 7)\)</span> 1. <span class="math inline">\(P(x \leq 7)\)</span> 1. <span class="math inline">\(P(x \geq 10)\)</span> 1. <span class="math inline">\(P(x \leq 12)\)</span></p>
+\end{cases}.\]</span> Compute the probabilities requested below: 1. <span class="math inline">\(P(x \leq 6)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(x = 9)\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \geq 10)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 12)\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
 </summary>
 <ol type="1">
-<li><span class="math inline">\(P(x \leq 6) = 0.77\)</span></li>
-<li><span class="math inline">\(P(x = 9) = 0.03\)</span></li>
-<li><span class="math inline">\(P(x = 7) = 0\)</span></li>
-<li><span class="math inline">\(P(x \leq 7) = 0.77\)</span></li>
-<li><span class="math inline">\(P(x \geq 10) = 0.2\)</span></li>
-<li><span class="math inline">\(P(x \leq 12) = 1\)</span></li>
+<li><p><span class="math inline">\(P(x \leq 6) = 0.77\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 9) = 0.03\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 7) = 0\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 7) = 0.77\)</span></p></li>
+<li><p><span class="math inline">\(P(x \geq 10) = 0.2\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 12) = 1\)</span></p></li>
 </ol>
 </details>
 </section>
 <section id="example-3" class="level4">
 <h4 class="anchored" data-anchor-id="example-3">Example 3</h4>
-<p>Suppose we toss two fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_1\)</span> represent the outcome for the first die and <span class="math inline">\(X_2\)</span> represent the outcome for the second die. Note the events from random variable <span class="math inline">\(X_1\)</span> and the events from <span class="math inline">\(X_2\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 3)\)</span> 1. <span class="math inline">\(P(X_2 = 1)\)</span> 1. <span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even})\)</span> 1. <span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even})\)</span> 1. <span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1)\)</span> 1. <span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1)\)</span> 1. <span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2)\)</span></p>
+<p>Suppose we toss two fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_1\)</span> represent the outcome for the first die and <span class="math inline">\(X_2\)</span> represent the outcome for the second die. Note the events from random variable <span class="math inline">\(X_1\)</span> and the events from <span class="math inline">\(X_2\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 3)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_2 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even})\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even})\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2)\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
@@ -548,22 +570,27 @@ Answers
 0 &amp; \quad \text{otherwise}.
 \end{cases}\)</span></p>
 <ol type="1">
-<li><span class="math inline">\(P(X_1 = 3) = f_1(3) = \frac{1}{6}\)</span></li>
-<li><span class="math inline">\(P(X_2 = 1) = f_2(1) = \frac{1}{6}\)</span></li>
-<li><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even}) = \frac{P(X_1 = 4 \text{ and } X_1 \text{ is even})}{P(X_1 \text{ is even})}= \frac{1/6}{3/6} = \frac{1}{3}\)</span></li>
-<li><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even}) = P(X_1 = 2) = \frac{1}{6}\)</span> (The random variables are independent, so knowledge about <span class="math inline">\(X_2\)</span> does not affect <span class="math inline">\(X_1\)</span>.)</li>
-<li><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1) = P(X_1=3)P(X_2=1) = \frac{1}{6}(\frac{1}{6}) = \frac{1}{36}\)</span>
+<li><p><span class="math inline">\(P(X_1 = 3) = f_1(3) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_2 = 1) = f_2(1) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even}) = \frac{P(X_1 = 4 \text{ and } X_1 \text{ is even})}{P(X_1 \text{ is even})}= \frac{1/6}{3/6} = \frac{1}{3}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even}) = P(X_1 = 2) = \frac{1}{6}\)</span> (The random variables are independent, so knowledge about <span class="math inline">\(X_2\)</span> does not affect <span class="math inline">\(X_1\)</span>.)</p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1) = P(X_1=3)P(X_2=1) = \frac{1}{6}(\frac{1}{6}) = \frac{1}{36}\)</span></p>
 <ul>
 <li>We can multiply the probabilities because <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent.</li>
 </ul></li>
-<li><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1) = 0\)</span>, as it is impossible for an observed value to be both 3 and 1 at the same time. We do not multiply probabilities unless the events are independent.</li>
-<li><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2) = P(X_1 \leq 2)P(X_2 &gt; 2) = (\sum_{i=1}^2P(X_1=i))(\sum_{i=3}^6P(X_2=i)) = (\frac{1}{3})(\frac{2}{3}) = \frac{2}{9}\)</span></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1) = 0\)</span>, as it is impossible for an observed value to be both 3 and 1 at the same time. We do not multiply probabilities unless the events are independent.</p></li>
+<li><p><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2) = P(X_1 \leq 2)P(X_2 &gt; 2) = (\sum_{i=1}^2P(X_1=i))(\sum_{i=3}^6P(X_2=i)) = (\frac{1}{3})(\frac{2}{3}) = \frac{2}{9}\)</span></p></li>
 </ol>
 </details>
 </section>
 <section id="example-4" class="level4">
 <h4 class="anchored" data-anchor-id="example-4">Example 4</h4>
-<p>Suppose we toss seven fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_i\)</span> represent the outcome for the <span class="math inline">\(i\)</span>th die with <span class="math inline">\(i = 1, 2, ..., 7\)</span>. Note the events from random variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, … <span class="math inline">\(X_7\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 1)\)</span> 1. <span class="math inline">\(P(X_6 = 4)\)</span> 1. <span class="math inline">\(P(X_3 &gt; 2)\)</span> 1. <span class="math inline">\(P(\text{all the dice have values greater than 2})\)</span></p>
+<p>Suppose we toss seven fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_i\)</span> represent the outcome for the <span class="math inline">\(i\)</span>th die with <span class="math inline">\(i = 1, 2, ..., 7\)</span>. Note the events from random variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, … <span class="math inline">\(X_7\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 1)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_6 = 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_3 &gt; 2)\)</span></p></li>
+<li><p><span class="math inline">\(P(\text{all the dice have values greater than 2})\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
@@ -572,7 +599,12 @@ Answers
 \begin{cases}
 \frac{1}{6} &amp; \quad x_i = 1, 2, 3, 4, 5, 6 \\ \\
 0 &amp; \quad \text{otherwise},
-\end{cases}\)</span> for <span class="math inline">\(i = 1, 2, ..., 7\)</span>. 1. <span class="math inline">\(P(X_1 = 1) = \frac{1}{6}\)</span> 1. <span class="math inline">\(P(X_6 = 4) = \frac{1}{6}\)</span> 1. <span class="math inline">\(P(X_3 &gt; 2) = \sum_{j=3}^6P(X_3=j) = 4\left(\frac{1}{6}\right) = \frac{2}{3}\)</span> 1. <span class="math inline">\(P(\text{all the dice have values greater than 2}) = \prod_{i=1}^7P(X_i &gt; 2) = \prod_{i=1}^7(\sum_{j=3}^6P(X_i=j)) = \prod_{i=1}^7(\frac{2}{3}) = (\frac{2}{3})^7 = \frac{128}{2187} \approx 0.059\)</span></p>
+\end{cases}\)</span> for <span class="math inline">\(i = 1, 2, ..., 7\)</span>. 1. <span class="math inline">\(P(X_1 = 1) = \frac{1}{6}\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_6 = 4) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_3 &gt; 2) = \sum_{j=3}^6P(X_3=j) = 4\left(\frac{1}{6}\right) = \frac{2}{3}\)</span></p></li>
+<li><p><span class="math inline">\(P(\text{all the dice have values greater than 2}) = \prod_{i=1}^7P(X_i &gt; 2) = \prod_{i=1}^7(\sum_{j=3}^6P(X_i=j)) = \prod_{i=1}^7(\frac{2}{3}) = (\frac{2}{3})^7 = \frac{128}{2187} \approx 0.059\)</span></p></li>
+</ol>
 </details>
 
 

@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -251,8 +252,35 @@ Definition: Logarithmic Function
 <p>A <strong>logarithmic function</strong> is of the form <span class="math inline">\(\log_b(x)\)</span> where <span class="math inline">\(b&gt;0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
 <p>Note: A logarithmic function is not an algebraic function.</p>
 </details>
-<!-- include: Page.KeyCharacteristicsOfLogarithmicFunction -->
-<!-- include: Page.PropertiesOfLogarithms -->
+<!-- from Page.KeyCharacteristicsOfLogarithmicFunction -->
+<details>
+<summary>
+Key Characteristics of Logarithmic Function
+</summary>
+<ul>
+<li>Domain is positive real numbers</li>
+<li>Range is all real numbers</li>
+<li>When <span class="math inline">\(b &gt; 1\)</span> the function is increasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> gets close to zero from the right the output approaches negative infinity.</li>
+<li>As <span class="math inline">\(x\)</span> increases the output increases without bound.</li>
+<li>These functions are concave down.</li>
+</ul></li>
+<li>When <span class="math inline">\(0&lt; b &lt; 1\)</span> the function is decreasing on its entire domain.
+<ul>
+<li>As <span class="math inline">\(x\)</span> gets close to zero from the right the output grows without bound (approaches infinity).</li>
+<li>As <span class="math inline">\(x\)</span> increases the output approaches negative infinity.</li>
+<li>These functions are concave up.</li>
+</ul></li>
+</ul>
+</details>
+<!-- from Page.PropertiesOfLogarithms -->
+<details>
+<summary>
+Properties of Logarithms
+</summary>
+<p>If <span class="math inline">\(a&gt;0\)</span>, <span class="math inline">\(b &gt; 0\)</span>, <span class="math inline">\(c &gt; 0\)</span>, <span class="math inline">\(b \neq 1\)</span>, and <span class="math inline">\(n\)</span> is any real number, then - <span class="math inline">\(\log_b b^x = x\)</span> and <span class="math inline">\(b^{\log_b x} = x\)</span> (inverse property) - Special Cases - <span class="math inline">\(\log_b b = 1\)</span> - <span class="math inline">\(\log_b 1 = \log_b b^0 = 1\)</span> - <span class="math inline">\(\log_b(ac) = \log_b(a) + \log_b(c)\)</span> (product property) - <span class="math inline">\(\log_b\left(\frac{a}{c}\right) = \log_b(a) - \log_b(c)\)</span> (quotient property) - <span class="math inline">\(\log_b(a^n) = n\log_b(a)\)</span> (power property)</p>
+</details>
 
 
 

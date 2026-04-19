@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -285,18 +286,18 @@ window.Quarto = {
 <section id="activity---partial-derivatives-with-the-chain-rule" class="level3">
 <h3 class="anchored" data-anchor-id="activity---partial-derivatives-with-the-chain-rule">Activity - Partial Derivatives With the Chain Rule</h3>
 <ol type="1">
-<li>Given <span class="math inline">\(S(x, y; a, b) = 3(ax + by)^{-3}\)</span>, find <span class="math inline">\(\diff{S}{x}\)</span> assuming all other variables and parameters are constant then find <span class="math inline">\(\diff{S}{y}\)</span> assuming all other variables and parameters are constant.</li>
-<li>Given <span class="math inline">\(g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}\)</span>, find <span class="math inline">\(\frac{\partial g}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2}\)</span>.</li>
-<li>Given <span class="math inline">\(h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}\)</span>, find <span class="math inline">\(\frac{\partial h}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y}\)</span>.</li>
+<li><p>Given <span class="math inline">\(S(x, y; a, b) = 3(ax + by)^{-3}\)</span>, find <span class="math inline">\(\diff{S}{x}\)</span> assuming all other variables and parameters are constant then find <span class="math inline">\(\diff{S}{y}\)</span> assuming all other variables and parameters are constant.</p></li>
+<li><p>Given <span class="math inline">\(g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}\)</span>, find <span class="math inline">\(\frac{\partial g}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2}\)</span>.</p></li>
+<li><p>Given <span class="math inline">\(h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}\)</span>, find <span class="math inline">\(\frac{\partial h}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y}\)</span>.</p></li>
 </ol>
 <details>
 <summary>
 Answer
 </summary>
 <ol type="1">
-<li>We have <span class="math inline">\(\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}\)</span>.</li>
-<li>We find <span class="math inline">\(\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(x_i)\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(y_i)\)</span>.</li>
-<li>We compute <span class="math inline">\(\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}\)</span></li>
+<li><p>We have <span class="math inline">\(\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}\)</span>.</p></li>
+<li><p>We find <span class="math inline">\(\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(x_i)\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(y_i)\)</span>.</p></li>
+<li><p>We compute <span class="math inline">\(\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}\)</span></p></li>
 </ol>
 </details>
 </section>
@@ -335,14 +336,37 @@ Solution
 </section>
 <section id="activity---partial-derivatives-for-ell_2." class="level3">
 <h3 class="anchored" data-anchor-id="activity---partial-derivatives-for-ell_2.">Activity - Partial Derivatives for <span class="math inline">\(\ell_2\)</span>.</h3>
-<p>The loglikelihood function for <span class="math inline">\(f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2\)</span> is <span class="math display">\[\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i- 100 - a_1t_i - a_2t_i^2)^2.\]</span> 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span>. We avoid using <span class="math inline">\((\ell_2)_{a_1}\)</span> notation here, because the double subscript is awkward. We could let <span class="math inline">\(\ell = \ell_2\)</span> and then write <span class="math inline">\(\ell_{a_1}\)</span> to resolve this. 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_2}\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1^2}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_1\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2\partial a_1}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_2\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2^2}\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>.</p>
+<p>The loglikelihood function for <span class="math inline">\(f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2\)</span> is <span class="math display">\[\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i- 100 - a_1t_i - a_2t_i^2)^2.\]</span> 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span>. We avoid using <span class="math inline">\((\ell_2)_{a_1}\)</span> notation here, because the double subscript is awkward. We could let <span class="math inline">\(\ell = \ell_2\)</span> and then write <span class="math inline">\(\ell_{a_1}\)</span> to resolve this.</p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_2}\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1^2}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_1\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2\partial a_1}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_2\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2^2}\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>.</p></li>
+</ol>
 <p>If you finish early, pick another function from Project 2, and compute all the partial derivatives. You are essentially working through Project 2 Task 2.</p>
 </section>
 <section id="activity---derivative-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---derivative-practice">Activity - Derivative Practice</h3>
 <p>Use the remaining time to practice working with higher order derivatives and the chain rule. Both of these activities are carried over from previous days. Please spend time with each one (maybe half the rest of class on higher order derivatives, and the other half on the chain rule).<br>
-#### Higher order derivatives Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem. #### Activity - Chain Rule Practice For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. As a suggestion, compute both <span class="math inline">\(f'(x)\)</span> and <span class="math inline">\(g'(x)\)</span> first, and then show how you can combine <span class="math inline">\(f,g,f',g'\)</span> to get the derivative of each composite function.<br>
-Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span> 1. <span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span> 1. <span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span> 1. <span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span> 1. <span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span> 1. <span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span> 1. <span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span> 1. <span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span> 1. <span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span> 1. <span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span> 1. <span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span> 1. <span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span> 1. <span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p>
+#### Higher order derivatives Open this &lt;../assets/docs/Higher_Order_Derivatives.pdf&gt; worksheet and take turns computing derivatives, passing the chalk after each problem. #### Activity - Chain Rule Practice For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. As a suggestion, compute both <span class="math inline">\(f'(x)\)</span> and <span class="math inline">\(g'(x)\)</span> first, and then show how you can combine <span class="math inline">\(f,g,f',g'\)</span> to get the derivative of each composite function.<br>
+Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p></li>
+</ol>
 
 
 </section>

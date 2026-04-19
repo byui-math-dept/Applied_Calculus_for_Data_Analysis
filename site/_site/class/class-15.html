@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -307,11 +308,11 @@ window.Quarto = {
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ul>
-<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.</li>
-</ul>
-<p><img src="../assets/uploads/Class/f5-fit1.png" class="img-fluid"></p>
-<p><img src="../assets/uploads/Class/f5-fit2.png" class="img-fluid"></p>
+<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.
 <ul>
+<li><a href="https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png" class="uri">https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png</a></li>
+<li><a href="https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png" class="uri">https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png</a></li>
+</ul></li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(f(x) = b + mx\)</span> and data point <span class="math inline">\((x,y) = (4,7)\)</span>.</li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(g(x) = c + bx + a\ln(4x)\)</span> and data point <span class="math inline">\((x,y) = (x_3,y_3)\)</span>.</li>
 </ul>
@@ -325,10 +326,10 @@ Answers
 </ul>
 </details>
 <ul>
-<li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
+<li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see <a href="https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93presen" class="uri">https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93presen</a>t)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># each element of x must be a whole number</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each element of x must be a whole number</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -381,7 +382,7 @@ Residuals
 <p>Examples: - Given the model <span class="math inline">\(f(x) = ax^2 + bx + c\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c).\)</span> - Given the model <span class="math inline">\(g(x) = k\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - g(x) = y - k.\)</span> - Given the model <span class="math inline">\(h(x) = ae^{-bx} + cxe^{-bx}\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.\)</span></p>
 </details>
 <ul>
-<li>Consider the 6 functions you have been fitting in https://byuistats.github.io/M119/project1.html.
+<li>Consider the 6 functions you have been fitting in <a href="https://chaz-clark.github.io/M119/Projects/unit1.html." class="uri">https://chaz-clark.github.io/M119/Projects/unit1.html.</a>
 <ul>
 <li>On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_4\)</span> and data point <span class="math inline">\((x_i,y_i)\)</span>.</li>
 <li>On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_5\)</span> and data point <span class="math inline">\((x_j,y_j)\)</span>.</li>
@@ -390,7 +391,7 @@ Residuals
 </section>
 <section id="activity---likelihood-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---likelihood-practice">Activity - Likelihood Practice</h3>
-<p>Use the storms listed on Wikipedia’s https://tinyurl.com/51vyiwjw page to answer the questions below. Feel free to head to yesterday’s page to grab code examples to help you work on the things below.</p>
+<p>Use the storms listed on Wikipedia’s <a href="https://tinyurl.com/51vyiwjw" class="uri">https://tinyurl.com/51vyiwjw</a> page to answer the questions below. Feel free to head to yesterday’s page to grab code examples to help you work on the things below.</p>
 <ul>
 <li>Using the data from 2005-2009, what is the likelihood that <span class="math inline">\(\lambda =2\)</span>?
 <ul>
@@ -422,29 +423,29 @@ Click to view the code.
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the distribution###</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x must be a whole number</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be a whole number</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the likelihood function###</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the likelihood function###</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>LP <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda,x){</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The element of x must be a whole numbers.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The element of x must be a whole numbers.</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(<span class="fu">p</span>(x,lambda))</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Possible Parameter Values###</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="do">###Possible Parameter Values###</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Data###</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Florida Hurricane <span class="fu">Data</span> (<span class="dv">2000-2022</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="do">###Data###</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Florida Hurricane Data (2000-2022)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">13</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Here we calculate the output from the likelihood <span class="cf">function</span> given the observed data.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we calculate the output from the likelihood function given the observed data.</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda,<span class="at">FUN=</span>LP,<span class="at">x=</span>data)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We plot the likelihood function.</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#We plot the likelihood function.</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Poisson Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -459,29 +460,29 @@ Click to view the code.
 <summary>
 Click to view the code.
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the distribution###</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x and lambda must be positive</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x and lambda must be positive</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the Likelihood function###</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the Likelihood function###</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>LE <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda,x){</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The elements of x must be positive.</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The elements of x must be positive.</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(<span class="fu">f2</span>(x,lambda))</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Possible Parameter Values###</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">###Possible Parameter Values###</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Data###</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Some Simulated <span class="fu">Data</span> (This is data from an Exponential random variable.)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">###Data###</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Some Simulated Data (This is data from an Exponential random variable.)</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.45729967</span>, <span class="fl">0.47156107</span>, <span class="fl">1.21461705</span>, <span class="fl">0.20539769</span>, <span class="fl">1.78975399</span>, <span class="fl">0.09095850</span>, <span class="fl">0.64675475</span>, <span class="fl">1.60109333</span>, <span class="fl">1.57752679</span>, <span class="fl">0.01238945</span>)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Here we calculate the output from the likelihood <span class="cf">function</span> given the observed data.</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we calculate the output from the likelihood function given the observed data.</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda,<span class="at">FUN=</span>LE,<span class="at">x=</span>data)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We plot the likelihood function.</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#We plot the likelihood function.</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Exponential Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -496,30 +497,30 @@ Click to view the code.
 <summary>
 Click to view the code.
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the distribution###</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(x<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the likelihood function###</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> For simplicity, we<span class="st">'ll assume sigma is 1.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">LN &lt;- function(mu,sigma=1,x){</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  prod(f3(x,mu,sigma))</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">###Define the likelihood function###</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For simplicity, we'll assume sigma is 1.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>LN <span class="ot">&lt;-</span> <span class="cf">function</span>(mu,<span class="at">sigma=</span><span class="dv">1</span>,x){</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(<span class="fu">f3</span>(x,mu,sigma))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">    1. #Possible Parameter Values###</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">mu &lt;- seq(-10,10,0.001)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">###Possible Parameter Values###</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">    1. #Data###</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">1. Some more Simulated Data (This is data from a Normal random variable.)</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">data &lt;- c(-3.77117676, -2.91429587, -2.02774901, -0.23984575, -1.41960740, -3.17490528, -3.21755276, -0.06442566, -1.92134953, -0.93160739)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">###Data###</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Some more Simulated Data (This is data from a Normal random variable.)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.77117676</span>, <span class="sc">-</span><span class="fl">2.91429587</span>, <span class="sc">-</span><span class="fl">2.02774901</span>, <span class="sc">-</span><span class="fl">0.23984575</span>, <span class="sc">-</span><span class="fl">1.41960740</span>, <span class="sc">-</span><span class="fl">3.17490528</span>, <span class="sc">-</span><span class="fl">3.21755276</span>, <span class="sc">-</span><span class="fl">0.06442566</span>, <span class="sc">-</span><span class="fl">1.92134953</span>, <span class="sc">-</span><span class="fl">0.93160739</span>)</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">1. Here we calculate the output from the likelihood function given the observed data.</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">y &lt;- sapply(mu,FUN=LN,x=data,sigma=1)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we calculate the output from the likelihood function given the observed data.</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(mu,<span class="at">FUN=</span>LN,<span class="at">x=</span>data,<span class="at">sigma=</span><span class="dv">1</span>)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">1. We plot the likelihood function.</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">par(mar=c(2.5,2.5,3,0.25))</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">plot(mu,y,type='</span>l<span class="st">',main='</span>Normal Likelihood<span class="st">')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#We plot the likelihood function.</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mu,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Normal Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 </section>

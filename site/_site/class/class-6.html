@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -259,7 +260,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-name" id="toc-during-class---day-name" class="nav-link active" data-scroll-target="#during-class---day-name">During Class - Day {$Name}</a>
+  <li><a href="#during-class---day-6" id="toc-during-class---day-6" class="nav-link active" data-scroll-target="#during-class---day-6">During Class - Day 6</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -295,8 +296,8 @@ window.Quarto = {
 </header>
 
 
-<section id="during-class---day-name" class="level1">
-<h1>During Class - Day {$Name}</h1>
+<section id="during-class---day-6" class="level1">
+<h1>During Class - Day 6</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>Consider the function <span class="math inline">\(T(x) = \frac{1}{2}(3(x+2))^2 - 10\)</span>. 1. Let <span class="math inline">\(g(x) = c f(a(x+b)) + d\)</span> with <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span> constants. If <span class="math inline">\(T(x) = g(x)\)</span>, which means <span class="math inline">\(f(u) = u^2\)</span>, answer the following questions. - What is <span class="math inline">\(a\)</span>? - What is <span class="math inline">\(b\)</span>? - What is <span class="math inline">\(c\)</span>? - What is <span class="math inline">\(d\)</span>? 1. Let <span class="math inline">\(h(x) = A f(B(x-C)) + D\)</span> with <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> constants. If <span class="math inline">\(T(x) = h(x)\)</span>, which means <span class="math inline">\(f(u) = u^2\)</span>, answer the following questions. - What is <span class="math inline">\(A\)</span>? - What is <span class="math inline">\(B\)</span>? - What is <span class="math inline">\(C\)</span>? - What is <span class="math inline">\(D\)</span>?</p>
@@ -319,8 +320,8 @@ Answer
 </section>
 <section id="activity---transformations-of-a-function" class="level3">
 <h3 class="anchored" data-anchor-id="activity---transformations-of-a-function">Activity - Transformations of a function</h3>
-<p>Last time in class we worked with the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span>. Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) controls some aspect of the graph of the function. Let <span class="math inline">\(f(x) = 3\sqrt{x}\)</span> and use this https://www.desmos.com/calculator/5jc00j0rpr to explore changing these parameters and write a description of what each parameter controls.</p>
-<p>Open https://byuistats.github.io/M119/project1.html#Task_2:_Models_and_Parameter_Exploration. There are 6 functions we’ll be exploring. Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls.</p>
+<p>Last time in class we worked with the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span>. Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) controls some aspect of the graph of the function. Let <span class="math inline">\(f(x) = 3\sqrt{x}\)</span> and use this <a href="https://www.desmos.com/calculator/5jc00j0rpr" class="uri">https://www.desmos.com/calculator/5jc00j0rpr</a> to explore changing these parameters and write a description of what each parameter controls.</p>
+<p>Open <a href="https://chaz-clark.github.io/M119/Projects/unit1.html#task-2-models-and-parameter-exploration." class="uri">https://chaz-clark.github.io/M119/Projects/unit1.html#task-2-models-and-parameter-exploration.</a> There are 6 functions we’ll be exploring. Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls.</p>
 </section>
 <section id="activity---defining-and-plotting-functions-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="activity---defining-and-plotting-functions-in-r">Activity - Defining and Plotting Functions in R</h3>
@@ -389,11 +390,11 @@ Answer
 <section id="discussion---functions-transformations-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="discussion---functions-transformations-parameters">Discussion - Functions, Transformations, Parameters</h2>
 <ol type="1">
-<li>How do we find the domain (implied domain) of a function?</li>
-<li>What is the difference between a power function and an exponential function? Give an example of each.</li>
-<li>Give an example of a transformed power function.</li>
-<li>Give an example of a transformed exponential function.</li>
-<li>Let’s use https://www.desmos.com/calculator/5jc00j0rpr and create some examples, exploring how parameters transform a function.</li>
+<li><p>How do we find the domain (implied domain) of a function?</p></li>
+<li><p>What is the difference between a power function and an exponential function? Give an example of each.</p></li>
+<li><p>Give an example of a transformed power function.</p></li>
+<li><p>Give an example of a transformed exponential function.</p></li>
+<li><p>Let’s use <a href="https://www.desmos.com/calculator/5jc00j0rpr" class="uri">https://www.desmos.com/calculator/5jc00j0rpr</a> and create some examples, exploring how parameters transform a function.</p></li>
 </ol>
 
 

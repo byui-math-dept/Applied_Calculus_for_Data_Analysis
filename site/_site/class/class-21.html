@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -264,7 +265,7 @@ window.Quarto = {
 
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
@@ -294,14 +295,13 @@ Solution
 At <span class="math inline">\(x=-2\)</span>, this gives the slope of the linearization as <span class="math inline">\(f'(-2) = -5\)</span>. The value of the function at <span class="math inline">\(x=-2\)</span> is <span class="math inline">\(f(-2) = 4+2 = 6\)</span>. An equation of the line that passes through the point <span class="math inline">\((-2,6)\)</span> and has slope <span class="math inline">\(-5\)</span> is <span class="math display">\[y-6=(-5)(x+2).\]</span> The above is sufficient, though we can also write this as - <span class="math inline">\(y=6+(-5)(x+2)\)</span> or - <span class="math inline">\(y=-5x-4\)</span>.</p>
 </details>
 <ol type="1">
-<li>Given the graph of a function <span class="math inline">\(h(x)\)</span> below, draw <span class="math inline">\(h'(x)\)</span>.</li>
+<li>Given the graph of a function <span class="math inline">\(h(x)\)</span> below, draw <span class="math inline">\(h'(x)\)</span>. <a href="https://byuimath.com/bmw/all/119/uploads/Class/Draw-Derivative.png" class="uri">https://byuimath.com/bmw/all/119/uploads/Class/Draw-Derivative.png</a></li>
 </ol>
-<p><img src="../assets/uploads/Class/Draw-Derivative.png" class="img-fluid"></p>
 <details>
 <summary>
 Solution
 </summary>
-<p>Here is a <a href="https://www.desmos.com/calculator/pnwcoyxmry" target="_blank">solution in Desmos</a>. Note that the derivative passes through <span class="math inline">\(y=0\)</span> at 3 <span class="math inline">\(x\)</span>-values. (We call places where the derivative has an output of zero, critical values). These 3 values correspond precisely to the spots on the function when the function may switch from increasing to decreasing, or vice-versa.</p>
+<p>Here is a solution in <a href="https://www.desmos.com/calculator/pnwcoyxmry." class="uri">https://www.desmos.com/calculator/pnwcoyxmry.</a> Note that the derivative passes through <span class="math inline">\(y=0\)</span> at 3 <span class="math inline">\(x\)</span>-values. (We call places where the derivative has an output of zero, critical values). These 3 values correspond precisely to the spots on the function when the function may switch from increasing to decreasing, or vice-versa.</p>
 </details>
 </section>
 <section id="group-meeting" class="level2">
@@ -346,18 +346,33 @@ Solutions
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Let’s sketch the derivative of</p>
-<p><img src="../assets/uploads/Class/Desmos-Graph-Together.png" class="img-fluid"></p>
+<p>Let’s sketch the derivative of <a href="https://byuimath.com/bmw/all/119/uploads/Class/Desmos-Graph-Together.png" class="uri">https://byuimath.com/bmw/all/119/uploads/Class/Desmos-Graph-Together.png</a></p>
 <details>
 <summary>
 Solution
 </summary>
-<p>See <a href="https://www.desmos.com/calculator/yzgdfwn6eb" target="_blank">solution in Desmos</a>.</p>
+<p>See <a href="https://www.desmos.com/calculator/yzgdfwn6eb." class="uri">https://www.desmos.com/calculator/yzgdfwn6eb.</a></p>
 </details>
 <p>We’ll discuss any questions you have, model the first problem from the next activity, and then head back to the board for more practice.</p>
 <section id="activity---practice-with-the-chain-rule." class="level3">
 <h3 class="anchored" data-anchor-id="activity---practice-with-the-chain-rule.">Activity - Practice with the Chain rule.</h3>
-<p>For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span> 1. <span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span> 1. <span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span> 1. <span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span> 1. <span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span> 1. <span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span> 1. <span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span> 1. <span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span> 1. <span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span> 1. <span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span> 1. <span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span> 1. <span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span> 1. <span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p>
+<p>For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p></li>
+</ol>
 
 
 </section>

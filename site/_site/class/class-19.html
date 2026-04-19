@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -296,7 +297,7 @@ window.Quarto = {
 
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
@@ -365,7 +366,7 @@ Answers
 <summary>
 Solution
 </summary>
-<p>We know <span class="math inline">\(f'(x) = 3x^2\)</span>, and so the slope of this line is <span class="math inline">\(f'(2) = 12\)</span>. The linearization (tangent line) passes through the point <span class="math inline">\((2,f(2))=(2,8)\)</span>. This gives an equation of the linearlization as <span class="math display">\[y-8=12(x-2).\]</span> We can solve for <span class="math inline">\(y\)</span> to obtain <span class="math display">\[y=8+12(x-2) \quad\text{or}\quad y=12x-16.\]</span> All three of the forms above are correct. We can plot the function along with it’s linearization in https://www.desmos.com/calculator/3bifvksxqy.</p>
+<p>We know <span class="math inline">\(f'(x) = 3x^2\)</span>, and so the slope of this line is <span class="math inline">\(f'(2) = 12\)</span>. The linearization (tangent line) passes through the point <span class="math inline">\((2,f(2))=(2,8)\)</span>. This gives an equation of the linearlization as <span class="math display">\[y-8=12(x-2).\]</span> We can solve for <span class="math inline">\(y\)</span> to obtain <span class="math display">\[y=8+12(x-2) \quad\text{or}\quad y=12x-16.\]</span> All three of the forms above are correct. We can plot the function along with it’s linearization in <a href="https://www.desmos.com/calculator/3bifvksxqy." class="uri">https://www.desmos.com/calculator/3bifvksxqy.</a></p>
 <p>We can also plot the function along with it’s linear approximation (tangent line) in R.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="fl">0.001</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x<span class="sc">^</span><span class="dv">3</span>,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">15</span>),<span class="at">ylab=</span><span class="st">"y"</span>)</span>
@@ -391,24 +392,52 @@ Solution
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---compute-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="activity---compute-derivatives">Activity - Compute derivatives</h3>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
-<p>Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 1. <span class="math inline">\(f(x) = (3x-2x^2)(5+4x)\)</span>. Remember to <strong>list each rule you used</strong>. Then pass the chalk (PTC) 1. <span class="math inline">\(f(x) = \frac{x-1}{2x+3}\)</span> (PTC) 1. <span class="math inline">\(f(x) = \left( \frac{1}{x} + 1 \right)(x-1)\)</span> (PTC) 1. <span class="math inline">\(f(t) = (2t^2 - 3)(4 - t^2 - t^4)\)</span> (PTC - I’ll stop writing this.) 1. <span class="math inline">\(f(p) = (p^3 - 2)^2\)</span> 1. <span class="math inline">\(f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}\)</span> 1. <span class="math inline">\(f(x) = \frac{7}{x^3}\)</span> 1. <span class="math inline">\(f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}\)</span> 1. <span class="math inline">\(f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)\)</span> 1. <span class="math inline">\(f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}\)</span> 1. <span class="math inline">\(f(x) = 5 x^3 e^x \ln x\)</span></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p>Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 1. <span class="math inline">\(f(x) = (3x-2x^2)(5+4x)\)</span>. Remember to <strong>list each rule you used</strong>. Then pass the chalk (PTC)</p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = \frac{x-1}{2x+3}\)</span> (PTC)</p></li>
+<li><p><span class="math inline">\(f(x) = \left( \frac{1}{x} + 1 \right)(x-1)\)</span> (PTC)</p></li>
+<li><p><span class="math inline">\(f(t) = (2t^2 - 3)(4 - t^2 - t^4)\)</span> (PTC - I’ll stop writing this.)</p></li>
+<li><p><span class="math inline">\(f(p) = (p^3 - 2)^2\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{7}{x^3}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 5 x^3 e^x \ln x\)</span></p></li>
+</ol>
 <details>
 <summary>
 Final Answers
 </summary>
-<p>These are the final answers you should obtain after listing out each step. 1. <span class="math inline">\(\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)\)</span> 1. <span class="math inline">\(\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)\)</span> 1. <span class="math inline">\(\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }\)</span> 1. Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.</p>
+<p>These are the final answers you should obtain after listing out each step. 1. <span class="math inline">\(\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }\)</span></p></li>
+<li><p>Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.</p></li>
+</ol>
 </details>
 </section>
 <section id="activity---higher-order-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="activity---higher-order-derivatives">Activity - Higher Order Derivatives</h3>
 <p>Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative <span class="math inline">\(f\)</span> we can denote with <span class="math display">\[f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2} = D_x^2 f.\]</span> We use similar notation for higher order derivatives, such at <span class="math inline">\(f'''(x)\)</span> for the third derivative and <span class="math inline">\(\frac{d^4f}{dx^4}\)</span> for a 4th derivative. We avoid prime notation and use notation such as <span class="math inline">\(f^{ (7) }(x)\)</span> when the number of derivatives is quite large.</p>
-<p>Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
+<p>Open this &lt;../assets/docs/Higher_Order_Derivatives.pdf&gt; worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
 </section>
 </section>
 <section id="bonus-problems" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-problems">Bonus Problems</h2>
-<p>Suppose we know that <span class="math inline">\(f_i(x)\)</span> is a differentiable function and <span class="math inline">\(c_i\)</span> is a constant for each integer <span class="math inline">\(i\)</span> from 1 to 4. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Let <span class="math inline">\(n\)</span> be a positive integer, and then repeat both of the above after replacing 4 with <span class="math inline">\(n\)</span>.</p>
+<p>Suppose we know that <span class="math inline">\(f_i(x)\)</span> is a differentiable function and <span class="math inline">\(c_i\)</span> is a constant for each integer <span class="math inline">\(i\)</span> from 1 to 4. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)\)</span>.</p>
+<ol type="1">
+<li>Compute <span class="math inline">\(\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)\)</span>.</li>
+<li>Let <span class="math inline">\(n\)</span> be a positive integer, and then repeat both of the above after replacing 4 with <span class="math inline">\(n\)</span>.</li>
+</ol>
 
 
 </section>

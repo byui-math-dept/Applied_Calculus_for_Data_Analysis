@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -333,10 +334,10 @@ Solution
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Df</span>(cv) <span class="co">#Check we get Df = 0</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Df</span>(<span class="dv">1</span>) <span class="co">#Uniroot gives approximates, so we may need to round.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We now evaluate the second derivative at the critical value to determine if <span class="math inline">\(f''\)</span> is positive or negative at the critical value. This tells us the concavity at the critical value, which let’s us quickly state whether there is a local maximum, or local minimum, at the critical value using the second derivative test.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D2f</span>(<span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">D2f</span>(cv)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> OR</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>D2f(1)
+D2f(cv)
+#OR
+-2*exp(-1) + 1*exp(-1)</code></pre>
 <p>Because <span class="math inline">\(f''(1)=-0.3678794\)</span> is negative, then the function is concave downwards at <span class="math inline">\(x=1\)</span> with a horizontal tangent line, which means there is a maximum at <span class="math inline">\(x=1\)</span>. At this point, we’re done.</p>
 <p>Let’s use R to graph <span class="math inline">\(f\)</span> to determine if <span class="math inline">\(x=1\)</span> is also a global maximum. Here’s code similar to what we’ve used all semester.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
@@ -403,8 +404,8 @@ We can use a new variable <span class="math inline">\(g\)</span>, or we could us
 <pre><code>D2g(1/2)
 D2g(cv)</code></pre>
 <p>Let’s use our custom my_plot function to graph <span class="math inline">\(g\)</span> along with the critical value and maximum.</p>
-<pre><code>my_plot(g,-2,2)
-points(cv,g(cv))</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_plot</span>(g,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(cv,<span class="fu">g</span>(cv))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can also add on lots of bells and whistles for a pretty plot, as done with this code below.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
@@ -427,11 +428,11 @@ points(cv,g(cv))</code></pre>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Dh <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">3</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2-1</span>}</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>D2h <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">6</span><span class="sc">*</span>x}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s plot the function. Update the bounds if needed.</p>
-<pre><code>my_plot(h,-2,2)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_plot</span>(h,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There appear to be two spots where there is a horizontal tangent line. Let’s locate them visually first.<br>
 We can graph the first derivative, as well as <span class="math inline">\(y=0\)</span>, to visually see the two critical points.</p>
-<pre><code>my_plot(Dh,-2,2)
-abline(h=0)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_plot</span>(Dh,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can solve Dh=0 by hand to get</p>
 <pre><code>-sqrt(1/3)
 sqrt(1/3)</code></pre>
@@ -455,7 +456,7 @@ D2h(cv.2)</code></pre>
 <h3 class="anchored" data-anchor-id="find-any-extrema-of-hx-x3-x-on-the-interval--1-2-.">Find any extrema of <span class="math inline">\(h(x) = x^3-x\)</span> on the interval $ [-1, 2] $.</h3>
 <p>This is almost the same as the previous problem, except that now the function’s domain has been restricted to only include $ [-1, 2] $. As such, the function is no longer differentiable at the end points, which means <span class="math inline">\(x=-1\)</span> and <span class="math inline">\(x=2\)</span> become critical values as well.</p>
 <p>We can use R to graph <span class="math inline">\(h\)</span> on $ [-1, 2] $.</p>
-<pre><code>my_plot(h,-1,2)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_plot</span>(h,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are 4 critical points. We found approximations to two of these in the previous code chunks. Let’s evaluate <span class="math inline">\(h\)</span> at each critical value to determine the absolute maximum, and absolute minimum.</p>
 <pre><code>h(-1)
 h(-sqrt(1/3))
@@ -478,21 +479,21 @@ h(2)</code></pre>
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>We’ll spend the day working through various parts of Project 2. The work below was part of the prep for today. It’s crucial, so we’ll work through it together. The point is to help each other by asking and answering questions. We’ll focus on the first model <span class="math inline">\(f_1(t; a_1) = 100 + a_1t\)</span>.</p>
 <ol type="1">
-<li>Assume the errors are independent and normally distributed (with mean of 0 and standard deviation of 1). Assume <span class="math inline">\((t_i,y_i)\)</span> is a list of 44 data points to be provided. Show that the loglikelihood function for the errors when fitting <span class="math inline">\(f_1\)</span> to the 44 data points is <span class="math display">\[ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.\]</span> This was part of Task 1, so please revisit the computation together.</li>
-<li>Compute the first derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.\]</span></li>
-<li>Compute the second derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.\]</span></li>
-<li>Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:
+<li><p>Assume the errors are independent and normally distributed (with mean of 0 and standard deviation of 1). Assume <span class="math inline">\((t_i,y_i)\)</span> is a list of 44 data points to be provided. Show that the loglikelihood function for the errors when fitting <span class="math inline">\(f_1\)</span> to the 44 data points is <span class="math display">\[ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.\]</span> This was part of Task 1, so please revisit the computation together.</p></li>
+<li><p>Compute the first derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.\]</span></p></li>
+<li><p>Compute the second derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span> and show that it can be written in the form <span class="math display">\[\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.\]</span></p></li>
+<li><p>Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:</p>
 <ul>
 <li>$ = 172746.8 - 328767530 a_1 $</li>
 <li>$ = -328767530 $</li>
 </ul></li>
-<li>Find the critical points of <span class="math inline">\(\ell_1\)</span>, so set the first derivative equal to zero and solve.</li>
-<li>Use the second derivative test to determine if the critical points are locations of maxima or minima.</li>
-<li>State the value of <span class="math inline">\(a_1\)</span> that gives the location of maximum loglikelihood.
+<li><p>Find the critical points of <span class="math inline">\(\ell_1\)</span>, so set the first derivative equal to zero and solve.</p></li>
+<li><p>Use the second derivative test to determine if the critical points are locations of maxima or minima.</p></li>
+<li><p>State the value of <span class="math inline">\(a_1\)</span> that gives the location of maximum loglikelihood.</p>
 <ul>
 <li>Note: This is the same value that give the location maximum likelihood.</li>
 </ul></li>
-<li>Plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $. The code below may help you get started.</li>
+<li><p>Plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $. The code below may help you get started.</p></li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>

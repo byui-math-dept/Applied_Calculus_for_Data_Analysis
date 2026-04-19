@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -302,21 +303,21 @@ window.Quarto = {
 <p>What is a histogram?</p>
 <p>When we study a measurement (rather than a relationship between two measurements), we describe characteristics intrinsic to that measurement using a probability model. When we collect data to study a measurement, we can display our data using a histogram (we group the data values in “bins”).</p>
 <p>Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the measurement (weight of a car), we can visualize this data by constructing a histogram. Use the following code to create a histogram.</p>
-<pre><code>hist(mtcars$wt)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>wt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compare plot created by the previous code to the plot created by the following code.</p>
-<pre><code>hist(mtcars$wt,probability=TRUE)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>wt,<span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first code produces a counts (or frequency) histogram. The second code produces a density histogram. What do you notice? How is a density histogram different from a frequency histogram.</p>
 <p>When trying to model a measurement (using a probability model) we use a density histogram to visualize our data.</p>
 <p>Use the following code read data measuring the brightness of 202 different lightbulb 2104 hours (approximately 88 days or almost 3 months) after they are turned on.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use the hist() command in R to create a density histogram for the light bulb intensity as a percent of initial lumens.</p>
-<p>This completes <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Task 1</a>. Here is <a href="https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html" target="_blank">an example</a> of a cohesive analysis of this task.</p>
+<p>This completes <a href="../assets/docs/example_project.html" target="_blank">Example Project Task 1</a>. Here is <a href="https://chaz-clark.github.io/M119/Projects/m119-docs/ExampleProject_Task1.html" target="_blank">an example</a> of a cohesive analysis of this task.</p>
 </section>
 <section id="activity---exploring-some-probability-models-using-desmos-example-project-task-2-and-visually-fitting-a-model-example-project-task-3" class="level3">
 <h3 class="anchored" data-anchor-id="activity---exploring-some-probability-models-using-desmos-example-project-task-2-and-visually-fitting-a-model-example-project-task-3">Activity - Exploring some Probability Models using Desmos (Example Project Task 2) and Visually Fitting a Model (Example Project Task 3)</h3>
 <ul>
-<li>Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2</li>
+<li>Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2</li>
 <li>Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>.
 <ul>
 <li>Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Summarize in your notes how these parameters alter the graph of <span class="math inline">\(f_0\)</span>.</li>
@@ -328,10 +329,10 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dist<span class="sc">$</span>percent_intensity,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Consider the function $ f_2(x; h,a,b) = (x-h)<sup>{a-1}e</sup>{-b(x-h)} $ where <span class="math inline">\(x \geq h\)</span>. Read this <a href="https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html" target="_blank">cohesive analysis</a> describing how the parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(h\)</span> change the behavior of the function <span class="math inline">\(f_2\)</span>.</p>
+<p>Consider the function $ f_2(x; h,a,b) = (x-h)<sup>{a-1}e</sup>{-b(x-h)} $ where <span class="math inline">\(x \geq h\)</span>. Read this <a href="https://chaz-clark.github.io/M119/Projects/m119-docs/ExampleProject_Task1.html" target="_blank">cohesive analysis</a> describing how the parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(h\)</span> change the behavior of the function <span class="math inline">\(f_2\)</span>.</p>
 <p>Starting with the parameter values <span class="math inline">\(a = 10\)</span>, <span class="math inline">\(b=4.8\)</span>, and <span class="math inline">\(h=101\)</span> use what you learned from the cohesive analysis to adapt the following code to find a visual fit of the function <span class="math inline">\(f_2\)</span> to the data (visualized with the histogram).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">5</span>){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure a <span class="sc">&gt;</span> <span class="dv">0</span> and b <span class="sc">&gt;</span> <span class="fl">0.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure a &gt; 0 and b &gt; 0.</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fu">length</span>(x))</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>out[(x <span class="sc">&lt;</span> h)] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>x[(x <span class="sc">&lt;</span> h)]</span>

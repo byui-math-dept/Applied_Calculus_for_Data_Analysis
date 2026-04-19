@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -328,13 +329,13 @@ Solution
 &amp;= \sum_{i}^{44} [(y_i - 100)t_i - a_1t_i^2]\\
 &amp;= \left(\sum_{i}^{44} (y_i - 100)t_i\right) - a_1\left(\sum_{i}^{44}t_i^2\right)
 \end{align*}\]</span> We need to find where the derivative equals zero, which means we must solve <span class="math display">\[\left(\sum_{i}^{44} (y_i - 100)t_i\right) - a_1\left(\sum_{i}^{44}t_i^2\right)=0.\]</span> Note that this is of the form <span class="math inline">\(b-a_1 d=0\)</span> (I’m avoiding the letter <span class="math inline">\(c\)</span> because <span class="math inline">\(c()\)</span> is a command in R). The solution is simply <span class="math inline">\(b/d\)</span> where <span class="math inline">\(b = \left(\sum_{i}^{44} (y_i - 100)t_i\right)\)</span> and <span class="math inline">\(d =  \left(\sum_{i}^{44}t_i^2\right)\)</span>. The code below computes this value, obtaining <span class="math inline">\(a_1 = 0.0005254377\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> If not done already, load the data. </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If not done already, load the data. </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> Solve the system</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Solve the system</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="dv">-100</span>)<span class="sc">*</span>t)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>b<span class="sc">/</span>d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -372,17 +373,17 @@ c_{2,1}x + c_{2,2}y = b_2
 Solution
 </summary>
 <p>We have to identify the coefficients and enter them into R. We’ll do that together in class, and fill in the code below.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> Let<span class="st">'s create a function to solve this system of equations. </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">    1. Before moving forward, let'</span>s verify that the <span class="cf">function</span> works.</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> The solution to <span class="sc">$</span><span class="dv">2</span>x<span class="sc">+</span><span class="dv">3</span>y<span class="ot">=</span><span class="dv">4</span><span class="sc">$</span>, <span class="sc">$</span><span class="dv">5</span>x<span class="sc">+</span><span class="dv">6</span>y<span class="ot">=</span><span class="dv">7</span><span class="sc">$</span> is <span class="sc">$</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)<span class="sc">$</span>.  </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> Does this <span class="cf">function</span> yield the same result?</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's create a function to solve this system of equations. </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Before moving forward, let's verify that the function works.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## The solution to $2x+3y=4$, $5x+6y=7$ is $(-1,2)$.  </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Does this function yield the same result?</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">solvesystem</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> Now we can solve the problem at hand. </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Now we can solve the problem at hand. </span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> </span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> </span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> </span>
@@ -402,31 +403,31 @@ Solution
 <summary>
 Solution
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> If not done already, you<span class="st">'ll need to load the data. </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">library(data4led)</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">bulb &lt;- led_bulb(1,seed=123)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">t &lt;- bulb$hours</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">y &lt;- bulb$percent_intensity</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## If not done already, you'll need to load the data. </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    1. If not done already, define the solvesystem function and find the critical values. </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">c11 &lt;- sum(t^2)</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">c12 &lt;- sum(t^3)</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">b1 &lt;- sum((y-100)*t)</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">c21 &lt;- sum(t^3)</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">c22 &lt;- sum(t^4)</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">b2 &lt;- sum((y-100)*t^2)</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">sol &lt;- solvesystem(c11,c12,b1,c21,c22,b2)</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">sol</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## If not done already, define the solvesystem function and find the critical values. </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="dv">-100</span>)<span class="sc">*</span>t)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="dv">-100</span>)<span class="sc">*</span>t<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11,c12,b1,c21,c22,b2)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>sol</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">    1. Define the model f2, and and create the plot. </span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">f2 &lt;- function(x, a1 = sol[1], a2 = sol[2]){100 + a1*x + a2*x^2}</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(0,5000,10)</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">plot(t,y)</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">lines(x,f2(x),type = "l")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Define the model f2, and and create the plot. </span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a1 =</span> sol[<span class="dv">1</span>], <span class="at">a2 =</span> sol[<span class="dv">2</span>]){<span class="dv">100</span> <span class="sc">+</span> a1<span class="sc">*</span>x <span class="sc">+</span> a2<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5000</span>,<span class="dv">10</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">f2</span>(x),<span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="discussion" class="level2">
@@ -434,12 +435,12 @@ Solution
 <section id="summary-steps-to-obtain-loglikelihood." class="level3">
 <h3 class="anchored" data-anchor-id="summary-steps-to-obtain-loglikelihood.">Summary: Steps to obtain loglikelihood.</h3>
 <ol type="1">
-<li>Identify the deterministic model <span class="math inline">\(f\)</span> and stochasitic model <span class="math inline">\(p\)</span>.
+<li><p>Identify the deterministic model <span class="math inline">\(f\)</span> and stochasitic model <span class="math inline">\(p\)</span>.</p>
 <ul>
 <li>Given data of the form <span class="math inline">\((x,y)\)</span>, the residuals (or errors) will be <span class="math inline">\(r_i = y_i - f(x_i)\)</span>.</li>
 </ul></li>
-<li>Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as <span class="math inline">\(J = L = \prod_i p(r_i)\)</span>.</li>
-<li>The loglikelihood function is <span class="math inline">\(\ell = \ln(\prod_i p(r_i))\)</span>.</li>
+<li><p>Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as <span class="math inline">\(J = L = \prod_i p(r_i)\)</span>.</p></li>
+<li><p>The loglikelihood function is <span class="math inline">\(\ell = \ln(\prod_i p(r_i))\)</span>.</p></li>
 </ol>
 </section>
 <section id="summary-steps-of-optimization" class="level3">
@@ -460,7 +461,7 @@ Solution
 <section id="analyzing-waiting-times---the-exponential-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="analyzing-waiting-times---the-exponential-distribution">Analyzing Waiting times - The exponential distribution</h4>
 <p>How long do people wait in a line when they head to the bank?<br>
-- We’ll use the deterministic model <span class="math inline">\(f(x) = 0\)</span> to predict how long someone has to wait (where <span class="math inline">\(x\)</span> represents the time of day). What does this model really say in plain english? - What are your thoughts about our choice of models? - We’ll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution <span class="math inline">\(p(r) = \lambda e^{-\lambda r}\)</span> to model the residuals. - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where <span class="math inline">\(x_i\)</span> is the time of day the <span class="math inline">\(i^{\text{th}}\)</span> person comes into the bank and <span class="math inline">\(y_i\)</span> is the amount of time that person waits in line). - Find the location of the maximum of the loglikelihood function.</p>
+- We’ll use the deterministic model <span class="math inline">\(f(x) = 0\)</span> to predict how long someone has to wait (where <span class="math inline">\(x\)</span> represents the time of day). What does this model really say in plain english? - What are your thoughts about our choice of models? - We’ll use the <a href="https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution" class="uri">https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution</a> <span class="math inline">\(p(r) = \lambda e^{-\lambda r}\)</span> to model the residuals. - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where <span class="math inline">\(x_i\)</span> is the time of day the <span class="math inline">\(i^{\text{th}}\)</span> person comes into the bank and <span class="math inline">\(y_i\)</span> is the amount of time that person waits in line). - Find the location of the maximum of the loglikelihood function.</p>
 <p><a href="https://www.statlect.com/fundamentals-of-statistics/exponential-distribution-maximum-likelihood" target="_blank">This article</a> goes through all the computations above.</p>
 </section>
 </section>
@@ -477,14 +478,14 @@ Solution
 <ol type="1">
 <li>We can rewrite <span class="math display">\[\begin{align*}\ell(\lambda; \mathbf{x}) &amp;= \left(\sum_{i=1}^{21} x_i \right) \ln\lambda - \sum_{i=1}^{21}\ln(x_i!) - 21\lambda\\ &amp;= a\ln\lambda - b-21\lambda\end{align*}\]</span> for with <span class="math inline">\(a=\sum_{i=1}^{21} x_i\)</span> and <span class="math inline">\(b=\sum_{i=1}^{21}\ln(x_i!)\)</span> being just constants. Use R to compute these constants.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Florida Tropical Storm <span class="fu">Data</span> (<span class="dv">2000-2020</span>) from Wikipedia</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Florida Tropical Storm Data (2000-2020) from Wikipedia</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2000</span>,<span class="dv">2020</span>,<span class="dv">1</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>storms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">13</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> You should get a<span class="ot">=</span><span class="dv">124</span> and b<span class="ot">=</span><span class="dv">144</span>.<span class="fl">5211.</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> You<span class="st">'ll need the factorial() when entering x! into R.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># You should get a=124 and b=144.5211. </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll need the factorial() when entering x! into R.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li><p>Compute <span class="math inline">\(\dfrac{d\ell}{d\lambda}\)</span> and <span class="math inline">\(\dfrac{d^2\ell}{d\lambda^2}\)</span>.</p></li>
 <li><p>Find the critical values of <span class="math inline">\(\ell\)</span>. You should get <span class="math inline">\(\lambda =5.904762\)</span>.</p></li>
@@ -500,7 +501,10 @@ Solution
 </section>
 <section id="locating-critical-values-of-ell_6" class="level4">
 <h4 class="anchored" data-anchor-id="locating-critical-values-of-ell_6">Locating Critical Values of <span class="math inline">\(\ell_6\)</span></h4>
-<p>In project 2 Task 1 we obtained <span class="math display">\[\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t_i}))^2.\]</span> 1. Compute <span class="math inline">\(\frac{\partial\ell_6}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial\ell_6}{\partial a_2}\)</span>. 1. Use seed 123 to solve the system of equations <span class="math inline">\(\frac{\partial\ell_6}{\partial a_1} = 0\)</span> and <span class="math inline">\(\frac{\partial\ell_6}{\partial a_2} = 0\)</span>. You should obtain <span class="math inline">\(a_1=-0.0008219878\)</span> and <span class="math inline">\(a_2=7.442637\)</span>.</p>
+<p>In project 2 Task 1 we obtained <span class="math display">\[\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t_i}))^2.\]</span> 1. Compute <span class="math inline">\(\frac{\partial\ell_6}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial\ell_6}{\partial a_2}\)</span>.</p>
+<ol type="1">
+<li>Use seed 123 to solve the system of equations <span class="math inline">\(\frac{\partial\ell_6}{\partial a_1} = 0\)</span> and <span class="math inline">\(\frac{\partial\ell_6}{\partial a_2} = 0\)</span>. You should obtain <span class="math inline">\(a_1=-0.0008219878\)</span> and <span class="math inline">\(a_2=7.442637\)</span>.</li>
+</ol>
 </section>
 </section>
 </section>
@@ -510,7 +514,7 @@ Solution
 <h3 class="anchored" data-anchor-id="graphically-comparing-likelihood-and-loglikelihood-functions">Graphically comparing Likelihood and Loglikelihood functions</h3>
 <p>We can use the following code to visually show the location for the maximum of the likelihood function and the location for the maximum of the loglikelihood function are the same. The code below uses the Florida Tropical Storm Data</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Florida Tropical Storm <span class="fu">Data</span> (<span class="dv">2000-2020</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Florida Tropical Storm Data (2000-2020)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>storms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">13</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda,x){</span>

@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -371,27 +372,27 @@ Solution
 \end{align*}
 \right.\]</span> Feel free to appropriately adapt the code below.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure you<span class="st">'ve loaded the data from above. </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you've loaded the data from above. </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">c11 &lt;- </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">c12 &lt;- </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">b1 &lt;- </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">c21 &lt;- </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">c22 &lt;- </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">b2 &lt;- </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> </span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">1. Create a function to solve a system of equations. </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">1. Check the function. The solution to 2x+3y=4, 5x+6y=7 is simple. </span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem(2,3,4,5,6,7)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to solve a system of equations. </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the function. The solution to 2x+3y=4, 5x+6y=7 is simple. </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">solvesystem</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">sol &lt;- solvesystem(c11, c12, b1, c21, c22, b2)</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">sol</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">sol[1] </span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">sol[2]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11, c12, b1, c21, c22, b2)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>sol</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">1</span>] </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details>
 <summary>
 Solution
@@ -474,15 +475,15 @@ Solution
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <section id="activity---maximum-likelihood-method-for-f_6" class="level3">
 <h3 class="anchored" data-anchor-id="activity---maximum-likelihood-method-for-f_6">Activity - Maximum likelihood Method for <span class="math inline">\(f_6\)</span></h3>
-<p>Work through the computations of the maximum likelihood method for <span class="math inline">\(f_6\)</span>. As you work, you can check how you are doing by comparing your work to the complete solution for <span class="math inline">\(f_6\)</span> provided under https://tinyurl.com/4c5bxady.</p>
+<p>Work through the computations of the maximum likelihood method for <span class="math inline">\(f_6\)</span>. As you work, you can check how you are doing by comparing your work to the complete solution for <span class="math inline">\(f_6\)</span> provided under <a href="https://tinyurl.com/4c5bxady." class="uri">https://tinyurl.com/4c5bxady.</a></p>
 <ol type="1">
-<li>Consider the model <span class="math inline">\(f_6(t; a_1, a_2)\)</span>. Assuming the residuals follow a standard normal distribution (so the probability model is given by <span class="math inline">\(g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}\)</span>, state the loglikelihood function for <span class="math inline">\(f_6\)</span>. Discuss any questions. This was part of Project 2 Task 1.</li>
-<li>Obtain the partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</li>
-<li>Obtain the second partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</li>
-<li>To find the critical points of <span class="math inline">\(\ell_6\)</span>, write the system of equations you will need to solve. Give names to all the coefficients and organize your work so that you can use <code>solvesystem</code> function.</li>
-<li>Find the critical points of <span class="math inline">\(\ell_6\)</span>. So that you can compare results, use seed 123 for all remaining parts of this activity.</li>
-<li>Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood.</li>
-<li>Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit.</li>
+<li><p>Consider the model <span class="math inline">\(f_6(t; a_1, a_2)\)</span>. Assuming the residuals follow a standard normal distribution (so the probability model is given by <span class="math inline">\(g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}\)</span>, state the loglikelihood function for <span class="math inline">\(f_6\)</span>. Discuss any questions. This was part of Project 2 Task 1.</p></li>
+<li><p>Obtain the partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</p></li>
+<li><p>Obtain the second partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</p></li>
+<li><p>To find the critical points of <span class="math inline">\(\ell_6\)</span>, write the system of equations you will need to solve. Give names to all the coefficients and organize your work so that you can use <code>solvesystem</code> function.</p></li>
+<li><p>Find the critical points of <span class="math inline">\(\ell_6\)</span>. So that you can compare results, use seed 123 for all remaining parts of this activity.</p></li>
+<li><p>Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood.</p></li>
+<li><p>Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit.</p></li>
 </ol>
 <p>When you finish, start working on <span class="math inline">\(f_4\)</span>.</p>
 </section>

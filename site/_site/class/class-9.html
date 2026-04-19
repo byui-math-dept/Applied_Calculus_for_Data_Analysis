@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -319,27 +320,27 @@ Solution
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ol start="2" type="1">
-<li>Solve for <span class="math inline">\(x\)</span> in each of the following.
+<li><p>Solve for <span class="math inline">\(x\)</span> in each of the following.</p>
 <ol type="a">
 <li>
-<span class="math inline">\(2^x=8\)</span>
+<p><span class="math inline">\(2^x=8\)</span></p>
 </li>
 </ol></li>
-<li><span class="math inline">\(2^x = \frac{1}{16}\)</span></li>
-<li><span class="math inline">\(2^x = 17\)</span></li>
-<li><span class="math inline">\(e^x = 1\)</span></li>
-<li><span class="math inline">\(e^x = 2\)</span></li>
+<li><p><span class="math inline">\(2^x = \frac{1}{16}\)</span></p></li>
+<li><p><span class="math inline">\(2^x = 17\)</span></p></li>
+<li><p><span class="math inline">\(e^x = 1\)</span></p></li>
+<li><p><span class="math inline">\(e^x = 2\)</span></p></li>
 </ol>
 <details>
 <summary>
 Solutions
 </summary>
 <ol type="1">
-<li>Because <span class="math inline">\(2^3=8\)</span>, we know <span class="math inline">\(x=3\)</span>.</li>
-<li>Because <span class="math inline">\(2^{-4}=\frac{1}{16}\)</span>, we know <span class="math inline">\(x=-4\)</span>.</li>
-<li>This one isn’t guessable. We know <span class="math inline">\(2^4=16\)</span> and <span class="math inline">\(2^5=32\)</span>, so we know <span class="math inline">\(4&lt;x&lt;5\)</span>. How do we get the solution? This is what logarithms are for. We’ll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach. We can rewrite the exponential form <span class="math inline">\(2^x = 17\)</span> in the log form <span class="math inline">\(x = \log_2(17)\)</span>, which is the solution.</li>
-<li>Anything nonzero, raised to the zero, is 1, so the solution is <span class="math inline">\(x=0\)</span>.</li>
-<li>Rewriting in log form gives us <span class="math inline">\(\log_e(2)=x\)</span>. We use <span class="math inline">\(\ln\)</span> as shorthand for <span class="math inline">\(\log_e\)</span>.</li>
+<li><p>Because <span class="math inline">\(2^3=8\)</span>, we know <span class="math inline">\(x=3\)</span>.</p></li>
+<li><p>Because <span class="math inline">\(2^{-4}=\frac{1}{16}\)</span>, we know <span class="math inline">\(x=-4\)</span>.</p></li>
+<li><p>This one isn’t guessable. We know <span class="math inline">\(2^4=16\)</span> and <span class="math inline">\(2^5=32\)</span>, so we know <span class="math inline">\(4&lt;x&lt;5\)</span>. How do we get the solution? This is what logarithms are for. We’ll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach. We can rewrite the exponential form <span class="math inline">\(2^x = 17\)</span> in the log form <span class="math inline">\(x = \log_2(17)\)</span>, which is the solution.</p></li>
+<li><p>Anything nonzero, raised to the zero, is 1, so the solution is <span class="math inline">\(x=0\)</span>.</p></li>
+<li><p>Rewriting in log form gives us <span class="math inline">\(\log_e(2)=x\)</span>. We use <span class="math inline">\(\ln\)</span> as shorthand for <span class="math inline">\(\log_e\)</span>.</p></li>
 </ol>
 <p>In general, we rewrite <span class="math inline">\(a^\text{input} = \text{output}\)</span> in log form as <span class="math inline">\(\log_a\text{output} = \text{input}\)</span>. Exponential and logarithmic functions are inverses of each other. They undo what the other function did, which is why the inputs and outputs swap spots.</p>
 <p>Most computer languages use <span class="math inline">\(\exp(x)\)</span> for <span class="math inline">\(e^x\)</span> and <span class="math inline">\(\log(x)\)</span> for <span class="math inline">\(\log_e(x)\)</span>. When using <span class="math inline">\(\exp\)</span> and <span class="math inline">\(\log\)</span>, we can remember the rewriting rule as <span class="math display">\[y = \exp(x) \quad \text{means} \quad x = \log(y).\]</span> Notice that when the inputs and outputs swap, the function changes from <span class="math inline">\(\exp\)</span> to <span class="math inline">\(\log\)</span> or vice versa.</p>

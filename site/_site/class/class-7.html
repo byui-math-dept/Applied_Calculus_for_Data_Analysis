@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -259,7 +260,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-name" id="toc-during-class---day-name" class="nav-link active" data-scroll-target="#during-class---day-name">During Class - Day {$Name}</a>
+  <li><a href="#during-class---day-7" id="toc-during-class---day-7" class="nav-link active" data-scroll-target="#during-class---day-7">During Class - Day 7</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -296,11 +297,15 @@ window.Quarto = {
 </header>
 
 
-<section id="during-class---day-name" class="level1">
-<h1>During Class - Day {$Name}</h1>
+<section id="during-class---day-7" class="level1">
+<h1>During Class - Day 7</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
-<p>Write in expanded form and then calculate each of the following. 1. <span class="math inline">\(\sum_{k=4}^{8} (5-k)\)</span> 1. <span class="math inline">\(\prod_{n=1}^4 n\)</span> 1. <span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2)\)</span> When you finish, check your solution using R.</p>
+<p>Write in expanded form and then calculate each of the following. 1. <span class="math inline">\(\sum_{k=4}^{8} (5-k)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\prod_{n=1}^4 n\)</span></li>
+<li><span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2)\)</span> When you finish, check your solution using R.</li>
+</ol>
 <details>
 <summary>
 Solution
@@ -313,9 +318,9 @@ Solution
 <ul>
 <li>We compute <span class="math inline">\(\prod_{n=1}^4 n = 1(2)(3)(4) = 24\)</span>.</li>
 </ul>
-<pre><code>prod(1:4)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since <span class="math inline">\(4! = \prod_{n=1}^4 n\)</span>, you can also use the factorial command in R to commute this product.</p>
-<pre><code>factorial(4)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>We see <span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2) = \frac{1}{3}\left( (2+3^2) + (2+4^2) + (2+5^2) + (2+6)^2 + (2+7^2)\right) = \frac{145}{3}.\)</span></li>
 </ul>
@@ -329,12 +334,59 @@ Solution
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="describing-functions-practice-reading-mathematics" class="level3">
 <h3 class="anchored" data-anchor-id="describing-functions-practice-reading-mathematics">Describing Functions (practice Reading Mathematics)</h3>
-<p>The prep for yesterday involved reading and coming up with examples related to 6 definitions. <!-- include: Definition.ConstantOnTheIntervalI --> <!-- include: Definition.IncreasingOnTheIntervalI --> <!-- include: Definition.DecreasingOnTheIntervalI --> <!-- include: Definition.PositiveOnTheIntervalI --> <!-- include: Definition.NonnegativeOnTheIntervalI --> <!-- include: Definition.NegativeOnTheIntervalI --></p>
+<p>The prep for yesterday involved reading and coming up with examples related to 6 definitions.</p>
+<!-- from Definition.ConstantOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Constant</strong> on the Interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is constant on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) = f(x_2)\)</span>.</p>
+</details>
+<!-- from Definition.IncreasingOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Increasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \leq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<!-- from Definition.DecreasingOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Decreasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \geq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<!-- from Definition.PositiveOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Positive</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is positive on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; 0\)</span>.</p>
+</details>
+<!-- from Definition.NonnegativeOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Nonnegative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is nonnegative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) \geq 0\)</span>.</p>
+</details>
+<!-- from Definition.NegativeOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Negative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is negative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; 0\)</span>.</p>
+</details>
 <p>Let’s apply these definitions to some examples. 1. Consider the function <span class="math inline">\(\ds f(x) = \begin{cases}-x-4 &amp; x&lt;-2\\-2 &amp; -2\leq x\leq 2\\x-4 &amp; 2&lt;x\\\end{cases}.\)</span> 1. Sketch the graph of <span class="math inline">\(f\)</span>. 1. Give an interval on which <span class="math inline">\(f\)</span> is constant. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is increasing. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is decreasing. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is positive. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is non-negative. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is negative. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is both increasing and decreasing. 1. Draw the graph of a function that is constant on $ (0,2) $, strictly increasing on $ (2,5) $, decreasing on $ (5,10) $, nonnegative on $ [4,7] $, and negative on both $ [0,4) $ and $ (7,10] $.</p>
 </section>
 <section id="sum-and-product-notation" class="level3">
 <h3 class="anchored" data-anchor-id="sum-and-product-notation">Sum and Product Notation</h3>
-<p>Start by discussing any questions from the prep. The complete the following with your team. 1. Writing the expression in expanded form, then compute the sum or product, and finish by checking with R. 1. <span class="math inline">\(\sum_{k=2}^{4} (2k-3)\)</span> 1. <span class="math inline">\(\prod_{k=2}^4 (2k-3)\)</span> 1. <span class="math inline">\(\sum_{k=3}^{8} (k-5)^2\)</span> 1. <span class="math inline">\(\prod_{n=3}^8 (n-5)^2\)</span> 1. Write out each sum in expanded form (or at least show the pattern), and then use R to compute the sum. 1. <span class="math inline">\(\sum_{k=1}^{1} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{2} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{3} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{4} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{5} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{6} (2k-1)\)</span> 1. Make a guess, based on the patterns from above, for <span class="math inline">\(\sum_{k=1}^{20} (2k-1)\)</span>. Then check with R. 1. Compute <span class="math inline">\(1+3+5+\cdots+97+99\)</span>.</p>
+<p>Start by discussing any questions from the prep. The complete the following with your team. 1. Writing the expression in expanded form, then compute the sum or product, and finish by checking with R. 1. <span class="math inline">\(\sum_{k=2}^{4} (2k-3)\)</span> 1. <span class="math inline">\(\prod_{k=2}^4 (2k-3)\)</span> 1. <span class="math inline">\(\sum_{k=3}^{8} (k-5)^2\)</span> 1. <span class="math inline">\(\prod_{n=3}^8 (n-5)^2\)</span> 1. Write out each sum in expanded form (or at least show the pattern), and then use R to compute the sum. 1. <span class="math inline">\(\sum_{k=1}^{1} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{2} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{3} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{4} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{5} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{6} (2k-1)\)</span> 1. Make a guess, based on the patterns from above, for <span class="math inline">\(\sum_{k=1}^{20} (2k-1)\)</span>. Then check with R.</p>
+<ol type="1">
+<li>Compute <span class="math inline">\(1+3+5+\cdots+97+99\)</span>.</li>
+</ol>
 </section>
 <section id="systems-of-equations-videos" class="level3">
 <h3 class="anchored" data-anchor-id="systems-of-equations-videos">Systems of Equations (videos)</h3>
@@ -360,8 +412,8 @@ Solution
 <section id="discussion---project-1-task-2-and-the-example-project." class="level2">
 <h2 class="anchored" data-anchor-id="discussion---project-1-task-2-and-the-example-project.">Discussion - Project 1 Task 2 and the Example Project.</h2>
 <p>If you haven’t yet found the worked examples in Canvas, note that there are examples for a few tasks in the Additional resources module. Here is an example for project 1 task 2, which shows how you can put multiple plots together in the same figure, using the par(mfrow()) command, something required for the task. Note that the example below shows far more plots than are required for the actual tasks.<br>
-- https://byuistats.github.io/M119/m119-docs/Project1_Task2_f2_example.html</p>
-<p>We’ll spend the rest of class examining the example project’s Task 2. - Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 - Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>. - Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span> and <span class="math inline">\(a\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_1\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_2\)</span>.</p>
+- <a href="https://chaz-clark.github.io/M119/Projects/m119-docs/Project1_Task2_f2_example.html" class="uri">https://chaz-clark.github.io/M119/Projects/m119-docs/Project1_Task2_f2_example.html</a></p>
+<p>We’ll spend the rest of class examining the example project’s Task 2. - Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 - Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>. - Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span> and <span class="math inline">\(a\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_1\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_2\)</span>.</p>
 <p>We’ll have a discussion in class about what you observed.<br>
 Our goal is to understand enough about the general functions <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span> and their parameters to be able to identify specific functions (so specified parameters) of the forms <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span> that looks like the density histogram of our light bulb data. The code below will regenerate this histogram for us.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Project – Class Example</title>
+
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Math 119</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="project.html">
+    <span class="fas fa-tachometer"></span>
+     
+    Projects
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-question"></span>
+     
+    R Help
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio_install.html">Install RStudio Instructions</a>
+    </li>
+    <li>
+      <a href="RCommands.html">R Commands</a>
+    </li>
+    <li>
+      <a href="RMarkdownHints.html">R Markdown Hints</a>
+    </li>
+    <li>
+      <a href="RCheatSheets.html">R Cheatsheets</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Project – Class Example</h1>
+<h4 class="author"></h4>
+<h4 class="date">Last Updated October 06, 2021</h4>
+
+</div>
+
+
+<div id="project-outline" class="section level1">
+<h1>Project Outline</h1>
+<p>This project outline and background information have been provided to assist you as you complete your project. You should assume the reader of your work has no knowledge or access to this information.</p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Philips_LED_bulbs.jpg" width="150" alt="" />
+<p class="caption">Phillips LED Bulbs - <a href="https://en.wikipedia.org/wiki/File:Philips_LED_bulbs.jpg">source</a></p>
+</div>
+<p>Measurements have uncertainty or variation. How can we model that uncertainty and use those models to answer questions? In this project, we’ll be fitting the data to stochastic models <span class="math inline">\(f(L)\)</span> that give the probability information about different lumen output of LED bulbs (as a percent of the initial lumens).</p>
+<div id="task-1-background-and-data" class="section level2">
+<h2>Task 1: Background and Data</h2>
+<ul>
+<li><p>Create an R Markdown file.</p></li>
+<li><p>Use the following code to read in the light bulb data.</p>
+<pre class="r"><code>#Uncomment and run the line below once in the console to get the devtools package.
+  #install.packages(&quot;devtools&quot;)
+
+#Uncomment and run the line below once in the console to get the data4led package.
+  #devtools::install_github(&quot;byuidatascience/data4led&quot;) 
+
+#Use the code below to load the data4led package to your current R session.
+library(data4led)
+
+#Use the code below to load the data for all the bulbs at a time near 2100 hours.
+dist &lt;- led_time(2100)</code></pre>
+<p>This code creates a data frames is called “dist”. The dist data frame contains measurements for 202 light bulbs 2104 hours after the the light bulb was turned on.</p></li>
+</ul>
+<p>The data frame named “dist” includes the columns (1) “id”, the identification number for your randomly selected bulb, (2) “hours”, the number of hours since the bulb has turned on, (3) “intensity”, the lumen output of the bulb, and (4) “percent_intensity”, the bulb intensity as a percent of the original lumen.</p>
+<p>The stochastic models we will be fitting give the probability information for intensity measured as a percent of the initial brightness.</p>
+<ul>
+<li>Use the <code>hist()</code> command in R to create a density histogram for the light bulb intensity as a percent of initial lumens. Use the dist data frame.</li>
+<li>Organize your work into a <strong>cohesive analysis</strong>.</li>
+</ul>
+</div>
+<div id="task-2-models-and-parameter-exploration" class="section level2">
+<h2>Task 2: Models and Parameter Exploration</h2>
+<ul>
+<li><p>Create a new R Markdown file.</p></li>
+<li><p>Consider the following general models</p>
+<ul>
+<li><span class="math inline">\(f_0(L; a,b) = \frac{1}{b-a}\)</span> with <span class="math inline">\(-\infty &lt; a &lt; L &lt; b &lt; \infty\)</span> (and 0 otherwise)</li>
+<li><span class="math inline">\(f_1(L; h,a) = \frac{1}{\sqrt{2\pi a}}e^{-\frac{(x-h)^2}{2a}}\)</span> with <span class="math inline">\(h &gt; 0\)</span>, <span class="math inline">\(a &gt; 0\)</span>, and <span class="math inline">\(-\infty &lt; L &lt; \infty\)</span></li>
+<li><span class="math inline">\(f_2(L; h,a,b) = \frac{b^a}{\Gamma(a)}(L-h)^{a-1}e^{-b(L-h)}\)</span> with <span class="math inline">\(a &gt; 0\)</span>, <span class="math inline">\(b &gt;0\)</span>, and <span class="math inline">\(L \geq h\)</span> (and 0 otherwise)</li>
+</ul></li>
+<li><p>For each function, use the Desmos files below with sliders to dynamically explore how changing the parameter changes the behavior of the function.</p>
+<ul>
+<li><a href="https://www.desmos.com/calculator/is6afqy4yd">Desmos file for function 0</a></li>
+<li><a href="https://www.desmos.com/calculator/jo2fqm42xi">Desmos file for function 1</a></li>
+<li><a href="https://www.desmos.com/calculator/mx38bdxium">Desmos file for function 2</a></li>
+</ul></li>
+<li><p>For each function, observe how changing the parameters changes the behavior of the function (or model). Try to summarize your observations in terms of transformations of functions (shifts, reflections, stretch) and the mathematical behavior of the function (increasing, decreasing, constant, positive, negative, nonnegative). Identify interesting parameter values (or ranges of values) where the behavior of function is different.</p></li>
+<li><p>Select one of the functions to describe. In your narrative summarize your observations about the parameters in terms of transformations of functions (shifts, reflections, stretch) and the mathematical behavior of the function (increasing, decreasing, constant, positive, negative, nonnegative). Use <code>plot()</code> commands in R to plot several representative curves illustrating what you learned in your parameter exploration. Use the <code>par(mfrow())</code> command to organize your plots into one figure.</p></li>
+<li><p>Organize your work into a <strong>cohesive analysis</strong> and submit it to Canvas.</p></li>
+</ul>
+</div>
+<div id="task-3-fit-the-models-visual-method" class="section level2">
+<h2>Task 3 Fit the Models (“Visual” Method)</h2>
+<ul>
+<li>Create a new R Markdown file.</li>
+<li>For each model, <span class="math inline">\(f_i(L)\)</span>, pick parameter values to find a visual fit of the model to the data.</li>
+<li>Use the <code>hist()</code> and <code>lines()</code> commands in R to plot your each fitted function and the density histogram of the data together. You should have <strong>3 plots</strong>, each with one fitted function and the data. Make sure the viewing window for each plot is <code>xlim = c(95,105)</code> and <code>ylim = c(0,1)</code>.</li>
+<li>Organize your work into a <strong>cohesive analysis</strong> and submit it to Canvas.</li>
+</ul>
+</div>
+<div id="task-4-use-the-fitted-models-to-answer-questions" class="section level2">
+<h2>Task 4: Use the Fitted Models to Answer Questions</h2>
+<ul>
+<li>Create a new R Markdown file.</li>
+<li>Use the <code>runif()</code>, <code>rnorm()</code>, and <code>rgamma()</code> commands in R with the parameter values you found when you fit the distribution to the data to create a sample of 5000 random measurements using each fitted model.</li>
+<li>Use your simulated sample to approximate how many light bulbs out of 5000 will have intensity between 100.2533% and 102.6927% of their initial intensity after 2104 hours.</li>
+<li>Calculate the probability that a light bulb will have an intensity between 100.2533% and 102.6927% of its initial intensity after 2104 hours.</li>
+<li>Describe in 4-6 sentences how the information you get from the data depends on the general model you assume. Why is this an important concept to understand when working with models and data?</li>
+<li>Are any of your fitted models inconsistent with the story the data tells in the density histogram of the light bulb intensities?
+<ul>
+<li>If a fitted model is inconsistent with what we know about a situation, it is suspect and suggests further work should be done before trusting that model or it should not be used as a model in that situation.</li>
+</ul></li>
+<li>Organize your work into a <strong>cohesive analysis</strong> and submit it to Canvas.</li>
+</ul>
+</div>
+<div id="project-bringing-it-all-together" class="section level2">
+<h2>Project: Bringing it All Together</h2>
+<ul>
+<li><p>Create a new R Markdown file.</p></li>
+<li><p>Use this code to read in the data for when the bulbs have been on for approximately 1 day (24 hours).</p>
+<pre class="r"><code>dist1 &lt;- led_time(24)</code></pre>
+<ul>
+<li>Visually fit <span class="math inline">\(f_1(L)\)</span> and <span class="math inline">\(f_2(L)\)</span>, to this data.</li>
+<li>Calculate the probability that a light bulb will have an intensity between 99.31491% and 101.3705% of its initial intensity after approximately a day.</li>
+</ul></li>
+<li><p>Use this code to read in the data for when the bulbs have been on for approximately 1 month (720 hours).</p>
+<pre class="r"><code>dist2 &lt;- led_time(720)</code></pre>
+<ul>
+<li>Visually fit <span class="math inline">\(f_1(L)\)</span> and <span class="math inline">\(f_2(L)\)</span>, to this data.</li>
+<li>Calculate the probability that a light bulb will have an intensity between 99.95945% and 102.1952% of its initial intensity after approximately a month.</li>
+</ul></li>
+<li><p>Use this code to read in the data for when the bulbs have been on for approximately 6 month (4320 hours).</p>
+<pre class="r"><code>dist4 &lt;- led_time(4320)</code></pre>
+<ul>
+<li>Visually fit <span class="math inline">\(f_1(L)\)</span> and <span class="math inline">\(f_2(L)\)</span>, to this data.</li>
+<li>Calculate the probability that a light bulb will have an intensity between 100.0117% and 102.499% of its initial intensity after approximately 6 months.</li>
+</ul></li>
+<li><p>Describe in 2-4 sentences how a deterministic model is different than a stochastic model.</p></li>
+<li><p>Organize your work from Tasks 1-5 into a <strong>cohesive analysis</strong> and submit it to Canvas. Use only the important and relevant plots, calculations, and information.</p>
+<ul>
+<li>Begin with background and an introduction to the question(s) you will be answering with the light bulb data.</li>
+</ul></li>
+<li><p>Reflect on your work for this project. At the bottom of your report include the following in a brief (1-2 paragraph) reflection.</p>
+<ul>
+<li>Identify/explain 2-3 key mathematical ideas you learned (and would like to remember).</li>
+<li>Identify/explain 1-3 soft skills you needed/improved/learned while working on the project.
+<ul>
+<li>List of some Soft Skills
+<ul>
+<li>Dedication</li>
+<li>Following Directions</li>
+<li>Motivation</li>
+<li>Self-directed</li>
+<li>Organization</li>
+<li>Planning</li>
+<li>Time Management</li>
+<li>Willing to Accept Feedback</li>
+<li>Perseverance</li>
+<li>Good attitude</li>
+<li>Meets deadlines</li>
+<li>Willingness to learn</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

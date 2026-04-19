@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -320,23 +321,23 @@ Answers
 <section id="activity---computing-derivatives-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---computing-derivatives-practice">Activity - Computing Derivatives Practice</h3>
 <p>Below is a list of derivative rules (most of which we have seen) that you are welcome to use as you complete this activity and any homework in Knewton Alta. It’s not crucial that you memorize all these rules. Some you will memorize from just using them each time.</p>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <ul>
 <li>Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving theses problems.</li>
 <li>After you’ve discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to <em>pass the chalk</em> after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.</li>
 </ul>
 <ol type="1">
-<li>For <span class="math inline">\(f(x) = (3x^2-7x+5)\ln(x)\)</span>, find <span class="math inline">\(f'(x)\)</span>. Remember to <strong>identify which rules</strong> you used at each step (on this and each problem).</li>
-<li>For <span class="math inline">\(g(x) = \frac{3}{x}e^x\)</span>, find <span class="math inline">\(g'(x)\)</span>.</li>
-<li>For <span class="math inline">\(h(x) = \frac{6\ln(x)}{5\sqrt{x}}\)</span>, find <span class="math inline">\(\frac{dh}{dx}\)</span>.</li>
-<li>For <span class="math inline">\(r(t) = 7\ln t - \frac{3}{t^2}\)</span>, find <span class="math inline">\(\frac{dr}{dt}\)</span>.</li>
-<li>For <span class="math inline">\(f(p) = \sum_{j=3}^7 4^jp^2\)</span>, find <span class="math inline">\(f'(p)\)</span>.</li>
-<li>For <span class="math inline">\(h(r) = \sum_{n=1}^{40} n\ln(r)\)</span>, find <span class="math inline">\(h'(r)\)</span>.</li>
-<li>For <span class="math inline">\(t(x) = \sum_{m=1}^{40}  m x^m\)</span>, find <span class="math inline">\(\frac{dt}{dx}\)</span>.</li>
-<li>For <span class="math inline">\(p(x) = ax^2+be^x+c\ln(x)\)</span>, find <span class="math inline">\(\frac{dp}{dx}\)</span> assuming that <span class="math inline">\(a,b,c\)</span> are constants.</li>
-<li>For <span class="math inline">\(p(a) = ax^2+be^x+c\ln(x)\)</span>, find <span class="math inline">\(\frac{dp}{da}\)</span> assuming that <span class="math inline">\(x,b,c\)</span> are constants.</li>
-<li>For <span class="math inline">\(r(y) = \frac{6y^2e^y}{5\sqrt{y}}\)</span>, find <span class="math inline">\(\frac{dr}{dy}\)</span>.</li>
-<li>For <span class="math inline">\(q(t) = (3x+1)(x^2-4)(5x-3\sqrt{x})(1-e^x)\)</span> find <span class="math inline">\(D_t q\)</span>.</li>
+<li><p>For <span class="math inline">\(f(x) = (3x^2-7x+5)\ln(x)\)</span>, find <span class="math inline">\(f'(x)\)</span>. Remember to <strong>identify which rules</strong> you used at each step (on this and each problem).</p></li>
+<li><p>For <span class="math inline">\(g(x) = \frac{3}{x}e^x\)</span>, find <span class="math inline">\(g'(x)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(h(x) = \frac{6\ln(x)}{5\sqrt{x}}\)</span>, find <span class="math inline">\(\frac{dh}{dx}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(r(t) = 7\ln t - \frac{3}{t^2}\)</span>, find <span class="math inline">\(\frac{dr}{dt}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(f(p) = \sum_{j=3}^7 4^jp^2\)</span>, find <span class="math inline">\(f'(p)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(h(r) = \sum_{n=1}^{40} n\ln(r)\)</span>, find <span class="math inline">\(h'(r)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(t(x) = \sum_{m=1}^{40}  m x^m\)</span>, find <span class="math inline">\(\frac{dt}{dx}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(p(x) = ax^2+be^x+c\ln(x)\)</span>, find <span class="math inline">\(\frac{dp}{dx}\)</span> assuming that <span class="math inline">\(a,b,c\)</span> are constants.</p></li>
+<li><p>For <span class="math inline">\(p(a) = ax^2+be^x+c\ln(x)\)</span>, find <span class="math inline">\(\frac{dp}{da}\)</span> assuming that <span class="math inline">\(x,b,c\)</span> are constants.</p></li>
+<li><p>For <span class="math inline">\(r(y) = \frac{6y^2e^y}{5\sqrt{y}}\)</span>, find <span class="math inline">\(\frac{dr}{dy}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(q(t) = (3x+1)(x^2-4)(5x-3\sqrt{x})(1-e^x)\)</span> find <span class="math inline">\(D_t q\)</span>.</p></li>
 </ol>
 
 

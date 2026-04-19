@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -276,8 +277,8 @@ Solution
 <p>The base has area <span class="math inline">\(x^2\)</span>. Letting <span class="math inline">\(h\)</span> be the height of the box, the volume of the box is <span class="math inline">\(V(x,h) = x^2h\)</span>. Each the sides has area <span class="math inline">\(4xh\)</span>, which means the total area of 6 must satistify <span class="math inline">\(6 = x^2+4xh\)</span>. From here we can get <span class="math inline">\(h\)</span> by itself as $ h =$. This means the volume is <span class="math display">\[V(x) = x^2h = x^2 \frac{6-x^2}{4x} = \frac{1}{4}x(6-x^2).\]</span></p>
 </details>
 <ol type="1">
-<li>Use R to plot the function above, and then guess the maximum possible volume along with the dimensions that correspond to this volume.</li>
-<li>Compute the derivative of the function above, and use it to find the maximum possible volume.</li>
+<li><p>Use R to plot the function above, and then guess the maximum possible volume along with the dimensions that correspond to this volume.</p></li>
+<li><p>Compute the derivative of the function above, and use it to find the maximum possible volume.</p></li>
 </ol>
 </section>
 <section id="group-meeting" class="level2">
@@ -285,7 +286,7 @@ Solution
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---comparing-solutions" class="level3">
 <h3 class="anchored" data-anchor-id="activity---comparing-solutions">Activity - Comparing Solutions</h3>
-<p>Our goal today is to dig into the derivative relationships and associated vocabulary. Your assignment before class was to fill in as many of the blanks, as possible, from the <a href="https://byuistats.github.io/M119/m119-docs/DerivativeRelationship_FillBlank.pdf" target="_blank">Derivative Relationships worksheet (PDF)</a>. Compare your answers, discuss any questions, and have a scribe write your solutions on the board (so you can compare with other groups).</p>
+<p>Our goal today is to dig into the derivative relationships and associated vocabulary. Your assignment before class was to fill in as many of the blanks, as possible, from &lt;../assets/docs/DerivativeRelationship_FillBlank.pdf.&gt; Compare your answers, discuss any questions, and have a scribe write your solutions on the board (so you can compare with other groups).</p>
 <p>You may need some of definitions, theorem, or tests below as you complete the next activity. Take a moment to open each item and review it. #### Theorems - Tests - Definitions</p>
 <details>
 <summary>
@@ -376,8 +377,19 @@ Definition: Inflection Point
 </section>
 <section id="activity---constructing-examples" class="level3">
 <h3 class="anchored" data-anchor-id="activity---constructing-examples">Activity - Constructing Examples</h3>
-<p>To help us understand derivative relationships and associated vocabulary, let’s create sketches that illustrate the concepts. At the chalk boards, take turns providing a rough sketch of a function with the properties listed (also sketch the derivative and/or second derivative if this helps you make sense of the properties). Number your graphs, keep them small-ish, and try to fill your board with examples that we can compare with others. Use the information above for reference. 1. <span class="math inline">\(f\)</span> is increasing and concave up for all <span class="math inline">\(x\)</span>. 1. <span class="math inline">\(f\)</span> so that <span class="math inline">\(f'(x) &gt; 0\)</span> and <span class="math inline">\(f''(x)&lt;0\)</span> for all <span class="math inline">\(x\)</span>. 1. <span class="math inline">\(f\)</span> has an inflection point at <span class="math inline">\(x=4\)</span>. 1. <span class="math inline">\(f\)</span> has a horizontal tangent line when <span class="math inline">\(x=3\)</span>. 1. <span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> for all <span class="math inline">\(x\)</span>. 1. <span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> and <span class="math inline">\(f''&gt;0\)</span> at <span class="math inline">\(x=-2\)</span>. 1. <span class="math inline">\(f\)</span> is decreasing and concave down on the interval $ (-3,5) $. 1. <span class="math inline">\(f\)</span> so that <span class="math inline">\(f'\)</span> has at least one change of sign and is always defined. 1. <span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> and <span class="math inline">\(f''&lt;0\)</span> at <span class="math inline">\(x=1\)</span>. 1. <span class="math inline">\(f\)</span> so that -<span class="math inline">\(f\)</span> is concave down everywhere.</p>
-<p>When you finish, work on <a href="https://byuistats.github.io/M119/m119-docs/GraphingUsingSigns.pdf" target="_blank">this worksheet</a> together (remember to take turns).</p>
+<p>To help us understand derivative relationships and associated vocabulary, let’s create sketches that illustrate the concepts. At the chalk boards, take turns providing a rough sketch of a function with the properties listed (also sketch the derivative and/or second derivative if this helps you make sense of the properties). Number your graphs, keep them small-ish, and try to fill your board with examples that we can compare with others. Use the information above for reference. 1. <span class="math inline">\(f\)</span> is increasing and concave up for all <span class="math inline">\(x\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(f\)</span> so that <span class="math inline">\(f'(x) &gt; 0\)</span> and <span class="math inline">\(f''(x)&lt;0\)</span> for all <span class="math inline">\(x\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> has an inflection point at <span class="math inline">\(x=4\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> has a horizontal tangent line when <span class="math inline">\(x=3\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> for all <span class="math inline">\(x\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> and <span class="math inline">\(f''&gt;0\)</span> at <span class="math inline">\(x=-2\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> is decreasing and concave down on the interval $ (-3,5) $.</p></li>
+<li><p><span class="math inline">\(f\)</span> so that <span class="math inline">\(f'\)</span> has at least one change of sign and is always defined.</p></li>
+<li><p><span class="math inline">\(f\)</span> so that <span class="math inline">\(f'=0\)</span> and <span class="math inline">\(f''&lt;0\)</span> at <span class="math inline">\(x=1\)</span>.</p></li>
+<li><p><span class="math inline">\(f\)</span> so that -<span class="math inline">\(f\)</span> is concave down everywhere.</p></li>
+</ol>
+<p>When you finish, work on <a href="../assets/docs/GraphingUsingSigns.pdf" target="_blank">this worksheet</a> together (remember to take turns).</p>
 </section>
 </section>
 <section id="class-discussion" class="level2">
@@ -386,7 +398,7 @@ Definition: Inflection Point
 <h3 class="anchored" data-anchor-id="elvesrus-extended">ElvesRUs Extended</h3>
 <p>Last time we worked on a ElvesRUs loglikelihood (full problem statement included below). We found the loglikelihood of the errors, rewrote the function using the properties of logs and sums, and found the first partials of the loglikelihood function.</p>
 <p>-&gt;You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math inline">\(p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}\)</span>.</p>
-<p>Today let’s compute the following second partial derivatives: <span class="math inline">\(\frac{\partial^2\ell}{\partial A^2}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial b \partial A}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial k \partial A}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial A \partial b}\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial b^2}\)</span>, and <span class="math inline">\(\frac{\partial^2 \ell}{\partial k \partial b}\)</span> Is this all the partials? (No!) Turn back in your notes (or use the following link) to get the first partials. <a href="https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf" target="_blank">Elves-R-Us loglikelihood derivatives (PDF)</a></p>
+<p>Today let’s compute the following second partial derivatives: <span class="math inline">\(\frac{\partial^2\ell}{\partial A^2}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial b \partial A}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial k \partial A}\)</span>, <span class="math inline">\(\frac{\partial^2 \ell}{\partial A \partial b}\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial b^2}\)</span>, and <span class="math inline">\(\frac{\partial^2 \ell}{\partial k \partial b}\)</span> Is this all the partials? (No!) Turn back in your notes (or use the following link) to get the first partials. &lt;../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf&gt;</p>
 <details>
 <summary>
 Answers

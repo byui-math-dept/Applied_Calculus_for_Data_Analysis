@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -302,7 +303,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
 <li>Consider the curve <span class="math inline">\(y=8/x\)</span> for <span class="math inline">\(x&gt;0\)</span>. Write down a function <span class="math inline">\(f(x)\)</span> that gives the distance from the origin <span class="math inline">\((0,0)\)</span> to a point on the curve <span class="math inline">\(y=8/x\)</span>. A plot of the curve is shown below, along with a right triangle that has one vertex at <span class="math inline">\((0,0)\)</span> and another at a point <span class="math inline">\((x,8/x)\)</span> on the curve. (Hint: The Pythagorean theorem <span class="math inline">\(a^2+b^2=c^2\)</span> will help.)<br>
-<img src="https://byuimath.com/bmw/all/119/uploads/Class/8overx.png" class="img-fluid" alt="Curve y=8/x with right triangle"></li>
+<a href="https://byuimath.com/bmw/all/119/uploads/Class/8overx.png" class="uri">https://byuimath.com/bmw/all/119/uploads/Class/8overx.png</a></li>
 </ol>
 <details>
 <summary>
@@ -320,27 +321,27 @@ Solution
 <p>We now use R to graph both the equation <span class="math inline">\(y=8/x\)</span> and the distance function.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span><span class="sc">/</span>x)<span class="sc">^</span><span class="dv">2</span>)}</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We first plot y <span class="ot">=</span> <span class="dv">8</span><span class="sc">/</span>x. Using asp<span class="ot">=</span><span class="dv">1</span> equalizes x and y distances.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#We first plot y = 8/x. Using asp=1 equalizes x and y distances.</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>, <span class="fl">0.01</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="dv">8</span><span class="sc">/</span>x, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Let<span class="st">'s add concentric circles to see how far from the origin points are.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">symbols(x = rep(0,5), y =rep(0,5), circles = seq(1,5), add = TRUE, inches = FALSE)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">1. Let'</span>s guess x <span class="ot">=</span> <span class="dv">3</span> as the closest spot.  We can see it<span class="st">'s a bit to large. </span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">abline(v=3)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's add concentric circles to see how far from the origin points are.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">symbols</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">y =</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">circles =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">inches =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's guess x = 3 as the closest spot.  We can see it's a bit to large. </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">1. Now let'</span>s plot f and add x<span class="ot">=</span><span class="dv">3</span> <span class="cf">for</span> comparison </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Now let's plot f and add x=3 for comparison </span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The value x<span class="ot">=</span><span class="dv">3</span> is too large.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#The value x=3 is too large.</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Zoom in. </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Zoom in. </span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.5</span>,<span class="dv">3</span>, <span class="fl">0.01</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.82</span>)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.84</span>)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Zoom in. </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Zoom in. </span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.82</span>, <span class="fl">2.84</span>, <span class="fl">0.001</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">3.999</span>,<span class="fl">4.001</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The plot has a minimum value somewhere a bit less than 3. There has to be a better way to find the minimum than zooming in. This is where derivatives come to the rescue.</p>
@@ -359,33 +360,41 @@ Solution
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math display">\[p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.\]</span> 1. Write the loglikelihood function for the errors in this situation. 1. Rewrite the loglikelihood function using the properties of logs and sums. 1. Compute the first partial derivatives of the loglikelihood function. (We’ll do one together. The solutions for all three of them are in the file below.) <a href="https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf" target="_blank">Elves-R-Us loglikelihood derivatives (PDF)</a></p>
+<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math display">\[p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.\]</span> 1. Write the loglikelihood function for the errors in this situation.</p>
+<ol type="1">
+<li>Rewrite the loglikelihood function using the properties of logs and sums.</li>
+<li>Compute the first partial derivatives of the loglikelihood function. (We’ll do one together. The solutions for all three of them are in the file below.) &lt;../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf&gt;</li>
+</ol>
 </section>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---loglikelihood-practice-derivatives-optimization-and-project-2" class="level3">
 <h3 class="anchored" data-anchor-id="activity---loglikelihood-practice-derivatives-optimization-and-project-2">Activity - Loglikelihood Practice, Derivatives, Optimization, and Project 2</h3>
-<p>You will be working together to revisit Task 1 and complete part of Task 2 for <a href="https://byuistats.github.io/M119/project2.html" target="_blank">Project 2</a>. The prep for today asked you to watch some videos related to <span class="math inline">\(f_2\)</span>.</p>
+<p>You will be working together to revisit Task 1 and complete part of Task 2 for <a href="https://chaz-clark.github.io/M119/Projects/unit2.html." class="uri">https://chaz-clark.github.io/M119/Projects/unit2.html.</a> The prep for today asked you to watch some videos related to <span class="math inline">\(f_2\)</span>.</p>
 <p>Consider the model <span class="math inline">\(f_1(t; a_1) = 100 + a_1t\)</span>. 1. On the chalk board, as a group, go through the computations needed to obtain the loglikelihood function. Your job is to perform the needed computations and include enough explanations to show that <span class="math display">\[\ell_1(a_1; \mathbf{t},\mathbf{y}) =
 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
-- 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of the loglikelihood function, so compute <span class="math inline">\(\frac{d\ell_1}{da_1}\)</span>. The solution is provided in Task 2. 1. Now compute the second derivative <span class="math inline">\(\frac{d^2\ell_1}{da_1^2}\)</span>. Again, the solution is provided in Task 2. 1. Use the following code to plot the loglikelihood function.</p>
+- 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of the loglikelihood function, so compute <span class="math inline">\(\frac{d\ell_1}{da_1}\)</span>. The solution is provided in Task 2.</p>
+<ol type="1">
+<li>Now compute the second derivative <span class="math inline">\(\frac{d^2\ell_1}{da_1^2}\)</span>. Again, the solution is provided in Task 2.</li>
+<li>Use the following code to plot the loglikelihood function.</li>
+</ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())  <span class="co">#clear the environment</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led) <span class="co">#load the library</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> read <span class="cf">in</span> the data set, using seed <span class="dv">123</span> <span class="cf">for</span> class comparisons</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#read in the data set, using seed 123 for class comparisons</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> define the loglikelihood <span class="cf">function</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#define the loglikelihood function</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="cf">function</span>(p,t,y){ <span class="dv">44</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">sum</span>((y<span class="dv">-100</span><span class="sc">-</span>p<span class="sc">*</span>t)<span class="sc">^</span><span class="dv">2</span>) } </span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> create a list of inputs <span class="cf">for</span> our plot of the loglikelihood <span class="cf">function</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list of inputs for our plot of the loglikelihood function</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.005</span>,<span class="fl">0.005</span>,<span class="fl">1e-5</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> use those inputs to calculate outputs <span class="cf">for</span> our plot of the loglikelihood <span class="cf">function</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#use those inputs to calculate outputs for our plot of the loglikelihood function</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">lapply</span>(a1,<span class="at">FUN=</span>l,<span class="at">t=</span>t,<span class="at">y=</span>y))</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> plot the loglikelihood <span class="cf">function</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the loglikelihood function</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a1,Y,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>Adapt the inputs vector above to make a guess for what you think is the best value for <span class="math inline">\(a_1\)</span>. How did you decide on that value?

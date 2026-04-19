@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -267,7 +268,17 @@ window.Quarto = {
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
-<p>Match the expressions, equations, or functions in column 1 with descriptions in column 2. | Probability expressions/equations/functions | Descriptions | | — | — | | <strong>1.</strong> <span class="math inline">\(f(x) = F'(x)\)</span> where <span class="math inline">\(F(x)\)</span> is the CDF of a continuous random variable | <strong>A.</strong> Cumulative Distribution Function (cdf) | | <strong>2.</strong> <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x) dx = F(b) - F(a)\)</span> | <strong>B.</strong> Probability Density Function (pdf) | | <strong>3.</strong> <span class="math inline">\(F(x) = P(X \leq x)\)</span> | <strong>C.</strong> Accumulation Function | | <strong>4.</strong> Given <span class="math inline">\(g(x) \geq 0\)</span>, we compute <span class="math inline">\(\int_{-\infty}^\infty g(x)dx\)</span>. | <strong>D.</strong> Total Area (“of a rug” or “under a nonnegative function”) | | <strong>5.</strong> <span class="math inline">\(\int_{-\infty}^x f(s)ds\)</span>. | <strong>E.</strong> Fundamental Theorem of Calculus (FTC) | | <strong>6.</strong> Given <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(\diff{}{x}(\int_{-\infty}^x f(t)dt) = f(x)\)</span>. | | | <strong>7.</strong> <span class="math inline">\(\frac{\int_{-\infty}^x R(t)dt}{\int_{-\infty}^\infty R(x)dx}\)</span> where <span class="math inline">\(R\)</span> is nonnegative | | | <strong>8.</strong> Given <span class="math inline">\(h\)</span> is continuous and <span class="math inline">\(H(x) = \int_{-\infty}^x h(t)dt\)</span>, then <span class="math inline">\(H'(x) = h(x)\)</span>. | |</p>
+<p>Match the expressions, equations, or functions in column 1 with descriptions in column 2.</p>
+<div class="line-block">Probability expressions/equations/functions | Descriptions |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block"><strong>1.</strong> <span class="math inline">\(f(x) = F'(x)\)</span> where <span class="math inline">\(F(x)\)</span> is the CDF of a continuous random variable | <strong>A.</strong> Cumulative Distribution Function (cdf) |</div>
+<div class="line-block"><strong>2.</strong> <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x) dx = F(b) - F(a)\)</span> | <strong>B.</strong> Probability Density Function (pdf) |</div>
+<div class="line-block"><strong>3.</strong> <span class="math inline">\(F(x) = P(X \leq x)\)</span> | <strong>C.</strong> Accumulation Function |</div>
+<div class="line-block"><strong>4.</strong> Given <span class="math inline">\(g(x) \geq 0\)</span>, we compute <span class="math inline">\(\int_{-\infty}^\infty g(x)dx\)</span>. | <strong>D.</strong> Total Area (“of a rug” or “under a nonnegative function”) |</div>
+<div class="line-block"><strong>5.</strong> <span class="math inline">\(\int_{-\infty}^x f(s)ds\)</span>. | <strong>E.</strong> Fundamental Theorem of Calculus (FTC) |</div>
+<div class="line-block"><strong>6.</strong> Given <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(\diff{}{x}(\int_{-\infty}^x f(t)dt) = f(x)\)</span>. | |</div>
+<div class="line-block"><strong>7.</strong> <span class="math inline">\(\frac{\int_{-\infty}^x R(t)dt}{\int_{-\infty}^\infty R(x)dx}\)</span> where <span class="math inline">\(R\)</span> is nonnegative | |</div>
+<div class="line-block"><strong>8.</strong> Given <span class="math inline">\(h\)</span> is continuous and <span class="math inline">\(H(x) = \int_{-\infty}^x h(t)dt\)</span>, then <span class="math inline">\(H'(x) = h(x)\)</span>. | |</div>
 <details>
 <summary>
 Answers
@@ -287,10 +298,15 @@ Answers
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>Give each group member 1-2 minutes to share what they prepared from the between class work.</p>
-<p>Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them. ### Fundamental Theorem of Calculus Exercises 1. Compute <span class="math inline">\(\int_{-2}^{1} 5 - 6x dx\)</span> using the FTC. Check your work with Mathematica. 1. Explain why <span class="math inline">\(\frac{d}{dx}\left(\int_{-2}^{1} 5 - 6x dx\right) = 0\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left( 5x - 3x^2 + C\right)\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\int_1^x 5 - 6t dt\right)\)</span>. 1. Compute <span class="math inline">\(\int_1^x 5 - 6t dt\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\int_7^x \ln(t^2+1)e^{4t^3}dt\right)\)</span>.</p>
+<p>Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them. ### Fundamental Theorem of Calculus Exercises 1. Compute <span class="math inline">\(\int_{-2}^{1} 5 - 6x dx\)</span> using the FTC. Check your work with Mathematica.</p>
 <ol type="1">
-<li>Compute <span class="math inline">\(\int e^t+\frac{1}{t}dt\)</span>.</li>
-<li>Compute <span class="math inline">\(\int_1^x e^t+\frac{1}{t}dt\)</span>.</li>
+<li><p>Explain why <span class="math inline">\(\frac{d}{dx}\left(\int_{-2}^{1} 5 - 6x dx\right) = 0\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\frac{d}{dx}\left( 5x - 3x^2 + C\right)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\frac{d}{dx}\left(\int_1^x 5 - 6t dt\right)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_1^x 5 - 6t dt\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\frac{d}{dx}\left(\int_7^x \ln(t^2+1)e^{4t^3}dt\right)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int e^t+\frac{1}{t}dt\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\int_1^x e^t+\frac{1}{t}dt\)</span>.</p></li>
 </ol>
 </section>
 <section id="discussion" class="level2">
@@ -330,13 +346,20 @@ Check
 <li><p>We have not yet learned a technique that we can use to find this integral, <span class="math inline">\(\int \frac{1}{x^2 + 8} dx\)</span>, by hand.</p></li>
 </ul>
 </details>
-<p><a id="Prep"></a> # Between Class Sessions <a id="tasklist"></a> ## Activity - Integration Practice Evaluate each indefinite integral (the complete “list” of antiderivatives or the most general antiderivative). When you are writing your answers <strong>don’t for get your “+C”</strong>. Then check your answer with Mathematica. 1. <span class="math inline">\(\int (3x^2 + 1)^3 6x dx\)</span> 1. <span class="math inline">\(\int x^2\sqrt{x^3 + 1} dx\)</span> 1. <span class="math inline">\(\int (5-2x)^2 dx\)</span> 1. <span class="math inline">\(\int x(x+2)^3 dx\)</span> 1. <span class="math inline">\(\int \frac{y}{(y-3)^2} dy\)</span> 1. <span class="math inline">\(\int \frac{5}{x^2 + 25} dx\)</span> 1. <span class="math inline">\(\int \frac{5x}{x^2 + 25} dx\)</span></p>
-<p>We can use the following command in Mathematica to calculate an indefinite integral. (:codem:)</p>
+<p><a id="Prep"></a> # Between Class Sessions <a id="tasklist"></a> ## Activity - Integration Practice Evaluate each indefinite integral (the complete “list” of antiderivatives or the most general antiderivative). When you are writing your answers <strong>don’t for get your “+C”</strong>. Then check your answer with Mathematica. 1. <span class="math inline">\(\int (3x^2 + 1)^3 6x dx\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(\int x^2\sqrt{x^3 + 1} dx\)</span></p></li>
+<li><p><span class="math inline">\(\int (5-2x)^2 dx\)</span></p></li>
+<li><p><span class="math inline">\(\int x(x+2)^3 dx\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{y}{(y-3)^2} dy\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{5}{x^2 + 25} dx\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{5x}{x^2 + 25} dx\)</span></p></li>
+</ol>
+<p>We can use the following command in Mathematica to calculate an indefinite integral.</p>
 <pre><code>Integrate[(enter the integrand here), (enter the variable of integration here)]</code></pre>
-<p>(:codemend:)</p>
-<p>Use Mathematica to check your answer to the exercises above for example: - <span class="math inline">\(\int (7-x)^2 dx\)</span> (:codem:)</p>
+<p>Use Mathematica to check your answer to the exercises above for example: - <span class="math inline">\(\int (7-x)^2 dx\)</span></p>
 <pre><code>Integrate[(7-x)^2, x]</code></pre>
-<p>(:codemend:) Compare the answer you got in Mathematica to your answer from above.</p>
+<p>Compare the answer you got in Mathematica to your answer from above.</p>
 </section>
 </section>
 </section>

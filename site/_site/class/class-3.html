@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -352,11 +353,11 @@ Some Solutions
 <h3 class="anchored" data-anchor-id="solving-equations">Solving Equations</h3>
 <p>The prep asked you to create and solve four types of equations. Start by addressing any question you had from the prep. Then solve each of the following at the chalk boards (remember to pass the chalk between each).</p>
 <ol type="1">
-<li><span class="math inline">\(3x+2=7x-10\)</span></li>
-<li><span class="math inline">\(x^2+3x=10\)</span></li>
-<li><span class="math inline">\(x^2+3x=12\)</span></li>
-<li><span class="math inline">\(\frac{1}{x+2} = \frac{3}{x+1}-1\)</span></li>
-<li><span class="math inline">\(\sqrt{x+4}-\sqrt{x+1}=1\)</span></li>
+<li><p><span class="math inline">\(3x+2=7x-10\)</span></p></li>
+<li><p><span class="math inline">\(x^2+3x=10\)</span></p></li>
+<li><p><span class="math inline">\(x^2+3x=12\)</span></p></li>
+<li><p><span class="math inline">\(\frac{1}{x+2} = \frac{3}{x+1}-1\)</span></p></li>
+<li><p><span class="math inline">\(\sqrt{x+4}-\sqrt{x+1}=1\)</span></p></li>
 </ol>
 <p>If some of the above are/were difficult to solve, it’s ok. We soon learn how to solve all of these using R, and then we’ll continue using software to solve equations for us throughout the semester.</p>
 </section>
@@ -366,96 +367,27 @@ Some Solutions
 <ol type="1">
 <li>Complete each table below.</li>
 </ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(f(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(g(x) = f(x) + 2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(h(x) = f(x+2)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(f(x)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(g(x) = f(x) + 2\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(h(x) = f(x+2)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">&nbsp;| 4 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 0 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 4 |</div>
 <ol type="1">
 <li><p>Graph each of the functions from part 1.</p></li>
 <li><p>The graph of <span class="math inline">\(g\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>
@@ -487,14 +419,14 @@ Some Solutions
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We can also put everything on a single line, as done below, but the above is easier to read.</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#We can also put everything on a single line, as done below, but the above is easier to read.</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="st">'weight (1000 lbs)'</span>,<span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,<span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can examine the mtcars dataset with head(mtcars), and then construct scatterplots that compare other quantitative (numerical) variables.</p>
 </section>
 <section id="rstudio-practice" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio-practice">RStudio Practice</h3>
 <p><strong>Evaluate Functions</strong> - Given <span class="math inline">\(h(x) = \sqrt{3-x}\)</span>, compute <span class="math inline">\(h(-4)\)</span> and <span class="math inline">\(h(5)\)</span>.</p>
-<p><strong>Create and Render a Quarto file</strong> - Click the New File icon OR Click File -&gt; New File -&gt; Quarto Document - Typing Math - Not required in Math 119 (You can insert an image with handwritten math.) - But you can copy Latex from our Wiki or Project Instructions.</p>
+<p><strong>Create and Knit a RMarkdown file</strong> - Click the New File icon OR Click File -&gt; New File -&gt; R Markdown - Typing Math - Not required in Math 119 (You can insert an image with handwritten math.) - But you can copy Latex from our Wiki or Project Instructions.</p>
 <p>We’ll now use RStudio to calculate each value. - Let <span class="math inline">\(w(v) = v^2 - 5v -6\)</span> Compute the following values. - <span class="math inline">\(w(-1)\)</span> - <span class="math inline">\(w(-3)\)</span> - <span class="math inline">\(w(6)\)</span> - <span class="math inline">\(w(4)\)</span></p>
 <details>
 <summary>
@@ -509,7 +441,7 @@ Answers
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">6</span>)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">4</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all at once.</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -533,7 +465,7 @@ Answers
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">1</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">0</span>)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all at once.</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note: Make sure you know how to interpret the output from R. The value <span class="math inline">\(f(0)\)</span> is undefined. Infinity, <span class="math inline">\(\infty\)</span>, is not a number but a concept.</p>

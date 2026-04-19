@@ -108,7 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -314,8 +315,18 @@ window.Quarto = {
 <li><p>Use the Fundamental Theorem of Calculus to calculate <span class="math inline">\(\int_{1}^x\frac{2}{t^3}dt\)</span>. Use Mathematica to check your answer.</p></li>
 <li><p>Use your understanding of derivatives to find the indefinite integral <span class="math inline">\(\int (2x+5)^{11} dx\)</span>. Use Mathematica to check your answer.</p></li>
 <li><p>Use your understanding of derivatives to find the indefinite integral <span class="math inline">\(\int e^{3-4x} dx\)</span>. Use Mathematica to check your answer.</p></li>
-<li><p>Match the expressions, equations, or functions in column 1 with descriptions in column 2. | Probability expressions/equations/functions | Descriptions | | — | — | | <strong>1.</strong> <span class="math inline">\(f(x) = F'(x)\)</span> where <span class="math inline">\(F(x)\)</span> is the CDF of a continuous random variable | <strong>A.</strong> Cumulative Distribution Function (cdf) | | <strong>2.</strong> <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x) dx = F(b) - F(a)\)</span> | <strong>B.</strong> Probability Density Function (pdf) | | <strong>3.</strong> <span class="math inline">\(F(x) = P(X \leq x)\)</span> | <strong>C.</strong> Accumulation Function | | <strong>4.</strong> Given <span class="math inline">\(g(x) \geq 0\)</span>, we compute <span class="math inline">\(\int_{-\infty}^\infty g(x)dx\)</span>. | <strong>D.</strong> Total Area (“of a target” or “under a nonnegative function”) | | <strong>5.</strong> <span class="math inline">\(\int_{-\infty}^x f(s)ds\)</span>. | <strong>E.</strong> Fundamental Theorem of Calculus (FTC) | | <strong>6.</strong> Given <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(\diff{}{x}(\int_{-\infty}^x f(t)dt) = f(x)\)</span>. | | | <strong>7.</strong> <span class="math inline">\(\frac{\int_{-\infty}^x R(t)dt}{\int_{-\infty}^\infty R(x)dx}\)</span> where <span class="math inline">\(R\)</span> is nonnegative | | | <strong>8.</strong> Given <span class="math inline">\(h\)</span> is continuous and <span class="math inline">\(H(x) = \int_{-\infty}^x h(t)dt\)</span>, then <span class="math inline">\(H'(x) = h(x)\)</span>. | |</p></li>
+<li><p>Match the expressions, equations, or functions in column 1 with descriptions in column 2.</p></li>
 </ol>
+<div class="line-block">Probability expressions/equations/functions | Descriptions |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block"><strong>1.</strong> <span class="math inline">\(f(x) = F'(x)\)</span> where <span class="math inline">\(F(x)\)</span> is the CDF of a continuous random variable | <strong>A.</strong> Cumulative Distribution Function (cdf) |</div>
+<div class="line-block"><strong>2.</strong> <span class="math inline">\(P(a \leq X \leq b) = \int_a^b f(x) dx = F(b) - F(a)\)</span> | <strong>B.</strong> Probability Density Function (pdf) |</div>
+<div class="line-block"><strong>3.</strong> <span class="math inline">\(F(x) = P(X \leq x)\)</span> | <strong>C.</strong> Accumulation Function |</div>
+<div class="line-block"><strong>4.</strong> Given <span class="math inline">\(g(x) \geq 0\)</span>, we compute <span class="math inline">\(\int_{-\infty}^\infty g(x)dx\)</span>. | <strong>D.</strong> Total Area (“of a target” or “under a nonnegative function”) |</div>
+<div class="line-block"><strong>5.</strong> <span class="math inline">\(\int_{-\infty}^x f(s)ds\)</span>. | <strong>E.</strong> Fundamental Theorem of Calculus (FTC) |</div>
+<div class="line-block"><strong>6.</strong> Given <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(\diff{}{x}(\int_{-\infty}^x f(t)dt) = f(x)\)</span>. | |</div>
+<div class="line-block"><strong>7.</strong> <span class="math inline">\(\frac{\int_{-\infty}^x R(t)dt}{\int_{-\infty}^\infty R(x)dx}\)</span> where <span class="math inline">\(R\)</span> is nonnegative | |</div>
+<div class="line-block"><strong>8.</strong> Given <span class="math inline">\(h\)</span> is continuous and <span class="math inline">\(H(x) = \int_{-\infty}^x h(t)dt\)</span>, then <span class="math inline">\(H'(x) = h(x)\)</span>. | |</div>
 <details>
 <summary>
 Answers (for matching exercise)
@@ -355,26 +366,23 @@ Answers (for matching exercise)
 <li>Compute in Mathematica to obtain <span class="math inline">\(\int (7-x)^2 dx = \frac{1}{3}x^3 - 7x^2 + 49x +C\)</span>. Does Mathematica remember the <span class="math inline">\(+C\)</span>? Here are some code examples that can help you make comparisons in Mathematica.</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MyAnswer <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span>(<span class="dv">7</span> <span class="sc">-</span> x)<span class="sc">^</span><span class="dv">3</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>MathmaticaAnswer <span class="ot">=</span> Integrate[(<span class="dv">7</span> <span class="sc">-</span> x)<span class="sc">^</span><span class="dv">2</span>, x]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Expand[MyAnswer]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>MyAnswer <span class="sc">-</span> MathmaticaAnswer</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Simplify[MyAnswer <span class="sc">-</span> MathmaticaAnswer]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>FullSimplify[MyAnswer <span class="sc">-</span> MathmaticaAnswer]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Plot[{MyAnswer, MathmaticaAnswer}, {x, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>}]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Plot[MyAnswer <span class="sc">-</span> MathmaticaAnswer, {x, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>}]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>FullSimplify[D[MyAnswer <span class="sc">-</span> MathmaticaAnswer, x] <span class="sc">==</span> <span class="dv">0</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int <span class="fu">x</span>(x<span class="dv">-1</span>)<span class="sc">^</span><span class="dv">3</span> dx<span class="sc">$</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int \frac{y}{(y<span class="sc">+</span><span class="dv">1</span>)<span class="sc">^</span><span class="dv">4</span>} dy<span class="sc">$</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Consider <span class="sc">$</span>\int \frac{<span class="dv">1</span>}{x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">8</span>} dx<span class="sc">$</span>. Computing the integral <span class="cf">in</span> Mathematica, and then plot the result. The ArcTan <span class="cf">function</span> may be new to many of us. The <span class="cf">function</span> <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \tan<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>}(x)<span class="sc">$</span> is called the arctangent <span class="cf">function</span> or inverse tangent function. The domain of the inverse tangent <span class="cf">function</span> is all real numbers. The range of the inverse tangent is <span class="sc">$</span> ( <span class="sc">-</span>\frac{\pi}{<span class="dv">2</span>}, \frac{\pi}{<span class="dv">2</span>} ) <span class="sc">$</span>.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>We could use the following code to plot <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \<span class="fu">arctan</span>(x)<span class="sc">$</span> <span class="cf">in</span> R.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)[<span class="sc">@</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>MyAnswer = -1/3*(7 - x)^3
+MathmaticaAnswer = Integrate[(7 - x)^2, x]
+Expand[MyAnswer]
+MyAnswer - MathmaticaAnswer
+Simplify[MyAnswer - MathmaticaAnswer]
+FullSimplify[MyAnswer - MathmaticaAnswer]
+Plot[{MyAnswer, MathmaticaAnswer}, {x, -10, 10}]
+Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]
+FullSimplify[D[MyAnswer - MathmaticaAnswer, x] == 0]</code></pre>
+<ul>
+<li><p>Consider <span class="math inline">\(\int x(x-1)^3 dx\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
+<li><p>Consider <span class="math inline">\(\int \frac{y}{(y+1)^4} dy\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
+<li><p>Consider <span class="math inline">\(\int \frac{1}{x^2 + 8} dx\)</span>. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new to many of us. The function <span class="math inline">\(f(x) = \tan^{-1}(x)\)</span> is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -, ) $. We could use the following code to plot <span class="math inline">\(f(x) = \arctan(x)\)</span> in R.</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="group-meeting" class="level2">
@@ -383,7 +391,14 @@ Answers (for matching exercise)
 <p>Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
 <section id="activity---integration-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---integration-practice">Activity - Integration Practice</h3>
-<p>Evaluate each indefinite integral (the complete “list” of antiderivatives or the most general antiderivative). When you are writing your answers <strong>don’t for get your “+C”</strong>. Then check your answer with Mathematica. 1. <span class="math inline">\(\int (3x^2 + 1)^3 6x dx\)</span> 1. <span class="math inline">\(\int x^2\sqrt{x^3 + 1} dx\)</span> 1. <span class="math inline">\(\int (5-2x)^2 dx\)</span> 1. <span class="math inline">\(\int x(x+2)^3 dx\)</span> 1. <span class="math inline">\(\int \frac{y}{(y-3)^2} dy\)</span> 1. <span class="math inline">\(\int \frac{5x}{x^2 + 25} dx\)</span></p>
+<p>Evaluate each indefinite integral (the complete “list” of antiderivatives or the most general antiderivative). When you are writing your answers <strong>don’t for get your “+C”</strong>. Then check your answer with Mathematica. 1. <span class="math inline">\(\int (3x^2 + 1)^3 6x dx\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(\int x^2\sqrt{x^3 + 1} dx\)</span></p></li>
+<li><p><span class="math inline">\(\int (5-2x)^2 dx\)</span></p></li>
+<li><p><span class="math inline">\(\int x(x+2)^3 dx\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{y}{(y-3)^2} dy\)</span></p></li>
+<li><p><span class="math inline">\(\int \frac{5x}{x^2 + 25} dx\)</span></p></li>
+</ol>
 </section>
 <section id="computing-integrals-with-a-cas-computer-algebra-system" class="level3">
 <h3 class="anchored" data-anchor-id="computing-integrals-with-a-cas-computer-algebra-system">Computing Integrals with a CAS (Computer Algebra System)</h3>

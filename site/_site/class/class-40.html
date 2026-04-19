@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -284,7 +285,6 @@ Solution
 Solution
 </summary>
 <p>From the prep, we have the following code. The Assumptions command allows us to inform Mathematica about the fact that <span class="math inline">\(\lambda&gt;0\)</span>.</p>
-<p>(:codem:)</p>
 <pre><code>$Assumptions = \[Lambda] &gt; 0;
 f = \[Lambda]*Exp[-\[Lambda]*x];
 bounds = {x, 0, Infinity};
@@ -294,7 +294,6 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
-<p>(:codemend:)</p>
 </details>
 <ol start="3" type="1">
 <li>For the uniform distribution <span class="math inline">\(f_0(x; a,b) = \frac{1}{b-a}\)</span> for <span class="math inline">\(a &lt; x &lt; b\)</span> and 0 otherwise, write down integrals that give the expected value and variance, and then compute these integrals.</li>
@@ -304,7 +303,7 @@ $Assumptions = Null;</code></pre>
 Solution
 </summary>
 <p>We update the bounds to <span class="math inline">\(a\leq x\leq b\)</span> and function <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span> to obtain - <span class="math inline">\(\ds E[X] = \int_a^b x (\frac{1}{b-a}) dx\)</span> - <span class="math inline">\(\ds Var[X] = \int_a^b (x-E[X]])^2 (\frac{1}{b-a}) dx\)</span>.</p>
-<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later. (:codem:)</p>
+<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later.</p>
 <pre><code>$Assumptions = a &lt;= b;
 f = 1/(b - a);
 bounds = {x, a, b};
@@ -316,7 +315,6 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
-<p>(:codemend:)</p>
 </details>
 </section>
 <section id="group-meeting" class="level2">
@@ -368,11 +366,11 @@ We get <span class="math inline">\(A = \int_{-\infty}^{\infty}g(x)dx = \int_{0}^
 </li>
 </ol>
 <ol type="1">
-<li>We have <span class="math inline">\(E[X] = \int_{-\infty}^{\infty}xf(x)dx = \int_{0}^{\infty}x4e^{-4x}dx = \frac{1}{4}\)</span> and <span class="math inline">\(\text{Var}[X] = \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx = \int_{0}^{\infty}(x-\frac{1}{4})^2 4e^{-4x}dx = \frac{1}{16}\)</span>.</li>
-<li>We have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx\)</span>. If <span class="math inline">\(x&lt;0\)</span> then <span class="math inline">\(F(x)=0\)</span>, but for <span class="math inline">\(x\geq 0\)</span> we have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}\)</span>.</li>
-<li>The values are <span class="math inline">\(P(X\leq 10) = F(10) = 1-e^{-8}\)</span> and then <span class="math inline">\(P(X\geq 10)=1-F(10) = e^{-8}\)</span>.</li>
-<li>We need to solve <span class="math inline">\(0.90 = 1-e^{-4x}\)</span>. This means <span class="math inline">\(e^{-4x} = 0.1\)</span> which gives <span class="math inline">\(-4x = \ln(0.1)\)</span> or <span class="math inline">\(x = \ln(0.1)/(-4)\)</span>.</li>
-<li>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems. (:codem:)</li>
+<li><p>We have <span class="math inline">\(E[X] = \int_{-\infty}^{\infty}xf(x)dx = \int_{0}^{\infty}x4e^{-4x}dx = \frac{1}{4}\)</span> and <span class="math inline">\(\text{Var}[X] = \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx = \int_{0}^{\infty}(x-\frac{1}{4})^2 4e^{-4x}dx = \frac{1}{16}\)</span>.</p></li>
+<li><p>We have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx\)</span>. If <span class="math inline">\(x&lt;0\)</span> then <span class="math inline">\(F(x)=0\)</span>, but for <span class="math inline">\(x\geq 0\)</span> we have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}\)</span>.</p></li>
+<li><p>The values are <span class="math inline">\(P(X\leq 10) = F(10) = 1-e^{-8}\)</span> and then <span class="math inline">\(P(X\geq 10)=1-F(10) = e^{-8}\)</span>.</p></li>
+<li><p>We need to solve <span class="math inline">\(0.90 = 1-e^{-4x}\)</span>. This means <span class="math inline">\(e^{-4x} = 0.1\)</span> which gives <span class="math inline">\(-4x = \ln(0.1)\)</span> or <span class="math inline">\(x = \ln(0.1)/(-4)\)</span>.</p></li>
+<li><p>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems.</p></li>
 </ol>
 <pre><code>g = Exp[-4*x];
 a = 0;
@@ -388,14 +386,12 @@ Integrate[f, {x, a, 2}]
 1-Integrate[f, {x, a, 2}]
 Solve[Integrate[f, {x, a, c}]==0.9, c]
 D[F, x](*Computes derivative of F with respect to x. Should match f*)</code></pre>
-<p>(:codemend:)</p>
 </details>
 <ol start="2" type="1">
-<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit. (:codem:)</li>
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit.</li>
 </ol>
 <pre><code>g = Exp[-\[Lambda] x]
 $Assumptions = \[Lambda] &gt; 0</code></pre>
-(:codemend:)
 <ol type="a">
 <li>
 Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this an exponential random variable.
@@ -455,7 +451,7 @@ Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(
 <summary>
 Solution
 </summary>
-<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral. (:codem:)</p>
+<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral.</p>
 <pre><code>$Assumptions = x \[Element] Reals
 g = Piecewise[{{3, -2 &lt;= x &amp;&amp; x &lt; 1}, {5, 1 &lt;= x &lt;= 5}, {0, True}}]
 Plot[g, {x, -5, 10}]
@@ -467,7 +463,6 @@ EV = Integrate[x f, {x, -Infinity, Infinity}]
 Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
 F = Integrate[ f, {x, -Infinity, x}]
 D[F, x]</code></pre>
-<p>(:codemend:)</p>
 </details>
 </section>
 </section>
@@ -475,11 +470,26 @@ D[F, x]</code></pre>
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <section id="expected-value-and-variance-of-common-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="expected-value-and-variance-of-common-distributions">Expected Value and Variance of Common Distributions</h3>
-<p>We found the expected value and variance for 4 common probability distributions. Let’s recap what we found. 1. For an exponential distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?) 1. For a uniform distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?) 1. For a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, we have <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^2\)</span>. 1. For a gamma distribution with shape <span class="math inline">\(\alpha\)</span> and rate <span class="math inline">\(\beta\)</span>, we have <span class="math inline">\(E[X] = \frac{\alpha}{\beta}\)</span> and <span class="math inline">\(\text{Var}[X] = \frac{\alpha}{\beta^2}\)</span>.</p>
+<p>We found the expected value and variance for 4 common probability distributions. Let’s recap what we found. 1. For an exponential distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?)</p>
+<ol type="1">
+<li><p>For a uniform distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?)</p></li>
+<li><p>For a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, we have <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^2\)</span>.</p></li>
+<li><p>For a gamma distribution with shape <span class="math inline">\(\alpha\)</span> and rate <span class="math inline">\(\beta\)</span>, we have <span class="math inline">\(E[X] = \frac{\alpha}{\beta}\)</span> and <span class="math inline">\(\text{Var}[X] = \frac{\alpha}{\beta^2}\)</span>.</p></li>
+</ol>
 </section>
 <section id="method-of-moments" class="level3">
 <h3 class="anchored" data-anchor-id="method-of-moments">Method of Moments</h3>
-<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution. 1. Calculate the variance of the distribution as a function of the parameters of the distribution. 1. Set the mean of the distribution equal to the mean of the data. 1. Set the variance of the distribution equal to the variance of the data. 1. Solve the system of equations for the parameter values. Note: - If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3. - If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</p>
+<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.</p>
+<ol type="1">
+<li><p>Calculate the variance of the distribution as a function of the parameters of the distribution.</p></li>
+<li><p>Set the mean of the distribution equal to the mean of the data.</p></li>
+<li><p>Set the variance of the distribution equal to the variance of the data.</p></li>
+<li><p>Solve the system of equations for the parameter values. Note:</p></li>
+</ol>
+<ul>
+<li>If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.</li>
+<li>If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</li>
+</ul>
 
 
 </section>

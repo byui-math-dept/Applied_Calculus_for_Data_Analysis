@@ -73,7 +73,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -235,10 +236,6 @@ window.Quarto = {
   <li><a href="#activity---additional-derivative-rule-practice" id="toc-activity---additional-derivative-rule-practice" class="nav-link" data-scroll-target="#activity---additional-derivative-rule-practice">Activity - Additional Derivative Rule Practice</a></li>
   <li><a href="#activity---linearization" id="toc-activity---linearization" class="nav-link" data-scroll-target="#activity---linearization">Activity - Linearization</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
-  <ul class="collapse">
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
   <ul class="collapse">
   <li><a href="#loglikelihood" id="toc-loglikelihood" class="nav-link" data-scroll-target="#loglikelihood">Loglikelihood</a></li>
@@ -272,7 +269,7 @@ window.Quarto = {
 
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
@@ -306,12 +303,18 @@ Solution
 <section id="activity---chain-rule" class="level3">
 <h3 class="anchored" data-anchor-id="activity---chain-rule">Activity - Chain Rule</h3>
 <p>Compute the derivative of each function below, by first identifying <span class="math inline">\(y(u)\)</span> and <span class="math inline">\(u(x)\)</span>. Take turns writing your solutions on the chalk board and discussing any questions.<br>
-1. <span class="math inline">\(f(x) = (x^2+3)^4\)</span> 1. <span class="math inline">\(g(x) = (3e^x+x^2)^5\)</span> 1. <span class="math inline">\(h(x) = (2+\ln x)^3\)</span> 1. <span class="math inline">\(k(x) = \ln(x^2+3)\)</span> 1. <span class="math inline">\(m(x) = e^{x^2+3}\)</span></p>
+1. <span class="math inline">\(f(x) = (x^2+3)^4\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(g(x) = (3e^x+x^2)^5\)</span></p></li>
+<li><p><span class="math inline">\(h(x) = (2+\ln x)^3\)</span></p></li>
+<li><p><span class="math inline">\(k(x) = \ln(x^2+3)\)</span></p></li>
+<li><p><span class="math inline">\(m(x) = e^{x^2+3}\)</span></p></li>
+</ol>
 </section>
 <section id="activity---higher-order-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="activity---higher-order-derivatives">Activity - Higher Order Derivatives</h3>
 <p>Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative <span class="math inline">\(f\)</span> we can denote with <span class="math display">\[f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2}.\]</span> We use similar notation for higher order derivatives, such at <span class="math inline">\(f'''(x)\)</span> for the third derivative and <span class="math inline">\(\frac{d^4f}{dx^4}\)</span> for a 4th derivative. We avoid prime notation and use notation such as <span class="math inline">\(f^{ (7) }(x)\)</span> when the number of derivatives is quite large.</p>
-<p>Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
+<p>Open this &lt;../assets/docs/Higher_Order_Derivatives.pdf&gt; worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
 </section>
 <section id="activity---derivative-practice-with-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="activity---derivative-practice-with-parameters">Activity - Derivative Practice with Parameters</h3>
@@ -408,23 +411,19 @@ Linearization Review
 This activity focuses on finding the linear approximation to a function at a point, and writing an equation for it in various ways.</p>
 <p>As an example, let’s find the linear approximation to <span class="math inline">\(f(x) = x^2\)</span> at <span class="math inline">\(x = 3\)</span>. The linear approximation must pass through the point <span class="math inline">\(x=3\)</span> and <span class="math inline">\(y = f(3) = 3^2 = 9\)</span>. The derivative of <span class="math inline">\(f\)</span> is <span class="math inline">\(f'(x) = 2x\)</span>. The slope of the linear approximation is <span class="math inline">\(m=f'(3) = 2(3) = 6\)</span>. So the graph of the linear approximation is a line through the point <span class="math inline">\((x,y) =(3,9)\)</span> with slope <span class="math inline">\(f'(3)=6\)</span>. - Using point-slope form, an equation for the tangent line is <span class="math inline">\(y - 9 = 6(x-3)\)</span>. - Solving for <span class="math inline">\(y\)</span> above gives <span class="math inline">\(y = L(x) = 9+6(x-3)\)</span>. It’s common to use the form <span class="math inline">\(L(x) = f(a) + f'(a)(x-a)\)</span> when stating a linear approximation. - We can write the above in slope-intercept form to obtain <span class="math inline">\(y = 6x-9\)</span>. The point-slope form is useful for quickly writing an equation of a line when we know the point and slope. The form <span class="math inline">\(L(x) = f(a) + f'(a)(x-a)\)</span> preserves the fact that we wanted the linear approximation at <span class="math inline">\(x=3\)</span>. The slope-intercept form is unique, and allows quick comparison. All three forms are useful.</p>
 </details>
-<p>For each function below, give an equation of the linear approximation at the specified point using (a) point-slope form, (b) the form <span class="math inline">\(L(x;a) = f(a)+f'(a)(x-a)\)</span>, and (c) slope intercept form. 1. <span class="math inline">\(f(x) = -3e^{x}\)</span> at <span class="math inline">\(x = 0\)</span> 1. <span class="math inline">\(l(x) = 100 - 3x + 7x^2\)</span> at <span class="math inline">\(x = -3\)</span> 1. <span class="math inline">\(g(x) = 1-2\ln(x)\)</span> at <span class="math inline">\(x = 1\)</span></p>
+<p>For each function below, give an equation of the linear approximation at the specified point using (a) point-slope form, (b) the form <span class="math inline">\(L(x;a) = f(a)+f'(a)(x-a)\)</span>, and (c) slope intercept form. 1. <span class="math inline">\(f(x) = -3e^{x}\)</span> at <span class="math inline">\(x = 0\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(l(x) = 100 - 3x + 7x^2\)</span> at <span class="math inline">\(x = -3\)</span></li>
+<li><span class="math inline">\(g(x) = 1-2\ln(x)\)</span> at <span class="math inline">\(x = 1\)</span></li>
+</ol>
 <details>
 <summary>
 Answers
 </summary>
-</details></section>
-</section>
-</section>
-<section id="section" class="level1">
-<h1></h1>
 <pre><code>1.  $y + 3 = -3x$  
 1. $y = -3 - 3(x-0)$
-1. $y = -3 - 3x$</code></pre>
-</section>
-<section id="section-1" class="level1">
-<h1></h1>
-<pre><code>1.  $y - 172 = -45(x+3)$
+1. $y = -3 - 3x$
+1.  $y - 172 = -45(x+3)$
 1. $y = L(x) = 172 -45(x+3)$
 1. $y = L(x) = 37 - 45x$</code></pre>
 <ol type="1">
@@ -434,12 +433,14 @@ Answers
 <li><span class="math inline">\(y = L(x) = 3 -2x\)</span></li>
 </ol></li>
 </ol>
-
+</details>
+</section>
+</section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <section id="loglikelihood" class="level3">
 <h3 class="anchored" data-anchor-id="loglikelihood">Loglikelihood</h3>
-<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. (<a href="https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa%7CHere's%20a%20short%20GPT%20conversation%20to%20generate%20some%20sample%20data.">https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa|Here’s a short GPT conversation to generate some sample data.</a>) The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. - Write the formula for the residuals.</p>
+<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. (<a href="https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa">Here’s a short GPT conversation to generate some sample data.</a>) The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. - Write the formula for the residuals.</p>
 <p>Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1). Note: This tells us the probability model we will be using and it tells us we can multiply the probabilities to get the likelihood function. - The probability model we are using is $ p(r) = e^{-} $. - Write the likelihood function for the residuals in this situation. - Write the loglikelihood function for the residuals in this situation.</p>
 <details>
 <summary>
