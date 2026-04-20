@@ -5,15 +5,25 @@ title: "Flex Day 3"
 # During Class
 ## Brain Gains
 Match the expressions, equations, or functions in column 1 with descriptions in column 2.
+
 | Probability expressions/equations/functions | Descriptions |
+
 | --- | --- |
+
 | **1.** $f(x) = F'(x)$ where $F(x)$ is the CDF of a continuous random variable | **A.** Cumulative Distribution Function (cdf) |
+
 | **2.** $P(a \leq X \leq b) = \int_a^b f(x) dx = F(b) - F(a)$ | **B.** Probability Density Function (pdf) |
+
 | **3.** $F(x) = P(X \leq x)$ | **C.** Accumulation Function |
+
 | **4.** Given $g(x) \geq 0$, we compute $\int_{-\infty}^\infty g(x)dx$. | **D.** Total Area ("of a rug" or "under a nonnegative function") |
+
 | **5.** $\int_{-\infty}^x f(s)ds$. | **E.** Fundamental Theorem of Calculus (FTC) |
+
 | **6.** Given $f$ is continuous, then $\diff{}{x}(\int_{-\infty}^x f(t)dt) = f(x)$. |  |
+
 | **7.** $\frac{\int_{-\infty}^x R(t)dt}{\int_{-\infty}^\infty R(x)dx}$ where $R$ is nonnegative |  |
+
 | **8.** Given $h$ is continuous and $H(x) = \int_{-\infty}^x h(t)dt$, then $H'(x) = h(x)$. |  |
 
 <details>
@@ -36,13 +46,17 @@ Give each group member 1-2 minutes to share what they prepared from the between 
 Work on the chalkboard as you complete these activities and exercises, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group's, then have a discussion with them.
 ### Fundamental Theorem of Calculus Exercises
 1. Compute $\int_{-2}^{1} 5 - 6x dx$ using the FTC. Check your work with Mathematica.
+
 1. Explain why $\frac{d}{dx}\left(\int_{-2}^{1} 5 - 6x dx\right) = 0$.
 1. Compute $\frac{d}{dx}\left( 5x - 3x^2 + C\right)$.
+
 1. Compute $\frac{d}{dx}\left(\int_1^x 5 - 6t dt\right)$.
 1. Compute $\int_1^x 5 - 6t dt$.
+
 1. Compute $\frac{d}{dx}\left(\int_7^x \ln(t^2+1)e^{4t^3}dt\right)$.
 
 1. Compute $\int e^t+\frac{1}{t}dt$.
+
 1. Compute $\int_1^x e^t+\frac{1}{t}dt$.
 
 ## Discussion
@@ -106,27 +120,29 @@ Evaluate each indefinite integral.
 ## Activity - Integration Practice
 Evaluate each indefinite integral (the complete "list" of antiderivatives or the most general antiderivative). When you are writing your answers **don't for get your "+C"**. Then check your answer with Mathematica. 
 1. $\int (3x^2 + 1)^3 6x dx$
+
 1. $\int x^2\sqrt{x^3 + 1} dx$
 1. $\int (5-2x)^2 dx$
+
 1. $\int x(x+2)^3 dx$
 1. $\int \frac{y}{(y-3)^2} dy$
+
 1. $\int \frac{5}{x^2 + 25} dx$ 
 1. $\int \frac{5x}{x^2 + 25} dx$ 
 
 We can use the following command in Mathematica to calculate an indefinite integral.
-(:codem:)
+
 ```
 Integrate[(enter the integrand here), (enter the variable of integration here)]
 ```
-(:codemend:)
 
 Use Mathematica to check your answer to the exercises above for example:
 - $\int (7-x)^2 dx$
-(:codem:)
+
 ```
 Integrate[(7-x)^2, x]
 ```
-(:codemend:)
+
 Compare the answer you got in Mathematica to your answer from above.
 
 # End of Semester Announcements

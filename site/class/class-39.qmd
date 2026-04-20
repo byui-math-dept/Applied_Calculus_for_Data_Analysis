@@ -1,6 +1,211 @@
 ---
 title: "Class 39"
 ---
+# Between Class Sessions - Prep for Day 39 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Practice finding PDF and using them to compute Expected Value and Variance
+Many of the exercises below come from section 4.3 of [Rectangles, Targets, and Sums](https://byuistats.github.io/M119/unit3/probability.html){target="_blank"}.
+
+For each function $g(x)$ below, suppose $X$ is a random variable with probability density function $f(x)=kg(x)$.
+- Find the value $k$ that makes $f$ a probability density function. 
+- Compute the expected value of $X$. 
+    - Write down the definite integral required to calculate the expected value.
+    - Use Mathematica to compute the value.
+- Compute the variance of $X$ and the standard deviation $\sigma$.
+    - Write down the definite integral required to calculate the variance.
+    - Use Mathematica to compute the value.
+
+1. $g(x) = \begin{cases}e^{-3x} & 0\leq x<\infty\\ 0 & \text{otherwise}\end{cases}$
+
+<details>
+<summary>Some Answers</summary>
+
+- $\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{0}^{\infty} ke^{-3x}dx = k \int_{0}^{\infty} e^{-3x}dx$
+
+```
+Integrate[Exp[-3*x], {x, 0, Infinity}]
+```
+
+    - Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $\frac{1}{3}k = 1$.
+    - $k = 3$
+
+- $\int_{-\infty}^{\infty} xf(x)dx = \int_{0}^{\infty} x(3e^{-3x})dx$
+
+```
+Integrate[3*x*Exp[-3*x], {x, 0, Infinity}]
+```
+
+- $\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{1}{3})^2(3e^{-3x})dx$
+
+```
+Integrate[3*(x-(1/3))^2*Exp[-3*x], {x, 0, Infinity}]
+```
+
+    - $\sigma = \sqrt{\text{Var}[X]}$
+
+```r
+sqrt(1/9)
+```
+
+</details>
+
+2.
+ $g(x) = \begin{cases}e^{-\lambda x} & 0\leq x<\infty\\ 0 & \text{otherwise}\end{cases}$
+
+<details>
+<summary>Some Answers</summary>
+
+- $\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{0}^{\infty} ke^{-\lambda x}dx = k \int_{0}^{\infty} e^{-3x}dx$
+
+```
+Assuming[L > 0, Integrate[Exp[-L*x], {x, 0, Infinity}]]
+```
+
+    - Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $\frac{1}{\lambda}k = 1$.
+    - $k = \lambda$
+
+- $\int_{-\infty}^{\infty} xf(x)dx = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx$
+
+```
+Assuming[L > 0, Integrate[L*x*Exp[-L*x], {x, 0, Infinity}]]
+```
+
+- $\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{1}{\lambda})^2(\lambda e^{-\lambda x})dx$
+
+```
+Integrate[L*(x-(1/L))^2*Exp[-L*x], {x, 0, Infinity}]
+```
+
+    - $\sigma = \sqrt{\text{Var}[X]} = \frac{1}{\lambda}$
+
+</details>
+
+3.
+$g(x) = \begin{cases}1 & 2\leq x\leq 7\\ 0 & \text{otherwise}\end{cases}$
+
+<details>
+<summary>Some Answers</summary>
+
+- $\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{2}^{7} k(1) dx = k\int_{2}^{7} 1 dx$
+
+```
+Integrate[1, {x, 2, 7}]
+```
+
+    - Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $5k = 1$.
+    - $k = \frac{1}{5}$
+
+- $\int_{-\infty}^{\infty} xf(x)dx = \int_{2}^{7} x(\frac{1}{5}) dx$
+
+```
+Integrate[x/5, {x, 2, 7}]
+```
+
+- $\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{9}{2})^2(\frac{1}{5})dx$
+
+```
+Integrate[(1/5)*(x-(9/2))^2, {x, 2, 7}]
+```
+
+    - $\sigma = \sqrt{\text{Var}[X]}$
+
+```r
+sqrt(25/12)
+```
+
+</details>
+
+4.
+$g(x) = \begin{cases}1 & a\leq x\leq b\\ 0 & \text{otherwise}\end{cases}$
+
+<details>
+<summary>Some Answers</summary>
+
+- $\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{a}^{b} k(1) dx = k\int_{a}^{b} 1 dx$
+
+```
+Integrate[1, {x, a, b}]
+```
+
+    - Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $(b-a)k = 1$.
+    - $k = \frac{1}{b-a}$
+
+- $\int_{-\infty}^{\infty} xf(x)dx = \int_{a}^{b} x(\frac{1}{b-a}) dx$
+
+```
+Simplify[Integrate[x/(b-a), {x, a, b}]]
+```
+
+- $\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{a}^{b} (x - \frac{a+b}{2})^2(\frac{1}{b-a})dx$
+
+```
+Integrate[(1/(b-a))*(x-((a+b)/2))^2, {x, a, b}]
+```
+
+    - $\sigma = \sqrt{\text{Var}[X]} = \frac{a-b}{\sqrt{12}}$
+
+</details>
+
+5.
+$g(x) = \begin{cases}2 & -5 \leq x \leq 1\\ 4.5 & 3 \leq x \leq 5\\ 0 & \text{otherwise}\end{cases}$
+
+<details>
+<summary>Some Answers</summary>
+
+- $\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{-5}^{1} 2k dx + \int_{3}^{5} 4.5k dx = k\int_{-5}^{1} 2 dx + k\int_{3}^{5} 4.5 dx = k (\int_{-5}^{1} 2 dx + \int_{3}^{5} 4.5 dx)$
+
+```
+Integrate[2, {x, -5, 1}]
+
+Integrate[4.5, {x, 3, 5}]
+```
+
+    - Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $21k = 1$.
+    - $k = \frac{1}{21}$
+
+- $\int_{-\infty}^{\infty} xf(x)dx = \int_{-5}^{1} \frac{2x}{21} dx + \int_{3}^{5} \frac{4.5x}{21} dx$
+
+```
+Integrate[2*x/21, {x, -5, 1}] + Integrate[4.5*x/21, {x, 3, 5}]
+```
+
+- $\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{-5}^{1} (x - 0.571429)^2(\frac{2}{21}) dx + \int_{3}^{5} (x - 0.571429)^2(\frac{4.5}{21}) dx$
+
+```
+Integrate[(2/21)*(x-0.571429)^2, {x, -5, 1}] + Integrate[(4.5/21)*(x-0.571429)^2, {x, 3, 5}]
+```
+
+    - $\sigma = \sqrt{\text{Var}[X]}$
+
+```r
+sqrt(10.6735)
+```
+
+</details>
+
+### (2) Start Project 3 Task 2
+- Read the instructions. Familiarize yourself with the task.
+- Write down the definite integrals to compute $E[X]$ for $f_0$, $f_1$, $f_2$, and $f_3$.
+    - Use Mathematica to calculate $E[X]$ in each case.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 3 -- Compute Probability (Continuous Random Variables)
+- Continue working on 3 -- Definite Integrals
+- Begin 3 -- Calculate Parameters of Continuous Random Variables (Identifying Expected Value and Variance)
+
+### Applied Practice (Project Work)
+- Begin Project 3 Task 2
+
 
 # During Class
 We'll start in groups today, to help review setting up and computing integrals.
@@ -17,16 +222,20 @@ x - 1 & 1 \leq x \leq 3 \\
 When a dart hits the point $(x,y)$, we'll record just the $x$-coordinate and let $X$ represent this random variable. As you complete the exercises below, write any integrals you need to compute on the board, and then compute them with Mathematica. 
 
 1. Draw the function $g(x)$. 
+
 1. Find the area below $g(x)$ and above the $x$-axis. 
     - Find this area using a geometric argument. 
     - Find this area using Mathematica's Integrate command. 
 1. State $k$ so that $f(x) = k g(x)$ is the probability density function (PDF) of $X$, and then state $f(x)$.
+
 1. Show the expected value of $X$ is $E[X] = \frac{7}{3}$. 
-    - First use https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf to obtain the expected value.
+    - First use the [Centroid Locations table](https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf) to obtain the expected value.
     - Then use Mathematica to compute the expected value using the formula $\ds E[X]= \int_{-\infty}^{\infty}xf(x)dx$, where you appropriately adapt the bounds of the integral. 
 1. Compute the variance of $X$ in Mathematica by computing $\ds \text{Var}[X]= \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx$.
+
 1. Use Mathematica to show that $P(1.5\leq X\leq 2.6)= 0.5775$.
 1. Use Mathematica to show that the cumulative distribution function is $\ds F(x) = P(X\leq x) = \frac{x^2}{4}-\frac{x}{2}+\frac{1}{4}$. 
+
 1. Compute $F'(x)$ and compare it to $f(x)$. 
 1. Now let $g(x) = \begin{cases}x^2 & 0\leq x\leq 7\\ 0 & \text{otherwise}\end{cases}$
     - Find the value $k$ that makes $f = k g(x)$ a probability density function for a random variable $X$. Write the function $f(x)$ on the board.
@@ -71,7 +280,7 @@ Note: The standard deviation is equal to the square root of the variance, $\sigm
 
 </details>
 
-You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Methos of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.
+You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Method of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.
 
 ## Discussion - Method of Moments Big Idea
 The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution (or model) with these characteristics from the data, and use this to determine unknown parameters in a probability model (or distribution). 
@@ -87,14 +296,14 @@ The normal distribution has probability density function $f_1(x; \mu,\sigma) = \
 We have already performed this computation in a previous class using Mathematica to obtain $E[X] = \mu$ and $\text{Var}[X] = \sigma^2$. 
 The Mathematica code below gives the solution. 
 
-```r
+```
 $Assumptions = \[Sigma] > 0;
 f = 1/Sqrt[2*\[Pi]*\[Sigma]^2] Exp[-1/2*((x - \[Mu])/\[Sigma])^2];
 bounds = {x, -Infinity, Infinity};
 EV = Integrate[x f, bounds]
 Var = Integrate[(x - EV)^2 f, bounds]
 $Assumptions = Null
-@](:codemend:)
+```
 
 </details>
 
@@ -103,7 +312,6 @@ $Assumptions = Null
 <details>
 <summary>Solution</summary>
 
-(:code:)
 ```r
 rm(list=ls())
 library(data4soils)
@@ -130,7 +338,7 @@ The gamma distribution is $f_2(m; \alpha,\beta) = \frac{\beta^{\alpha}}{\Gamma(\
 Now we can compute the expected value and variance from the distribution using Mathematica. 
 The code below gives $\text{E}[X]=\frac{\alpha}{\beta}$ and $\text{Var}[X] = \frac{\alpha}{\beta^2}$. 
 
-```r
+```
 $Assumptions = \[Alpha] > 0 && \[Beta] > 0;
 f = (\[Beta]^\[Alpha]/Gamma[\[Alpha]]) x^(\[Alpha] - 1) Exp[-\[Beta]*x];
 bounds = {x, 0, Infinity};
@@ -138,7 +346,6 @@ EV = Integrate[x f, bounds]
 Var = Integrate[(x - EV)^2 f, bounds]
 $Assumptions = Null
 ```
-(:codemend:)
 
 </details>
 
@@ -160,7 +367,7 @@ In particular, this means that $m\beta = v\beta^2$, which solving for $\beta$ yi
 Plugging this value for $\beta$ into $\alpha = m\beta$, gives $\alpha = \frac{m^2}{v}$. 
 Our solution to this system is 
 $$\alpha = \frac{m^2}{v} \text{ and }\beta = \frac{m}{v}.$$
-(:code:)
+
 ```r
 alpha <- mean(Ng)^2/var(Ng)
 alpha
@@ -172,10 +379,9 @@ We have obtained parameters for our distribution using the method of moments.
 
 The Mathematica code below solves the system as well. 
 
-```r
+```
 Solve[{EV == meanNg, Var == varNg}, {\[Alpha], \[Beta]}]
 ```
-(:codemend:)
 
 </details>
 
@@ -189,13 +395,12 @@ We now plot this model, along with the data, using the code below.
 <details>
 <summary>Fitted $f_1$. (Click to expand)</summary>
 
-(:code:)
 ```r
 f1 <- function(x,m=0,s=1){1/(sqrt(2*pi*s^2))*exp(-0.5*((x-m)/s)^2)}
 
 mu <- mean(Ng)
 sigma <- sqrt(var(Ng))
-1. sigma <- sd(Ng)
+#sigma <- sd(Ng)
 
 x1 <- seq(-20,20,0.1)
 y1 <- f1(x1,m=mu,s=sigma)
@@ -266,13 +471,13 @@ We compute
 $$P(X > 10) = \int_{10}^{\infty}\frac{1}{\sqrt{2\pi 10.979}}e^{-\frac{1}{2}\left(\frac{x-2.792}{3.313}\right)^2}dx= 0.0147976.$$
 The Mathematica code chunk below gives the solution above. 
 
-```r
+```
 f1Fitted = 1/Sqrt[2*\[Pi]*10.97915]*Exp[-1/2*((x - 2.79164)/Sqrt[10.97915])^2];
 Integrate[f1Fitted, {x, 10, Infinity}]
 Re[Integrate[f1Fitted, {x, 10, Infinity}]]
 Integrate[f1Fitted, {x, 10, 1000}]
 ```
-(:codemend:)
+
 The last line of code above shows that by replacing $\infty$ with  large number, we can obtain a similar answer without needing to use the Re[] command.  Sometimes when the output of software appears off, using approximations is a viable alternative.
 
 </details>
@@ -282,7 +487,6 @@ The last line of code above shows that by replacing $\infty$ with  large number,
 <details>
 <summary>Solution</summary>
 
-(:code:)
 ```r
 alpha <- mean(Ng)^2/var(Ng)
 beta <- mean(Ng)/var(Ng)
@@ -304,10 +508,10 @@ p
 
 To compute the probability that a the concentration of explosives in a soil sample will be more than 10mg/kg, we compute $$P(X > 10)=\int_{10}^\infty \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}dx.$$
 Mathematica code for computing this definite integral is given below. 
-(:codem:)[@
+
+```
 Integrate[(0.2542674^0.709823/Gamma[0.709823])*x^(0.709823 - 1)*Exp[-0.2542674*x], {x, 10, Infinity}]
 ```
-(:codemend:)
 
 </details>
 
@@ -315,10 +519,16 @@ Integrate[(0.2542674^0.709823/Gamma[0.709823])*x^(0.709823 - 1)*Exp[-0.2542674*x
 The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. 
 Here are the steps:
 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.
+
 1. Calculate the variance of the distribution as a function of the parameters of the distribution.
 1. Set the mean of the distribution equal to the mean of the data.
+
 1. Set the variance of the distribution equal to the variance of the data.
 1. Solve the system of equations for the parameter values.
 Note: 
 - If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.
 - If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.
+
+---
+
+*Source: [Class.39 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.39)*

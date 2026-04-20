@@ -1,6 +1,37 @@
 ---
 title: "Class 5"
 ---
+# Between Class Sessions - Prep for Day 5 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Review the Cohesive Analysis
+Take a look at this [html file](https://byuistats.github.io/M119/m119-docs/Practice_RMarkdown.html){target="_blank"}. This is an example of a cohesive analysis.
+- Notice there are complete sentences (and paragraphs) introducing the calculations.
+- Notice the calculations are explained.
+- Notice the work is reproducible because the steps of the calculations are included in the explanations, the functions we are working with are stated in the narrative (the text), and the R code is included.
+- Notice the written work stands independent of our work in class, you do not need to see the Wiki or problem statement to understand what is going on in the narrative.
+- You can download the RMarkdown file used to create this html [here](https://byuistats.github.io/M119/m119-docs/Practice_RMarkdown.Rmd).
+
+### (2) Create your own Cohesive Analysis
+- Complete Project 1 Task 1 by creating your own RMarkdown file (feel free to download and modify the one above), and in that file give a short cohesive analysis with the required scatterplot. In other words, take the work you already did and covert it into a short cohesive analysis.
+- For some additional practice with RMarkdown and writing cohesive analysis, create your own RMarkdown file (feel free to download and modify the one above), and in that file give a short cohesive analysis that computes the several values of a function taken from one of the exercises we did today. In other words, take the work you've already done in a script file in R, and convert it into a short cohesive analysis.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Continue working on 1 -- Transformations of Functions assignment 
+- Continue working on 1 -- Solving Linear Systems assignment
+
+### Applied Practice (Project Work)
+- Submit the html file for Project 1 Task 1 on Canvas.
+
 
 # During Class
 ## Brain Gains
@@ -8,12 +39,13 @@ Many functions we use in the sciences are transformations of a basic function. F
 
 Using the general transformation $T(x) = af(b(x+c))+d$, identify the parameters $a$, $b$, $c$, and $d$ needed to transform $f(u)$ into the provided function. 
 1. $g(x) = 8(x+5)^3 - 2$ where $f(u) = u^3$
+
 1. $h(x) = 4\sqrt{2x-6} +7$ where $f(u) = \sqrt{u}$
 
 <details>
 <summary>Possible Solutions</summary>
 
-For $g(x) = 8(x+5)^3 - 2$ we can chose $8=2, b=1, c=5, d=-2$.  The function $T(x)$ using $f(u)=u^3$ is $$
+For $g(x) = 8(x+5)^3 - 2$ we can chose $a=8, b=1, c=5, d=-2$.  The function $T(x)$ using $f(u)=u^3$ is $$
 \begin{align*}
 T(x;a,b,c,d) 
 &= af(b(x+c))+d \\
@@ -29,7 +61,7 @@ For $h(x) = 4\sqrt{2x-6} +7$ we can chose $a=4, b=2, c=-3, d=7$. The function $T
 T(x;a,b,c,d) 
 &= af(b(x+c))+d \\
 &= a\sqrt{b(x+c)}+d \\
-&= 4\sqrt{2(x-3)}+7 &&\text{using }a=2, b=1, c=5, d=-2 \\
+&= 4\sqrt{2(x-3)}+7 &&\text{using }a=4, b=2, c=-3, d=7 \\
 &= 4\sqrt{2x-6}+7\\
 &= h(x). 
 \end{align*}$$
@@ -49,90 +81,90 @@ Compare and contrast your Project 1 Task 1 cohesive analyses. Are all plots intr
     1. $p(x) = -3x^5 -1$ where $f(u) = u^5$
     1. $q(x) = x^2 - 4x + 9$ where $f(u) = u^2$
 
-1. Let $f(x;a,b) = ax^b$, a generic power function. Consider the transformation $T(x;a,b,A,B,C,D) = Af(B(x-C);a,b)+D$. For each set of values for $a,b,A,B,C,D$ below, do the following.
-    1. Identify the parent function $f(x; a,b)$. For example, if $a=2$ and $b=5$, then the parent function is $f(x;2,5) = 2x^5$.
-    1. Write down the specific function $T(x;A,B,C,D)$ produced from the given values for $A,B,C,D$.
-    1. Adapt [this Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr){target="_blank"} to plot and compare the two functions.
-
-**$a=1,\ b=2,\ A=1,\ B=1,\ C=0,\ D=0$**
+1. Let $f(x;a,b) = ax^b$, a generic power function. Consider the transformation $T(x;a,b,A,B,C,D) = Af(B(x-C);a,b)+D$. For each set of values for $a,b,A,B,C,D$ below, do the following. 
+    1.  Identify the parent function, $ f(x; a,b) $. For example, if $a=2$ and $b=5$, then the parent function is $f(x;2,5) = f(x) = 2x^5$. 
+    1. Write down the specific function $T(x;A,B,C,D)$ produced from the given values for the parameters $A,B,C,D$. 
+    1. Adapt this [Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr) to plot and compare the two functions.
+    - $a=1,b=2,A=1,B=1,C=0,D=0$
 
 <details>
 <summary>Check</summary>
 
 $ a = 1 $<br>
 $ b = 2 $<br>
-$\begin{aligned}
-f(x) &= 1x^2 \\
-&= x^2
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
 \end{aligned}$
 
 $ A = 1 $<br>
 $ B = 1 $<br>
 $ C = 0 $<br>
 $ D = 0 $<br>
-$\begin{aligned}
-T(x) &= 1f(1(x-0)) + 0 \\
-&= 1[1(1(x-0))^2] + 0 \\
-&= 1[1(1(x))^2] + 0 \\
-&= 1[1(x)^2] + 0 \\
+$\begin{aligned} 
+T(x) &= 1f(1(x-0)) + 0 \\ 
+&= 1[1(1(x-0))^2] + 0 \\ 
+&= 1[1(1(x))^2] + 0 \\ 
+&= 1[1(x)^2] + 0 \\ 
 &= x^2
 \end{aligned}$
 
-Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function" — there is no transformation (or only a trivial one) in this case.
+Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function", there is "no" transformation (or only a trivial transformation) in this case.
 
 </details>
 
-**$a=1,\ b=2,\ A=1,\ B=1,\ C=3,\ D=4$**
+    - $a=1,b=2,A=1,B=1,C=3,D=4$
 
 <details>
 <summary>Check</summary>
 
 $ a = 1 $<br>
 $ b = 2 $<br>
-$\begin{aligned}
-f(x) &= 1x^2 \\
-&= x^2
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
 \end{aligned}$
 
 $ A = 1 $<br>
 $ B = 1 $<br>
 $ C = 3 $<br>
 $ D = 4 $<br>
-$\begin{aligned}
-T(x) &= 1f(1(x-3)) + 4 \\
-&= 1(1(x-3))^2 + 4 \\
+$\begin{aligned} 
+T(x) &= 1f(1(x-3)) + 4 \\ 
+&= 1(1(x-3))^2 + 4 \\ 
 &= (x-3)^2 + 4
 \end{aligned}$
 
 </details>
+ 
 
-**$a=1,\ b=2,\ A=3,\ B=4,\ C=0,\ D=0$**
+    - $a=1,b=2,A=3,B=4,C=0,D=0$
 
 <details>
 <summary>Check</summary>
 
 $ a = 1 $<br>
 $ b = 2 $<br>
-$\begin{aligned}
-f(x) &= 1x^2 \\
-&= x^2
+$\begin{aligned} 
+f(x) &= 1x^2 \\ 
+&= x^2 
 \end{aligned}$
 
 $ A = 3 $<br>
 $ B = 4 $<br>
 $ C = 0 $<br>
 $ D = 0 $<br>
-$\begin{aligned}
-T(x) &= 3f(4(x-0)) + 0 \\
-&= 3f(4x) \\
-&= 3(4x)^2 \\
-&= 3(16x^2) \\
-&= 48x^2
+$\begin{aligned} 
+T(x) &= 3f(4(x-0)) + 0 \\ 
+&= 3f(4x) \\ 
+&= 3(4x)^2 \\ 
+&= 3(16x^2) \\ 
+&= 48x^2 
 \end{aligned}$
 
 </details>
 
-**$a=3,\ b=4,\ A=1,\ B=1,\ C=0,\ D=0$**
+    - $a=3,b=4,A=1,B=1,C=0,D=0$
 
 <details>
 <summary>Check</summary>
@@ -145,17 +177,17 @@ $ A = 1 $<br>
 $ B = 1 $<br>
 $ C = 0 $<br>
 $ D = 0 $<br>
-$\begin{aligned}
-T(x) &= 1f(1(x-0)) + 0 \\
-&= 1f(x) \\
-&= 3x^4
+$\begin{aligned} 
+T(x) &= 1f(1(x-0)) + 0 \\ 
+&= 1f(x) \\ 
+&= 3x^4 
 \end{aligned}$
 
-Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function" — there is no transformation (or only a trivial one) in this case.
+Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent function", there is "no" transformation (or only a trivial transformation) in this case.
 
 </details>
 
-**$a=-1,\ b=3,\ A=2,\ B=-4,\ C=5,\ D=-6$**
+    - $a=-1,b=3,A=2,B=-4,C=5,D=-6$
 
 <details>
 <summary>Check</summary>
@@ -163,25 +195,26 @@ Notice $T(x)$, the "transformed function", is the same as $f(x)$, the "parent fu
 $ a = -1 $<br>
 $ b = 3 $<br>
 $ \begin{aligned}
-f(x) &= -1x^3 \\
-&= -x^3
+f(x) &= -1x^3 \\ 
+&= -x^3 
 \end{aligned}$
 
 $ A = 2 $<br>
 $ B = -4 $<br>
 $ C = 5 $<br>
 $ D = -6 $<br>
-$\begin{aligned}
-T(x) &= 2f(-4(x-5)) + (-6) \\
-&= 2[-1(-4(x-5))^3] - 6 \\
-&= -2((-4)^3(x-5)^3) - 6 \\
-&= -2(-64(x-5)^3) - 6 \\
+$\begin{aligned} 
+T(x) &= 2f(-4(x-5)) + (-6) \\ 
+&= 2[-1(-4(x-5))^3] - 6 \\ 
+&= -2((-4)^3(x-5)^3) - 6 \\ 
+&= -2(-64(x-5)^3) - 6 \\ 
 &= 128(x-5)^3 - 6
 \end{aligned}$
 
 </details>
 
 1.  Each parameter ( $A$, $B$, $C$, and $D$ ) above controls some aspect of the graph of the function. Explore changing these parameters and write a description of what each parameter controls. 
+
 1. Replace $f(x;a,b) = ax^b$ above with $f(x;a,b) = a(b^x)$ and then repeat the second exercise. Do your conclusions from part 3 still hold? 
 
 ## Discussion
@@ -192,13 +225,19 @@ T(x) &= 2f(-4(x-5)) + (-6) \\
 
 ### Example Project (Cohesive Analysis)
 We will complete Example Project Task 1 together and then put together a cohesive analysis to complete task 1 of the example project.  We'll be building a histogram as we complete the example project.  You built a scatter plot when you complete Project 1 Task 1. 
-- We'll open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}
+- We'll open the [Example Project Instructions](../assets/docs/example_project.html){target="_blank"}
 - Use our work on this Example Project and the feedback you receive from your peer feedback to guide in your revisions on Project 1 Task 1. Remember, you can revise and resubmit your Project 1 Task 1 today if you have found something you need to change in order to meet the specs (or if there is something you would like to update).
 - Are there any questions about the expectations for the project tasks? 
 
 ### Functions, Transformations, Parameters 
 1. How do we find the domain (implied domain) of a function?
+
 1. What is the difference between a power function and an exponential function? Give an example of each. 
 1. Give an example of a transformed power function. 
+
 1. Give an example of a transformed exponential function. 
-1. Let's use [this Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr){target="_blank"} and create some examples, exploring how parameters transform a function.
+1. Let's use this [Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr) and create some examples, exploring how parameters transform a function.
+
+---
+
+*Source: [Class.5 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.5)*

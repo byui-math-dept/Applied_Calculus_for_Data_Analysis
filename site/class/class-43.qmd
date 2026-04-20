@@ -1,6 +1,64 @@
 ---
 title: "Class 43"
 ---
+# Between Class Sessions - Prep for Day 43 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Definite Integrals
+Given the function
+$$g(x) = 
+\begin{cases}
+2 & 0 < x < 5 \\ \\
+0 & \text{otherwise}
+\end{cases},$$
+determine whether each statement is true or false. Be prepared to share your reasoning with your group.
+
+    - $\int_0^5 g(x)dx = 10$.
+    - $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_3^{4.5} g(x)dx + \int_{4.5}^5 g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_{-\infty}^0 g(x)dx + \int_0^5 g(x)dx + \int_5^{\infty} g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_1^5 g(x)dx$.
+    - $\int_0^5 g(x)dx = \int_1^3 g(x)dx + \int_4^5 g(x)dx$.
+
+### (2) Antiderivative Practice
+An **antiderivative** is a function that reverses what the derivative did, the result we get when we "undo" a derivative is called an antiderivative.
+Drawing on your knowledge of derivatives, for each expression below, please "undo" the derivative. 
+In other words answer the question, "What function did we take the derivative of to get this function?"
+1. $ 3x^2 $
+
+1. $ x^4 $
+1. $ 5 $
+
+1. $ \frac{1}{3} x $
+1. $ 3 - \frac{1}{4} x $ 
+
+1. $e^x$
+1. $ x^{\frac{5}{4}} $
+
+### (3) Continue working on Project 3
+- Use your fitted models to calculate the required percentiles.
+    - Write down the equations (each equation will include an integral).
+    - Use Mathematica to solve the equations.
+
+- For each of the fitted models calculate P(X<0).
+    - How do these calculations help us determine if a model is consistent with what we know about Nitroglycerin concentrations?
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Continue working on 3 -- Definite Integrals assignment
+- *Complete any missing Function assignment, Derivative assignments, or any of the first 5 Integral assignments.*
+
+### Applied Practice (Project Work)
+We have discussed in class all the information you need to complete Project 3.
+- Continue working on Project 3
+
 
 # During Class
 ## Brain Gains
@@ -57,6 +115,7 @@ Work on the chalkboard as you complete these activities and exercises, and pass 
 
 ### Antiderivatives and Indefinite Integrals
 1. Find a function $H_1(x)$ whose derivative is $h(x) = 4x^3$. Then find a second function $H_2(x)$ whose derivative is $h(x)=4x^3$.  We call $H_1$ and $H_2$ antiderivatives of $h(x)$, because they undo the differentiation process. 
+
 1. Find two different functions whose derivative is $e^{-x}$. 
 
 If $F$ is an antiderivative of $f$, then both $G(x) = F(x) + 11$ and $H(x) = F(x) - 3$ are also antiderivatives of $f$.
@@ -73,10 +132,12 @@ If $F$ is an antiderivative of $f$, then $\int f(x) dx = F(x) + C$ where $C$ is 
 
 1. Compute $\int 3x dx$. Use the Mathematica code below to check your answer.
 
-```r
-Integrate[3x,x] in Mathematica to check your answer. 
-@](:codemend:)
+```
+Integrate[3x,x] in Mathematica to check your answer.
+```
+
 1. Compute $\int x^2-4x dx$. Use Mathematica to check your answer.
+
 1. Compute $\int 5+\frac{1}{x^2} dx$. Use Mathematica to check your answer.
 
 ### Activity - Accumulation Function
@@ -98,11 +159,11 @@ Use Mathematica to perform any definite integrals.
 The area is Area$_{\text{target}} = \int_{-\infty}^{\infty} g(x) dx = \int_{-\infty}^0 g(x) dx + \int_0^2 g(x) dx + \int_2^{\infty} g(x) dx$. 
 
 So we see Area$_{\text{target}} = \int_{-\infty}^0 0 dx + \int_0^2 \frac{3}{8}x^2 - \frac{3}{2}x + \frac{3}{2} dx + \int_2^{\infty} 0 dx = \int_0^2 \frac{3}{8}x^2 - \frac{3}{2}x + \frac{3}{2} dx$. Mathematica can compute this for us. 
-(:codem:)
+
 ```
 Integrate[(3/8)*x^2 - (3/2)*x + (3/2), {x, 0, 2}]
 ```
-(:codemend:)
+
 The area is 1 for this problem, so $f(x) = g(x)$ as $k = 1$.
 
 The cdf is 
@@ -113,14 +174,13 @@ $$F(x) =
 1 & x \geq2
 \end{cases}.$$
 For $x$ values between 0 and 2, the following Mathematica code gives $F(x)$. 
-(:codem:)
+
 ```
 Integrate[(3/8)*x^2 - (3/2)*x + (3/2), {x, 0, x}]
 ```
-(:codemend:)
 
 We can plot the function in R. Below is one example of how to construct such a plot for a piecewise defined function.  There are lots of other ways. 
-(:code:)
+
 ```r
 F <- function(x){
   ifelse(x<0, 0, 
@@ -133,7 +193,8 @@ plot(x,F(x),type='l')
 ```
 
 We could also plot this function in Mathematica. Below is an example of how to define a piecewise function and construct a plot.
-(:codem:)[@
+
+```
 F = Piecewise[{
    {0, x <= 0},
    {1/8*x^3 - 3/4*x^2 + 3/2*x, x < 2},
@@ -141,7 +202,6 @@ F = Piecewise[{
    }]
 Plot[F, {x, -2, 10}]
 ```
-(:codemend:)
 
 </details>
 
@@ -167,14 +227,14 @@ $$F(x) = \int_{-\infty}^x f(t)dt =
 \int_{-\infty}^x 0dt = 0 & x < 0 \\ \\ 
 \int_{0}^x e^{-t}dt = 1-e^{-x} & x \geq 0
 \end{cases}.$$
-(:codem:)
+
 ```
 $Assumptions = x > 0;
 Integrate[Exp[-t],{t,0,x}]
 
 Integrate[Exp[-x],x]
 ```
-(:codemend:)
+
     - We know that $F(x)$ is from the family of functions $\int e^{-x}dx$. How do we pick which one?
       - We need to identify the constant. We know $F(0) = 0$.
 - The cdf $F(x) = \int_{-\infty}^x f(t)dt$ is an **accumulation function** (calculating the *accumulation of probability*).
@@ -203,6 +263,7 @@ The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation functi
   <li>Use a geometric argument to compute $P(3\leq X\leq 5)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. </li>
 </ol>
 1. Use a geometric argument to state the CDF $F(x)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. 
+
 1. Now that we have a formula for $F(x)$, use that formula to compute $F(3)$ and $F(5)$. Then use $F(3)$ and $F(5)$ to obtain $P(3\leq X\leq 5)$. 
 
 2. Consider a random variable $X$ with probability density function $f(x) = \frac{2x}{25}$ for $0\leq x\leq 5$.  
@@ -210,6 +271,7 @@ The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation functi
   <li>Use a geometric argument to compute $P(1\leq X\leq 3)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. </li>
 </ol>
 1. Use a geometric argument to state the CDF $F(x)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. 
+
 1. Now that we have a formula for $F(x)$, use that formula to compute $F(1)$ and $F(3)$. Then use $F(1)$ and $F(3)$ to obtain $P(1\leq X\leq 3)$. 
 
 3. Consider a random variable $X$ with probability density function $g(x) = \frac{2x}{9}$ for $0\leq x\leq 3$. 
@@ -217,6 +279,7 @@ The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation functi
   <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
 </ol>
 1. Compute $G(x)-G(0)$. 
+
 1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
 1. Compute $P(1\leq X\leq 2)$ using the function $G(x)$. 
 
@@ -225,6 +288,7 @@ The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation functi
   <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
 </ol>
 1. Compute $G(x)-G(0)$. 
+
 1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
 1. Compute $P(1\leq X\leq 3)$ using the function $G(x)$. 
 
@@ -233,13 +297,19 @@ The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation functi
   <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
 </ol>
 1. Compute $G(x)-G(2)$.
+
 1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
 1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$. 
 
-6. Consider a random variable $X$ with probability density function $g(x) = \frac{x^2}{39}$ for $2\leq x\leq 5$. 
+6. Consider a random variable $X$ with probability density function $g(x) = \frac{x^2}{39}$ for $2\leq x\leq 5$.
 <ol type="a">
   <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
 </ol>
-1. Compute $G(x)-G(2)$. 
-1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
+1. Compute $G(x)-G(2)$.
+
+1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$.
 1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$.
+
+---
+
+*Source: [Class.43 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.43)*

@@ -1,0 +1,237 @@
+---
+title: "43B"
+---
+
+# Between Class Sessions - Prep for Day 43b <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Antiderivative Practice
+An **antiderivative** is a function that reverses what the derivative did, the result we get when we "undo" a derivative is called an antiderivative.
+Drawing on your knowledge of derivatives, for each expression below, please "undo" the derivative. 
+In other words answer the question, "What function did we take the derivative of to get this function?"
+1. $ 6x^5 $
+
+1. $ x^3 $
+1. $ -2 $
+
+1. $ \frac{1}{5} x $
+1. $ 1 - \frac{1}{2} x $ 
+
+1. $e^x$
+1. $e^{2x}$
+
+1. $ x^{\frac{1}{4}} $
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 3 -- Definite Integrals assignment
+
+### Applied Practice (Project Work)
+- Finish Project 3
+
+# During Class
+## Brain Gains
+1. Given $\int_{-3}^{10} f(x)dx=-7$, $\int_{4}^{10} f(x)dx=6$, $\int_{-3}^{10} g(x)dx=6$, and $\int_{4}^{10} g(x)dx=-2$.
+    - What is the value of $\int_{4}^{10} f(x) - 3g(x) dx$?
+    - What is the value of $\int_{-3}^{4} -2f(x) + 5g(x) dx$?
+1. Find a function $H_1(x)$ whose derivative is $h(x) = 4x^3$. Then find a second function $H_2(x)$ whose derivative is $h(x)=4x^3$.  We call $H_1$ and $H_2$ antiderivatives of $h(x)$, because they undo the differentiation process. 
+
+1. Find two different functions whose derivatives are $e^{-x}$. 
+
+## Discussion
+If $F$ is an antiderivative of $f$, then both $G(x) = F(x) + 11$ and $H(x) = F(x) - 3$ are also antiderivatives of $f$.
+Notice $F(x) \neq G(x)$ and $F(x) \neq H(x)$ but the derivatives of these functions are equal. In fact, if $C$ is any real number and $F$ is an antiderivative of $f$, then $F(x)+C$ is an antiderivative of $f$.
+
+<details>
+<summary>Indefinite Integral</summary>
+
+The indefinite integral $\int f(x) dx$ is the collection of all antiderivatives of the function $f(x)$.
+If $F$ is an antiderivative of $f$, then $\int f(x) dx = F(x) + C$ where $C$ is a real number.
+
+</details>
+ 
+
+1. Compute $\int 3x dx$. Use the Mathematica code below to check your answer.
+
+```
+Integrate[3x,x] in Mathematica to check your answer.
+```
+
+1. Compute $\int x^2-4x dx$. Use Mathematica to check your answer.
+
+1. Compute $\int 5+\frac{1}{x^2} dx$. Use Mathematica to check your answer.
+1. Consider the pdf $f(x) = e^{-x} $ for $x \geq 0$ and zero otherwise.
+- We can verify that $F_1(x) = -e^{-x}$, $F_2(x) = 5 - e^{-x} $, and $F_3(x) = -e^{-x} - 2$ are all antiderivatives of $f$. Are any of these function the CDF of the random variable $X$?
+    - We know that $F(x)$ is from the family of functions $\int e^{-x}dx$. How do we pick which one?
+      - We need to identify the constant. We know $F(0) = 0$.
+
+- The cdf $F(x) = \int_{-\infty}^x f(t)dt$ is an **accumulation function** (calculating the *accumulation of probability*).
+    - More generally an accumulation function is of the form $F(x) = \int_{a}^x f(t)dt$ where $a$ is a constant.
+    - An accumulation function is one antiderivative of $f$. The one where $F(a) = 0$.
+
+<details>
+<summary>Accumulation Function</summary>
+
+The function $A(x) = \int_{-\infty}^x f(t)dt$ is called an **accumulation function**. Accumulation functions can be used to calculated the area between the $x$-axis and a nonnegative function $f$ up to the value $x$ (for all $x$) provided the definite integral exists.
+
+</details>
+
+- Find the cdf of $X$.
+    - We know $F(x) = P(X \leq x) = \int_{-\infty}^x f(t)dt$.
+$$F(x) = \int_{-\infty}^x f(t)dt = 
+\begin{cases}
+\int_{-\infty}^x 0dt = 0 & x < 0 \\ \\ 
+\int_{0}^x e^{-t}dt = 1-e^{-x} & x \geq 0
+\end{cases}.$$
+
+```
+$Assumptions = x > 0;
+Integrate[Exp[-t],{t,0,x}]
+
+Integrate[Exp[-x],x]
+```
+
+#### Summary
+- A **definite integral** is **a number**.
+    - Example: $\int_{0.5}^2 e^{-x} dx \approx 0.4712$. (*exact value of this number is $e^{-0.5} - e^{-2}$*)
+- An **indefinite integral** is **a family of functions** (collection of antiderivatives).
+    - Example: $\int e^{-x} dx = -e^{-x} + C$.
+- An **accumulation function** is **an antiderivative**.
+    - Example: $\int_0^x e^{-t} dt = 1-e^{-x}$. (*The antiderivative when $C = 0$. Just one function from the family of antiderivatives.*)
+    - What do you think happens when we take the derivative of an accumulation function?
+
+## Group Meeting 
+General Instructions
+- Give each group member a several minutes to share.
+- When you finish discussing the prep, please start on the activity below.
+### Activity - Accumulation Function
+1. Consider the function 
+$\ds g(x) = \begin{cases}\frac{3}{8}x^2 - \frac{3}{2}x + \frac{3}{2} & 0 < x < 2 \\ 0 & \text{otherwise}\end{cases}.$
+Let $g(x)$ be a function that defines the top of a target. A dart is randomly thrown at the target, and we let $X$ be the random variable that records the $x$-coordinate of the dart's location.
+
+Use Mathematica to perform any definite integrals. 
+<ol type="a">
+  <li>What is the total area of the target, so the area under $g$ and above the $x$-axis? </li>
+  <li>Find the pdf $f(x)$ of $X$.</li>
+  <li>Find the cdf $F(x)$ of $X$.</li>
+  <li>Graph $F(x)$.</li>
+</ol>
+
+<details>
+<summary>Some answers</summary>
+
+The area is Area$_{\text{target}} = \int_{-\infty}^{\infty} g(x) dx = \int_{-\infty}^0 g(x) dx + \int_0^2 g(x) dx + \int_2^{\infty} g(x) dx$. 
+
+So we see Area$_{\text{target}} = \int_{-\infty}^0 0 dx + \int_0^2 \frac{3}{8}x^2 - \frac{3}{2}x + \frac{3}{2} dx + \int_2^{\infty} 0 dx = \int_0^2 \frac{3}{8}x^2 - \frac{3}{2}x + \frac{3}{2} dx$. Mathematica can compute this for us. 
+
+```
+Integrate[(3/8)*x^2 - (3/2)*x + (3/2), {x, 0, 2}]
+```
+
+The area is 1 for this problem, so $f(x) = g(x)$ as $k = 1$.
+
+The cdf is 
+$$F(x) = 
+\begin{cases}
+0 & x \leq 0 \\ \\ 
+\frac{1}{8}x^3 - \frac{3}{4}x^2 + \frac{3}{2}x & 0 < x < 2 \\ \\
+1 & x \geq2
+\end{cases}.$$
+For $x$ values between 0 and 2, the following Mathematica code gives $F(x)$. 
+
+```
+Integrate[(3/8)*x^2 - (3/2)*x + (3/2), {x, 0, x}]
+```
+
+We can plot the function in R. Below is one example of how to construct such a plot for a piecewise defined function.  There are lots of other ways. 
+
+```r
+F <- function(x){
+  out <- rep(-1, length(x))
+  out[(x <= 0)] <- rep(0,length(x[x <= 0]))
+  out[(0 < x) & (x < 2)] <- (3/2)*x[(0 < x) & (x < 2)] - (3/4)*x[(0 < x) & (x < 2)]^2 + (1/8)*x[(0 < x) & (x < 2)]^3
+  out[(x >= 2)] <- rep(1,length(x[x >= 2]))
+  return(out) }
+
+x.val <- seq(-2,10,0.1)
+par(mfrow=c(1,1),mar=c(2.5,2.5,0.25,0.25))
+plot(x.val,F(x.val),type='l')
+```
+
+</details>
+
+2. Consider the same scenario as before, but this time let 
+$\ds g(x) = \begin{cases}e^{-\lambda x} & x \geq 0 \\ 0 & \text{otherwise}\end{cases}$ for some $\lambda >0$. 
+
+Use Mathematica to perform any definite integrals. 
+<ol type="a">
+  <li>What is the total area of the target, so the area under $g$ and above the $x$-axis? </li>
+  <li>Find the pdf $f(x)$ of $X$.</li>
+  <li>Find the cdf $F(x)$ of $X$.</li>
+  <li>Graph $F(x)$.</li>
+</ol>
+
+### Activity - Making Connections using CDFs and PDFs
+1. Consider a random variable $X$ with probability density function $f(x) = \frac{1}{5}$ for $2\leq x\leq 7$.  
+<ol type="a">
+  <li>Use a geometric argument to compute $P(3\leq X\leq 5)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. </li>
+</ol>
+1. Use a geometric argument to state the CDF $F(x)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. 
+
+1. Now that we have a formula for $F(x)$, use that formula to compute $F(3)$ and $F(5)$. Then use $F(3)$ and $F(5)$ to obtain $P(3\leq X\leq 5)$. 
+
+2. Consider a random variable $X$ with probability density function $f(x) = \frac{2x}{25}$ for $0\leq x\leq 5$.  
+<ol type="a">
+  <li>Use a geometric argument to compute $P(1\leq X\leq 3)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. </li>
+</ol>
+1. Use a geometric argument to state the CDF $F(x)$. Then use Mathematica to verify your answer is correct by writing down an appropriate definite integral and computing it. 
+
+1. Now that we have a formula for $F(x)$, use that formula to compute $F(1)$ and $F(3)$. Then use $F(1)$ and $F(3)$ to obtain $P(1\leq X\leq 3)$. 
+
+3. Consider a random variable $X$ with probability density function $g(x) = \frac{2x}{9}$ for $0\leq x\leq 3$. 
+<ol type="a">
+  <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
+</ol>
+1. Compute $G(x)-G(0)$. 
+
+1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
+1. Compute $P(1\leq X\leq 2)$ using the function $G(x)$. 
+
+4. Consider a random variable $X$ with probability density function $g(x) = \frac{3x^2}{64}$ for $0\leq x\leq 4$. 
+<ol type="a">
+  <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
+</ol>
+1. Compute $G(x)-G(0)$. 
+
+1. Use Mathematica to compute the cumulative distribution function $\int_0^x g(x)dx$. 
+1. Compute $P(1\leq X\leq 3)$ using the function $G(x)$. 
+
+5. Consider a random variable $X$ with probability density function $g(x) = \frac{2x}{21}$ for $2\leq x\leq 5$. 
+<ol type="a">
+  <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
+</ol>
+1. Compute $G(x)-G(2)$.
+
+1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
+1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$. 
+
+6. Consider a random variable $X$ with probability density function $g(x) = \frac{x^2}{39}$ for $2\leq x\leq 5$. 
+<ol type="a">
+  <li>State a function $G(x)$ whose derivative is $g(x)$. Then state another. Then state another.  How many such functions are there?</li>
+</ol>
+1. Compute $G(x)-G(2)$. 
+
+1. Use Mathematica to compute the cumulative distribution function $\int_2^x g(x)dx$. 
+1. Compute $P(3\leq X\leq 4)$ using the function $G(x)$.
+
+---
+
+*Source: [Class.43b on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.43b)*

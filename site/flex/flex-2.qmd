@@ -12,13 +12,13 @@ When we study a measurement (rather than a relationship between two measurements
 
 Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the measurement (weight of a car), we can visualize this data by constructing a histogram. Use the following code to create a histogram.
 
-```
+```r
 hist(mtcars$wt)
 ```
 
 Compare plot created by the previous code to the plot created by the following code.
 
-```
+```r
 hist(mtcars$wt,probability=TRUE)
 ```
 
@@ -35,10 +35,10 @@ dist <- led_time(2100)
 
 Use the hist() command in R to create a density histogram for the light bulb intensity as a percent of initial lumens.
 
-This completes [Example Project Task 1](https://byuistats.github.io/M119/example_project.html){target="_blank"}. Here is [an example](https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html){target="_blank"} of a cohesive analysis of this task.
+This completes [Example Project Task 1](../assets/docs/example_project.html){target="_blank"}. Here is [an example](https://chaz-clark.github.io/M119/Projects/m119-docs/ExampleProject_Task1.html){target="_blank"} of a cohesive analysis of this task.
 
 ### Activity - Exploring some Probability Models using Desmos (Example Project Task 2) and Visually Fitting a Model (Example Project Task 3)
-- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2
+- Open the [Example Project Instructions](../assets/docs/example_project.html){target="_blank"}, and briefly read Task 2
 - Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
     - Use the slider to alter the values of $a$ and $b$. Summarize in your notes how these parameters alter the graph of $f_0$.
     - Use the slider to alter the values of $h$ and $a$.  Summarize in your notes how these parameters alter the graph of $f_1$.
@@ -52,13 +52,13 @@ dist <- led_time(2100)
 hist(dist$percent_intensity,probability = TRUE)
 ```
 
-Consider the function $ f_2(x; h,a,b) = \frac{b^a}{\Gamma(a)}(x-h)^{a-1}e^{-b(x-h)} $ where $x \geq h$. Read this [cohesive analysis](https://byuistats.github.io/M119/m119-docs/ExampleProject_Task1.html){target="_blank"} describing how the parameters $a$, $b$ and $h$ change the behavior of the function $f_2$.
+Consider the function $ f_2(x; h,a,b) = \frac{b^a}{\Gamma(a)}(x-h)^{a-1}e^{-b(x-h)} $ where $x \geq h$. Read this [cohesive analysis](https://chaz-clark.github.io/M119/Projects/m119-docs/ExampleProject_Task1.html){target="_blank"} describing how the parameters $a$, $b$ and $h$ change the behavior of the function $f_2$.
 
 Starting with the parameter values $a = 10$, $b=4.8$, and $h=101$ use what you learned from the cohesive analysis to adapt the following code to find a visual fit of the function $f_2$ to the data (visualized with the histogram).
 
 ```r
 f2 <- function(x,h=0,a=1,b=5){
-1. Make sure a > 0 and b > 0.
+# Make sure a > 0 and b > 0.
 
 out <- rep(-1,length(x))
 out[(x < h)] <- 0*x[(x < h)]

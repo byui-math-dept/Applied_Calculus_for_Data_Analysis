@@ -5,7 +5,7 @@ title: "Class 1"
 # During Class
 ## Welcome! 
 
-- The address for this site is [here](https://miniature-adventure-g44yz51.pages.github.io){target="_blank"}.
+- The address for this Wiki is [site](https://byuimath.com/bmw/all/119/){target="_blank"}.  
 ![](../assets/uploads/Class/119-bmw.png){height="100px"}
 - First Day Challenge: Exchange name and contact information with at least 1 other student in this class during our work today.
 
@@ -55,7 +55,7 @@ Find the following values.
   <li>$f(0) = 0$</li>
   <li>$f(\sqrt{3}) = \sqrt{3} \approx 1.732051$</li>
 </ol>
-The number $f(3)$ an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol $\sqrt{3}$ which represents the positive real number that when you square it you get exactly 3.
+The number $f(\sqrt{3})$ is an irrational number which means any decimal representation of this number is just an approximation. The exact number is represented by the symbol $\sqrt{3}$ which represents the positive real number that when you square it you get exactly 3.
 
 </details>
 
@@ -66,12 +66,14 @@ Then work through the following problems.
 - The goal is to ask questions of each other and help each other. 
 - Leave up your work so that you can compare your answers with neighbors. 
 
-1. Let $f(x) = \frac{2x+4}{x^2}$. Find each of the following values.
+1. 
+Let $f(x) = \frac{2x+4}{x^2}$. Find each of the following values.
 <ol type="a">
   <li>$f(-4)$</li>
-  <li>$f(1)$</li>
-  <li>$f(0)$</li>
 </ol>
+1. $f(1)$
+
+1. $f(0)$
 
 <details>
 <summary>Answers</summary>
@@ -187,6 +189,7 @@ Important take away:
 ## Class Discussion
 ### Mastery Learning - Specifications Grading
 1. What is [mastery learning](https://youtu.be/-MTRxRO5SRA?t=137){target="_blank"}?
+
 1. What is [specifications grading](https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay){target="_blank"}?
 1. Course Introduction and [Syllabus](https://byui.instructure.com/courses/398938/assignments/syllabus){target="_blank"}.
     - Are you in the right class?
@@ -194,3 +197,7 @@ Important take away:
         1. Attendance & Preparation - #tasklist
         1. Knewton-Alta
         1. Projects
+
+---
+
+*Source: [Class.1 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.1)*

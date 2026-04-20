@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-9" id="toc-during-class---day-9" class="nav-link active" data-scroll-target="#during-class---day-9">During Class - Day 9</a>
+  <li><a href="#between-class-sessions---prep-for-day-9" id="toc-between-class-sessions---prep-for-day-9" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-9">Between Class Sessions - Prep for Day 9 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#function-fairy-tales" id="toc-function-fairy-tales" class="nav-link" data-scroll-target="#function-fairy-tales">(2) Function “Fairy Tales”</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class---day-9" id="toc-during-class---day-9" class="nav-link" data-scroll-target="#during-class---day-9">During Class - Day 9</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#definitions-and-reminders" id="toc-definitions-and-reminders" class="nav-link" data-scroll-target="#definitions-and-reminders">Definitions and Reminders</a></li>
@@ -275,6 +452,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -295,6 +473,44 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-9" class="level1">
+<h1>Between Class Sessions - Prep for Day 9 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Logarithm Introduction and Practice Watch these video from mathispower4u. - <a href="https://www.youtube.com/watch?v=z296tOPj0HA" target="_blank">Introduction to Logarithmic Functions</a> - <a href="https://www.youtube.com/watch?v=dxj5J9OpWGA&amp;feature=youtu.be" target="_blank">Evaluating Logarithms</a> - <a href="https://www.youtube.com/watch?v=SxF44olWTyk" target="_blank">Properties of Logarithms</a></p>
+<section id="function-fairy-tales" class="level3">
+<h3 class="anchored" data-anchor-id="function-fairy-tales">(2) Function “Fairy Tales”</h3>
+<p>The local elvish population is modeled by the function <span class="math inline">\(P(x;a,b) = ax+b\)</span>, where <span class="math inline">\(x\)</span> is the number of years since 2000. - Letting <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=30\)</span>, we have <span class="math inline">\(P(x) = 2x+30\)</span>. Plot this function and tell the story given by this model. - How many elves does this model say were alive in 2020?</p>
+<p>You can use the code below to help you tackle this problem.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">2</span>,<span class="at">b=</span><span class="dv">30</span>){a<span class="sc">*</span>x<span class="sc">+</span>b}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">200</span>,<span class="fl">0.1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<p>Continue working on the following assignments. - 1 – Definition of Logarithm - 1 – Evaluate Exponential and Logarithmic Functions - 1 – Properties of Logarithms</p>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Prepare for Project 1 Task 3
+<ul>
+<li>Read the Project 1 Task 3 instructions</li>
+<li>Watch the <a href="https://www.loom.com/share/e719841d54624db9b22ada1e85b7f85d?sharedAppSource=personal_library" target="_blank">video</a> example of visually fitting f2. The link for this video is also in the Project 1 (Task 3) Instructions.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class---day-9" class="level1">
 <h1>During Class - Day 9</h1>
 <section id="brain-gains" class="level2">
@@ -309,37 +525,37 @@ Solution
 </summary>
 <p>The population started at 10 elves in 2000, and grows by 5 each year to reach 110 in 2020. Note that the domain of this problem specifically prevents me from letting <span class="math inline">\(x\)</span> be negative (the “since 2000” comment), so we don’t have to worry about interpreting something like <span class="math inline">\(x=-20\)</span> which could mean there are -10 elves in 1980.</p>
 <p>The code below graphs the function.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">2</span>,<span class="at">b=</span><span class="dv">30</span>){a<span class="sc">*</span>x<span class="sc">+</span>b}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">200</span>,<span class="fl">0.1</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x,<span class="dv">5</span>,<span class="dv">10</span>),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">2</span>,<span class="at">b=</span><span class="dv">30</span>){a<span class="sc">*</span>x<span class="sc">+</span>b}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">200</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x,<span class="dv">5</span>,<span class="dv">10</span>),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ol start="2" type="1">
-<li>Solve for <span class="math inline">\(x\)</span> in each of the following.
+<li><p>Solve for <span class="math inline">\(x\)</span> in each of the following.</p>
 <ol type="a">
 <li>
-<span class="math inline">\(2^x=8\)</span>
+<p><span class="math inline">\(2^x=8\)</span></p>
 </li>
 </ol></li>
-<li><span class="math inline">\(2^x = \frac{1}{16}\)</span></li>
-<li><span class="math inline">\(2^x = 17\)</span></li>
-<li><span class="math inline">\(e^x = 1\)</span></li>
-<li><span class="math inline">\(e^x = 2\)</span></li>
+<li><p><span class="math inline">\(2^x = \frac{1}{16}\)</span></p></li>
+<li><p><span class="math inline">\(2^x = 17\)</span></p></li>
+<li><p><span class="math inline">\(e^x = 1\)</span></p></li>
+<li><p><span class="math inline">\(e^x = 2\)</span></p></li>
 </ol>
 <details>
 <summary>
 Solutions
 </summary>
 <ol type="1">
-<li>Because <span class="math inline">\(2^3=8\)</span>, we know <span class="math inline">\(x=3\)</span>.</li>
-<li>Because <span class="math inline">\(2^{-4}=\frac{1}{16}\)</span>, we know <span class="math inline">\(x=-4\)</span>.</li>
-<li>This one isn’t guessable. We know <span class="math inline">\(2^4=16\)</span> and <span class="math inline">\(2^5=32\)</span>, so we know <span class="math inline">\(4&lt;x&lt;5\)</span>. How do we get the solution? This is what logarithms are for. We’ll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach. We can rewrite the exponential form <span class="math inline">\(2^x = 17\)</span> in the log form <span class="math inline">\(x = \log_2(17)\)</span>, which is the solution.</li>
-<li>Anything nonzero, raised to the zero, is 1, so the solution is <span class="math inline">\(x=0\)</span>.</li>
-<li>Rewriting in log form gives us <span class="math inline">\(\log_e(2)=x\)</span>. We use <span class="math inline">\(\ln\)</span> as shorthand for <span class="math inline">\(\log_e\)</span>.</li>
+<li><p>Because <span class="math inline">\(2^3=8\)</span>, we know <span class="math inline">\(x=3\)</span>.</p></li>
+<li><p>Because <span class="math inline">\(2^{-4}=\frac{1}{16}\)</span>, we know <span class="math inline">\(x=-4\)</span>.</p></li>
+<li><p>This one isn’t guessable. We know <span class="math inline">\(2^4=16\)</span> and <span class="math inline">\(2^5=32\)</span>, so we know <span class="math inline">\(4&lt;x&lt;5\)</span>. How do we get the solution? This is what logarithms are for. We’ll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach. We can rewrite the exponential form <span class="math inline">\(2^x = 17\)</span> in the log form <span class="math inline">\(x = \log_2(17)\)</span>, which is the solution.</p></li>
+<li><p>Anything nonzero, raised to the zero, is 1, so the solution is <span class="math inline">\(x=0\)</span>.</p></li>
+<li><p>Rewriting in log form gives us <span class="math inline">\(\log_e(2)=x\)</span>. We use <span class="math inline">\(\ln\)</span> as shorthand for <span class="math inline">\(\log_e\)</span>.</p></li>
 </ol>
 <p>In general, we rewrite <span class="math inline">\(a^\text{input} = \text{output}\)</span> in log form as <span class="math inline">\(\log_a\text{output} = \text{input}\)</span>. Exponential and logarithmic functions are inverses of each other. They undo what the other function did, which is why the inputs and outputs swap spots.</p>
 <p>Most computer languages use <span class="math inline">\(\exp(x)\)</span> for <span class="math inline">\(e^x\)</span> and <span class="math inline">\(\log(x)\)</span> for <span class="math inline">\(\log_e(x)\)</span>. When using <span class="math inline">\(\exp\)</span> and <span class="math inline">\(\log\)</span>, we can remember the rewriting rule as <span class="math display">\[y = \exp(x) \quad \text{means} \quad x = \log(y).\]</span> Notice that when the inputs and outputs swap, the function changes from <span class="math inline">\(\exp\)</span> to <span class="math inline">\(\log\)</span> or vice versa.</p>
@@ -465,19 +681,21 @@ Properties of Logarithms
 <h3 class="anchored" data-anchor-id="activity---transformations-of-exponential-functions">Activity - Transformations of Exponential Functions</h3>
 <p>Consider the general form <span class="math inline">\(Q(x;a,c,h,k) = af(c(x-h))+k\)</span> for a transformation of a function <span class="math inline">\(f(u)\)</span>. - Identify <span class="math inline">\(a\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(h\)</span>, and <span class="math inline">\(k\)</span> and describe the transformations on <span class="math inline">\(f\)</span> to obtain <span class="math inline">\(Q\)</span> for each function below. Then state the domain and range of <span class="math inline">\(Q\)</span>. Finish by graphing <span class="math inline">\(Q\)</span>. - <span class="math inline">\(Q(x) = 4 \cdot 2^x\)</span> where <span class="math inline">\(f(u) = 2^u\)</span> - <span class="math inline">\(Q(x) = (\frac{1}{2})^x - 2\)</span> where <span class="math inline">\(f(u) = (\frac{1}{2})^u\)</span> - <span class="math inline">\(Q(x) = \frac{1}{2}3^{x-1}\)</span> where <span class="math inline">\(f(u) = 3^u\)</span> - <span class="math inline">\(Q(x) = 2^{3-x}+5\)</span> where <span class="math inline">\(f(u) = 2^u\)</span></p>
 <p>Use this code to define the functions above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="dv">4</span><span class="sc">*</span><span class="dv">2</span><span class="sc">^</span>x }</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>x <span class="sc">-</span> <span class="dv">2</span> }</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span><span class="sc">^</span>(x<span class="dv">-1</span>) }</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.4</span>a <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="dv">2</span><span class="sc">^</span>(<span class="dv">3</span><span class="sc">-</span>x)<span class="sc">+</span><span class="dv">5</span> }</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.4</span>b <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>(x<span class="dv">-3</span>)<span class="sc">+</span><span class="dv">5</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="dv">4</span><span class="sc">*</span><span class="dv">2</span><span class="sc">^</span>x }</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>x <span class="sc">-</span> <span class="dv">2</span> }</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span><span class="sc">^</span>(x<span class="dv">-1</span>) }</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.4</span>a <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="dv">2</span><span class="sc">^</span>(<span class="dv">3</span><span class="sc">-</span>x)<span class="sc">+</span><span class="dv">5</span> }</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fun<span class="fl">.4</span>b <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>(x<span class="dv">-3</span>)<span class="sc">+</span><span class="dv">5</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use (and adapt) this code to plot the functions above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">fun.1</span>(x)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">30</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">fun.1</span>(x)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">30</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.9">Class.9 on byuimath.com</a></em></p>
 
 
 </section>
@@ -487,6 +705,19 @@ Properties of Logarithms
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

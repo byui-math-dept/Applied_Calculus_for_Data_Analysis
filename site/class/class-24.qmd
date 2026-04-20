@@ -1,13 +1,110 @@
 ---
 title: "Class 24"
 ---
+# Between Class Sessions - Prep for Day 24 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Writing Equations (more practice)
+The goal of these exercises is to practice writing functions that model given situations. Each of the functions you create should depend on only **one variable**. You'll need this skill to solve applied optimization problems.
+- A right circular cone has a volume of 231 cubic inches, which is 1 gallon. (For example, if the height is $h=5$ inches then the radius is $r = ?$). Find a function that gives the radius in terms of its height. What is the domain of this function?
+
+- A light-rail system carries 80000 passengers per day at a fare of 2.25 dollars per ride. For each 5-cent increase/decrease in fare, surveys predict ridership will drop/grow by 250 passengers. (For example, if the fare is lowered to 2.00 dollars per ride, then the number of riders is ??? and the revenue is ???). Find a function giving the revenue as a function of $x$, the number of 5-cent increases. (Hint: first find a formula for the number of riders as a function of $x$, and the cost per ride as a function of $x$. Revenue is number of passengers multiplied by the cost per passenger.) What is the domain of this function?
+
+### (2) Partial Derivatives of a loglikelihood function
+Watch the videos below that walk you through finding the first and second partials of 
+$$\ell_2 = \ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right).$$
+- [First Partials](https://www.loom.com/share/faf8677c97d3471e82ef932733754eec?sharedAppSource=personal_library){target="_blank"} (~11 min)
+- [Second Partials](https://www.loom.com/share/e40fd32ff0df48dfaeeee70cd2d8534b?sharedAppSource=personal_library){target="_blank"} (~10 min)
+- [Calculating Constants](https://www.loom.com/share/1033f69c42e843db94624993e73c5764?sharedAppSource=personal_library){target="_blank"} (~7 min)
+After watching the videos, try to repeat the computations on your own so that you can discover where you have questions. 
+
+Now try repeating these computations yourself for $$\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t}))^2.$$ 
+- [Partial derivatives of loglikelihood for f6](https://byuistats.github.io/M119/m119-docs/PDloglikelihoodFn6.html).
+
+<details>
+<summary>Click to expand the material used in the videos above.</summary>
+
+### Applying Partial Derivatives to Loglikelihood
+Consider the model $f_2(t; a_1, a_2) = 100 + a_1t + a_2t^2$. The function $f_2$ models the brightness of a lightbulb, measured as a percent of the original intensity of the lightbulb, given the number of hours the lightbulb as been on, $t$. We will fit $f_2$ to a list of 44 measurements, $(t_i, y_i)$. Assuming the residuals (or errors) are independent and normally distributed (with mean 0 and standard deviation 1), the loglikelihood function for these errors is $\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right)$.
+
+1. Find the first partials of $\ell_2$.
+
+1. Find the second partials of $\ell_2$.
+
+Our data, a list of 44 points $(t_i, y_i)$.
+
+```r
+rm(list=ls())
+library(data4led)
+bulb <- led_bulb(1,seed=0219)
+
+t <- bulb$hours
+y <- bulb$percent_intensity
+```
+
+The number $\sum_{i=1}^{44} t_i(y_i-100)$ is a constant that depends on our data.
+
+```r
+A <- sum((y-100)*t)
+A
+```
+
+The number $\sum t_i^2$ is a constant that depends on our data.
+
+```r
+B <- sum(t^2)
+B
+```
+
+The number $\sum t_i^3$ is a constant that depends on our data.
+
+```r
+C <- sum(t^3)
+C
+```
+
+The number $\sum t_i^2(y_i -100)$ is a constant that depends on our data.
+
+```r
+D <- sum((y-100)*t^2)
+D
+```
+
+The number $\sum t_i^4$ is a constant that depends on our data.
+
+```r
+E <- sum(t^4)
+E
+```
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 2 -- Partial Derivatives assignment.
+
+### Applied Practice (Project Work)
+- Start Project 2 Task 2
+    - Calculate the first derivative of $\ell_1$ with respect to $a_1$.
+    - Calculate the first partial derivatives of $\ell_4$. Remember there are two first partial derivatives when a function has two independent variables.
+    - Calculate the first derivative of $\ell_5$.
+
 
 # During Class
 ## Brain Gains
 
 1. 
-Consider the curve $y=8/x$ for $x>0$. Write down a function $f(x)$ that gives the distance from the origin $(0,0)$ to a point on the curve $y=8/x$. A plot of the curve is shown below, along with a right triangle that has one vertex at $(0,0)$ and another at a point $(x,8/x)$ on the curve. (Hint: The Pythagorean theorem $a^2+b^2=c^2$ will help.)  
-![Curve y=8/x with right triangle](https://byuimath.com/bmw/all/119/uploads/Class/8overx.png)
+Consider the curve $y=8/x$ for $x>0$. Write down a function $f(x)$ that gives the distance from the origin $(0,0)$ to a point on the curve $y=8/x$. A plot of the curve is shown below, along with a right triangle that has one vertex at $(0,0)$ and another at a point $(x,8/x)$ on the curve. (Hint: The Pythagorean theorem $a^2+b^2=c^2$ will help.)
+
+![Curve y = 8/x with right triangle](https://byuimath.com/bmw/all/119/uploads/Class/8overx.png)
 
 <details>
 <summary>Solution</summary>
@@ -26,27 +123,27 @@ We now use R to graph both the equation $y=8/x$ and the distance function.
 ```r
 f <- function(x){sqrt(x^2 + (8/x)^2)}
 
-1. We first plot y = 8/x. Using asp=1 equalizes x and y distances.
+#We first plot y = 8/x. Using asp=1 equalizes x and y distances.
 x <- seq(0,5, 0.01)
 plot(x,8/x, ylim=c(0,5), asp = 1, type = "l")
 
-1. Let's add concentric circles to see how far from the origin points are.
+#Let's add concentric circles to see how far from the origin points are.
 symbols(x = rep(0,5), y =rep(0,5), circles = seq(1,5), add = TRUE, inches = FALSE)
-1. Let's guess x = 3 as the closest spot.  We can see it's a bit to large. 
+#Let's guess x = 3 as the closest spot.  We can see it's a bit to large. 
 abline(v=3)
 
-1. Now let's plot f and add x=3 for comparison 
+#Now let's plot f and add x=3 for comparison 
 plot(x,f(x), ylim=c(0,30), type = "l")
 abline(v=3)
-1. The value x=3 is too large.
+#The value x=3 is too large.
 
-1. Zoom in. 
+#Zoom in. 
 x <- seq(2.5,3, 0.01)
 plot(x,f(x), ylim=c(3,5), type = "l")
 abline(v=2.82)
 abline(v=2.84)
 
-1. Zoom in. 
+#Zoom in. 
 x <- seq(2.82, 2.84, 0.001)
 plot(x,f(x), ylim=c(3.999,4.001), type = "l")
 ```
@@ -76,41 +173,43 @@ You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were
 The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. 
 Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we're assuming the probability model for the residuals is $$p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.$$
 1. Write the loglikelihood function for the errors in this situation.
+
 1. Rewrite the loglikelihood function using the properties of logs and sums.
 1. Compute the first partial derivatives of the loglikelihood function.  (We'll do one together.  The solutions for all three of them are in the file below.)
-[Elves-R-Us loglikelihood derivatives (PDF)](https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf){target="_blank"}
+[ElvesRUs loglikelihood derivatives (PDF)](../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf)
 
 ## Group Meeting 
 Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
 
 ### Activity - Loglikelihood Practice, Derivatives, Optimization, and Project 2
-You will be working together to revisit Task 1 and complete part of Task 2 for [Project 2](https://byuistats.github.io/M119/project2.html){target="_blank"}.  The prep for today asked you to watch some videos related to $f_2$. 
+You will be working together to revisit Task 1 and complete part of Task 2 for [Project 2](https://chaz-clark.github.io/M119/Projects/unit2.html).  The prep for today asked you to watch some videos related to $f_2$.
 
 Consider the model $f_1(t; a_1) = 100 + a_1t$. 
 1. On the chalk board, as a group, go through the computations needed to obtain the loglikelihood function. Your job is to perform the needed computations and include enough explanations to show that $$\ell_1(a_1; \mathbf{t},\mathbf{y}) =
 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
 - 100 - a_1t_i)^2.$$ 
 1. Compute the first derivative of the loglikelihood function, so compute $\frac{d\ell_1}{da_1}$. The solution is provided in Task 2.
+
 1. Now compute the second derivative $\frac{d^2\ell_1}{da_1^2}$. Again, the solution is provided in Task 2. 
 1. Use the following code to plot the loglikelihood function.
 
 ```r
 rm(list=ls())  #clear the environment
 library(data4led) #load the library
-1. read in the data set, using seed 123 for class comparisons
+#read in the data set, using seed 123 for class comparisons
 bulb <- led_bulb(1,seed=123)
 t <- bulb$hours
 y <- bulb$percent_intensity
 
-1. define the loglikelihood function
+#define the loglikelihood function
 l <- function(p,t,y){ 44*log(1/sqrt(2*pi)) - (1/2)*sum((y-100-p*t)^2) } 
 
-1. create a list of inputs for our plot of the loglikelihood function
+#create a list of inputs for our plot of the loglikelihood function
 a1 <- seq(-0.005,0.005,1e-5)
-1. use those inputs to calculate outputs for our plot of the loglikelihood function
+#use those inputs to calculate outputs for our plot of the loglikelihood function
 Y <- as.vector(lapply(a1,FUN=l,t=t,y=y))
 
-1. plot the loglikelihood function
+#plot the loglikelihood function
 plot(a1,Y,type='l')
 ```
 
@@ -125,21 +224,10 @@ As a group, you have complete parts of Project 2 Tasks 1, 2 and 3 for the functi
 As a group, spend any remaining class time working on Project 2 Task 2. Start with the loglikelihood function 
 $$\ell_4(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2\ln(0.005t_i+1))^2$$
 and compute the two first partial derivatives as well as all second partial derivatives. A full solution for $\ell_6$ is provided for you, and may help you with $\ell_4$. 
-The solutions are provided in the task instructions. 
-
-### Activity - Derivative Matching
-Your task in this activity is to match the graph of each function $ f(x) $ (pink cards) with that of its derivative $ f'(x) $ (yellow cards). Thus, when you have completed the activity, you will have fifteen matched function/derivative pairs.
-
-These [tiles](http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf){target="_blank"} can be printed and cut out if you are completing the activity on your own. You will only need the first two pages of the file.
-
-*Source: University of Colorado and BOALA (Active Calculus)*
-
-[Tiles](http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf){target="_blank"}
-
-->[User's Guide](http://math.colorado.edu/activecalc1/Derivative_matching_guide.pdf){target="_blank"}
-
-[My electronic adaptation of this activity](https://docs.google.com/presentation/d/1YWrE5RVdg6rNlB8MJ41ckWWz0kkVIStqHJJZVmj0QhE/edit#slide=id.gba65dd33e3_0_77){target="_blank"}
-
-->[Instructor copy with key](https://docs.google.com/presentation/d/1x2UH5BmZQY_olf8ZSh5xzGFrBXTRlLpO9wLGWIB0J4U/edit#slide=id.gba65dd33e3_0_77){target="_blank"}
+The solutions are provided in the task instructions.
 
 ## Discussion
+
+---
+
+*Source: [Class.24 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.24)*

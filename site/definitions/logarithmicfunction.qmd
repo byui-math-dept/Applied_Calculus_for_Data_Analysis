@@ -11,5 +11,34 @@ Note: A logarithmic function is not an algebraic function.
 
 </details>
 
-<!-- include: Page.KeyCharacteristicsOfLogarithmicFunction -->
-<!-- include: Page.PropertiesOfLogarithms -->
+<!-- from Page.KeyCharacteristicsOfLogarithmicFunction -->
+<details>
+<summary>Key Characteristics of Logarithmic Function</summary>
+
+- Domain is positive real numbers
+- Range is all real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ gets close to zero from the right the output approaches negative infinity.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave down.
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ gets close to zero from the right the output grows without bound (approaches infinity).
+    - As $x$ increases the output approaches negative infinity.
+    - These functions are concave up.
+
+</details>
+
+<!-- from Page.PropertiesOfLogarithms -->
+<details>
+<summary>Properties of Logarithms</summary>
+
+If $a>0$, $b > 0$, $c > 0$, $b \neq 1$, and $n$ is any real number, then
+- $\log_b b^x = x$ and $b^{\log_b x} = x$ (inverse property)
+    - Special Cases
+      - $\log_b b = 1$
+      - $\log_b 1 = \log_b b^0 = 1$
+- $\log_b(ac) = \log_b(a) + \log_b(c)$ (product property)
+- $\log_b\left(\frac{a}{c}\right) = \log_b(a) - \log_b(c)$ (quotient property)
+- $\log_b(a^n) = n\log_b(a)$ (power property)
+
+</details>

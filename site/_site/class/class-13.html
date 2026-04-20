@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-13" id="toc-between-class-sessions---prep-for-day-13" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-13">Between Class Sessions - Prep for Day 13 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#explore-common-probability-functions" id="toc-explore-common-probability-functions" class="nav-link" data-scroll-target="#explore-common-probability-functions">(2) Explore Common Probability Functions</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -273,6 +450,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -293,6 +471,71 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-13" class="level1">
+<h1>Between Class Sessions - Prep for Day 13 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Introduction to Probability and Random Variables Watch the following videos are from mathispower4u. - <a href="https://www.youtube.com/watch?v=YWt_u5l_jHs&amp;feature=youtu.be" target="_blank">Intro to Probability</a> (~8 minutes) - <a href="https://www.youtube.com/watch?v=8tzaV3RK53Y&amp;feature=youtu.be" target="_blank">Discrete Random Variable</a> (~5 minutes) - <a href="https://www.youtube.com/watch?v=VlMn5wkw8Xc&amp;feature=youtu.be" target="_blank">PMF Discrete</a> (~3 minutes) - <a href="https://www.youtube.com/watch?v=WgsxhWPAo4c&amp;feature=youtu.be" target="_blank">Calculating Conditional Probability</a> (~8 minutes) - <a href="https://www.youtube.com/watch?v=QsnfXUqsFPU&amp;feature=youtu.be" target="_blank">Calculating Probability Independent Event</a> (~8 minutes)</p>
+<section id="explore-common-probability-functions" class="level3">
+<h3 class="anchored" data-anchor-id="explore-common-probability-functions">(2) Explore Common Probability Functions</h3>
+<p>For each of the five functions below, complete the following: - Identify the domain. - Identify the parameters. - Plot the function in R. - Identify the range. - Consider what happens when you change the parameters in the model. Describe what changing each of the parameters does to the graph of <span class="math inline">\(f\)</span>. Come to class ready to teach your group what you did with at least one of these function.</p>
+<ol type="1">
+<li><p><span class="math inline">\(f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ... , n\)</span> where <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(0 \leq p \leq 1\)</span>.</p></li>
+<li><p><span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> with <span class="math inline">\(x &gt; 0\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_4(x; \lambda) = \begin{cases}0 &amp; x \leq 0 \\ \\1 - e^{-\lambda x} &amp; x &gt; 0\end{cases},\)</span> where where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_5(x; a,b) =\begin{cases}0 &amp; x &lt; a \\ \\\frac{x-a}{b-a} &amp; a \leq x \leq b \\ \\1 &amp; x &gt;b\end{cases},\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real numbers with <span class="math inline">\(a &lt; b\)</span>.</p></li>
+</ol>
+<p>You can use the following code to define these functions in R.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n=</span><span class="dv">20</span>,<span class="at">p=</span><span class="fl">0.5</span>){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be an whole number between 0 and n, endpoints included</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(x)<span class="sc">*</span><span class="fu">factorial</span>(n<span class="sc">-</span>x))<span class="sc">*</span>p<span class="sc">^</span>x<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>x)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be positive</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(x<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x[(x <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>f5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  out[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)] <span class="ot">&lt;-</span> (x[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)]<span class="sc">-</span>a)<span class="sc">/</span>(b<span class="sc">-</span>a)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> b)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Begin 3 – Probability Basics assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Work on Project 1 Task 3</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -311,100 +554,106 @@ window.Quarto = {
 </ol></li>
 <li>Using seed 123, the model <span class="math inline">\(f_4(x) = 100 - 0.000181x + 0.83\ln(0.005x+1)\)</span> where <span class="math inline">\(x \geq 0\)</span> provides a reasonable visual fit to the light bulb data. Use this model to predict the time at which the light bulb burns out (hits 80% of the original intensity). The code below will plot the model with the data. Update the code to solve <span class="math inline">\(f_4(t) = 80\)</span>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed =</span> <span class="dv">123</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="sc">-</span><span class="fl">1.81e-4</span>,<span class="at">a2=</span><span class="fl">0.83</span>){a0<span class="sc">+</span>a1<span class="sc">*</span>x<span class="sc">+</span>a2<span class="sc">*</span><span class="fu">log</span>(<span class="fl">0.005</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>)}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80001</span>,<span class="dv">2</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> <span class="fu">f4</span>(x)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f4'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed =</span> <span class="dv">123</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a0=</span><span class="dv">100</span>,<span class="at">a1=</span><span class="sc">-</span><span class="fl">1.81e-4</span>,<span class="at">a2=</span><span class="fl">0.83</span>){a0<span class="sc">+</span>a1<span class="sc">*</span>x<span class="sc">+</span>a2<span class="sc">*</span><span class="fu">log</span>(<span class="fl">0.005</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>)}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80001</span>,<span class="dv">2</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> <span class="fu">f4</span>(x)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="fl">0.25</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="fl">0.5</span>,<span class="dv">4</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>,<span class="at">main=</span><span class="st">'f4'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t,y,<span class="at">xlab=</span><span class="st">"Hour "</span>, <span class="at">ylab=</span><span class="st">"Intensity(%) "</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80000</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">120</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y4,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="exploring-new-functions" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-new-functions">Exploring new functions</h3>
-<p>The prep for today involved exploring the 5 new functions below. 1. <span class="math inline">\(f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ... , n\)</span> where <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(0 \leq p \leq 1\)</span>. 1. <span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> with <span class="math inline">\(x &gt; 0\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>. 1. <span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>. 1. <span class="math inline">\(f_4(x; \lambda) = \begin{cases}0 &amp; x \leq 0 \\ \\1 - e^{-\lambda x} &amp; x &gt; 0\end{cases},\)</span> where where <span class="math inline">\(\lambda &gt;0\)</span>. 1. <span class="math inline">\(f_5(x; a,b) =\begin{cases}0 &amp; x &lt; a \\ \\\frac{x-a}{b-a} &amp; a \leq x \leq b \\ \\1 &amp; x &gt;b\end{cases},\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real numbers with <span class="math inline">\(a &lt; b\)</span>.</p>
+<p>The prep for today involved exploring the 5 new functions below. 1. <span class="math inline">\(f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ... , n\)</span> where <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(0 \leq p \leq 1\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> with <span class="math inline">\(x &gt; 0\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_4(x; \lambda) = \begin{cases}0 &amp; x \leq 0 \\ \\1 - e^{-\lambda x} &amp; x &gt; 0\end{cases},\)</span> where where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f_5(x; a,b) =\begin{cases}0 &amp; x &lt; a \\ \\\frac{x-a}{b-a} &amp; a \leq x \leq b \\ \\1 &amp; x &gt;b\end{cases},\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real numbers with <span class="math inline">\(a &lt; b\)</span>.</p></li>
+</ol>
 <p>What do you do when you encounter a new function? One option is to start plotting it and changing parameters to get a feel for how the parameters affect a graph of the function. It’s OK if you don’t initially know what a function is useful for. You can gain intuition and sometimes discover the use as you explore changing parameters of the function.</p>
 <p>As a group, spend 5-10 minutes exploring what the parameters control in a graph of the functions above. The code below defines each function and generates a few plots to help you get started. Explore the functions.</p>
 <details>
 <summary>
 Code for functions and some plots.
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n=</span><span class="dv">20</span>,<span class="at">p=</span><span class="fl">0.5</span>){</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x must be an whole number between 0 and n, endpoints included</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(x)<span class="sc">*</span><span class="fu">factorial</span>(n<span class="sc">-</span>x))<span class="sc">*</span>p<span class="sc">^</span>x<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>x)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x must be positive</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(x<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x[(x <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>f5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  out[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)] <span class="ot">&lt;-</span> (x[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)]<span class="sc">-</span>a)<span class="sc">/</span>(b<span class="sc">-</span>a)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> b)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f1</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Note that the input must be an integer. </span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">1</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x))</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">10</span>))</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">30</span>,<span class="at">p=</span><span class="fl">0.2</span>))</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f2</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Note that the input cannot be negative.</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Plots <span class="cf">for</span> f3</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The input can be negative, so let<span class="st">'s allow that.</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(-10,10,0.1)</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x), type = "l")</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, mu=3), type = "l")</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=0.5), type = "l")</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=3), type = "l")</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=1), type = "l", ylim = c(0,1))</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=3), type = "l", ylim = c(0,1))</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f3(x, s=0.5), type = "l", ylim = c(0,1))</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="st">1. Plots for f4</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="st">1. The input cannot be negative.</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(0,10,0.1)</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x), type = "l")</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x, lambda=3), type = "l")</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f4(x, lambda=0.5), type = "l")</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="st">1. Plots for f5</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(0,10,0.1)</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x), type = "l")</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=3, b=7), type = "l")</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=1, b=3), type = "l")</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="st">x &lt;- seq(-20,20,0.1)</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">plot(x,f5(x, a=-3, b=15), type = "l")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">n=</span><span class="dv">20</span>,<span class="at">p=</span><span class="fl">0.5</span>){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x must be an whole number between 0 and n, endpoints included</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(x)<span class="sc">*</span><span class="fu">factorial</span>(n<span class="sc">-</span>x))<span class="sc">*</span>p<span class="sc">^</span>x<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>x)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x must be positive</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(x<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x[(x <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>f5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  out[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)] <span class="ot">&lt;-</span> (x[(a <span class="sc">&lt;=</span> x) <span class="sc">&amp;</span> (x <span class="sc">&lt;=</span> b)]<span class="sc">-</span>a)<span class="sc">/</span>(b<span class="sc">-</span>a)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  out[(x <span class="sc">&gt;</span> b)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f1</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the input must be an integer. </span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">1</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">10</span>))</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f1</span>(x,<span class="at">n=</span><span class="dv">30</span>,<span class="at">p=</span><span class="fl">0.2</span>))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f2</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the input cannot be negative.</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f2</span>(x, <span class="at">lambda=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f3</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The input can be negative, so let's allow that.</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">mu=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">1</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f3</span>(x, <span class="at">s=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f4</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># The input cannot be negative.</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x, <span class="at">lambda=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f4</span>(x, <span class="at">lambda=</span><span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for f5</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="dv">3</span>, <span class="at">b=</span><span class="dv">7</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="dv">1</span>, <span class="at">b=</span><span class="dv">3</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f5</span>(x, <span class="at">a=</span><span class="sc">-</span><span class="dv">3</span>, <span class="at">b=</span><span class="dv">15</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="activity---practice-with-probability" class="level3">
@@ -428,8 +677,8 @@ Definition: Probability
 Definition: Random (or Stochastic) Variable
 </summary>
 <ol type="1">
-<li>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</li>
-<li>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</li>
+<li><p>A <strong>random variable</strong> is a function that associates a number with each outcome of the sample space of a chance experiment.</p></li>
+<li><p>Let <span class="math inline">\(S\)</span> be the sample space of an experiment. A <strong>random variable</strong> is a function from <span class="math inline">\(S\)</span> to the real line. Random variables are usually denoted by a capital letter. Individual observed <em>values</em> of a random variable are usually denoted by the corresponding lower case letter. Example: We toss a fair coin three times. Let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write <span class="math inline">\(x = 2\)</span>. We could ask the questions, “What is the probability that <span class="math inline">\(X = 2\)</span>?” or “What is the probability that <span class="math inline">\(X = x\)</span>?”</p></li>
 </ol>
 <p><em>Source: These definitions are from Probability &amp; Statistics with R by Akritas and Foundations of Statistics with R by Speegle &amp; Clair.</em></p>
 </details>
@@ -467,9 +716,9 @@ Definition: Independent Events
 <h4 class="anchored" data-anchor-id="example-1">Example 1</h4>
 <p>Let <span class="math inline">\(R\)</span> be the random variable that represents that value of the roll of a fair 6-sided die. So <span class="math inline">\(R\)</span> is a function whose domain is the possible outcomes that can result from rolling a fair 6-sided die, and the range is the values of any possible roll, or <span class="math inline">\(\{1,2,3,4,5,6\}\)</span>. Note that we use <span class="math inline">\(R\)</span> to represent the random variable, but we use <span class="math inline">\(r=3\)</span> to represent an observation where the outcome resulted in a value of 3. The probability mass function (pmf) describing the random variable <span class="math inline">\(R\)</span> is given by <span class="math inline">\(f(r) = \frac{1}{6}\)</span> for <span class="math inline">\(r\)</span> in <span class="math inline">\(\{1,2,3,4,5,6 \}\)</span>. The inputs (or domain) of the pmf are the possible values of <span class="math inline">\(R\)</span>, or <span class="math inline">\(\{1,2,3,4,5,6\}\)</span>. The outputs of the pmf are the probabilities corresponding to each outcome when <span class="math inline">\(R=r\)</span>.</p>
 <ol type="1">
-<li>What is the domain of <span class="math inline">\(f\)</span> (the collection of inputs)?</li>
-<li>What is the range of <span class="math inline">\(f\)</span> (the collection of outputs)?</li>
-<li>Compute each of the following:
+<li><p>What is the domain of <span class="math inline">\(f\)</span> (the collection of inputs)?</p></li>
+<li><p>What is the range of <span class="math inline">\(f\)</span> (the collection of outputs)?</p></li>
+<li><p>Compute each of the following:</p>
 <ol type="1">
 <li><span class="math inline">\(P(R=1)\)</span></li>
 <li><span class="math inline">\(P(R=2)\)</span></li>
@@ -482,15 +731,15 @@ Definition: Independent Events
 <li><span class="math inline">\(P(R\leq 5.1)\)</span></li>
 <li><span class="math inline">\(P(R\leq 8)\)</span></li>
 </ol></li>
-<li>Given <span class="math inline">\(A\)</span> is the event that <span class="math inline">\(R\)</span> is an odd number, calculate <span class="math inline">\(P(A)\)</span>.</li>
+<li><p>Given <span class="math inline">\(A\)</span> is the event that <span class="math inline">\(R\)</span> is an odd number, calculate <span class="math inline">\(P(A)\)</span>.</p></li>
 </ol>
 <details>
 <summary>
 Answers
 </summary>
 <ol type="1">
-<li>The domain of <span class="math inline">\(f\)</span> is the set $ { 1, 2, 3, 4, 5, 6 } $, so the collection of possible outcomes of the random variable <span class="math inline">\(R\)</span>.</li>
-<li>The range of <span class="math inline">\(f\)</span> is the set $ { } $. #
+<li><p>The domain of <span class="math inline">\(f\)</span> is the set $ { 1, 2, 3, 4, 5, 6 } $, so the collection of possible outcomes of the random variable <span class="math inline">\(R\)</span>.</p></li>
+<li><p>The range of <span class="math inline">\(f\)</span> is the set $ { } $.</p>
 <ol type="1">
 <li><span class="math inline">\(P(R=1) = \frac{1}{6}\)</span></li>
 <li><span class="math inline">\(P(R=2) = \frac{1}{6}\)</span></li>
@@ -503,7 +752,7 @@ Answers
 <li><span class="math inline">\(P(R \leq 5.1) = \sum_{i=1}^5P(R=i) = \sum_{i=1}^5\frac{1}{6} = 5(\frac{1}{6}) = \frac{5}{6}\)</span></li>
 <li><span class="math inline">\(P(R\leq 8) = \sum_{i=1}^8P(R=i) = \sum_{i=1}^6\frac{1}{6} + \sum_{i=7}^8 0 = 6(\frac{1}{6}) + 0 = 1\)</span></li>
 </ol></li>
-<li><span class="math inline">\(P(A) = P(R = 1) + P(R = 3) + P(R = 5) = 3\left(\frac{1}{6}\right) = \frac{1}{2}\)</span></li>
+<li><p><span class="math inline">\(P(A) = P(R = 1) + P(R = 3) + P(R = 5) = 3\left(\frac{1}{6}\right) = \frac{1}{2}\)</span></p></li>
 </ol>
 </details>
 </section>
@@ -516,24 +765,39 @@ Answers
 0.19 &amp; \quad x = 6 \\ \\
 0.03 &amp; \quad x = 9 \\ \\
 0.2 &amp; \quad x=12
-\end{cases}.\]</span> Compute the probabilities requested below: 1. <span class="math inline">\(P(x \leq 6)\)</span> 1. <span class="math inline">\(P(x = 9)\)</span> 1. <span class="math inline">\(P(x = 7)\)</span> 1. <span class="math inline">\(P(x \leq 7)\)</span> 1. <span class="math inline">\(P(x \geq 10)\)</span> 1. <span class="math inline">\(P(x \leq 12)\)</span></p>
+\end{cases}.\]</span> Compute the probabilities requested below: 1. <span class="math inline">\(P(x \leq 6)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(x = 9)\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \geq 10)\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 12)\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
 </summary>
 <ol type="1">
-<li><span class="math inline">\(P(x \leq 6) = 0.77\)</span></li>
-<li><span class="math inline">\(P(x = 9) = 0.03\)</span></li>
-<li><span class="math inline">\(P(x = 7) = 0\)</span></li>
-<li><span class="math inline">\(P(x \leq 7) = 0.77\)</span></li>
-<li><span class="math inline">\(P(x \geq 10) = 0.2\)</span></li>
-<li><span class="math inline">\(P(x \leq 12) = 1\)</span></li>
+<li><p><span class="math inline">\(P(x \leq 6) = 0.77\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 9) = 0.03\)</span></p></li>
+<li><p><span class="math inline">\(P(x = 7) = 0\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 7) = 0.77\)</span></p></li>
+<li><p><span class="math inline">\(P(x \geq 10) = 0.2\)</span></p></li>
+<li><p><span class="math inline">\(P(x \leq 12) = 1\)</span></p></li>
 </ol>
 </details>
 </section>
 <section id="example-3" class="level4">
 <h4 class="anchored" data-anchor-id="example-3">Example 3</h4>
-<p>Suppose we toss two fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_1\)</span> represent the outcome for the first die and <span class="math inline">\(X_2\)</span> represent the outcome for the second die. Note the events from random variable <span class="math inline">\(X_1\)</span> and the events from <span class="math inline">\(X_2\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 3)\)</span> 1. <span class="math inline">\(P(X_2 = 1)\)</span> 1. <span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even})\)</span> 1. <span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even})\)</span> 1. <span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1)\)</span> 1. <span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1)\)</span> 1. <span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2)\)</span></p>
+<p>Suppose we toss two fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_1\)</span> represent the outcome for the first die and <span class="math inline">\(X_2\)</span> represent the outcome for the second die. Note the events from random variable <span class="math inline">\(X_1\)</span> and the events from <span class="math inline">\(X_2\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 3)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_2 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even})\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even})\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2)\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
@@ -548,22 +812,27 @@ Answers
 0 &amp; \quad \text{otherwise}.
 \end{cases}\)</span></p>
 <ol type="1">
-<li><span class="math inline">\(P(X_1 = 3) = f_1(3) = \frac{1}{6}\)</span></li>
-<li><span class="math inline">\(P(X_2 = 1) = f_2(1) = \frac{1}{6}\)</span></li>
-<li><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even}) = \frac{P(X_1 = 4 \text{ and } X_1 \text{ is even})}{P(X_1 \text{ is even})}= \frac{1/6}{3/6} = \frac{1}{3}\)</span></li>
-<li><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even}) = P(X_1 = 2) = \frac{1}{6}\)</span> (The random variables are independent, so knowledge about <span class="math inline">\(X_2\)</span> does not affect <span class="math inline">\(X_1\)</span>.)</li>
-<li><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1) = P(X_1=3)P(X_2=1) = \frac{1}{6}(\frac{1}{6}) = \frac{1}{36}\)</span>
+<li><p><span class="math inline">\(P(X_1 = 3) = f_1(3) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_2 = 1) = f_2(1) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 4 | X_1 \text{ is even}) = \frac{P(X_1 = 4 \text{ and } X_1 \text{ is even})}{P(X_1 \text{ is even})}= \frac{1/6}{3/6} = \frac{1}{3}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_1 = 2 | X_2 \text{ is even}) = P(X_1 = 2) = \frac{1}{6}\)</span> (The random variables are independent, so knowledge about <span class="math inline">\(X_2\)</span> does not affect <span class="math inline">\(X_1\)</span>.)</p></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_2 = 1) = P(X_1=3)P(X_2=1) = \frac{1}{6}(\frac{1}{6}) = \frac{1}{36}\)</span></p>
 <ul>
 <li>We can multiply the probabilities because <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent.</li>
 </ul></li>
-<li><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1) = 0\)</span>, as it is impossible for an observed value to be both 3 and 1 at the same time. We do not multiply probabilities unless the events are independent.</li>
-<li><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2) = P(X_1 \leq 2)P(X_2 &gt; 2) = (\sum_{i=1}^2P(X_1=i))(\sum_{i=3}^6P(X_2=i)) = (\frac{1}{3})(\frac{2}{3}) = \frac{2}{9}\)</span></li>
+<li><p><span class="math inline">\(P(X_1 = 3 \text{ and } X_1 = 1) = 0\)</span>, as it is impossible for an observed value to be both 3 and 1 at the same time. We do not multiply probabilities unless the events are independent.</p></li>
+<li><p><span class="math inline">\(P(X_1 \leq 2 \text{ and } X_2 &gt; 2) = P(X_1 \leq 2)P(X_2 &gt; 2) = (\sum_{i=1}^2P(X_1=i))(\sum_{i=3}^6P(X_2=i)) = (\frac{1}{3})(\frac{2}{3}) = \frac{2}{9}\)</span></p></li>
 </ol>
 </details>
 </section>
 <section id="example-4" class="level4">
 <h4 class="anchored" data-anchor-id="example-4">Example 4</h4>
-<p>Suppose we toss seven fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_i\)</span> represent the outcome for the <span class="math inline">\(i\)</span>th die with <span class="math inline">\(i = 1, 2, ..., 7\)</span>. Note the events from random variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, … <span class="math inline">\(X_7\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 1)\)</span> 1. <span class="math inline">\(P(X_6 = 4)\)</span> 1. <span class="math inline">\(P(X_3 &gt; 2)\)</span> 1. <span class="math inline">\(P(\text{all the dice have values greater than 2})\)</span></p>
+<p>Suppose we toss seven fair six-sided dice once. We will record the value that appears on each of the dice, and let <span class="math inline">\(X_i\)</span> represent the outcome for the <span class="math inline">\(i\)</span>th die with <span class="math inline">\(i = 1, 2, ..., 7\)</span>. Note the events from random variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, … <span class="math inline">\(X_7\)</span> are independent. Compute the following: 1. <span class="math inline">\(P(X_1 = 1)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_6 = 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X_3 &gt; 2)\)</span></p></li>
+<li><p><span class="math inline">\(P(\text{all the dice have values greater than 2})\)</span></p></li>
+</ol>
 <details>
 <summary>
 Answers
@@ -572,8 +841,15 @@ Answers
 \begin{cases}
 \frac{1}{6} &amp; \quad x_i = 1, 2, 3, 4, 5, 6 \\ \\
 0 &amp; \quad \text{otherwise},
-\end{cases}\)</span> for <span class="math inline">\(i = 1, 2, ..., 7\)</span>. 1. <span class="math inline">\(P(X_1 = 1) = \frac{1}{6}\)</span> 1. <span class="math inline">\(P(X_6 = 4) = \frac{1}{6}\)</span> 1. <span class="math inline">\(P(X_3 &gt; 2) = \sum_{j=3}^6P(X_3=j) = 4\left(\frac{1}{6}\right) = \frac{2}{3}\)</span> 1. <span class="math inline">\(P(\text{all the dice have values greater than 2}) = \prod_{i=1}^7P(X_i &gt; 2) = \prod_{i=1}^7(\sum_{j=3}^6P(X_i=j)) = \prod_{i=1}^7(\frac{2}{3}) = (\frac{2}{3})^7 = \frac{128}{2187} \approx 0.059\)</span></p>
+\end{cases}\)</span> for <span class="math inline">\(i = 1, 2, ..., 7\)</span>. 1. <span class="math inline">\(P(X_1 = 1) = \frac{1}{6}\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_6 = 4) = \frac{1}{6}\)</span></p></li>
+<li><p><span class="math inline">\(P(X_3 &gt; 2) = \sum_{j=3}^6P(X_3=j) = 4\left(\frac{1}{6}\right) = \frac{2}{3}\)</span></p></li>
+<li><p><span class="math inline">\(P(\text{all the dice have values greater than 2}) = \prod_{i=1}^7P(X_i &gt; 2) = \prod_{i=1}^7(\sum_{j=3}^6P(X_i=j)) = \prod_{i=1}^7(\frac{2}{3}) = (\frac{2}{3})^7 = \frac{128}{2187} \approx 0.059\)</span></p></li>
+</ol>
 </details>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.13">Class.13 on byuimath.com</a></em></p>
 
 
 </section>
@@ -584,6 +860,19 @@ Answers
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

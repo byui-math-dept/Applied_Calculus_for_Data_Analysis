@@ -38,10 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +77,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -112,7 +117,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -211,6 +378,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -224,7 +392,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-5" id="toc-between-class-sessions---prep-for-day-5" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-5">Between Class Sessions - Prep for Day 5 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#create-your-own-cohesive-analysis" id="toc-create-your-own-cohesive-analysis" class="nav-link" data-scroll-target="#create-your-own-cohesive-analysis">(2) Create your own Cohesive Analysis</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -245,6 +422,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Class 5</h1>
@@ -264,17 +442,51 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-5" class="level1">
+<h1>Between Class Sessions - Prep for Day 5 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Review the Cohesive Analysis Take a look at this <a href="https://byuistats.github.io/M119/m119-docs/Practice_RMarkdown.html" target="_blank">html file</a>. This is an example of a cohesive analysis. - Notice there are complete sentences (and paragraphs) introducing the calculations. - Notice the calculations are explained. - Notice the work is reproducible because the steps of the calculations are included in the explanations, the functions we are working with are stated in the narrative (the text), and the R code is included. - Notice the written work stands independent of our work in class, you do not need to see the Wiki or problem statement to understand what is going on in the narrative. - You can download the RMarkdown file used to create this html <a href="https://byuistats.github.io/M119/m119-docs/Practice_RMarkdown.Rmd">here</a>.</p>
+<section id="create-your-own-cohesive-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="create-your-own-cohesive-analysis">(2) Create your own Cohesive Analysis</h3>
+<ul>
+<li>Complete Project 1 Task 1 by creating your own RMarkdown file (feel free to download and modify the one above), and in that file give a short cohesive analysis with the required scatterplot. In other words, take the work you already did and covert it into a short cohesive analysis.</li>
+<li>For some additional practice with RMarkdown and writing cohesive analysis, create your own RMarkdown file (feel free to download and modify the one above), and in that file give a short cohesive analysis that computes the several values of a function taken from one of the exercises we did today. In other words, take the work you’ve already done in a script file in R, and convert it into a short cohesive analysis.</li>
+</ul>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Continue working on 1 – Transformations of Functions assignment</li>
+<li>Continue working on 1 – Solving Linear Systems assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Submit the html file for Project 1 Task 1 on Canvas.</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>Many functions we use in the sciences are transformations of a basic function. For example, we can transform the power function <span class="math inline">\(f(x) = x^2\)</span> (often called a parent function) into the more complex function <span class="math inline">\(g(x) = 3(x-4)^2+5\)</span>. A general form for such a transformation is <span class="math display">\[T(x;a,b,c,d) = af(b(x+c))+d,\]</span> using the parent function <span class="math inline">\(f\)</span> with parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span>. One of our goals this semester is to identify a parent function with appropriate parameters so that we can use the transformed function as a model for data.</p>
-<p>Using the general transformation <span class="math inline">\(T(x) = af(b(x+c))+d\)</span>, identify the parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span> needed to transform <span class="math inline">\(f(u)\)</span> into the provided function. 1. <span class="math inline">\(g(x) = 8(x+5)^3 - 2\)</span> where <span class="math inline">\(f(u) = u^3\)</span> 1. <span class="math inline">\(h(x) = 4\sqrt{2x-6} +7\)</span> where <span class="math inline">\(f(u) = \sqrt{u}\)</span></p>
+<p>Using the general transformation <span class="math inline">\(T(x) = af(b(x+c))+d\)</span>, identify the parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span> needed to transform <span class="math inline">\(f(u)\)</span> into the provided function. 1. <span class="math inline">\(g(x) = 8(x+5)^3 - 2\)</span> where <span class="math inline">\(f(u) = u^3\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(h(x) = 4\sqrt{2x-6} +7\)</span> where <span class="math inline">\(f(u) = \sqrt{u}\)</span></li>
+</ol>
 <details>
 <summary>
 Possible Solutions
 </summary>
-<p>For <span class="math inline">\(g(x) = 8(x+5)^3 - 2\)</span> we can chose <span class="math inline">\(8=2, b=1, c=5, d=-2\)</span>. The function <span class="math inline">\(T(x)\)</span> using <span class="math inline">\(f(u)=u^3\)</span> is <span class="math display">\[
+<p>For <span class="math inline">\(g(x) = 8(x+5)^3 - 2\)</span> we can chose <span class="math inline">\(a=8, b=1, c=5, d=-2\)</span>. The function <span class="math inline">\(T(x)\)</span> using <span class="math inline">\(f(u)=u^3\)</span> is <span class="math display">\[
 \begin{align*}
 T(x;a,b,c,d)
 &amp;= af(b(x+c))+d \\
@@ -288,7 +500,7 @@ T(x;a,b,c,d)
 T(x;a,b,c,d)
 &amp;= af(b(x+c))+d \\
 &amp;= a\sqrt{b(x+c)}+d \\
-&amp;= 4\sqrt{2(x-3)}+7 &amp;&amp;\text{using }a=2, b=1, c=5, d=-2 \\
+&amp;= 4\sqrt{2(x-3)}+7 &amp;&amp;\text{using }a=4, b=2, c=-3, d=7 \\
 &amp;= 4\sqrt{2x-6}+7\\
 &amp;= h(x).
 \end{align*}\]</span> It’s common to guess <span class="math inline">\(c=-6\)</span> at first, but then we compute <span class="math inline">\(T(x;4,2,-6,7) = 4\sqrt{2(x-6)}+7 = 4\sqrt{2x-12}+7,\)</span>$ which is incorrect. A guess, followed by an informed update, is a completely valid way to solve this problem.</p>
@@ -312,12 +524,14 @@ T(x;a,b,c,d)
 </ol></li>
 <li>Let <span class="math inline">\(f(x;a,b) = ax^b\)</span>, a generic power function. Consider the transformation <span class="math inline">\(T(x;a,b,A,B,C,D) = Af(B(x-C);a,b)+D\)</span>. For each set of values for <span class="math inline">\(a,b,A,B,C,D\)</span> below, do the following.
 <ol type="1">
-<li>Identify the parent function <span class="math inline">\(f(x; a,b)\)</span>. For example, if <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=5\)</span>, then the parent function is <span class="math inline">\(f(x;2,5) = 2x^5\)</span>.</li>
-<li>Write down the specific function <span class="math inline">\(T(x;A,B,C,D)\)</span> produced from the given values for <span class="math inline">\(A,B,C,D\)</span>.</li>
-<li>Adapt <a href="https://www.desmos.com/calculator/5jc00j0rpr" target="_blank">this Desmos calculator</a> to plot and compare the two functions.</li>
-</ol></li>
+<li>Identify the parent function, $ f(x; a,b) $. For example, if <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=5\)</span>, then the parent function is <span class="math inline">\(f(x;2,5) = f(x) = 2x^5\)</span>.</li>
+<li>Write down the specific function <span class="math inline">\(T(x;A,B,C,D)\)</span> produced from the given values for the parameters <span class="math inline">\(A,B,C,D\)</span>.</li>
+<li>Adapt this <a href="https://www.desmos.com/calculator/5jc00j0rpr">Desmos calculator</a> to plot and compare the two functions.</li>
 </ol>
-<p><strong><span class="math inline">\(a=1,\ b=2,\ A=1,\ B=1,\ C=0,\ D=0\)</span></strong></p>
+<ul>
+<li><span class="math inline">\(a=1,b=2,A=1,B=1,C=0,D=0\)</span></li>
+</ul></li>
+</ol>
 <details>
 <summary>
 Check
@@ -337,9 +551,9 @@ T(x) &amp;= 1f(1(x-0)) + 0 \\
 &amp;= x^2
 \end{aligned}\]</span>
 <p>$</p>
-<p>Notice <span class="math inline">\(T(x)\)</span>, the “transformed function”, is the same as <span class="math inline">\(f(x)\)</span>, the “parent function” — there is no transformation (or only a trivial one) in this case.</p>
+<p>Notice <span class="math inline">\(T(x)\)</span>, the “transformed function”, is the same as <span class="math inline">\(f(x)\)</span>, the “parent function”, there is “no” transformation (or only a trivial transformation) in this case.</p>
 </details>
-<p><strong><span class="math inline">\(a=1,\ b=2,\ A=1,\ B=1,\ C=3,\ D=4\)</span></strong></p>
+<pre><code>- $a=1,b=2,A=1,B=1,C=3,D=4$</code></pre>
 <details>
 <summary>
 Check
@@ -358,7 +572,7 @@ T(x) &amp;= 1f(1(x-3)) + 4 \\
 \end{aligned}\]</span>
 <p>$</p>
 </details>
-<p><strong><span class="math inline">\(a=1,\ b=2,\ A=3,\ B=4,\ C=0,\ D=0\)</span></strong></p>
+<pre><code>- $a=1,b=2,A=3,B=4,C=0,D=0$</code></pre>
 <details>
 <summary>
 Check
@@ -379,7 +593,7 @@ T(x) &amp;= 3f(4(x-0)) + 0 \\
 \end{aligned}\]</span>
 <p>$</p>
 </details>
-<p><strong><span class="math inline">\(a=3,\ b=4,\ A=1,\ B=1,\ C=0,\ D=0\)</span></strong></p>
+<pre><code>- $a=3,b=4,A=1,B=1,C=0,D=0$</code></pre>
 <details>
 <summary>
 Check
@@ -392,9 +606,9 @@ T(x) &amp;= 1f(1(x-0)) + 0 \\
 &amp;= 3x^4
 \end{aligned}\]</span>
 <p>$</p>
-<p>Notice <span class="math inline">\(T(x)\)</span>, the “transformed function”, is the same as <span class="math inline">\(f(x)\)</span>, the “parent function” — there is no transformation (or only a trivial one) in this case.</p>
+<p>Notice <span class="math inline">\(T(x)\)</span>, the “transformed function”, is the same as <span class="math inline">\(f(x)\)</span>, the “parent function”, there is “no” transformation (or only a trivial transformation) in this case.</p>
 </details>
-<p><strong><span class="math inline">\(a=-1,\ b=3,\ A=2,\ B=-4,\ C=5,\ D=-6\)</span></strong></p>
+<pre><code>- $a=-1,b=3,A=2,B=-4,C=5,D=-6$</code></pre>
 <details>
 <summary>
 Check
@@ -416,8 +630,8 @@ T(x) &amp;= 2f(-4(x-5)) + (-6) \\
 <p>$</p>
 </details>
 <ol type="1">
-<li>Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) above controls some aspect of the graph of the function. Explore changing these parameters and write a description of what each parameter controls.</li>
-<li>Replace <span class="math inline">\(f(x;a,b) = ax^b\)</span> above with <span class="math inline">\(f(x;a,b) = a(b^x)\)</span> and then repeat the second exercise. Do your conclusions from part 3 still hold?</li>
+<li><p>Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) above controls some aspect of the graph of the function. Explore changing these parameters and write a description of what each parameter controls.</p></li>
+<li><p>Replace <span class="math inline">\(f(x;a,b) = ax^b\)</span> above with <span class="math inline">\(f(x;a,b) = a(b^x)\)</span> and then repeat the second exercise. Do your conclusions from part 3 still hold?</p></li>
 </ol>
 </section>
 </section>
@@ -433,17 +647,19 @@ T(x) &amp;= 2f(-4(x-5)) + (-6) \\
 </section>
 <section id="example-project-cohesive-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="example-project-cohesive-analysis">Example Project (Cohesive Analysis)</h3>
-<p>We will complete Example Project Task 1 together and then put together a cohesive analysis to complete task 1 of the example project. We’ll be building a histogram as we complete the example project. You built a scatter plot when you complete Project 1 Task 1. - We’ll open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a> - Use our work on this Example Project and the feedback you receive from your peer feedback to guide in your revisions on Project 1 Task 1. Remember, you can revise and resubmit your Project 1 Task 1 today if you have found something you need to change in order to meet the specs (or if there is something you would like to update). - Are there any questions about the expectations for the project tasks?</p>
+<p>We will complete Example Project Task 1 together and then put together a cohesive analysis to complete task 1 of the example project. We’ll be building a histogram as we complete the example project. You built a scatter plot when you complete Project 1 Task 1. - We’ll open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a> - Use our work on this Example Project and the feedback you receive from your peer feedback to guide in your revisions on Project 1 Task 1. Remember, you can revise and resubmit your Project 1 Task 1 today if you have found something you need to change in order to meet the specs (or if there is something you would like to update). - Are there any questions about the expectations for the project tasks?</p>
 </section>
 <section id="functions-transformations-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="functions-transformations-parameters">Functions, Transformations, Parameters</h3>
 <ol type="1">
-<li>How do we find the domain (implied domain) of a function?</li>
-<li>What is the difference between a power function and an exponential function? Give an example of each.</li>
-<li>Give an example of a transformed power function.</li>
-<li>Give an example of a transformed exponential function.</li>
-<li>Let’s use <a href="https://www.desmos.com/calculator/5jc00j0rpr" target="_blank">this Desmos calculator</a> and create some examples, exploring how parameters transform a function.</li>
+<li><p>How do we find the domain (implied domain) of a function?</p></li>
+<li><p>What is the difference between a power function and an exponential function? Give an example of each.</p></li>
+<li><p>Give an example of a transformed power function.</p></li>
+<li><p>Give an example of a transformed exponential function.</p></li>
+<li><p>Let’s use this <a href="https://www.desmos.com/calculator/5jc00j0rpr">Desmos calculator</a> and create some examples, exploring how parameters transform a function.</p></li>
 </ol>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.5">Class.5 on byuimath.com</a></em></p>
 
 
 </section>
@@ -453,6 +669,19 @@ T(x) &amp;= 2f(-4(x-5)) + (-6) \\
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

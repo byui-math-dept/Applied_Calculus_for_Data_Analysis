@@ -1,8 +1,60 @@
 ---
 title: "Class 6"
 ---
+# Between Class Sessions - Prep for Day 6 <a id="tasklist"></a>
 
-# During Class - Day {$Name}
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Practice with Functions
+Let $f(x) = \sqrt{x}$ and complete the exercise 1-4.<br>
+1. Find the exact values.
+- Evaluate $f(1)$.
+- Evaluate $f(0)$.
+- Evaluate $f(36)$.
+- Evaluate $f(\frac{1}{4})$.
+- Evaluate $f(15)$.
+- Evaluate $f(-1)$.
+- Are there any real numbers that would cause us a problem when trying to evaluate $f$ at that number?
+
+2. A different kind of question. Find the exact values. Assume that $x$ is a real number.
+- Solve $f(x) = 16$.
+- Solve $f(x) = \frac{1}{25}$.
+- Solve $f(x) = -1$.
+- Solve $f(x) = x-2$.
+
+3. Evaluate $f(x+7)$. Then identify the parameters in the transformation $T(x;A,B,C,D) = Af(B(x-C))+D$ needed to obtain $f(x+7)$. What is the relationship between the graphs of $f(x)$ and $f(x+7)$?
+
+4. Evaluate $f(x)+3$. Then identify the parameters in the transformation $T(x;A,B,C,D) = Af(B(x-C))+D$ needed to obtain $f(x)+3$. What is the relationship between the graphs of $f(x)$ and $f(x)+3$?
+
+5. Given a function $h(t)$, what is the difference between the symbols $h(t) = 5$ and $h(5)$?
+
+### (2) Function Composition Practice
+Watch the following videos from mathispower4u about Function Composition
+- [Video 1](https://www.youtube.com/watch?v=gFSSk8jaAwA&feature=youtu.be) (~6 minutes)
+- [Video 2](https://www.youtube.com/watch?v=Blvv-Dnfubo&feature=youtu.be) (~4.5 minutes)
+- [Video 3](https://www.youtube.com/watch?v=b-i7N0hE-Ys&feature=youtu.be) (~5 minutes)
+
+Then complete the following:
+1. For $f(x) = x^2$ and $g(x) = (x+3)$, compute each of $f(g(x))$ and $g(f(x))$.  
+
+1. Given the function $f(x) = \sqrt{3-2x}$, give two function $g(x)$ and $h(x)$ so that $f(x) = g(h(x))$.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Continue working on 1 -- Transformations of Functions assignment
+
+### Applied Practice (Project Work)
+- Begin Project 1 Task 2.
+
+
+# During Class - Day 6
 ## Brain Gains
 Consider the function $T(x) = \frac{1}{2}(3(x+2))^2 - 10$. 
 1. Let $g(x) = c f(a(x+b)) + d$ with $a$, $b$, $c$, and $d$ constants. If $T(x) = g(x)$, which means $f(u) = u^2$, answer the following questions.
@@ -36,14 +88,14 @@ Compare your answers in the prep and discuss any questions. Then at the boards, 
 - Discuss with your group, in general for a function $h(x)$, what is the difference between evaluating $h(2)$ and solving $h(t)=2$ for $t$?
 
 ### Activity - Transformations of a function
-Last time in class we worked with the transformation $T(x;A,B,C,D) = Af(B(x-C))+D$. Each parameter ( $A$, $B$, $C$, and $D$ ) controls some aspect of the graph of the function. Let $f(x) = 3\sqrt{x}$ and use this https://www.desmos.com/calculator/5jc00j0rpr to explore changing these parameters and write a description of what each parameter controls. 
+Last time in class we worked with the transformation $T(x;A,B,C,D) = Af(B(x-C))+D$. Each parameter ( $A$, $B$, $C$, and $D$ ) controls some aspect of the graph of the function. Let $f(x) = 3\sqrt{x}$ and use this [Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr) to explore changing these parameters and write a description of what each parameter controls.
 
-Open https://byuistats.github.io/M119/project1.html#Task_2:_Models_and_Parameter_Exploration. There are 6 functions we'll be exploring.  Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls. 
+Open [Project Unit 1 - Task 2: Models and Parameter Exploration](https://chaz-clark.github.io/M119/Projects/unit1.html#task-2-models-and-parameter-exploration). There are 6 functions we'll be exploring.  Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls. 
 
 ### Activity - Defining and Plotting Functions in R
 Run the following code in your Console to clear the environment.
 
-```
+```r
 rm(list=ls())
 ```
 
@@ -116,7 +168,13 @@ f_quad2(-1/3,1,0,0)
 
 ## Discussion - Functions, Transformations, Parameters 
 1. How do we find the domain (implied domain) of a function?
+
 1. What is the difference between a power function and an exponential function? Give an example of each. 
 1. Give an example of a transformed power function. 
+
 1. Give an example of a transformed exponential function. 
-1. Let's use https://www.desmos.com/calculator/5jc00j0rpr and create some examples, exploring how parameters transform a function.
+1. Let's use this [Desmos calculator](https://www.desmos.com/calculator/5jc00j0rpr) and create some examples, exploring how parameters transform a function.
+
+---
+
+*Source: [Class.6 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.6)*

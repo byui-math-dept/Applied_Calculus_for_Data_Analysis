@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - assets/docs/**
+    - assets/data/**
 
 website:
   title: "Math 119 — Applied Calculus for Data Analysis"
@@ -50,7 +53,9 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
     toc-depth: 3
@@ -63,7 +68,8 @@ format:
         window.MathJax = {
           tex: {
             macros: {
-              ds: "\\displaystyle"
+              ds: "\\displaystyle",
+              diff: ["\\frac{d#1}{d#2}", 2]
             }
           }
         };

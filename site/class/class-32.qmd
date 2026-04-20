@@ -1,6 +1,88 @@
 ---
 title: "Class 32"
 ---
+# Between Class Sessions - Prep for Day 32 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Install Mathematica
+Use the following link to access instructions for [installing Mathematica](https://www.byui.edu/mathematics/student-resources/mathematica){target="_blank"}.
+We will be using Mathematica frequently during the last several weeks of the semester. You will need Mathematica to complete Project 3.
+If you encounter any issues, address them with your group.
+
+Once you get Mathematica up and running, try computing determinants in Mathematica (so check your solution from the previous part) using code similar to what you see below. To evaluate code in Mathematica, you type Shift+Enter when your cursor is in a code block (whereas you type Cntrl+Enter in R). 
+
+```
+m = {{1, 2}, {3, 4}}
+m//MatrixForm
+Det[m]
+```
+
+Mathematica can handle symbolic arithmetic, so the following code works just fine in Mathematica (but won't in R without first defining a). 
+
+```
+m = {{a, Pi}, {Sqrt[2], Log[7]}}
+m // MatrixForm
+Det[m]
+```
+
+Wolfram created a "FAST INTRODUCTION FOR MATH STUDENTS". Read the first page on "Entering Input", and then head to the "Derivatives" section to learn how to compute derivatives with Mathematica. 
+- <https://www.wolfram.com/language/fast-introduction-for-math-students/en/>
+
+### (2) **Least Squares Regression**
+Start by reading [Least-Squares Regression](https://openstax.org/books/introductory-statistics/pages/12-3-the-regression-equation){target="_blank"}.
+Then complete a couple problems in Knewton Alta on the 2 -- Least Squares Prediction and Extrapolation assignment. Come to class ready to share.  
+
+**NOTE:** For your Knewton Alta "2 -- Least Squares Prediction and Extrapolation" assignment, the following code might be useful.
+
+<details>
+<summary>Simple Linear Regression Solution</summary>
+
+If we want to fit the function $f(x) = b + mx$ to $n$ data points $(x_i, y_i)$, we should use the parameter values:
+- $m = \frac{\left(\sum_{i=1}^{n} x_iy_i\right) - n\overline{x}\overline{y}}{\sum_{i=1}^{n} x_i^2 - n\overline{x}^2}$ and 
+- $b = \overline{y} -  m\overline{x}$,
+where $\overline{x} = \frac{1}{n} \sum_{i=1}^n x_i$ and $\overline{y} = \frac{1}{n} \sum_{i=1}^n y_i$. Here the symbol $\overline{x}$ is referring to the average (or mean) of the $x$-values and $\overline{y}$ is referring to the average (or mean) of the $y$-values. Can you see why?
+
+```r
+rm(list=ls())
+
+x <- c([fill in the list of values separated by commas])
+y <- c([fill in the list of values separated by commas])
+
+m.best <- (sum(x*y) - length(x)*mean(x)*mean(y))/(sum(x^2) - length(x)*(mean(x))^2)
+b.best <- mean(y) - m.best*mean(x)
+
+m.best
+b.best
+
+h <- function(x, b=0, m=1){
+b + m*x
+}
+
+x.val <- seq(min(x),max(x),(max(x)-min(x))/5) 
+y.val <- h(x.val,b=b.best, m=m.best)
+
+par(mfrow=c(1,1),mar=c(2.5,2.5,0.25,0.25))
+plot(x,y,type='p',pch=16)
+lines(x.val,y.val,col=3)
+```
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Begin 2 -- Least Squares Prediction and Extrapolation
+
+### Applied Practice (Project Work)
+- Continue working on Project 2.
+
 
 # During Class
 ## Brain Gains
@@ -44,12 +126,13 @@ c_{1,1}x + c_{1,2}y - b_1 &= 0 \\
 c_{2,1}x + c_{2,2}y - b_2 &= 0
 \end{align*} 
 
-```r
+```
 Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]
-@](:codemend:)
+```
+
 When solving this by hand, here's what we obtained.  
 - $y = \frac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
-- $x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1.2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
+- $x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1,2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
 
 <details>
 <summary>Answer</summary>
@@ -57,7 +140,7 @@ When solving this by hand, here's what we obtained.
 The solutions are the same, though you'll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand. 
 
 As reminder, here's the R code we've been using to get the solution.  
-(:code:)
+
 ```r
 c11 <- 
 c12 <- 
@@ -77,10 +160,9 @@ sol
 
 In Mathematica, sometimes we will have to make assumptions before we compute something (like assuming a parameter is positive). Here's an example that assumes the denominator is not zero. 
 
-```r
+```
 Assuming[c11 c22 - c21 c12 != 0, Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]]
 ```
-(:codemend:)
 
 </details>
 
@@ -88,9 +170,10 @@ Assuming[c11 c22 - c21 c12 != 0, Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y -
  
 ### Activity - Compare loglikelihood and least squares
 Start by reading in the data below.
-(:code:)[@
+
+```r
 rm(list=ls())
-data <- read.csv(url("https://byuistats.github.io/M119/data4_ls.csv"))
+data <- read.csv(url("https://chaz-clark.github.io/M119/data4_ls.csv"))
 x <- data$x
 y <- data$y
 ```
@@ -98,6 +181,7 @@ y <- data$y
 Consider the model $f(x; a) = a e^x$. We will fit this model to our data.
 Work with your group on the chalkboard to obtain the best fit parameters for this model using both 
 1. the maximum likelihood method, and
+
 1. least squares. 
 
 #### Using the Maximum Likelihood Method
@@ -116,6 +200,7 @@ Note the sum of squared errors of $f$ is $$S(a; \mathbf{x},\mathbf{y}) = \sum_{i
 #### Answer questions with the Model
 Once you have your model, you can use it to answer questions.  
 1. What is $f(4)$, the value predicted by the model at $x=4$. 
+
 1. Find $x$ so that $f(x) = 5$. 
 
 <details>
@@ -123,6 +208,7 @@ Once you have your model, you can use it to answer questions.
 
 Using $f(x) = 3.187972 e^x$, we have
 1. $f(4) = 174.0574$
+
 1. uniroot yields about $x = 0.45$.
 
 ```r
@@ -131,12 +217,12 @@ my_a
 
 f(4)
 uniroot(function(x){f(x)-5},c(-2,2))$root
-```
 
 f <- function(x,a = my_a){a*exp(x)}
 plot(x,y)
 t <- seq(min(x),max(x),0.1)
 lines(t,f(t))
+```
 
 </details>
 
@@ -145,13 +231,13 @@ Reading in the data below.
 
 ```r
 rm(list=ls())
-data <- read.csv(url("https://byuistats.github.io/M119/data2_ls.csv"))
+data <- read.csv(url("https://chaz-clark.github.io/M119/data2_ls.csv"))
 x <- data$x
 y <- data$y
 ```
 
 This time use the model $f(x;b,m) = b+mx$.
-- Fit this model to the data using either the Least Squares or or Maximum Likelihood method.
+- Fit this model to the data using either the Least Squares or Maximum Likelihood method.
 - What is $f(4)$, the value predicted by the model at $x=4$. 
 - Find $x$ so that $f(x) = 5$.
 
@@ -162,7 +248,7 @@ The code below gives $y = 2.79 + 6.48x$ (rounded to 3 sig figures) as the model,
 
 ```r
 rm(list=ls())
-data <- read.csv(url("https://byuistats.github.io/M119/data2_ls.csv"))
+data <- read.csv(url("https://chaz-clark.github.io/M119/data2_ls.csv"))
 x <- data$x
 y <- data$y
 
@@ -234,3 +320,7 @@ The term "best fit" can be used in multiple context and thus has context specifi
 Important Note: When we use the term "best" in mathematics we have to define precisely what we mean by "best" before we can use the tools of optimization to find the best thing we have defined.
     - Best is defined as the **most** "trusted" parameters given our observed sample when using the Maximum Likelihood method.
     - Best is defined as the **smallest** "collective error" between the observed values in the data and the values predicted from the fitted model.
+
+---
+
+*Source: [Class.32 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.32)*

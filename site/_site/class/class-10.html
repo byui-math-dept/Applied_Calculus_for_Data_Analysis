@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-10" id="toc-during-class---day-10" class="nav-link active" data-scroll-target="#during-class---day-10">During Class - Day 10</a>
+  <li><a href="#between-class-sessions---prep-for-day-10" id="toc-between-class-sessions---prep-for-day-10" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-10">Between Class Sessions - Prep for Day 10 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#transformation-exercises" id="toc-transformation-exercises" class="nav-link" data-scroll-target="#transformation-exercises">(2) Transformation (Exercises)</a></li>
+  <li><a href="#function-fairy-tales-shoe-tread" id="toc-function-fairy-tales-shoe-tread" class="nav-link" data-scroll-target="#function-fairy-tales-shoe-tread">(3) Function Fairy Tales (Shoe Tread)</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class---day-10" id="toc-during-class---day-10" class="nav-link" data-scroll-target="#during-class---day-10">During Class - Day 10</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -278,6 +456,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -298,6 +477,63 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-10" class="level1">
+<h1>Between Class Sessions - Prep for Day 10 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Solving Exponential and Log Equation (videos) Watch these video from mathispower4u. - <a href="https://www.youtube.com/watch?v=eDDAqsiLNyE&amp;feature=youtu.be">Exponential Equations (video 1)</a> (~5 minutes) - <a href="https://www.youtube.com/watch?v=-RMmLUHAlj0&amp;feature=youtu.be">Exponential Equations (video 2)</a> (~4.5 minutes) - <a href="https://www.youtube.com/watch?v=HpGjdfH1oZ0&amp;feature=youtu.be">Exponential Equations (video 3)</a> (~3.5 minutes) - <a href="https://www.youtube.com/watch?v=ZUREfaCqWzY">Log Equations (video 1)</a> (~7.5 minutes) - <a href="https://www.youtube.com/watch?v=nrNaxeKXxqU&amp;feature=youtu.be">Log Equations (video 2)</a> (~7.5 minutes)</p>
+<section id="transformation-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="transformation-exercises">(2) Transformation (Exercises)</h3>
+<p>Consider the general form <span class="math inline">\(P(x;a,b,h,k) = af(c(x-h))+k\)</span> for the transformation of a function <span class="math inline">\(f(u)\)</span>. - For each <span class="math inline">\(P(x)\)</span> and parent function <span class="math inline">\(f(u)\)</span> below, identify the parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(h\)</span>, and <span class="math inline">\(k\)</span> required to obtain <span class="math inline">\(P(x) = P(x;a,b,h,k)\)</span> and describe how these parameters transform <span class="math inline">\(f(u)\)</span>. - State the domain and range for each function below. - Graph each function below. - <span class="math inline">\(P(x) = \ln{(x-2)}\)</span> where <span class="math inline">\(f(u) = \ln{u} = \log_{e}{u}\)</span> - <span class="math inline">\(P(x) = -3\log{(x)} + 1\)</span> where <span class="math inline">\(f(u) = \log{u} = \log_{10}{u}\)</span> - <span class="math inline">\(P(x) = -\log_7{(x)} -5\)</span> where <span class="math inline">\(f(u) = \log_7{u}\)</span> - <span class="math inline">\(P(x) = \ln(6-2x)\)</span> where <span class="math inline">\(f(u) = \ln{u}\)</span></p>
+<p>Use this code to define the functions above.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="fu">log</span>(x<span class="dv">-2</span>) }</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="sc">-</span><span class="dv">3</span><span class="sc">*</span><span class="fu">log</span>(x,<span class="dv">10</span>) <span class="sc">+</span> <span class="dv">1</span> }</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="sc">-</span><span class="fu">log</span>(x,<span class="dv">7</span>) <span class="sc">-</span> <span class="dv">5</span> }</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="fu">log</span>(<span class="dv">6-2</span><span class="sc">*</span>x) }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use (and adapt) this code to plot the functions above.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">p1</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="co">#x-axis</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="co">#y-axis</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="co">#vertical asymptote of function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="function-fairy-tales-shoe-tread" class="level3">
+<h3 class="anchored" data-anchor-id="function-fairy-tales-shoe-tread">(3) Function Fairy Tales (Shoe Tread)</h3>
+<p>The tread on the bottom of a boot has been wearing off at a fairly constant rate starting from the date it was purchased. The shoe began with about 60mm of tread, and every month has been loosing about 3mm. A model for the tread thickness is <span class="math inline">\(f(x;m,b) = mx+b\)</span>, where <span class="math inline">\(x\)</span> is the number of months since the date it was purchased.</p>
+<p>For each choice of parameters <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> below, tell the story given by the model (even if said story is ludicrous). Then identify the model that best fits the story provided above.</p>
+<ol type="a">
+<li><span class="math inline">\(m=2,b=3\)</span></li>
+<li><span class="math inline">\(m=0,b=60\)</span></li>
+<li><span class="math inline">\(m=60,b=0\)</span></li>
+<li><span class="math inline">\(m=-1,b=10\)</span></li>
+<li><span class="math inline">\(m=-3,b=60\)</span></li>
+<li><span class="math inline">\(m=3,b=-60\)</span></li>
+</ol>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 1 – Definition of Logarithm</li>
+<li>Complete 1 – Evaluate Exponential and Logarithmic Functions</li>
+<li>Complete 1 – Properties of Logarithms</li>
+<li>Work on 1 – Solve Logarithmic Equations (and IVT) assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 1 Task 3</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class---day-10" class="level1">
 <h1>During Class - Day 10</h1>
 <section id="brain-gains" class="level2">
@@ -318,21 +554,33 @@ window.Quarto = {
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---solving-equations" class="level3">
 <h3 class="anchored" data-anchor-id="activity---solving-equations">Activity - Solving Equations</h3>
-<p>Solve the following equations for <span class="math inline">\(x\)</span>. Write down the exact answer and decimal approximation (round to 4 decimal places). 1. $3^x = 17 $ 1. <span class="math inline">\(\ln(4x-2) = 5\)</span> 1. <span class="math inline">\(\log(5x-30) = 1\)</span> 1. <span class="math inline">\(9^x = 49\)</span> 1. <span class="math inline">\(2^x = 56\)</span> 1. <span class="math inline">\(-2\log_5(7x) = 2\)</span> 1. <span class="math inline">\(\log_3(x-3) - 4 = 12\)</span> 1. <span class="math inline">\(\log_2(x-1) + \log_2(x+5) = 4\)</span> 1. <span class="math inline">\(e^{x-1}-5 = 5\)</span> 1. <span class="math inline">\(3(4^{2-5x})-7=8\)</span> 1. <span class="math inline">\(\ln(x+5) + \ln(x) = \ln(12x)\)</span></p>
+<p>Solve the following equations for <span class="math inline">\(x\)</span>. Write down the exact answer and decimal approximation (round to 4 decimal places). 1. $3^x = 17 $</p>
+<ol type="1">
+<li><p><span class="math inline">\(\ln(4x-2) = 5\)</span></p></li>
+<li><p><span class="math inline">\(\log(5x-30) = 1\)</span></p></li>
+<li><p><span class="math inline">\(9^x = 49\)</span></p></li>
+<li><p><span class="math inline">\(2^x = 56\)</span></p></li>
+<li><p><span class="math inline">\(-2\log_5(7x) = 2\)</span></p></li>
+<li><p><span class="math inline">\(\log_3(x-3) - 4 = 12\)</span></p></li>
+<li><p><span class="math inline">\(\log_2(x-1) + \log_2(x+5) = 4\)</span></p></li>
+<li><p><span class="math inline">\(e^{x-1}-5 = 5\)</span></p></li>
+<li><p><span class="math inline">\(3(4^{2-5x})-7=8\)</span></p></li>
+<li><p><span class="math inline">\(\ln(x+5) + \ln(x) = \ln(12x)\)</span></p></li>
+</ol>
 </section>
 <section id="activity---solving-exponential-and-log-equations-using-uniroot" class="level3">
 <h3 class="anchored" data-anchor-id="activity---solving-exponential-and-log-equations-using-uniroot">Activity - Solving Exponential and Log Equations using Uniroot</h3>
 <p>Let’s now solve some equations in R using uniroot. To solve the equation <span class="math inline">\(3^b=17\)</span> with uniroot, the key is to create a function whose zero is the solution we want. So we rewrite this as <span class="math inline">\(f(b) = 3^b-17\)</span>, and we want to solve <span class="math inline">\(3^b-17=0\)</span>. From there, we must give an interval in which we believe the root lies, and then uniroot will find the zero. Because <span class="math inline">\(3^2 = 9\)</span> and <span class="math inline">\(3^3=27\)</span>, we know the zero is in the interval <span class="math inline">\((2,3)\)</span>. Below is the code for using uniroot to solve <span class="math inline">\(3^b=17\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">3</span><span class="sc">^</span>x<span class="dv">-17</span>}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>interval <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_root <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(f, interval)<span class="sc">$</span>root</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The code below produces a plot that illustrates what uniroot found. </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">seq</span>(interval[<span class="dv">1</span>],interval[<span class="dv">2</span>],<span class="fl">0.1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x),<span class="at">type=</span><span class="st">"l"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col =</span> <span class="st">"gray"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>my_root,<span class="at">col =</span> <span class="st">"gray"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(my_root,<span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">3</span><span class="sc">^</span>x<span class="dv">-17</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>interval <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>my_root <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(f, interval)<span class="sc">$</span>root</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#The code below produces a plot that illustrates what uniroot found. </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">seq</span>(interval[<span class="dv">1</span>],interval[<span class="dv">2</span>],<span class="fl">0.1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x),<span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col =</span> <span class="st">"gray"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>my_root,<span class="at">col =</span> <span class="st">"gray"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(my_root,<span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As a team, try adapting the code above to find the zeros of the problems you solved by hand in the previous activity.</p>
 </section>
 </section>
@@ -341,59 +589,66 @@ window.Quarto = {
 <section id="solving-equations-with-uniroot" class="level3">
 <h3 class="anchored" data-anchor-id="solving-equations-with-uniroot">Solving equations with uniroot</h3>
 <p>What does uniroot do?</p>
-<pre><code>?uniroot</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?uniroot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The key to using uniroot is to pick two <span class="math inline">\(x\)</span>-values where you know the values of the function differ in sign. If needed, construct a plot to help you pick them. Let’s look at a few code examples.</p>
 <ul>
 <li>Solve <span class="math inline">\(h(x) = 0\)</span> given <span class="math inline">\(h(x) = 3x - 15\)</span>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>()) <span class="co">#Clears the environment</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span><span class="sc">*</span>x <span class="sc">-</span><span class="dv">15</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> What does the <span class="sc">$</span>root code do below?</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>()) <span class="co">#Clears the environment</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span><span class="sc">*</span>x <span class="sc">-</span><span class="dv">15</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#What does the $root code do below?</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If needed, remember to construct a plot.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">h</span>(x), <span class="at">type=</span><span class="st">"l"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">h</span>(x), <span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Solve <span class="math inline">\(h(x) = 4\)</span> given <span class="math inline">\(h(x) = 3x - 15\)</span>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>h.shift <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h</span>(x) <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h.shift,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))<span class="sc">$</span>root</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h.shift,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>h.shift <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h</span>(x) <span class="sc">-</span> <span class="dv">4</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h.shift,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))<span class="sc">$</span>root</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(h.shift,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Let’s solve <span class="math inline">\(3x - 15 = e^{-x+6}\)</span> using uniroot. Note that this function doesn’t have a by-hand solution technique. We’ll have to update the bounds in uniroot below, using the graph.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span><span class="sc">*</span>x<span class="dv">-15</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span>x<span class="sc">+</span><span class="dv">6</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(g,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))<span class="sc">$</span>root</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">g</span>(x), <span class="at">type=</span><span class="st">"l"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span><span class="sc">*</span>x<span class="dv">-15</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span>x<span class="sc">+</span><span class="dv">6</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(g,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))<span class="sc">$</span>root</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">g</span>(x), <span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>What happens when we try to solve something impossible, such as <span class="math inline">\(\frac{1}{x} = 0\)</span>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">/</span>x</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="sc">-</span><span class="dv">3</span>))<span class="sc">$</span>root</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">$</span>root</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Let’s practice using uniroot to solve some of the equations below. Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. If needed, we can make a plot first to figure out an interval where the zero should appear. 1. <span class="math inline">\(3x-5=0\)</span> 1. <span class="math inline">\(3x-5=7\)</span> 1. <span class="math inline">\(3x-5=e^{-x}\)</span> (Remember to use exp(-x)) for <span class="math inline">\(e^{-x}\)</span> ) 1. <span class="math inline">\(3x-5=\ln(x)\)</span> (Remember to use log(x) for <span class="math inline">\(\ln(x)\)</span>). 1. <span class="math inline">\(x^2+x-6=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits. 1. <span class="math inline">\(x^2-8x+12=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">/</span>x</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="sc">-</span><span class="dv">3</span>))<span class="sc">$</span>root</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">$</span>root</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s practice using uniroot to solve some of the equations below. Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. If needed, we can make a plot first to figure out an interval where the zero should appear. 1. <span class="math inline">\(3x-5=0\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(3x-5=7\)</span></p></li>
+<li><p><span class="math inline">\(3x-5=e^{-x}\)</span> (Remember to use exp(-x)) for <span class="math inline">\(e^{-x}\)</span> )</p></li>
+<li><p><span class="math inline">\(3x-5=\ln(x)\)</span> (Remember to use log(x) for <span class="math inline">\(\ln(x)\)</span>).</p></li>
+<li><p><span class="math inline">\(x^2+x-6=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p></li>
+<li><p><span class="math inline">\(x^2-8x+12=0\)</span>. There are two different solutions. See if you can capture both by choosing different lower and upper limits.</p></li>
+</ol>
 </section>
 <section id="intermediate-value-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="intermediate-value-theorem">Intermediate Value Theorem</h3>
@@ -410,18 +665,18 @@ Intermediate Value Theorem (IVT)
 <summary>
 Expand for a plot of the function.
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="sc">-</span><span class="dv">13</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.05</span><span class="sc">*</span>x) }</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">60</span>,<span class="fl">0.1</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type=</span><span class="st">'l'</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">50</span>,<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">3</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">50</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ (<span class="sc">-</span><span class="dv">13</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.05</span><span class="sc">*</span>x) }</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">60</span>,<span class="fl">0.1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type=</span><span class="st">'l'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">50</span>,<span class="at">col=</span><span class="st">'red'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">3</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">f</span>(<span class="dv">50</span>),<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ul>
 <li>We currently have <span class="math inline">\(f(x) = (-13 + 2x)e^{-0.05x}\)</span> with $ [a, b] = [ 3, 50 ] $, which means <span class="math inline">\(a = 3\)</span> and <span class="math inline">\(b = 50\)</span>.<br>
@@ -454,24 +709,26 @@ Expand to see an attempt at solving <span class="math inline">\(f(x_0) = 5\)</sp
 <summary>
 Expand for the solution to <span class="math inline">\(f(x_0) = 5\)</span> using uniroot.
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>I may call on people to the share <span class="cf">in</span> class.</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type=</span><span class="st">'l'</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y0){<span class="fu">f</span>(x)<span class="sc">-</span>y0}</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(g,<span class="fu">c</span>(a,b),<span class="at">y0=</span>y0)<span class="sc">$</span>root</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">g</span>(x,y0))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">c</span>(a,b,a,b), <span class="fu">c</span>(<span class="fu">f</span>(a),<span class="fu">f</span>(b),<span class="fu">g</span>(a,y0),<span class="fu">g</span>(b,y0)),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x0,<span class="fu">f</span>(x0),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">'blue'</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x0,<span class="fu">g</span>(x0,y0),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">'blue'</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>x0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I may call on people to share in class.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type=</span><span class="st">'l'</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">'gray'</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y0){<span class="fu">f</span>(x)<span class="sc">-</span>y0}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(g,<span class="fu">c</span>(a,b),<span class="at">y0=</span>y0)<span class="sc">$</span>root</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">g</span>(x,y0))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">c</span>(a,b,a,b), <span class="fu">c</span>(<span class="fu">f</span>(a),<span class="fu">f</span>(b),<span class="fu">g</span>(a,y0),<span class="fu">g</span>(b,y0)),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x0,<span class="fu">f</span>(x0),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">'blue'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x0,<span class="fu">g</span>(x0,y0),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">'blue'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>x0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.10">Class.10 on byuimath.com</a></em></p>
 
 
 </section>
@@ -481,6 +738,19 @@ Expand for the solution to <span class="math inline">\(f(x_0) = 5\)</span> using
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

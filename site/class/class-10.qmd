@@ -1,6 +1,79 @@
 ---
 title: "Class 10"
 ---
+# Between Class Sessions - Prep for Day 10 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Solving Exponential and Log Equation (videos)
+Watch these video from mathispower4u.
+- [Exponential Equations (video 1)](https://www.youtube.com/watch?v=eDDAqsiLNyE&feature=youtu.be) (~5 minutes)
+- [Exponential Equations (video 2)](https://www.youtube.com/watch?v=-RMmLUHAlj0&feature=youtu.be) (~4.5 minutes)
+- [Exponential Equations (video 3)](https://www.youtube.com/watch?v=HpGjdfH1oZ0&feature=youtu.be) (~3.5 minutes)
+- [Log Equations (video 1)](https://www.youtube.com/watch?v=ZUREfaCqWzY) (~7.5 minutes)
+- [Log Equations (video 2)](https://www.youtube.com/watch?v=nrNaxeKXxqU&feature=youtu.be) (~7.5 minutes)
+
+### (2) Transformation (Exercises)
+Consider the general form  $P(x;a,b,h,k) = af(c(x-h))+k$ for the transformation of a function $f(u)$. 
+- For each $P(x)$ and parent function $f(u)$ below, identify the parameters $a$, $c$, $h$, and $k$ required to obtain $P(x) = P(x;a,b,h,k)$ and describe how these parameters transform $f(u)$.
+- State the domain and range for each function below.
+- Graph each function below.
+    - $P(x) = \ln{(x-2)}$ where $f(u) = \ln{u} = \log_{e}{u}$
+    - $P(x) = -3\log{(x)} + 1$ where $f(u) = \log{u} = \log_{10}{u}$
+    - $P(x) = -\log_7{(x)} -5$ where $f(u) = \log_7{u}$
+    - $P(x) = \ln(6-2x)$ where $f(u) = \ln{u}$
+
+Use this code to define the functions above.
+
+```r
+p1 <- function(x){ log(x-2) }
+p2 <- function(x){ -3*log(x,10) + 1 }
+p3 <- function(x){ -log(x,7) - 5 }
+p4 <- function(x){ log(6-2*x) }
+```
+
+Use (and adapt) this code to plot the functions above.
+
+```r
+x <- seq(-10,10,0.1)
+y <- p1(x)
+
+par(mar=c(2.5,2.5,1,0.25))
+plot(x,y,type="l",xlim=c(-10,10),ylim=c(-10,10))
+abline(h=0,col='gray',lty=3) #x-axis
+abline(v=0,col='gray',lty=3) #y-axis
+abline(v=2,col='red',lty=3) #vertical asymptote of function
+```
+
+### (3) Function Fairy Tales (Shoe Tread)
+The tread on the bottom of a boot has been wearing off at a fairly constant rate starting from the date it was purchased. The shoe began with about 60mm of tread, and every month has been loosing about 3mm. A model for the tread thickness is $f(x;m,b) = mx+b$, where $x$ is the number of months since the date it was purchased. 
+
+For each choice of parameters $m$ and $b$ below, tell the story given by the model (even if said story is ludicrous). Then identify the model that best fits the story provided above.
+
+a. $m=2,b=3$
+a. $m=0,b=60$
+a. $m=60,b=0$
+a. $m=-1,b=10$
+a. $m=-3,b=60$
+a. $m=3,b=-60$
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 1 -- Definition of Logarithm
+- Complete 1 -- Evaluate Exponential and Logarithmic Functions
+- Complete 1 -- Properties of Logarithms
+- Work on 1 -- Solve Logarithmic Equations (and IVT) assignment 
+
+### Applied Practice (Project Work)
+- Continue working on Project 1 Task 3
+
 
 # During Class - Day 10
 ## Brain Gains
@@ -17,14 +90,19 @@ Start by giving each person a moment to share what they chose to prepare for cla
 ### Activity - Solving Equations
 Solve the following equations for $x$. Write down the exact answer and decimal approximation (round to 4 decimal places).
 1. $3^x = 17 $
+
 1. $\ln(4x-2) = 5$ 
 1. $\log(5x-30) = 1$
+
 1. $9^x = 49$
 1. $2^x = 56$
+
 1. $-2\log_5(7x) = 2$
 1. $\log_3(x-3) - 4 = 12$
+
 1. $\log_2(x-1) + \log_2(x+5) = 4$
 1. $e^{x-1}-5 = 5$
+
 1. $3(4^{2-5x})-7=8$
 1. $\ln(x+5) + \ln(x) = \ln(12x)$
 
@@ -36,7 +114,7 @@ f <- function(x){3^x-17}
 interval <- c(2,3)
 my_root <- uniroot(f, interval)$root
 
-1. The code below produces a plot that illustrates what uniroot found. 
+#The code below produces a plot that illustrates what uniroot found. 
 x<-seq(interval[1],interval[2],0.1)
 plot(x,f(x),type="l")
 abline(h=0,col = "gray")
@@ -51,7 +129,7 @@ As a team, try adapting the code above to find the zeros of the problems you sol
 ### Solving equations with uniroot
 What does uniroot do?
 
-```
+```r
 ?uniroot
 ```
 
@@ -66,7 +144,7 @@ h <- function(x){
   3*x -15
 }
 
-1. What does the $root code do below?
+#What does the $root code do below?
 uniroot(h,c(0,30))
 uniroot(h,c(0,30))$root
 ```
@@ -123,10 +201,13 @@ Let's practice using uniroot to solve some of the equations below.
 Remember, we start by defining the function that you wish to equal zero (you might need to subtract), and then use uniroot. 
 If needed, we can make a plot first to figure out an interval where the zero should appear. 
 1. $3x-5=0$
+
 1. $3x-5=7$
 1. $3x-5=e^{-x}$  (Remember to use exp(-x)) for $e^{-x}$ )
+
 1. $3x-5=\ln(x)$ (Remember to use log(x) for $\ln(x)$). 
 1. $x^2+x-6=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
+
 1. $x^2-8x+12=0$.  There are two different solutions. See if you can capture both by choosing different lower and upper limits. 
 
 ### Intermediate Value Theorem
@@ -216,7 +297,7 @@ We've already entered a realm where current knowledge has failed to find exact s
 <summary>Expand for the solution to $f(x_0) = 5$ using uniroot.</summary>
 
 ```r
-I may call on people to the share in class.
+# I may call on people to share in class.
 par(mar=c(2.5,2.5,0.5,0.5))
 plot(x, f(x), type='l',col='gray')
 abline(h=0,col='gray',lty=3)
@@ -236,3 +317,7 @@ x0
 ```
 
 </details>
+
+---
+
+*Source: [Class.10 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.10)*

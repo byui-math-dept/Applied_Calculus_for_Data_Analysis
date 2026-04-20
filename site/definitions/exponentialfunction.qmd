@@ -11,5 +11,35 @@ Note: An exponential function is not an algebraic function.
 
 </details>
 
-<!-- include: Page.KeyCharacteristicsOfExponentialFunction -->
-<!-- include: Page.PropertiesOfExponents -->
+<!-- from Page.KeyCharacteristicsOfExponentialFunction -->
+<details>
+<summary>Key Characteristics of Exponential Function</summary>
+
+- Domain is all real numbers
+- Range is positive real numbers
+- When $b > 1$ the function is increasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output gets close to zero.
+    - As $x$ increases the output increases without bound.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+- When $0< b < 1$ the function is decreasing on its entire domain.
+    - As $x$ decreases (approaches negative infinity) the output grows without bound.
+    - As $x$ increases the output gets close to zero.
+    - These functions are concave up. (We will learn the precise meaning of concavity later this semester.)
+
+</details>
+
+<!-- from Page.PropertiesOfExponents -->
+<details>
+<summary>Properties of Exponents</summary>
+
+If $a > 0$, $b >0$, and $m$ and $n$ are any real number, then 
+- $a^m \cdot a^n = a^{m+n}$
+- $\frac{a^m}{a^n} = a^{m-n}$
+- $(a^m)^n = a^{mn}$
+- $\frac{1}{a^n} = a^{-n}$
+- $\sqrt[n]{a} = a^{1/n}$
+- $\sqrt[n]{a^m} = a^{m/n}$
+- $a^m \cdot b^m = (a \cdot b)^m$
+- $\frac{a^m}{b^m} = \left(\frac{a}{b}\right)^m$
+
+</details>

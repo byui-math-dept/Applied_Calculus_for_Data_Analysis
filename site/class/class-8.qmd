@@ -1,6 +1,48 @@
 ---
 title: "Class 8"
 ---
+# Between Class Sessions - Prep for Day 8 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Exponential Function Practice
+Watch this video from mathispower4u, [Graphing Exponential Functions](https://www.youtube.com/watch?v=FMzZB9Ve-1U&feature=youtu.be) (~6.5 minutes)
+
+Now complete the following:
+
+1. Let $f(x) = 4^x$ and complete the following exercises. Find the exact values.
+    - Evaluate $f(1)$.
+    - Evaluate $f(0)$.
+    - Evaluate $f(-1)$.
+    - Evaluate $f(-2)$.
+    - Evaluate $f(\frac{1}{2})$.
+    - Evaluate $f(3)$.
+    - Are there any real numbers that would cause us a problem when trying to evaluate $f$ at that number?
+    - What do you notice about all the outputs of $f$?
+    - Graph the function $f(x) = 4^x$.
+    - Is this function increasing or decreasing on the interval $(-\infty,\infty)$?
+1. Graph the function $g(x) = (1/2)^x$. Is this function increasing or decreasing on the interval $(-\infty,\infty)$?
+
+1. If $h(x) = a^x$ is an increasing function, what do you know about the parameter $a$? 
+### (2) Project 1 Task 2
+Work on project 1 task 2, with the goal of submitting it.  Remember to complete the AI log. 
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+Start working on 
+- 1 -- Definition of a Logarithm
+- 1 -- Evaluate Exponential and Logarithmic Functions
+- 1 -- Properties of Logarithms
+### Applied Practice (Project Work)
+- Work on Project 1 Task 2
+
 
 # During Class - Day 8
 ## Brain Gains
@@ -39,18 +81,18 @@ plot(x,f(x),type = "l")
 <details>
 <summary>Solution</summary>
 
-The function $e^{ ( ) }$ in R is given using the exp() function. 
+The function $e^{ ( ) }$ in R is given using the exp() function.
 
 ```r
 exp(2)
-1. 7.389056
+#7.389056
 ```
 
-What is $e$? It's a number. 
+What is $e$? It's a number.
 
 ```r
 exp(1)
-1. 2.718282
+#2.718282
 ```
 
 The number arises from calculus, and we'll see in a few weeks why $e$ is special.
@@ -69,7 +111,7 @@ Graph each function below, showing at least 2 points, and any horizontal asympto
 - $f(x) = (1/3)^{x}+4$
 
 ### Example Project Tasks 2 and 3
-- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
+- Open the [Example Project Instructions](../assets/docs/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
 - Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
     - Use the slider to alter the values of $a$ and $b$. Discuss how these parameters alter the graph of $f_0$.
     - Use the slider to alter the values of $h$ and $a$. Discuss how these parameters alter the graph of $f_1$.
@@ -122,7 +164,7 @@ A function tells a story about a relationship between two quantities, whether th
 - Can you tell the story given by the function, regardless of how absurd that story is?
 
 ### Example Project Tasks 2 and 3
-- Open the [Example Project Instructions](https://byuistats.github.io/M119/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
+- Open the [Example Project Instructions](../assets/docs/example_project.html){target="_blank"}, and briefly read Task 2 and Task 3.
 - Use the Desmos links to explore the three probability density models $f_0$, $f_1$, and $f_2$.
     - Use the slider to alter the values of $a$ and $b$. Discuss how these parameters alter the graph of $f_0$.
     - Use the slider to alter the values of $h$ and $a$. Discuss how these parameters alter the graph of $f_1$.
@@ -141,7 +183,7 @@ hist(dist$percent_intensity,probability = TRUE)
 - For each of the 3 functions, use the sliders in Desmos to try and pick reasonable values for the parameters to provide a reasonable visual fit to the probability histogram. 
 
 #### Summary Plots
-We'll spend some time today in class discussing the https://byuistats.github.io/M119/example_project.html. Here's a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.  
+We'll spend some time today in class discussing the [Example Project](../assets/docs/example_project.html). Here's a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.  
 
 ```r
 library(data4led)
@@ -188,23 +230,25 @@ L <- seq(a,b,0.1)
 y <- f0(L,a,b)
 
 plot(L,y,type='l',xlim=c(90,110), ylim = c(0,1))
-mtext('change a= (keep b=)', side = 3, line = 0)@]
-(:codeend:)
+mtext('change a= (keep b=)', side = 3, line = 0)
+```
 
-Now let's look at the second model $f_1$. 
+Now let's look at the second model $f_1$.
+
 - What did you notice about the general model $f_1$ and its parameters?
     - What is the domain of $f_1$?
     - What does $h$ do?
     - What does $a$ do?
-    - Try to pick some values for the parameters that provide a visual fit to the data. 
+    - Try to pick some values for the parameters that provide a visual fit to the data.
     - What story does this model tell, in the context of percent intensities of light bulbs?
 
 Let's summarize our observations with a few plots.
 Run this code in your Console to plot representative curves for the parameter $h$ in function $f_1$.
-(:code:)[@
+
+```r
 rm(list=ls())
 f1 <- function(L,h=0,a=1){
-1. Make sure h > 0 and a > 0.
+#Make sure h > 0 and a > 0.
 1/sqrt(2*pi*a)*exp(-(L-h)^2/(2*a))
 }
 
@@ -255,7 +299,7 @@ Run this code in your Console to plot representative curves for the parameter $h
 ```r
 rm(list=ls())
 f2 <- function(L,h=0,a=1,b=5){
-1. Make sure a > 0 and b > 0.
+# Make sure a > 0 and b > 0.
 
 out <- rep(-1,length(L))
 out[(L < h)] <- 0*L[(L < h)]
@@ -318,3 +362,7 @@ y <- f2(L,h,a,b)
 plot(L,y,type='l',xlim=c(80,120))
 mtext('Changing b in f2', side = 3, line = 0, outer = TRUE)
 ```
+
+---
+
+*Source: [Class.8 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.8)*

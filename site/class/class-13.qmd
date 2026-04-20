@@ -1,6 +1,84 @@
 ---
 title: "Class 13"
 ---
+# Between Class Sessions - Prep for Day 13 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Introduction to Probability and Random Variables
+Watch the following videos are from mathispower4u.
+- [Intro to Probability](https://www.youtube.com/watch?v=YWt_u5l_jHs&feature=youtu.be){target="_blank"} (~8 minutes)
+- [Discrete Random Variable](https://www.youtube.com/watch?v=8tzaV3RK53Y&feature=youtu.be){target="_blank"} (~5 minutes)
+- [PMF Discrete](https://www.youtube.com/watch?v=VlMn5wkw8Xc&feature=youtu.be){target="_blank"} (~3 minutes)
+- [Calculating Conditional Probability](https://www.youtube.com/watch?v=WgsxhWPAo4c&feature=youtu.be){target="_blank"} (~8 minutes)
+- [Calculating Probability Independent Event](https://www.youtube.com/watch?v=QsnfXUqsFPU&feature=youtu.be){target="_blank"} (~8 minutes)
+
+### (2) Explore Common Probability Functions
+For each of the five functions below, complete the following:
+- Identify the domain.
+- Identify the parameters.
+- Plot the function in R.
+- Identify the range.
+- Consider what happens when you change the parameters in the model. Describe what changing each of the parameters does to the graph of $f$.
+Come to class ready to teach your group what you did with at least one of these function. 
+
+1. $f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}$ with $x = 0, 1, 2, 3, ... , n$ where $n$ is a positive integer and $0 \leq p \leq 1$.
+
+1. $f_2(x; \lambda) = \lambda e^{-\lambda x}$ with $x > 0$ where $\lambda >0$.
+1. $f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},$ where $\mu$ is a real number and $\sigma > 0$.
+
+1. $f_4(x; \lambda) = \begin{cases}0 & x \leq 0 \\ \\1 - e^{-\lambda x} & x > 0\end{cases},$ where where $\lambda >0$.
+1. $f_5(x; a,b) =\begin{cases}0 & x < a \\ \\\frac{x-a}{b-a} & a \leq x \leq b \\ \\1 & x >b\end{cases},$ where $a$ and $b$ are real numbers with $a < b$.
+
+You can use the following code to define these functions in R.
+
+```r
+f1 <- function(x,n=20,p=0.5){
+# x must be an whole number between 0 and n, endpoints included
+  factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
+}
+
+f2 <- function(x,lambda=1){
+# x must be positive
+  lambda*exp(-lambda*x)
+}
+
+f3 <- function(x,mu=0,s=1){
+  (1/sqrt(2*pi*s^2))*exp(-(x-mu)^2/(2*s^2))
+}
+
+f4 <- function(x,lambda=1){
+  
+  out <- rep(0,length(x))
+  out[(x > 0)] <- 1 - exp(-lambda*x[(x > 0)])
+  
+  return(out)
+}
+
+f5 <- function(x,a=0,b=1){
+  
+  out <- rep(0,length(x))
+  out[(a <= x) & (x <= b)] <- (x[(a <= x) & (x <= b)]-a)/(b-a)
+  out[(x > b)] <- 1
+
+  return(out)
+}
+```
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Begin 3 -- Probability Basics assignment
+
+### Applied Practice (Project Work)
+- Work on Project 1 Task 3
+
 
 # During Class
 ## Brain Gains
@@ -39,8 +117,10 @@ Start by giving each person a moment to share what they chose to prepare for cla
 ### Exploring new functions
 The prep for today involved exploring the 5 new functions below. 
 1. $f_1(x; n,p) = \frac{n!}{x!(n-x)!}p^x(1-p)^{ (n-x)}$ with $x = 0, 1, 2, 3, ... , n$ where $n$ is a positive integer and $0 \leq p \leq 1$.
+
 1. $f_2(x; \lambda) = \lambda e^{-\lambda x}$ with $x > 0$ where $\lambda >0$.
 1. $f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},$ where $\mu$ is a real number and $\sigma > 0$.
+
 1. $f_4(x; \lambda) = \begin{cases}0 & x \leq 0 \\ \\1 - e^{-\lambda x} & x > 0\end{cases},$ where where $\lambda >0$.
 1. $f_5(x; a,b) =\begin{cases}0 & x < a \\ \\\frac{x-a}{b-a} & a \leq x \leq b \\ \\1 & x >b\end{cases},$ where $a$ and $b$ are real numbers with $a < b$.
 
@@ -83,22 +163,22 @@ f5 <- function(x,a=0,b=1){
   return(out)
 }
 
-1. Plots for f1
-1. Note that the input must be an integer. 
+# Plots for f1
+# Note that the input must be an integer. 
 x <- seq(0,20,1)
 plot(x,f1(x))
 plot(x,f1(x,n=10))
 plot(x,f1(x,n=30,p=0.2))
 
-1. Plots for f2
-1. Note that the input cannot be negative.
+# Plots for f2
+# Note that the input cannot be negative.
 x <- seq(0,10,0.1)
 plot(x,f2(x), type = "l")
 plot(x,f2(x, lambda=3), type = "l")
 plot(x,f2(x, lambda=0.5), type = "l")
 
-1. Plots for f3
-1. The input can be negative, so let's allow that.
+# Plots for f3
+# The input can be negative, so let's allow that.
 x <- seq(-10,10,0.1)
 plot(x,f3(x), type = "l")
 plot(x,f3(x, mu=3), type = "l")
@@ -108,14 +188,14 @@ plot(x,f3(x, s=1), type = "l", ylim = c(0,1))
 plot(x,f3(x, s=3), type = "l", ylim = c(0,1))
 plot(x,f3(x, s=0.5), type = "l", ylim = c(0,1))
 
-1. Plots for f4
-1. The input cannot be negative.
+# Plots for f4
+# The input cannot be negative.
 x <- seq(0,10,0.1)
 plot(x,f4(x), type = "l")
 plot(x,f4(x, lambda=3), type = "l")
 plot(x,f4(x, lambda=0.5), type = "l")
 
-1. Plots for f5
+# Plots for f5
 x <- seq(0,10,0.1)
 plot(x,f5(x), type = "l")
 plot(x,f5(x, a=3, b=7), type = "l")
@@ -147,6 +227,7 @@ The **probability** of any outcome is the long-term relative frequency of that o
 <summary>Definition: Random (or Stochastic) Variable</summary>
 
 1. A **random variable** is a function that associates a number with each outcome of the sample space of a chance experiment.
+
 1. Let $S$ be the sample space of an experiment. A **random variable** is a function from $S$ to the real line. Random variables are usually denoted by a capital letter. Individual observed *values* of a random variable are usually denoted by the corresponding lower case letter.
 Example: We toss a fair coin three times. Let $X$ be the random variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write $x = 2$. We could ask the questions, "What is the probability that $X = 2$?" or "What is the probability that $X = x$?" 
 
@@ -198,6 +279,7 @@ Note that we use $R$ to represent the random variable, but we use $r=3$ to repre
 The probability mass function (pmf) describing the random variable $R$ is given by $f(r) = \frac{1}{6}$ for $r$ in $\{1,2,3,4,5,6 \}$. The inputs (or domain) of the pmf are the possible values of $R$, or $\{1,2,3,4,5,6\}$. The outputs of the pmf are the probabilities corresponding to each outcome when $R=r$.
 
 1. What is the domain of $f$ (the collection of inputs)?
+
 1. What is the range of $f$ (the collection of outputs)?
 1. Compute each of the following: 
     1.  $P(R=1)$
@@ -216,8 +298,8 @@ The probability mass function (pmf) describing the random variable $R$ is given 
 <summary>Answers</summary>
 
 1. The domain of $f$ is the set $ \{ 1, 2, 3, 4, 5, 6 \} $, so the collection of possible outcomes of the random variable $R$. 
+
 1. The range of $f$ is the set $ \{ \frac{1}{6} \} $.
-# 
     1.  $P(R=1) = \frac{1}{6}$
     1. $P(R=2) = \frac{1}{6}$
     1. $P(R=9) = 0$
@@ -245,20 +327,26 @@ $$f(x) =
 \end{cases}.$$
 Compute the probabilities requested below:
 1. $P(x \leq 6)$
+
 1. $P(x = 9)$
 1. $P(x = 7)$
+
 1. $P(x \leq 7)$
 1. $P(x \geq 10)$
+
 1. $P(x \leq 12)$
 
 <details>
 <summary>Answers</summary>
 
 1. $P(x \leq 6) = 0.77$
+
 1. $P(x = 9) = 0.03$
 1. $P(x = 7) = 0$
+
 1. $P(x \leq 7) = 0.77$
 1. $P(x \geq 10) = 0.2$
+
 1. $P(x \leq 12) = 1$
 
 </details>
@@ -267,10 +355,13 @@ Compute the probabilities requested below:
 Suppose we toss two fair six-sided dice once. We will record the value that appears on each of the dice, and let $X_1$ represent the outcome for the first die and $X_2$ represent the outcome for the second die. Note the events from random variable $X_1$ and the events from $X_2$ are independent.
 Compute the following:
 1. $P(X_1 = 3)$
+
 1. $P(X_2 = 1)$
 1. $P(X_1 = 4 | X_1 \text{ is even})$
+
 1. $P(X_1 = 2 | X_2 \text{ is even})$
 1. $P(X_1 = 3 \text{ and } X_2 = 1)$
+
 1. $P(X_1 = 3 \text{ and } X_1 = 1)$
 1. $P(X_1 \leq 2 \text{ and } X_2 > 2)$
 
@@ -291,12 +382,15 @@ $f_2(x_2) =
 \end{cases}$
 
 1. $P(X_1 = 3) = f_1(3) = \frac{1}{6}$
+
 1. $P(X_2 = 1) = f_2(1) = \frac{1}{6}$
 1. $P(X_1 = 4 | X_1 \text{ is even}) = \frac{P(X_1 = 4 \text{ and } X_1 \text{ is even})}{P(X_1 \text{ is even})}= \frac{1/6}{3/6} = \frac{1}{3}$
+
 1. $P(X_1 = 2 | X_2 \text{ is even}) = P(X_1 = 2) = \frac{1}{6}$ (The random variables are independent, so knowledge about $X_2$ does not affect $X_1$.)
 1. $P(X_1 = 3 \text{ and } X_2 = 1) = P(X_1=3)P(X_2=1) = \frac{1}{6}(\frac{1}{6}) = \frac{1}{36}$
     - We can multiply the probabilities because $X_1$ and $X_2$ are independent.
 1. $P(X_1 = 3 \text{ and } X_1 = 1) = 0$, as it is impossible for an observed value to be both 3 and 1 at the same time. We do not multiply probabilities unless the events are independent.
+
 1. $P(X_1 \leq 2 \text{ and } X_2 > 2) = P(X_1 \leq 2)P(X_2 > 2) = (\sum_{i=1}^2P(X_1=i))(\sum_{i=3}^6P(X_2=i)) = (\frac{1}{3})(\frac{2}{3}) = \frac{2}{9}$
 
 </details>
@@ -305,8 +399,10 @@ $f_2(x_2) =
 Suppose we toss seven fair six-sided dice once. We will record the value that appears on each of the dice, and let $X_i$ represent the outcome for the $i$th die with $i = 1, 2, ..., 7$. Note the events from random variables $X_1$, $X_2$, ... $X_7$ are independent.
 Compute the following:
 1. $P(X_1 = 1)$
+
 1. $P(X_6 = 4)$
 1. $P(X_3 > 2)$
+
 1. $P(\text{all the dice have values greater than 2})$
 
 <details>
@@ -320,8 +416,14 @@ $f_i(x_i) =
 \end{cases}$
 for $i = 1, 2, ..., 7$.
 1. $P(X_1 = 1) = \frac{1}{6}$
+
 1. $P(X_6 = 4) = \frac{1}{6}$
 1. $P(X_3 > 2) = \sum_{j=3}^6P(X_3=j) = 4\left(\frac{1}{6}\right) = \frac{2}{3}$
+
 1. $P(\text{all the dice have values greater than 2}) = \prod_{i=1}^7P(X_i > 2) = \prod_{i=1}^7(\sum_{j=3}^6P(X_i=j)) = \prod_{i=1}^7(\frac{2}{3}) = (\frac{2}{3})^7 = \frac{128}{2187} \approx 0.059$
 
 </details>
+
+---
+
+*Source: [Class.13 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.13)*

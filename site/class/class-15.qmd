@@ -1,14 +1,107 @@
 ---
 title: "Class 15"
 ---
+# Between Class Sessions - Prep for Day 15 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Likelihood Practice (with Poisson)
+
+Use the storms listed on Wikipedia's [List of Florida hurricanes](https://tinyurl.com/51vyiwjw) page to answer the questions below.
+
+1. Use the data from 2005-2007 for $x_1$, $x_2$, and $x_3$. The number of storms in 2005 is $x_1$, the number of storms in 2006 is $x_2$, and the number of storms in 2007 is $x_3$.
+- Adapt the code from class to complete the following table, calculating the probability given the value of $\lambda$.
+
+```r
+p3v1 <- function(x,lambda=2){
+# each element of x must be a whole number
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+p3v1(c(8,2,8),1)
+p3v1(c(8,2,8),2)
+```
+
+| $\lambda$ | $P(X_1=x_1,X_2=x_2,X_3=x_3)$ |
+|---|---|
+| 1 | 1.531x$10^{-11}$ |
+| 2 | 1.998x$10^{-7}$ |
+| 3 |  |
+| 4 |  |
+| 5 |  |
+| 6 |  |
+| 7 |  |
+| 8 |  |
+| 9 |  |
+| 10 |  |
+| 11 |  |
+| 12 |  |
+| 13 |  |
+| 14 |  |
+| 15 |  |
+
+- Use the code below to plot this function of $\lambda$ in R. (Because both $\lambda$ and $x$ are vectors, we must use the sapply function from R to appropriately tell the computer how to to parse the notation. You do not have to modify any code involving sapply for future tasks, so feel free to just run the code below to produce the needed plot.)
+
+```r
+lambda <- seq(0,15,0.01)
+x <- c(8,2,8)
+probs <- sapply(lambda, p3v1, x = x)
+plot(lambda, probs, type='l')
+```
+
+- If we know there will be 8 Florida tropical storms this year, 2 Florida tropical storms next year, and 8 Florida tropical storms the year after that (in other words the data values from 2005-2007), what is your guess for the best choice of parameter $\lambda$?
+
+2. Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with $\lambda$ on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia's [List of Florida hurricanes](https://tinyurl.com/51vyiwjw) to get the appropriate data.
+- Using your plot what is your guess for the best choice of the parameter $\lambda$ in this case?
+
+3. Using the data from 2012-2015 adapt the code to plot a function with $\lambda$ on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2012, the number of storms next year will be the same as the number of storms in 2013, the number of storms in the year after that will be the same number as the number of storms in 2014, and the number of storms in the year after that will be the same number as the number of storms in 2015) on the vertical axis.
+- *Note: There are 4 years this time. How will you have to change the code to allow for this?*
+- Using your plot what is your guess for the best choice of the parameter $\lambda$ in this case?
+
+4. Using the data from 2000 and 2001 adapt the code to plot a function with $\lambda$ on the horizontal axis and probability on the vertical axis.
+- *Note: There are 2 years this time. How will you have to change the code to allow for this?*
+- Using your plot what is your guess for the best choice of the parameter $\lambda$ in this case?
+
+5. Using the data from 2019 and 2020 adapt the code to plot a function with $\lambda$ on the horizontal axis and probability on the vertical axis.
+- *Note: There are 2 years this time. How will you have to change the code to allow for this?*
+- Using your plot what is your guess for the best choice of the parameter $\lambda$ in this case?
+
+### (2) Residuals Exercises
+
+<details>
+<summary>Residuals</summary>
+
+The **residual** for an observation is defined as the vertical distance between the observed value, $y$, and value predicted by a fitted model, represented with a $\hat{y}$ (read "y hat"). 
+
+Examples:
+- Given the model $f(x) = ax^2 + bx + c$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c.$
+- Given the model $g(x) = k$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - g(x) = y - k.$
+- Given the model $h(x) = ae^{-bx} + cxe^{-bx}$ and the data point $(x,y)$, the residual is $y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.$
+
+</details>
+
+Consider the 6 functions you have been fitting in Project 1. 
+- Write down a formula for the residual given model $f_1$.
+- Write down a formula for the residual given model $f_2$.
+- Write down a formula for the residual given model $f_3$.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Applied Practice (Project Work)
+- Complete Project 1 Task 4
+
 
 # During Class
 ## Brain Gains
 - Critique the following visual fits for $f_5$.
-
-![](../assets/uploads/Class/f5-fit1.png)
-
-![](../assets/uploads/Class/f5-fit2.png)
+    - ![Visual fit 1 for f5](https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png)
+    - ![Visual fit 2 for f5](https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png)
 
 - Write down a formula for the residual, $y - \hat{y}$, given the model $f(x) = b + mx$ and data point $(x,y) = (4,7)$.
 - Write down a formula for the residual, $y - \hat{y}$, given the model $g(x) = c + bx + a\ln(4x)$ and data point $(x,y) = (x_3,y_3)$. 
@@ -22,11 +115,11 @@ In the formula $r=y−f(x)$, we just replace $x$, $y$, and $f(x)$ with what they
 
 </details>
 
-- The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of $\lambda$, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of $\lambda$ versus the probability of seeing 7, 13, and then 3 storms, for that value of $\lambda$. What is your guess for the best choice of parameter $\lambda$?
+- The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see [List of Florida hurricanes (2000–present) #2019](https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(2000%E2%80%93present)#2019)). In the prep we used the Poisson distribution to compute a probability, for various values of $\lambda$, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of $\lambda$ versus the probability of seeing 7, 13, and then 3 storms, for that value of $\lambda$. What is your guess for the best choice of parameter $\lambda$?
 
 ```r
 p3v1 <- function(x,lambda=2){
-  # each element of x must be a whole number
+# each element of x must be a whole number
   prod((lambda^x/factorial(x))*exp(-lambda))
 }
 
@@ -93,13 +186,13 @@ Examples:
 
 </details>
 
-- Consider the 6 functions you have been fitting in https://byuistats.github.io/M119/project1.html. 
+- Consider the 6 functions you have been fitting in [Project Unit 1](https://chaz-clark.github.io/M119/Projects/unit1.html).
     - On the chalkboard, write down a formula for the residual given the general model $f_4$ and data point $(x_i,y_i)$.
     - On the chalkboard, write down a formula for the residual given the general model $f_5$ and data point $(x_j,y_j)$.
 
 ### Activity - Likelihood Practice
 
-Use the storms listed on Wikipedia's https://tinyurl.com/51vyiwjw page to answer the questions below. Feel free to head to yesterday's page to grab code examples to help you work on the things below. 
+Use the storms listed on Wikipedia's [List of Florida hurricanes](https://tinyurl.com/51vyiwjw) page to answer the questions below. Feel free to head to yesterday's page to grab code examples to help you work on the things below. 
 
 - Using the data from 2005-2009, what is the likelihood that $\lambda =2$?
     - Define the likelihood function for this 5 year time period and plot it in R.
@@ -133,29 +226,29 @@ We can use the following code to plot this function in R.
 ```r
 rm(list=ls())
 
-    1. #Define the distribution###
+###Define the distribution###
 p <- function(x,lambda=1){
-1. x must be a whole number
+# x must be a whole number
   (lambda^x/factorial(x))*exp(-lambda)
 }
 
-    1. #Define the likelihood function###
+###Define the likelihood function###
 LP <- function(lambda,x){
-1. The element of x must be a whole numbers.
+# The element of x must be a whole numbers.
   prod(p(x,lambda))
 }
 
-    1. #Possible Parameter Values###
+###Possible Parameter Values###
 lambda <- seq(0,10,0.001)
 
-    1. #Data###
-1. Florida Hurricane Data (2000-2022)
+###Data###
+# Florida Hurricane Data (2000-2022)
 data <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,2,4,6,7,4,7,13,3,3)
 
-1. Here we calculate the output from the likelihood function given the observed data.
+#Here we calculate the output from the likelihood function given the observed data.
 y <- sapply(lambda,FUN=LP,x=data)
 
-1. We plot the likelihood function.
+#We plot the likelihood function.
 par(mar=c(2.5,2.5,3,0.25))
 plot(lambda,y,type='l',main='Poisson Likelihood')
 ```
@@ -178,29 +271,29 @@ We can use the following code to plot this function in R.
 <summary>Click to view the code.</summary>
 
 ```r
-    1. #Define the distribution###
+###Define the distribution###
 f2 <- function(x,lambda=1){
-1. x and lambda must be positive
+# x and lambda must be positive
   lambda*exp(-lambda*x)
 }
 
-    1. #Define the Likelihood function###
+###Define the Likelihood function###
 LE <- function(lambda,x){
-1. The elements of x must be positive.
+# The elements of x must be positive.
   prod(f2(x,lambda))
 }
 
-    1. #Possible Parameter Values###
+###Possible Parameter Values###
 lambda <- seq(0,10,0.001)
 
-    1. #Data###
-1. Some Simulated Data (This is data from an Exponential random variable.)
+###Data###
+# Some Simulated Data (This is data from an Exponential random variable.)
 data <- c(0.45729967, 0.47156107, 1.21461705, 0.20539769, 1.78975399, 0.09095850, 0.64675475, 1.60109333, 1.57752679, 0.01238945)
 
-1. Here we calculate the output from the likelihood function given the observed data.
+#Here we calculate the output from the likelihood function given the observed data.
 y <- sapply(lambda,FUN=LE,x=data)
 
-1. We plot the likelihood function.
+#We plot the likelihood function.
 par(mar=c(2.5,2.5,3,0.25))
 plot(lambda,y,type='l',main='Exponential Likelihood')
 ```
@@ -223,28 +316,28 @@ We can use the following code to plot this function in R.
 <summary>Click to view the code.</summary>
 
 ```r
-    1. #Define the distribution###
+###Define the distribution###
 f3 <- function(x,mu=0,s=1){
   (1/sqrt(2*pi*s^2))*exp(-(x-mu)^2/(2*s^2))
 }
 
-    1. #Define the likelihood function###
-1. For simplicity, we'll assume sigma is 1.
+###Define the likelihood function###
+# For simplicity, we'll assume sigma is 1.
 LN <- function(mu,sigma=1,x){
   prod(f3(x,mu,sigma))
 }
 
-    1. #Possible Parameter Values###
+###Possible Parameter Values###
 mu <- seq(-10,10,0.001)
 
-    1. #Data###
-1. Some more Simulated Data (This is data from a Normal random variable.)
+###Data###
+# Some more Simulated Data (This is data from a Normal random variable.)
 data <- c(-3.77117676, -2.91429587, -2.02774901, -0.23984575, -1.41960740, -3.17490528, -3.21755276, -0.06442566, -1.92134953, -0.93160739)
 
-1. Here we calculate the output from the likelihood function given the observed data.
+#Here we calculate the output from the likelihood function given the observed data.
 y <- sapply(mu,FUN=LN,x=data,sigma=1)
 
-1. We plot the likelihood function.
+#We plot the likelihood function.
 par(mar=c(2.5,2.5,3,0.25))
 plot(mu,y,type='l',main='Normal Likelihood')
 ```
@@ -273,3 +366,7 @@ Measurements have variation. There is always some uncertainty in measurement. Ev
     - Gamma distribution (continuous)
 
 Our focus in Math 119 will be fitting models (extracting information from data and encoding it into parameter values) and using fitted models to answer questions. We will only touch briefly the lowest level of evaluating models (does the story the fitted model tells match already known information).
+
+---
+
+*Source: [Class.15 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.15)*

@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-39" id="toc-between-class-sessions---prep-for-day-39" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-39">Between Class Sessions - Prep for Day 39 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#start-project-3-task-2" id="toc-start-project-3-task-2" class="nav-link" data-scroll-target="#start-project-3-task-2">(2) Start Project 3 Task 2</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
   <ul class="collapse">
@@ -278,6 +455,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -298,6 +476,162 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-39" class="level1">
+<h1>Between Class Sessions - Prep for Day 39 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Practice finding PDF and using them to compute Expected Value and Variance Many of the exercises below come from section 4.3 of <a href="https://byuistats.github.io/M119/unit3/probability.html" target="_blank">Rectangles, Targets, and Sums</a>.</p>
+<p>For each function <span class="math inline">\(g(x)\)</span> below, suppose <span class="math inline">\(X\)</span> is a random variable with probability density function <span class="math inline">\(f(x)=kg(x)\)</span>. - Find the value <span class="math inline">\(k\)</span> that makes <span class="math inline">\(f\)</span> a probability density function. - Compute the expected value of <span class="math inline">\(X\)</span>. - Write down the definite integral required to calculate the expected value. - Use Mathematica to compute the value. - Compute the variance of <span class="math inline">\(X\)</span> and the standard deviation <span class="math inline">\(\sigma\)</span>. - Write down the definite integral required to calculate the variance. - Use Mathematica to compute the value.</p>
+<ol type="1">
+<li><span class="math inline">\(g(x) = \begin{cases}e^{-3x} &amp; 0\leq x&lt;\infty\\ 0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ol>
+<details>
+<summary>
+Some Answers
+</summary>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{0}^{\infty} ke^{-3x}dx = k \int_{0}^{\infty} e^{-3x}dx\)</span></li>
+</ul>
+<pre><code>Integrate[Exp[-3*x], {x, 0, Infinity}]</code></pre>
+<pre><code>- Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $\frac{1}{3}k = 1$.
+- $k = 3$</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} xf(x)dx = \int_{0}^{\infty} x(3e^{-3x})dx\)</span></li>
+</ul>
+<pre><code>Integrate[3*x*Exp[-3*x], {x, 0, Infinity}]</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{1}{3})^2(3e^{-3x})dx\)</span></li>
+</ul>
+<pre><code>Integrate[3*(x-(1/3))^2*Exp[-3*x], {x, 0, Infinity}]</code></pre>
+<pre><code>- $\sigma = \sqrt{\text{Var}[X]}$</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol start="2" type="1">
+<li><span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; 0\leq x&lt;\infty\\ 0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ol>
+<details>
+<summary>
+Some Answers
+</summary>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{0}^{\infty} ke^{-\lambda x}dx = k \int_{0}^{\infty} e^{-3x}dx\)</span></li>
+</ul>
+<pre><code>Assuming[L &gt; 0, Integrate[Exp[-L*x], {x, 0, Infinity}]]</code></pre>
+<pre><code>- Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $\frac{1}{\lambda}k = 1$.
+- $k = \lambda$</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} xf(x)dx = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx\)</span></li>
+</ul>
+<pre><code>Assuming[L &gt; 0, Integrate[L*x*Exp[-L*x], {x, 0, Infinity}]]</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{1}{\lambda})^2(\lambda e^{-\lambda x})dx\)</span></li>
+</ul>
+<pre><code>Integrate[L*(x-(1/L))^2*Exp[-L*x], {x, 0, Infinity}]</code></pre>
+<pre><code>- $\sigma = \sqrt{\text{Var}[X]} = \frac{1}{\lambda}$</code></pre>
+</details>
+<ol start="3" type="1">
+<li><span class="math inline">\(g(x) = \begin{cases}1 &amp; 2\leq x\leq 7\\ 0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ol>
+<details>
+<summary>
+Some Answers
+</summary>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{2}^{7} k(1) dx = k\int_{2}^{7} 1 dx\)</span></li>
+</ul>
+<pre><code>Integrate[1, {x, 2, 7}]</code></pre>
+<pre><code>- Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $5k = 1$.
+- $k = \frac{1}{5}$</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} xf(x)dx = \int_{2}^{7} x(\frac{1}{5}) dx\)</span></li>
+</ul>
+<pre><code>Integrate[x/5, {x, 2, 7}]</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{0}^{\infty} (x - \frac{9}{2})^2(\frac{1}{5})dx\)</span></li>
+</ul>
+<pre><code>Integrate[(1/5)*(x-(9/2))^2, {x, 2, 7}]</code></pre>
+<pre><code>- $\sigma = \sqrt{\text{Var}[X]}$</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">25</span><span class="sc">/</span><span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol start="4" type="1">
+<li><span class="math inline">\(g(x) = \begin{cases}1 &amp; a\leq x\leq b\\ 0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ol>
+<details>
+<summary>
+Some Answers
+</summary>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{a}^{b} k(1) dx = k\int_{a}^{b} 1 dx\)</span></li>
+</ul>
+<pre><code>Integrate[1, {x, a, b}]</code></pre>
+<pre><code>- Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $(b-a)k = 1$.
+- $k = \frac{1}{b-a}$</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} xf(x)dx = \int_{a}^{b} x(\frac{1}{b-a}) dx\)</span></li>
+</ul>
+<pre><code>Simplify[Integrate[x/(b-a), {x, a, b}]]</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{a}^{b} (x - \frac{a+b}{2})^2(\frac{1}{b-a})dx\)</span></li>
+</ul>
+<pre><code>Integrate[(1/(b-a))*(x-((a+b)/2))^2, {x, a, b}]</code></pre>
+<pre><code>- $\sigma = \sqrt{\text{Var}[X]} = \frac{a-b}{\sqrt{12}}$</code></pre>
+</details>
+<ol start="5" type="1">
+<li><span class="math inline">\(g(x) = \begin{cases}2 &amp; -5 \leq x \leq 1\\ 4.5 &amp; 3 \leq x \leq 5\\ 0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ol>
+<details>
+<summary>
+Some Answers
+</summary>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = \int_{-\infty}^{\infty} k g(x)dx = \int_{-5}^{1} 2k dx + \int_{3}^{5} 4.5k dx = k\int_{-5}^{1} 2 dx + k\int_{3}^{5} 4.5 dx = k (\int_{-5}^{1} 2 dx + \int_{3}^{5} 4.5 dx)\)</span></li>
+</ul>
+<pre><code>Integrate[2, {x, -5, 1}]
+
+Integrate[4.5, {x, 3, 5}]</code></pre>
+<pre><code>- Since $\int_{-\infty}^{\infty}f(x)dx = 1$ we know $21k = 1$.
+- $k = \frac{1}{21}$</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} xf(x)dx = \int_{-5}^{1} \frac{2x}{21} dx + \int_{3}^{5} \frac{4.5x}{21} dx\)</span></li>
+</ul>
+<pre><code>Integrate[2*x/21, {x, -5, 1}] + Integrate[4.5*x/21, {x, 3, 5}]</code></pre>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} (x - \mu)^2f(x)dx = \int_{-5}^{1} (x - 0.571429)^2(\frac{2}{21}) dx + \int_{3}^{5} (x - 0.571429)^2(\frac{4.5}{21}) dx\)</span></li>
+</ul>
+<pre><code>Integrate[(2/21)*(x-0.571429)^2, {x, -5, 1}] + Integrate[(4.5/21)*(x-0.571429)^2, {x, 3, 5}]</code></pre>
+<pre><code>- $\sigma = \sqrt{\text{Var}[X]}$</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">10.6735</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<section id="start-project-3-task-2" class="level3">
+<h3 class="anchored" data-anchor-id="start-project-3-task-2">(2) Start Project 3 Task 2</h3>
+<ul>
+<li>Read the instructions. Familiarize yourself with the task.</li>
+<li>Write down the definite integrals to compute <span class="math inline">\(E[X]\)</span> for <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>.
+<ul>
+<li>Use Mathematica to calculate <span class="math inline">\(E[X]\)</span> in each case.</li>
+</ul></li>
+</ul>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 3 – Compute Probability (Continuous Random Variables)</li>
+<li>Continue working on 3 – Definite Integrals</li>
+<li>Begin 3 – Calculate Parameters of Continuous Random Variables (Identifying Expected Value and Variance)</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Begin Project 3 Task 2</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <p>We’ll start in groups today, to help review setting up and computing integrals.</p>
@@ -311,23 +645,23 @@ x - 1 &amp; 1 \leq x \leq 3 \\
 0 &amp; \text{otherwise}
 \end{cases}.\]</span> When a dart hits the point <span class="math inline">\((x,y)\)</span>, we’ll record just the <span class="math inline">\(x\)</span>-coordinate and let <span class="math inline">\(X\)</span> represent this random variable. As you complete the exercises below, write any integrals you need to compute on the board, and then compute them with Mathematica.</p>
 <ol type="1">
-<li>Draw the function <span class="math inline">\(g(x)\)</span>.</li>
-<li>Find the area below <span class="math inline">\(g(x)\)</span> and above the <span class="math inline">\(x\)</span>-axis.
+<li><p>Draw the function <span class="math inline">\(g(x)\)</span>.</p></li>
+<li><p>Find the area below <span class="math inline">\(g(x)\)</span> and above the <span class="math inline">\(x\)</span>-axis.</p>
 <ul>
 <li>Find this area using a geometric argument.</li>
 <li>Find this area using Mathematica’s Integrate command.</li>
 </ul></li>
-<li>State <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the probability density function (PDF) of <span class="math inline">\(X\)</span>, and then state <span class="math inline">\(f(x)\)</span>.</li>
-<li>Show the expected value of <span class="math inline">\(X\)</span> is <span class="math inline">\(E[X] = \frac{7}{3}\)</span>.
+<li><p>State <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the probability density function (PDF) of <span class="math inline">\(X\)</span>, and then state <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p>Show the expected value of <span class="math inline">\(X\)</span> is <span class="math inline">\(E[X] = \frac{7}{3}\)</span>.</p>
 <ul>
-<li>First use https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf to obtain the expected value.</li>
+<li>First use the <a href="https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf">Centroid Locations table</a> to obtain the expected value.</li>
 <li>Then use Mathematica to compute the expected value using the formula <span class="math inline">\(\ds E[X]= \int_{-\infty}^{\infty}xf(x)dx\)</span>, where you appropriately adapt the bounds of the integral.</li>
 </ul></li>
-<li>Compute the variance of <span class="math inline">\(X\)</span> in Mathematica by computing <span class="math inline">\(\ds \text{Var}[X]= \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx\)</span>.</li>
-<li>Use Mathematica to show that <span class="math inline">\(P(1.5\leq X\leq 2.6)= 0.5775\)</span>.</li>
-<li>Use Mathematica to show that the cumulative distribution function is <span class="math inline">\(\ds F(x) = P(X\leq x) = \frac{x^2}{4}-\frac{x}{2}+\frac{1}{4}\)</span>.</li>
-<li>Compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</li>
-<li>Now let <span class="math inline">\(g(x) = \begin{cases}x^2 &amp; 0\leq x\leq 7\\ 0 &amp; \text{otherwise}\end{cases}\)</span>
+<li><p>Compute the variance of <span class="math inline">\(X\)</span> in Mathematica by computing <span class="math inline">\(\ds \text{Var}[X]= \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx\)</span>.</p></li>
+<li><p>Use Mathematica to show that <span class="math inline">\(P(1.5\leq X\leq 2.6)= 0.5775\)</span>.</p></li>
+<li><p>Use Mathematica to show that the cumulative distribution function is <span class="math inline">\(\ds F(x) = P(X\leq x) = \frac{x^2}{4}-\frac{x}{2}+\frac{1}{4}\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p>Now let <span class="math inline">\(g(x) = \begin{cases}x^2 &amp; 0\leq x\leq 7\\ 0 &amp; \text{otherwise}\end{cases}\)</span></p>
 <ul>
 <li>Find the value <span class="math inline">\(k\)</span> that makes <span class="math inline">\(f = k g(x)\)</span> a probability density function for a random variable <span class="math inline">\(X\)</span>. Write the function <span class="math inline">\(f(x)\)</span> on the board.</li>
 <li>Compute the expected value of <span class="math inline">\(X\)</span>, so compute <span class="math inline">\(\text{E}[X]\)</span> (use Mathematica).</li>
@@ -336,7 +670,7 @@ x - 1 &amp; 1 \leq x \leq 3 \\
 <li>Use Mathematica to show that the cumulative distribution function is <span class="math inline">\(\ds F(x) = P(X\leq x) = \frac{x^3}{343}\)</span>.</li>
 <li>Compute <span class="math inline">\(F'(x)\)</span> and compare it to <span class="math inline">\(f(x)\)</span>.</li>
 </ul></li>
-<li>Now let <span class="math inline">\(g(x) = \begin{cases}e^{-4x} &amp; 0\leq x\leq \infty\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.
+<li><p>Now let <span class="math inline">\(g(x) = \begin{cases}e^{-4x} &amp; 0\leq x\leq \infty\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.</p>
 <ul>
 <li>Find the value <span class="math inline">\(k\)</span> that makes <span class="math inline">\(f = k g(x)\)</span> a probability density function for a random variable <span class="math inline">\(X\)</span>. Write the function <span class="math inline">\(f(x)\)</span> on the board.</li>
 <li>Compute the expected value of <span class="math inline">\(X\)</span>, written <span class="math inline">\(\text{E}[X]\)</span> (use Mathematica).</li>
@@ -368,7 +702,7 @@ Variance (continuous random variable)
 </summary>
 <p>The <strong>variance</strong> of a <em>continuous</em> random variable <span class="math inline">\(X\)</span> with probability density function <span class="math inline">\(f(x)\)</span> is <span class="math display">\[\text{Var}[X] = \int_{-\infty}^{\infty} (x - \text{E}[X])^2 f(x) dx.\]</span> Note: The standard deviation is equal to the square root of the variance, <span class="math inline">\(\sigma_X = \sqrt{\text{Var}[X]}\)</span>.</p>
 </details>
-<p>You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Methos of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.</p>
+<p>You may encounter the expected value, variance, and standard deviation of random variables in future courses. Our present goal is to practice using definite integrals to compute these values. The Method of Moments compares these values from a distribution to the corresponding values from a distribution, and uses that comparison to fit data to a model.</p>
 </section>
 <section id="discussion---method-of-moments-big-idea" class="level2">
 <h2 class="anchored" data-anchor-id="discussion---method-of-moments-big-idea">Discussion - Method of Moments Big Idea</h2>
@@ -384,29 +718,26 @@ Variance (continuous random variable)
 Solution
 </summary>
 <p>We have already performed this computation in a previous class using Mathematica to obtain <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^2\)</span>. The Mathematica code below gives the solution.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Assumptions <span class="ot">=</span> \[Sigma] <span class="sc">&gt;</span> <span class="dv">0</span>;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span>Sqrt[<span class="dv">2</span><span class="sc">*</span>\[Pi]<span class="sc">*</span>\[Sigma]<span class="sc">^</span><span class="dv">2</span>] Exp[<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>((x <span class="sc">-</span> \[Mu])<span class="sc">/</span>\[Sigma])<span class="sc">^</span><span class="dv">2</span>];</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">=</span> {x, <span class="sc">-</span>Infinity, Infinity};</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">=</span> Integrate[x f, bounds]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">=</span> Integrate[(x <span class="sc">-</span> EV)<span class="sc">^</span><span class="dv">2</span> f, bounds]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Assumptions <span class="ot">=</span> Null</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="er">/</span>details<span class="sc">&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Use the method of moments to obtain the best fit parameters <span class="cf">for</span> <span class="sc">$</span>\mu<span class="sc">$</span> and <span class="sc">$</span>\sigma<span class="sc">$</span>. </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>details<span class="sc">&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>summary<span class="sc">&gt;</span>Solution<span class="sc">&lt;</span><span class="er">/</span>summary<span class="sc">&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">r</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">rm(list=ls())</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">library(data4soils)</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">Ng &lt;- cfbp_fpjuliet$ng</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">mean(Ng)</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">var(Ng)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>$Assumptions = \[Sigma] &gt; 0;
+f = 1/Sqrt[2*\[Pi]*\[Sigma]^2] Exp[-1/2*((x - \[Mu])/\[Sigma])^2];
+bounds = {x, -Infinity, Infinity};
+EV = Integrate[x f, bounds]
+Var = Integrate[(x - EV)^2 f, bounds]
+$Assumptions = Null</code></pre>
+</details>
+<ul>
+<li>Use the method of moments to obtain the best fit parameters for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4soils)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Ng <span class="ot">&lt;-</span> cfbp_fpjuliet<span class="sc">$</span>ng</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Ng)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Ng)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We must solve <span class="math inline">\(\mu = 2.79164\)</span> and <span class="math inline">\(\sigma^2 = 10.97915\)</span>. This gives <span class="math inline">\(\mu = 2.79\)</span> and <span class="math inline">\(\sigma = \sqrt{10.97915} = 3.31348\)</span>.</p>
 </details>
 </section>
@@ -422,13 +753,12 @@ Solution
 Click to expand
 </summary>
 <p>Now we can compute the expected value and variance from the distribution using Mathematica. The code below gives <span class="math inline">\(\text{E}[X]=\frac{\alpha}{\beta}\)</span> and <span class="math inline">\(\text{Var}[X] = \frac{\alpha}{\beta^2}\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Assumptions <span class="ot">=</span> \[Alpha] <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> \[Beta] <span class="sc">&gt;</span> <span class="dv">0</span>;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> (\[Beta]<span class="sc">^</span>\[Alpha]<span class="sc">/</span>Gamma[\[Alpha]]) x<span class="sc">^</span>(\[Alpha] <span class="sc">-</span> <span class="dv">1</span>) Exp[<span class="sc">-</span>\[Beta]<span class="sc">*</span>x];</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">=</span> {x, <span class="dv">0</span>, Infinity};</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">=</span> Integrate[x f, bounds]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">=</span> Integrate[(x <span class="sc">-</span> EV)<span class="sc">^</span><span class="dv">2</span> f, bounds]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Assumptions <span class="ot">=</span> Null</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:)</p>
+<pre><code>$Assumptions = \[Alpha] &gt; 0 &amp;&amp; \[Beta] &gt; 0;
+f = (\[Beta]^\[Alpha]/Gamma[\[Alpha]]) x^(\[Alpha] - 1) Exp[-\[Beta]*x];
+bounds = {x, 0, Infinity};
+EV = Integrate[x f, bounds]
+Var = Integrate[(x - EV)^2 f, bounds]
+$Assumptions = Null</code></pre>
 </details>
 <ul>
 <li>Use the method of moments to obtain the best fit parameters for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</li>
@@ -438,15 +768,14 @@ Click to expand
 Solution
 </summary>
 <p>We now solve the system obtained by letting (1) the mean of the data equal the expected value of the probability model and (2) and the variance of the data equal the variance of the probability model. This means we will solve the system <span class="math display">\[\text{mean(Ng)}=\frac{\alpha}{\beta}\text{ and } \text{var(Ng)} = \frac{\alpha}{\beta^2}\]</span> for the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
-<p>To simplify notation, let <span class="math inline">\(m = \text{mean(Ng)}\)</span> and <span class="math inline">\(v = \text{var(Ng)}\)</span>. We then must solve <span class="math inline">\(m=\frac{\alpha}{\beta}\)</span> and <span class="math inline">\(v = \frac{\alpha}{\beta^2}\)</span> for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. This is the same as solving the system <span class="math inline">\(\alpha = m\beta\)</span> and <span class="math inline">\(\alpha = v\beta ^2\)</span>. In particular, this means that <span class="math inline">\(m\beta = v\beta^2\)</span>, which solving for <span class="math inline">\(\beta\)</span> yields <span class="math inline">\(\beta = \frac{m}{v}\)</span>. Plugging this value for <span class="math inline">\(\beta\)</span> into <span class="math inline">\(\alpha = m\beta\)</span>, gives <span class="math inline">\(\alpha = \frac{m^2}{v}\)</span>. Our solution to this system is <span class="math display">\[\alpha = \frac{m^2}{v} \text{ and }\beta = \frac{m}{v}.\]</span> (:code:)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alpha</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>beta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To simplify notation, let <span class="math inline">\(m = \text{mean(Ng)}\)</span> and <span class="math inline">\(v = \text{var(Ng)}\)</span>. We then must solve <span class="math inline">\(m=\frac{\alpha}{\beta}\)</span> and <span class="math inline">\(v = \frac{\alpha}{\beta^2}\)</span> for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. This is the same as solving the system <span class="math inline">\(\alpha = m\beta\)</span> and <span class="math inline">\(\alpha = v\beta ^2\)</span>. In particular, this means that <span class="math inline">\(m\beta = v\beta^2\)</span>, which solving for <span class="math inline">\(\beta\)</span> yields <span class="math inline">\(\beta = \frac{m}{v}\)</span>. Plugging this value for <span class="math inline">\(\beta\)</span> into <span class="math inline">\(\alpha = m\beta\)</span>, gives <span class="math inline">\(\alpha = \frac{m^2}{v}\)</span>. Our solution to this system is <span class="math display">\[\alpha = \frac{m^2}{v} \text{ and }\beta = \frac{m}{v}.\]</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>alpha</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>beta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We have obtained parameters for our distribution using the method of moments.</p>
 <p>The Mathematica code below solves the system as well.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Solve[{EV <span class="sc">==</span> meanNg, Var <span class="sc">==</span> varNg}, {\[Alpha], \[Beta]}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:)</p>
+<pre><code>Solve[{EV == meanNg, Var == varNg}, {\[Alpha], \[Beta]}]</code></pre>
 </details>
 <section id="plotting-our-fitted-models." class="level4">
 <h4 class="anchored" data-anchor-id="plotting-our-fitted-models.">Plotting our fitted models.</h4>
@@ -457,19 +786,18 @@ Solution
 <summary>
 Fitted <span class="math inline">\(f_1\)</span>. (Click to expand)
 </summary>
-<p>(:code:)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">m=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>((x<span class="sc">-</span>m)<span class="sc">/</span>s)<span class="sc">^</span><span class="dv">2</span>)}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(Ng))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> sigma <span class="ot">&lt;-</span> <span class="fu">sd</span>(Ng)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">f1</span>(x1,<span class="at">m=</span>mu,<span class="at">s=</span>sigma)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Normal"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">12</span>))</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x1,y1,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">m=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>((x<span class="sc">-</span>m)<span class="sc">/</span>s)<span class="sc">^</span><span class="dv">2</span>)}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(Ng))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sigma &lt;- sd(Ng)</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">f1</span>(x1,<span class="at">m=</span>mu,<span class="at">s=</span>sigma)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Normal"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">12</span>))</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x1,y1,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p>The best fit model is <span class="math inline">\(f_2(x) = \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}\)</span> where <span class="math inline">\(x \geq 0\)</span>.</p>
 <p>We now plot this model, along with the data, using the code below.</p>
@@ -477,19 +805,19 @@ Fitted <span class="math inline">\(f_1\)</span>. (Click to expand)
 <summary>
 Fitted <span class="math inline">\(f_2\)</span>. (Click to expand)
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">1</span>){b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(x)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>x)}</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>alpha</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>beta</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x2,<span class="at">a=</span>alpha,<span class="at">b=</span>beta)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Gamma"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x2,y2,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">1</span>){b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(x)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>x)}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>alpha</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>beta</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x2,<span class="at">a=</span>alpha,<span class="at">b=</span>beta)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Ng, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"Fitted Gamma"</span>)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x2,y2,<span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="using-our-fitted-models." class="level4">
@@ -503,15 +831,15 @@ Fitted <span class="math inline">\(f_2\)</span>. (Click to expand)
 <summary>
 Solution
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">mean</span>(Ng)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(Ng))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25000</span>, <span class="at">mean=</span>m, <span class="at">sd=</span>s)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&gt;</span> <span class="dv">10</span>))</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">mean</span>(Ng)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(Ng))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25000</span>, <span class="at">mean=</span>m, <span class="at">sd=</span>s)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&gt;</span> <span class="dv">10</span>))</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ul>
 <li>Assuming our data follows fitted <span class="math inline">\(f_1\)</span> distribution, compute the probability of observing a nitroglycerin concentration above 10 mg/kg.</li>
@@ -521,11 +849,11 @@ Solution
 Solution
 </summary>
 <p>We compute <span class="math display">\[P(X &gt; 10) = \int_{10}^{\infty}\frac{1}{\sqrt{2\pi 10.979}}e^{-\frac{1}{2}\left(\frac{x-2.792}{3.313}\right)^2}dx= 0.0147976.\]</span> The Mathematica code chunk below gives the solution above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f1Fitted <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span>Sqrt[<span class="dv">2</span><span class="sc">*</span>\[Pi]<span class="sc">*</span><span class="fl">10.97915</span>]<span class="sc">*</span>Exp[<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>((x <span class="sc">-</span> <span class="fl">2.79164</span>)<span class="sc">/</span>Sqrt[<span class="fl">10.97915</span>])<span class="sc">^</span><span class="dv">2</span>];</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Integrate[f1Fitted, {x, <span class="dv">10</span>, Infinity}]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Re[Integrate[f1Fitted, {x, <span class="dv">10</span>, Infinity}]]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Integrate[f1Fitted, {x, <span class="dv">10</span>, <span class="dv">1000</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:) The last line of code above shows that by replacing <span class="math inline">\(\infty\)</span> with large number, we can obtain a similar answer without needing to use the Re[] command. Sometimes when the output of software appears off, using approximations is a viable alternative.</p>
+<pre><code>f1Fitted = 1/Sqrt[2*\[Pi]*10.97915]*Exp[-1/2*((x - 2.79164)/Sqrt[10.97915])^2];
+Integrate[f1Fitted, {x, 10, Infinity}]
+Re[Integrate[f1Fitted, {x, 10, Infinity}]]
+Integrate[f1Fitted, {x, 10, 1000}]</code></pre>
+<p>The last line of code above shows that by replacing <span class="math inline">\(\infty\)</span> with large number, we can obtain a similar answer without needing to use the Re[] command. Sometimes when the output of software appears off, using approximations is a viable alternative.</p>
 </details>
 <ul>
 <li>Assuming our data follows our fitted <span class="math inline">\(f_2\)</span> probability model (a probability density function), let’s use a simulation to estimate the probability of observing a nitroglycerin concentration above 10 mg/kg.</li>
@@ -534,16 +862,15 @@ Solution
 <summary>
 Solution
 </summary>
-<p>(:code:)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">25000</span>, <span class="at">shape =</span> alpha, <span class="at">rate =</span> beta)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&gt;</span> <span class="dv">10</span>))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">mean</span>(Ng)<span class="sc">/</span><span class="fu">var</span>(Ng)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">25000</span>, <span class="at">shape =</span> alpha, <span class="at">rate =</span> beta)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&gt;</span> <span class="dv">10</span>))</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ul>
 <li>Assuming our data follows fitted <span class="math inline">\(f_2\)</span> distribution, compute the probability of observing a nitroglycerin concentration above 10 mg/kg.</li>
@@ -552,13 +879,26 @@ Solution
 <summary>
 Solution
 </summary>
-<p>To compute the probability that a the concentration of explosives in a soil sample will be more than 10mg/kg, we compute <span class="math display">\[P(X &gt; 10)=\int_{10}^\infty \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}dx.\]</span> Mathematica code for computing this definite integral is given below. (:codem:)[@ Integrate[(0.2542674^0.709823/Gamma[0.709823])<em>x^(0.709823 - 1)</em>Exp[-0.2542674*x], {x, 10, Infinity}] ``` (:codemend:)</p>
+<p>To compute the probability that a the concentration of explosives in a soil sample will be more than 10mg/kg, we compute <span class="math display">\[P(X &gt; 10)=\int_{10}^\infty \frac{0.254^{0.710}}{\Gamma(0.710)}x^{0.710-1}e^{-0.254 x}dx.\]</span> Mathematica code for computing this definite integral is given below.</p>
+<pre><code>Integrate[(0.2542674^0.709823/Gamma[0.709823])*x^(0.709823 - 1)*Exp[-0.2542674*x], {x, 10, Infinity}]</code></pre>
 </details>
 </section>
 </section>
 <section id="summary-method-of-moments" class="level3">
 <h3 class="anchored" data-anchor-id="summary-method-of-moments">Summary: Method of Moments</h3>
-<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution. 1. Calculate the variance of the distribution as a function of the parameters of the distribution. 1. Set the mean of the distribution equal to the mean of the data. 1. Set the variance of the distribution equal to the variance of the data. 1. Solve the system of equations for the parameter values. Note: - If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3. - If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</p>
+<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.</p>
+<ol type="1">
+<li><p>Calculate the variance of the distribution as a function of the parameters of the distribution.</p></li>
+<li><p>Set the mean of the distribution equal to the mean of the data.</p></li>
+<li><p>Set the variance of the distribution equal to the variance of the data.</p></li>
+<li><p>Solve the system of equations for the parameter values. Note:</p></li>
+</ol>
+<ul>
+<li>If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.</li>
+<li>If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</li>
+</ul>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.39">Class.39 on byuimath.com</a></em></p>
 
 
 </section>
@@ -568,6 +908,19 @@ Solution
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

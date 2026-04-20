@@ -1,6 +1,79 @@
 ---
 title: "Class 41"
 ---
+# Between Class Sessions - Prep for Day 41 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Making Connections
+- Prepare to share just a few problems from 3 -- Compute Probability (Continuous Random Variables) and Complete 3 -- Calculate Parameters of Continuous Random Variables Identifying Expected Value and Variance assignments in Knewton Alta.
+    - Write down the definite integrals then use Mathematica to compute the integrals.
+    - What connections can you identify between the exercises in these assignments and our in-class exercises?
+    - What connections can you find between these exercises and Project 3?
+
+### (2) Definite Integrals and Geometric arguments
+- Consider the function $f(x) = \sqrt{16-(x-4)^2}$. Adapt the following R code to graph this function.
+
+```r
+x <- seq(0,8,0.1)
+y <- [calculate corresponding y values here; there are several ways to do this]
+
+plot(x,y,type='l',xlim=c(-1,9),ylim=c(-5,5))
+```
+
+What is the shape of this function?
+
+- Consider the curve $(x-4)^2 + y^2 = 16$. Use the following Mathematica code to plot this curve. Notice, it is not a function.
+
+```
+ContourPlot[(x - 4)^2 + y^2 == 16, {x, -1, 9}, {y, -5, 5}]
+```
+
+What is the shape of this curve?
+
+- Consider the following Mathematica code.
+
+```
+ContourPlot[y == Sqrt[16 - (x - 4)^2], {x, -1, 9}, {y, -5, 5}]
+```
+
+    - What curve is being plotted here?
+    - What do you notice about the function $f(x) = \sqrt{16-(x-4)^2}$ and the curve $ (x-4)^2 + y^2 = 16 $? 
+
+- Now let's use our observations. Consider the integral, $\displaystyle\int_0^{8} \sqrt{16-(x-4)^2} dx$. 
+    - What is the shape of the integrand, $f(x) = \sqrt{16-(x-4)^2}$? 
+
+<details>
+<summary>Answer</summary>
+
+$f(x)$ is one half of a circle centered at (4,0) with radius 4. You'll encounter functions like this one when working on Knewton Alta homework.
+
+</details>
+
+> Calculate the integral, $\displaystyle\int_0^{8} \sqrt{16-(x-4)^2} dx$, using a geometric formula. Then check your answer by calculating the definite integral in Mathematica.
+
+<details>
+<summary>*Hint*</summary>
+
+The formula for calculating the area of a circle with radius $r$ is $A = \pi r^2$.
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 3 -- Calculate Parameters of Continuous Random Variables Identifying Expected Value and Variance
+- Continue working on 3 -- Definite Integrals
+
+## Applied Practice (Project Work)
+- Finish and Submit Project 3 Task 2.
+
 
 # During Class
 
@@ -26,17 +99,18 @@ These problems are a continuation from what we did last time in groups.
 
 2. 
 Let $g(x) = \begin{cases}e^{-\lambda x} & x \geq 0\\ 0 & \text{otherwise}\end{cases}$ with $\lambda >0$. In Mathematica, the following code tells the computer that $\lambda$ is positive, which will simplifies the output quite a bit. 
-(:codem:)
+
 ```
 g = Exp[-\[Lambda] x]
 $Assumptions = \[Lambda] > 0
 ```
-(:codemend:)
+
 <ol type="a">
   <li>Find $k$ so that $f(x) = k g(x)$ is a PDF for a random variable $X$. We call this an exponential random variable. </li>
 </ol>
 
 1. Write down the definite integrals that give the expected value and variance of $X$. Then use Mathematica to compute the expected value and variance of $X$.
+
 1. Write down the definite integral that gives $F(x)$, the cumulative distribution function for $X$. Then use Mathematica to compute $F(x)$ for $x\geq 0$.
 1. By hand, compute $F'(x)$ and compare it to $f(x)$.  
 
@@ -71,7 +145,7 @@ Let $g(x) = \begin{cases}3 & -2 \leq x < 1\\ 5 & 1 \leq x \leq 5\\ 0 & \text{oth
 <summary>Solution</summary>
 
 We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that $x$ is a real number to compute the CDF $F$ and actually have Mathematica do the integral. 
-(:codem:)
+
 ```
 $Assumptions = x \[Element] Reals
 g = Piecewise[{{3, -2 <= x && x < 1}, {5, 1 <= x <= 5}, {0, True}}]
@@ -85,7 +159,6 @@ Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
 F = Integrate[ f, {x, -Infinity, x}]
 D[F, x]
 ```
-(:codemend:)
 
 </details>
 
@@ -184,3 +257,7 @@ determine whether each statement is true or false. Discuss your reasoning with y
     - $\int_0^5 g(x)dx = \int_{-\infty}^0 g(x)dx + \int_0^5 g(x)dx + \int_5^{\infty} g(x)dx$.
     - $\int_0^5 g(x)dx = \int_0^3 g(x)dx + \int_1^5 g(x)dx$.
     - $\int_0^5 g(x)dx = \int_1^3 g(x)dx + \int_4^5 g(x)dx$.
+
+---
+
+*Source: [Class.41 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.41)*

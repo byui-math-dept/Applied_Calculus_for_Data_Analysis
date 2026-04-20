@@ -1,6 +1,92 @@
 ---
 title: "Class 45"
 ---
+# Between Class Sessions - Prep for Day 45 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) CDF's and PDF's (Making Connections)
+Let $g(x)$ be a function that defines the top of a target. Each time we throw a dart, it hits a a random spot on the target. We let $X$ be the random variable that records the $x$-coordinate of the dart's location. 
+
+#### Calculating a PDF (from a nonnegative function with finite area)
+Given a "target" function, $g(x)$, there are two ways to calculate the **probability density function**, $f$:<br>
+*Method 1*
+- *Calculate* $F(x) = P(X \leq x)$ for every real number $x$.
+    - Calculate probabilities as ratios of areas, $ P(X \leq x) = \frac{\int_{-\infty}^x g(t)dt}{\int_{-\infty}^\infty g(t)dt} $.
+- **Take the derivative** of the CDF to find the PDF, $f(x) = F'(x)$.
+
+*Method 2*
+- *Normalize* the target so the total area will be 1.
+    - Multiple $g(x)$ by $k = \frac{1}{\int_{-\infty}^\infty g(x) dx}$, to get $f(x) = kg(x)$.
+
+#### Calculating a CDF (from a nonnegative function with finite area)
+Given a "target" function, $g(x)$, there are two ways to calculate the **cumulative distribution function**, $F$:<br>
+*Method 1*
+- *Normalize* $g(x)$ to find the PDF, $f(x)$.
+    - Multiple $g(x)$ by $k = \frac{1}{\int_{-\infty}^\infty g(x) dx}$. Pick $k$ so that $\int_{-\infty}^\infty f(x)dx = 1$.
+- **Find the Antiderivative ("undo the derivative")** to find the CDF.
+    - $ F(x) = \int_{-\infty}^x f(t)dt $
+
+*Method 2*
+- *Calculate* $F(x) = P(X \leq x)$ for every real number $x$.
+    - Calculate probabilities as ratios of areas, $ F(x) = P(X \leq x) = \frac{\int_{-\infty}^x g(t)dt}{\int_{-\infty}^\infty g(t)dt} $.
+
+### (2) Practice
+Complete the following exercises, identifying which method from above you used. (Please use Mathematica as need to compute definite integrals.)
+
+1. Given the cumulative distribution function below, find the probability density function, $f(x)$. <br>
+$F(x) = \begin{cases}0 & x<0\\ \\
+\frac{x^2}{9} & 0\leq x\leq 3\\ \\
+1 & x>3\end{cases}.$<br>
+2. Given the probability density function below, find the cumulative distribution function, $F(x)$. <br>
+$f(x) = 
+\begin{cases}
+3-6x^2 & 0 \leq x \leq 1 \\ \\
+0 & \text{otherwise}
+\end{cases}.$<br>
+3. Given the probability density function below, find the cumulative distribution function, $F(x)$. <br>
+$f(x) = 
+\begin{cases}
+\frac{8}{7} - \frac{2}{7}x & 0 \leq x \leq 1 \\ \\
+0 & \text{otherwise}
+\end{cases}.$<br>
+4. Given the nonnegative function below, find the cumulative distribution function.
+
+$g(x) = 
+\begin{cases}
+\frac{1}{x^2} & x \geq 1 \\ \\
+0 & \text{otherwise}
+\end{cases}.$
+
+5. Given the nonnegative function below, find the cumulative distribution function, $F(x)$.<br>
+$g(x) = 
+\begin{cases}
+e^{-\lambda x} & x \geq 0 \\ \\
+0 & \text{otherwise}
+\end{cases}.$
+
+6. Given the cumulative distribution function below, find the probability density function, $f(x)$. <br>
+$F(x) = 
+\begin{cases}
+0 & x \leq 0 \\ \\ 
+1 - e^{-\lambda x} & x > 0 \\ \\
+\end{cases}.$
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Continue working on 3 -- CDFs, PDFs, and the Fundamental Theorem of Calculus
+- *Complete any missing Function assignment, Derivative assignments, or any of the first 6 Integral assignments.*
+
+### Applied Practice (Project Work)
+- Review and submit Project 3.
+
 
 # During Class
 ## Group Meeting 
@@ -56,8 +142,10 @@ If $f$ is continuous over the interval $ [ a, b ] $ and $F(x)$ is any antideriva
     1. Verify that $\int_1^5 f(x) dx = F(5)-F(1)$.
 
 1. Let $F(x) = \int_2^x \ln(t^4+5)\frac{3}{\ln(t^5)}dt$.  Compute $F'(x)$. (Check part 1 of the FTC if needed). 
+
 1. Let $G(x) = \int_0^x \sqrt{5+e^{3t}}dt$.  Compute $G'(x)$. (Check part 1 of the FTC if needed). 
 1. Let $h(x) = x^3$.  Find an antiderivative of $h$, and then use that antiderivative to compute $\int_1^2 x^3dx$. Check your answer with Mathematica. 
+
 1. Compute $\int \frac{2}{t^2} dt = \int 2t^{-2} dt$. (In other words find the collection of all antiderivatives of $\frac{2}{t^2}$.)
 1. Compute $\int_1^2 \frac{2}{t^2} dt$.
 
@@ -102,6 +190,7 @@ If $f$ is continuous over the interval $ [ a, b ] $ and $F(x)$ is any antideriva
 <summary>Finding a CDF</summary>
 
 1. Calculate $F(x) = P(X \leq x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}\int_{-\infty}^x g(t)dt$.
+
 1. Find the PDF, $f(x)$, and undo the derivative to find $F(x)$.
     - $F(x) = \int_{-\infty}^x f(s)ds$
       - Normalize a nonnegative function so the total area is one to find the PDF, e.g. $f(x) = \frac{1}{\int_{-\infty}^\infty g(x) dx}g(x) = kg(x)$.
@@ -161,3 +250,7 @@ $Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2 f(x) dx$.
 Note: The standard deviation is equal to the square root of the variance, $\sigma_X = \sqrt{Var[X]}$.
 
 </details>
+
+---
+
+*Source: [Class.45 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.45)*
