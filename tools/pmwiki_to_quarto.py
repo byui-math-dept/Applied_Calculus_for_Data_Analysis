@@ -304,10 +304,11 @@ def convert_pipe_tables(text: str) -> str:
 
 def convert_div_blocks(text: str) -> str:
     """Convert remaining >>divname<< ... >>><< div blocks."""
-    # >>indent<< ... >><<  → blockquote
+    # >>indent<< ... >><<  → <div class="indent"> (Pandoc fenced div)
+    # PMWiki >>indent<< is a visual indent, not a quotation — prefixing lines
+    # with "> " produced stray blockquote markers in front of lists/paragraphs.
     def indent_replacer(m):
-        lines = m.group(1).strip().split('\n')
-        return '\n' + '\n'.join('> ' + l for l in lines) + '\n'
+        return '\n\n::: {.indent}\n' + m.group(1).strip() + '\n:::\n\n'
 
     text = re.sub(r'>>indent<<\s*\n([\s\S]*?)\n>><< *', indent_replacer, text)
 

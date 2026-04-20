@@ -25,7 +25,7 @@ Note: While there is a rigorous mathematical definition for what it means to be 
 - Draw some pictures to illustrate what the IVT is saying.
 - What does the IVT have to do with the error message we saw in R today while using the uniroot() function?
 
-    ![uniroot error message](https://byuimath.com/johnsonkat/all/119/uploads/Prep/ErrorMessage.png)
+    ![uniroot error message](../assets/uploads/Prep/ErrorMessage.png)
 
 - When we don't know the solution, what could we use to help us pick the interval to use in uniroot()?
     - For example, if we want to solve the equation $3x-15 = e^{-0.25x}-20$ the interval $( 3, 10 ) $ will not work. What interval should we use?
