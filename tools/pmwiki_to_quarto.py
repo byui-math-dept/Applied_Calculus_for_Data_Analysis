@@ -59,6 +59,7 @@ def decode_pmwiki_file(file_path: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 MATH_PLACEHOLDER = "XXMATHXX"
+CODE_PLACEHOLDER = "XXCODEXX"
 
 # Patterns ordered longest/most-specific first
 _MATH_RE = re.compile(
@@ -90,14 +91,67 @@ def restore_math(text: str, store: dict) -> str:
     return text
 
 
+def restore_code(text: str, store: dict) -> str:
+    for key, val in store.items():
+        text = text.replace(key, val)
+    return text
+
+
 # ---------------------------------------------------------------------------
 # Block-level conversions (applied before inline rules)
 # ---------------------------------------------------------------------------
 
+def resolve_template_vars(text: str, page_name: str) -> str:
+    """Resolve PMWiki template variables like {$Name}, {$PageName}, {$Group}.
+
+    PMWiki resolves these server-side. For Class.7: {$Name} → "7",
+    {$PageName} → "Class.7", {$Group} → "Class".
+    """
+    group, _, name = page_name.partition('.')
+    text = text.replace('{$Name}', name)
+    text = text.replace('{$PageName}', page_name)
+    text = text.replace('{$Group}', group)
+    text = text.replace('{$Title}', name)
+    # Drop any other unresolved {$Foo} so they don't leak into output
+    text = re.sub(r'\{\$\w+\}', '', text)
+    return text
+
+
+def resolve_includes(text: str, wiki_dir: Path) -> str:
+    """Resolve (:include PageName:) by inlining the target page's content.
+
+    Most commonly used to embed Definition pages inside Class pages. Inlines
+    as a <details> block so students can expand/collapse each definition.
+    Falls back to a visible note if the target page cannot be found.
+    """
+    def inline_include(m):
+        target = m.group(1).strip()
+        if ' ' in target:
+            # Some includes have param args like "Definition.X margin=..." — strip them
+            target = target.split()[0]
+        src = wiki_dir / target
+        if not src.exists():
+            return f'\n> **Note:** could not include `{target}` (page not found).\n'
+        page = decode_pmwiki_file(src)
+        body = page.get('text', '').strip()
+        if not body:
+            return ''
+        # Determine summary label — use the page's last path segment
+        label = target.split('.')[-1]
+        # Humanize CamelCase → spaced words
+        label_h = re.sub(r'([a-z])([A-Z])', r'\1 \2', label)
+        label_h = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1 \2', label_h)
+        # Return marker that will be converted after normal processing
+        return f'\n<!--INLINE_INCLUDE||{target}||{label_h}||-->\n{body}\n<!--END_INLINE_INCLUDE-->\n'
+
+    return re.sub(r'\(:include\s+([^:]+):\)', inline_include, text)
+
+
 def strip_directives(text: str) -> str:
     """Remove server-side PMWiki directives that have no static equivalent."""
-    # (:if false:)...(:if:) — hidden conditional blocks
-    text = re.sub(r'\(:if false:\)[\s\S]*?\(:if:\)', '', text)
+    # (:if <cond>:)...(:if:) — hidden conditional blocks (false, auth admin, etc.)
+    # These never render for public viewers; strip entire block + guards.
+    text = re.sub(r'\(:if\s+[^)]*:\)[\s\S]*?\(:if:\)', '', text)
     # (:pagelist ...:) — dynamic page lists
     text = re.sub(r'\(:pagelist[^:]*:\)', '', text)
     # (:Summary:...:) — metadata
@@ -106,8 +160,6 @@ def strip_directives(text: str) -> str:
     text = re.sub(r'\(:attachlist:\)', '<!-- attachlist -->', text)
     # (:title ...:) — page title override
     text = re.sub(r'\(:title[^:]*:\)', '', text)
-    # (:include ...:) — server-side page include (drop with comment)
-    text = re.sub(r'\(:include\s+([^:]+):\)', lambda m: f'<!-- include: {m.group(1).strip()} -->', text)
     # (:comment ...:) — server-side comment (strip entirely)
     text = re.sub(r'\(:comment[\s\S]*?:\)', '', text)
     # (:if:) remaining tags
@@ -119,18 +171,34 @@ def strip_directives(text: str) -> str:
     return text
 
 
-def convert_code_blocks(text: str) -> str:
+def convert_code_blocks(text: str, store: dict) -> str:
     """Convert PMWiki [@...@] code blocks to fenced or inline code.
 
-    (:code:)[@...@](:codeend:) → fenced block.
+    (:code:)[@...@](:codeend:) → fenced block, stashed to placeholder so
+    downstream list-marker regexes cannot corrupt code content (e.g. turning
+    `# comment` into `1. comment`).
+
     Bare [@word@] in running text (no newline inside) → `inline`.
     """
+    # Normalize common author typos for the closing tag so the matcher can
+    # find them. Seen in the wild: `:codemend:` (44 occurrences across 10
+    # class pages), `:codend:` (rare).
+    text = text.replace('(:codemend:)', '(:codeend:)')
+    text = text.replace('(:codend:)', '(:codeend:)')
+    idx = [0]
+
     def block_replacer(m):
         code = m.group(1).strip()
-        # PMWiki used "1. comment text" as inline comments inside code blocks — convert to #
-        code = re.sub(r'^1\. (?![\[\(])', '# ', code, flags=re.MULTILINE)
-        lang = "r" if any(kw in code for kw in ["function", "<-", "library", "#"]) else ""
-        return f"\n```{lang}\n{code}\n```\n"
+        # Heuristic: tag as R when code has R-ish indicators. Comments alone
+        # aren't enough — we also check for assignment/function/library.
+        r_signals = ("function", "<-", "library(", "ifelse(", "c(", "seq(",
+                     "sum(", "prod(", "factorial(", "mean(", "hist(", "plot(")
+        lang = "r" if any(kw in code for kw in r_signals) else ""
+        fenced = f"\n```{lang}\n{code}\n```\n"
+        key = f"{CODE_PLACEHOLDER}{idx[0]}{CODE_PLACEHOLDER}"
+        store[key] = fenced
+        idx[0] += 1
+        return key
 
     # Named block form first: (:code:)[@...@](:codeend:)
     text = re.sub(r'\(:code[^:]*:\)\[@([\s\S]*?)@\]\(:codeend:\)', block_replacer, text)
@@ -236,10 +304,11 @@ def convert_pipe_tables(text: str) -> str:
 
 def convert_div_blocks(text: str) -> str:
     """Convert remaining >>divname<< ... >>><< div blocks."""
-    # >>indent<< ... >><<  → blockquote
+    # >>indent<< ... >><<  → <div class="indent"> (Pandoc fenced div)
+    # PMWiki >>indent<< is a visual indent, not a quotation — prefixing lines
+    # with "> " produced stray blockquote markers in front of lists/paragraphs.
     def indent_replacer(m):
-        lines = m.group(1).strip().split('\n')
-        return '\n' + '\n'.join('> ' + l for l in lines) + '\n'
+        return '\n\n::: {.indent}\n' + m.group(1).strip() + '\n:::\n\n'
 
     text = re.sub(r'>>indent<<\s*\n([\s\S]*?)\n>><< *', indent_replacer, text)
 
@@ -292,6 +361,13 @@ def convert_inline(text: str, page_group: str, link_registry: dict) -> str:
     text = re.sub(
         r'\[\[([^\]|]+?)\s*\|\s*(https?://[^\]]+)\]\]',
         lambda m: f'[{m.group(1).strip()}]({m.group(2).strip()})',
+        text,
+    )
+
+    # [[url | text]] reverse-pipe style (PMWiki allows both orderings)
+    text = re.sub(
+        r'\[\[(https?://[^\]|]+?)\s*\|\s*([^\]]+)\]\]',
+        lambda m: f'[{m.group(2).strip()}]({m.group(1).strip()})',
         text,
     )
 
@@ -465,39 +541,69 @@ def convert_inline(text: str, page_group: str, link_registry: dict) -> str:
 # Full page conversion
 # ---------------------------------------------------------------------------
 
-def convert_page(page_name: str, text: str, link_registry: dict) -> str:
+def convert_page(page_name: str, text: str, link_registry: dict, wiki_dir: Path = None) -> str:
     """Convert decoded PMWiki text to QMD content string."""
     group = page_name.split('.')[0]
 
-    # 1. Extract math
+    # 0. Resolve template variables ({$Name}, {$PageName}, {$Group})
+    text = resolve_template_vars(text, page_name)
+
+    # 1. Resolve (:include PageName:) — inlines Definition content
+    if wiki_dir is not None:
+        text = resolve_includes(text, wiki_dir)
+
+    # 2. Extract math
     text, math_store = extract_math(text)
 
-    # 2. Strip server-side directives
+    # 3. Strip server-side directives
     text = strip_directives(text)
 
-    # 3. Code blocks
-    text = convert_code_blocks(text)
+    # 4. Code blocks — stored to placeholder to protect from downstream regexes
+    code_store = {}
+    text = convert_code_blocks(text, code_store)
 
-    # 4. Block rules (order matters)
+    # 5. Block rules (order matters)
     text = convert_pipe_tables(text)
     text = convert_toggle_blocks(text)
     text = convert_note_blocks(text)
     text = convert_div_blocks(text)
 
-    # 5. Inline rules
+    # 6. Inline rules
     text = convert_inline(text, group, link_registry)
 
-    # 6. Restore math
+    # 7. Restore code — do this BEFORE math restore so math placeholders inside
+    #    code stay as they were (rare but possible)
+    text = restore_code(text, code_store)
+
+    # 8. Convert INLINE_INCLUDE markers to <details> now that the nested
+    #    content has been through the inline pass too. The outer page has
+    #    already been processed; we just rewrap.
+    def rewrap_include(m):
+        body = m.group(2).strip()
+        # Definition pages already convert to a <details> block via >>toggle<< —
+        # inline as-is to avoid nested wrappers. Preserve source path as a
+        # machine-readable comment for debugging.
+        target = m.group(1).strip()
+        return f'\n<!-- from {target} -->\n{body}\n'
+    text = re.sub(
+        r'<!--INLINE_INCLUDE\|\|([^|]+)\|\|[^|]+\|\|-->([\s\S]*?)<!--END_INLINE_INCLUDE-->',
+        rewrap_include,
+        text,
+    )
+
+    # 9. Restore math
     text = restore_math(text, math_store)
 
-    # 7. Ensure blank line before any markdown table (CommonMark requirement)
+    # 10. Strip lone `#` lines (PMWiki list-numbering artifact)
+    text = re.sub(r'^#\s*$\n?', '', text, flags=re.MULTILINE)
+
+    # 11. Ensure blank line before any markdown table (CommonMark requirement)
     text = re.sub(r'(?<=\S)\n(\|)', r'\n\n\1', text)
 
-    # 8. Blank line between consecutive top-level numbered items for projection readability
-    #    Matches "1. ...\n1. " and inserts a blank line between them
+    # 12. Blank line between consecutive top-level numbered items for projection readability
     text = re.sub(r'(^1\. .+)(\n)(1\. )', r'\1\n\n\3', text, flags=re.MULTILINE)
 
-    # 9. Clean up blank lines (max 2 consecutive)
+    # 13. Clean up blank lines (max 2 consecutive)
     text = re.sub(r'\n{3,}', '\n\n', text)
 
     return text.strip()
@@ -586,6 +692,9 @@ def build_quarto_yml(class_pages: list[str], def_pages: list[str], flex_pages: l
     return f"""project:
   type: website
   output-dir: _site
+  resources:
+    - assets/docs/**
+    - assets/data/**
 
 website:
   title: "Math 119 — Applied Calculus for Data Analysis"
@@ -604,7 +713,9 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
     toc-depth: 3
@@ -617,7 +728,8 @@ format:
         window.MathJax = {{
           tex: {{
             macros: {{
-              ds: "\\\\displaystyle"
+              ds: "\\\\displaystyle",
+              diff: ["\\\\frac{{d#1}}{{d#2}}", 2]
             }}
           }}
         }};
@@ -720,12 +832,20 @@ This site is generated from the course PMWiki at [byuimath.com/bmw/all/119/](htt
 # Main pipeline
 # ---------------------------------------------------------------------------
 
+CLASS_NUM_RE = re.compile(r'^(\d+)([a-z]?)$')
+
+
+def _class_sort_key(page: str) -> tuple[int, str]:
+    m = CLASS_NUM_RE.match(page.split('.', 1)[1])
+    return (int(m.group(1)), m.group(2)) if m else (10**9, '')
+
+
 def get_class_pages(wiki_dir: Path) -> list[str]:
     pages = [
         f.name for f in wiki_dir.iterdir()
-        if f.name.startswith('Class.') and f.name.split('.')[1].isdigit()
+        if f.name.startswith('Class.') and CLASS_NUM_RE.match(f.name.split('.', 1)[1])
     ]
-    return sorted(pages, key=lambda p: int(p.split('.')[1]))
+    return sorted(pages, key=_class_sort_key)
 
 
 def get_group_pages(wiki_dir: Path, group: str) -> list[str]:
@@ -798,11 +918,18 @@ def run_conversion(page_filter: str = None, dry_run: bool = False):
     for page_name in all_pages:
         file_path = WIKI_DIR / page_name
         page_data = decode_pmwiki_file(file_path)
-        qmd_body = convert_page(page_name, page_data['text'], link_registry)
-        frontmatter = make_frontmatter(page_name)
-        qmd_content = frontmatter + qmd_body + '\n'
+        qmd_body = convert_page(page_name, page_data['text'], link_registry, WIKI_DIR)
 
         group, _, page = page_name.partition('.')
+        if group == 'Class':
+            prep_path = WIKI_DIR / f'Prep.{page}'
+            if prep_path.exists():
+                prep_text = decode_pmwiki_file(prep_path)['text']
+                prep_qmd = convert_page(f'Prep.{page}', prep_text, link_registry, WIKI_DIR)
+                qmd_body = prep_qmd.rstrip() + '\n\n' + qmd_body.lstrip()
+
+        frontmatter = make_frontmatter(page_name)
+        qmd_content = frontmatter + qmd_body + '\n'
         if group == 'Class':
             out_path = SITE_DIR / 'class' / f'class-{page}.qmd'
         elif group == 'Definition':

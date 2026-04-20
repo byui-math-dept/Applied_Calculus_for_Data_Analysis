@@ -1,11 +1,59 @@
 ---
 title: "Class 31"
 ---
+# Between Class Sessions - Prep for Day 31 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Reading Assignment
+One of the goals in our class is to become better at reading and writing mathematics.  This is a skill that is learned through practice.  
+- Read [Second Derivative Test in Higher Dimensions](../assets/docs/SecondDerTest_BrianSittinger.pdf){target="_blank"}.
+    - We know how to use the Second Derivative Test in 1-dimension and in 2-dimensions. Compare what we have discussed in class with what you are reading. Then see if you can make sense of the Second Derivative Test in 3 or more dimensions.
+    - One of the words used in this reading is a determinant of a "Hessian" matrix. A **matrix** is a rectangular array of numbers. The size of a matrix is determined by the number of rows and number of columns in the matrix. If a matrix has $n$ rows and $m$ columns we say the matrix is a $n$ x $m$ matrix. For example, matrix $C$ shown below is a 3 x 4 matrix. 
+
+$$
+\begin{equation} 
+C = \begin{bmatrix}
+    c_{11} & c_{12} & c_{13} & c_{14} \\
+    c_{21} & c_{22} & c_{23} & c_{24} \\
+    c_{31} & c_{32} & c_{33} & c_{34}
+\end{bmatrix}
+\end{equation}
+$$
+
+If the number of rows and columns of a matrix is the same we say the matrix is a square matrix.
+    - Read [Section 9.8 Precalculus OpenStax text](https://openstax.org/books/precalculus/pages/9-8-solving-systems-with-cramers-rule){target="_blank"}. Focus on the sections Evaluate 2x2 determinants and Evaluate 3x3 determinants.
+
+The point of this preparation assignment is not to understand everything, but to practice reading mathematics. Come to class with a question, something you enjoyed, a computation you did while reading it, etc. 
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+    - 2 -- Derivative Rules (Function Composition) - the Chain Rule
+    - 2 -- Linearization
+    - 2 -- Partial Derivatives
+    - 2 -- First Derivative and Extrema
+    - 2 -- Second Derivative and Extrema
+
+### Applied Practice (Project Work)
+- If you have not done so already, complete and submit Project 2 Task 3.
+    - How do your fitted models from Project 1 compare with your fitted models from Project 2?
+- Continue working on Project 2.
+
 
 # During Class
 ## Brain Gains
 1. 
-Any questions from ../assets/docs/SecondDerTest_BrianSittinger.pdf  Any new terms you weren't sure what they meant?
+Any questions from [Second Derivative Test (Brian Sittinger, PDF)](../assets/docs/SecondDerTest_BrianSittinger.pdf)?  Any new terms you weren't sure what they meant?
 Complete as much of the following as you can.
 - Compute all the first and second partial derivatives of $f(x,y,z) = x^2+4xy+y^2+z^2+2yz$. 
 - Show that $(0,0,0)$ is a critical point of this function. 
@@ -175,7 +223,7 @@ y <- data$y
 
 1.  Plot your data. You can use the following code, or make your own.
 
-```
+```r
 par(mfrow=c(1,1),mar=c(2,2,0.5,0.5))
 plot(x,y,pch=16)
 ```
@@ -198,6 +246,8 @@ plot(x,y,pch=16)
 
 1.  Select another model and corresponding data set and **repeat**.
 
-## Discussion 
+## Discussion
 
-**Wrap up class by directing attention to code in prep.**
+---
+
+*Source: [Class.31 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.31)*

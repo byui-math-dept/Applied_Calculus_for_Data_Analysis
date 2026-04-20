@@ -1,6 +1,53 @@
 ---
 title: "Class 9"
 ---
+# Between Class Sessions - Prep for Day 9 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Logarithm Introduction and Practice
+Watch these video from mathispower4u.
+- [Introduction to Logarithmic Functions](https://www.youtube.com/watch?v=z296tOPj0HA){target="_blank"}
+- [Evaluating Logarithms](https://www.youtube.com/watch?v=dxj5J9OpWGA&feature=youtu.be){target="_blank"}
+- [Properties of Logarithms](https://www.youtube.com/watch?v=SxF44olWTyk){target="_blank"}
+
+### (2) Function "Fairy Tales"
+The local elvish population is modeled by the function $P(x;a,b) = ax+b$, where $x$ is the number of years since 2000.
+- Letting $a=2$ and $b=30$, we have $P(x) = 2x+30$. Plot this function and tell the story given by this model. 
+- How many elves does this model say were alive in 2020? 
+
+You can use the code below to help you tackle this problem. 
+
+```r
+p <- function(x,a=2,b=30){a*x+b}
+
+x <- seq(-4,200,0.1)
+plot(x,p(x),type='l',ylim=c(0,500))
+abline(h=0,col='gray')
+abline(v=0,col='gray')
+
+p(20)
+```
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+Continue working on the following assignments.
+- 1 -- Definition of Logarithm
+- 1 -- Evaluate Exponential and Logarithmic Functions
+- 1 -- Properties of Logarithms
+
+### Applied Practice (Project Work)
+- Prepare for Project 1 Task 3
+    - Read the Project 1 Task 3 instructions
+    - Watch the [video](https://www.loom.com/share/e719841d54624db9b22ada1e85b7f85d?sharedAppSource=personal_library){target="_blank"} example of visually fitting f2. The link for this video is also in the Project 1 (Task 3) Instructions.
+
 
 # During Class - Day 9
 ## Brain Gains
@@ -33,16 +80,20 @@ p(20,5,10)
   <li>$2^x=8$</li>
 </ol>
 1. $2^x = \frac{1}{16}$
+
 1. $2^x = 17$
 1. $e^x = 1$
+
 1. $e^x = 2$
 
 <details>
 <summary>Solutions</summary>
 
 1. Because $2^3=8$, we know $x=3$.
+
 1. Because $2^{-4}=\frac{1}{16}$, we know $x=-4$.
 1. This one isn't guessable.  We know $2^4=16$ and $2^5=32$, so we know $4<x<5$. How do we get the solution?  This is what logarithms are for.  We'll discuss a guessing approach in class, and then define logarithms as the way to tell the computer to preform this guessing approach.  We can rewrite the exponential form $2^x = 17$  in the log form $x = \log_2(17)$, which is the solution. 
+
 1. Anything nonzero, raised to the zero, is 1, so the solution is $x=0$. 
 1. Rewriting in log form gives us $\log_e(2)=x$.  We use $\ln$ as shorthand for $\log_e$. 
 
@@ -213,3 +264,7 @@ plot(x,y,type="l",ylim=c(-10,30))
 abline(h=0,col='gray',lty=3)
 abline(v=0,col='gray',lty=3)
 ```
+
+---
+
+*Source: [Class.9 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.9)*

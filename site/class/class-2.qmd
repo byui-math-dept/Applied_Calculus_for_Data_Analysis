@@ -1,6 +1,75 @@
 ---
 title: "Class 2"
 ---
+# Between Class Sessions - Prep for Day 2 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Familiarize yourself with class
+- Read the Syllabus
+- Complete the Background Survey
+- Open a Knewton Alta assignment and answer some questions (for example you could open up "1 -- Function Evaluation"). The point is to make sure you have gotten into the system, and seen how it works.  Feel free to complete one of the assignments. 
+- Skim read the [instructions for Project 1](https://byuistats.github.io/M119/project1.html).
+
+### (2) Graphing Functions
+
+Our first Unit is focused on expanding our knowledge and understanding of functions. Plot the following functions by hand. Select five or more input values, calculate the corresponding output values, plot the points, and connect the points with a line. Check your work by plotting the function with Desmos (or another graphing calculator).
+1. $f(x) = 1-4x$
+
+| $x$ | $f(x)$ | $ (x, f(x)) $ |
+|---|---|---|
+| -2 | 9 | (-2,9) |
+| -1 |  |  |
+| 0 |  |  |
+| 1 |  |  |
+| 2 |  |  |
+
+2. $g(x) = |2x+4|$
+
+| $x$ | $g(x)$ | $ (x, g(x)) $ |
+|---|---|---|
+| -4 | 4 | (-4,4) |
+| -3 |  |  |
+| -2 |  |  |
+| -1 |  |  |
+| 0 |  |  |
+
+3. $h(x) = \frac{1}{2}x^2+3$
+
+| $x$ | $h(x)$ | $ (x, h(x)) $ |
+|---|---|---|
+| -2 | 5 | (-2,5) |
+| -1 |  |  |
+| 0 |  |  |
+| 1 |  |  |
+| 2 |  |  |
+
+### (3) Start working with R and RStudio
+1. Install [R](https://www.r-project.org/)
+2. Install [RStudio](https://www.rstudio.com/products/rstudio/download/)
+3. Open a new file in RStudio and use it to perform a few computations. One option is to repeat some of the computations you did during class in groups, but this time using R to perform the computations. Or you may pick something else of interest. Feel free to search the web for a tutorial on performing computations with R in RStudio.
+4. Construct the plot of a function (either one from part 2 above, from in class, or one of your choice).
+
+You could play with and adjust the code below as a starting point.
+
+```r
+x <- c(1,2,3,4,5)
+y <- c(1,4,9,16,25)
+plot(x,y,type='l')
+```
+
+### (4) Pick something to share
+Remember to pick something from the above that you can share with your peers tomorrow.  What could that be?
+- Did you encounter any issues with KnewtonAlta or have questions? Was there a problem in what you attempted that helped you remember something.
+- As you plotted functions from (2), were there any tricky parts? Did you use Desmos or something else? Do you have any tips for plotting?
+- How did installing R and RStudio go? If there were any hiccups along the way, what did you do to resolve them? Did you plot a function and are you willing to share the code you used? Were there any bits of code that didn't make sense? Did you ask AI for help to plot a function and have a record of your chat history you can share?
+- Something else.  Remember that questions can be just as valuable as solutions.  If you worked on something and know it's wrong, sometimes the most valuable thing you can share is that wrong attempt. This will generate discussion and help all grow.
+
 
 # During Class
 ## Brain Gains
@@ -15,7 +84,7 @@ x^3 & \quad x < -1 \\ \\
 <summary>Possible Solution</summary>
 
 - We have $f(-2) = (-2)^3 = -8$ because $x=-2$ satisfies $x<-1$. 
-- Note that $-1$ does not lie in any of the three given regions, which means $f(-1)$ is undefinded.  
+- Note that $-1$ does not lie in any of the three given regions, which means $f(-1)$ is undefined.  
 - We know $f(4) = \sqrt{4} = 2$ as $x=4$ satisfies $x\geq 4$.
 
 </details>
@@ -96,17 +165,26 @@ An exponential function is any function of the form $f(x) = b^x$ where $b > 0$ a
 
 </details>
 
-As a group, discuss whether each function is a power function, quadratic function, polynomial function, root function, and/or a rational function. Record your solutions in a table similar to the following. Note a function can be classified as multiple types.
+As a group, discuss whether each function is a power function, quadratic function, polynomial function, root function, and/or a rational function. Record your solutions in a table similar to the following. Note a function can be classified as multiple types. 
 
 |  | power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |
+
 | --- | --- | --- | --- | --- | --- |
+
 | $f(x) = x^2$ |  |  |  |  |  |
+
 | $g(x) = \sqrt{x}$ |  |  |  |  |  |
+
 | $h(x) = x^3$ |  |  |  |  |  |
+
 | $p(x) = \sqrt{3x+1}$ |  |  |  |  |  |
+
 | $q(x) = x^3 - 3x + 2$ |  |  |  |  |  |
+
 | $A(x) = (x-1)^2$ |  |  |  |  |  |
+
 | $r(x) = \frac{2x+3}{x^2+1}$ |  |  |  |  |  |
+
 | $w(x) = 5^x$ |  |  |  |  |  |
 
 After you've finished classifying the functions, first compare your results with the other groups in class.  Discuss any changes you believe need to be made.  Then expand the solution below and discuss any questions you have. 
@@ -115,15 +193,25 @@ After you've finished classifying the functions, first compare your results with
 <summary>Answer</summary>
 
 |  | power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |
+
 | --- | --- | --- | --- | --- | --- |
+
 | $f(x) = x^2$ | X | X | X |  | X |
+
 | $g(x) = \sqrt{x}$ | X |  |  | X |  |
+
 | $h(x) = x^3$ | X |  | X |  | X |
+
 | $p(x) = \sqrt{3x+1}$ |  |  |  |  |  |
+
 | $q(x) = x^3 - 3x + 2$ |  |  | X |  | X |
+
 | $A(x) = (x-1)^2$ |  | X | X |  | X |
+
 | $r(x) = \frac{2x+3}{x^2+1}$ |  |  |  |  | X |
+
 | $w(x) = 5^x$ |  |  |  |  |  |
+
 The function $w(x) = 5^x$ is an exponential function.
 
 </details>
@@ -152,35 +240,56 @@ Let $f(x) = x^2$. Complete each of the following exercises below.
 1. Complete each table below.
 
 | $x$ | $f(x)$ |
+
 | --- | --- |
+
 | -2 |  |
+
 | -1 |  |
+
 | 0 |  |
+
 | 1 |  |
+
 | 2 |  |
 
 | $x$ | $g(x) = f(x) + 2$ |
+
 | --- | --- |
+
 | -2 |  |
+
 | -1 |  |
+
 | 0 |  |
+
 | 1 |  |
+
 | 2 |  |
 
 | $x$ | $h(x) = f(x+2)$ |
+
 | --- | --- |
+
 |  | 4 |
+
 |  | 1 |
+
 |  | 0 |
+
 |  | 1 |
+
 |  | 4 |
 
 1.  Graph each of the functions from part 1. 
+
 1. The graph of $g$ is the same as the graph of $f$ but shifted _________________.
 1. The graph of $h$ is the same as the graph of $f$ but shifted _________________.
+
 1. (True or False) Given $a$ and $b$ are constants, is the statement $f(a+b) = f(a) + f(b)$ true or false.
 
 1. Repeat parts 1-5 for $f_2(x) = \sqrt{x}$ 
+
 1. Repeat parts A-E for $f_3(x) = \frac{1}{x}$.
 
 ## Class Discussion
@@ -226,3 +335,7 @@ All of these definitions are correct.
 
 ### Plotting with R
 We'll spend the rest of class time using R to plot functions from the work we've done in class today.
+
+---
+
+*Source: [Class.2 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.2)*

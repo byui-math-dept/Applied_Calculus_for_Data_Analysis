@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-17" id="toc-between-class-sessions---prep-for-day-17" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-17">Between Class Sessions - Prep for Day 17 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#loglikelihood" id="toc-loglikelihood" class="nav-link" data-scroll-target="#loglikelihood">(2) Loglikelihood</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#summary-what-is-a-derivative" id="toc-summary-what-is-a-derivative" class="nav-link" data-scroll-target="#summary-what-is-a-derivative">Summary (What is a derivative?)</a>
@@ -277,6 +454,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -297,6 +475,59 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-17" class="level1">
+<h1>Between Class Sessions - Prep for Day 17 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Derivative Rules - Watch <a href="https://www.youtube.com/watch?v=untsh_gpdzI&amp;feature=youtu.be" target="_blank">Intro to Derivative Rules</a> (~9 minutes) - Begin Knewton Alta assignment 2 – Derivative Rules (Power Function, Sum/Difference, Constant Multiple)</p>
+<section id="loglikelihood" class="level3">
+<h3 class="anchored" data-anchor-id="loglikelihood">(2) Loglikelihood</h3>
+<details>
+<summary>
+Loglikelihood Function
+</summary>
+<p>The <strong>loglikelihood function</strong> is the natural log of the likelihood function.</p>
+<p><strong>Useful Fact:</strong> The loglikelihood will have a maximum at the same location (i.e.&nbsp;for the same parameter value, or collection of parameter values for multidimensional likelihood functions) as the likelihood function.</p>
+</details>
+<p>For each of the likelihood functions below, write the corresponding loglikelihood function. - <span class="math inline">\(L_1(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> with <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> for <span class="math inline">\(i = 1, 2, ... n\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(L_2(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> with <span class="math inline">\(x_i &gt; 0\)</span> for <span class="math inline">\(i = 1, 2, ... n\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(L_3(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}},\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>.</p></li>
+</ul>
+<details>
+<summary>
+Answers
+</summary>
+<ul>
+<li><p><span class="math inline">\(\ell_1(\lambda; \mathbf{x}) = \ln\left(\prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\right)\)</span> with <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> for <span class="math inline">\(i = 1, 2, ... n\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(\ell_2(\lambda; \mathbf{x}) = \ln\left(\prod_{i=1}^n \lambda e^{-\lambda x_i}\right)\)</span> with <span class="math inline">\(x_i &gt; 0\)</span> for <span class="math inline">\(i = 1, 2, ... n\)</span> where <span class="math inline">\(\lambda &gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(\ell_3(\mu, \sigma; \mathbf{x}) = \ln\left(\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\right),\)</span> where <span class="math inline">\(\mu\)</span> is a real number and <span class="math inline">\(\sigma &gt; 0\)</span>.</p></li>
+</ul>
+<p>Remember: Logs can turn multiplication into addition.</p>
+<p>How could you use this property of logarithms to rewrite each loglikelihood function with a sum rather than a product?</p>
+</details>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<p>Begin Knewton Alta assignment 2 – Derivative Rules (Power Function, Sum/Difference, Constant Multiple)</p>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Complete Project 1</li>
+<li>Begin Project 2 Task 1
+<ul>
+<li>Read the instructions</li>
+<li>Write down a formula for residuals <span class="math inline">\(r_i = y_i - \hat{y_i} = y_i - f(t_i)\)</span> for each general function listed in Project 2 Task 1 and points $ ( t_i, y_i ) $. Write your formula so you can clearly see how the parameters <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> contribute to the calculation of <span class="math inline">\(r_i\)</span> in each case. For example, given the model <span class="math inline">\(f_1\)</span> the formula for the residuals will be <span class="math inline">\(r_i = y_i - f_1(t_i; a_1) = y_i - (100 + a_1t_i) = y_i - 100 - a_1t_i\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -348,22 +579,22 @@ window.Quarto = {
 <section id="activity---computing-derivatives-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---computing-derivatives-practice">Activity - Computing Derivatives Practice</h3>
 <p>Below is a list of derivative rules (most of which we have seen) that you are welcome to use as you complete this activity and any homework in Knewton Alta. It’s not crucial that you memorize all these rules. Some you will memorize from just using them each time.</p>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <ul>
 <li>Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving these problems.</li>
 <li>After you’ve discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to <em>pass the chalk</em> after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.</li>
 </ul>
 <ol type="1">
-<li>For <span class="math inline">\(f(x) = 3x^2-7x+5\)</span>, find <span class="math inline">\(f'(x)\)</span>. Remember to <strong>identify which rules</strong> you used at each step (on this and each problem).</li>
-<li>For <span class="math inline">\(g(x) = 4e^x-6\ln x\)</span>, find <span class="math inline">\(g'(x)\)</span>.</li>
-<li>For <span class="math inline">\(h(x) = 5\sqrt{x}-\frac{3}{x}\)</span>, find <span class="math inline">\(\frac{dh}{dx}\)</span>.</li>
-<li>For <span class="math inline">\(r(t) = 7\ln t - \frac{3}{t^2}\)</span>, find <span class="math inline">\(\frac{dr}{dt}\)</span>.</li>
-<li>For <span class="math inline">\(f(p) = \sum_{j=3}^7 4^jp\)</span>, find <span class="math inline">\(f'(p)\)</span>.</li>
-<li>For <span class="math inline">\(p(x) = ax^2+bx+c\)</span>, find <span class="math inline">\(\frac{dp}{dx}\)</span> assuming that <span class="math inline">\(a,b,c\)</span> are constants.</li>
-<li>For <span class="math inline">\(h(r) = \sum_{n=1}^{40} n\ln(r)\)</span>, find <span class="math inline">\(h'(r)\)</span>.</li>
-<li>For <span class="math inline">\(t(x) = \sum_{m=1}^{40}  m x^m\)</span>, find <span class="math inline">\(\frac{dt}{dx}\)</span>.</li>
+<li><p>For <span class="math inline">\(f(x) = 3x^2-7x+5\)</span>, find <span class="math inline">\(f'(x)\)</span>. Remember to <strong>identify which rules</strong> you used at each step (on this and each problem).</p></li>
+<li><p>For <span class="math inline">\(g(x) = 4e^x-6\ln x\)</span>, find <span class="math inline">\(g'(x)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(h(x) = 5\sqrt{x}-\frac{3}{x}\)</span>, find <span class="math inline">\(\frac{dh}{dx}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(r(t) = 7\ln t - \frac{3}{t^2}\)</span>, find <span class="math inline">\(\frac{dr}{dt}\)</span>.</p></li>
+<li><p>For <span class="math inline">\(f(p) = \sum_{j=3}^7 4^jp\)</span>, find <span class="math inline">\(f'(p)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(p(x) = ax^2+bx+c\)</span>, find <span class="math inline">\(\frac{dp}{dx}\)</span> assuming that <span class="math inline">\(a,b,c\)</span> are constants.</p></li>
+<li><p>For <span class="math inline">\(h(r) = \sum_{n=1}^{40} n\ln(r)\)</span>, find <span class="math inline">\(h'(r)\)</span>.</p></li>
+<li><p>For <span class="math inline">\(t(x) = \sum_{m=1}^{40}  m x^m\)</span>, find <span class="math inline">\(\frac{dt}{dx}\)</span>.</p></li>
 </ol>
-<p><a href="https://byuistats.github.io/M119/m119-docs/DerRules_Power_Constant_Sum.pdf" target="_blank">Derivative Rules — Power, Constant, Sum (PDF)</a></p>
+<p><a href="../assets/docs/DerRules_Power_Constant_Sum.pdf">Derivative rules (power, constant, sum) PDF</a></p>
 </section>
 </section>
 <section id="using-a-model-practice-with-project-1" class="level2">
@@ -451,6 +682,8 @@ Solutions
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">f5</span>(<span class="dv">25000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.17">Class.17 on byuimath.com</a></em></p>
 
 
 </section>
@@ -459,6 +692,19 @@ Solutions
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

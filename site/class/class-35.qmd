@@ -1,6 +1,63 @@
 ---
 title: "Class 35"
 ---
+# Between Class Sessions - Prep for Day 35 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Reading - Rectangles, Targets, and Sums - Sections 2.3 through 3.2
+For this Unit, the reading as well as many practice exercises appear in the document [Rectangles, Targets, and Sums](https://byuistats.github.io/M119/unit3/probability.html){target="_blank"} 
+1. Read sections 2.3-3.2.
+
+1. Complete a few exercises from each section, and come ready to share what you did with your group.  
+1. Let $g(x) = 2x$ for $0\leq x\leq 4$ be a target function. 
+    - Find a value $k$ so that the area under $f(x) = k g(x)$ is one (so provide a normalized target function). 
+    - Let $X$ be the random variable which records the $x$-coordinate of dropping a dart on the target defined by $g$. Find the cumulative distribution function $F(x)$. 
+    - Compute the derivative $F'(x)$. 
+
+<details>
+<summary>Solutions for 3</summary>
+
+- The area under the function $g$ is $ A = \frac{1}{2}(4)(8) = 16 $, which means we should pick $ k = \frac{1}{\text{Area}} = \frac{1}{16} $ so that the area under the function $ f $ is 1. This means $ f(x) = kg(x) = \frac{1}{16}(2x) = \frac{1}{8}x $ for $ 0 \leq x \leq 4 $.
+
+- The cdf of $X$ will be the following function.
+$F(x) = 
+\begin{cases}
+0 & \quad x \leq 0 \\ \\
+\frac{x^2}{16} & \quad 0 < x < 4 \\ \\
+1 & \quad x \geq 4.
+\end{cases}$
+
+- Calculating the derivative of $F(x)$ we find.
+$F'(x) = 
+\begin{cases}
+0 & \quad x < 0 \\ \\
+\frac{1}{16}(2x) & \quad 0 < x < 4 \\ \\
+0 & \quad x > 4
+\end{cases} = 
+\begin{cases}
+\frac{1}{8}(x) & \quad 0 < x < 4 \\ \\
+0 & \quad \text{otherwise} \\ \\
+\end{cases}$
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+If you have not done so already, complete 3 -- Discrete Random Variables and Expected Value.
+
+### Applied Practice (Project Work)
+- Continue working on Project 3 Task 1
+    - Visually fit the probability models $f_2$ and $f_3$ to the data.
+    - Use the parameters for your visually fitted models to simulate data and calculate approximate probability.
+
 
 # During Class
 
@@ -14,10 +71,13 @@ We're learning new vocabulary in this unit.  What we need is some repeated pract
   <li>Draw the function. </li>
 </ol>
 1. Find the area under $g$.
+
 1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
 1. Compute $P(X\leq 3)$. 
+
 1. Calculate the expected value of $X$, so compute $E[X] $. 
 1. Give a formula for $F(x)$, the cumulative distribution function.  
+
 1. Compute $F'(x)$. 
 
 <details>
@@ -40,6 +100,7 @@ Regardless of which option we choose, we must decide how many rectangles to use 
     - We can use $f$ with 5 rectangles. Using equal sized rectangles makes this quick. The areas are A = c(4,4,1,1,1) centered at x = c(0.5,1.5,2.5,3.5,4.5). In R we can type sum(x*A) to rapidly compute the numerator and sum(A) to compute the denominator. $\frac{\sum x_i A_i}{\sum A_i}$
 
 1. To give a formula for $F(x)$, we need to compute $P(X\leq x)$. We can do this by calculating ratios of areas using either $f$ or $g$. Using $g$, note that the area of a rectangle from 0 to $x$ (for $0\leq x\leq 2$) is $A=4x$.  Dividing by the total area of 11 gives $P(X\leq x) = \frac{4x}{11}$ for $0\leq x\leq 2$.  For $2<x\leq 5$, we have a total area of $A = 8+(x-2)*1 = x+6$, which means $P(X\leq x) = \frac{x+6}{11}$ for $2< x\leq 5$.  This gives $$F(x) = \begin{cases}\frac{4x}{11}&0\leq x\leq 2\\\frac{x+6}{11}&2\leq x\leq 5\\0&x<0\\1&x>5\end{cases}.$$ Notice that plugging in 5 does gives us a probability of 1, as it should. 
+
 1. The derivative of $F$, where it is nonzero and defined, is $$\ds F'(x) = \begin{cases}\frac{4}{11}&0< x< 2\\\frac{1}{11}&2< x< 5 \end{cases}$$ 
 Notice again $ F'(x) = f(x) $.
 
@@ -53,10 +114,13 @@ We'll continue practicing using our new vocabulary.
   <li>Draw the function. </li>
 </ol>
 1. Find the area under $g$.
+
 1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
 1. Compute $P(X\leq 3)$. 
-1. Calculate the expected value of $X$. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.  
+
+1. Calculate the expected value of $X$. Use this [Centroid Locations table](https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf).
 1. Give a formula for $F(x)$, the cumulative distribution function. 
+
 1. Compute $F'(x)$. 
 
 <details>
@@ -70,11 +134,14 @@ Compare your work with your group. Put agreed upon solutions on the chalkboard s
 <ol type="a">
   <li>Draw the function. </li>
 </ol>
-1. Find the area under $g$. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.
+1. Find the area under $g$. Use this [Centroid Locations table](https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf).
+
 1. Give the normalized target function by finding the constant $k$ so that the area under $f(x) = kg(x)$ is 1. 
 1. Compute $P(X\leq 3)$. 
+
 1. Calculate the expected value of $X$.   
 1. Give a formula for $F(x)$, the cumulative distribution function. 
+
 1. Compute $F'(x)$. 
 
 ### Activity - Calculating Expected Value using Rectangular Approximations
@@ -152,5 +219,9 @@ We're ready to apply what we're learning now to any function.
 - Compute $P(X\leq 3)$ (you'll need to compute two areas, and then divide them). 
 - Calculate $E[X] $.
 
-## Discussion 
+## Discussion
 We'll have a wrap up discussion.
+
+---
+
+*Source: [Class.35 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.35)*

@@ -1,6 +1,60 @@
 ---
 title: "Class 46"
 ---
+# Between Class Sessions - Prep for Day 46 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Fundamental Theorem of Calculus Exercises
+1. Compute the following definite integrals using Part 2 of the Fundamental Theorem of Calculus, and then check your work with Mathematica.
+    1. Compute $\int_{-3}^{-\frac{1}{2}} \frac{2}{t^2} dt$.
+    1. Compute $\int_2^x \frac{2}{t^2} dt$.
+1. Explain why $\frac{d}{dx}\left(\int_{-3}^{-\frac{1}{2}} \frac{2}{t^2} dt\right) = 0$.
+    - We do not use (at least not directly) the Fundamental Theorem of Calculus when taking the derivative of this integral. Why not?
+1. Compute $\frac{d}{dx}\left(-\frac{2}{x} + 1\right)$
+
+1. Compute $\frac{d}{dx}\left(\int_2^x \frac{2}{t^2} dt\right)$.
+1. Consider your work for the last two derivatives exercises above. What happens to the lower limit of integration when we take the derivative of $\int_2^x \frac{2}{t^2} dt$ with respect to $x$?
+
+### (2) Antiderivative Exercises
+We use the symbol, $\int f(x)dx$, to represent the collection of all antiderivatives of the function $f(x)$. Remember antiderivative means "undo" the derivative.
+We also read $\int f(x)dx$ as "the indefinite integral of $f$".
+
+Evaluate each indefinite integral. Write your solutions (and the thinking leading to your answer) out on paper.
+
+1.
+    a. $\int x^{10}dx$
+    a. $\int (x+1)^{10}dx$
+    a. $\int (3x+1)^{10}dx$
+
+1.
+    a. $\int \frac{64}{x^5} dx$
+    a. $\int \frac{64}{(x+2)^5} dx$
+    a. $\int \frac{64}{(3x+1)^5} dx$
+
+1.
+    a. $\int \frac{1}{x} dx$
+    a. $\int \frac{1}{1-x} dx$
+    a. $\int \frac{1}{1-4x} dx$
+
+1.
+    a. $\int e^x dx$
+    a. $\int e^{x-1} dx$
+    a. $\int e^{2-x} dx$
+    a. $\int e^{2-5x} dx$
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 3 -- CDFs, PDFs, and the Fundamental Theorem of Calculus
+- Begin 3 -- Antiderivatives or Indefinite Integrals
+
 
 # During Class
 ## Brain Gains
@@ -10,13 +64,17 @@ title: "Class 46"
 0 &  \text{otherwise}
 \end{cases}.$$ 
 1. Use the Fundamental Theorem of Calculus to calculate the value of $\int_{-1}^2t^2dt$. Use Mathematica to check your answer.
+
 1. Calculate $ \frac{d}{dx}( \int_{-1}^2t^2dt ) $.
 1. Use the Fundamental Theorem of Calculus to calculate $ \frac{d}{dx} ( \int_{1}^x\frac{2}{t^3}dt ) $.
+
 1. Use the Fundamental Theorem of Calculus to calculate $\int_{1}^x\frac{2}{t^3}dt$. Use Mathematica to check your answer.
 1. Use your understanding of derivatives to find the indefinite integral $\int (2x+5)^{11} dx$. Use Mathematica to check your answer.
+
 1. Use your understanding of derivatives to find the indefinite integral $\int e^{3-4x} dx$. Use Mathematica to check your answer.
 
 1. Match the expressions, equations, or functions in column 1 with descriptions in column 2.
+
 | Probability expressions/equations/functions | Descriptions |
 | --- | --- |
 | **1.** $f(x) = F'(x)$ where $F(x)$ is the CDF of a continuous random variable | **A.** Cumulative Distribution Function (cdf) |
@@ -65,7 +123,7 @@ When computing indefininte integrals, remember that answers computed by hand may
     - Compute in Mathematica to obtain $\int (7-x)^2 dx = \frac{1}{3}x^3 - 7x^2 + 49x +C$. Does Mathematica remember the $+C$?
 Here are some code examples that can help you make comparisons in Mathematica.
 
-```r
+```
 MyAnswer = -1/3*(7 - x)^3
 MathmaticaAnswer = Integrate[(7 - x)^2, x]
 Expand[MyAnswer]
@@ -75,14 +133,15 @@ FullSimplify[MyAnswer - MathmaticaAnswer]
 Plot[{MyAnswer, MathmaticaAnswer}, {x, -10, 10}]
 Plot[MyAnswer - MathmaticaAnswer, {x, -10, 10}]
 FullSimplify[D[MyAnswer - MathmaticaAnswer, x] == 0]
-@](:codemend:)
+```
 
 - Consider $\int x(x-1)^3 dx$. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. 
 - Consider $\int \frac{y}{(y+1)^4} dy$. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant. 
 
 - Consider $\int \frac{1}{x^2 + 8} dx$. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new to many of us. The function $f(x) = \tan^{-1}(x)$ is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -\frac{\pi}{2}, \frac{\pi}{2} ) $.
 We could use the following code to plot $f(x) = \arctan(x)$ in R.
-(:code:)[@
+
+```r
 inpt <- seq(-25,30,0.1)
 par(mar=c(2.5,2.5,0.25,0.25))
 plot(inpt,atan(inpt),type='l',ylim=c(-5,5))
@@ -96,10 +155,13 @@ Work on the chalkboard as you complete these activities and exercises, and pass 
 ### Activity - Integration Practice
 Evaluate each indefinite integral (the complete "list" of antiderivatives or the most general antiderivative). When you are writing your answers **don't for get your "+C"**. Then check your answer with Mathematica. 
 1. $\int (3x^2 + 1)^3 6x dx$
+
 1. $\int x^2\sqrt{x^3 + 1} dx$
 1. $\int (5-2x)^2 dx$
+
 1. $\int x(x+2)^3 dx$
 1. $\int \frac{y}{(y-3)^2} dy$
+
 1. $\int \frac{5x}{x^2 + 25} dx$ 
 
 ### Computing Integrals with a CAS (Computer Algebra System)
@@ -113,3 +175,7 @@ Calculate each of the following indefinite integrals using Mathematica. When you
 - $\int_1^2 e^{-x^2} dx$ (After typing this in and getting a wierd answer, try using N[ ] to get an approximate answer.)
 - $\int \frac{5}{\sqrt{x^2 + 25}} dx$
 - $\int_{-2}^2 \frac{5}{\sqrt{x^2 + 25}} dx$
+
+---
+
+*Source: [Class.46 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.46)*

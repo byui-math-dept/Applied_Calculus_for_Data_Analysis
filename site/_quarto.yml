@@ -53,7 +53,9 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
     toc-depth: 3
@@ -66,7 +68,8 @@ format:
         window.MathJax = {
           tex: {
             macros: {
-              ds: "\\displaystyle"
+              ds: "\\displaystyle",
+              diff: ["\\frac{d#1}{d#2}", 2]
             }
           }
         };

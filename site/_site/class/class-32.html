@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-32" id="toc-between-class-sessions---prep-for-day-32" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-32">Between Class Sessions - Prep for Day 32 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#least-squares-regression" id="toc-least-squares-regression" class="nav-link" data-scroll-target="#least-squares-regression">(2) <strong>Least Squares Regression</strong></a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -280,6 +457,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Class 32</h1>
@@ -299,6 +477,70 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-32" class="level1">
+<h1>Between Class Sessions - Prep for Day 32 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Install Mathematica Use the following link to access instructions for <a href="https://www.byui.edu/mathematics/student-resources/mathematica" target="_blank">installing Mathematica</a>. We will be using Mathematica frequently during the last several weeks of the semester. You will need Mathematica to complete Project 3. If you encounter any issues, address them with your group.</p>
+<p>Once you get Mathematica up and running, try computing determinants in Mathematica (so check your solution from the previous part) using code similar to what you see below. To evaluate code in Mathematica, you type Shift+Enter when your cursor is in a code block (whereas you type Cntrl+Enter in R).</p>
+<pre><code>m = {{1, 2}, {3, 4}}
+m//MatrixForm
+Det[m]</code></pre>
+<p>Mathematica can handle symbolic arithmetic, so the following code works just fine in Mathematica (but won’t in R without first defining a).</p>
+<pre><code>m = {{a, Pi}, {Sqrt[2], Log[7]}}
+m // MatrixForm
+Det[m]</code></pre>
+<p>Wolfram created a “FAST INTRODUCTION FOR MATH STUDENTS”. Read the first page on “Entering Input”, and then head to the “Derivatives” section to learn how to compute derivatives with Mathematica. - <a href="https://www.wolfram.com/language/fast-introduction-for-math-students/en/" class="uri">https://www.wolfram.com/language/fast-introduction-for-math-students/en/</a></p>
+<section id="least-squares-regression" class="level3">
+<h3 class="anchored" data-anchor-id="least-squares-regression">(2) <strong>Least Squares Regression</strong></h3>
+<p>Start by reading <a href="https://openstax.org/books/introductory-statistics/pages/12-3-the-regression-equation" target="_blank">Least-Squares Regression</a>. Then complete a couple problems in Knewton Alta on the 2 – Least Squares Prediction and Extrapolation assignment. Come to class ready to share.</p>
+<p><strong>NOTE:</strong> For your Knewton Alta “2 – Least Squares Prediction and Extrapolation” assignment, the following code might be useful.</p>
+<details>
+<summary>
+Simple Linear Regression Solution
+</summary>
+<p>If we want to fit the function <span class="math inline">\(f(x) = b + mx\)</span> to <span class="math inline">\(n\)</span> data points <span class="math inline">\((x_i, y_i)\)</span>, we should use the parameter values: - <span class="math inline">\(m = \frac{\left(\sum_{i=1}^{n} x_iy_i\right) - n\overline{x}\overline{y}}{\sum_{i=1}^{n} x_i^2 - n\overline{x}^2}\)</span> and - <span class="math inline">\(b = \overline{y} -  m\overline{x}\)</span>, where <span class="math inline">\(\overline{x} = \frac{1}{n} \sum_{i=1}^n x_i\)</span> and <span class="math inline">\(\overline{y} = \frac{1}{n} \sum_{i=1}^n y_i\)</span>. Here the symbol <span class="math inline">\(\overline{x}\)</span> is referring to the average (or mean) of the <span class="math inline">\(x\)</span>-values and <span class="math inline">\(\overline{y}\)</span> is referring to the average (or mean) of the <span class="math inline">\(y\)</span>-values. Can you see why?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>([fill <span class="cf">in</span> the list of values separated by commas])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>([fill <span class="cf">in</span> the list of values separated by commas])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m.best <span class="ot">&lt;-</span> (<span class="fu">sum</span>(x<span class="sc">*</span>y) <span class="sc">-</span> <span class="fu">length</span>(x)<span class="sc">*</span><span class="fu">mean</span>(x)<span class="sc">*</span><span class="fu">mean</span>(y))<span class="sc">/</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">length</span>(x)<span class="sc">*</span>(<span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>b.best <span class="ot">&lt;-</span> <span class="fu">mean</span>(y) <span class="sc">-</span> m.best<span class="sc">*</span><span class="fu">mean</span>(x)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>m.best</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>b.best</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b=</span><span class="dv">0</span>, <span class="at">m=</span><span class="dv">1</span>){</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> m<span class="sc">*</span>x</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>x.val <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x),<span class="fu">max</span>(x),(<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x))<span class="sc">/</span><span class="dv">5</span>) </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>y.val <span class="ot">&lt;-</span> <span class="fu">h</span>(x.val,<span class="at">b=</span>b.best, <span class="at">m=</span>m.best)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'p'</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x.val,y.val,<span class="at">col=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Begin 2 – Least Squares Prediction and Extrapolation</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 2.</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -337,127 +579,125 @@ c_{1,1}x + c_{1,2}y - b_1 &amp;= 0 \\
 c_{2,1}x + c_{2,2}y - b_2 &amp;= 0
 \end{align*}\]</span></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Solve[{c11 x <span class="sc">+</span> c12 y <span class="sc">-</span> b1 <span class="sc">==</span> <span class="dv">0</span>, c21 x <span class="sc">+</span> c22 y <span class="sc">-</span> b2 <span class="sc">==</span> <span class="dv">0</span>}, {x, y}]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>When solving this by hand, here<span class="st">'s what we obtained.  </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">- $y = </span><span class="sc">\f</span><span class="st">rac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">- $x = </span><span class="sc">\f</span><span class="st">rac{b_1 - c_{1,2}y}{c_{1,1}} = </span><span class="sc">\f</span><span class="st">rac{b_{1}c_{2,2} - b_{2}c_{1.2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;details&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;summary&gt;Answer&lt;/summary&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">The solutions are the same, though you'</span>ll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand. </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>As reminder, here<span class="st">'s the R code we'</span>ve been using to get the solution.  </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">r</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">c11 &lt;- </span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">c12 &lt;- </span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">b1 &lt;- </span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">c21 &lt;- </span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">c22 &lt;- </span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">b2 &lt;- </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">}</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">sol &lt;- solvesystem(c11, c12, b1, c21, c22, b2)</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">sol</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]</code></pre>
+<p>When solving this by hand, here’s what we obtained.<br>
+- <span class="math inline">\(y = \frac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}\)</span> - <span class="math inline">\(x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1,2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}\)</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The solutions are the same, though you’ll have to distribute the negative into the denominator of the Mathematica solution to get the same solution as we got by hand.</p>
+<p>As reminder, here’s the R code we’ve been using to get the solution.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11, c12, b1, c21, c22, b2)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>sol</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In Mathematica, sometimes we will have to make assumptions before we compute something (like assuming a parameter is positive). Here’s an example that assumes the denominator is not zero.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Assuming[c11 c22 <span class="sc">-</span> c21 c12 <span class="sc">!=</span> <span class="dv">0</span>, Solve[{c11 x <span class="sc">+</span> c12 y <span class="sc">-</span> b1 <span class="sc">==</span> <span class="dv">0</span>, c21 x <span class="sc">+</span> c22 y <span class="sc">-</span> b2 <span class="sc">==</span> <span class="dv">0</span>}, {x, y}]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:)</p>
-
+<pre><code>Assuming[c11 c22 - c21 c12 != 0, Solve[{c11 x + c12 y - b1 == 0, c21 x + c22 y - b2 == 0}, {x, y}]]</code></pre>
+</details>
 </section>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <section id="activity---compare-loglikelihood-and-least-squares" class="level3">
 <h3 class="anchored" data-anchor-id="activity---compare-loglikelihood-and-least-squares">Activity - Compare loglikelihood and least squares</h3>
-<p>Start by reading in the data below. (:code:)[@ rm(list=ls()) data &lt;- read.csv(url(“https://byuistats.github.io/M119/data4_ls.csv”)) x &lt;- data<span class="math inline">\(x
-y &lt;- data\)</span>y</p>
-<pre><code>
-Consider the model $f(x; a) = a e^x$. We will fit this model to our data.
-Work with your group on the chalkboard to obtain the best fit parameters for this model using both 
-1. the maximum likelihood method, and
-1. least squares. 
-
-#### Using the Maximum Likelihood Method
-Fit $f$ to the data by maximizing the loglikelihood of the errors assuming the errors are independent and normally distributed.
-Note the likelihood function for the errors of $f$ is 
-$L(a; \mathbf{x},\mathbf{y}) = \prod_{i=1}^n\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - ae^{x_i})^2}$. 
-And the loglikelihood for the errors of $f$ is 
-$$\ell(a; \mathbf{x},\mathbf{y}) = n\ln(\frac{1}{\sqrt{2\pi}}) + \left( -\frac{1}{2} \right)\sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
-
-Once you obtain your value for $a$, remember to plot the data along with your fitted model to visually verify your fit. 
-
-#### Using Least Squares
-Fit $f$ to the data by minimizing the sum of squared errors. *This assumes the errors are independent and normally distributed.*
-Note the sum of squared errors of $f$ is $$S(a; \mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - ae^{x_i})^2.$$
-
-#### Answer questions with the Model
-Once you have your model, you can use it to answer questions.  
-1. What is $f(4)$, the value predicted by the model at $x=4$. 
-1. Find $x$ so that $f(x) = 5$. 
-
-&lt;details&gt;
-&lt;summary&gt;Solutions&lt;/summary&gt;
-
-Using $f(x) = 3.187972 e^x$, we have
-1. $f(4) = 174.0574$
-1. uniroot yields about $x = 0.45$.
-
-```r
-my_a &lt;- sum(y*exp(x))/sum(exp(x)^2)
-my_a  
-
-f(4)
-uniroot(function(x){f(x)-5},c(-2,2))$root</code></pre>
-<p>f &lt;- function(x,a = my_a){a*exp(x)} plot(x,y) t &lt;- seq(min(x),max(x),0.1) lines(t,f(t))</p>
-
+<p>Start by reading in the data below.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://chaz-clark.github.io/M119/data4_ls.csv"</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Consider the model <span class="math inline">\(f(x; a) = a e^x\)</span>. We will fit this model to our data. Work with your group on the chalkboard to obtain the best fit parameters for this model using both 1. the maximum likelihood method, and</p>
+<ol type="1">
+<li>least squares.</li>
+</ol>
+<section id="using-the-maximum-likelihood-method" class="level4">
+<h4 class="anchored" data-anchor-id="using-the-maximum-likelihood-method">Using the Maximum Likelihood Method</h4>
+<p>Fit <span class="math inline">\(f\)</span> to the data by maximizing the loglikelihood of the errors assuming the errors are independent and normally distributed. Note the likelihood function for the errors of <span class="math inline">\(f\)</span> is <span class="math inline">\(L(a; \mathbf{x},\mathbf{y}) = \prod_{i=1}^n\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(y_i - ae^{x_i})^2}\)</span>. And the loglikelihood for the errors of <span class="math inline">\(f\)</span> is <span class="math display">\[\ell(a; \mathbf{x},\mathbf{y}) = n\ln(\frac{1}{\sqrt{2\pi}}) + \left( -\frac{1}{2} \right)\sum_{i=1}^{n}(y_i - ae^{x_i})^2.\]</span></p>
+<p>Once you obtain your value for <span class="math inline">\(a\)</span>, remember to plot the data along with your fitted model to visually verify your fit.</p>
+</section>
+<section id="using-least-squares" class="level4">
+<h4 class="anchored" data-anchor-id="using-least-squares">Using Least Squares</h4>
+<p>Fit <span class="math inline">\(f\)</span> to the data by minimizing the sum of squared errors. <em>This assumes the errors are independent and normally distributed.</em> Note the sum of squared errors of <span class="math inline">\(f\)</span> is <span class="math display">\[S(a; \mathbf{x},\mathbf{y}) = \sum_{i=1}^{n}(y_i - ae^{x_i})^2.\]</span></p>
+</section>
+<section id="answer-questions-with-the-model" class="level4">
+<h4 class="anchored" data-anchor-id="answer-questions-with-the-model">Answer questions with the Model</h4>
+<p>Once you have your model, you can use it to answer questions.<br>
+1. What is <span class="math inline">\(f(4)\)</span>, the value predicted by the model at <span class="math inline">\(x=4\)</span>.</p>
+<ol type="1">
+<li>Find <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x) = 5\)</span>.</li>
+</ol>
+<details>
+<summary>
+Solutions
+</summary>
+<p>Using <span class="math inline">\(f(x) = 3.187972 e^x\)</span>, we have 1. <span class="math inline">\(f(4) = 174.0574\)</span></p>
+<ol type="1">
+<li>uniroot yields about <span class="math inline">\(x = 0.45\)</span>.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_a <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span><span class="fu">exp</span>(x))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>my_a  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a =</span> my_a){a<span class="sc">*</span><span class="fu">exp</span>(x)}</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x),<span class="fu">max</span>(x),<span class="fl">0.1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t,<span class="fu">f</span>(t))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
 </section>
 <section id="another-model" class="level3">
 <h3 class="anchored" data-anchor-id="another-model">Another model</h3>
 <p>Reading in the data below.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This time use the model <span class="math inline">\(f(x;b,m) = b+mx\)</span>. - Fit this model to the data using either the Least Squares or or Maximum Likelihood method. - What is <span class="math inline">\(f(4)\)</span>, the value predicted by the model at <span class="math inline">\(x=4\)</span>. - Find <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x) = 5\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://chaz-clark.github.io/M119/data2_ls.csv"</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This time use the model <span class="math inline">\(f(x;b,m) = b+mx\)</span>. - Fit this model to the data using either the Least Squares or Maximum Likelihood method. - What is <span class="math inline">\(f(4)\)</span>, the value predicted by the model at <span class="math inline">\(x=4\)</span>. - Find <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x) = 5\)</span>.</p>
 <details>
 <summary>
 Solution
 </summary>
 <p>The code below gives <span class="math inline">\(y = 2.79 + 6.48x\)</span> (rounded to 3 sig figures) as the model, with <span class="math inline">\(f(4) = 28.72758\)</span> and <span class="math inline">\(f(0.3402777)=5\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://byuistats.github.io/M119/data2_ls.csv"</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>x)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11,c12,b1,c21,c22,b2)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>sol</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>my_b <span class="ot">&lt;-</span> sol[<span class="dv">1</span>]</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>my_m <span class="ot">&lt;-</span> sol[<span class="dv">2</span>]</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> my_b, <span class="at">m =</span> my_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="fl">0.1</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t,<span class="fu">f</span>(t),<span class="at">type =</span> <span class="st">"l"</span>) </span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>) <span class="co"># 28.72758</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root <span class="co"># 0.3402777</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">"https://chaz-clark.github.io/M119/data2_ls.csv"</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> data<span class="sc">$</span>x</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>x)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11,c12,b1,c21,c22,b2)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>sol</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>my_b <span class="ot">&lt;-</span> sol[<span class="dv">1</span>]</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>my_m <span class="ot">&lt;-</span> sol[<span class="dv">2</span>]</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">b =</span> my_b, <span class="at">m =</span> my_m){b <span class="sc">+</span> m<span class="sc">*</span>x}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="fl">0.1</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t,<span class="fu">f</span>(t),<span class="at">type =</span> <span class="st">"l"</span>) </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">4</span>) <span class="co"># 28.72758</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x){<span class="fu">f</span>(x)<span class="sc">-</span><span class="dv">5</span>},<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>root <span class="co"># 0.3402777</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 </section>
@@ -498,6 +738,8 @@ Solution
 <h3 class="anchored" data-anchor-id="using-the-term-the-best-fit">Using the term the “best fit”</h3>
 <p>The term “best fit” can be used in multiple context and thus has context specific meaning. - When we use the loglikelihood method (or least squares method) to fit a model to data, we are looking for the “best fit” of a deterministic model to data. - We are looking for the “best” choice of parameters out of all possible values for the parameters that could be used in the general form of the deterministic model. - We are <strong>not</strong> looking for the “best” choice out of all possible deterministic models, because we have made an assumption about the form for the deterministic model we are fitting when we wrote down the error term formula. - Fitting different deterministic models to data and then determining which out of all those fitted model “best fits” the data is another question. - How to use the combine information when fitting different deterministic models to data is also another question.</p>
 <p>Important Note: When we use the term “best” in mathematics we have to define precisely what we mean by “best” before we can use the tools of optimization to find the best thing we have defined. - Best is defined as the <strong>most</strong> “trusted” parameters given our observed sample when using the Maximum Likelihood method. - Best is defined as the <strong>smallest</strong> “collective error” between the observed values in the data and the values predicted from the fitted model.</p>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.32">Class.32 on byuimath.com</a></em></p>
 
 
 </section>
@@ -507,6 +749,19 @@ Solution
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

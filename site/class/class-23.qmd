@@ -1,6 +1,47 @@
 ---
 title: "Class 23"
 ---
+# Between Class Sessions - Prep for Day 23 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Writing Equations
+The goal of these exercises is to practice writing functions that model a given situation. Each of the functions you create should depend on only one variable. We'll need this skill to solve applied optimization problems.
+
+1. The product of two numbers $n$ and $m$ is 100, and $n$ must be positive. (For example, $n = 20$ and $m = 5$ or $n = \frac{2}{3}$ and $m = 150$).
+    - Write a function that gives the sum of the two numbers in terms of $n$. 
+      - What is the domain of this function?
+    - Graph the function using R. 
+      - What is the minimum value of the function?
+      - For which value of $n$ do you obtain the minimum value of the function?
+      - What is the maximum value of the function?
+      - For which value of $n$ do you obtain the maximum value of the function?
+
+1. A rectangle with sides of length $\ell$ and width $w$ has a perimeter of 400 yards. (For example, if the length $\ell = 50$ yards then $w = ?$ and the area of the rectangle is $A = ?$).
+    - Write a function that gives the area in terms of $\ell$. What is the domain of this function?
+    - Write a function that gives the area in terms of $w$. What is the domain of this function?
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Work on 2 -- Partial Derivatives assignment.
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+    - 2 -- Derivative Rules (Function Composition) - the Chain Rule
+    - 2 -- Linearization
+
+### Applied Practice (Project Work)
+- Submit Project 2 Task 1
+- Complete and submit revisions of any outstanding previous project work.
+- Read the instructions for Project 2 Task 2 (and get started)
+
 
 # During Class
 ## Brain Gains
@@ -21,6 +62,7 @@ Start by giving each person a moment to share what they chose to prepare for cla
 
 ### Activity - Partial Derivatives With the Chain Rule
 1. Given $S(x, y; a, b) = 3(ax + by)^{-3}$, find $\diff{S}{x}$ assuming all other variables and parameters are constant then find $\diff{S}{y}$ assuming all other variables and parameters are constant.
+
 1. Given $g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}$, find $\frac{\partial g}{\partial a_1}$ and $\frac{\partial g}{\partial a_2}$.
 1. Given $h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}$, find $\frac{\partial h}{\partial x}$ and $\frac{\partial h}{\partial y}$.
 
@@ -28,6 +70,7 @@ Start by giving each person a moment to share what they chose to prepare for cla
 <summary>Answer</summary>
 
 1. We have $\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}$ and $\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}$.
+
 1. We find $\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(x_i)$ and $\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(y_i)$.
 1. We compute $\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}$ and $\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}$
 
@@ -86,10 +129,13 @@ $g_{yx} = \frac{\partial}{\partial x}(-\frac{6}{5}(\pi x - \frac{1}{5}y)) = -\fr
 The loglikelihood function for $f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2$ is 
 $$\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i- 100 - a_1t_i - a_2t_i^2)^2.$$
 1. Compute $\dfrac{\partial \ell_2}{\partial a_1}$. We avoid using $(\ell_2)_{a_1}$ notation here, because the double subscript is awkward.  We could let $\ell = \ell_2$ and then write $\ell_{a_1}$ to resolve this. 
+
 1. Compute $\dfrac{\partial \ell_2}{\partial a_2}$. 
 1. Compute $\dfrac{\partial^2 \ell_2}{\partial a_1^2}$. You computed $\dfrac{\partial \ell_2}{\partial a_1}$ above, so now compute its partial derivative with respect to $a_1$. 
+
 1. Compute $\dfrac{\partial^2 \ell_2}{\partial a_2\partial a_1}$. You computed $\dfrac{\partial \ell_2}{\partial a_1}$ above, so now compute its partial derivative with respect to $a_2$. 
 1. Compute $\dfrac{\partial^2 \ell_2}{\partial a_2^2}$.
+
 1. Compute $\dfrac{\partial^2 \ell_2}{\partial a_1\partial a_2}$. 
 
 If you finish early, pick another function from Project 2, and compute all the partial derivatives.  You are essentially working through Project 2 Task 2. 
@@ -97,23 +143,34 @@ If you finish early, pick another function from Project 2, and compute all the p
 ### Activity - Derivative Practice 
 Use the remaining time to practice working with higher order derivatives and the chain rule. Both of these activities are carried over from previous days. Please spend time with each one (maybe half the rest of class on higher order derivatives, and the other half on the chain rule).  
 #### Higher order derivatives
-Open this ../assets/docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem. 
+Open this [Higher Order Derivatives worksheet](../assets/docs/Higher_Order_Derivatives.pdf) and take turns computing derivatives, passing the chalk after each problem.
 #### Activity - Chain Rule Practice
 For each pair of functions $f(x)$ and $g(x)$ below, write out the compositions $f(g(x))$ and $g(f(x))$. 
 Then compute the derivative of each composite function. As a suggestion, compute both $f'(x)$ and $g'(x)$ first, and then show how you can combine $f,g,f',g'$ to get the derivative of each composite function.  
 Remember to pass the chalk between each problem. 
 1. $f(x) = 3x + 4$, $g(x) = x^2 + 1$
+
 1. $f(x) = e^x$, $g(x) = \sqrt{2x-5}$
 1. $f(x) = \frac{1}{x}$, $g(x) = 2\ln(x)$
+
 1. $f(x) = (x-5)^4$, $g(x) = \sqrt[3]{x^2}$
 1. $f(x) = e^{3x}$, $g(x) = x^4 - 1$
+
 1. $f(x) = \frac{x}{x-3}$, $g(x) = \ln(5x)$
 1. $f(x) = 2x^3 - 10x^2 + 2x$, $g(x) = \sqrt{\frac{x-4}{2}}$
+
 1. $f(x) = \frac{1}{x^5}$, $g(x) = 4e^x$
 1. $f(x) = \sqrt{8-x}$, $g(x) = (2x-1)(x+5)$
+
 1. $f(x) = e^{x/2}$, $g(x) = 5x^3$
 1. $f(x) = 1 - \frac{3}{x^4}$, $g(x) = 2 - \sqrt{x}$
+
 1. $f(x) = \frac{3}{x^2}$, $g(x) = \ln(x)$
 1. $f(x) = 27 - x^3$, $g(x) = x^2 - x - 12$
+
 1. $f(x) = \sqrt[3]{4-x^2}$, $g(x) = 5x + 7$
 1. $f(x) = \frac{x+1}{x-2}$, $g(x) = e^{-x}$
+
+---
+
+*Source: [Class.23 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.23)*

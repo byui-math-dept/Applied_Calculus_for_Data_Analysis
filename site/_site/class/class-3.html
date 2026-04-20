@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,13 +427,23 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-3" id="toc-between-class-sessions---prep-for-day-3" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-3">Between Class Sessions - Prep for Day 3 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-r" id="toc-introduction-to-r" class="nav-link" data-scroll-target="#introduction-to-r">(1) Introduction to R</a></li>
+  <li><a href="#solving-equations" id="toc-solving-equations" class="nav-link" data-scroll-target="#solving-equations">(2) Solving Equations</a></li>
+  <li><a href="#pick-something-to-share" id="toc-pick-something-to-share" class="nav-link" data-scroll-target="#pick-something-to-share">(3) Pick something to share</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
   <ul class="collapse">
   <li><a href="#plotting-in-r" id="toc-plotting-in-r" class="nav-link" data-scroll-target="#plotting-in-r">Plotting in R</a></li>
-  <li><a href="#solving-equations" id="toc-solving-equations" class="nav-link" data-scroll-target="#solving-equations">Solving Equations</a></li>
+  <li><a href="#solving-equations-1" id="toc-solving-equations-1" class="nav-link" data-scroll-target="#solving-equations-1">Solving Equations</a></li>
   <li><a href="#activity---exploring-functions" id="toc-activity---exploring-functions" class="nav-link" data-scroll-target="#activity---exploring-functions">Activity - Exploring Functions</a></li>
   </ul></li>
   <li><a href="#class-discussion" id="toc-class-discussion" class="nav-link" data-scroll-target="#class-discussion">Class Discussion</a>
@@ -280,6 +458,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -300,6 +479,55 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-3" class="level1">
+<h1>Between Class Sessions - Prep for Day 3 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation</p>
+<section id="introduction-to-r" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-r">(1) Introduction to R</h3>
+<ul>
+<li>Read Sections 1-4 and 11.3 (page 1-5 and 10) of <a href="https://drive.google.com/uc?export=download&amp;id=1U0Gs5tPwpT1uHySRaf03PpyEt0bxw7K4" target="_blank">A (very) short introduction to R</a>.</li>
+<li>Construct your own function and plot it.
+<ul>
+<li><em>Figure 1 (page 3) may be helpful.</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="solving-equations" class="level3">
+<h3 class="anchored" data-anchor-id="solving-equations">(2) Solving Equations</h3>
+<p>Review page 1-3 in this <a href="https://byuistats.github.io/M119/m119-docs/EquationSolvingStrategies_kelly.pdf" target="_blank">summary of solving equations</a> compiled by my colleague Kelly MacArthur. Then complete as many of these as you can, with the goal of having something you can share with your team in class.</p>
+<ul>
+<li>Create an example of a linear equation to solve, and then solve it.</li>
+<li>Create an example of a quadratic equation to solve, and then solve it.</li>
+<li>Create an example of a rational equation to solve, and then solve it.</li>
+<li>Create an example of a radical equation to solve, and then solve it.</li>
+<li>For additional (optional) review, as needed, watch one or more of the following videos.
+<ul>
+<li><a href="https://www.youtube.com/watch?v=eq8APJ6qf2M&amp;feature=youtu.be">Solving Linear Equation, Video 1</a></li>
+<li><a href="https://www.youtube.com/watch?v=-KL6RZDbO6A&amp;feature=youtu.be">Solving Linear Equation, Video 2</a></li>
+<li><a href="https://www.youtube.com/watch?v=5tiQN3wQZfs&amp;feature=youtu.be">Solving a Polynomial Equation</a></li>
+<li><a href="https://www.youtube.com/watch?v=tT0Zwsto6AQ&amp;feature=youtu.be">Solving Radical Equation</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="pick-something-to-share" class="level3">
+<h3 class="anchored" data-anchor-id="pick-something-to-share">(3) Pick something to share</h3>
+<p>Remember to pick something from the above that you can share with your peers</p>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Work on the “1 – Function Evaluation” assignment</li>
+<li>Work on the “1 – Function Basics” assignment</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -348,15 +576,15 @@ Some Solutions
 <h3 class="anchored" data-anchor-id="plotting-in-r">Plotting in R</h3>
 <p>Help each other plot the following functions in R. - <span class="math inline">\(f(x) = x^2+3x\)</span> for <span class="math inline">\(-3\leq x \leq 3\)</span>. - <span class="math inline">\(g(x) = \sqrt{x+4}-\sqrt{x+1}\)</span> over a reasonable domain.</p>
 </section>
-<section id="solving-equations" class="level3">
-<h3 class="anchored" data-anchor-id="solving-equations">Solving Equations</h3>
+<section id="solving-equations-1" class="level3">
+<h3 class="anchored" data-anchor-id="solving-equations-1">Solving Equations</h3>
 <p>The prep asked you to create and solve four types of equations. Start by addressing any question you had from the prep. Then solve each of the following at the chalk boards (remember to pass the chalk between each).</p>
 <ol type="1">
-<li><span class="math inline">\(3x+2=7x-10\)</span></li>
-<li><span class="math inline">\(x^2+3x=10\)</span></li>
-<li><span class="math inline">\(x^2+3x=12\)</span></li>
-<li><span class="math inline">\(\frac{1}{x+2} = \frac{3}{x+1}-1\)</span></li>
-<li><span class="math inline">\(\sqrt{x+4}-\sqrt{x+1}=1\)</span></li>
+<li><p><span class="math inline">\(3x+2=7x-10\)</span></p></li>
+<li><p><span class="math inline">\(x^2+3x=10\)</span></p></li>
+<li><p><span class="math inline">\(x^2+3x=12\)</span></p></li>
+<li><p><span class="math inline">\(\frac{1}{x+2} = \frac{3}{x+1}-1\)</span></p></li>
+<li><p><span class="math inline">\(\sqrt{x+4}-\sqrt{x+1}=1\)</span></p></li>
 </ol>
 <p>If some of the above are/were difficult to solve, it’s ok. We soon learn how to solve all of these using R, and then we’ll continue using software to solve equations for us throughout the semester.</p>
 </section>
@@ -366,96 +594,27 @@ Some Solutions
 <ol type="1">
 <li>Complete each table below.</li>
 </ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(f(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(g(x) = f(x) + 2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(h(x) = f(x+2)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(f(x)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(g(x) = f(x) + 2\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(h(x) = f(x+2)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">&nbsp;| 4 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 0 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 4 |</div>
 <ol type="1">
 <li><p>Graph each of the functions from part 1.</p></li>
 <li><p>The graph of <span class="math inline">\(g\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>
@@ -487,14 +646,14 @@ Some Solutions
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We can also put everything on a single line, as done below, but the above is easier to read.</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#We can also put everything on a single line, as done below, but the above is easier to read.</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="st">'weight (1000 lbs)'</span>,<span class="at">ylab=</span><span class="st">'Miles per US gallon'</span>,<span class="at">main=</span><span class="st">'Our 1st Scatter Plot'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can examine the mtcars dataset with head(mtcars), and then construct scatterplots that compare other quantitative (numerical) variables.</p>
 </section>
 <section id="rstudio-practice" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio-practice">RStudio Practice</h3>
 <p><strong>Evaluate Functions</strong> - Given <span class="math inline">\(h(x) = \sqrt{3-x}\)</span>, compute <span class="math inline">\(h(-4)\)</span> and <span class="math inline">\(h(5)\)</span>.</p>
-<p><strong>Create and Render a Quarto file</strong> - Click the New File icon OR Click File -&gt; New File -&gt; Quarto Document - Typing Math - Not required in Math 119 (You can insert an image with handwritten math.) - But you can copy Latex from our Wiki or Project Instructions.</p>
+<p><strong>Create and Knit a RMarkdown file</strong> - Click the New File icon OR Click File -&gt; New File -&gt; R Markdown - Typing Math - Not required in Math 119 (You can insert an image with handwritten math.) - But you can copy Latex from our Wiki or Project Instructions.</p>
 <p>We’ll now use RStudio to calculate each value. - Let <span class="math inline">\(w(v) = v^2 - 5v -6\)</span> Compute the following values. - <span class="math inline">\(w(-1)\)</span> - <span class="math inline">\(w(-3)\)</span> - <span class="math inline">\(w(6)\)</span> - <span class="math inline">\(w(4)\)</span></p>
 <details>
 <summary>
@@ -509,7 +668,7 @@ Answers
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">6</span>)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(<span class="dv">4</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all at once.</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">w</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -533,7 +692,7 @@ Answers
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">1</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">0</span>)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Or all at once.</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Or all at once.</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note: Make sure you know how to interpret the output from R. The value <span class="math inline">\(f(0)\)</span> is undefined. Infinity, <span class="math inline">\(\infty\)</span>, is not a number but a concept.</p>
@@ -550,9 +709,9 @@ Answers
 Answers
 </summary>
 <p>Compute <span class="math inline">\(f(-2)\)</span></p>
-<pre><code>8*(-2)^2 - 15</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span><span class="sc">*</span>(<span class="sc">-</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compute <span class="math inline">\(f(1)\)</span></p>
-<pre><code>8*(1)^2 - 15</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span><span class="sc">*</span>(<span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <ul>
 <li>Consider the piecewise function <span class="math display">\[g(x) =
@@ -655,6 +814,8 @@ More Code for Thought…
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y1,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">lwd=</span><span class="dv">5</span>,<span class="at">col=</span><span class="st">'gray'</span>)</span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X,Y2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.3">Class.3 on byuimath.com</a></em></p>
 
 
 </section>
@@ -663,6 +824,19 @@ More Code for Thought…
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

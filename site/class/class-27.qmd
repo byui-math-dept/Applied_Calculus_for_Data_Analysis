@@ -1,6 +1,216 @@
 ---
 title: "Class 27"
 ---
+# Between Class Sessions - Prep for Day 27 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Solving Linear Systems
+We will need the result from our work below to finish Project 2 Task 3. Once we have more than one unknown parameter in our model, we have to solve a system of equations where every partial derivative equals zero, in order to locate the parameters that lead to maximum likelihood. We'll solve a single system of equations, symbolically, and then use the result to answer lots of questions. 
+The linear system we need to solve is 
+$$\left\{
+\begin{array}{ll}
+c_1-b_{1,1}x -b_{1,2}y &= 0 \\ 
+c_2-b_{2,1}x -b_{2,2}y &= 0
+\end{array} 
+\right.\quad \text{or}\quad
+\left\{
+\begin{array}{ll}
+b_{1,1}x +b_{1,2}y &= c_1 \\ 
+b_{2,1}x +b_{2,2}y &= c_2
+\end{array} 
+\right.$$
+If you feel comfortable solving the system above for $x$ and $y$, without any extra directions, then feel free to just start right in.  If that tasks seems a little daunting, then instead use the help below. 
+
+Because there are so many variables involved, solving this system can be difficult. 
+The problems that follow are designed to help guide you to solving this system. 
+Get as far as you can today, and come with questions. 
+
+One problem solving strategy we often use in mathematics is when a problem is challenging and we are not sure how to move forward, we look for a similar (but "easier") problem we know how to solve and use that to help us move forward on the more difficult problem we are working on. Designing problems we know the answer to helps us step forward to more difficult problems. 
+- Let's start with a problem that seems more familiar (level 0): Solve the system
+$$\left\{
+\begin{array}{ll}
+3x + 2y &= 7 \\ 
+2x + 5y &= 12
+\end{array} 
+\right.$$
+
+- Now we will step up the difficulty (level 1 problems): 
+    - Solve the system
+$$\left\{
+\begin{array}{ll}
+3x + 2y &= c_1 \\ 
+2x + 5y &= 12
+\end{array} 
+\right.$$
+      - Note your answer is no longer a pair of numbers but a pair of formulas that depend on $c_1$. Check your work by plugging in $c_1 = 7$ your answer should be the same as the previous problem (the level 0 problem).
+
+    - Solve the system
+$$\left\{
+\begin{array}{ll}
+3x + 2y &= c_1 \\ 
+2x + 5y &= c_2
+\end{array} 
+\right.$$
+      - Note your answer is not a pair of numbers but a pair of formulas that depend on $c_1$ and $c_2$. Check your work by plugging in $c_1 = 7$ and $c_2 = 12$ to the formulas you found, your answer should be the same as the level 0 problem. But note that when you change the values of $c_1$ and $c_2$ and you have the solution to **a different** level 0 problem.
+
+- Now we will step up the difficulty (level 2 problems): 
+    - Solve the system
+$$\left\{
+\begin{array}{ll}
+b_{1,1}x + 2y &= c_1 \\ 
+2x + 5y &= c_2
+\end{array} 
+\right.$$
+      - Note your answer is not a pair of numbers but a pair of formulas that depend on $c_1$, $c_2$,  and $b_{1,1}$. Check your work by plugging in $c_1 = 7$, $c_2 = 12$, and $b_{1,1} = 3$ to the formulas you found, your answer should be the same as the level 0 problem. But note that when you change the values of $c_1$, $c_2$, and $b_{1,1}$ you have the solution to **a different** level 0 problem.
+
+    - Solve the system
+$$\left\{
+\begin{array}{ll}
+b_{1,1}x + 2y &= c_1 \\ 
+2x + b_{2,2}y &= c_2
+\end{array} 
+\right.$$
+      - Note your answer is not a pair of numbers but a pair of formulas that depend on $c_1$, $c_2$, $b_{1,1}$, and $b_{2,2}$. Check your work by plugging in the values from our level 0 problem to the formulas you found.
+
+- Let's step up the difficulty again (level 3 problems): 
+    - Solve the systems
+$$\left\{
+\begin{array}{ll}
+b_{1,1}x + b_{1,2}y &= c_1 \\ 
+2x + b_{2,2}y &= c_2
+\end{array} 
+\right.$$
+and then
+$$\left\{
+\begin{array}{ll}
+b_{1,1}x + b_{1,2}y &= c_1 \\ 
+b_{2,1}x + b_{2,2}y &= c_2
+\end{array} 
+\right.$$
+      - Check your work by plugging in the values from our level 0 problem to the formulas you found.
+
+<details>
+<summary>Answer (level 3 problem)</summary>
+
+There are several ways to obtain a solution.  Here is one of many possible solutions. 
+
+- $x = \frac{c_1b_{2,2} - b_{1,2}c_2}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}$
+- $y = \frac{b_{1,1}c_2 - c_1b_{2,1}}{b_{1,1}b_{2,2} - b_{1,2}b_{2,1}}$
+
+```r
+b11 <- 3
+b12 <- 2
+b21 <- 2
+b22 <- 5
+c1 <- 7
+c2 <- 12
+
+x <- (c1*b22 - b12*c2)/(b11*b22 - b12*b21)
+y <- (b11*c2 - c1*b21)/(b11*b22 - b12*b21)
+
+#Check
+b11*x+b12*y == c1
+b21*x+b22*y == c2
+```
+
+</details>
+
+### (2) Practice -- Identifying Extrema
+- Work through the following exercises identifying extrema.
+    - Find any extrema of $A(x) = 1200x - x^2$.
+
+```r
+#Approximate the zeros of the first derivative.
+DA <- function(x){1200-2*x}
+cv <- uniroot(DA,c(0,1200))$root
+cv
+
+#Use R as a calculator to compute the second derivative at critical values. 
+D2A <- function(x){-2 + 0*x}
+D2A(cv)
+D2A(600)
+
+#Use R to graph the function. You can use the code below, or use the new my_plot() function that we defined in class. 
+A <- function(x){1200*x - x^2}
+x <- seq(-2,1500,0.1)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,A(x),type = "l")
+
+A(cv)
+A(600)
+```
+
+    - Find any extrema of $A(x) = 2400x - 2x^2$.
+
+```r
+#Approximate the zeros of the first derivative.
+DA <- function(x){2400-4*x}
+cv <- uniroot(DA,c(0,1200))$root
+cv
+
+#Use R as a calculator to compute the second derivative at critical values. 
+D2A <- function(x){-4 + 0*x}
+D2A(cv)
+D2A(600)
+
+#Use R to graph the function. You can use the code below, or use the new my_plot() function that we defined in class. 
+A <- function(x){2400*x - 2*x^2}
+x <- seq(-2,1500,0.1)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,A(x),type = "l")
+
+A(cv)
+A(600)
+```
+
+    - Find any extrema of $V(x) = 24x - \frac{1}{2}x^3$.
+
+```r
+#Approximate the zeros of the first derivative.
+DV <- function(x){24 - (3/2)*x^2}
+cv.1 <- uniroot(DV,c(0,10))$root
+cv.2 <- uniroot(DV,c(-10,0))$root
+
+#Use R as a calculator to compute the second derivative at critical values. 
+D2V <- function(x){-3*x}
+D2V(cv.1)
+D2V(-4)
+D2V(cv.2)
+D2V(4)
+
+#Use R to graph the function. You can use the code below, or use the new my_plot() function that we defined in class. 
+V <- function(x){24*x - (1/2)*x^3}
+x <- seq(-2,7,0.01)
+par(mar=c(2.5,2.5,0.25,0.25))
+plot(x,V(x),type = "l")
+```
+
+    - Give your own function (or grab one from KnewtonAlta), and modify the code above to help you locate an extrema of your chosen function. Repeat this as many times as you need, to feel comfortable using R to locate extreme values.
+
+### (3) Reflection -- Writing Objectives Functions
+- Reflect on your Writing Equations Between Class work over the last week or so. Write down the key steps for writing an equation in one variable from a story.
+- Reflect on your work with loglikelihood functions, Project 2 Task 1. Write down the key steps you must follow to write the loglikelihood function given a model you want to fit to data and assuming the residuals are independent and normally distributed (with mean 0 and standard deviation 1).
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 2 -- First Derivative and Extrema assignment
+- Complete 2 -- Second Derivative and Extrema assignment
+
+### Applied Practice (Project Work)
+- Complete and Submit Project 2 Task 2
+- Begin Project 2 Task 3
+    - Read the instructions for Project 2 Task 3
+    - Determine when the derivative of $\ell_1$ is zero. What is the sign of the second derivative of $\ell_1$ at this value of $a_1$? Is there a local maximum or local minimum at this value of $a_1$ (what is the conclusion of the second derivative test in this case)?
+      - Check your work. Plot $\ell_1$. Does the value of $a_1$ correspond to an extrema? What your conclusion of a local maximum or local minimum correct?
+
 
 # During Class
 ## Brain Gains
@@ -84,15 +294,15 @@ c2 <- sum(n^2)
 x <- (c1*b22 - b12*c2)/(b11*b22 - b12*b21)
 y <- (b11*c2 - c1*b21)/(b11*b22 - b12*b21)
 
-1. Check
+#Check
 b11*x+b12*y == c1
 b21*x+b22*y == c2
 
-1. Remember floating point arithmetic can cause a problem with the logic checks above. 
+#Remember floating point arithmetic can cause a problem with the logic checks above. 
 b11*x+b12*y - c1
 b21*x+b22*y - c2
 
-1. R has a function to help with this, called all.equal()
+#R has a function to help with this, called all.equal()
 all.equal(b11*x+b12*y,c1)
 all.equal(b21*x+b22*y,c2)
 ```
@@ -162,13 +372,16 @@ A company is building square-bottomed boxes with no tops. The material for the b
 We'll spend some time working through parts of project 2. The point is to help each other by asking and answering questions. We'll focus on the first model $f_1(t; a_1) = 100 + a_1t$. The loglikelihood function, which task 1 has you derive, is 
 $$ \ell_1 = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i)^2.$$ 
 1. Compute the first derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d\ell_1}{da_1} = \left(\sum_{i=1}^{44} t_i(y_i-100)\right) - \left(\sum_{i=1}^{44} t_i^2\right) a_1.$$
+
 1. Compute the second derivative of $\ell_1$ with respect to $a_1$ and show that it can be written in the form $$\frac{d^2\ell_1}{da_1^2} = -\sum_{i=1}^{44} t_i^2.$$
 1. Use R (with seed=123) to actually compute the coefficients in your first and second derivatives above. (Use the sum function.) Check that you obtain the following:
     - $ \frac{d\ell_1}{da_1} = 172746.8 - 328767530 a_1 $
     - $ \frac{d^2\ell_1}{da_1^2} = -328767530 $
 1. Find the critical points of $\ell_1$. This means you must set the first derivative equal to zero and solve for $a_1$. 
+
 1. Use the second derivative test to determine if the critical point is the location of maxima or minima.
 1. State the value of $a_1$ that gives the location of maximum loglikelihood.
+
 1. Use the code below to plot the lightbulb data (using the seed 123) along with the fitted model $ f_1(t) $ on the same axes, updating the value you obtained for $ a_1 $.
 
 ```r
@@ -193,19 +406,23 @@ $$ \ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) =
 - 100 - a_1t_i - a_2t_i^2)^2.$$
 
 1. Compute the both first partials $\frac{partial \ell_2}{\partial a_1}$ and $\frac{partial \ell_2}{\partial a_2}$. Simplify your work to match the values given in Project 2 Task 2. 
+
 1. Compute and correctly label all 4 second partials, namely $\frac{\partial^ \ell_2}{\partial a_1^2}$, $\frac{\partial^ \ell_2}{\partial a_2\partial a_1}$, $\frac{\partial^2 \ell_2}{\partial a_1\partial a_2}$, and $\frac{\partial^ \ell_2}{\partial a_2^2}$. Simplify your work to match the values given in Project 2 Task 2.
 1. Use the seed 123 to compute all of the coefficients in the first and second partials. We'll compare answers in class to see how we did. 
+
 1. Find the critical values by letting both first partials equal zero.  You will obtain a system of equations.  Solve that system using the code from the brain gains. 
 
 We have not yet discussed a second derivative test when there is more than one variable.  We'll be doing that next week. 
 
 ### Activity - Reflection on Loglikelihood and Optimization
 1. What are the steps needed to obtain the loglikelihood function given some data $(x_i,y_i)$, a deterministic model $f(x)$, and a probability model $g(r)$ for the residuals. This is precisely part of what you did for Project 2 Task 1.
+
 1. What are the steps needed to locate and classify extrema for a function, so what are the steps to optimization? This is part of what you did for Project 2 Task 2 and what you will do for Project 2 Task 3.
 
 ## Discussion 
 ### Summary: Steps to obtain loglikelihood.
 1. Identify the deterministic model $f$ and stochasitic model $p$. 
+
 1. Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as $L = \prod_i p(r_i)$. 
 1. The loglikelihood function is $\ell = \ln(\prod_i p(r_i))$. 
 
@@ -222,8 +439,12 @@ We have not yet discussed a second derivative test when there is more than one v
 How long do people wait in a line when they head to the bank?  
 - We'll use the deterministic model $f(x) = 0$ to predict how long someone has to wait (where $x$ represents the time of day). What does this model really say in plain english? 
     - What are your thoughts about our choice of models?
-- We'll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
+- We'll use the <https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution> $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
 - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where $x_i$ is the time of day the $i^{\text{th}}$ person comes into the bank and $y_i$ is the amount of time that person waits in line).
 - Find the location of the maximum of the loglikelihood function. 
 
 [This article](https://www.statlect.com/fundamentals-of-statistics/exponential-distribution-maximum-likelihood){target="_blank"} goes through all the computations above.
+
+---
+
+*Source: [Class.27 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.27)*

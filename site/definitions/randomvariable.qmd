@@ -6,6 +6,7 @@ title: "Definition: RandomVariable"
 <summary>Definition: Random (or Stochastic) Variable</summary>
 
 1. A **random variable** is a function that associates a number with each outcome of the sample space of a chance experiment.
+
 1. Let $S$ be the sample space of an experiment. A **random variable** is a function from $S$ to the real line. Random variables are usually denoted by a capital letter. Individual observed *values* of a random variable are usually denoted by the corresponding lower case letter.
 Example: We toss a fair coin three times. Let $X$ be the stochastic variable that counts the number of heads. If we conduct this experiment once and see we had 2 heads in that individual observation of the experiment, we write $x = 2$. We could ask the questions, "What is the probability that $X = 2$?" or "What is the probability that $X = x$?" 
 

@@ -1,6 +1,64 @@
 ---
 title: "Class 17"
 ---
+# Between Class Sessions - Prep for Day 17 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Derivative Rules
+- Watch [Intro to Derivative Rules](https://www.youtube.com/watch?v=untsh_gpdzI&feature=youtu.be){target="_blank"} (~9 minutes)
+    - Begin Knewton Alta assignment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+
+### (2) Loglikelihood
+
+<details>
+<summary>Loglikelihood Function</summary>
+
+The **loglikelihood function** is the natural log of the likelihood function.
+
+**Useful Fact:** The loglikelihood will have a maximum at the same location (i.e. for the same parameter value, or collection of parameter values for multidimensional likelihood functions) as the likelihood function.
+
+</details>
+
+For each of the likelihood functions below, write the corresponding loglikelihood function.
+- $L_1(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}$ with $x_i = 0, 1, 2, 3, ...$ for $i = 1, 2, ... n$ where $\lambda > 0$.
+
+- $L_2(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}$ with $x_i > 0$ for $i = 1, 2, ... n$ where $\lambda >0$.
+
+- $L_3(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}},$ where $\mu$ is a real number and $\sigma > 0$.
+
+<details>
+<summary>Answers</summary>
+
+- $\ell_1(\lambda; \mathbf{x}) = \ln\left(\prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\right)$ with $x_i = 0, 1, 2, 3, ...$ for $i = 1, 2, ... n$ where $\lambda > 0$.
+
+- $\ell_2(\lambda; \mathbf{x}) = \ln\left(\prod_{i=1}^n \lambda e^{-\lambda x_i}\right)$ with $x_i > 0$ for $i = 1, 2, ... n$ where $\lambda >0$.
+
+- $\ell_3(\mu, \sigma; \mathbf{x}) = \ln\left(\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\right),$ where $\mu$ is a real number and $\sigma > 0$.
+
+Remember: Logs can turn multiplication into addition.
+
+How could you use this property of logarithms to rewrite each loglikelihood function with a sum rather than a product?
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+Begin Knewton Alta assignment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+
+### Applied Practice (Project Work)
+- Complete Project 1
+- Begin Project 2 Task 1
+    - Read the instructions
+    - Write down a formula for residuals $r_i = y_i - \hat{y_i} = y_i - f(t_i)$ for each general function listed in Project 2 Task 1 and points $ ( t_i, y_i ) $. Write your formula so you can clearly see how the parameters $a_1$ and $a_2$ contribute to the calculation of $r_i$ in each case. For example, given the model $f_1$ the formula for the residuals will be $r_i = y_i - f_1(t_i; a_1) = y_i - (100 + a_1t_i) = y_i - 100 - a_1t_i$.
+
 
 # During Class
 ## Brain Gains
@@ -44,15 +102,19 @@ Below is a list of derivative rules (most of which we have seen) that you are we
 - After you've discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to *pass the chalk* after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.
 
 1. For $f(x) = 3x^2-7x+5$, find $f'(x)$. Remember to **identify which rules** you used at each step (on this and each problem).
+
 1. For $g(x) = 4e^x-6\ln x$, find $g'(x)$. 
 1. For $h(x) = 5\sqrt{x}-\frac{3}{x}$, find $\frac{dh}{dx}$. 
+
 1. For $r(t) = 7\ln t - \frac{3}{t^2}$, find $\frac{dr}{dt}$. 
 1. For $f(p) = \sum_{j=3}^7 4^jp$, find $f'(p)$. 
+
 1. For $p(x) = ax^2+bx+c$, find $\frac{dp}{dx}$ assuming that $a,b,c$ are constants.
 1. For $h(r) = \sum_{n=1}^{40} n\ln(r)$, find $h'(r)$. 
+
 1. For $t(x) = \sum_{m=1}^{40}  m x^m$, find $\frac{dt}{dx}$. 
 
-[Derivative Rules — Power, Constant, Sum (PDF)](../assets/docs/DerRules_Power_Constant_Sum.pdf){target="_blank"}
+[Derivative rules (power, constant, sum) PDF](../assets/docs/DerRules_Power_Constant_Sum.pdf)
 
 ## Using a model (practice with Project 1)
 Consider the following fitted models. *These models were fit to the data obtained using seed=123.*
@@ -154,3 +216,7 @@ f5(25000)
 ```
 
 </details>
+
+---
+
+*Source: [Class.17 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.17)*

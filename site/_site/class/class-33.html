@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,7 +427,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-33" id="toc-between-class-sessions---prep-for-day-33" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-33">Between Class Sessions - Prep for Day 33 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
   <ul class="collapse">
@@ -281,6 +457,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Class 33</h1>
@@ -300,14 +477,47 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-33" class="level1">
+<h1>Between Class Sessions - Prep for Day 33 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Reading - Rectangles, Targets, and Sums For our next Unit, the reading as well as many practice exercises appear in the document <a href="https://byuistats.github.io/M119/unit3/probability.html" target="_blank">Rectangles, Targets, and Sums</a> 1. Read Section 1.1-1.6 and complete a few exercises along the way bring something you did to share with your group.</p>
+<ol type="1">
+<li>Watch <a href="https://www.loom.com/share/b16f6b4aa3dd4816812780272a35f2c1" target="_blank">Lego Fulcrom video</a> (~4.5 mins)</li>
+<li>Three objects, with masses <span class="math inline">\(m_1=3\)</span>, <span class="math inline">\(m_2=5\)</span>, and <span class="math inline">\(m_3 = 7\)</span> are placed on an almost weightless ruler (think <span class="math inline">\(x\)</span>-axis) with their centers of mass at <span class="math inline">\(x_1=2\)</span>, <span class="math inline">\(x_2=-6\)</span> and <span class="math inline">\(x_3=4\)</span>. Identify the center of mass of the 3 objects together.</li>
+</ol>
+<details>
+<summary>
+Solution
+</summary>
+<p>The total mass is <span class="math inline">\(m = 3+5+7=15\)</span>. We compute <span class="math display">\[\bar x = (2)\frac{3}{15} + (-6)\frac{5}{15} + (4)\frac{7}{15} = \frac{(2)3+(-6)5+(4)7}{15} = \frac{4}{15}.\]</span></p>
+</details>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 2 – Least Squares assignment.</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Complete and Submit Project 2</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <ul>
-<li>The prep involved reading https://byuistats.github.io/M119/unit3/probability.html and completing some of the exercises there.</li>
+<li>The prep involved reading <a href="https://chaz-clark.github.io/M119/Projects/probability.html" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html</a> and completing some of the exercises there.</li>
 </ul>
-<p>The following problem builds upon and use the ideas from the reading. ### Activity - Balls in a Bag As you work through the problems below, please refer to https://byuistats.github.io/M119/unit3/probability.html as needed. Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
+<p>The following problem builds upon and use the ideas from the reading. ### Activity - Balls in a Bag As you work through the problems below, please refer to <a href="https://chaz-clark.github.io/M119/Projects/probability.html" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html</a> as needed. Work on the chalkboard as you complete these problems, and pass the chalk as you finish each one. Leave up your work so that you can compare your answers with your neighbors. If you notice an answer differs from a neighboring group’s, then have a discussion with them.</p>
 <section id="grab-one-ball" class="level4">
 <h4 class="anchored" data-anchor-id="grab-one-ball">Grab one ball</h4>
 <p>There are 10 balls in a bag, three red, one blue, and six green. Your friend proposes to play a game of chance, and the rules go as follows. You reach into the bag and pull out a single ball. Pull out a red and you get 2 points. Pull out a blue and you lose 10 points. Pull out a green you get 1 point. We can think of this as a random variable <span class="math inline">\(X\)</span> where the outcomes correspond to the point values -10, 1, 2, and a probability mass function for this random variable is <span class="math display">\[f(x) =
@@ -316,12 +526,34 @@ window.Quarto = {
 0.6   &amp; x=1 \\
 ???   &amp; x=2 \\
 \end{cases}.
-\]</span> 1. Fill in the <span class="math inline">\(???\)</span> above so that <span class="math inline">\(f(x)\)</span> is a probability mass function. (Hint: what must the sum of the probabilities equal?) 1. What is the probability that you’ll end up with a positive score? In other words, compute <span class="math inline">\(P(X &gt; 0)\)</span>. 1. If you played this game many times (replacing the ball each time), do you think the average score will be positive or negative? Discuss this together as a group. (It’s fine to have an incorrect guess here. The point is to give a gut reaction. What do you think, and why?) - Now use the formula <span class="math inline">\(E[X] = \sum x_i p_i\)</span> to compute the expected value of <span class="math inline">\(X\)</span>. Is the expected score positive or negative? 1. Let <span class="math inline">\(F(x)\)</span> be the cumulative distribution function for <span class="math inline">\(X\)</span>. This means <span class="math inline">\(F(x) = P(X\leq x)\)</span>.<br>
-- Compute <span class="math inline">\(F(0)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 0)\)</span> that the score will be zero or less. - Compute <span class="math inline">\(F(1)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 1)\)</span> that the score will be one or less. - Compute <span class="math inline">\(F(1.5)\)</span>. - Compute <span class="math inline">\(F(2)\)</span>. - Compute <span class="math inline">\(F(100)\)</span>. - Compute <span class="math inline">\(F(-15)\)</span>. - Compute <span class="math inline">\(F(-10)\)</span>. - Compute <span class="math inline">\(F(-8.3)\)</span>. 1. Notice above that we can compute the cumulative distribution function for every real number <span class="math inline">\(x\)</span>. Construct a graph of <span class="math inline">\(F(x)\)</span> (it will look like a bunch of steps with jumps at a few points). As a challenge, write a formula for <span class="math inline">\(F\)</span> using piecewise function notation. - What’s the minimum value for <span class="math inline">\(F(x)\)</span>. - What’s the maximum value for <span class="math inline">\(F(x)\)</span>?</p>
+\]</span> 1. Fill in the <span class="math inline">\(???\)</span> above so that <span class="math inline">\(f(x)\)</span> is a probability mass function. (Hint: what must the sum of the probabilities equal?)</p>
+<ol type="1">
+<li>What is the probability that you’ll end up with a positive score? In other words, compute <span class="math inline">\(P(X &gt; 0)\)</span>.</li>
+<li>If you played this game many times (replacing the ball each time), do you think the average score will be positive or negative? Discuss this together as a group. (It’s fine to have an incorrect guess here. The point is to give a gut reaction. What do you think, and why?)
+<ul>
+<li>Now use the formula <span class="math inline">\(E[X] = \sum x_i p_i\)</span> to compute the expected value of <span class="math inline">\(X\)</span>. Is the expected score positive or negative?</li>
+</ul></li>
+<li>Let <span class="math inline">\(F(x)\)</span> be the cumulative distribution function for <span class="math inline">\(X\)</span>. This means <span class="math inline">\(F(x) = P(X\leq x)\)</span>.
+<ul>
+<li>Compute <span class="math inline">\(F(0)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 0)\)</span> that the score will be zero or less.</li>
+<li>Compute <span class="math inline">\(F(1)\)</span>. So compute the probability <span class="math inline">\(P(X\leq 1)\)</span> that the score will be one or less.</li>
+<li>Compute <span class="math inline">\(F(1.5)\)</span>.</li>
+<li>Compute <span class="math inline">\(F(2)\)</span>.</li>
+<li>Compute <span class="math inline">\(F(100)\)</span>.</li>
+<li>Compute <span class="math inline">\(F(-15)\)</span>.</li>
+<li>Compute <span class="math inline">\(F(-10)\)</span>.</li>
+<li>Compute <span class="math inline">\(F(-8.3)\)</span>.</li>
+</ul></li>
+<li>Notice above that we can compute the cumulative distribution function for every real number <span class="math inline">\(x\)</span>. Construct a graph of <span class="math inline">\(F(x)\)</span> (it will look like a bunch of steps with jumps at a few points). As a challenge, write a formula for <span class="math inline">\(F\)</span> using piecewise function notation.
+<ul>
+<li>What’s the minimum value for <span class="math inline">\(F(x)\)</span>.</li>
+<li>What’s the maximum value for <span class="math inline">\(F(x)\)</span>?</li>
+</ul></li>
+</ol>
 </section>
 <section id="activity---complete-exercises-in-1.8-and-1.9" class="level3">
 <h3 class="anchored" data-anchor-id="activity---complete-exercises-in-1.8-and-1.9">Activity - Complete Exercises in 1.8 and 1.9</h3>
-<p>Complete the exercises in sections 1.8 and 1.9. - https://byuistats.github.io/M119/unit3/probability.html</p>
+<p>Complete the exercises in sections 1.8 and 1.9. - <a href="https://chaz-clark.github.io/M119/Projects/probability.html" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html</a></p>
 </section>
 </section>
 <section id="discussion" class="level2">
@@ -329,13 +561,13 @@ window.Quarto = {
 <ul>
 <li>What is a probability mass function? What do their graphs look like?</li>
 <li>What is the expected value geometrically? How do we interpret an expected value?</li>
-<li>What is a cumulative distribution function? Must it be increasing/nondecreasing? What is the max? What is the min? Let’s examine the 3 pmfs we explored above. The draw_pmf function is provided at the start of the reading in https://byuistats.github.io/M119/unit3/probability.html.</li>
+<li>What is a cumulative distribution function? Must it be increasing/nondecreasing? What is the max? What is the min? Let’s examine the 3 pmfs we explored above. The draw_pmf function is provided at the start of the reading in <a href="https://chaz-clark.github.io/M119/Projects/probability.html" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html</a>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Shades a target diagram <span class="cf">for</span> a probability mass function. </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Inputs<span class="sc">:</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x <span class="sc">-</span> a vector of data points</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> p <span class="sc">-</span> a corresponding vector of probabilities or frequencies</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> All widths are <span class="dv">1</span> unit wide. </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Shades a target diagram for a probability mass function. </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Inputs: </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  x - a vector of data points</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  p - a corresponding vector of probabilities or frequencies</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#All widths are 1 unit wide. </span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>draw_pmf <span class="ot">&lt;-</span> <span class="cf">function</span>(x,p){</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  xs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  px <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(<span class="dv">0</span>,p,p,<span class="dv">0</span>))</span>
@@ -391,7 +623,7 @@ The cumulative distribution function (CDF) of a random variable
 <section id="exercises-1.1---averaging-test-scores" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.1---averaging-test-scores">Exercises 1.1 - Averaging Test Scores</h3>
 <ul>
-<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises</li>
+<li><a href="https://chaz-clark.github.io/M119/Projects/probability.html#exercises" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html#exercises</a></li>
 </ul>
 <ol type="1">
 <li>Consider the vector of integers c(2,2,2,3,3,5,5,5,5,7,8,8,9,9,9).
@@ -450,32 +682,39 @@ Sample Answers
 <section id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.4---tossing-a-coin-three-times-and-counting-heads">Exercises 1.4 - Tossing a coin three times and counting heads</h3>
 <ul>
-<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises9</li>
+<li><a href="https://chaz-clark.github.io/M119/Projects/probability.html#Exercises9" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html#Exercises9</a></li>
 </ul>
-<p>Suppose we toss a coin three times and record the number of heads. Let the random variable <span class="math inline">\(X\)</span> represent this total number of heads. Note that possible outcomes of counting the number of heads are 0,1,2,3 (these are discrete values, hence we call this a discrete random variable). These outcomes arise from the 8 possible results of tossing a coin three times (TTT,TTH,THT, THH,HTT,HTH,HHT, HHH). 1. Verify by hand that F(1)=0.5. 1. Locate F(2) in the table above. 1. Compute F(1.7). Explain. 1. What is F(3)? Give several reasons for your answer. 1. The table tells us F(0)=0.125. Compute P(X&gt;0) using this fact. 1. What is F(23.6)? What is F(−113)?</p>
+<p>Suppose we toss a coin three times and record the number of heads. Let the random variable <span class="math inline">\(X\)</span> represent this total number of heads. Note that possible outcomes of counting the number of heads are 0,1,2,3 (these are discrete values, hence we call this a discrete random variable). These outcomes arise from the 8 possible results of tossing a coin three times (TTT,TTH,THT, THH,HTT,HTH,HHT, HHH). 1. Verify by hand that F(1)=0.5.</p>
+<ol type="1">
+<li><p>Locate F(2) in the table above.</p></li>
+<li><p>Compute F(1.7). Explain.</p></li>
+<li><p>What is F(3)? Give several reasons for your answer.</p></li>
+<li><p>The table tells us F(0)=0.125. Compute P(X&gt;0) using this fact.</p></li>
+<li><p>What is F(23.6)? What is F(−113)?</p></li>
+</ol>
 <details>
 <summary>
 Answers
 </summary>
 <ol type="1">
-<li><span class="math inline">\(F(1) = P(X \leq 1) = P(X=0) + P(X=1) = 0.125 + 0.375 = 0.5\)</span></li>
-<li><span class="math inline">\(F(2) = 0.875\)</span></li>
-<li><span class="math inline">\(F(1.7) = P(X \leq 1.7) = P(X=0) + P(X=1) = 0.5\)</span></li>
-<li><span class="math inline">\(F(3) = 1\)</span>
+<li><p><span class="math inline">\(F(1) = P(X \leq 1) = P(X=0) + P(X=1) = 0.125 + 0.375 = 0.5\)</span></p></li>
+<li><p><span class="math inline">\(F(2) = 0.875\)</span></p></li>
+<li><p><span class="math inline">\(F(1.7) = P(X \leq 1.7) = P(X=0) + P(X=1) = 0.5\)</span></p></li>
+<li><p><span class="math inline">\(F(3) = 1\)</span></p>
 <ul>
 <li>The CDF of X evaluated at 3 is 1, see the table.</li>
 <li>There is not chance the random variable <span class="math inline">\(X\)</span> will take on a value larger than 3.</li>
 <li>All values of the random variable <span class="math inline">\(X\)</span> are less than or equal to 3. The sum of probabilities for all possible event is 1.</li>
 </ul></li>
-<li><span class="math inline">\(P(X &gt; 0) = 1 - P(X \leq 0) = 1 - F(0) = 1-0.125 = 0.875\)</span></li>
-<li><span class="math inline">\(F(23.6) = 1\)</span>, <span class="math inline">\(F(-113) = 0\)</span></li>
+<li><p><span class="math inline">\(P(X &gt; 0) = 1 - P(X \leq 0) = 1 - F(0) = 1-0.125 = 0.875\)</span></p></li>
+<li><p><span class="math inline">\(F(23.6) = 1\)</span>, <span class="math inline">\(F(-113) = 0\)</span></p></li>
 </ol>
 </details>
 </section>
 <section id="exercises-1.5---rolling-two-dice-and-summing-them" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.5---rolling-two-dice-and-summing-them">Exercises 1.5 - Rolling two dice and summing them</h3>
 <ul>
-<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises11</li>
+<li><a href="https://chaz-clark.github.io/M119/Projects/probability.html#Exercises11" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html#Exercises11</a></li>
 </ul>
 <p>We now let <span class="math inline">\(X\)</span> be the discrete random variable obtained by rolling two 6-sided dice and recording their sum. The possible outcomes are the integers from 2 up to 12. (If you’ve played Settler’s of Catan before, then the dots on the number cards provide a visual of the probability mass function). There are 36 results for rolling two six-sided fair dice, and the probability mass function for <span class="math inline">\(X\)</span> is given below.</p>
 <p><span class="math display">\[f(x) =
@@ -493,11 +732,11 @@ Answers
 \frac{1}{36} &amp; \quad x = 12.
 \end{cases}\]</span></p>
 <ol type="1">
-<li>What is the expected value of this random variable? Try to spot the value both visually (locating a centroid) and the verify your computation is correct using <span class="math inline">\(\text{E}[X] = \sum x_ip_i\)</span>.</li>
-<li>Recall that <span class="math inline">\(F(x) = P(X \leq x)\)</span> is the cumulative distribution function for <span class="math inline">\(X\)</span>. Compute <span class="math inline">\(F(x)\)</span> for each <span class="math inline">\(x\)</span> from 2 up to 12.</li>
-<li>Why do we know <span class="math inline">\(F(12)=1\)</span>.</li>
-<li>What is <span class="math inline">\(F(15)\)</span>?</li>
-<li>State <span class="math inline">\(P(X \leq 4)\)</span> and <span class="math inline">\(P(X \leq 9)\)</span> from the CDF table.
+<li><p>What is the expected value of this random variable? Try to spot the value both visually (locating a centroid) and the verify your computation is correct using <span class="math inline">\(\text{E}[X] = \sum x_ip_i\)</span>.</p></li>
+<li><p>Recall that <span class="math inline">\(F(x) = P(X \leq x)\)</span> is the cumulative distribution function for <span class="math inline">\(X\)</span>. Compute <span class="math inline">\(F(x)\)</span> for each <span class="math inline">\(x\)</span> from 2 up to 12.</p></li>
+<li><p>Why do we know <span class="math inline">\(F(12)=1\)</span>.</p></li>
+<li><p>What is <span class="math inline">\(F(15)\)</span>?</p></li>
+<li><p>State <span class="math inline">\(P(X \leq 4)\)</span> and <span class="math inline">\(P(X \leq 9)\)</span> from the CDF table.</p>
 <ul>
 <li>Explain why <span class="math inline">\(P(4 &lt; X \leq 9) = P(X \leq 9) − P(X \leq 4)\)</span>.</li>
 </ul></li>
@@ -537,7 +776,7 @@ Answers
 <section id="exercises-1.6---avoid-gambling" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.6---avoid-gambling">Exercises 1.6 - Avoid Gambling</h3>
 <ul>
-<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises13</li>
+<li><a href="https://chaz-clark.github.io/M119/Projects/probability.html#Exercises13" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html#Exercises13</a></li>
 </ul>
 <p>Here’s a simple gambling game we’ll explore. You pay 1 dollar to play. Your roll two dice and multiply the result together. If you roll a product of 20 or more, you get $4 (your dollar back, plus 3 more). Otherwise, you get nothing (you lost a dollar). There are two outcomes, namely you lose a buck, or you gain 3 bucks. We’ll let <span class="math inline">\(X\)</span> be the random variable with outcomes of −1 and 3 resulting from this game.</p>
 <p><span class="math display">\[f(x) =
@@ -546,12 +785,12 @@ Answers
 \frac{2}{9} &amp; \quad x = 3.
 \end{cases}\]</span></p>
 <ol type="1">
-<li>Verify that for <span class="math inline">\(X\)</span>, the sum of the probabilities is 1.</li>
-<li>Verify the expected value of <span class="math inline">\(X\)</span> is <span class="math inline">\(E[X] = -0.11\overline{1}\)</span>.
+<li><p>Verify that for <span class="math inline">\(X\)</span>, the sum of the probabilities is 1.</p></li>
+<li><p>Verify the expected value of <span class="math inline">\(X\)</span> is <span class="math inline">\(E[X] = -0.11\overline{1}\)</span>.</p>
 <ul>
 <li>This means that if you play the game many times, you can expect to lose on average about 11 cents each game. Casinos make money because they arrange the games to guarantee a negative expected value for the people playing. Yes, occasionally someone will walk away having won more than they paid (which the casino wants advertised), but the truth is that when you look at the long term average of all played games, the casino comes out ahead.</li>
 </ul></li>
-<li>Let <span class="math inline">\(Y\)</span> be the random variable which is the product of rolling two dice. Use the following code to show the probability mass function for <span class="math inline">\(Y\)</span>. Compute <span class="math inline">\(E[Y]\)</span>.</li>
+<li><p>Let <span class="math inline">\(Y\)</span> be the random variable which is the product of rolling two dice. Use the following code to show the probability mass function for <span class="math inline">\(Y\)</span>. Compute <span class="math inline">\(E[Y]\)</span>.</p></li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">36</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>py <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">4</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">36</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">36</span>)</span>
@@ -567,14 +806,14 @@ Answers
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">9</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">9</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>data.frame(outcome = x, prob = p)
-
-draw_pmf(x,p)</code></pre>
-<p>To use the function draw_pmf(x,p), you’ll have to copy the code https://byuistats.github.io/M119/unit3/probability.html.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">outcome =</span> x, <span class="at">prob =</span> p)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_pmf</span>(x,p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To use the function draw_pmf(x,p), you’ll have to copy the code <a href="https://chaz-clark.github.io/M119/Projects/probability.html" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html</a>.</p>
 <ul>
 <li>We expected <span class="math inline">\(E[X]\)</span> to be closer to -1 than to 3 when we look at the target diagram.</li>
 </ul>
-<pre><code>sum(x*p)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>E.Y <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>py)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>E.Y</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -585,7 +824,7 @@ draw_pmf(x,p)</code></pre>
 <section id="exercises-1.7---how-many-tropical-storms---poisson" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1.7---how-many-tropical-storms---poisson">Exercises 1.7 - How many tropical storms - Poisson</h3>
 <ul>
-<li>https://byuistats.github.io/M119/unit3/probability.html#Exercises15</li>
+<li><a href="https://chaz-clark.github.io/M119/Projects/probability.html#Exercises15" class="uri">https://chaz-clark.github.io/M119/Projects/probability.html#Exercises15</a></li>
 </ul>
 <p>We’ll look at another example related to the tropical storms example we did earlier this semester. Let <span class="math inline">\(X\)</span> represent the number of hurricane’s in a year that make landfall in Florida. We already saw that this discrete random variable follows a Poison distribution <span class="math inline">\(f(x;\lambda)=\frac{\lambda^xe^{-\lambda}}{x!}\)</span> where <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span>, and we estimated the parameter to be <span class="math inline">\(\lambda \approx 5.904762\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">5.904762</span></span>
@@ -636,7 +875,7 @@ draw_pmf(x,p)</code></pre>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">sum</span>(p[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.</span> Compare to </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="do">### Compare to </span></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="dv">9</span><span class="sc">:</span><span class="dv">21</span>])</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
@@ -651,6 +890,8 @@ draw_pmf(x,p)</code></pre>
 <ol type="1">
 <li>Make up your own probability questions about how many tropical storms there might be, and answer them.</li>
 </ol>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.33">Class.33 on byuimath.com</a></em></p>
 
 
 </section>
@@ -660,6 +901,19 @@ draw_pmf(x,p)</code></pre>
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

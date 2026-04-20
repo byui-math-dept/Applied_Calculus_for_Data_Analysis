@@ -1,6 +1,57 @@
 ---
 title: "Class 44"
 ---
+# Between Class Sessions - Prep for Day 44 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Antiderivative Practice
+An **antiderivative** is a function that reverses what the derivative did, the result we get when we "undo" a derivative is called an antiderivative.
+Drawing on your knowledge of derivatives, for each expression below, please "undo" the derivative. 
+In other words answer the question, "What function did we take the derivative of to get this function?"
+1. $ x^7 $
+
+1. $ x^{-2} $
+1. $ x^{\frac{5}{4}} $
+
+1. $ x^{-\frac{1}{2}} $
+1. $ \frac{1}{4} $
+
+1. $ \frac{1}{3} x $
+1. $ e^x - 3 x $ 
+
+1. $ \frac{1}{x} $ given $x>0$
+1. $ \frac{1}{x} $ (*What's the domain in this case?*)
+
+### (2) CDFs and PDFs
+We've seen that the PDF of a random variable $X$ is the derivative of the CDF of that random variable, which we can write symbolically as $f(x) = F'(x)$. 
+
+Given a PDF, we could find the CDF if we could figure out how to undo the derivative. Importantly however, there are many functions that will have the same derivative, so picking the correct function with the appropriate derivative can take a bit of work. Let's try this with a few examples. 
+
+For each function below, do the following.
+(a) Verify that the function is a PDF. Write down the definite integral you will need to compute. Use Mathematica to calculate Definite Integral.  
+(b) Use what you know about derivatives to think backwards and identify a function whose derivative is $f(x)$. Can you identify another function whose derivative is also $f(x)$? 
+(c) Without using software, guess which of the derivatives of $f(x)$ is the CDF.
+(d) Check your guess by computing the CDF with Mathematica. Remember the CDF is $ F(x) = P(X \leq x) = \int_{-\infty}^x f(t) dt$.
+1. $f(x) = \frac{1}{5}$ for $0 \leq x \leq 5$ and 0 otherwise.
+
+1. $f(x) = \frac{x}{8}$ for $0 \leq x \leq 4$ and 0 otherwise.
+1. $f(x) = \frac{4-x}{8}$ for $0 \leq x \leq 4$ and 0 otherwise.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Begin work on 3 -- CDFs, PDFs, and the Fundamental Theorem of Calculus
+
+### Applied Practice (Project Work)
+- Finish Project 3
+
 
 # During Class
 ## Brain Gains
@@ -37,12 +88,16 @@ An **antiderivative** is a function that reverses what the derivative did, the r
 Drawing on your knowledge of derivatives, for each expression below, please "undo" the derivative. 
 In other words answer the question, "What function did we take the derivative of to get this function?"
 1. $3x^2$
+
 1. $4e^{x}$
 1. $4e^{4x}$
+
 1. $5x^{-2}$
 1. $x^{-3} + x - 1$
+
 1. $x^7 - 4x + 2$
 1. $\sqrt[7]{x} + \frac{1}{\sqrt[7]{x}}$
+
 1. $x^{-1}$
 
 ### Fundamental Theorem of Calculus
@@ -55,10 +110,13 @@ Combining the above facts, we see that $ \int_a^b f(x) dx = F(b) - F(a) $ provid
 
 Compute each definite integral in 2 ways, namely (1) use Mathematica and then (2) find an antiderivative $G$ of the integrand $g$ and then evaluate $G(b)-G(a)$. Show your work for the second part on the chalkboard. 
 1. Compute $\int_1^4 5 dx$.
+
 1. Compute $\int_1^4 x dx$.
 1. Compute $\int_1^4 x^2 dx$.
+
 1. Compute $\int_1^4 e^{-2x} dx$.
 1. Compute $\int_0^5 e^{-7x} dx$.
+
 1. Compute $\int_2^5 \frac{1}{x} dx$.
 1. Compute $\int_1^2 4-2x+3x^2 dx$.
 
@@ -112,3 +170,7 @@ Could a dart actually land on $x=3$?  Yes. However, there are infinitely many po
 </details>
 
 Remember that the probability density $f$ does not give us a probability, rather we need an interval of $x$-values (a width $\Delta x$) to get a probability from a probability density function. For a continuous probability distribution, the probability that $X$ takes on a single value will always be zero.
+
+---
+
+*Source: [Class.44 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.44)*

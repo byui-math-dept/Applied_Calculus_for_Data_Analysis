@@ -1,6 +1,81 @@
 ---
 title: "Class 25"
 ---
+# Between Class Sessions - Prep for Day 25 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Extrema Vocabulary
+Answer as many of the questions from [Derivative Relationships Fill in the Blank](https://byuistats.github.io/M119/m119-docs/DerivativeRelationship_FillBlank.pdf){target="_blank"} as possible. Use sections 4.3 and 4.5 from the OpenStax Calculus Volume 1 as a resource.
+- [Section 4.3 OpenStax Calculus Volume 1](https://openstax.org/books/calculus-volume-1/pages/4-3-maxima-and-minima){target="_blank"}
+- [Section 4.5 OpenStax Calculus Volume 1](https://openstax.org/books/calculus-volume-1/pages/4-5-derivatives-and-the-shape-of-a-graph){target="_blank"}
+
+### (2) Writing Equations (still practicing)
+Write an equation in one variable for the described quantity in each story below.
+1. A farmer has 2400 feet of fencing to build a fence creating a rectangular corral (or pen) for some of the animals. Write an equation in one variable for the area of the rectangular corral. (Our goal will be to build the corral with maximum area.)
+
+1. A different farmer also has 2400 feet of fencing to build a fence creating a rectangular corral, but she plans to use the wall of a long group of buildings as one of the sides of the rectangular corral. Write an equation in one variable for the area of the rectangular corral. (Our goal will be to build the corral with maximum area.)
+1. A company is building square-bottomed boxes with no tops. The material for the bottom costs \$2 per cm'^2^' and the material for the sides costs \$1 per cm'^2^'. The company plans to charge \$96 for one box. Write an equation in one variable for the volume of the box. (Our goal will be to build a box with maximum volume.)
+
+After you have written down each function, open R and plot each function to visually identify where the maximum of each function occurs. 
+
+### (3) Making Connections
+Open [Project 2 instructions](https://byuistats.github.io/M119/project2.html).
+- Consider the model $f_5$. Review your computations to obtain the loglikelihood function (or complete the computations now). The answer is provided to you in the Task 1 Instructions. Your job is to perform the needed computations and include explanations of each of the steps. 
+    - Note: This is part of the required work for Project 2 Task 1.
+- Now compute the first and second derivative of this loglikelihood function.
+    - Note: This is part of the required work for Project 2 Task 2.
+- Adapt the following code (from class today) to plot this loglikelihood function.
+
+```r
+#clear the environment
+rm(list=ls())
+#load the library
+library(data4led)
+#read in the data set
+bulb <- led_bulb(1,seed=123) #Remember to use your assigned seed!
+
+# Here is our Data.
+t <- bulb$hours
+y <- bulb$percent_intensity
+
+#define the loglikelihood function
+l <- function(p,t,y){
+  44*log(1/sqrt(2*pi)) - (1/2)*sum((y-100-p*t)^2)
+}
+
+#create a list of inputs for our plot of the loglikelihood function
+a1 <- seq(-0.005,0.005,1e-5)
+#use those inputs to calculate outputs for our plot of the loglikelihood function
+Y <- as.vector(lapply(a1,FUN=l,t=t,y=y))
+
+#plot the loglikelihood function
+plot(a1,Y,type='l')
+```
+
+- Make a guess for what you think is the best value for $a_1$. How did you decide on that value?
+- Using what you learned in the reading, how might you find the best value for $a_1$ rather than just estimating from the graph?
+    - Note: This is part of the required work for Project 2 Task 3. We will continue to discuss these concepts next week in class.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+    - 2 -- Derivative Rules (Function Composition) - the Chain Rule
+    - 2 -- Linearization
+    - 2 -- Partial Derivatives
+
+### Applied Practice (Project Work)
+- Continue working on Project 2 Task 2
+
 
 # During Class
 ## Brain Gains
@@ -14,13 +89,14 @@ The base has area $x^2$. Letting $h$ be the height of the box, the volume of the
 </details>
 
 1.  Use R to plot the function above, and then guess the maximum possible volume along with the dimensions that correspond to this volume.
+
 1. Compute the derivative of the function above, and use it to find the maximum possible volume.
 
 ## Group Meeting 
 Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions.  When each person has had a chance to share, move on the other activities.
 
 ### Activity - Comparing Solutions
-Our goal today is to dig into the derivative relationships and associated vocabulary. Your assignment before class was to fill in as many of the blanks, as possible, from the [Derivative Relationships worksheet (PDF)](../assets/docs/DerivativeRelationship_FillBlank.pdf){target="_blank"}. Compare your answers, discuss any questions, and have a scribe write your solutions on the board (so you can compare with other groups).
+Our goal today is to dig into the derivative relationships and associated vocabulary. Your assignment before class was to fill in as many of the blanks, as possible, from [DerivativeRelationship_FillBlank.pdf](../assets/docs/DerivativeRelationship_FillBlank.pdf). Compare your answers, discuss any questions, and have a scribe write your solutions on the board (so you can compare with other groups).
 
 You may need some of definitions, theorem, or tests below as you complete the next activity. Take a moment to open each item and review it.
 #### Theorems - Tests - Definitions
@@ -142,14 +218,19 @@ To help us understand derivative relationships and associated vocabulary, let's 
 At the chalk boards, take turns providing a rough sketch of a function with the properties listed (also sketch the derivative and/or second derivative if this helps you make sense of the properties).
 Number your graphs, keep them small-ish, and try to fill your board with examples that we can compare with others. Use the information above for reference. 
 1. $f$ is increasing and concave up for all $x$.
+
 1. $f$ so that $f'(x) > 0$ and $f''(x)<0$ for all $x$.
 1. $f$ has an inflection point at $x=4$.
+
 1. $f$ has a horizontal tangent line when $x=3$.
 1. $f$ so that $f'=0$ for all $x$.
+
 1. $f$ so that $f'=0$ and $f''>0$ at $x=-2$.
 1. $f$ is decreasing and concave down on the interval $ (-3,5) $.
+
 1. $f$ so that $f'$ has at least one change of sign and is always defined.
 1. $f$ so that $f'=0$ and $f''<0$ at $x=1$.
+
 1. $f$ so that -$f$ is concave down everywhere.
 
 When you finish, work on [this worksheet](../assets/docs/GraphingUsingSigns.pdf){target="_blank"} together (remember to take turns).
@@ -158,11 +239,11 @@ When you finish, work on [this worksheet](../assets/docs/GraphingUsingSigns.pdf)
 ### ElvesRUs Extended
 Last time we worked on a ElvesRUs loglikelihood (full problem statement included below). We found the loglikelihood of the errors, rewrote the function using the properties of logs and sums, and found the first partials of the loglikelihood function. 
 
-->You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we're assuming the probability model for the residuals is $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}$.
+You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we're assuming the probability model for the residuals is $p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}$.
 
 Today let's compute the following second partial derivatives: $\frac{\partial^2\ell}{\partial A^2}$, $\frac{\partial^2 \ell}{\partial b \partial A}$, $\frac{\partial^2 \ell}{\partial k \partial A}$, $\frac{\partial^2 \ell}{\partial A \partial b}$, $\frac{\partial^2\ell}{\partial b^2}$, and $\frac{\partial^2 \ell}{\partial k \partial b}$ Is this all the partials? (No!)
 Turn back in your notes (or use the following link) to get the first partials.
-[Elves-R-Us loglikelihood derivatives (PDF)](../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf){target="_blank"}
+[ElvesRUs loglikelihood derivatives (PDF)](../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf)
 
 <details>
 <summary>Answers</summary>
@@ -175,3 +256,7 @@ Turn back in your notes (or use the following link) to get the first partials.
 - $\frac{\partial^2 \ell}{\partial k \partial b} = \sum_{i=1}^{50} -At_ie^{bt_i}$
 
 </details>
+
+---
+
+*Source: [Class.25 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.25)*

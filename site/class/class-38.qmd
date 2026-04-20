@@ -1,6 +1,115 @@
 ---
 title: "Class 38"
 ---
+# Between Class Sessions - Prep for Day 38 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Creating a PDF and using it to compute the expected value and a probability
+Consider the function $$\ds f(x) = 
+\begin{cases}
+kx - k &  1 \leq x \leq 3 \\
+0 &  \text{otherwise}
+\end{cases}.$$
+1. Select $k$ so $f$ is the PDF of a random variable $X$. 
+
+1. Use R and a Riemann sum to approximate $E[X] $.
+1. Use Mathematica to compute $E[X] $.
+
+1. Use Mathematica to compute $P(X\leq 2)$. 
+
+### (2) Relationships between CDFs and PDFs 
+1.  Suppose a random variable $X$ has a CDF $$F(x) = 
+\begin{cases}
+0 &  x < 0 \\
+\frac{x}{3} &  0 \leq x \leq 3 \\
+1 &  x > 3
+\end{cases}.$$
+    - Find $F'(x)$ to find the PDF of $X$, $f(x)$.
+    - Draw the target diagram for this PDF.
+
+<details>
+<summary>Answer</summary>
+
+```r
+f <- function(x){1/3 + 0*x}
+draw_target(f,0,3)
+```
+
+</details>
+
+    - Explain with a geometric argument why $E[X] = 1.5$, and then verify this with Mathematica by computing $\int_0^3 x\cdot\frac{1}{3}dx$.
+
+1.  Suppose a random variable $X$ has a CDF $$F(x) = 
+\begin{cases}
+0 & x < 0 \\
+\frac{x^2}{16} &  0 \leq x \leq 4 \\
+1 & x > 4
+\end{cases}.$$
+    - Find $F'(x)$ to find the PDF of $X$, $f(x)$.
+    - Draw the target diagram for this PDF.
+
+<details>
+<summary>Answer</summary>
+
+```r
+f <- function(x){x/8}
+draw_target(f,0,4)
+```
+
+</details>
+
+    - Use a table of centroids to explain why $E[X] = \frac{8}{3}$, and then verify this with Mathematica  by computing $\int_0^4 x\cdot\frac{x}{8}dx$.
+
+1.  Use the two properties of probability density functions to answer the following.
+    - Explain why $f(x) = \begin{cases}2 &  0 \leq x \leq 6 \\ 0 & \text{otherwise}\end{cases}$ **is not** a PDF.
+    - Explain why $f(x) = \begin{cases}\frac{2x}{9} &  0 \leq x \leq 3 \\ 0 & \text{otherwise}\end{cases}$ **is** a PDF.
+    - Explain why $f(x) = \begin{cases}-\frac{1}{4} &  0 \leq x \leq 4 \\ 0 & \text{otherwise}\end{cases}$ **is not** a PDF.
+    - Explain why $f(x) = \begin{cases}\frac{3}{8}x^2 &  0 \leq x \leq 2 \\ 0 & \text{otherwise}\end{cases}$ **is** a PDF.
+
+1. 
+Find the value $k$ so that each function is a PDF. Use a table of centroids and/or Mathematica to obtain the needed areas.
+    - $f(x) = \begin{cases}2k &  0 \leq x \leq 6 \\0 & \text{otherwise}\end{cases}$
+    - $f(x) = \begin{cases}3kx &  0 \leq x \leq 4 \\0 & \text{otherwise}\end{cases}$
+    - $f(x) = \begin{cases}5kx^2 &  0 \leq x \leq 2 \\0 & \text{otherwise}\end{cases}$
+
+### (3) Reading Practice
+Below is a list of properties of Definite Integrals. Read through the properties. Then consider the questions below. What other thoughts, connections, or questions did you identify?
+- How would you describe any of these properties with words?
+- Definite Integral can be thought of as "infinite sums". 
+    - Can you identify any properties that sums and integrals share? 
+- Discrete things are different from infinite things.
+    - Can you identify any properties highlight any of these difference (highlighting a difference between sums and integrals)? 
+- Can you find an example of any of these properties used in our [Rectangles, Targets, and Sums](https://byuistats.github.io/M119/unit3/probability.html){target="_blank"} work?
+
+#### Properties of the Definite Integral
+- Given $a < c < k < b$, <br>
+$\int_a^b f(x) dx = \int_a^c f(x) dx + \int_c^k f(x) dx + \int_k^b f(x) dx$.
+    - Note this property also holds when the inequality $a < c < k < b$ does not hold as long as $f(x)$ is integrable (can be integrated) for all the necessary intervals.
+
+- $\int_a^b f(x)dx = -\int_b^a f(x)dx$.
+    - One way to think about this property is that if the width for the "infinite" rectangles you are adding up are all negative for the definite integral on the right-hand side of the equation.
+
+- $\int_a^a f(x)dx = 0$.
+    - Note this is related to the concept that $P(X = c) = 0$ for all values of $c$ when $X$ is a continuous random variable.
+
+- $\int_a^b cf(x)dx = c\int_a^b f(x) dx$
+
+- $\int_a^b f(x) + g(x) dx = \int_a^b f(x) dx + \int_a^b g(x) dx$ AND $\int_a^b f(x) - g(x) dx = \int_a^b f(x) dx - \int_a^b g(x) dx$
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 3 -- Riemann Sums & Definite Integrals
+- Begin 3 -- Compute Probability (Continuous Random Variables)
+- Begin 3 -- Definite Integrals
+
 
 # During Class
 ## Summary of Key Points (Rectangles, Targets, and Sums)
@@ -126,14 +235,19 @@ We'll complete this as groups at the boards.
 
 Consider the function $g(x) = 9-x^2$ for $0\leq x\leq 3$ and 0 otherwise. As you complete each exercise below, first write on the board any integral you need to compute. Then use Mathematica to compute it. 
 1. Draw the function $g$. 
+
 1. Is $g(x)$ the PDF of a random variable $X$?  Explain.
 1. Find a constant $k$ so that $f(x) = k g(x)$ is the PDF of a random variable $X$.
+
 1. Compute $P(X\leq 1)$. 
 1. Compute $P(X\leq 2)$. 
+
 1. Compute $P(1<X\leq 2)$. 
 1. Compute the cumulative distribution function (CDF), so find $F(x) = P(X\leq x)$. [You found $F(1)$ and $F(2)$ above.]
+
 1. Compute the expected value $E[X]$. 
 1. Compute the variance $Var[X]$. 
+
 1. Compute the standard deviation of $X$. 
 1. Pick another function $g(x)$ and bounds for $x$, and then repeat the above.
 
@@ -142,80 +256,75 @@ Consider the function $g(x) = 9-x^2$ for $0\leq x\leq 3$ and 0 otherwise. As you
 
 1. It's a parabola open downwards starting at height 9. The following code plots $g$ with Mathematica. 
 
-```r
+```
 Plot[9-x^2,{x,0,3}]
-@](:codemend:)
+```
 
 1.  $\int_{-\infty}^{\infty} g(x) dx = \int_0^3 9-x^2 = 18 \neq 1$, so $g$ is not a probability density function.
-(:codem:)
+
 ```
 Integrate[9-x^2,{x,0,3}]
 ```
-(:codemend:)
 
 1.  $k = \frac{1}{18}$.
 
 1.  $\int_{-\infty}^{1} f(x)dx = \int_0^1 \frac{1}{18}(9-x^2)dx = \frac{13}{27} \approx 0.481$
-(:codem:)
+
 ```
 Integrate[(1/18)*(9-x^2),{x,0,1}]
 ```
-(:codemend:)
+
 Note that $\int_{-\infty}^{1} f(x)dx \neq \int_{-\infty}^1 \frac{1}{18}(9-x^2)dx$, as you MUST change the $-\infty$ to 0 to capture the domain of $f$. 
 Note also that we computed the CDF at 1 and have $F(1) = P(X \leq 1) = \frac{13}{27}$. 
 
 1.  $\int_{-\infty}^{2} f(x)dx = \int_0^2 \frac{1}{18}(9-x^2)dx = \frac{23}{27} \approx 0.852$ which means $F(2) = \frac{23}{27}$.
-(:codem:)
+
 ```
 Integrate[(1/18)*(9-x^2),{x,0,2}]
 ```
-(:codemend:)
 
 1.  $\int_1^2 \frac{1}{18}(9-x^2)dx = \frac{10}{27} \approx 0.370$
-(:codem:)
+
 ```
 Integrate[(1/18)*(9-x^2),{x,1,2}]
 ```
-(:codemend:)
+
 Note that $P(1\leq X\leq 2) = F(2) - F(1)$
 
 1.  There 3 regions to consider. First, when $x<0$. Second, when $0\leq x \leq 3$. And third, when $x>3$.<br>
 When $x<0$, $F(x) = 0$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^x 0 dx = 0$).<br>
 When $x>3$, $F(x) = 1$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^0 0dx + \int_0^3 \frac{1}{18}(9-x^2)dx + \int_3^x 0 dx = 0+1+0=1$).<br>
 When $0\leq x\leq 3$, $F(x) = \int_{-\infty}^x f(x) dx = \int_0^x \frac{1}{18}(9-t^2)dt = \frac{1}{2}x - \frac{1}{54}x^3$.
-(:codem:)
+
 ```
 Integrate[(1/18)*(9-t^2),{t,0,x}]
 ```
-(:codemend:)
+
 OR
-(:codem:)
+
 ```
 Integrate[(1/18)*(9-x^2),{x,0,x}]
 ```
-(:codemend:)
+
 Note: $F'(x) = f(x)$
 
 1.  $E[X] = \int_{-\infty}^{\infty} xf(x)dx = \int_0^3 x(\frac{1}{18}(9-x^2)) dx = \frac{9}{8} = 1.125$
-(:codem:)
+
 ```
 Integrate[x*(1/18)*(9-x^2),{x,0,3}]
 ```
-(:codemend:)
 
 1.  $Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2f(x)dx = \int_0^3 (x-\frac{9}{8})^2(\frac{1}{18}(9-x^2)) dx = \frac{171}{320} \approx 0.534$
-(:codem:)
+
 ```
 Integrate[(x-9/8)^2*(1/18)(9-x^2),{x,0,3}]
 ```
-(:codemend:)
 
 1.  $\sigma_X = \sqrt{Var[X]} = \sqrt{\frac{171}{320}} \approx 0.731$
-(:codem:)
+
 ```
 N[Sqrt[171/320]]
 ```
-(:codemend:)
 
 </details>
 
@@ -230,12 +339,12 @@ Consider the random variable $X$ with the PDF $$f(x) =
 - Why do we know the area under the "infinite" target is 1?
 
 Let's approximate the area under $f$ using rectangles (so a Riemann sum).
-(:code:)
+
 ```r
 f <- function(x){5*exp(-5*x)}
 
 a <- 0
-1. b should be infinity, but infinity is a concept (not a number) and the computer program needs a number to complete the calculation... so we pick a large but finite value for b
+#b should be infinity, but infinity is a concept (not a number) and the computer program needs a number to complete the calculation... so we pick a large but finite value for b
 b <- 30 
 n <- 1000
 dx <- (b-a)/n
@@ -261,17 +370,16 @@ The "target" seems to have more weight on the left, so $E[X]\approx 0.2003749$ s
 
 We now compute $A=\int_0^{\infty}f(x) dx$, $E[X]=\int_0^{\infty}xf(x) dx$, and $\text{Var}[X]=\int_0^{\infty}(x-E[X])^2f(x) dx$ with Mathematica.  
 
-```r
+```
 f = 5 Exp[-5 x]
 A = Integrate[f, {x, 0, Infinity}]
 EV = Integrate[x*f, {x, 0, Infinity}]
 Var = Integrate[(x - EV)^2*f, {x, 0, Infinity}]
 ```
-(:codemend:)
 
 ### Project 3 and Knewton Alta Tips
 - Let's plot some of the probability models from Project 3.
-(:code:)
+
 ```r
 f0 <- function(x,a=0,b=1){1/(b-a)+0*x}
 
@@ -325,7 +433,8 @@ lines(x1,y,col=4)
     - 3 -- Calculate Parameters of Continuous Random Variables Identifying Expected Value and Variance
 
 - Let's calculate $\int_{-\infty}^\infty f(x) dx $, $ E[X] $, $ Var[X] $, and standard deviation of X for $f_3$ and $f_1$.
-(:codem:)[@
+
+```
 $Assumptions = \[Lambda] > 0;
 Integrate[\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
 Integrate[x*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
@@ -335,9 +444,7 @@ Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
 
 Sqrt[Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]]
 ```
-(:codemend:)
 
-(:codem:)
 ```
 $Assumptions = \[Sigma] > 0;
 Integrate[1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
@@ -349,4 +456,7 @@ Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],
 V = Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}];
 Simplify[Sqrt[V]]
 ```
-(:codemend:)
+
+---
+
+*Source: [Class.38 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.38)*

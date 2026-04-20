@@ -1,6 +1,32 @@
 ---
 title: "Class 21"
 ---
+# Between Class Sessions - Prep for Day 21 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Derivative Relationships
+
+> Download [this file](https://byuistats.github.io/M119/m119-docs/DerivativeGraphs.pdf){target="_blank"}. Then sketch the derivative of each function, using what you know about linear approximations (tangent lines) and the derivative.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 2 -- Derivative Rules (Function Composition) - the Chain Rule assignment.
+- Begin 2 -- Linearization assignment.
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+
+### Applied Practice (Project Work)
+- Continue working on Project 2 Task 1
+
 
 # During Class
 
@@ -37,12 +63,12 @@ The above is sufficient, though we can also write this as
 
 1.  Given the graph of a function $h(x)$ below, draw $h'(x)$.
 
-![](../assets/uploads/Class/Draw-Derivative.png)
+![Draw the derivative](https://byuimath.com/bmw/all/119/uploads/Class/Draw-Derivative.png)
 
 <details>
 <summary>Solution</summary>
 
-Here is a [solution in Desmos](https://www.desmos.com/calculator/pnwcoyxmry){target="_blank"}.
+Here is a solution in [Desmos](https://www.desmos.com/calculator/pnwcoyxmry).
 Note that the derivative passes through $y=0$ at 3 $x$-values. (We call places where the derivative has an output of zero, critical values). 
 These 3 values correspond precisely to the spots on the function when the function may switch from increasing to decreasing, or vice-versa.
 
@@ -96,12 +122,12 @@ Assume the residuals (errors) are independent and normally distributed (with mea
 ## Discussion 
 Let's sketch the derivative of
 
-![](../assets/uploads/Class/Desmos-Graph-Together.png)
+![Desmos graph](https://byuimath.com/bmw/all/119/uploads/Class/Desmos-Graph-Together.png)
 
 <details>
 <summary>Solution</summary>
 
-See [solution in Desmos](https://www.desmos.com/calculator/yzgdfwn6eb){target="_blank"}.
+See [Desmos](https://www.desmos.com/calculator/yzgdfwn6eb).
 
 </details>
 
@@ -113,17 +139,28 @@ For each pair of functions $f(x)$ and $g(x)$ below, write out the compositions $
 Then compute the derivative of each composite function. 
 Remember to pass the chalk between each problem. 
 1. $f(x) = 3x + 4$, $g(x) = x^2 + 1$
+
 1. $f(x) = e^x$, $g(x) = \sqrt{2x-5}$
 1. $f(x) = \frac{1}{x}$, $g(x) = 2\ln(x)$
+
 1. $f(x) = (x-5)^4$, $g(x) = \sqrt[3]{x^2}$
 1. $f(x) = e^{3x}$, $g(x) = x^4 - 1$
+
 1. $f(x) = \frac{x}{x-3}$, $g(x) = \ln(5x)$
 1. $f(x) = 2x^3 - 10x^2 + 2x$, $g(x) = \sqrt{\frac{x-4}{2}}$
+
 1. $f(x) = \frac{1}{x^5}$, $g(x) = 4e^x$
 1. $f(x) = \sqrt{8-x}$, $g(x) = (2x-1)(x+5)$
+
 1. $f(x) = e^{x/2}$, $g(x) = 5x^3$
 1. $f(x) = 1 - \frac{3}{x^4}$, $g(x) = 2 - \sqrt{x}$
+
 1. $f(x) = \frac{3}{x^2}$, $g(x) = \ln(x)$
 1. $f(x) = 27 - x^3$, $g(x) = x^2 - x - 12$
+
 1. $f(x) = \sqrt[3]{4-x^2}$, $g(x) = 5x + 7$
 1. $f(x) = \frac{x+1}{x-2}$, $g(x) = e^{-x}$
+
+---
+
+*Source: [Class.21 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.21)*

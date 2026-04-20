@@ -1,6 +1,31 @@
 ---
 title: "Class 20"
 ---
+# Between Class Sessions - Prep for Day 20 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Chain Rule
+Watch a video from mathispower4u about the [Chain Rule (video 2)](https://www.youtube.com/watch?v=1x_wMYFOliQ){target="_blank"} (~9 min)
+- Download [this file](https://byuistats.github.io/M119/m119-docs/ChainRule_comparison.pdf){target="_blank"} and complete the exercises. 
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Continue working on 2 -- Derivative Rules (Function Composition) - the Chain Rule assignment.
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+
+### Applied Practice (Project Work)
+- Continue working on Project 2 Task 1
+
 
 # During Class
 
@@ -45,8 +70,10 @@ Start by giving each person a moment to share what they chose to prepare for cla
 ### Activity - Chain Rule
 Compute the derivative of each function below, by first identifying $y(u)$ and $u(x)$. Take turns writing your solutions on the chalk board and discussing any questions.  
 1. $f(x) = (x^2+3)^4$
+
 1. $g(x) = (3e^x+x^2)^5$
 1. $h(x) = (2+\ln x)^3$
+
 1. $k(x) = \ln(x^2+3)$
 1. $m(x) = e^{x^2+3}$
 
@@ -54,7 +81,7 @@ Compute the derivative of each function below, by first identifying $y(u)$ and $
 Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative $f$ we can denote with $$f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2}.$$
 We use similar notation for higher order derivatives, such at $f'''(x)$ for the third derivative and $\frac{d^4f}{dx^4}$ for a 4th derivative. We avoid prime notation and use notation such as $f^{ (7) }(x)$ when the number of derivatives is quite large. 
 
-Open this ../assets/docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem. 
+Open this [Higher Order Derivatives worksheet](../assets/docs/Higher_Order_Derivatives.pdf) and take turns computing derivatives, passing the chalk after each problem.
 
 ### Activity - Derivative Practice with Parameters
 Find the derivatives described below.
@@ -166,17 +193,16 @@ All three forms are useful.
 
 For each function below, give an equation of the linear approximation at the specified point using (a) point-slope form, (b) the form $L(x;a) = f(a)+f'(a)(x-a)$, and (c) slope intercept form.
 1. $f(x) = -3e^{x}$ at $x = 0$
+
 1. $l(x) = 100 - 3x + 7x^2$ at $x = -3$
 1. $g(x) = 1-2\ln(x)$ at $x = 1$
 
 <details>
 <summary>Answers</summary>
 
-#
     1.  $y + 3 = -3x$  
     1. $y = -3 - 3(x-0)$
     1. $y = -3 - 3x$
-#
     1.  $y - 172 = -45(x+3)$
     1. $y = L(x) = 172 -45(x+3)$
     1. $y = L(x) = 37 - 45x$
@@ -191,7 +217,7 @@ For each function below, give an equation of the linear approximation at the spe
 
 ### Loglikelihood
 
-You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee. ([https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa|Here's a short GPT conversation to generate some sample data.](https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa|Here's a short GPT conversation to generate some sample data.))
+You have been given a list of data for 50 ElvesRUs employees, $(t_i, c_i)$, were $t_i$ is the number of years working at ElvesRUs and $c_i$ is the salary for the $i^{\text{th}}$ employee. ([Here's a short GPT conversation to generate some sample data.](https://chatgpt.com/share/68f269de-bd0c-8011-af92-6ece28d007aa))
 The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by $f(t;A,b,k)=Ae^{bt}+k,$ where $t$ is the number of years an elf has been working at ElvesRUs. 
 - Write the formula for the residuals.
 
@@ -237,3 +263,7 @@ Assume the residuals (errors) are independent and normally distributed (with mea
 - Write the likelihood function for the residuals in this situation.
 - Write the loglikelihood function for the errors in this situation.
 - Rewrite the loglikelihood function using the properties of logs and sums.
+
+---
+
+*Source: [Class.20 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.20)*

@@ -1,6 +1,52 @@
 ---
 title: "Class 22"
 ---
+# Between Class Sessions - Prep for Day 22 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Derivative Relationships (extended)
+- Using your sketches of the derivatives of each of the six function in [this file](https://byuistats.github.io/M119/m119-docs/DerivativeGraphs.pdf){target="_blank"}, sketch the second derivative of each function. Remember the second derivative is the derivative of the first derivative function.
+
+## More Derivative Practice 
+- Download [this file](https://byuistats.github.io/M119/m119-docs/DerRules_table.pdf){target="_blank"} and complete the exercises.
+
+- Consider the function $f(y;a,b,c) = ay^2 + by + c$. 
+    - Take the derivative with respect to $y$, assume all other variables and parameters are constants.
+    - Take the derivative with respect to $a$, assume all other variables and parameters are constants.
+    - Take the derivative with respect to $c$, assume all other variables and parameters are constants.
+
+- Consider the function $h(x,y;a) = (100 + xy)e^{-ax}$. 
+    - Take the derivative with respect to $x$, assume all other variables and parameters are constants.
+    - Take the derivative with respect to $a$, assume all other variables and parameters are constants.
+    - Take the derivative with respect to $y$, assume all other variables and parameters are constants.
+
+- Given $f(a_1; x) = \sum_{i=1}^{3} (a_1x_i + 2)^5$, find $\diff{f}{a_1}$ assume $x_1$, $x_2$, and $x_3$ are constants.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 2 -- Linearization assignment.
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+    - 2 -- Derivative Rules (Function Composition) - the Chain Rule
+
+### Applied Practice (Project Work)
+- Review this [example of a written solution](https://byuistats.github.io/M119/m119-docs/project2_bmw.html){target="_blank"} for the loglikelihood calculation when using the model $f_1$. *Note this example solution is also posted in Canvas in the Additional Resources module.*
+- Complete or Revise and then submit Project 2 Task 1
+    - Remember, everyone can submit Project 2 Task 1 this week, regardless of whether they have finished Project 1.
+      - To earn a C, you need pass off one Project (and 2 project tasks). To earn a B, you need to pass off 2 Projects (and 4 project tasks). To earn an A, you need to pass off all 3 Project (and 6 project tasks). 
+    - Be real with yourself. 
+      - If you had a rough start to the semester, other classes are a higher priority, or *(fill in the blank with whatever you are dealing with this semester)*. Give yourself permission to focus your time and energy where you need to accomplish your goals. 
+      - As we move from Project 1 to Project 2 work, this is also a good time to refocus your efforts. You can move forward with Project 2, while finishing up Project 1 (Math 119 was designed to give you this personal flexibility). You can still finish all three projects this semester if you submit ready for review a Project 2 task and a Project 1 task every week and then follow-up by completing any revisions.
+
 
 # During Class
 
@@ -26,7 +72,8 @@ Let's look at an example that includes the chain rule. Consider the function $S(
 
 2.
 Use the information about $f$ and $f'$ in the table and $g$ to find each of the following values.
- http://byuimath.com/bmw/all/119/uploads/Class/chain_rule_exercise.png
+
+![Chain rule exercise](http://byuimath.com/bmw/all/119/uploads/Class/chain_rule_exercise.png)
 
     - Given $h(x) = g(f(x))$, find $h'(3)$.
     - Given $k(x) = f(g(x))$, find $k'(1)$.
@@ -71,14 +118,18 @@ Start by giving each person a moment to share what they chose to prepare for cla
 ### Activity - Chain Rule Practice
 For each function $g(x)$, identify two functions $f(u)$ and $u(x)$ so that $g(x) = f(u(x))$ and  then compute $\frac{dg}{dx} = \frac{df}{du}\frac{du}{dx}$. 
 1. $g(x) = (x^2-3)^4$
+
 1. $g(x) = \ln(4x+3)$
 1. $g(x) = e^{4x+3}$
+
 1. $g(x) = (x^3+\ln x)^2$
 1. $g(x) = \ln (e^{2x} + 1)$
+
 1. $g(x) = e^{4\ln{5x}+3}$
 
 ### Activity - Partial Derivatives with the Chain Rule
 1. Given $S(x, y; a, b) = 3(ax + by)^{-3}$, find $\diff{S}{x}$ assuming all other variables and parameters are constant then find $\diff{S}{y}$ assuming all other variables and parameters are constant. (Yes, these are long-winded ways of saying compute  $\frac{\partial S}{\partial x}$ and  $\frac{\partial S}{\partial y}$.)
+
 1. Given $g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}$, find $\frac{\partial g}{\partial a_1}$ and $\frac{\partial g}{\partial a_2}$.
 1. Given $h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}$, find $\frac{\partial h}{\partial x}$ and $\frac{\partial h}{\partial y}$.
 
@@ -86,6 +137,7 @@ For each function $g(x)$, identify two functions $f(u)$ and $u(x)$ so that $g(x)
 <summary>Answer</summary>
 
 1. We have $\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}$ and $\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}$.
+
 1. We find $\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{x_i}{2\sqrt{a_1x_i + a_2y_i}}$ and $\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{y_i}{2\sqrt{a_1x_i + a_2y_i}}$.
 1. We compute $\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}$ and $\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}$
 
@@ -94,12 +146,12 @@ For each function $g(x)$, identify two functions $f(u)$ and $u(x)$ so that $g(x)
 ### Activity - Graphing a Second Derivative
 For the function below, graph the first and second derivative.
 
-![](../assets/uploads/Class/Second-Derivative-Exercise.png)
+![Second derivative exercise](https://byuimath.com/bmw/all/119/uploads/Class/Second-Derivative-Exercise.png)
 
 <details>
 <summary>Solution</summary>
 
-See [solution in Desmos](https://www.desmos.com/calculator/nrd4njagea){target="_blank"}.
+See [Desmos](https://www.desmos.com/calculator/nrd4njagea).
 
 </details>
 
@@ -122,17 +174,28 @@ For each pair of functions $f(x)$ and $g(x)$ below, write out the compositions $
 Then compute the derivative of each composite function. As a suggestion, compute both $f'(x)$ and $g'(x)$ first, and then show how you can combine $f,g,f',g'$ to get the derivative of each composite function.  
 Remember to pass the chalk between each problem. 
 1. $f(x) = 3x + 4$, $g(x) = x^2 + 1$
+
 1. $f(x) = e^x$, $g(x) = \sqrt{2x-5}$
 1. $f(x) = \frac{1}{x}$, $g(x) = 2\ln(x)$
+
 1. $f(x) = (x-5)^4$, $g(x) = \sqrt[3]{x^2}$
 1. $f(x) = e^{3x}$, $g(x) = x^4 - 1$
+
 1. $f(x) = \frac{x}{x-3}$, $g(x) = \ln(5x)$
 1. $f(x) = 2x^3 - 10x^2 + 2x$, $g(x) = \sqrt{\frac{x-4}{2}}$
+
 1. $f(x) = \frac{1}{x^5}$, $g(x) = 4e^x$
 1. $f(x) = \sqrt{8-x}$, $g(x) = (2x-1)(x+5)$
+
 1. $f(x) = e^{x/2}$, $g(x) = 5x^3$
 1. $f(x) = 1 - \frac{3}{x^4}$, $g(x) = 2 - \sqrt{x}$
+
 1. $f(x) = \frac{3}{x^2}$, $g(x) = \ln(x)$
 1. $f(x) = 27 - x^3$, $g(x) = x^2 - x - 12$
+
 1. $f(x) = \sqrt[3]{4-x^2}$, $g(x) = 5x + 7$
 1. $f(x) = \frac{x+1}{x-2}$, $g(x) = e^{-x}$
+
+---
+
+*Source: [Class.22 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.22)*

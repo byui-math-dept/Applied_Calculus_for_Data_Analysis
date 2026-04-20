@@ -37,16 +37,16 @@ tmp <- rbinom(100000,7,1/6)
 
 Let's take a look this data
 
-```
+```r
 hist(tmp,probability=TRUE)
 ```
 
     - Use your simulated data to compute $P(X=4)$.
 
 ```r
-1. count the number of 4's in the simulated data
+#count the number of 4's in the simulated data
 obs <- length(which(tmp == 4))
-1. count how many simulated data
+#count how many simulated data
 tot <- length(tmp)
 
 prob <- obs/tot
@@ -55,17 +55,17 @@ prob <- obs/tot
     - Use your simulated data to compute $P(X > 5.3)$.
 
 ```r
-1. count the number of 6's and 7's in the simulated data
+#count the number of 6's and 7's in the simulated data
 obs <- length(which(tmp > 5.3))
-1. count how many simulated data
+#count how many simulated data
 tot <- length(tmp)
 
 prob <- obs/tot
 
-1. Calculating this another way... P(X > 5.3) = 1 - P(X <= 5.3)
-1. count the number of 0's, 1's, 2's, 3's, 4's, and 5's in the simulated data
+#Calculating this another way... P(X > 5.3) = 1 - P(X <= 5.3)
+#count the number of 0's, 1's, 2's, 3's, 4's, and 5's in the simulated data
 obs <- length(which(tmp < 5.3))
-1. count how many simulated data
+#count how many simulated data
 tot <- length(tmp)
 
 prob <- obs/tot
@@ -74,7 +74,7 @@ prob <- obs/tot
 
 Let's calculate the mean, variance, and standard deviation of our data.
 
-```
+```r
 mean(tmp)
 
 var(tmp)
@@ -112,21 +112,21 @@ tmp <- rgeom(10,1/6)+1
 
 tmp <- rgeom(100000,1/6)+1
 
-1. Why +1? This has to do with matching the why the probability model is programed in R with the way the probability model is given here.
+#Why +1? This has to do with matching the why the probability model is programed in R with the way the probability model is given here.
 ```
 
 Let's take a look this data
 
-```
+```r
 hist(tmp,probability=TRUE)
 ```
 
     - Use your simulated data to compute $P(X=3)$.
 
 ```r
-1. count the number of 4's in the simulated data
+#count the number of 4's in the simulated data
 obs <- length(which(tmp == 3))
-1. count how many simulated data
+#count how many simulated data
 tot <- length(tmp)
 
 prob <- obs/tot
@@ -135,10 +135,10 @@ prob <- obs/tot
     - Use your simulated data to compute the probability you have to roll the die at least 10 times before you get a 4.
 
 ```r
-1. P(X > 10) = 1 - P(X <= 10)
-1. count the number of 1's, 2's, 3's, 4's, 5's, 6's, 7's, 8's, 9's, and 10's in the simulated data
+#P(X > 10) = 1 - P(X <= 10)
+#count the number of 1's, 2's, 3's, 4's, 5's, 6's, 7's, 8's, 9's, and 10's in the simulated data
 obs <- length(which(tmp <= 10))
-1. count how many simulated data
+#count how many simulated data
 tot <- length(tmp)
 
 prob <- obs/tot
@@ -147,7 +147,7 @@ prob <- obs/tot
 
 Let's calculate the mean, variance, and standard deviation of our data.
 
-```
+```r
 mean(tmp)
 
 var(tmp)
@@ -182,22 +182,22 @@ You can use the following code to define these functions in R.
 
 ```r
 f1 <- function(x,n=20,p=0.5){
-1. x must be an whole number between 0 and n, endpoints included
+# x must be an whole number between 0 and n, endpoints included
   factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
 }
 
 f2 <- function(x,p=0.5){
-1. x must be an postive integer
+# x must be an postive integer
   p*(1-p)^(x-1)
 }
 
 f3 <- function(x,lambda=1){
-1. x must be a nonegative integer
+# x must be a nonegative integer
   exp(-lambda)*lambda^x/factorial(x)
 }
 
 f4 <- function(x,lambda=1){
-1. x must be positive
+# x must be positive
   lambda*exp(-lambda*x)
 }
 
@@ -217,34 +217,34 @@ f6 <- function(x,a=0,b=1){
 You can use the following code to plot these functions in R.
 
 ```r
-1. f1 has discrete inputs 
+#f1 has discrete inputs 
 n <- 30
 p <- 0.4
 x <- 0:n
 barplot(f1(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
 
-1. f2 has discrete inputs
+#f2 has discrete inputs
 p <- 0.2
 x <- 1:50
 barplot(f2(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
 
-1. f3 has discrete inputs
+#f3 has discrete inputs
 lambda <- 12
 x <- 0:50
 barplot(f3(x,lambda),ylim=c(0,1),width=rep(1,length(x)),space=1)
 
-1. f4 has continuous inputs
+#f4 has continuous inputs
 lambda <- 3
 x <- seq(0,5,0.01)
 plot(x,f4(x,lambda),type='l')
 
-1. f5 has continuous inputs
+#f5 has continuous inputs
 mu <- 3
 s <- 0.2
 x <- seq(-1,7,0.001)
 plot(x,f5(x,mu,s),type='l')
 
-1. f6 has continuous inputs
+#f6 has continuous inputs
 a <- -4
 b <- 2
 x <- seq(-5,5,0.01)
@@ -270,7 +270,7 @@ Let's play with simulation in R some more.
 2. Adapt the following code to plot the probability model you selected.
 
 ```r
-1. If the inputs are discrete use and adapt this code.
+#If the inputs are discrete use and adapt this code.
 f1 <- function(x,n=20,p=0.5){
   # x must be an whole number between 0 and n, endpoints included
   factorial(n)/(factorial(x)*factorial(n-x))*p^x*(1-p)^(n-x)
@@ -283,7 +283,7 @@ barplot(f1(x,n,p),ylim=c(0,1),width=rep(1,length(x)),space=1)
 ```
 
 ```r
-1. If the inputs are continuous use and adapt this code.
+#If the inputs are continuous use and adapt this code.
 f4 <- function(x,lambda=1){
   # x must be positive
   lambda*exp(-lambda*x)

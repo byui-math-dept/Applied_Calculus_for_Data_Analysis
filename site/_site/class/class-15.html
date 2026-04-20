@@ -73,10 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -147,7 +152,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,6 +413,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -259,22 +427,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-15" id="toc-between-class-sessions---prep-for-day-15" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-15">Between Class Sessions - Prep for Day 15 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#residuals-exercises" id="toc-residuals-exercises" class="nav-link" data-scroll-target="#residuals-exercises">(2) Residuals Exercises</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
   <ul class="collapse">
   <li><a href="#likelihood" id="toc-likelihood" class="nav-link" data-scroll-target="#likelihood">Likelihood</a></li>
-  </ul></li>
-  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
-  <ul class="collapse">
-  <li><a href="#activity---residual-practice" id="toc-activity---residual-practice" class="nav-link" data-scroll-target="#activity---residual-practice">Activity - Residual Practice</a></li>
-  <li><a href="#activity---likelihood-practice" id="toc-activity---likelihood-practice" class="nav-link" data-scroll-target="#activity---likelihood-practice">Activity - Likelihood Practice</a></li>
-  </ul></li>
-  <li><a href="#discussion-1" id="toc-discussion-1" class="nav-link" data-scroll-target="#discussion-1">Discussion</a>
-  <ul class="collapse">
-  <li><a href="#likelihood-not-just-for-poisson-random-variables" id="toc-likelihood-not-just-for-poisson-random-variables" class="nav-link" data-scroll-target="#likelihood-not-just-for-poisson-random-variables">Likelihood (not just for Poisson Random Variables)</a></li>
-  <li><a href="#deterministic-vs-probability-models" id="toc-deterministic-vs-probability-models" class="nav-link" data-scroll-target="#deterministic-vs-probability-models">Deterministic vs Probability Models</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -282,6 +448,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -302,16 +469,175 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-15" class="level1">
+<h1>Between Class Sessions - Prep for Day 15 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Likelihood Practice (with Poisson)</p>
+<p>Use the storms listed on Wikipedia’s <a href="https://tinyurl.com/51vyiwjw">List of Florida hurricanes</a> page to answer the questions below.</p>
+<ol type="1">
+<li>Use the data from 2005-2007 for <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, and <span class="math inline">\(x_3\)</span>. The number of storms in 2005 is <span class="math inline">\(x_1\)</span>, the number of storms in 2006 is <span class="math inline">\(x_2\)</span>, and the number of storms in 2007 is <span class="math inline">\(x_3\)</span>.</li>
+</ol>
+<ul>
+<li>Adapt the code from class to complete the following table, calculating the probability given the value of <span class="math inline">\(\lambda\)</span>.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each element of x must be a whole number</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>),<span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>),<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\lambda\)</span></th>
+<th><span class="math inline">\(P(X_1=x_1,X_2=x_2,X_3=x_3)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1.531x<span class="math inline">\(10^{-11}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1.998x<span class="math inline">\(10^{-7}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Use the code below to plot this function of <span class="math inline">\(\lambda\)</span> in R. (Because both <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(x\)</span> are vectors, we must use the sapply function from R to appropriately tell the computer how to to parse the notation. You do not have to modify any code involving sapply for future tasks, so feel free to just run the code below to produce the needed plot.)</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="fl">0.01</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda, p3v1, <span class="at">x =</span> x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda, probs, <span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>If we know there will be 8 Florida tropical storms this year, 2 Florida tropical storms next year, and 8 Florida tropical storms the year after that (in other words the data values from 2005-2007), what is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
+</ul>
+<ol start="2" type="1">
+<li>Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia’s <a href="https://tinyurl.com/51vyiwjw">List of Florida hurricanes</a> to get the appropriate data.</li>
+</ol>
+<ul>
+<li>Using your plot what is your guess for the best choice of the parameter <span class="math inline">\(\lambda\)</span> in this case?</li>
+</ul>
+<ol start="3" type="1">
+<li>Using the data from 2012-2015 adapt the code to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2012, the number of storms next year will be the same as the number of storms in 2013, the number of storms in the year after that will be the same number as the number of storms in 2014, and the number of storms in the year after that will be the same number as the number of storms in 2015) on the vertical axis.</li>
+</ol>
+<ul>
+<li><em>Note: There are 4 years this time. How will you have to change the code to allow for this?</em></li>
+<li>Using your plot what is your guess for the best choice of the parameter <span class="math inline">\(\lambda\)</span> in this case?</li>
+</ul>
+<ol start="4" type="1">
+<li>Using the data from 2000 and 2001 adapt the code to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability on the vertical axis.</li>
+</ol>
+<ul>
+<li><em>Note: There are 2 years this time. How will you have to change the code to allow for this?</em></li>
+<li>Using your plot what is your guess for the best choice of the parameter <span class="math inline">\(\lambda\)</span> in this case?</li>
+</ul>
+<ol start="5" type="1">
+<li>Using the data from 2019 and 2020 adapt the code to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability on the vertical axis.</li>
+</ol>
+<ul>
+<li><em>Note: There are 2 years this time. How will you have to change the code to allow for this?</em></li>
+<li>Using your plot what is your guess for the best choice of the parameter <span class="math inline">\(\lambda\)</span> in this case?</li>
+</ul>
+<section id="residuals-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="residuals-exercises">(2) Residuals Exercises</h3>
+<details>
+<summary>
+Residuals
+</summary>
+<p>The <strong>residual</strong> for an observation is defined as the vertical distance between the observed value, <span class="math inline">\(y\)</span>, and value predicted by a fitted model, represented with a <span class="math inline">\(\hat{y}\)</span> (read “y hat”).</p>
+<p>Examples: - Given the model <span class="math inline">\(f(x) = ax^2 + bx + c\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c.\)</span> - Given the model <span class="math inline">\(g(x) = k\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - g(x) = y - k.\)</span> - Given the model <span class="math inline">\(h(x) = ae^{-bx} + cxe^{-bx}\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.\)</span></p>
+</details>
+<p>Consider the 6 functions you have been fitting in Project 1. - Write down a formula for the residual given model <span class="math inline">\(f_1\)</span>. - Write down a formula for the residual given model <span class="math inline">\(f_2\)</span>. - Write down a formula for the residual given model <span class="math inline">\(f_3\)</span>.</p>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Complete Project 1 Task 4</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ul>
-<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.</li>
-</ul>
-<p><img src="../assets/uploads/Class/f5-fit1.png" class="img-fluid"></p>
-<p><img src="../assets/uploads/Class/f5-fit2.png" class="img-fluid"></p>
+<li>Critique the following visual fits for <span class="math inline">\(f_5\)</span>.
 <ul>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://byuimath.com/bmw/all/119/uploads/Class/f5-fit1.png" class="img-fluid figure-img"></p>
+<figcaption>Visual fit 1 for f5</figcaption>
+</figure>
+</div></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://byuimath.com/bmw/all/119/uploads/Class/f5-fit2.png" class="img-fluid figure-img"></p>
+<figcaption>Visual fit 2 for f5</figcaption>
+</figure>
+</div></li>
+</ul></li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(f(x) = b + mx\)</span> and data point <span class="math inline">\((x,y) = (4,7)\)</span>.</li>
 <li>Write down a formula for the residual, <span class="math inline">\(y - \hat{y}\)</span>, given the model <span class="math inline">\(g(x) = c + bx + a\ln(4x)\)</span> and data point <span class="math inline">\((x,y) = (x_3,y_3)\)</span>.</li>
 </ul>
@@ -325,17 +651,17 @@ Answers
 </ul>
 </details>
 <ul>
-<li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present)#2019). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
+<li>The number of tropical storms observed in Florida during the years 2019, 2020, and 2021 was 7, 13, and then 3 (see <a href="https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(2000%E2%80%93present)#2019">List of Florida hurricanes (2000–present) #2019</a>). In the prep we used the Poisson distribution to compute a probability, for various values of <span class="math inline">\(\lambda\)</span>, of observing some number of tropical storms over a 3 year period. Adapt the code from the prep (see below) to construct a plot of <span class="math inline">\(\lambda\)</span> versus the probability of seeing 7, 13, and then 3 storms, for that value of <span class="math inline">\(\lambda\)</span>. What is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># each element of x must be a whole number</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="fl">0.01</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>) <span class="co">#how many storms</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda, p3v1, <span class="at">x =</span> x)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,probs,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each element of x must be a whole number</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="fl">0.01</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>) <span class="co">#how many storms</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda, p3v1, <span class="at">x =</span> x)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,probs,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
@@ -348,186 +674,206 @@ Answers
 <li>Each value of <span class="math inline">\(\lambda\)</span> gives a specific probability function <span class="math inline">\(p\)</span>.</li>
 <li>Each value of <span class="math inline">\(x\)</span> is an observation made. We can plug <span class="math inline">\(x\)</span> into a specific probability function, to get a probability, or we can use that value of <span class="math inline">\(x\)</span> to create a specific likelihood function.</li>
 </ul>
-<hr>
-<p>We created the <em>joint probability mass function</em> for three independent Poisson Random variables by multiplying three functions together to obtain - <span class="math inline">\(p_3(x_1, x_2, x_3; \lambda) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}\)</span> for every <span class="math inline">\(x_1 = 0, 1, 2, 3, ...\)</span>, <span class="math inline">\(x_2 = 0, 1, 2, 3, ...\)</span>, and <span class="math inline">\(x_3 = 0, 1, 2, 3, ...\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
-<p>Consider the function - <span class="math inline">\(L_3(\lambda; x_1, x_2, x_3) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}\)</span> for every <span class="math inline">\(\lambda &gt; 0\)</span>, for some <span class="math inline">\(x_1 = 0, 1, 2, 3, ...\)</span>, <span class="math inline">\(x_2 = 0, 1, 2, 3, ...\)</span>, and <span class="math inline">\(x_3 = 0, 1, 2, 3, ...\)</span>.</p>
-<p>What do you notice about <span class="math inline">\(L_3\)</span> and <span class="math inline">\(p_3\)</span>? What are the similarities? What are the differences?</p>
-<ul>
-<li>Each value of the parameter <span class="math inline">\(\lambda\)</span> gives a specific probability function <span class="math inline">\(p_3\)</span>.</li>
-<li>Each set of values <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span> is a potential outcome from the chance experiment (how many storms). These values can be inserted into a specific probability function to compute a single probability, or they can be used to create a likelihood function.</li>
-</ul>
-<p>When calculating probability we use <span class="math inline">\(p\)</span> (or <span class="math inline">\(p_3\)</span>) and we assume the parameter selected is trustworthy. We are assuming a specific model and then calculate probabilities using the specific model (we selected and fixed the parameter <span class="math inline">\(\lambda\)</span>).</p>
-<p>When calculating likelihood we use <span class="math inline">\(L_1\)</span> (or <span class="math inline">\(L_3\)</span>) and we are trying to determine the trustworthiness of each potential choice for <span class="math inline">\(\lambda\)</span> given what we have observed (our data). We are fixing the value of <span class="math inline">\(x\)</span> and considering how trustworthy each value of <span class="math inline">\(\lambda\)</span> is, given that specific <span class="math inline">\(x\)</span> we observed.</p>
-<details>
-<summary>
-Likelihood Function
-</summary>
-<p>The <strong>likelihood function</strong> gives the likelihood, or probability (in these examples), of the data as a function of the unknown parameter value(s).</p>
-<p><em>Source: These definitions are taken from OpenStax Introductory Statistics and Modeling the Dynamics of Life by Adler.</em></p>
-</details>
-<p>We can use the likelihood function to answer the question, “What is the most likely parameter value(s) given the data?” or “Which parameter value(s) should we trust the most given what we have observed?”</p>
-</section>
-</section>
-<section id="group-meeting" class="level2">
-<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
-<p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
-<section id="activity---residual-practice" class="level3">
-<h3 class="anchored" data-anchor-id="activity---residual-practice">Activity - Residual Practice</h3>
-<details>
-<summary>
-Residuals
-</summary>
-<p>The <strong>residual</strong> for an observation is defined as the vertical distance between the observed value, <span class="math inline">\(y\)</span>, and value predicted by a fitted model, represented with a <span class="math inline">\(\hat{y}\)</span> (read “y hat”).</p>
-<p>Examples: - Given the model <span class="math inline">\(f(x) = ax^2 + bx + c\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c).\)</span> - Given the model <span class="math inline">\(g(x) = k\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - g(x) = y - k.\)</span> - Given the model <span class="math inline">\(h(x) = ae^{-bx} + cxe^{-bx}\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.\)</span></p>
-</details>
-<ul>
-<li>Consider the 6 functions you have been fitting in https://byuistats.github.io/M119/project1.html.
-<ul>
-<li>On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_4\)</span> and data point <span class="math inline">\((x_i,y_i)\)</span>.</li>
-<li>On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_5\)</span> and data point <span class="math inline">\((x_j,y_j)\)</span>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="activity---likelihood-practice" class="level3">
-<h3 class="anchored" data-anchor-id="activity---likelihood-practice">Activity - Likelihood Practice</h3>
-<p>Use the storms listed on Wikipedia’s https://tinyurl.com/51vyiwjw page to answer the questions below. Feel free to head to yesterday’s page to grab code examples to help you work on the things below.</p>
-<ul>
-<li>Using the data from 2005-2009, what is the likelihood that <span class="math inline">\(\lambda =2\)</span>?
-<ul>
-<li>Define the likelihood function for this 5 year time period and plot it in R.</li>
-</ul></li>
-<li>Using the data from 2010-2016, what is the likelihood that <span class="math inline">\(\lambda =5\)</span>?
-<ul>
-<li>Define the likelihood function for this 7 year time period and plot it in R.</li>
-</ul></li>
-</ul>
-<p>Work together to develop code in R that will allow you to quickly use any given time period of <span class="math inline">\(k\)</span> years to construct a graph of the likelihood function for <span class="math inline">\(k\)</span> Poisson random variables.</p>
-</section>
-</section>
-<section id="discussion-1" class="level2">
-<h2 class="anchored" data-anchor-id="discussion-1">Discussion</h2>
-<section id="likelihood-not-just-for-poisson-random-variables" class="level3">
-<h3 class="anchored" data-anchor-id="likelihood-not-just-for-poisson-random-variables">Likelihood (not just for Poisson Random Variables)</h3>
-<p><strong>Key Idea:</strong> We can use the likelihood function to answer the question, “What is the most likely parameter value(s) given the data?” or “Which parameter value(s) should we trust the most given what we have observed?”</p>
-<p>Likelihood is <em>not</em> probability but it is related to probability.</p>
-<section id="poisson-distribution" class="level4">
-<h4 class="anchored" data-anchor-id="poisson-distribution">Poisson Distribution</h4>
-<p>This is a <strong>Poisson distribution</strong>. (A common probability model.) - <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> for every <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
-<p>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability mass function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_P(\mathbf{x}; \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
-<p>How do we go from a distribution to a likelihood function? We reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_P(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(\lambda &gt; 0\)</span>, for some <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
-<p>We can use the following code to plot this function in R.</p>
-<details>
-<summary>
-Click to view the code.
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x must be a whole number</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the likelihood function###</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>LP <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda,x){</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The element of x must be a whole numbers.</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(<span class="fu">p</span>(x,lambda))</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Possible Parameter Values###</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Data###</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Florida Hurricane <span class="fu">Data</span> (<span class="dv">2000-2022</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">13</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Here we calculate the output from the likelihood <span class="cf">function</span> given the observed data.</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda,<span class="at">FUN=</span>LP,<span class="at">x=</span>data)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We plot the likelihood function.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Poisson Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</section>
-<section id="exponential-distribution" class="level4">
-<h4 class="anchored" data-anchor-id="exponential-distribution">Exponential Distribution</h4>
-<p>This is an <strong>Exponential distribution</strong>. (A common probability model.) - <span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> for every <span class="math inline">\(x &gt; 0\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</p>
-<p>When we have more than one observation, and we assume the observations come from independent random variables, then we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_E(\mathbf{x}; \lambda) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</p>
-<p>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_E(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(\lambda &gt;0\)</span>, for some <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
-<p>We can use the following code to plot this function in R.</p>
-<details>
-<summary>
-Click to view the code.
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x and lambda must be positive</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the Likelihood function###</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>LE <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda,x){</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The elements of x must be positive.</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(<span class="fu">f2</span>(x,lambda))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Possible Parameter Values###</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.001</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Data###</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Some Simulated <span class="fu">Data</span> (This is data from an Exponential random variable.)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.45729967</span>, <span class="fl">0.47156107</span>, <span class="fl">1.21461705</span>, <span class="fl">0.20539769</span>, <span class="fl">1.78975399</span>, <span class="fl">0.09095850</span>, <span class="fl">0.64675475</span>, <span class="fl">1.60109333</span>, <span class="fl">1.57752679</span>, <span class="fl">0.01238945</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Here we calculate the output from the likelihood <span class="cf">function</span> given the observed data.</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambda,<span class="at">FUN=</span>LE,<span class="at">x=</span>data)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We plot the likelihood function.</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">3</span>,<span class="fl">0.25</span>))</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">'Exponential Likelihood'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</section>
-<section id="normal-distribution" class="level4">
-<h4 class="anchored" data-anchor-id="normal-distribution">Normal Distribution</h4>
-<p>This is a <strong>Normal distribution</strong>. (A common probability model.) - <span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(x\)</span>, for some real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>.</p>
-<p>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</em> - <span class="math inline">\(F_N(\mathbf{x}; \mu, \sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>.</p>
-<p>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>). - <span class="math inline">\(L_N(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>, for some real numbers <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</p>
-<p>We can use the following code to plot this function in R.</p>
-<details>
-<summary>
-Click to view the code.
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the distribution###</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(x<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.</span> <span class="co">#Define the likelihood function###</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> For simplicity, we<span class="st">'ll assume sigma is 1.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">LN &lt;- function(mu,sigma=1,x){</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  prod(f3(x,mu,sigma))</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">    1. #Possible Parameter Values###</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">mu &lt;- seq(-10,10,0.001)</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">    1. #Data###</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">1. Some more Simulated Data (This is data from a Normal random variable.)</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">data &lt;- c(-3.77117676, -2.91429587, -2.02774901, -0.23984575, -1.41960740, -3.17490528, -3.21755276, -0.06442566, -1.92134953, -0.93160739)</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">1. Here we calculate the output from the likelihood function given the observed data.</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">y &lt;- sapply(mu,FUN=LN,x=data,sigma=1)</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">1. We plot the likelihood function.</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">par(mar=c(2.5,2.5,3,0.25))</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">plot(mu,y,type='</span>l<span class="st">',main='</span>Normal Likelihood<span class="st">')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</section>
-</section>
-<section id="deterministic-vs-probability-models" class="level3">
-<h3 class="anchored" data-anchor-id="deterministic-vs-probability-models">Deterministic vs Probability Models</h3>
-<p>Deterministic models describe relationships between quantities. - time a light bulb is on (quantity 1) and the brightness of the bulb (quantity 2) - number of months since purchase (quantity 1) and the thickness of a shoe tread (quantity 2) - number of years (quantity 1) and number of elves (quantity 2) - distance travel (quantity 2) and wear on vehicle (quantity 2) - money spent (quantity 1) and money earned (quantity 2) - time spent studying (quantity 1) and skills learned (quantity 2) - amount of butter (quantity 1) and chewiness of cookie (quantity 2)</p>
-<p>Probability models describe probability information for a measurement.<br> Measurements have variation. There is always some uncertainty in measurement. Even if we are capable of measuring precisely there can still be variation. For example, we can count with precision how many heads there are in 100 coin flips. But if we repeat the experiment (flipping a coin 100 more times and counting) we could get a different number of heads. If we are measuring the weight of an object, there can be variation in the weights based on precision of the scale and other factors (which scale is used, calibration, temperature, vibrations, user error,…). Because there is variation in measurement we often think of measurements as random (or stochastic) variables and use probability distributions to describe the values and associated probabilities. - Some Common Probability Models - Poisson distribution (discrete) - the number of events that occur during a fixed time interval - Normal distribution (continuous) - Exponential distribution (continuous) - Binomial distribution (discrete) - Uniform distribution (continuous) - Gamma distribution (continuous)</p>
-<p>Our focus in Math 119 will be fitting models (extracting information from data and encoding it into parameter values) and using fitted models to answer questions. We will only touch briefly the lowest level of evaluating models (does the story the fitted model tells match already known information).</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>We created the <em>joint probability mass function</em> for three independent Poisson Random variables by multiplying three functions together to obtain - <span class="math inline">\(p_3(x_1, x_2, x_3; \lambda) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}\)</span> for every <span class="math inline">\(x_1 = 0, 1, 2, 3, ...\)</span>, <span class="math inline">\(x_2 = 0, 1, 2, 3, ...\)</span>, and <span class="math inline">\(x_3 = 0, 1, 2, 3, ...\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</td>
+</tr>
+<tr class="even">
+<td>Consider the function - <span class="math inline">\(L_3(\lambda; x_1, x_2, x_3) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}\)</span> for every <span class="math inline">\(\lambda &gt; 0\)</span>, for some <span class="math inline">\(x_1 = 0, 1, 2, 3, ...\)</span>, <span class="math inline">\(x_2 = 0, 1, 2, 3, ...\)</span>, and <span class="math inline">\(x_3 = 0, 1, 2, 3, ...\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>What do you notice about <span class="math inline">\(L_3\)</span> and <span class="math inline">\(p_3\)</span>? What are the similarities? What are the differences?</td>
+</tr>
+<tr class="even">
+<td>- Each value of the parameter <span class="math inline">\(\lambda\)</span> gives a specific probability function <span class="math inline">\(p_3\)</span>. - Each set of values <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span> is a potential outcome from the chance experiment (how many storms). These values can be inserted into a specific probability function to compute a single probability, or they can be used to create a likelihood function.</td>
+</tr>
+<tr class="odd">
+<td>When calculating probability we use <span class="math inline">\(p\)</span> (or <span class="math inline">\(p_3\)</span>) and we assume the parameter selected is trustworthy. We are assuming a specific model and then calculate probabilities using the specific model (we selected and fixed the parameter <span class="math inline">\(\lambda\)</span>).</td>
+</tr>
+<tr class="even">
+<td>When calculating likelihood we use <span class="math inline">\(L_1\)</span> (or <span class="math inline">\(L_3\)</span>) and we are trying to determine the trustworthiness of each potential choice for <span class="math inline">\(\lambda\)</span> given what we have observed (our data). We are fixing the value of <span class="math inline">\(x\)</span> and considering how trustworthy each value of <span class="math inline">\(\lambda\)</span> is, given that specific <span class="math inline">\(x\)</span> we observed.</td>
+</tr>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>The <strong>likelihood function</strong> gives the likelihood, or probability (in these examples), of the data as a function of the unknown parameter value(s).</td>
+</tr>
+<tr class="odd">
+<td><em>Source: These definitions are taken from OpenStax Introductory Statistics and Modeling the Dynamics of Life by Adler.</em></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>We can use the likelihood function to answer the question, “What is the most likely parameter value(s) given the data?” or “Which parameter value(s) should we trust the most given what we have observed?”</td>
+</tr>
+<tr class="even">
+<td>## Group Meeting Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</td>
+</tr>
+<tr class="odd">
+<td>### Activity - Residual Practice</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>The <strong>residual</strong> for an observation is defined as the vertical distance between the observed value, <span class="math inline">\(y\)</span>, and value predicted by a fitted model, represented with a <span class="math inline">\(\hat{y}\)</span> (read “y hat”).</td>
+</tr>
+<tr class="even">
+<td>Examples: - Given the model <span class="math inline">\(f(x) = ax^2 + bx + c\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - f(x) = y - (ax^2 + bx + c) = y- ax^2 - bx - c).\)</span> - Given the model <span class="math inline">\(g(x) = k\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - g(x) = y - k.\)</span> - Given the model <span class="math inline">\(h(x) = ae^{-bx} + cxe^{-bx}\)</span> and the data point <span class="math inline">\((x,y)\)</span>, the residual is <span class="math inline">\(y-\hat{y} = y - h(x) = y - (ae^{-bx} + cxe^{-bx}) = y - ae^{-bx} - cxe^{-bx}.\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>- Consider the 6 functions you have been fitting in <a href="https://chaz-clark.github.io/M119/Projects/unit1.html">Project Unit 1</a>. - On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_4\)</span> and data point <span class="math inline">\((x_i,y_i)\)</span>. - On the chalkboard, write down a formula for the residual given the general model <span class="math inline">\(f_5\)</span> and data point <span class="math inline">\((x_j,y_j)\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>### Activity - Likelihood Practice</td>
+</tr>
+<tr class="even">
+<td>Use the storms listed on Wikipedia’s <a href="https://tinyurl.com/51vyiwjw">List of Florida hurricanes</a> page to answer the questions below. Feel free to head to yesterday’s page to grab code examples to help you work on the things below.</td>
+</tr>
+<tr class="odd">
+<td>- Using the data from 2005-2009, what is the likelihood that <span class="math inline">\(\lambda =2\)</span>? - Define the likelihood function for this 5 year time period and plot it in R.</td>
+</tr>
+<tr class="even">
+<td>- Using the data from 2010-2016, what is the likelihood that <span class="math inline">\(\lambda =5\)</span>? - Define the likelihood function for this 7 year time period and plot it in R.</td>
+</tr>
+<tr class="odd">
+<td>Work together to develop code in R that will allow you to quickly use any given time period of <span class="math inline">\(k\)</span> years to construct a graph of the likelihood function for <span class="math inline">\(k\)</span> Poisson random variables.</td>
+</tr>
+<tr class="even">
+<td>## Discussion ### Likelihood (not just for Poisson Random Variables) <strong>Key Idea:</strong> We can use the likelihood function to answer the question, “What is the most likely parameter value(s) given the data?” or “Which parameter value(s) should we trust the most given what we have observed?”</td>
+</tr>
+<tr class="odd">
+<td>Likelihood is <em>not</em> probability but it is related to probability.</td>
+</tr>
+<tr class="even">
+<td>#### Poisson Distribution This is a <strong>Poisson distribution</strong>. (A common probability model.) - <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> for every <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability mass function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_P(\mathbf{x}; \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt; 0\)</span>.</td>
+</tr>
+<tr class="even">
+<td>How do we go from a distribution to a likelihood function? We reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Poisson</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_P(\lambda; \mathbf{x}) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i!}e^{-\lambda}\)</span> for every <span class="math inline">\(\lambda &gt; 0\)</span>, for some <span class="math inline">\(x_i = 0, 1, 2, 3, ...\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>We can use the following code to plot this function in R.</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>```r rm(list=ls())</td>
+</tr>
+<tr class="even">
+<td>###Define the distribution### p &lt;- function(x,lambda=1){ # x must be a whole number (lambda^x/factorial(x))*exp(-lambda) }</td>
+</tr>
+<tr class="odd">
+<td>###Define the likelihood function### LP &lt;- function(lambda,x){ # The element of x must be a whole numbers. prod(p(x,lambda)) }</td>
+</tr>
+<tr class="even">
+<td>###Possible Parameter Values### lambda &lt;- seq(0,10,0.001)</td>
+</tr>
+<tr class="odd">
+<td>###Data### # Florida Hurricane Data (2000-2022) data &lt;- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,2,4,6,7,4,7,13,3,3)</td>
+</tr>
+<tr class="even">
+<td>#Here we calculate the output from the likelihood function given the observed data. y &lt;- sapply(lambda,FUN=LP,x=data)</td>
+</tr>
+<tr class="odd">
+<td>#We plot the likelihood function. par(mar=c(2.5,2.5,3,0.25)) plot(lambda,y,type=‘l’,main=‘Poisson Likelihood’) ```</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>#### Exponential Distribution This is an <strong>Exponential distribution</strong>. (A common probability model.) - <span class="math inline">\(f_2(x; \lambda) = \lambda e^{-\lambda x}\)</span> for every <span class="math inline">\(x &gt; 0\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</td>
+</tr>
+<tr class="even">
+<td>When we have more than one observation, and we assume the observations come from independent random variables, then we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>)</em>. - <span class="math inline">\(F_E(\mathbf{x}; \lambda) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some <span class="math inline">\(\lambda &gt;0\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Exponential</strong> random variables (all with the same <span class="math inline">\(\lambda\)</span>). - <span class="math inline">\(L_E(\lambda; \mathbf{x}) = \prod_{i=1}^n \lambda e^{-\lambda x_i}\)</span> for every <span class="math inline">\(\lambda &gt;0\)</span>, for some <span class="math inline">\(x_i &gt; 0\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</td>
+</tr>
+<tr class="even">
+<td>We can use the following code to plot this function in R.</td>
+</tr>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>```r ###Define the distribution### f2 &lt;- function(x,lambda=1){ # x and lambda must be positive lambda<em>exp(-lambda</em>x) }</td>
+</tr>
+<tr class="odd">
+<td>###Define the Likelihood function### LE &lt;- function(lambda,x){ # The elements of x must be positive. prod(f2(x,lambda)) }</td>
+</tr>
+<tr class="even">
+<td>###Possible Parameter Values### lambda &lt;- seq(0,10,0.001)</td>
+</tr>
+<tr class="odd">
+<td>###Data### # Some Simulated Data (This is data from an Exponential random variable.) data &lt;- c(0.45729967, 0.47156107, 1.21461705, 0.20539769, 1.78975399, 0.09095850, 0.64675475, 1.60109333, 1.57752679, 0.01238945)</td>
+</tr>
+<tr class="even">
+<td>#Here we calculate the output from the likelihood function given the observed data. y &lt;- sapply(lambda,FUN=LE,x=data)</td>
+</tr>
+<tr class="odd">
+<td>#We plot the likelihood function. par(mar=c(2.5,2.5,3,0.25)) plot(lambda,y,type=‘l’,main=‘Exponential Likelihood’) ```</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>#### Normal Distribution This is a <strong>Normal distribution</strong>. (A common probability model.) - <span class="math inline">\(f_3(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(x\)</span>, for some real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>.</td>
+</tr>
+<tr class="even">
+<td>If we have more than one observation and we assume the observations come from independent random variables, we can multiply the probability functions to find the joint probability function. This is a probability model, <em>the joint probability density function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>).</em> - <span class="math inline">\(F_N(\mathbf{x}; \mu, \sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>, for some real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>How do we go from a distribution to a likelihood function? Reverse the roles of the data (the input variable, or independent variable, a list of measurements) and the parameters. This is the likelihood function for <span class="math inline">\(n\)</span> <strong>Normal</strong> random variables (all with the same <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>). - <span class="math inline">\(L_N(\mu, \sigma; \mathbf{x}) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\)</span> for every real number <span class="math inline">\(\mu\)</span> and real number <span class="math inline">\(\sigma &gt; 0\)</span>, for some real numbers <span class="math inline">\(x_i\)</span> with <span class="math inline">\(i = 1, 2, ... n\)</span>.</td>
+</tr>
+<tr class="even">
+<td>We can use the following code to plot this function in R.</td>
+</tr>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>```r ###Define the distribution### f3 &lt;- function(x,mu=0,s=1){ (1/sqrt(2<em>pi</em>s<sup>2))<em>exp(-(x-mu)^2/(2</em>s</sup>2)) }</td>
+</tr>
+<tr class="odd">
+<td>###Define the likelihood function### # For simplicity, we’ll assume sigma is 1. LN &lt;- function(mu,sigma=1,x){ prod(f3(x,mu,sigma)) }</td>
+</tr>
+<tr class="even">
+<td>###Possible Parameter Values### mu &lt;- seq(-10,10,0.001)</td>
+</tr>
+<tr class="odd">
+<td>###Data### # Some more Simulated Data (This is data from a Normal random variable.) data &lt;- c(-3.77117676, -2.91429587, -2.02774901, -0.23984575, -1.41960740, -3.17490528, -3.21755276, -0.06442566, -1.92134953, -0.93160739)</td>
+</tr>
+<tr class="even">
+<td>#Here we calculate the output from the likelihood function given the observed data. y &lt;- sapply(mu,FUN=LN,x=data,sigma=1)</td>
+</tr>
+<tr class="odd">
+<td>#We plot the likelihood function. par(mar=c(2.5,2.5,3,0.25)) plot(mu,y,type=‘l’,main=‘Normal Likelihood’) ```</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>### Deterministic vs Probability Models Deterministic models describe relationships between quantities. - time a light bulb is on (quantity 1) and the brightness of the bulb (quantity 2) - number of months since purchase (quantity 1) and the thickness of a shoe tread (quantity 2) - number of years (quantity 1) and number of elves (quantity 2) - distance travel (quantity 2) and wear on vehicle (quantity 2) - money spent (quantity 1) and money earned (quantity 2) - time spent studying (quantity 1) and skills learned (quantity 2) - amount of butter (quantity 1) and chewiness of cookie (quantity 2)</td>
+</tr>
+<tr class="even">
+<td>Probability models describe probability information for a measurement.<br> Measurements have variation. There is always some uncertainty in measurement. Even if we are capable of measuring precisely there can still be variation. For example, we can count with precision how many heads there are in 100 coin flips. But if we repeat the experiment (flipping a coin 100 more times and counting) we could get a different number of heads. If we are measuring the weight of an object, there can be variation in the weights based on precision of the scale and other factors (which scale is used, calibration, temperature, vibrations, user error,…). Because there is variation in measurement we often think of measurements as random (or stochastic) variables and use probability distributions to describe the values and associated probabilities. - Some Common Probability Models - Poisson distribution (discrete) - the number of events that occur during a fixed time interval - Normal distribution (continuous) - Exponential distribution (continuous) - Binomial distribution (discrete) - Uniform distribution (continuous) - Gamma distribution (continuous)</td>
+</tr>
+<tr class="odd">
+<td>Our focus in Math 119 will be fitting models (extracting information from data and encoding it into parameter values) and using fitted models to answer questions. We will only touch briefly the lowest level of evaluating models (does the story the fitted model tells match already known information).</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.15">Class.15 on byuimath.com</a></em></p>
 
 
 </section>
@@ -537,6 +883,19 @@ Click to view the code.
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

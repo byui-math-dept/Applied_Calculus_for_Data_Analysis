@@ -12,13 +12,13 @@ When we study a measurement (rather than a relationship between two measurements
 
 Base R includes a data set with 10 aspects of automobile design and performance for 32 cars extracted from the 1974 Motor Trend US magazine. If we are interested in the modeling the measurement (weight of a car), we can visualize this data by constructing a histogram. Use the following code to create a histogram.
 
-```
+```r
 hist(mtcars$wt)
 ```
 
 Compare plot created by the previous code to the plot created by the following code.
 
-```
+```r
 hist(mtcars$wt,probability=TRUE)
 ```
 
@@ -58,7 +58,7 @@ Starting with the parameter values $a = 10$, $b=4.8$, and $h=101$ use what you l
 
 ```r
 f2 <- function(x,h=0,a=1,b=5){
-1. Make sure a > 0 and b > 0.
+# Make sure a > 0 and b > 0.
 
 out <- rep(-1,length(x))
 out[(x < h)] <- 0*x[(x < h)]

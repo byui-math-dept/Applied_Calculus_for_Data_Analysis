@@ -67,26 +67,3 @@ mjx-container[display="true"] {
   vertical-align: top;
   overflow-wrap: break-word;
 }
-
-/* Schedule table borders */
-.schedule-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-  min-width: 600px;
-  display: table;
-}
-
-.schedule-table th,
-.schedule-table td {
-  border: 1px solid #dee2e6;
-  padding: 0.4rem 0.6rem;
-  vertical-align: top;
-  min-width: unset;
-  white-space: normal;
-}
-
-.schedule-table thead {
-  background: #e9ecef;
-  font-weight: 600;
-}

@@ -1,6 +1,71 @@
 ---
 title: "Class 28"
 ---
+# Between Class Sessions - Prep for Day 28 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Solving a General Linear System with 2 equations and 2 unknowns
+Last time the assignment was to solve, or attempt to solve, the system similar to the one below for $x$ and $y$.
+$$\left\{
+\begin{align*}
+c_{1,1}x + c_{1,2}y =b_1 \\ 
+c_{2,1}x + c_{2,2}y = b_2 
+\end{align*} 
+\right.$$
+Note that the variables above are different than the ones from last class period, so your answer may look a bit different. 
+Solve the system, obtaining values for $x$ and $y$, and come to class with any questions you have about how to obtain the solution.
+
+<details>
+<summary>Answer</summary>
+
+There are lots of ways to obtain the solution. Here's a possible answer. 
+- $y = \frac{c_{1,1}b_2 - c_{2,1}b_1}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
+- $x = \frac{b_1 - c_{1,2}y}{c_{1,1}} = \frac{b_{1}c_{2,2} - b_{2}c_{1,2}}{c_{1,1}c_{2,2} - c_{2,1}c_{1,2}}$
+
+```r
+c.11 <- 
+c.12 <- 
+b.1 <- 
+c.21 <- 
+c.22 <- 
+b.2 <- 
+
+y <- (c.11*b.2 - c.21*b.1)/(c.11*c.22 - c.21*c.12)
+x <- (b.1-c.12*y)/c.11
+
+y
+x
+```
+
+You might try the above code to check answers from your 1 -- Solving Linear Systems assignment.
+
+</details>
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- If you have not done so already, complete the other derivative rule assignments
+    - 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - 2 -- Derivative Rules (Product and Quotient)
+    - 2 -- Derivative Rules (Function Composition) - the Chain Rule
+    - 2 -- Linearization
+    - 2 -- Partial Derivatives
+    - 2 -- First Derivative and Extrema
+    - 2 -- Second Derivative and Extrema
+
+### Applied Practice (Project Work)
+- Continue work on Project 2 Task 3
+    - Determine when the derivative of $\ell_5$ is zero. What is the sign of the second derivative of $\ell_5$ at this value of $a_1$? Is there a local maximum or local minimum at this value of $a_1$ (what is the conclusion of the second derivative test in this case)?
+      - Check your work. Plot $\ell_5$. Does the value of $a_1$ correspond to an extrema? What your conclusion of a local maximum or local minimum correct?
+    - Determine when both partial derivatives of $\ell_4$ are zero (solve the system of linear equations you get when you set both partial derivatives equal to zero). *Hint: You should use the general solution (a formula) you found in your previous between class work.*
+
 
 # During Class
 ## Brain Gains
@@ -39,13 +104,13 @@ The solution is simply $b/d$ where $b = \left(\sum_{i}^{44} (y_i - 100)t_i\right
 The code below computes this value, obtaining $a_1 = 0.0005254377$. 
 
 ```r
-    1. If not done already, load the data. 
+## If not done already, load the data. 
 library(data4led)
 bulb <- led_bulb(1,seed=123)
 t <- bulb$hours
 y <- bulb$percent_intensity
 
-    1. Solve the system
+## Solve the system
 b <- sum((y-100)*t)
 d <- sum(t^2)
 b/d
@@ -96,17 +161,17 @@ whose solution we can quickly find using the results of our previous work. Solve
 We have to identify the coefficients and enter them into R.  We'll do that together in class, and fill in the code below. 
 
 ```r
-    1. Let's create a function to solve this system of equations. 
+## Let's create a function to solve this system of equations. 
 solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
   c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
     (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
 }
-    1. Before moving forward, let's verify that the function works.
-    1. The solution to $2x+3y=4$, $5x+6y=7$ is $(-1,2)$.  
-    1. Does this function yield the same result?
+## Before moving forward, let's verify that the function works.
+## The solution to $2x+3y=4$, $5x+6y=7$ is $(-1,2)$.  
+## Does this function yield the same result?
 solvesystem(2,3,4,5,6,7)
 
-    1. Now we can solve the problem at hand. 
+## Now we can solve the problem at hand. 
 c11 <- 
 c12 <- 
 b1 <- 
@@ -129,13 +194,13 @@ We have now maximized the loglikelihood function.  Use R to plot the data, along
 <summary>Solution</summary>
 
 ```r
-    1. If not done already, you'll need to load the data. 
+## If not done already, you'll need to load the data. 
 library(data4led)
 bulb <- led_bulb(1,seed=123)
 t <- bulb$hours
 y <- bulb$percent_intensity
 
-    1. If not done already, define the solvesystem function and find the critical values. 
+## If not done already, define the solvesystem function and find the critical values. 
 solvesystem <- function(c11, c12,b1,c21,c22,b2){ 
   c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),
     (c11*b2 - b1*c21)/(c11*c22 - c21*c12))
@@ -149,7 +214,7 @@ b2 <- sum((y-100)*t^2)
 sol <- solvesystem(c11,c12,b1,c21,c22,b2)
 sol
 
-    1. Define the model f2, and and create the plot. 
+## Define the model f2, and and create the plot. 
 f2 <- function(x, a1 = sol[1], a2 = sol[2]){100 + a1*x + a2*x^2}
 x <- seq(0,5000,10)
 plot(t,y)
@@ -165,6 +230,7 @@ lines(x,f2(x),type = "l")
 1. Identify the deterministic model $f$ and stochasitic model $p$.
     - Given data of the form $(x,y)$, the residuals (or errors) will be $r_i = y_i - f(x_i)$. 
 1. Assume the residuals (errors) are independent so that the joint probability function, and likelihood function, are obtain as $J = L = \prod_i p(r_i)$. 
+
 1. The loglikelihood function is $\ell = \ln(\prod_i p(r_i))$. 
 
 ### Summary: Steps of Optimization
@@ -180,7 +246,7 @@ lines(x,f2(x),type = "l")
 How long do people wait in a line when they head to the bank?  
 - We'll use the deterministic model $f(x) = 0$ to predict how long someone has to wait (where $x$ represents the time of day). What does this model really say in plain english? 
     - What are your thoughts about our choice of models?
-- We'll use the https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
+- We'll use the <https://openstax.org/books/introductory-business-statistics/pages/5-3-the-exponential-distribution> $p(r) = \lambda e^{-\lambda r}$ to model the residuals. 
 - Find the loglikelihood function given 100 data points $ (x_i,y_i) $ (where $x_i$ is the time of day the $i^{\text{th}}$ person comes into the bank and $y_i$ is the amount of time that person waits in line).
 - Find the location of the maximum of the loglikelihood function. 
 
@@ -193,7 +259,7 @@ Start by giving each person a moment to share what they chose to prepare for cla
 - [Florida Hurricanes (wikipedia)](https://tinyurl.com/51vyiwjw){target="_blank"} lists the tropical storms in Florida each year from 2000 to 2020.
 
 Let $X_i$ be the stochastic variable that counts the number of tropical storms in Florida during the $i^{\text{th}}$ year (with $i=1$ corresponding to 2000). Assume the $X_i$ are independent Poisson stochastic variables each with the parameter $\lambda$. Previously, we found the likelihood function $L(\lambda; \mathbf{x})$ to be given by 
-->$L(\lambda; \mathbf{x}) = \prod_{i=1}^{21} \frac{ \lambda^{x_i} }{ x_i! }e^{ -\lambda }$ where the $x_i$'s are nonnegative integers for $i = 1, 2, ... 21$ and $\lambda > 0$.
+$L(\lambda; \mathbf{x}) = \prod_{i=1}^{21} \frac{ \lambda^{x_i} }{ x_i! }e^{ -\lambda }$ where the $x_i$'s are nonnegative integers for $i = 1, 2, ... 21$ and $\lambda > 0$.
 The loglikelihood function is given by 
 - $\ell(\lambda; \mathbf{x}) = \ln \left(\prod_{i=1}^{21} \frac{\lambda^{x_i}}{x_i!}e^{-\lambda} \right) = \left(\sum_{i=1}^{21} x_i \right) \ln\lambda - \sum_{i=1}^{21}\ln(x_i!) - 21\lambda$ where the $x_i$'s are nonnegative integers for $i = 1, 2, ... 21$ and $\lambda > 0$.
 
@@ -202,14 +268,14 @@ We can rewrite
 $$\begin{align*}\ell(\lambda; \mathbf{x}) &= \left(\sum_{i=1}^{21} x_i \right) \ln\lambda - \sum_{i=1}^{21}\ln(x_i!) - 21\lambda\\ &= a\ln\lambda - b-21\lambda\end{align*}$$ for with $a=\sum_{i=1}^{21} x_i$ and $b=\sum_{i=1}^{21}\ln(x_i!)$ being just constants. Use R to compute these constants.
 
 ```r
-1. Florida Tropical Storm Data (2000-2020) from Wikipedia
+# Florida Tropical Storm Data (2000-2020) from Wikipedia
 year <- seq(2000,2020,1)
 storms <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
 
 a <-
 b <- 
-1. You should get a=124 and b=144.5211. 
-1. You'll need the factorial() when entering x! into R.
+# You should get a=124 and b=144.5211. 
+# You'll need the factorial() when entering x! into R.
 ```
 
 2. 
@@ -233,6 +299,7 @@ Find the value for $a_1$ that maximizes the loglikelihood.
 In project 2 Task 1 we obtained 
 $$\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t_i}))^2.$$
 1. Compute $\frac{\partial\ell_6}{\partial a_1}$ and $\frac{\partial\ell_6}{\partial a_2}$.
+
 1. Use seed 123 to solve the system of equations $\frac{\partial\ell_6}{\partial a_1} = 0$ and $\frac{\partial\ell_6}{\partial a_2} = 0$.  You should obtain $a_1=-0.0008219878$ and $a_2=7.442637$.  
 
 ## Discussion 
@@ -241,7 +308,7 @@ We can use the following code to visually show the location for the maximum of t
 
 ```r
 rm(list=ls())
-1. Florida Tropical Storm Data (2000-2020)
+# Florida Tropical Storm Data (2000-2020)
 storms <- c(4,4,8,8,6,8,2,8,8,4,8,6,4,3,3,4,5,7,4,7,13)
 
 L <- function(lambda,x){
@@ -271,3 +338,7 @@ abline(v=best.l,col=2)
 best.l
 mean(storms)
 ```
+
+---
+
+*Source: [Class.28 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.28)*

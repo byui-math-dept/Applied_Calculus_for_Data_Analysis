@@ -5,13 +5,21 @@ title: "Flex Day 1"
 # During Class
 ## Brain Gains
 Match the expanded log expressions in the left column with the condensed log expressions in the right column.
+
 | Expanded Expressions | Condensed Expressions |
+
 | --- | --- |
+
 | 1. $\log 3 + \log 2$ | A. $\log 4$ |
+
 | 2. $\log 10 - \log 2$ | B. $\log 5$ |
+
 | 3. $3\log 2$ | C. $\log 6$ |
+
 | 4. $\frac{2}{3}\log 27$ | D. $\log 8$ |
+
 | 5. $\log 24 - \log 6$ | E. $\log 9$ |
+
 | 6. $\log 6 + \log 3$ | F. $\log 18$ |  |
 
 <details>

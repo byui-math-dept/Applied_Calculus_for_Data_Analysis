@@ -1,6 +1,40 @@
 ---
 title: "Class 18"
 ---
+# Between Class Sessions - Prep for Day 18 <a id="tasklist"></a>
+
+<!-- from Prep.GeneralInstructions -->
+Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks. 
+
+Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something.  It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.
+
+<a id="Prep"></a>
+## Preparation
+### (1) Derivative Rules
+
+Watch the following videos.
+
+- [Product Rule](https://www.youtube.com/watch?v=3T0mD8vKLN4){target="_blank"} (~10 minutes)
+- [Quotient Rule](https://www.youtube.com/watch?v=wg2O3o4s1q0){target="_blank"} (~7.5 minutes)
+
+### (2) Function Decomposition (composing and decomposing functions)
+
+Complete as much of this [Composing and Decomposing Practice](https://byuistats.github.io/M119/m119-docs/Composing_Decomposing_Practice.pdf) worksheet as you can.
+
+<a id="PP"></a>
+
+## Regular Reminders
+### Skill Practice (KA Homework)
+- Complete 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple) assignment
+- Begin 2 -- Derivative Rules (Product and Quotient) assignment
+
+### Applied Practice (Project Work)
+- Complete and Submit Project 1
+- Continue working on Project 2 Task 1
+    - For each general function listed in Project 2 Task 1 and the points $(t_i,y_i)$ with $i = 1, 2, 3, ... 43, 44$, complete the following. Assume the residuals (or errors) are independent and normally distributed (with $\mu = 0$ and $\sigma = 1$). This means the probability model for one residual is $p(r_i) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r_i^2}{2}}$. 
+      - Write down the likelihood function for the 44 independent residuals.
+      - Write down the loglikelihood function. How could you use the properties of logarithms to rewrite each the loglikelihood function as a sum rather than a product?
+
 
 # During Class
 ## Brain Gains
@@ -89,17 +123,26 @@ Below is a list of derivative rules (most of which we have seen) that you are we
 
 [Derivative Rules](https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html){target="_blank"}
 
-- Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving theses problems.
+- Are there any exercises from your homework you would like to revisit with your group? Take turns at the chalk board solving these problems.
 - After you've discussed any problems from the homework, continue taking turns at the chalkboard to compute the derivative of each of the following functions (remember to *pass the chalk* after each problem). Explain which rules you used to complete each step. Whenever we work on problems at the chalk boards we are practicing our communication and use of mathematical notation.
 
 1. For $f(x) = (3x^2-7x+5)\ln(x)$, find $f'(x)$. Remember to **identify which rules** you used at each step (on this and each problem). 
+
 1. For $g(x) = \frac{3}{x}e^x$, find $g'(x)$. 
 1. For $h(x) = \frac{6\ln(x)}{5\sqrt{x}}$, find $\frac{dh}{dx}$. 
+
 1. For $r(t) = 7\ln t - \frac{3}{t^2}$, find $\frac{dr}{dt}$. 
 1. For $f(p) = \sum_{j=3}^7 4^jp^2$, find $f'(p)$. 
+
 1. For $h(r) = \sum_{n=1}^{40} n\ln(r)$, find $h'(r)$. 
 1. For $t(x) = \sum_{m=1}^{40}  m x^m$, find $\frac{dt}{dx}$. 
+
 1. For $p(x) = ax^2+be^x+c\ln(x)$, find $\frac{dp}{dx}$ assuming that $a,b,c$ are constants.
 1. For $p(a) = ax^2+be^x+c\ln(x)$, find $\frac{dp}{da}$ assuming that $x,b,c$ are constants.
+
 1. For $r(y) = \frac{6y^2e^y}{5\sqrt{y}}$, find $\frac{dr}{dy}$.
 1. For $q(t) = (3x+1)(x^2-4)(5x-3\sqrt{x})(1-e^x)$ find $D_t q$.
+
+---
+
+*Source: [Class.18 on byuimath.com](https://byuimath.com/clarkc/all/119/index.php?n=Class.18)*
