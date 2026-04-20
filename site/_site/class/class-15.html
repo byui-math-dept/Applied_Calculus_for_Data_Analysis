@@ -475,7 +475,7 @@ window.Quarto = {
 <p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
 <p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
 <p><a id="Prep"></a> ## Preparation ### (1) Likelihood Practice (with Poisson)</p>
-<p>Use the storms listed on Wikipedia’s <a href="https://tinyurl.com/51vyiwjw" class="uri">https://tinyurl.com/51vyiwjw</a> page to answer the questions below.</p>
+<p>Use the storms listed on Wikipedia’s <a href="https://tinyurl.com/51vyiwjw">List of Florida hurricanes</a> page to answer the questions below.</p>
 <ol type="1">
 <li>Use the data from 2005-2007 for <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, and <span class="math inline">\(x_3\)</span>. The number of storms in 2005 is <span class="math inline">\(x_1\)</span>, the number of storms in 2006 is <span class="math inline">\(x_2\)</span>, and the number of storms in 2007 is <span class="math inline">\(x_3\)</span>.</li>
 </ol>
@@ -489,22 +489,76 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>),<span class="dv">1</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>),<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="line-block"><span class="math inline">\(\lambda\)</span> | <span class="math inline">\(P(X_1=x_1,X_2=x_2,X_3=x_3)\)</span> |</div>
-<div class="line-block">1 | 1.531x<span class="math inline">\(10^{-11}\)</span> |</div>
-<div class="line-block">2 | 1.998x<span class="math inline">\(10^{-7}\)</span> |</div>
-<div class="line-block">3 | |</div>
-<div class="line-block">4 | |</div>
-<div class="line-block">5 | |</div>
-<div class="line-block">6 | |</div>
-<div class="line-block">7 | |</div>
-<div class="line-block">8 | |</div>
-<div class="line-block">9 | |</div>
-<div class="line-block">10 | |</div>
-<div class="line-block">11 | |</div>
-<div class="line-block">12 | |</div>
-<div class="line-block">13 | |</div>
-<div class="line-block">14 | |</div>
-<div class="line-block">15 | |</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\lambda\)</span></th>
+<th><span class="math inline">\(P(X_1=x_1,X_2=x_2,X_3=x_3)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1.531x<span class="math inline">\(10^{-11}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1.998x<span class="math inline">\(10^{-7}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>Use the code below to plot this function of <span class="math inline">\(\lambda\)</span> in R. (Because both <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(x\)</span> are vectors, we must use the sapply function from R to appropriately tell the computer how to to parse the notation. You do not have to modify any code involving sapply for future tasks, so feel free to just run the code below to produce the needed plot.)</li>
 </ul>
@@ -516,7 +570,7 @@ window.Quarto = {
 <li>If we know there will be 8 Florida tropical storms this year, 2 Florida tropical storms next year, and 8 Florida tropical storms the year after that (in other words the data values from 2005-2007), what is your guess for the best choice of parameter <span class="math inline">\(\lambda\)</span>?</li>
 </ul>
 <ol start="2" type="1">
-<li>Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia’s <a href="https://tinyurl.com/51vyiwjw" class="uri">https://tinyurl.com/51vyiwjw</a> to get the appropriate data.</li>
+<li>Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with <span class="math inline">\(\lambda\)</span> on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia’s <a href="https://tinyurl.com/51vyiwjw">List of Florida hurricanes</a> to get the appropriate data.</li>
 </ol>
 <ul>
 <li>Using your plot what is your guess for the best choice of the parameter <span class="math inline">\(\lambda\)</span> in this case?</li>

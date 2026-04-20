@@ -14,7 +14,7 @@ Pick something from your prep today that you can share with your group in class.
 - Read the Syllabus
 - Complete the Background Survey
 - Open a Knewton Alta assignment and answer some questions (for example you could open up "1 -- Function Evaluation"). The point is to make sure you have gotten into the system, and seen how it works.  Feel free to complete one of the assignments. 
-- Skim read the instructions for <https://byuistats.github.io/M119/project1.html.>
+- Skim read the [instructions for Project 1](https://byuistats.github.io/M119/project1.html).
 
 ### (2) Graphing Functions
 
@@ -22,52 +22,39 @@ Our first Unit is focused on expanding our knowledge and understanding of functi
 1. $f(x) = 1-4x$
 
 | $x$ | $f(x)$ | $ (x, f(x)) $ |
-
+|---|---|---|
 | -2 | 9 | (-2,9) |
-
 | -1 |  |  |
-
 | 0 |  |  |
-
 | 1 |  |  |
-
 | 2 |  |  |
 
-1.  $g(x) = |2x+4|$
+2. $g(x) = |2x+4|$
 
 | $x$ | $g(x)$ | $ (x, g(x)) $ |
-
+|---|---|---|
 | -4 | 4 | (-4,4) |
-
 | -3 |  |  |
-
 | -2 |  |  |
-
 | -1 |  |  |
-
 | 0 |  |  |
 
-1.  $h(x) = \frac{1}{2}x^2+3$
+3. $h(x) = \frac{1}{2}x^2+3$
 
 | $x$ | $h(x)$ | $ (x, h(x)) $ |
-
+|---|---|---|
 | -2 | 5 | (-2,5) |
-
 | -1 |  |  |
-
 | 0 |  |  |
-
 | 1 |  |  |
-
 | 2 |  |  |
 
 ### (3) Start working with R and RStudio
-1. Install R - <https://www.r-project.org/>
+1. Install [R](https://www.r-project.org/)
+2. Install [RStudio](https://www.rstudio.com/products/rstudio/download/)
+3. Open a new file in RStudio and use it to perform a few computations. One option is to repeat some of the computations you did during class in groups, but this time using R to perform the computations. Or you may pick something else of interest. Feel free to search the web for a tutorial on performing computations with R in RStudio.
+4. Construct the plot of a function (either one from part 2 above, from in class, or one of your choice).
 
-1. Install RStudio - <https://www.rstudio.com/products/rstudio/download/>
-1. Open a new file in RStudio and use it to perform a few computations. One option is to repeat some of the computations you did during class in groups, but this time using R to perform the computations. Or you may pick something else of interest. Feel free to search the web for a tutorial on performing computations with R in RStudio. 
-
-1. Construct the plot of a function (either one from part 2 above, from in class, or one of your choice).
 You could play with and adjust the code below as a starting point.
 
 ```r

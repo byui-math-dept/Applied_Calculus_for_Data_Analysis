@@ -486,8 +486,7 @@ window.Quarto = {
 <section id="partial-derivatives-of-a-loglikelihood-function" class="level3">
 <h3 class="anchored" data-anchor-id="partial-derivatives-of-a-loglikelihood-function">(2) Partial Derivatives of a loglikelihood function</h3>
 <p>Watch the videos below that walk you through finding the first and second partials of <span class="math display">\[\ell_2 = \ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right).\]</span> - <a href="https://www.loom.com/share/faf8677c97d3471e82ef932733754eec?sharedAppSource=personal_library" target="_blank">First Partials</a> (~11 min) - <a href="https://www.loom.com/share/e40fd32ff0df48dfaeeee70cd2d8534b?sharedAppSource=personal_library" target="_blank">Second Partials</a> (~10 min) - <a href="https://www.loom.com/share/1033f69c42e843db94624993e73c5764?sharedAppSource=personal_library" target="_blank">Calculating Constants</a> (~7 min) After watching the videos, try to repeat the computations on your own so that you can discover where you have questions.</p>
-<p>Now try repeating these computations yourself for <span class="math display">\[\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t}))^2.\]</span> - <a href="https://byuistats.github.io/M119/m119-docs/PDloglikelihoodFn6.html." class="uri">https://byuistats.github.io/M119/m119-docs/PDloglikelihoodFn6.html.</a></p>
-<p>(:div:)</p>
+<p>Now try repeating these computations yourself for <span class="math display">\[\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t}))^2.\]</span> - <a href="https://byuistats.github.io/M119/m119-docs/PDloglikelihoodFn6.html">Partial derivatives of loglikelihood for f6</a>.</p>
 <details>
 <summary>
 Click to expand the material used in the videos above.
@@ -523,7 +522,6 @@ Click to expand the material used in the videos above.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">4</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<p>(:divend:)</p>
 <p><a id="PP"></a></p>
 </section>
 <section id="regular-reminders" class="level2">

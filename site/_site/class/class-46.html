@@ -488,19 +488,30 @@ window.Quarto = {
 <section id="antiderivative-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="antiderivative-exercises">(2) Antiderivative Exercises</h3>
 <p>We use the symbol, <span class="math inline">\(\int f(x)dx\)</span>, to represent the collection of all antiderivatives of the function <span class="math inline">\(f(x)\)</span>. Remember antiderivative means “undo” the derivative. We also read <span class="math inline">\(\int f(x)dx\)</span> as “the indefinite integral of <span class="math inline">\(f\)</span>”.</p>
-<p>Evaluate each indefinite integral. Write your solutions (and the thinking leading to your answer) out on paper. 1. <span class="math inline">\(\int x^{10}dx\)</span> 1. <span class="math inline">\(\int (x+1)^{10}dx\)</span> 1. <span class="math inline">\(\int (3x+1)^{10}dx\)</span></p>
-<pre><code>1.  $\int \frac{64}{x^5} dx$
-1. $\int \frac{64}{(x+2)^5} dx$
-1. $\int \frac{64}{(3x+1)^5} dx$
-
-1.  $\int \frac{1}{x} dx$
-1. $\int \frac{1}{1-x} dx$
-1. $\int \frac{1}{1-4x} dx$
-
-1.  $\int e^x dx$
-1. $\int e^{x-1} dx$ 
-1. $\int e^{2-x} dx$ 
-1. $\int e^{2-5x} dx$</code></pre>
+<p>Evaluate each indefinite integral. Write your solutions (and the thinking leading to your answer) out on paper.</p>
+<ol type="1">
+<li><ol type="a">
+<li><span class="math inline">\(\int x^{10}dx\)</span></li>
+<li><span class="math inline">\(\int (x+1)^{10}dx\)</span></li>
+<li><span class="math inline">\(\int (3x+1)^{10}dx\)</span></li>
+</ol></li>
+<li><ol type="a">
+<li><span class="math inline">\(\int \frac{64}{x^5} dx\)</span></li>
+<li><span class="math inline">\(\int \frac{64}{(x+2)^5} dx\)</span></li>
+<li><span class="math inline">\(\int \frac{64}{(3x+1)^5} dx\)</span></li>
+</ol></li>
+<li><ol type="a">
+<li><span class="math inline">\(\int \frac{1}{x} dx\)</span></li>
+<li><span class="math inline">\(\int \frac{1}{1-x} dx\)</span></li>
+<li><span class="math inline">\(\int \frac{1}{1-4x} dx\)</span></li>
+</ol></li>
+<li><ol type="a">
+<li><span class="math inline">\(\int e^x dx\)</span></li>
+<li><span class="math inline">\(\int e^{x-1} dx\)</span></li>
+<li><span class="math inline">\(\int e^{2-x} dx\)</span></li>
+<li><span class="math inline">\(\int e^{2-5x} dx\)</span></li>
+</ol></li>
+</ol>
 <p><a id="PP"></a></p>
 </section>
 <section id="regular-reminders" class="level2">
@@ -631,9 +642,9 @@ FullSimplify[D[MyAnswer - MathmaticaAnswer, x] == 0]</code></pre>
 <li><p>Consider <span class="math inline">\(\int \frac{y}{(y+1)^4} dy\)</span>. Compute the integral by hand, and then with Mathematica. Compare the solutions, and verify that their difference is a constant.</p></li>
 <li><p>Consider <span class="math inline">\(\int \frac{1}{x^2 + 8} dx\)</span>. Computing the integral in Mathematica, and then plot the result. The ArcTan function may be new to many of us. The function <span class="math inline">\(f(x) = \tan^{-1}(x)\)</span> is called the arctangent function or inverse tangent function. The domain of the inverse tangent function is all real numbers. The range of the inverse tangent is $ ( -, ) $. We could use the following code to plot <span class="math inline">\(f(x) = \arctan(x)\)</span> in R.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inpt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">25</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inpt,<span class="fu">atan</span>(inpt),<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="group-meeting" class="level2">

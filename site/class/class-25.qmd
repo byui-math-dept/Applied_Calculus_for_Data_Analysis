@@ -25,7 +25,7 @@ Write an equation in one variable for the described quantity in each story below
 After you have written down each function, open R and plot each function to visually identify where the maximum of each function occurs. 
 
 ### (3) Making Connections
-Open <https://byuistats.github.io/M119/project2.html.>  
+Open [Project 2 instructions](https://byuistats.github.io/M119/project2.html).
 - Consider the model $f_5$. Review your computations to obtain the loglikelihood function (or complete the computations now). The answer is provided to you in the Task 1 Instructions. Your job is to perform the needed computations and include explanations of each of the steps. 
     - Note: This is part of the required work for Project 2 Task 1.
 - Now compute the first and second derivative of this loglikelihood function.

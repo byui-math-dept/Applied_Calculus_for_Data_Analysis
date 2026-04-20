@@ -49,7 +49,7 @@ ContourPlot[y == Sqrt[16 - (x - 4)^2], {x, -1, 9}, {y, -5, 5}]
     - What is the shape of the integrand, $f(x) = \sqrt{16-(x-4)^2}$? 
 
 <details>
-<summary>->Answer</summary>
+<summary>Answer</summary>
 
 $f(x)$ is one half of a circle centered at (4,0) with radius 4. You'll encounter functions like this one when working on Knewton Alta homework.
 
@@ -58,11 +58,11 @@ $f(x)$ is one half of a circle centered at (4,0) with radius 4. You'll encounter
 > Calculate the integral, $\displaystyle\int_0^{8} \sqrt{16-(x-4)^2} dx$, using a geometric formula. Then check your answer by calculating the definite integral in Mathematica.
 
 <details>
-<summary>->*Hint*</summary>
+<summary>*Hint*</summary>
+
+The formula for calculating the area of a circle with radius $r$ is $A = \pi r^2$.
 
 </details>
-
-->The formula for calculating the area of a circle with radius $r$ is $A = \pi r^2$.
 
 <a id="PP"></a>
 

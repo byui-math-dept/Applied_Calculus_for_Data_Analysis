@@ -12,7 +12,7 @@ Pick something from your prep today that you can share with your group in class.
 ## Preparation
 ### (1) Likelihood Practice (with Poisson)
 
-Use the storms listed on Wikipedia's <https://tinyurl.com/51vyiwjw> page to answer the questions below. 
+Use the storms listed on Wikipedia's [List of Florida hurricanes](https://tinyurl.com/51vyiwjw) page to answer the questions below.
 
 1. Use the data from 2005-2007 for $x_1$, $x_2$, and $x_3$. The number of storms in 2005 is $x_1$, the number of storms in 2006 is $x_2$, and the number of storms in 2007 is $x_3$.
 - Adapt the code from class to complete the following table, calculating the probability given the value of $\lambda$.
@@ -28,35 +28,21 @@ p3v1(c(8,2,8),2)
 ```
 
 | $\lambda$ | $P(X_1=x_1,X_2=x_2,X_3=x_3)$ |
-
+|---|---|
 | 1 | 1.531x$10^{-11}$ |
-
 | 2 | 1.998x$10^{-7}$ |
-
 | 3 |  |
-
 | 4 |  |
-
 | 5 |  |
-
 | 6 |  |
-
 | 7 |  |
-
 | 8 |  |
-
 | 9 |  |
-
 | 10 |  |
-
 | 11 |  |
-
 | 12 |  |
-
 | 13 |  |
-
 | 14 |  |
-
 | 15 |  |
 
 - Use the code below to plot this function of $\lambda$ in R. (Because both $\lambda$ and $x$ are vectors, we must use the sapply function from R to appropriately tell the computer how to to parse the notation. You do not have to modify any code involving sapply for future tasks, so feel free to just run the code below to produce the needed plot.)
@@ -70,7 +56,7 @@ plot(lambda, probs, type='l')
 
 - If we know there will be 8 Florida tropical storms this year, 2 Florida tropical storms next year, and 8 Florida tropical storms the year after that (in other words the data values from 2005-2007), what is your guess for the best choice of parameter $\lambda$?
 
-2. Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with $\lambda$ on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia's <https://tinyurl.com/51vyiwjw> to get the appropriate data. 
+2. Using the data from 2010-2012 adapt the code from exercise 1 (above) to plot a function with $\lambda$ on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2010, the number of storms next year will be the same as the number of storms in 2011, and the number of storms in the year after that will be the same number as the number of storms in 2012) on the vertical axis. See Wikipedia's [List of Florida hurricanes](https://tinyurl.com/51vyiwjw) to get the appropriate data.
 - Using your plot what is your guess for the best choice of the parameter $\lambda$ in this case?
 
 3. Using the data from 2012-2015 adapt the code to plot a function with $\lambda$ on the horizontal axis and probability (that of the number of storms this year will be the same as the number of storms in 2012, the number of storms next year will be the same as the number of storms in 2013, the number of storms in the year after that will be the same number as the number of storms in 2014, and the number of storms in the year after that will be the same number as the number of storms in 2015) on the vertical axis.

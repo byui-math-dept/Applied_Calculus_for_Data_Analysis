@@ -26,22 +26,27 @@ We use the symbol, $\int f(x)dx$, to represent the collection of all antiderivat
 We also read $\int f(x)dx$ as "the indefinite integral of $f$".
 
 Evaluate each indefinite integral. Write your solutions (and the thinking leading to your answer) out on paper.
-    1.  $\int x^{10}dx$
-    1. $\int (x+1)^{10}dx$
-    1. $\int (3x+1)^{10}dx$
 
-    1.  $\int \frac{64}{x^5} dx$
-    1. $\int \frac{64}{(x+2)^5} dx$
-    1. $\int \frac{64}{(3x+1)^5} dx$
+1.
+    a. $\int x^{10}dx$
+    a. $\int (x+1)^{10}dx$
+    a. $\int (3x+1)^{10}dx$
 
-    1.  $\int \frac{1}{x} dx$
-    1. $\int \frac{1}{1-x} dx$
-    1. $\int \frac{1}{1-4x} dx$
+1.
+    a. $\int \frac{64}{x^5} dx$
+    a. $\int \frac{64}{(x+2)^5} dx$
+    a. $\int \frac{64}{(3x+1)^5} dx$
 
-    1.  $\int e^x dx$
-    1. $\int e^{x-1} dx$ 
-    1. $\int e^{2-x} dx$ 
-    1. $\int e^{2-5x} dx$
+1.
+    a. $\int \frac{1}{x} dx$
+    a. $\int \frac{1}{1-x} dx$
+    a. $\int \frac{1}{1-4x} dx$
+
+1.
+    a. $\int e^x dx$
+    a. $\int e^{x-1} dx$
+    a. $\int e^{2-x} dx$
+    a. $\int e^{2-5x} dx$
 
 <a id="PP"></a>
 

@@ -53,17 +53,14 @@ abline(v=2,col='red',lty=3) #vertical asymptote of function
 ### (3) Function Fairy Tales (Shoe Tread)
 The tread on the bottom of a boot has been wearing off at a fairly constant rate starting from the date it was purchased. The shoe began with about 60mm of tread, and every month has been loosing about 3mm. A model for the tread thickness is $f(x;m,b) = mx+b$, where $x$ is the number of months since the date it was purchased. 
 
-For each choice of parameters $m$ and $b$ below, tell the story given by the model (even if said story is ludicrous). Then identify the model that best fits the story provided above. 
-<ol type="a">
-  <li>$m=2,b=3$</li>
-</ol>
-1. $m=0,b=60$
+For each choice of parameters $m$ and $b$ below, tell the story given by the model (even if said story is ludicrous). Then identify the model that best fits the story provided above.
 
-1. $m=60,b=0$
-1. $m=-1,b=10$
-
-1. $m=-3,b=60$
-1. $m=3,b=-60$
+a. $m=2,b=3$
+a. $m=0,b=60$
+a. $m=60,b=0$
+a. $m=-1,b=10$
+a. $m=-3,b=60$
+a. $m=3,b=-60$
 
 <a id="PP"></a>
 

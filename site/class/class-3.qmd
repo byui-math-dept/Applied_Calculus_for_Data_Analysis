@@ -13,23 +13,23 @@ Pick something from your prep today that you can share with your group in class.
 
 ### (1) Introduction to R
 
-> *Read Sections 1-4 and 11.3 (page 1-5 and 10) of [A (very) short introduction to R](https://drive.google.com/uc?export=download&id=1U0Gs5tPwpT1uHySRaf03PpyEt0bxw7K4){target="_blank"}.
-> *Construct your own function and plot it.
-> ** *Figure 1 (page 3) may be helpful.*
+- Read Sections 1-4 and 11.3 (page 1-5 and 10) of [A (very) short introduction to R](https://drive.google.com/uc?export=download&id=1U0Gs5tPwpT1uHySRaf03PpyEt0bxw7K4){target="_blank"}.
+- Construct your own function and plot it.
+    - *Figure 1 (page 3) may be helpful.*
 
 ### (2) Solving Equations
 
-> Review page 1-3 in this [summary of solving equations](https://byuistats.github.io/M119/m119-docs/EquationSolvingStrategies_kelly.pdf){target="_blank"} compiled by my colleague Kelly MacArthur. Then complete as many of these as you can, with the goal of having something you can share with your team in class. 
-> * Create an example of a linear equation to solve, and then solve it. 
-> * Create an example of a quadratic equation to solve, and then solve it. 
-> * Create an example of a rational equation to solve, and then solve it. 
-> * Create an example of a radical equation to solve, and then solve it. 
-> 
-> * For additional (optional) review, as needed, watch one or more of the following videos.
-> ** [Solving Linear Equation, Video 1](https://www.youtube.com/watch?v=eq8APJ6qf2M&feature=youtu.be)
-> ** [Solving Linear Equation, Video 2](https://www.youtube.com/watch?v=-KL6RZDbO6A&feature=youtu.be)
-> ** [Solving a Polynomial Equation](https://www.youtube.com/watch?v=5tiQN3wQZfs&feature=youtu.be)
-> ** [Solving Radical Equation](https://www.youtube.com/watch?v=tT0Zwsto6AQ&feature=youtu.be)
+Review page 1-3 in this [summary of solving equations](https://byuistats.github.io/M119/m119-docs/EquationSolvingStrategies_kelly.pdf){target="_blank"} compiled by my colleague Kelly MacArthur. Then complete as many of these as you can, with the goal of having something you can share with your team in class.
+
+- Create an example of a linear equation to solve, and then solve it.
+- Create an example of a quadratic equation to solve, and then solve it.
+- Create an example of a rational equation to solve, and then solve it.
+- Create an example of a radical equation to solve, and then solve it.
+- For additional (optional) review, as needed, watch one or more of the following videos.
+    - [Solving Linear Equation, Video 1](https://www.youtube.com/watch?v=eq8APJ6qf2M&feature=youtu.be)
+    - [Solving Linear Equation, Video 2](https://www.youtube.com/watch?v=-KL6RZDbO6A&feature=youtu.be)
+    - [Solving a Polynomial Equation](https://www.youtube.com/watch?v=5tiQN3wQZfs&feature=youtu.be)
+    - [Solving Radical Equation](https://www.youtube.com/watch?v=tT0Zwsto6AQ&feature=youtu.be)
 
 ### (3) Pick something to share
 Remember to pick something from the above that you can share with your peers

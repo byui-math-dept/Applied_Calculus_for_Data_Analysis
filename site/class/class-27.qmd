@@ -86,7 +86,7 @@ b_{1,1}x + b_{1,2}y &= c_1 \\
 2x + b_{2,2}y &= c_2
 \end{array} 
 \right.$$
--->and then 
+and then
 $$\left\{
 \begin{array}{ll}
 b_{1,1}x + b_{1,2}y &= c_1 \\ 

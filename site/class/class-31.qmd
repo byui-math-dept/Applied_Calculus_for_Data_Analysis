@@ -12,7 +12,7 @@ Pick something from your prep today that you can share with your group in class.
 ## Preparation
 ### (1) Reading Assignment
 One of the goals in our class is to become better at reading and writing mathematics.  This is a skill that is learned through practice.  
-- Read [Second Derivative Test in Higher Dimensions](https://byuistats.github.io/M119/m119-docs/SecondDerTest_BrianSittinger.pdf){target="_blank"}. 
+- Read [Second Derivative Test in Higher Dimensions](../assets/docs/SecondDerTest_BrianSittinger.pdf){target="_blank"}.
     - We know how to use the Second Derivative Test in 1-dimension and in 2-dimensions. Compare what we have discussed in class with what you are reading. Then see if you can make sense of the Second Derivative Test in 3 or more dimensions.
     - One of the words used in this reading is a determinant of a "Hessian" matrix. A **matrix** is a rectangular array of numbers. The size of a matrix is determined by the number of rows and number of columns in the matrix. If a matrix has $n$ rows and $m$ columns we say the matrix is a $n$ x $m$ matrix. For example, matrix $C$ shown below is a 3 x 4 matrix. 
 

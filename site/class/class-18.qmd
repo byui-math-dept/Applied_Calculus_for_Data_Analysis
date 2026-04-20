@@ -12,13 +12,14 @@ Pick something from your prep today that you can share with your group in class.
 ## Preparation
 ### (1) Derivative Rules
 
-> Watch the following videos.
-> * [Product Rule](https://www.youtube.com/watch?v=3T0mD8vKLN4){target="_blank"} (~10 minutes)
-> * [Quotient Rule](https://www.youtube.com/watch?v=wg2O3o4s1q0){target="_blank"} (~7.5 minutes)
+Watch the following videos.
+
+- [Product Rule](https://www.youtube.com/watch?v=3T0mD8vKLN4){target="_blank"} (~10 minutes)
+- [Quotient Rule](https://www.youtube.com/watch?v=wg2O3o4s1q0){target="_blank"} (~7.5 minutes)
 
 ### (2) Function Decomposition (composing and decomposing functions)
 
-> Complete as much of this [Composing and Decomposing Practice](https://byuistats.github.io/M119/m119-docs/Composing_Decomposing_Practice.pdf) worksheet as you can.
+Complete as much of this [Composing and Decomposing Practice](https://byuistats.github.io/M119/m119-docs/Composing_Decomposing_Practice.pdf) worksheet as you can.
 
 <a id="PP"></a>
 

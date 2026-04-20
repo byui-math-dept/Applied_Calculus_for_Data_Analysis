@@ -12,7 +12,7 @@ Pick something from your prep today that you can share with your group in class.
 ## Preparation
 ### (1) Derivative Rules
 - Watch [Intro to Derivative Rules](https://www.youtube.com/watch?v=untsh_gpdzI&feature=youtu.be){target="_blank"} (~9 minutes)
-    - Begin Knewton Alta assginment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+    - Begin Knewton Alta assignment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
 
 ### (2) Loglikelihood
 
@@ -51,7 +51,7 @@ How could you use this property of logarithms to rewrite each loglikelihood func
 
 ## Regular Reminders
 ### Skill Practice (KA Homework)
-Begin Knewton Alta assginment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
+Begin Knewton Alta assignment 2 -- Derivative Rules (Power Function, Sum/Difference, Constant Multiple)
 
 ### Applied Practice (Project Work)
 - Complete Project 1

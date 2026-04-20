@@ -15,24 +15,24 @@ Pick something from your prep today that you can share with your group in class.
 
 > **seq() function in R**<br>
 > Run the following code in your Console.
-> 
+>
 ```r
 seq(-10,10,0.2)
 ```
 
 > What does this code do?
-> 
+>
 > What if we change the last number?
-> 
+>
 ```r
 seq(-10,10,1)
 seq(-10,10,5)
 seq(-10,10)
 ```
 
-> 
+>
 > What if we change the first number?
-> 
+>
 ```r
 seq(-10,10,2)
 seq(-1,10,2)
@@ -40,28 +40,19 @@ seq(3,10,2)
 seq(-14,10,2)
 ```
 
-> 
+>
 > What if we change the second number?
-> 
+>
 ```r
 seq(-10,10,2)
 seq(-10,-2,2)
 seq(-10,5,2)
 ```
 
-> 
-> What if we change the second number?
-> 
-```r
-seq(-10,10,2)
-seq(-10,-2,2)
-seq(-10,5,2)
-```
-
-> 
+>
 > Run the following in your Console?
-> 
-```
+>
+```r
 ?seq
 ```
 
@@ -94,18 +85,18 @@ plot(x,y,type='p')
 
 > 
 > Run the following code in your Console.
-> 
+>
 ```r
 plot(iris$Sepal.Length,iris$Petal.Length,pch=16)
 ```
 
 > What does this code do?
-> 
+>
 > What does the argument, "pch=16", do?
-> 
+>
 > Run the following code in your Console.
-> 
-```
+>
+```r
 head(iris)
 head(iris$Petal.Width)
 head(iris$Sepal.Length)
@@ -115,22 +106,21 @@ head(iris$Sepal.Length)
 
 ### (2) Transformation of Functions (Videos)
 
-> * Watch the following videos, from mathispower4u website.
-> ** [Video 1](https://www.youtube.com/watch?v=2S9LUinJ8-w) (~10 minutes)
-> ** [Video 2](https://www.youtube.com/watch?v=iFYX3MvLt4M) (~7.5 minutes)
-> ** [Video 3 (summary)](https://www.youtube.com/watch?v=An29CALYjAA) (~8.5 minutes)
-> 
-> If you prefer reading you can carefully read and review [Section 1.5 Precalculus Text](https://openstax.org/books/precalculus/pages/1-5-transformation-of-functions).You can skip the "Determining Even and Odd Functions" part of this section.
+- Watch the following videos, from mathispower4u website.
+    - [Video 1](https://www.youtube.com/watch?v=2S9LUinJ8-w) (~10 minutes)
+    - [Video 2](https://www.youtube.com/watch?v=iFYX3MvLt4M) (~7.5 minutes)
+    - [Video 3 (summary)](https://www.youtube.com/watch?v=An29CALYjAA) (~8.5 minutes)
+
+If you prefer reading you can carefully read and review [Section 1.5 Precalculus Text](https://openstax.org/books/precalculus/pages/1-5-transformation-of-functions). You can skip the "Determining Even and Odd Functions" part of this section.
 
 ### (3) Project 1 Task 1
 
-> * Begin Project 1 Task 1
-> ** Read each of the following.
-> ***[Specs](https://byuistats.github.io/M119/project.html){target="_blank"}
-> ***[Spec Details](https://byuistats.github.io/M119/specs_detail.html){target="_blank"}
-> ***[Project 1 Task 1 Instructions](https://byuistats.github.io/M119/project1.html){target="_blank"}
-> 
-> * Create the required scatterplot for Project 1 Task 1.
+- Begin Project 1 Task 1
+    - Read each of the following.
+        - [Specs](https://chaz-clark.github.io/M119/Projects/index.html){target="_blank"}
+        - [Spec Details](https://chaz-clark.github.io/M119/Projects/specs_detail.html){target="_blank"}
+        - [Project 1 Task 1 Instructions](https://chaz-clark.github.io/M119/Projects/unit1.html){target="_blank"}
+- Create the required scatterplot for Project 1 Task 1.
 
 <a id="PP"></a>
 

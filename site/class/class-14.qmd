@@ -35,7 +35,7 @@ $n! = (n)(n-1)(n-2) ... (2)(1) = \prod_{k=1}^{n} k$
 <details>
 <summary>Definition: Poisson Random Variable</summary>
 
-A **Poisson random variable (or Poisson distribution)** is a model for the number of events that occur during a fixed time interval. <https://en.wikipedia.org/wiki/Poisson_distribution>
+A **Poisson random variable (or Poisson distribution)** is a model for the number of events that occur during a fixed time interval. See [Poisson distribution on Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution).
 
 The probability mass function (pmf) for the Poisson distribution is $p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}$ when $x = 0, 1, 2, 3, ...$ and zero otherwise where $\lambda > 0$.
 
@@ -47,7 +47,7 @@ The random variables $X$, $Y$, and $W$ are Poisson random variables.
 
 </details>
 
-The number of <https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_%28200080%93present%29> can be thought of as a Poisson random variable, which means we can model the probabilty of having $x$ tropical storms in a year using 
+The number of [Florida hurricanes (2000–present)](https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(2000%E2%80%93present)) can be thought of as a Poisson random variable, which means we can model the probabilty of having $x$ tropical storms in a year using
 $$p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\text{ with }x = 0, 1, 2, 3, ...\text{ where }\lambda > 0.$$
 The parameter $\lambda$ is a value we would like to determine. The code chunk below defines this probability mass function in R, using a default value of $\lambda = 2$. 
 Start by exploring the function $p(x; \lambda)$ and how the parameter $\lambda$ affects the plot. 
