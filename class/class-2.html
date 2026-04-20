@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,10 +75,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +114,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -114,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -213,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -226,7 +429,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-2" id="toc-between-class-sessions---prep-for-day-2" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-2">Between Class Sessions - Prep for Day 2 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#graphing-functions" id="toc-graphing-functions" class="nav-link" data-scroll-target="#graphing-functions">(2) Graphing Functions</a></li>
+  <li><a href="#start-working-with-r-and-rstudio" id="toc-start-working-with-r-and-rstudio" class="nav-link" data-scroll-target="#start-working-with-r-and-rstudio">(3) Start working with R and RStudio</a></li>
+  <li><a href="#pick-something-to-share" id="toc-pick-something-to-share" class="nav-link" data-scroll-target="#pick-something-to-share">(4) Pick something to share</a></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-discussion" id="toc-group-discussion" class="nav-link" data-scroll-target="#group-discussion">Group Discussion</a>
@@ -245,6 +454,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -265,6 +475,148 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-2" class="level1">
+<h1>Between Class Sessions - Prep for Day 2 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Familiarize yourself with class - Read the Syllabus - Complete the Background Survey - Open a Knewton Alta assignment and answer some questions (for example you could open up “1 – Function Evaluation”). The point is to make sure you have gotten into the system, and seen how it works. Feel free to complete one of the assignments. - Skim read the <a href="https://byuistats.github.io/M119/project1.html">instructions for Project 1</a>.</p>
+<section id="graphing-functions" class="level3">
+<h3 class="anchored" data-anchor-id="graphing-functions">(2) Graphing Functions</h3>
+<p>Our first Unit is focused on expanding our knowledge and understanding of functions. Plot the following functions by hand. Select five or more input values, calculate the corresponding output values, plot the points, and connect the points with a line. Check your work by plotting the function with Desmos (or another graphing calculator). 1. <span class="math inline">\(f(x) = 1-4x\)</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(f(x)\)</span></th>
+<th>$ (x, f(x)) $</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-2</td>
+<td>9</td>
+<td>(-2,9)</td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><span class="math inline">\(g(x) = |2x+4|\)</span></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(g(x)\)</span></th>
+<th>$ (x, g(x)) $</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-4</td>
+<td>4</td>
+<td>(-4,4)</td>
+</tr>
+<tr class="even">
+<td>-3</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><span class="math inline">\(h(x) = \frac{1}{2}x^2+3\)</span></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(h(x)\)</span></th>
+<th>$ (x, h(x)) $</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-2</td>
+<td>5</td>
+<td>(-2,5)</td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="start-working-with-r-and-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="start-working-with-r-and-rstudio">(3) Start working with R and RStudio</h3>
+<ol type="1">
+<li>Install <a href="https://www.r-project.org/">R</a></li>
+<li>Install <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a></li>
+<li>Open a new file in RStudio and use it to perform a few computations. One option is to repeat some of the computations you did during class in groups, but this time using R to perform the computations. Or you may pick something else of interest. Feel free to search the web for a tutorial on performing computations with R in RStudio.</li>
+<li>Construct the plot of a function (either one from part 2 above, from in class, or one of your choice).</li>
+</ol>
+<p>You could play with and adjust the code below as a starting point.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">16</span>,<span class="dv">25</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pick-something-to-share" class="level3">
+<h3 class="anchored" data-anchor-id="pick-something-to-share">(4) Pick something to share</h3>
+<p>Remember to pick something from the above that you can share with your peers tomorrow. What could that be? - Did you encounter any issues with KnewtonAlta or have questions? Was there a problem in what you attempted that helped you remember something. - As you plotted functions from (2), were there any tricky parts? Did you use Desmos or something else? Do you have any tips for plotting? - How did installing R and RStudio go? If there were any hiccups along the way, what did you do to resolve them? Did you plot a function and are you willing to share the code you used? Were there any bits of code that didn’t make sense? Did you ask AI for help to plot a function and have a record of your chat history you can share? - Something else. Remember that questions can be just as valuable as solutions. If you worked on something and know it’s wrong, sometimes the most valuable thing you can share is that wrong attempt. This will generate discussion and help all grow.</p>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -283,7 +635,7 @@ Possible Solution
 </summary>
 <ul>
 <li>We have <span class="math inline">\(f(-2) = (-2)^3 = -8\)</span> because <span class="math inline">\(x=-2\)</span> satisfies <span class="math inline">\(x&lt;-1\)</span>.</li>
-<li>Note that <span class="math inline">\(-1\)</span> does not lie in any of the three given regions, which means <span class="math inline">\(f(-1)\)</span> is undefinded.<br>
+<li>Note that <span class="math inline">\(-1\)</span> does not lie in any of the three given regions, which means <span class="math inline">\(f(-1)\)</span> is undefined.<br>
 </li>
 <li>We know <span class="math inline">\(f(4) = \sqrt{4} = 2\)</span> as <span class="math inline">\(x=4\)</span> satisfies <span class="math inline">\(x\geq 4\)</span>.</li>
 </ul>
@@ -351,183 +703,31 @@ Exponential Function
 <p>An exponential function is any function of the form <span class="math inline">\(f(x) = b^x\)</span> where <span class="math inline">\(b &gt; 0\)</span> and <span class="math inline">\(b \neq 1\)</span>.</p>
 </details>
 <p>As a group, discuss whether each function is a power function, quadratic function, polynomial function, root function, and/or a rational function. Record your solutions in a table similar to the following. Note a function can be classified as multiple types.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>power fn.</th>
-<th>quadratic fn.</th>
-<th>polynomial fn.</th>
-<th>root fn.</th>
-<th>rational fn.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(f(x) = x^2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(g(x) = \sqrt{x}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(h(x) = x^3\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(A(x) = (x-1)^2\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(w(x) = 5^x\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">&nbsp;| power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |</div>
+<div class="line-block">— | — | — | — | — | — |</div>
+<div class="line-block"><span class="math inline">\(f(x) = x^2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(g(x) = \sqrt{x}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(h(x) = x^3\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(A(x) = (x-1)^2\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(w(x) = 5^x\)</span> | | | | | |</div>
 <p>After you’ve finished classifying the functions, first compare your results with the other groups in class. Discuss any changes you believe need to be made. Then expand the solution below and discuss any questions you have.</p>
 <details>
 <summary>
 Answer
 </summary>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>power fn.</th>
-<th>quadratic fn.</th>
-<th>polynomial fn.</th>
-<th>root fn.</th>
-<th>rational fn.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(f(x) = x^2\)</span></td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(g(x) = \sqrt{x}\)</span></td>
-<td>X</td>
-<td></td>
-<td></td>
-<td>X</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(h(x) = x^3\)</span></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span></td>
-<td></td>
-<td></td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(A(x) = (x-1)^2\)</span></td>
-<td></td>
-<td>X</td>
-<td>X</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(w(x) = 5^x\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">&nbsp;| power fn. | quadratic fn. | polynomial fn. | root fn. | rational fn. |</div>
+<div class="line-block">— | — | — | — | — | — |</div>
+<div class="line-block"><span class="math inline">\(f(x) = x^2\)</span> | X | X | X | | X |</div>
+<div class="line-block"><span class="math inline">\(g(x) = \sqrt{x}\)</span> | X | | | X | |</div>
+<div class="line-block"><span class="math inline">\(h(x) = x^3\)</span> | X | | X | | X |</div>
+<div class="line-block"><span class="math inline">\(p(x) = \sqrt{3x+1}\)</span> | | | | | |</div>
+<div class="line-block"><span class="math inline">\(q(x) = x^3 - 3x + 2\)</span> | | | X | | X |</div>
+<div class="line-block"><span class="math inline">\(A(x) = (x-1)^2\)</span> | | X | X | | X |</div>
+<div class="line-block"><span class="math inline">\(r(x) = \frac{2x+3}{x^2+1}\)</span> | | | | | X |</div>
+<div class="line-block"><span class="math inline">\(w(x) = 5^x\)</span> | | | | | |</div>
 <p>The function <span class="math inline">\(w(x) = 5^x\)</span> is an exponential function.</p>
 </details>
 <p><strong>Examples and Nonexamples</strong> - Give an example of a polynomial that is NOT a power function. - Give an example of a power function that is NOT a polynomial.</p>
@@ -551,96 +751,27 @@ Possible Solutions
 <ol type="1">
 <li>Complete each table below.</li>
 </ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(f(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(g(x) = f(x) + 2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(h(x) = f(x+2)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(f(x)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(g(x) = f(x) + 2\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">-2 | |</div>
+<div class="line-block">-1 | |</div>
+<div class="line-block">0 | |</div>
+<div class="line-block">1 | |</div>
+<div class="line-block">2 | |</div>
+<div class="line-block"><span class="math inline">\(x\)</span> | <span class="math inline">\(h(x) = f(x+2)\)</span> |</div>
+<div class="line-block">— | — |</div>
+<div class="line-block">&nbsp;| 4 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 0 |</div>
+<div class="line-block">&nbsp;| 1 |</div>
+<div class="line-block">&nbsp;| 4 |</div>
 <ol type="1">
 <li><p>Graph each of the functions from part 1.</p></li>
 <li><p>The graph of <span class="math inline">\(g\)</span> is the same as the graph of <span class="math inline">\(f\)</span> but shifted _________________.</p></li>
@@ -689,6 +820,8 @@ Definition 3 (Another Instructor’s definition)
 <section id="plotting-with-r" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-with-r">Plotting with R</h3>
 <p>We’ll spend the rest of class time using R to plot functions from the work we’ve done in class today.</p>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.2">Class.2 on byuimath.com</a></em></p>
 
 
 </section>
@@ -698,6 +831,19 @@ Definition 3 (Another Instructor’s definition)
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

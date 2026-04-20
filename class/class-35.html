@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-35" id="toc-between-class-sessions---prep-for-day-35" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-35">Between Class Sessions - Prep for Day 35 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -275,6 +451,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -295,6 +472,65 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-35" class="level1">
+<h1>Between Class Sessions - Prep for Day 35 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Reading - Rectangles, Targets, and Sums - Sections 2.3 through 3.2 For this Unit, the reading as well as many practice exercises appear in the document <a href="https://byuistats.github.io/M119/unit3/probability.html" target="_blank">Rectangles, Targets, and Sums</a> 1. Read sections 2.3-3.2.</p>
+<ol type="1">
+<li>Complete a few exercises from each section, and come ready to share what you did with your group.<br>
+</li>
+<li>Let <span class="math inline">\(g(x) = 2x\)</span> for <span class="math inline">\(0\leq x\leq 4\)</span> be a target function.
+<ul>
+<li>Find a value <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = k g(x)\)</span> is one (so provide a normalized target function).</li>
+<li>Let <span class="math inline">\(X\)</span> be the random variable which records the <span class="math inline">\(x\)</span>-coordinate of dropping a dart on the target defined by <span class="math inline">\(g\)</span>. Find the cumulative distribution function <span class="math inline">\(F(x)\)</span>.</li>
+<li>Compute the derivative <span class="math inline">\(F'(x)\)</span>.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Solutions for 3
+</summary>
+<ul>
+<li><p>The area under the function <span class="math inline">\(g\)</span> is $ A = (4)(8) = 16 $, which means we should pick $ k = = $ so that the area under the function $ f $ is 1. This means $ f(x) = kg(x) = (2x) = x $ for $ 0 x $.</p></li>
+<li><p>The cdf of <span class="math inline">\(X\)</span> will be the following function. <span class="math inline">\(F(x) =
+\begin{cases}
+0 &amp; \quad x \leq 0 \\ \\
+\frac{x^2}{16} &amp; \quad 0 &lt; x &lt; 4 \\ \\
+1 &amp; \quad x \geq 4.
+\end{cases}\)</span></p></li>
+<li><p>Calculating the derivative of <span class="math inline">\(F(x)\)</span> we find. <span class="math inline">\(F'(x) =
+\begin{cases}
+0 &amp; \quad x &lt; 0 \\ \\
+\frac{1}{16}(2x) &amp; \quad 0 &lt; x &lt; 4 \\ \\
+0 &amp; \quad x &gt; 4
+\end{cases} =
+\begin{cases}
+\frac{1}{8}(x) &amp; \quad 0 &lt; x &lt; 4 \\ \\
+0 &amp; \quad \text{otherwise} \\ \\
+\end{cases}\)</span></p></li>
+</ul>
+</details>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<p>If you have not done so already, complete 3 – Discrete Random Variables and Expected Value.</p>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 3 Task 1
+<ul>
+<li>Visually fit the probability models <span class="math inline">\(f_2\)</span> and <span class="math inline">\(f_3\)</span> to the data.</li>
+<li>Use the parameters for your visually fitted models to simulate data and calculate approximate probability.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -312,8 +548,7 @@ window.Quarto = {
 <li><p>Give the normalized target function by finding the constant <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = kg(x)\)</span> is 1.</p></li>
 <li><p>Compute <span class="math inline">\(P(X\leq 3)\)</span>.</p></li>
 <li><p>Calculate the expected value of <span class="math inline">\(X\)</span>, so compute $E[X] $.</p></li>
-<li><p>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.<br>
-</p></li>
+<li><p>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.</p></li>
 <li><p>Compute <span class="math inline">\(F'(x)\)</span>.</p></li>
 </ol>
 <details>
@@ -333,8 +568,8 @@ I’ll let you graph it.
 </ol>
 <p>Regardless of which option we choose, we must decide how many rectangles to use and then find the area and centroid of each. - We can use <span class="math inline">\(f\)</span> with two rectangles. The left rectangle has area <span class="math inline">\(A_1 = 8/11\)</span> and centroid at <span class="math inline">\(x_1=1\)</span>. The right rectangle has area <span class="math inline">\(A_2=3/11\)</span> and centroid <span class="math inline">\(x_2 = 3.5\)</span>. We then compute <span class="math display">\[E[X] = (1)\frac{8}{11} + (3.5)\frac{3}{11}.\]</span> - We can use <span class="math inline">\(f\)</span> with 5 rectangles. Using equal sized rectangles makes this quick. The areas are A = c(4,4,1,1,1) centered at x = c(0.5,1.5,2.5,3.5,4.5). In R we can type sum(x*A) to rapidly compute the numerator and sum(A) to compute the denominator. <span class="math inline">\(\frac{\sum x_i A_i}{\sum A_i}\)</span></p>
 <ol type="1">
-<li>To give a formula for <span class="math inline">\(F(x)\)</span>, we need to compute <span class="math inline">\(P(X\leq x)\)</span>. We can do this by calculating ratios of areas using either <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span>. Using <span class="math inline">\(g\)</span>, note that the area of a rectangle from 0 to <span class="math inline">\(x\)</span> (for <span class="math inline">\(0\leq x\leq 2\)</span>) is <span class="math inline">\(A=4x\)</span>. Dividing by the total area of 11 gives <span class="math inline">\(P(X\leq x) = \frac{4x}{11}\)</span> for <span class="math inline">\(0\leq x\leq 2\)</span>. For <span class="math inline">\(2&lt;x\leq 5\)</span>, we have a total area of <span class="math inline">\(A = 8+(x-2)*1 = x+6\)</span>, which means <span class="math inline">\(P(X\leq x) = \frac{x+6}{11}\)</span> for <span class="math inline">\(2&lt; x\leq 5\)</span>. This gives <span class="math display">\[F(x) = \begin{cases}\frac{4x}{11}&amp;0\leq x\leq 2\\\frac{x+6}{11}&amp;2\leq x\leq 5\\0&amp;x&lt;0\\1&amp;x&gt;5\end{cases}.\]</span> Notice that plugging in 5 does gives us a probability of 1, as it should.</li>
-<li>The derivative of <span class="math inline">\(F\)</span>, where it is nonzero and defined, is <span class="math display">\[\ds F'(x) = \begin{cases}\frac{4}{11}&amp;0&lt; x&lt; 2\\\frac{1}{11}&amp;2&lt; x&lt; 5 \end{cases}\]</span> Notice again $ F’(x) = f(x) $.</li>
+<li><p>To give a formula for <span class="math inline">\(F(x)\)</span>, we need to compute <span class="math inline">\(P(X\leq x)\)</span>. We can do this by calculating ratios of areas using either <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span>. Using <span class="math inline">\(g\)</span>, note that the area of a rectangle from 0 to <span class="math inline">\(x\)</span> (for <span class="math inline">\(0\leq x\leq 2\)</span>) is <span class="math inline">\(A=4x\)</span>. Dividing by the total area of 11 gives <span class="math inline">\(P(X\leq x) = \frac{4x}{11}\)</span> for <span class="math inline">\(0\leq x\leq 2\)</span>. For <span class="math inline">\(2&lt;x\leq 5\)</span>, we have a total area of <span class="math inline">\(A = 8+(x-2)*1 = x+6\)</span>, which means <span class="math inline">\(P(X\leq x) = \frac{x+6}{11}\)</span> for <span class="math inline">\(2&lt; x\leq 5\)</span>. This gives <span class="math display">\[F(x) = \begin{cases}\frac{4x}{11}&amp;0\leq x\leq 2\\\frac{x+6}{11}&amp;2\leq x\leq 5\\0&amp;x&lt;0\\1&amp;x&gt;5\end{cases}.\]</span> Notice that plugging in 5 does gives us a probability of 1, as it should.</p></li>
+<li><p>The derivative of <span class="math inline">\(F\)</span>, where it is nonzero and defined, is <span class="math display">\[\ds F'(x) = \begin{cases}\frac{4}{11}&amp;0&lt; x&lt; 2\\\frac{1}{11}&amp;2&lt; x&lt; 5 \end{cases}\]</span> Notice again $ F’(x) = f(x) $.</p></li>
 </ol>
 </details>
 </section>
@@ -342,20 +577,19 @@ I’ll let you graph it.
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>We’ll continue practicing using our new vocabulary.</p>
 <ol start="2" type="1">
-<li>Let <span class="math inline">\(X\)</span> represent the random variable obtained by recording the <span class="math inline">\(x\)</span>-coordinate of a dart that is randomly thrown at a target that lies under the function <span class="math inline">\(\ds g(x) = \begin{cases}2x&amp;0\leq x\leq 5\\0 &amp;\text{otherwise} \end{cases}\)</span>.<br>
-
+<li><p>Let <span class="math inline">\(X\)</span> represent the random variable obtained by recording the <span class="math inline">\(x\)</span>-coordinate of a dart that is randomly thrown at a target that lies under the function <span class="math inline">\(\ds g(x) = \begin{cases}2x&amp;0\leq x\leq 5\\0 &amp;\text{otherwise} \end{cases}\)</span>.<br>
+</p>
 <ol type="a">
 <li>
-Draw the function.
+<p>Draw the function.</p>
 </li>
 </ol></li>
-<li>Find the area under <span class="math inline">\(g\)</span>.</li>
-<li>Give the normalized target function by finding the constant <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = kg(x)\)</span> is 1.</li>
-<li>Compute <span class="math inline">\(P(X\leq 3)\)</span>.</li>
-<li>Calculate the expected value of <span class="math inline">\(X\)</span>. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.<br>
-</li>
-<li>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.</li>
-<li>Compute <span class="math inline">\(F'(x)\)</span>.</li>
+<li><p>Find the area under <span class="math inline">\(g\)</span>.</p></li>
+<li><p>Give the normalized target function by finding the constant <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = kg(x)\)</span> is 1.</p></li>
+<li><p>Compute <span class="math inline">\(P(X\leq 3)\)</span>.</p></li>
+<li><p>Calculate the expected value of <span class="math inline">\(X\)</span>. Use this <a href="https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf">Centroid Locations table</a>.</p></li>
+<li><p>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.</p></li>
+<li><p>Compute <span class="math inline">\(F'(x)\)</span>.</p></li>
 </ol>
 <details>
 <summary>
@@ -364,20 +598,20 @@ Solutions
 <p>Compare your work with your group. Put agreed upon solutions on the chalkboard so you can compare with other teams.</p>
 </details>
 <ol start="3" type="1">
-<li>Let <span class="math inline">\(X\)</span> represent the random variable obtained by recording the <span class="math inline">\(x\)</span>-coordinate of a dart that is randomly thrown at a target that lies under the function <span class="math inline">\(\ds g(x) = \begin{cases}x^2&amp;0\leq x\leq 5\\0 &amp;\text{otherwise} \end{cases}\)</span>.<br>
-
+<li><p>Let <span class="math inline">\(X\)</span> represent the random variable obtained by recording the <span class="math inline">\(x\)</span>-coordinate of a dart that is randomly thrown at a target that lies under the function <span class="math inline">\(\ds g(x) = \begin{cases}x^2&amp;0\leq x\leq 5\\0 &amp;\text{otherwise} \end{cases}\)</span>.<br>
+</p>
 <ol type="a">
 <li>
-Draw the function.
+<p>Draw the function.</p>
 </li>
 </ol></li>
-<li>Find the area under <span class="math inline">\(g\)</span>. Use this https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf.</li>
-<li>Give the normalized target function by finding the constant <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = kg(x)\)</span> is 1.</li>
-<li>Compute <span class="math inline">\(P(X\leq 3)\)</span>.</li>
-<li>Calculate the expected value of <span class="math inline">\(X\)</span>.<br>
-</li>
-<li>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.</li>
-<li>Compute <span class="math inline">\(F'(x)\)</span>.</li>
+<li><p>Find the area under <span class="math inline">\(g\)</span>. Use this <a href="https://faculty.utrgv.edu/constantine.tarawneh/Fluid%20Mechanics/Centroid%20Locations.pdf">Centroid Locations table</a>.</p></li>
+<li><p>Give the normalized target function by finding the constant <span class="math inline">\(k\)</span> so that the area under <span class="math inline">\(f(x) = kg(x)\)</span> is 1.</p></li>
+<li><p>Compute <span class="math inline">\(P(X\leq 3)\)</span>.</p></li>
+<li><p>Calculate the expected value of <span class="math inline">\(X\)</span>.<br>
+</p></li>
+<li><p>Give a formula for <span class="math inline">\(F(x)\)</span>, the cumulative distribution function.</p></li>
+<li><p>Compute <span class="math inline">\(F'(x)\)</span>.</p></li>
 </ol>
 <section id="activity---calculating-expected-value-using-rectangular-approximations" class="level3">
 <h3 class="anchored" data-anchor-id="activity---calculating-expected-value-using-rectangular-approximations">Activity - Calculating Expected Value using Rectangular Approximations</h3>
@@ -457,6 +691,8 @@ draw_rect_approx() code
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>We’ll have a wrap up discussion.</p>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.35">Class.35 on byuimath.com</a></em></p>
 
 
 </section>
@@ -465,6 +701,19 @@ draw_rect_approx() code
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

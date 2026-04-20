@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-19" id="toc-between-class-sessions---prep-for-day-19" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-19">Between Class Sessions - Prep for Day 19 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -276,6 +452,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -296,9 +473,49 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-19" class="level1">
+<h1>Between Class Sessions - Prep for Day 19 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Derivative Rules (Intro to Chain Rule) Watch the following videos from mathispower4u about the product, quotient, and chain rules. - <a href="https://www.youtube.com/watch?v=gsaHoc2mSps&amp;feature=youtu.be" target="_blank">Product Rule (video 2)</a> (~6 min) - <a href="https://www.youtube.com/watch?v=Inq4V8Vogxc&amp;feature=youtu.be" target="_blank">Quotient Rule (video 2)</a> (~6 min) - <a href="https://www.youtube.com/watch?v=PT11CSo-WkQ" target="_blank">Chain Rule Intro</a> (~9 min) - Note that there is a notation typo in their prepared slides. Can you spot it?</p>
+<ul>
+<li>Compute the derivative of each function below, listing the rule needed at each step.<br>
+</li>
+</ul>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = (x^3+4x)^5\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = (e^x+4x)^5\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^x\ln x\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x^3}{4\ln(x) + 5x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sum_{i=1}^{5}(4-2t_i+xy_i)^3\)</span></p></li>
+</ol>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 2 – Derivative Rules (Power Function, Sum/Difference, Constant Multiple) assignment</li>
+<li>Complete 2 – Derivative Rules (Product and Quotient) assignment</li>
+<li>Begin 2 – Derivative Rules (Function Composition) - the Chain Rule assignment.</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 2 Task 1
+<ul>
+<li>Use the properties of logarithms to rewrite each loglikelihood function as a sum rather than a product.</li>
+<li>Use the properties of sums to write in the form <span class="math inline">\(\ell(\text{parameters},\text{data}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\displaystyle\Sigma_{i=1}^{44}(y_i-f(t_i))^2\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
@@ -367,7 +584,7 @@ Answers
 <summary>
 Solution
 </summary>
-<p>We know <span class="math inline">\(f'(x) = 3x^2\)</span>, and so the slope of this line is <span class="math inline">\(f'(2) = 12\)</span>. The linearization (tangent line) passes through the point <span class="math inline">\((2,f(2))=(2,8)\)</span>. This gives an equation of the linearlization as <span class="math display">\[y-8=12(x-2).\]</span> We can solve for <span class="math inline">\(y\)</span> to obtain <span class="math display">\[y=8+12(x-2) \quad\text{or}\quad y=12x-16.\]</span> All three of the forms above are correct. We can plot the function along with it’s linearization in https://www.desmos.com/calculator/3bifvksxqy.</p>
+<p>We know <span class="math inline">\(f'(x) = 3x^2\)</span>, and so the slope of this line is <span class="math inline">\(f'(2) = 12\)</span>. The linearization (tangent line) passes through the point <span class="math inline">\((2,f(2))=(2,8)\)</span>. This gives an equation of the linearlization as <span class="math display">\[y-8=12(x-2).\]</span> We can solve for <span class="math inline">\(y\)</span> to obtain <span class="math display">\[y=8+12(x-2) \quad\text{or}\quad y=12x-16.\]</span> All three of the forms above are correct. We can plot the function along with it’s linearization in <a href="https://www.desmos.com/calculator/3bifvksxqy">Desmos</a>.</p>
 <p>We can also plot the function along with it’s linear approximation (tangent line) in R.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="fl">0.001</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x<span class="sc">^</span><span class="dv">3</span>,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">15</span>),<span class="at">ylab=</span><span class="st">"y"</span>)</span>
@@ -393,24 +610,54 @@ Solution
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---compute-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="activity---compute-derivatives">Activity - Compute derivatives</h3>
-<p><a href="https://byuistats.github.io/M119/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
-<p>Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 1. <span class="math inline">\(f(x) = (3x-2x^2)(5+4x)\)</span>. Remember to <strong>list each rule you used</strong>. Then pass the chalk (PTC) 1. <span class="math inline">\(f(x) = \frac{x-1}{2x+3}\)</span> (PTC) 1. <span class="math inline">\(f(x) = \left( \frac{1}{x} + 1 \right)(x-1)\)</span> (PTC) 1. <span class="math inline">\(f(t) = (2t^2 - 3)(4 - t^2 - t^4)\)</span> (PTC - I’ll stop writing this.) 1. <span class="math inline">\(f(p) = (p^3 - 2)^2\)</span> 1. <span class="math inline">\(f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}\)</span> 1. <span class="math inline">\(f(x) = \frac{7}{x^3}\)</span> 1. <span class="math inline">\(f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}\)</span> 1. <span class="math inline">\(f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)\)</span> 1. <span class="math inline">\(f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}\)</span> 1. <span class="math inline">\(f(x) = 5 x^3 e^x \ln x\)</span></p>
+<p><a href="https://chaz-clark.github.io/M119/Projects/m119-docs/119ReferenceSheet.html" target="_blank">Derivative Rules</a></p>
+<p>Take turns at the chalkboard computing the derivative of each function below. Show your work, step-by-step, listing the rules you use at each stage. Remember to pass the chalk after each problem. 1. <span class="math inline">\(f(x) = (3x-2x^2)(5+4x)\)</span>. Remember to <strong>list each rule you used</strong>. Then pass the chalk (PTC)</p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = \frac{x-1}{2x+3}\)</span> (PTC)</p></li>
+<li><p><span class="math inline">\(f(x) = \left( \frac{1}{x} + 1 \right)(x-1)\)</span> (PTC)</p></li>
+<li><p><span class="math inline">\(f(t) = (2t^2 - 3)(4 - t^2 - t^4)\)</span> (PTC - I’ll stop writing this.)</p></li>
+<li><p><span class="math inline">\(f(p) = (p^3 - 2)^2\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{2x^2 - 4x + 3}{2 - 3x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{7}{x^3}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{4x^2 - 3x}{8\sqrt{x}}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \left( \frac{x-3}{x+4} \right)(x^2 + 2x +1)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{ (1 - 2x)(3x+2) }{5x-4}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 5 x^3 e^x \ln x\)</span></p></li>
+</ol>
 <details>
 <summary>
 Final Answers
 </summary>
-<p>These are the final answers you should obtain after listing out each step. 1. <span class="math inline">\(\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)\)</span> 1. <span class="math inline">\(\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)\)</span> 1. <span class="math inline">\(\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)\)</span> 1. <span class="math inline">\(\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }\)</span> 1. Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.</p>
+<p>These are the final answers you should obtain after listing out each step. 1. <span class="math inline">\(\diff{f}{x}(x) = (3-4x)(5+4x) + (3x - 2x^2)(4)\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(2x+3) - (x-1)(2) }{ (2x+3)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = (-x^{-2})(x-1) + (x^{-1} + 1)(1)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{t}(t) = (4t)(4 - t^2 - t^4) + (2t^2 - 3)(-2t-4t^3)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{p}(p) = (3p^2)(p^3-2) + (p^3-2)(3p^2)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (4x - 4)(2 - 3x) - (2x^2 - 4x + 3)(-3) }{ (2 - 3x)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (0)(x^3) - (7)(3x^2) }{ (x^3)^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (8x - 3)(8\sqrt{x}) - (4x^2 - 3x)(4x^{-1/2}) }{ (8\sqrt{x})^2 }\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ (1)(x+4) - (x-3)(1) }{ (x+4)^2 }(x^2 + 2x +1) + \left( \frac{x-3}{x+4} \right)(2x + 2)\)</span></p></li>
+<li><p><span class="math inline">\(\diff{f}{x}(x) = \frac{ ((-2)(3x+2) + (1-2x)(3))(5x-4) - ((1-2x)(3x+3))(5) }{ (5x-4)^2 }\)</span></p></li>
+<li><p>Try searching online for a tool that will compute derivatives for you. Use it to check your work on this one.</p></li>
+</ol>
 </details>
 </section>
 <section id="activity---higher-order-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="activity---higher-order-derivatives">Activity - Higher Order Derivatives</h3>
 <p>Since the derivative of a function is a function, we can find the derivative of a derivative. In fact, we can continue to take derivatives to find the third derivative, fourth derivative, etc. When we take a derivative of a derivative we find a higher order derivative. The second derivative <span class="math inline">\(f\)</span> we can denote with <span class="math display">\[f''(x) = \frac{d}{dx}\left(\frac{d}{dx}(f)\right) = \frac{d^2f}{dx^2} = D_x^2 f.\]</span> We use similar notation for higher order derivatives, such at <span class="math inline">\(f'''(x)\)</span> for the third derivative and <span class="math inline">\(\frac{d^4f}{dx^4}\)</span> for a 4th derivative. We avoid prime notation and use notation such as <span class="math inline">\(f^{ (7) }(x)\)</span> when the number of derivatives is quite large.</p>
-<p>Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem.</p>
+<p>Open this <a href="../assets/docs/Higher_Order_Derivatives.pdf">Higher Order Derivatives worksheet</a> and take turns computing derivatives, passing the chalk after each problem.</p>
 </section>
 </section>
 <section id="bonus-problems" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-problems">Bonus Problems</h2>
-<p>Suppose we know that <span class="math inline">\(f_i(x)\)</span> is a differentiable function and <span class="math inline">\(c_i\)</span> is a constant for each integer <span class="math inline">\(i\)</span> from 1 to 4. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)\)</span>. 1. Let <span class="math inline">\(n\)</span> be a positive integer, and then repeat both of the above after replacing 4 with <span class="math inline">\(n\)</span>.</p>
+<p>Suppose we know that <span class="math inline">\(f_i(x)\)</span> is a differentiable function and <span class="math inline">\(c_i\)</span> is a constant for each integer <span class="math inline">\(i\)</span> from 1 to 4. 1. Compute <span class="math inline">\(\frac{d}{dx}\left(\sum_{i=1}^{4}c_if_i(x)\right)\)</span>.</p>
+<ol type="1">
+<li>Compute <span class="math inline">\(\frac{d}{dx}\left(\prod_{i=1}^{4}c_if_i(x)\right)\)</span>.</li>
+<li>Let <span class="math inline">\(n\)</span> be a positive integer, and then repeat both of the above after replacing 4 with <span class="math inline">\(n\)</span>.</li>
+</ol>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.19">Class.19 on byuimath.com</a></em></p>
 
 
 </section>
@@ -419,6 +666,19 @@ Final Answers
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

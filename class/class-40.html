@@ -40,10 +40,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +79,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -114,7 +119,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -213,6 +380,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -226,7 +394,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-40" id="toc-between-class-sessions---prep-for-day-40" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-40">Between Class Sessions - Prep for Day 40 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#continue-working-on-project-3-task-2" id="toc-continue-working-on-project-3-task-2" class="nav-link" data-scroll-target="#continue-working-on-project-3-task-2">(2) Continue working on Project 3 Task 2</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -245,6 +422,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -265,6 +443,63 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-40" class="level1">
+<h1>Between Class Sessions - Prep for Day 40 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<a id="Prep"></a> ## Preparation ### (1) Solving a System of Equations 1. Solve the system $ {
+<span class="math display">\[\begin{array}{ll}\frac{x}{y} = 2 \\ \frac{x}{y^2} = 3\end{array}\]</span>
+<p>.$ for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<ol type="1">
+<li>Solve the system $ {
+<span class="math display">\[\begin{array}{ll}\frac{\alpha}{\beta} = 2.7 \\ \frac{\alpha}{\beta^2} = 10.2\end{array}\]</span>
+.$ for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span></li>
+</ol>
+<section id="continue-working-on-project-3-task-2" class="level3">
+<h3 class="anchored" data-anchor-id="continue-working-on-project-3-task-2">(2) Continue working on Project 3 Task 2</h3>
+<ul>
+<li>Write down the definite integrals to compute <span class="math inline">\(Var[X]\)</span> for <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>.
+<ul>
+<li>Use Mathematica to calculate <span class="math inline">\(Var[X]\)</span> in each case.</li>
+</ul></li>
+</ul>
+<p>Use the following code to get you started. Let’s calculate $_{-}^f(x) dx $, $ E[X] $, $ Var[X] $, and standard deviation of X for <span class="math inline">\(f_3\)</span> and <span class="math inline">\(f_1\)</span>.</p>
+<pre><code>$Assumptions = \[Lambda] &gt; 0;
+f = \[Lambda]*Exp[-\[Lambda]*x];
+bounds = {x, 0, Infinity};
+A = Integrate[f, bounds]
+EV = Integrate[x*f, bounds]
+Var = Integrate[(x - EV)^2*f, bounds]
+StDev = Sqrt[Var]
+% // Simplify</code></pre>
+<pre><code>$Assumptions = \[Sigma] &gt; 0;
+f = 1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2];
+bounds = {x, -Infinity, Infinity};
+A = Integrate[f, bounds]
+EV = Integrate[x*f, bounds]
+Var = Integrate[(x - EV)^2*f, bounds]
+StDev = Sqrt[Var]
+% // Simplify</code></pre>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Continue working on 3 – Calculate Parameters of Continuous Random Variables (Identifying Expected Value and Variance)</li>
+<li>Continue working on 3 – Definite Integrals</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 3 Task 2</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -276,7 +511,7 @@ window.Quarto = {
 <summary>
 Solution
 </summary>
-<p>The general formulas are <span class="math inline">\(\ds E[X] = \int_{-\infty}^\infty x f(x) dx\)</span> and <span class="math inline">\(\ds Var[X] = \int_{-\infty}^\infty (x-E[X]])^2 f(x) dx\)</span>. We update the bounds <span class="math inline">\(0\leq x&lt;\infty\)</span> and function <span class="math inline">\(f(x) =  \lambda e^(-\lambda x)\)</span> to obtain - <span class="math inline">\(\ds E[X] = \int_0^\infty x (\lambda e^{-\lambda x}) dx\)</span> - <span class="math inline">\(\ds Var[X] = \int_{0}^\infty (x-E[X]])^2 (\lambda e^{-\lambda x}) dx\)</span>.</p>
+<p>The general formulas are <span class="math inline">\(\ds E[X] = \int_{-\infty}^\infty x f(x) dx\)</span> and <span class="math inline">\(\ds Var[X] = \int_{-\infty}^\infty (x-E[X]])^2 f(x) dx\)</span>. We update the bounds <span class="math inline">\(0\leq x&lt;\infty\)</span> and function <span class="math inline">\(f(x) =  \lambda e^{-\lambda x}\)</span> to obtain - <span class="math inline">\(\ds E[X] = \int_0^\infty x (\lambda e^{-\lambda x}) dx\)</span> - <span class="math inline">\(\ds Var[X] = \int_{0}^\infty (x-E[X]])^2 (\lambda e^{-\lambda x}) dx\)</span>.</p>
 </details>
 <ol start="2" type="1">
 <li>Compute both the integrals above with Mathematica.</li>
@@ -286,7 +521,6 @@ Solution
 Solution
 </summary>
 <p>From the prep, we have the following code. The Assumptions command allows us to inform Mathematica about the fact that <span class="math inline">\(\lambda&gt;0\)</span>.</p>
-<p>(:codem:)</p>
 <pre><code>$Assumptions = \[Lambda] &gt; 0;
 f = \[Lambda]*Exp[-\[Lambda]*x];
 bounds = {x, 0, Infinity};
@@ -296,7 +530,6 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
-<p>(:codemend:)</p>
 </details>
 <ol start="3" type="1">
 <li>For the uniform distribution <span class="math inline">\(f_0(x; a,b) = \frac{1}{b-a}\)</span> for <span class="math inline">\(a &lt; x &lt; b\)</span> and 0 otherwise, write down integrals that give the expected value and variance, and then compute these integrals.</li>
@@ -306,7 +539,7 @@ $Assumptions = Null;</code></pre>
 Solution
 </summary>
 <p>We update the bounds to <span class="math inline">\(a\leq x\leq b\)</span> and function <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span> to obtain - <span class="math inline">\(\ds E[X] = \int_a^b x (\frac{1}{b-a}) dx\)</span> - <span class="math inline">\(\ds Var[X] = \int_a^b (x-E[X]])^2 (\frac{1}{b-a}) dx\)</span>.</p>
-<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later. (:codem:)</p>
+<p>The code chunk below computes these values, with some “%//Simplify” commands after the results to make them easier to work with later.</p>
 <pre><code>$Assumptions = a &lt;= b;
 f = 1/(b - a);
 bounds = {x, a, b};
@@ -318,7 +551,6 @@ Var = Integrate[(x - EV)^2*f, bounds]
 StDev = Sqrt[Var]
 % // Simplify
 $Assumptions = Null;</code></pre>
-<p>(:codemend:)</p>
 </details>
 </section>
 <section id="group-meeting" class="level2">
@@ -370,11 +602,11 @@ We get <span class="math inline">\(A = \int_{-\infty}^{\infty}g(x)dx = \int_{0}^
 </li>
 </ol>
 <ol type="1">
-<li>We have <span class="math inline">\(E[X] = \int_{-\infty}^{\infty}xf(x)dx = \int_{0}^{\infty}x4e^{-4x}dx = \frac{1}{4}\)</span> and <span class="math inline">\(\text{Var}[X] = \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx = \int_{0}^{\infty}(x-\frac{1}{4})^2 4e^{-4x}dx = \frac{1}{16}\)</span>.</li>
-<li>We have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx\)</span>. If <span class="math inline">\(x&lt;0\)</span> then <span class="math inline">\(F(x)=0\)</span>, but for <span class="math inline">\(x\geq 0\)</span> we have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}\)</span>.</li>
-<li>The values are <span class="math inline">\(P(X\leq 10) = F(10) = 1-e^{-8}\)</span> and then <span class="math inline">\(P(X\geq 10)=1-F(10) = e^{-8}\)</span>.</li>
-<li>We need to solve <span class="math inline">\(0.90 = 1-e^{-4x}\)</span>. This means <span class="math inline">\(e^{-4x} = 0.1\)</span> which gives <span class="math inline">\(-4x = \ln(0.1)\)</span> or <span class="math inline">\(x = \ln(0.1)/(-4)\)</span>.</li>
-<li>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems. (:codem:)</li>
+<li><p>We have <span class="math inline">\(E[X] = \int_{-\infty}^{\infty}xf(x)dx = \int_{0}^{\infty}x4e^{-4x}dx = \frac{1}{4}\)</span> and <span class="math inline">\(\text{Var}[X] = \int_{-\infty}^{\infty}(x-E[X])^2f(x)dx = \int_{0}^{\infty}(x-\frac{1}{4})^2 4e^{-4x}dx = \frac{1}{16}\)</span>.</p></li>
+<li><p>We have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx\)</span>. If <span class="math inline">\(x&lt;0\)</span> then <span class="math inline">\(F(x)=0\)</span>, but for <span class="math inline">\(x\geq 0\)</span> we have <span class="math inline">\(F(x) = \int_{-\infty}^{x}f(x)dx =\int_{0}^{x}4e^{-4x}dx = 1-e^{-4x}\)</span>.</p></li>
+<li><p>The values are <span class="math inline">\(P(X\leq 10) = F(10) = 1-e^{-8}\)</span> and then <span class="math inline">\(P(X\geq 10)=1-F(10) = e^{-8}\)</span>.</p></li>
+<li><p>We need to solve <span class="math inline">\(0.90 = 1-e^{-4x}\)</span>. This means <span class="math inline">\(e^{-4x} = 0.1\)</span> which gives <span class="math inline">\(-4x = \ln(0.1)\)</span> or <span class="math inline">\(x = \ln(0.1)/(-4)\)</span>.</p></li>
+<li><p>The derivative is <span class="math inline">\(F'(x) = 0-e^{-4x}(-4) = 4e^{-4x}=f(x)\)</span> for <span class="math inline">\(x\geq 0\)</span> (and zero otherwise). The Mathematica code computes all of the above. Feel free to adapt this code as you tackle other problems.</p></li>
 </ol>
 <pre><code>g = Exp[-4*x];
 a = 0;
@@ -390,14 +622,12 @@ Integrate[f, {x, a, 2}]
 1-Integrate[f, {x, a, 2}]
 Solve[Integrate[f, {x, a, c}]==0.9, c]
 D[F, x](*Computes derivative of F with respect to x. Should match f*)</code></pre>
-<p>(:codemend:)</p>
 </details>
 <ol start="2" type="1">
-<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit. (:codem:)</li>
+<li>Let <span class="math inline">\(g(x) = \begin{cases}e^{-\lambda x} &amp; x \geq 0\\ 0 &amp; \text{otherwise}\end{cases}\)</span> with <span class="math inline">\(\lambda &gt;0\)</span>. In Mathematica, the following code tells the computer that <span class="math inline">\(\lambda\)</span> is positive, which will simplifies the output quite a bit.</li>
 </ol>
 <pre><code>g = Exp[-\[Lambda] x]
 $Assumptions = \[Lambda] &gt; 0</code></pre>
-(:codemend:)
 <ol type="a">
 <li>
 Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is a PDF for a random variable <span class="math inline">\(X\)</span>. We call this an exponential random variable.
@@ -457,7 +687,7 @@ Find <span class="math inline">\(k\)</span> so that <span class="math inline">\(
 <summary>
 Solution
 </summary>
-<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral. (:codem:)</p>
+<p>We can use piecewise function notation in Mathematica. Here is an example. We need the assumptions command that <span class="math inline">\(x\)</span> is a real number to compute the CDF <span class="math inline">\(F\)</span> and actually have Mathematica do the integral.</p>
 <pre><code>$Assumptions = x \[Element] Reals
 g = Piecewise[{{3, -2 &lt;= x &amp;&amp; x &lt; 1}, {5, 1 &lt;= x &lt;= 5}, {0, True}}]
 Plot[g, {x, -5, 10}]
@@ -469,7 +699,6 @@ EV = Integrate[x f, {x, -Infinity, Infinity}]
 Var = Integrate[(x - EV)^2 f, {x, -Infinity, Infinity}]
 F = Integrate[ f, {x, -Infinity, x}]
 D[F, x]</code></pre>
-<p>(:codemend:)</p>
 </details>
 </section>
 </section>
@@ -477,11 +706,28 @@ D[F, x]</code></pre>
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <section id="expected-value-and-variance-of-common-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="expected-value-and-variance-of-common-distributions">Expected Value and Variance of Common Distributions</h3>
-<p>We found the expected value and variance for 4 common probability distributions. Let’s recap what we found. 1. For an exponential distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?) 1. For a uniform distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?) 1. For a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, we have <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^2\)</span>. 1. For a gamma distribution with shape <span class="math inline">\(\alpha\)</span> and rate <span class="math inline">\(\beta\)</span>, we have <span class="math inline">\(E[X] = \frac{\alpha}{\beta}\)</span> and <span class="math inline">\(\text{Var}[X] = \frac{\alpha}{\beta^2}\)</span>.</p>
+<p>We found the expected value and variance for 4 common probability distributions. Let’s recap what we found. 1. For an exponential distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?)</p>
+<ol type="1">
+<li><p>For a uniform distribution, we have <span class="math inline">\(E[X] = ...\)</span> and <span class="math inline">\(\text{Var}[X] = ...\)</span>. (Where did we compute these?)</p></li>
+<li><p>For a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, we have <span class="math inline">\(E[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^2\)</span>.</p></li>
+<li><p>For a gamma distribution with shape <span class="math inline">\(\alpha\)</span> and rate <span class="math inline">\(\beta\)</span>, we have <span class="math inline">\(E[X] = \frac{\alpha}{\beta}\)</span> and <span class="math inline">\(\text{Var}[X] = \frac{\alpha}{\beta^2}\)</span>.</p></li>
+</ol>
 </section>
 <section id="method-of-moments" class="level3">
 <h3 class="anchored" data-anchor-id="method-of-moments">Method of Moments</h3>
-<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution. 1. Calculate the variance of the distribution as a function of the parameters of the distribution. 1. Set the mean of the distribution equal to the mean of the data. 1. Set the variance of the distribution equal to the variance of the data. 1. Solve the system of equations for the parameter values. Note: - If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3. - If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</p>
+<p>The expected value and variance are identifying characteristics of a random variable. We can match these characteristics from the distribution with these characteristics of the data, and use this to determine unknown parameters in a model. Here are the steps: 1. Calculate the mean (expected value) of the distribution as a function of the parameters of the distribution.</p>
+<ol type="1">
+<li><p>Calculate the variance of the distribution as a function of the parameters of the distribution.</p></li>
+<li><p>Set the mean of the distribution equal to the mean of the data.</p></li>
+<li><p>Set the variance of the distribution equal to the variance of the data.</p></li>
+<li><p>Solve the system of equations for the parameter values. Note:</p></li>
+</ol>
+<ul>
+<li>If the distribution (or model) has only one parameter, then skip steps 2 and 4 and solve the equation you find in step 3.</li>
+<li>If the distribution (or model) has more than two parameters, calculate additional identifying characteristics of the distribution and data and set them equal and then solve the resulting system of equations.</li>
+</ul>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.40">Class.40 on byuimath.com</a></em></p>
 
 
 </section>
@@ -491,6 +737,19 @@ D[F, x]</code></pre>
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,13 +429,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-36" id="toc-between-class-sessions---prep-for-day-36" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-36">Between Class Sessions - Prep for Day 36 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#simulation-and-probability" id="toc-simulation-and-probability" class="nav-link" data-scroll-target="#simulation-and-probability">(2) Simulation and Probability</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#key-ideas-targets-continuous-random-variables" id="toc-key-ideas-targets-continuous-random-variables" class="nav-link" data-scroll-target="#key-ideas-targets-continuous-random-variables">Key Ideas (Targets &amp; Continuous Random Variables)</a></li>
   <li><a href="#riemann-sums-definite-integrals" id="toc-riemann-sums-definite-integrals" class="nav-link" data-scroll-target="#riemann-sums-definite-integrals">Riemann Sums &amp; Definite Integrals</a>
   <ul class="collapse">
   <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1</a></li>
+  </ul></li>
+  <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
+  <ul class="collapse">
+  <li><a href="#practice-with-riemann-sums" id="toc-practice-with-riemann-sums" class="nav-link" data-scroll-target="#practice-with-riemann-sums">Practice with Riemann Sums</a></li>
   <li><a href="#practice-with-identifying-pdfs" id="toc-practice-with-identifying-pdfs" class="nav-link" data-scroll-target="#practice-with-identifying-pdfs">Practice with identifying PDFs</a></li>
   </ul></li>
   </ul></li>
@@ -276,6 +457,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -296,77 +478,156 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-36" class="level1">
+<h1>Between Class Sessions - Prep for Day 36 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Reading - Rectangles, Targets, and Sums - Sections 4.1 - 4.3 For Unit 3, the reading as well as many practice exercises appear in the document <a href="https://byuistats.github.io/M119/unit3/probability.html" target="_blank">Rectangles, Targets, and Sums</a> 1. Read sections 4.1-4.3.</p>
+<ol type="1">
+<li>Complete a few exercises, and come ready to share what you did with your group. Remember it’s OK if you don’t have the correct answers. The point is to have made a good faith attempt, and then come ready to share what you did.</li>
+<li>Using Mathematica, compute each of the following.
+<ul>
+<li>The area under <span class="math inline">\(g(x) = 2x\)</span> for <span class="math inline">\(0\leq x\leq 4\)</span>, so compute <span class="math inline">\(\int_0^4 2x dx\)</span>.</li>
+<li>The area under <span class="math inline">\(g(x) = \sqrt{9-x^2}\)</span> for <span class="math inline">\(-3\leq x\leq 3\)</span>, so compute <span class="math inline">\(\int_{-3}^{3} \sqrt{9-x^2} dx\)</span>.</li>
+<li>The centroid of the region under <span class="math inline">\(g(x) = \sqrt{9-x^2}\)</span> for <span class="math inline">\(-3\leq x\leq 3\)</span>, so compute <span class="math display">\[\dfrac{\int_{-3}^{3} x\sqrt{9-x^2} dx}{\int_{-3}^{3} \sqrt{9-x^2} dx}.\]</span></li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Solutions
+</summary>
+<p>Come with your attempts, ready to share with each other. The code below will get you the first bullet point.</p>
+<pre><code>Integrate[2 x, {x, 0, 4}]</code></pre>
+</details>
+<section id="simulation-and-probability" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-and-probability">(2) Simulation and Probability</h3>
+<ol type="1">
+<li>Use the following code to plot the function $ f_1(x) = e<sup>{-()</sup>2} $. That is the Normal probability model (or distribution) with the parameters $ = 4 $ and $ = 0.1 $.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">sigma=</span><span class="dv">1</span>){(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>((x<span class="sc">-</span>mu)<span class="sc">/</span>sigma)<span class="sc">^</span><span class="dv">2</span>)}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="fl">0.01</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f1</span>(x,<span class="dv">4</span>,<span class="fl">0.1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Use the following code to simulate a sample of 25000 random measurements from the Normal probability model with the parameters $ = 4 $ and $ = 0.1 $ and plot the density histogram of this sample. This code uses the set.seed() command in R to set the seed so our simulated sample is reproducible (we will all have the exact same random sample of 25000 measurements. We will use the seed 123.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25000</span>, <span class="at">mean=</span><span class="dv">4</span>, <span class="at">sd=</span><span class="fl">0.1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tmp,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Compare your plot of f1 and the density histogram of our sample. Use the following code to plot the sample and f1 together.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tmp,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">col=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Use the following code to calculate the probability that a measurement in our sample will be less than 3.8.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Count the number of measurements in our sample less than 3.8.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&lt;</span> <span class="fl">3.8</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the probability as the ratio of number of measurements with the characteristic (being less than 3.8) compared to the total number of measurements in our sample.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p>Adjust the code above to calculate the probability that a measurement in our sample will be more than 4.7.</p></li>
+<li><p>Adjust the code again to calculate another probability of your choice using our sample.</p></li>
+</ol>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Begin 3 – Riemann Sums &amp; Definite Integrals</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 3 Task 1.
+<ul>
+<li>You should be getting close to having the task complete.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <details>
 <summary>
 Code chunks from Rectangles, Targets, and Sums
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Shades a target diagram <span class="cf">for</span> a probability mass function. </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Inputs<span class="sc">:</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x <span class="sc">-</span> a vector of data points</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> p <span class="sc">-</span> a corresponding vector of probabilities or frequencies</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> All widths are <span class="dv">1</span> unit wide. </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>draw_pmf <span class="ot">&lt;-</span> <span class="cf">function</span>(x,p){</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  xs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  px <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(<span class="dv">0</span>,p,p,<span class="dv">0</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot.new</span>()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(xs,px,<span class="at">type=</span><span class="st">"l"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(xs,px,<span class="at">col=</span><span class="st">"gray"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Shades a target <span class="fu">diagram</span> (shades area under) <span class="cf">for</span> a <span class="cf">function</span> f from a to b. </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Inputs<span class="sc">:</span> </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> f <span class="sc">-</span> a <span class="cf">function</span> <span class="fu">f</span>(x)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> a <span class="sc">-</span> left end of the target</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> b <span class="sc">-</span> right end of the target</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> num_points <span class="sc">-</span> how many point are sent into f <span class="cf">for</span> plotting. </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>draw_target <span class="ot">&lt;-</span> <span class="cf">function</span>(f,a,b,<span class="at">num_points=</span><span class="dv">100</span>){</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(a,<span class="fu">seq</span>(a,b,(b<span class="sc">-</span>a)<span class="sc">/</span>num_points),b,a)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">f</span>(<span class="fu">seq</span>(a,b,(b<span class="sc">-</span>a)<span class="sc">/</span>num_points)),<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x,y,<span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(x,y,<span class="at">col=</span><span class="st">"gray"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Draws rectangles over the top of a given function.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The midpoint of top of each rectangle passes through the function. </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> f <span class="sc">-</span> a <span class="cf">function</span> <span class="fu">f</span>(x)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> a <span class="sc">-</span> left end of graph</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> b <span class="sc">-</span> right end of graph</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> num_rectangles <span class="sc">-</span> how many rectangles to plot.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> method <span class="sc">-</span> One of <span class="st">"left"</span>, <span class="st">"right"</span>, or <span class="st">"mid"</span>.  Defaults to mid.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>draw_rect_approx <span class="ot">&lt;-</span> <span class="cf">function</span>(f,a,b,num_rectangles, <span class="at">method =</span> <span class="st">"mid"</span>){</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> num_rectangles</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(a,<span class="fu">seq</span>(a,b,dx<span class="sc">/</span><span class="dv">100</span>),b,a)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">f</span>(<span class="fu">seq</span>(a,b,dx<span class="sc">/</span><span class="dv">100</span>)),<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x,y,<span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(method <span class="sc">==</span> <span class="st">"left"</span>){</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>dx<span class="sc">/</span><span class="dv">2</span>,b<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,dx)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n],xi[n]<span class="sc">+</span>dx),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n],xi[n]<span class="sc">+</span>dx),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(method <span class="sc">==</span> <span class="st">"right"</span>){</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,dx)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx,xi[n]),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx,xi[n]),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{<span class="co">#Use midpoint</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,xi[n]<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,xi[n]<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Shades a target diagram for a probability mass function. </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Inputs: </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  x - a vector of data points</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  p - a corresponding vector of probabilities or frequencies</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#All widths are 1 unit wide. </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>draw_pmf <span class="ot">&lt;-</span> <span class="cf">function</span>(x,p){</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  xs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="dv">-1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,x<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  px <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbind</span>(<span class="dv">0</span>,p,p,<span class="dv">0</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot.new</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(xs,px,<span class="at">type=</span><span class="st">"l"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(xs,px,<span class="at">col=</span><span class="st">"gray"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Shades a target diagram (shades area under) for a function f from a to b. </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Inputs: </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  f - a function f(x)</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#  a - left end of the target</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#  b - right end of the target</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  num_points - how many point are sent into f for plotting. </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>draw_target <span class="ot">&lt;-</span> <span class="cf">function</span>(f,a,b,<span class="at">num_points=</span><span class="dv">100</span>){</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(a,<span class="fu">seq</span>(a,b,(b<span class="sc">-</span>a)<span class="sc">/</span>num_points),b,a)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">f</span>(<span class="fu">seq</span>(a,b,(b<span class="sc">-</span>a)<span class="sc">/</span>num_points)),<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x,y,<span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(x,y,<span class="at">col=</span><span class="st">"gray"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Draws rectangles over the top of a given function.</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#The midpoint of top of each rectangle passes through the function. </span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#  f - a function f(x)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#  a - left end of graph</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#  b - right end of graph</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#  num_rectangles - how many rectangles to plot.</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#  method - One of "left", "right", or "mid".  Defaults to mid.</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>draw_rect_approx <span class="ot">&lt;-</span> <span class="cf">function</span>(f,a,b,num_rectangles, <span class="at">method =</span> <span class="st">"mid"</span>){</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> num_rectangles</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(a,<span class="fu">seq</span>(a,b,dx<span class="sc">/</span><span class="dv">100</span>),b,a)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">f</span>(<span class="fu">seq</span>(a,b,dx<span class="sc">/</span><span class="dv">100</span>)),<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x,y,<span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(method <span class="sc">==</span> <span class="st">"left"</span>){</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>dx<span class="sc">/</span><span class="dv">2</span>,b<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,dx)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n],xi[n]<span class="sc">+</span>dx),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n],xi[n]<span class="sc">+</span>dx),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(method <span class="sc">==</span> <span class="st">"right"</span>){</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,dx)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx,xi[n]),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx,xi[n]),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{<span class="co">#Use midpoint</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(xi<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,<span class="fu">f</span>(xi),<span class="at">type =</span> <span class="st">"s"</span>)</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,xi[n]<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(xi[n]<span class="sc">-</span>dx<span class="sc">/</span><span class="dv">2</span>,xi[n]<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>),<span class="fu">f</span>(<span class="fu">c</span>(xi[n],xi[n])),<span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
@@ -377,8 +638,8 @@ Code chunks from Rectangles, Targets, and Sums
 0 &amp; \text{otherwise}.
 \end{cases}\)</span></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>Find the value <span class="math inline">\(k\)</span> so that this function is a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
@@ -387,15 +648,15 @@ Code chunks from Rectangles, Targets, and Sums
 \end{cases}\)</span></p></li>
 <li><p>Use the following code to plot the function $ f_0(x) = $ for $ -1 &lt; x &lt; 2 $ and 0 otherwise. This is the uniform probability model (or distribution) with parameters $ a = -1 $ and $ b = 2 $.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){(<span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a))<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="fl">0.1</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){(<span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a))<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="fl">0.1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">3</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then simulate a sample of 25000 random measurements from this distribution (use the seed 123) and calculate the probability that a measurement in our sample will be less than 1.2.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25000</span>,a,b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25000</span>,a,b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details>
 <summary>
 Answers
@@ -405,11 +666,11 @@ Answers
 <li><p>The function <span class="math inline">\(f\)</span> is nonnegative (or $ f(x) $) as long as $ k &gt; 0 $ (and we get to pick <span class="math inline">\(k\)</span>). If $ k = $ then the area under the function $ f $ is $ A = ()(6) = 1 $. Since $ f $ satisfies the two properties of a pdf it is a pdf.</p></li>
 <li><p>The total number of measurements in our sample less than or equal to 1.2 is 18327. Comparing this to the number of measurements in our sample we find the probability is 18327/25000 = 0.73308.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25000</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&lt;=</span> <span class="fl">1.2</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">25000</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(tmp <span class="sc">&lt;=</span> <span class="fl">1.2</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">length</span>(tmp)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>- Note if we let $X$ be the random variable which records the $x$-coordinate of dropping a dart on the target defined by $f_0$ we could calculate this same probability $P(X \leq 1.2)$ from the model.</code></pre>
 <p><span class="math display">\[ P(X \leq 1.2) = \frac{(1/3)*(1.2+1)}{1} = \frac{11}{15} \approx 0.733333 \]</span></p>
 </details>
@@ -458,64 +719,64 @@ Riemann sum for <span class="math inline">\(f\)</span>
 <ul>
 <li>Using a Riemann Sum with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(x_i\)</span> as the <strong>midpoints</strong>, approximate the area between <span class="math inline">\(g\)</span> and the <span class="math inline">\(x\)</span>-axis.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">4</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n) </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Start at half of dx to the right of a, and then step by dx.</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">4</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n) </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Start at half of dx to the right of a, and then step by dx.</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Using a Riemann Sum with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(x_i\)</span> as the <strong>left end points</strong>, approximate the area between <span class="math inline">\(g\)</span> and the <span class="math inline">\(x\)</span>-axis.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n,<span class="at">method=</span><span class="st">'left'</span>) </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Start a, and then step by dx.</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b<span class="sc">-</span>dx,dx)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n,<span class="at">method=</span><span class="st">'left'</span>) </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Start a, and then step by dx.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b<span class="sc">-</span>dx,dx)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Using a Riemann Sum with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(x_i\)</span> as the <strong>right end points</strong>, approximate the area between <span class="math inline">\(g\)</span> and the <span class="math inline">\(x\)</span>-axis.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n,<span class="at">method=</span><span class="st">'right'</span>) </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Start a plus dx, and then step by dx.</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(g,a,b,n,<span class="at">method=</span><span class="st">'right'</span>) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Start a plus dx, and then step by dx.</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xi,<span class="fu">g</span>(xi),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(xi,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(xi)),xi,<span class="fu">g</span>(xi),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">g</span>(xi)<span class="sc">*</span>dx</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice each of these approximations are different. <strong>What happens when we increase <span class="math inline">\(n\)</span>?</strong><br> Complete the table with <span class="math inline">\(n = 10, 75, 100, 1000, 50000, 750000,\)</span> and <span class="math inline">\(4000000\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">4</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Mid<span class="sc">:</span> Start at half of dx to the right of a, and then step by dx.</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>xi.m <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Left<span class="sc">:</span> Start a, and then step by dx.</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>xi.L <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b<span class="sc">-</span>dx,dx)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Start a plus dx, and then step by dx.</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>xi.R <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>Ai.m <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.m)<span class="sc">*</span>dx</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>Ai.L <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.L)<span class="sc">*</span>dx</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>Ai.R <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.R)<span class="sc">*</span>dx</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.m)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.L)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.R)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">4</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Mid: Start at half of dx to the right of a, and then step by dx.</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>xi.m <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Left: Start a, and then step by dx.</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>xi.L <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b<span class="sc">-</span>dx,dx)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Start a plus dx, and then step by dx.</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>xi.R <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx,b,dx)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>Ai.m <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.m)<span class="sc">*</span>dx</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>Ai.L <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.L)<span class="sc">*</span>dx</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>Ai.R <span class="ot">&lt;-</span> <span class="fu">g</span>(xi.R)<span class="sc">*</span>dx</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.m)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.L)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Ai.R)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Using the information from our table, what do you think is the exact area?</p>
 <p>It appears that <span class="math inline">\(\lim_{n \rightarrow \infty} \sum_{i=1}^n g(x_i)\Delta x = 9\)</span>.</p>
 <details>
@@ -535,48 +796,48 @@ Definite Integral
 <ul>
 <li>Compute <span class="math inline">\(\int_{-1}^{2} 4 - x^2 dx\)</span> using Mathematica. <em>(Remember to use shift + enter to run the command in Mathematica.)</em></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Integrate[<span class="dv">4</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>,{x,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>}]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Is <span class="sc">$</span>g<span class="sc">$</span> the PDF of some random variable? If so, explain. If not, then find a value <span class="sc">$</span>k<span class="sc">$</span> so that <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> k <span class="fu">g</span>(x)<span class="sc">$</span> is the PDF of some random variable. </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>details<span class="sc">&gt;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>summary<span class="sc">&gt;</span>Solution<span class="sc">&lt;</span><span class="er">/</span>summary<span class="sc">&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>The <span class="cf">function</span> <span class="sc">$</span>g<span class="sc">$</span> is nonnegative, but the area under <span class="sc">$</span>g<span class="sc">$</span> and above the <span class="sc">$</span>x<span class="sc">$-</span>axis is <span class="fl">9.</span> As such, the <span class="cf">function</span> <span class="sc">$</span>g<span class="sc">$</span> is NOT the PDF of some random variable. Letting <span class="sc">$</span>k<span class="ot">=</span>\frac{<span class="dv">1</span>}{<span class="dv">9</span>}<span class="sc">$</span> gives the <span class="cf">function</span> <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \frac{<span class="dv">1</span>}{<span class="dv">9</span>}(<span class="dv">4</span> <span class="sc">-</span> x<span class="sc">^</span><span class="dv">2</span>)<span class="sc">$</span> <span class="cf">for</span> <span class="sc">$-</span><span class="dv">1</span> \leq x \leq <span class="dv">2</span><span class="sc">$</span> and <span class="dv">0</span> otherwise. The <span class="cf">function</span> <span class="sc">$</span>f<span class="sc">$</span> is the PDF of some random variable.</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="er">/</span>details<span class="sc">&gt;</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Group Meeting</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">### Practice with Riemann Sums</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> Use a Riemann sum with <span class="sc">$</span>n<span class="ot">=</span><span class="dv">25</span><span class="sc">$</span> to approximate <span class="sc">$</span>E[X]<span class="sc">$</span> <span class="cf">for</span> the target <span class="cf">function</span> <span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span>  \frac{<span class="dv">1</span>}{<span class="dv">2</span>}(x<span class="dv">-1</span>)<span class="sc">$</span> <span class="cf">for</span> <span class="sc">$</span><span class="dv">1</span>\leq x\leq <span class="dv">3</span><span class="sc">$</span>.</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>details<span class="sc">&gt;</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>summary<span class="sc">&gt;</span>Solution<span class="sc">&lt;</span><span class="er">/</span>summary<span class="sc">&gt;</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>We can use the formula <span class="sc">$</span>\frac{\sum{x_iA_i}}{\sum{A_i}} <span class="ot">=</span> \frac{\sum{<span class="fu">x_if</span>(x_i)dx}}{\sum{<span class="fu">f</span>(x_i)dx}}<span class="sc">$</span> from Section <span class="fl">1.2</span> to compute the expected value, which is done below. </span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">r</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="at">f &lt;- function(x){(1/2)*(x-1)}</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="at">a &lt;- 1</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="at">b &lt;- 3</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="at">n &lt;- 25</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="at">dx &lt;- (b-a)/n</span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="at">draw_rect_approx(f,a,b,n) </span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="at">xi &lt;- seq(a+dx/2,b,dx)</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="at">Ai &lt;- f(xi)*dx</span></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="at">sum(xi*Ai)/sum(Ai)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<pre><code>Integrate[4-x^2,{x,-1,2}]</code></pre>
+<ul>
+<li>Is <span class="math inline">\(g\)</span> the PDF of some random variable? If so, explain. If not, then find a value <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the PDF of some random variable.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<p>The function <span class="math inline">\(g\)</span> is nonnegative, but the area under <span class="math inline">\(g\)</span> and above the <span class="math inline">\(x\)</span>-axis is 9. As such, the function <span class="math inline">\(g\)</span> is NOT the PDF of some random variable. Letting <span class="math inline">\(k=\frac{1}{9}\)</span> gives the function <span class="math inline">\(f(x) = \frac{1}{9}(4 - x^2)\)</span> for <span class="math inline">\(-1 \leq x \leq 2\)</span> and 0 otherwise. The function <span class="math inline">\(f\)</span> is the PDF of some random variable.</p>
+</details>
+</section>
+</section>
+<section id="group-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
+<section id="practice-with-riemann-sums" class="level3">
+<h3 class="anchored" data-anchor-id="practice-with-riemann-sums">Practice with Riemann Sums</h3>
+<ul>
+<li>Use a Riemann sum with <span class="math inline">\(n=25\)</span> to approximate <span class="math inline">\(E[X]\)</span> for the target function <span class="math inline">\(f(x) =  \frac{1}{2}(x-1)\)</span> for <span class="math inline">\(1\leq x\leq 3\)</span>.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<p>We can use the formula <span class="math inline">\(\frac{\sum{x_iA_i}}{\sum{A_i}} = \frac{\sum{x_if(x_i)dx}}{\sum{f(x_i)dx}}\)</span> from Section 1.2 to compute the expected value, which is done below.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(x<span class="dv">-1</span>)}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(f,a,b,n) </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>Ai <span class="ot">&lt;-</span> <span class="fu">f</span>(xi)<span class="sc">*</span>dx</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(xi<span class="sc">*</span>Ai)<span class="sc">/</span><span class="fu">sum</span>(Ai)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <ul>
 <li><p>The limit of this Riemann Sum as <span class="math inline">\(n\)</span> goes to infinite is a definite integral. Write down the definite integral that is equal to $<em>{n } </em>{i=1}^{n} (x-1)x x $.</p></li>
 <li><p>Approximate the definite integral above by increasing the value of <span class="math inline">\(n\)</span> from 25 to 50, then 100, etc., until you have a good estimate for limit.</p></li>
 <li><p>Compute exactly the limit of this Riemann sum (the definite integral) using Mathematica. <em>(Remember to use shift + enter to run the command in Mathematica.)</em></p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Integrate[(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(x<span class="dv">-1</span>)<span class="sc">*</span>x,{x,<span class="dv">1</span>,<span class="dv">3</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:)</p>
+<pre><code>Integrate[(1/2)*(x-1)*x,{x,1,3}]</code></pre>
 </section>
 <section id="practice-with-identifying-pdfs" class="level3">
 <h3 class="anchored" data-anchor-id="practice-with-identifying-pdfs">Practice with identifying PDFs</h3>
@@ -586,26 +847,24 @@ Definite Integral
 \begin{cases}
 x &amp; \quad 0 \leq x \leq 3 \\ \\
 0 &amp; \text{otherwise}.
-\end{cases}\)</span> (:code:)[@ f &lt;- function(x){x} draw_target(f,0,3)</li>
+\end{cases}\)</span></li>
 </ul>
-<pre><code>
-- Find the value $k$ so that this function is a PDF.
-$f(x) = 
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>Find the value <span class="math inline">\(k\)</span> so that this function is a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
 kx &amp; \quad 0 \leq x \leq 3 \\ \\
 0 &amp; \text{otherwise}.
-\end{cases}$
-
-- Use the two properties of probability density functions to explain why $f$ **is not** a PDF.
-$f(x) = 
+\end{cases}\)</span></p></li>
+<li><p>Use the two properties of probability density functions to explain why <span class="math inline">\(f\)</span> <strong>is not</strong> a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
 -\frac{1}{2} &amp; \quad 0 \leq x \leq 2 \\ \\
 0 &amp; \text{otherwise}.
-\end{cases}$
-
-```r
-f &lt;- function(x){-0.5+0*x}
-draw_target(f,0,2)</code></pre>
+\end{cases}\)</span></p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="sc">-</span><span class="fl">0.5</span><span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Use the two properties of probability density functions to explain why <span class="math inline">\(f\)</span> <strong>is not</strong> a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
@@ -613,8 +872,8 @@ draw_target(f,0,2)</code></pre>
 0 &amp; \text{otherwise}.
 \end{cases}\)</span></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fl">0.25</span><span class="sc">*</span>(x<span class="dv">-2</span>)}</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">1</span>,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fl">0.25</span><span class="sc">*</span>(x<span class="dv">-2</span>)}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">1</span>,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Use the two properties of probability density functions to determine whether or not <span class="math inline">\(f\)</span> is a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
@@ -622,8 +881,8 @@ draw_target(f,0,2)</code></pre>
 0 &amp; \text{otherwise}.
 \end{cases}\)</span></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span>(x<span class="sc">+</span><span class="dv">1</span>)}</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span>(x<span class="sc">+</span><span class="dv">1</span>)}</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Use the two properties of probability density functions to determine whether or not <span class="math inline">\(f\)</span> is a PDF. <span class="math inline">\(f(x) =
 \begin{cases}
@@ -631,8 +890,8 @@ draw_target(f,0,2)</code></pre>
 0 &amp; \text{otherwise}.
 \end{cases}\)</span></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">5</span><span class="sc">-</span>x}</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">2</span>,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">5</span><span class="sc">-</span>x}</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">2</span>,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>Consider the target with top defined by $ f $ (given below). When a dart falls on the point <span class="math inline">\(( x , y )\)</span>, we’ll record just the <span class="math inline">\(x\)</span>-coordinate and let <span class="math inline">\(X\)</span> represent this random variable. <span class="math inline">\(f(x) =
 \begin{cases}
@@ -643,8 +902,10 @@ kx - k &amp; \quad 1 \leq x \leq 3 \\ \\
 <li>Select <span class="math inline">\(k\)</span> so <span class="math inline">\(f\)</span> is the PDF of <span class="math inline">\(X\)</span>.</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x<span class="dv">-1</span>}</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">1</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x<span class="dv">-1</span>}</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">1</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.36">Class.36 on byuimath.com</a></em></p>
 
 
 </section>
@@ -654,6 +915,19 @@ kx - k &amp; \quad 1 \leq x \leq 3 \\ \\
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

@@ -40,10 +40,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +79,8 @@ ul.task-list li input[type="checkbox"] {
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -114,7 +119,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -213,6 +380,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -226,7 +394,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-23" id="toc-between-class-sessions---prep-for-day-23" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-23">Between Class Sessions - Prep for Day 23 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -242,6 +418,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -262,6 +439,59 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-23" class="level1">
+<h1>Between Class Sessions - Prep for Day 23 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Writing Equations The goal of these exercises is to practice writing functions that model a given situation. Each of the functions you create should depend on only one variable. We’ll need this skill to solve applied optimization problems.</p>
+<ol type="1">
+<li>The product of two numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> is 100, and <span class="math inline">\(n\)</span> must be positive. (For example, <span class="math inline">\(n = 20\)</span> and <span class="math inline">\(m = 5\)</span> or <span class="math inline">\(n = \frac{2}{3}\)</span> and <span class="math inline">\(m = 150\)</span>).
+<ul>
+<li>Write a function that gives the sum of the two numbers in terms of <span class="math inline">\(n\)</span>.
+<ul>
+<li>What is the domain of this function?</li>
+</ul></li>
+<li>Graph the function using R.
+<ul>
+<li>What is the minimum value of the function?</li>
+<li>For which value of <span class="math inline">\(n\)</span> do you obtain the minimum value of the function?</li>
+<li>What is the maximum value of the function?</li>
+<li>For which value of <span class="math inline">\(n\)</span> do you obtain the maximum value of the function?</li>
+</ul></li>
+</ul></li>
+<li>A rectangle with sides of length <span class="math inline">\(\ell\)</span> and width <span class="math inline">\(w\)</span> has a perimeter of 400 yards. (For example, if the length <span class="math inline">\(\ell = 50\)</span> yards then <span class="math inline">\(w = ?\)</span> and the area of the rectangle is <span class="math inline">\(A = ?\)</span>).
+<ul>
+<li>Write a function that gives the area in terms of <span class="math inline">\(\ell\)</span>. What is the domain of this function?</li>
+<li>Write a function that gives the area in terms of <span class="math inline">\(w\)</span>. What is the domain of this function?</li>
+</ul></li>
+</ol>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Work on 2 – Partial Derivatives assignment.</li>
+<li>If you have not done so already, complete the other derivative rule assignments
+<ul>
+<li>2 – Derivative Rules (Power Function, Sum/Difference, Constant Multiple)</li>
+<li>2 – Derivative Rules (Product and Quotient)</li>
+<li>2 – Derivative Rules (Function Composition) - the Chain Rule</li>
+<li>2 – Linearization</li>
+</ul></li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Submit Project 2 Task 1</li>
+<li>Complete and submit revisions of any outstanding previous project work.</li>
+<li>Read the instructions for Project 2 Task 2 (and get started)</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -287,18 +517,18 @@ window.Quarto = {
 <section id="activity---partial-derivatives-with-the-chain-rule" class="level3">
 <h3 class="anchored" data-anchor-id="activity---partial-derivatives-with-the-chain-rule">Activity - Partial Derivatives With the Chain Rule</h3>
 <ol type="1">
-<li>Given <span class="math inline">\(S(x, y; a, b) = 3(ax + by)^{-3}\)</span>, find <span class="math inline">\(\diff{S}{x}\)</span> assuming all other variables and parameters are constant then find <span class="math inline">\(\diff{S}{y}\)</span> assuming all other variables and parameters are constant.</li>
-<li>Given <span class="math inline">\(g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}\)</span>, find <span class="math inline">\(\frac{\partial g}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2}\)</span>.</li>
-<li>Given <span class="math inline">\(h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}\)</span>, find <span class="math inline">\(\frac{\partial h}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y}\)</span>.</li>
+<li><p>Given <span class="math inline">\(S(x, y; a, b) = 3(ax + by)^{-3}\)</span>, find <span class="math inline">\(\diff{S}{x}\)</span> assuming all other variables and parameters are constant then find <span class="math inline">\(\diff{S}{y}\)</span> assuming all other variables and parameters are constant.</p></li>
+<li><p>Given <span class="math inline">\(g(a_1, a_2; \textbf{x},\textbf{y}) = \sum_{i=1}^{7} \sqrt{a_1x_i + a_2y_i}\)</span>, find <span class="math inline">\(\frac{\partial g}{\partial a_1}\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2}\)</span>.</p></li>
+<li><p>Given <span class="math inline">\(h(x, y; \textbf{a}, \textbf{b}) = \sum_{i=1}^{21} 3(a_ix + b_iy)^{-3}\)</span>, find <span class="math inline">\(\frac{\partial h}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y}\)</span>.</p></li>
 </ol>
 <details>
 <summary>
 Answer
 </summary>
 <ol type="1">
-<li>We have <span class="math inline">\(\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}\)</span>.</li>
-<li>We find <span class="math inline">\(\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(x_i)\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(y_i)\)</span>.</li>
-<li>We compute <span class="math inline">\(\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}\)</span></li>
+<li><p>We have <span class="math inline">\(\frac{\partial S}{\partial x}(x, y; a, b) = -9a(ax + by)^{-4}\)</span> and <span class="math inline">\(\frac{\partial S}{\partial y}(x, y; a, b) = -9b(ax + by)^{-4}\)</span>.</p></li>
+<li><p>We find <span class="math inline">\(\frac{\partial g}{\partial a_1} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(x_i)\)</span> and <span class="math inline">\(\frac{\partial g}{\partial a_2} = \sum_{i=1}^7 \frac{1}{2}(a_1x_i + a_2y_i)^{-1/2}(y_i)\)</span>.</p></li>
+<li><p>We compute <span class="math inline">\(\frac{\partial h}{\partial x} = \sum_{i=1}^{21} -9a_i(a_ix + b_iy)^{-4}\)</span> and <span class="math inline">\(\frac{\partial h}{\partial y} = \sum_{i=1}^{21} -9b_i(a_ix + b_iy)^{-4}\)</span></p></li>
 </ol>
 </details>
 </section>
@@ -337,14 +567,39 @@ Solution
 </section>
 <section id="activity---partial-derivatives-for-ell_2." class="level3">
 <h3 class="anchored" data-anchor-id="activity---partial-derivatives-for-ell_2.">Activity - Partial Derivatives for <span class="math inline">\(\ell_2\)</span>.</h3>
-<p>The loglikelihood function for <span class="math inline">\(f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2\)</span> is <span class="math display">\[\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i- 100 - a_1t_i - a_2t_i^2)^2.\]</span> 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span>. We avoid using <span class="math inline">\((\ell_2)_{a_1}\)</span> notation here, because the double subscript is awkward. We could let <span class="math inline">\(\ell = \ell_2\)</span> and then write <span class="math inline">\(\ell_{a_1}\)</span> to resolve this. 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_2}\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1^2}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_1\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2\partial a_1}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_2\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2^2}\)</span>. 1. Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>.</p>
+<p>The loglikelihood function for <span class="math inline">\(f_2(t; a_1,a_2) = 100 + a_1t +a_2t^2\)</span> is <span class="math display">\[\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i- 100 - a_1t_i - a_2t_i^2)^2.\]</span> 1. Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span>. We avoid using <span class="math inline">\((\ell_2)_{a_1}\)</span> notation here, because the double subscript is awkward. We could let <span class="math inline">\(\ell = \ell_2\)</span> and then write <span class="math inline">\(\ell_{a_1}\)</span> to resolve this.</p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_2}\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1^2}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_1\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2\partial a_1}\)</span>. You computed <span class="math inline">\(\dfrac{\partial \ell_2}{\partial a_1}\)</span> above, so now compute its partial derivative with respect to <span class="math inline">\(a_2\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_2^2}\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\dfrac{\partial^2 \ell_2}{\partial a_1\partial a_2}\)</span>.</p></li>
+</ol>
 <p>If you finish early, pick another function from Project 2, and compute all the partial derivatives. You are essentially working through Project 2 Task 2.</p>
 </section>
 <section id="activity---derivative-practice" class="level3">
 <h3 class="anchored" data-anchor-id="activity---derivative-practice">Activity - Derivative Practice</h3>
 <p>Use the remaining time to practice working with higher order derivatives and the chain rule. Both of these activities are carried over from previous days. Please spend time with each one (maybe half the rest of class on higher order derivatives, and the other half on the chain rule).<br>
-#### Higher order derivatives Open this https://byuistats.github.io/M119/m119-docs/Higher_Order_Derivatives.pdf worksheet and take turns computing derivatives, passing the chalk after each problem. #### Activity - Chain Rule Practice For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. As a suggestion, compute both <span class="math inline">\(f'(x)\)</span> and <span class="math inline">\(g'(x)\)</span> first, and then show how you can combine <span class="math inline">\(f,g,f',g'\)</span> to get the derivative of each composite function.<br>
-Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span> 1. <span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span> 1. <span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span> 1. <span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span> 1. <span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span> 1. <span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span> 1. <span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span> 1. <span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span> 1. <span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span> 1. <span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span> 1. <span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span> 1. <span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span> 1. <span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span> 1. <span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p>
+#### Higher order derivatives Open this <a href="../assets/docs/Higher_Order_Derivatives.pdf">Higher Order Derivatives worksheet</a> and take turns computing derivatives, passing the chalk after each problem. #### Activity - Chain Rule Practice For each pair of functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> below, write out the compositions <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>. Then compute the derivative of each composite function. As a suggestion, compute both <span class="math inline">\(f'(x)\)</span> and <span class="math inline">\(g'(x)\)</span> first, and then show how you can combine <span class="math inline">\(f,g,f',g'\)</span> to get the derivative of each composite function.<br>
+Remember to pass the chalk between each problem. 1. <span class="math inline">\(f(x) = 3x + 4\)</span>, <span class="math inline">\(g(x) = x^2 + 1\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(g(x) = \sqrt{2x-5}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x}\)</span>, <span class="math inline">\(g(x) = 2\ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = (x-5)^4\)</span>, <span class="math inline">\(g(x) = \sqrt[3]{x^2}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{3x}\)</span>, <span class="math inline">\(g(x) = x^4 - 1\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x}{x-3}\)</span>, <span class="math inline">\(g(x) = \ln(5x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 2x^3 - 10x^2 + 2x\)</span>, <span class="math inline">\(g(x) = \sqrt{\frac{x-4}{2}}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{x^5}\)</span>, <span class="math inline">\(g(x) = 4e^x\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt{8-x}\)</span>, <span class="math inline">\(g(x) = (2x-1)(x+5)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = e^{x/2}\)</span>, <span class="math inline">\(g(x) = 5x^3\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 1 - \frac{3}{x^4}\)</span>, <span class="math inline">\(g(x) = 2 - \sqrt{x}\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{3}{x^2}\)</span>, <span class="math inline">\(g(x) = \ln(x)\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = 27 - x^3\)</span>, <span class="math inline">\(g(x) = x^2 - x - 12\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \sqrt[3]{4-x^2}\)</span>, <span class="math inline">\(g(x) = 5x + 7\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{x+1}{x-2}\)</span>, <span class="math inline">\(g(x) = e^{-x}\)</span></p></li>
+</ol>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.23">Class.23 on byuimath.com</a></em></p>
 
 
 </section>
@@ -354,6 +609,19 @@ Remember to pass the chalk between each problem. 1. <span class="math inline">\(
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

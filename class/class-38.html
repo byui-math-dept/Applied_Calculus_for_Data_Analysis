@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,11 +429,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-38" id="toc-between-class-sessions---prep-for-day-38" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-38">Between Class Sessions - Prep for Day 38 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#relationships-between-cdfs-and-pdfs" id="toc-relationships-between-cdfs-and-pdfs" class="nav-link" data-scroll-target="#relationships-between-cdfs-and-pdfs">(2) Relationships between CDFs and PDFs</a></li>
+  <li><a href="#reading-practice" id="toc-reading-practice" class="nav-link" data-scroll-target="#reading-practice">(3) Reading Practice</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#summary-of-key-points-rectangles-targets-and-sums" id="toc-summary-of-key-points-rectangles-targets-and-sums" class="nav-link" data-scroll-target="#summary-of-key-points-rectangles-targets-and-sums">Summary of Key Points (Rectangles, Targets, and Sums)</a></li>
-  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a>
+  <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
   <ul class="collapse">
+  <li><a href="#infinite-targets-and-rectangles---an-exponential-random-variable" id="toc-infinite-targets-and-rectangles---an-exponential-random-variable" class="nav-link" data-scroll-target="#infinite-targets-and-rectangles---an-exponential-random-variable">“Infinite targets” and Rectangles - An Exponential Random Variable</a></li>
   <li><a href="#project-3-and-knewton-alta-tips" id="toc-project-3-and-knewton-alta-tips" class="nav-link" data-scroll-target="#project-3-and-knewton-alta-tips">Project 3 and Knewton Alta Tips</a></li>
   </ul></li>
   </ul></li>
@@ -274,6 +453,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -294,6 +474,115 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-38" class="level1">
+<h1>Between Class Sessions - Prep for Day 38 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Creating a PDF and using it to compute the expected value and a probability Consider the function <span class="math display">\[\ds f(x) =
+\begin{cases}
+kx - k &amp;  1 \leq x \leq 3 \\
+0 &amp;  \text{otherwise}
+\end{cases}.\]</span> 1. Select <span class="math inline">\(k\)</span> so <span class="math inline">\(f\)</span> is the PDF of a random variable <span class="math inline">\(X\)</span>.</p>
+<ol type="1">
+<li><p>Use R and a Riemann sum to approximate $E[X] $.</p></li>
+<li><p>Use Mathematica to compute $E[X] $.</p></li>
+<li><p>Use Mathematica to compute <span class="math inline">\(P(X\leq 2)\)</span>.</p></li>
+</ol>
+<section id="relationships-between-cdfs-and-pdfs" class="level3">
+<h3 class="anchored" data-anchor-id="relationships-between-cdfs-and-pdfs">(2) Relationships between CDFs and PDFs</h3>
+<ol type="1">
+<li>Suppose a random variable <span class="math inline">\(X\)</span> has a CDF <span class="math display">\[F(x) =
+\begin{cases}
+0 &amp;  x &lt; 0 \\
+\frac{x}{3} &amp;  0 \leq x \leq 3 \\
+1 &amp;  x &gt; 3
+\end{cases}.\]</span>
+<ul>
+<li>Find <span class="math inline">\(F'(x)\)</span> to find the PDF of <span class="math inline">\(X\)</span>, <span class="math inline">\(f(x)\)</span>.</li>
+<li>Draw the target diagram for this PDF.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Answer
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>- Explain with a geometric argument why $E[X] = 1.5$, and then verify this with Mathematica by computing $\int_0^3 x\cdot\frac{1}{3}dx$.</code></pre>
+<ol type="1">
+<li>Suppose a random variable <span class="math inline">\(X\)</span> has a CDF <span class="math display">\[F(x) =
+\begin{cases}
+0 &amp; x &lt; 0 \\
+\frac{x^2}{16} &amp;  0 \leq x \leq 4 \\
+1 &amp; x &gt; 4
+\end{cases}.\]</span>
+<ul>
+<li>Find <span class="math inline">\(F'(x)\)</span> to find the PDF of <span class="math inline">\(X\)</span>, <span class="math inline">\(f(x)\)</span>.</li>
+<li>Draw the target diagram for this PDF.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Answer
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){x<span class="sc">/</span><span class="dv">8</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_target</span>(f,<span class="dv">0</span>,<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>- Use a table of centroids to explain why $E[X] = \frac{8}{3}$, and then verify this with Mathematica  by computing $\int_0^4 x\cdot\frac{x}{8}dx$.</code></pre>
+<ol type="1">
+<li>Use the two properties of probability density functions to answer the following.
+<ul>
+<li>Explain why <span class="math inline">\(f(x) = \begin{cases}2 &amp;  0 \leq x \leq 6 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> <strong>is not</strong> a PDF.</li>
+<li>Explain why <span class="math inline">\(f(x) = \begin{cases}\frac{2x}{9} &amp;  0 \leq x \leq 3 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> <strong>is</strong> a PDF.</li>
+<li>Explain why <span class="math inline">\(f(x) = \begin{cases}-\frac{1}{4} &amp;  0 \leq x \leq 4 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> <strong>is not</strong> a PDF.</li>
+<li>Explain why <span class="math inline">\(f(x) = \begin{cases}\frac{3}{8}x^2 &amp;  0 \leq x \leq 2 \\ 0 &amp; \text{otherwise}\end{cases}\)</span> <strong>is</strong> a PDF.</li>
+</ul></li>
+<li>Find the value <span class="math inline">\(k\)</span> so that each function is a PDF. Use a table of centroids and/or Mathematica to obtain the needed areas.
+<ul>
+<li><span class="math inline">\(f(x) = \begin{cases}2k &amp;  0 \leq x \leq 6 \\0 &amp; \text{otherwise}\end{cases}\)</span></li>
+<li><span class="math inline">\(f(x) = \begin{cases}3kx &amp;  0 \leq x \leq 4 \\0 &amp; \text{otherwise}\end{cases}\)</span></li>
+<li><span class="math inline">\(f(x) = \begin{cases}5kx^2 &amp;  0 \leq x \leq 2 \\0 &amp; \text{otherwise}\end{cases}\)</span></li>
+</ul></li>
+</ol>
+</section>
+<section id="reading-practice" class="level3">
+<h3 class="anchored" data-anchor-id="reading-practice">(3) Reading Practice</h3>
+<p>Below is a list of properties of Definite Integrals. Read through the properties. Then consider the questions below. What other thoughts, connections, or questions did you identify? - How would you describe any of these properties with words? - Definite Integral can be thought of as “infinite sums”. - Can you identify any properties that sums and integrals share? - Discrete things are different from infinite things. - Can you identify any properties highlight any of these difference (highlighting a difference between sums and integrals)? - Can you find an example of any of these properties used in our <a href="https://byuistats.github.io/M119/unit3/probability.html" target="_blank">Rectangles, Targets, and Sums</a> work?</p>
+<section id="properties-of-the-definite-integral" class="level4">
+<h4 class="anchored" data-anchor-id="properties-of-the-definite-integral">Properties of the Definite Integral</h4>
+<ul>
+<li><p>Given <span class="math inline">\(a &lt; c &lt; k &lt; b\)</span>, <br> <span class="math inline">\(\int_a^b f(x) dx = \int_a^c f(x) dx + \int_c^k f(x) dx + \int_k^b f(x) dx\)</span>.</p>
+<ul>
+<li>Note this property also holds when the inequality <span class="math inline">\(a &lt; c &lt; k &lt; b\)</span> does not hold as long as <span class="math inline">\(f(x)\)</span> is integrable (can be integrated) for all the necessary intervals.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^b f(x)dx = -\int_b^a f(x)dx\)</span>.</p>
+<ul>
+<li>One way to think about this property is that if the width for the “infinite” rectangles you are adding up are all negative for the definite integral on the right-hand side of the equation.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^a f(x)dx = 0\)</span>.</p>
+<ul>
+<li>Note this is related to the concept that <span class="math inline">\(P(X = c) = 0\)</span> for all values of <span class="math inline">\(c\)</span> when <span class="math inline">\(X\)</span> is a continuous random variable.</li>
+</ul></li>
+<li><p><span class="math inline">\(\int_a^b cf(x)dx = c\int_a^b f(x) dx\)</span></p></li>
+<li><p><span class="math inline">\(\int_a^b f(x) + g(x) dx = \int_a^b f(x) dx + \int_a^b g(x) dx\)</span> AND <span class="math inline">\(\int_a^b f(x) - g(x) dx = \int_a^b f(x) dx - \int_a^b g(x) dx\)</span></p></li>
+</ul>
+<p><a id="PP"></a></p>
+</section>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 3 – Riemann Sums &amp; Definite Integrals</li>
+<li>Begin 3 – Compute Probability (Continuous Random Variables)</li>
+<li>Begin 3 – Definite Integrals</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="summary-of-key-points-rectangles-targets-and-sums" class="level2">
@@ -366,7 +655,19 @@ Variance (continuous random variable)
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>We’ll complete this as groups at the boards.</p>
-<p>Consider the function <span class="math inline">\(g(x) = 9-x^2\)</span> for <span class="math inline">\(0\leq x\leq 3\)</span> and 0 otherwise. As you complete each exercise below, first write on the board any integral you need to compute. Then use Mathematica to compute it. 1. Draw the function <span class="math inline">\(g\)</span>. 1. Is <span class="math inline">\(g(x)\)</span> the PDF of a random variable <span class="math inline">\(X\)</span>? Explain. 1. Find a constant <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the PDF of a random variable <span class="math inline">\(X\)</span>. 1. Compute <span class="math inline">\(P(X\leq 1)\)</span>. 1. Compute <span class="math inline">\(P(X\leq 2)\)</span>. 1. Compute <span class="math inline">\(P(1&lt;X\leq 2)\)</span>. 1. Compute the cumulative distribution function (CDF), so find <span class="math inline">\(F(x) = P(X\leq x)\)</span>. [You found <span class="math inline">\(F(1)\)</span> and <span class="math inline">\(F(2)\)</span> above.] 1. Compute the expected value <span class="math inline">\(E[X]\)</span>. 1. Compute the variance <span class="math inline">\(Var[X]\)</span>. 1. Compute the standard deviation of <span class="math inline">\(X\)</span>. 1. Pick another function <span class="math inline">\(g(x)\)</span> and bounds for <span class="math inline">\(x\)</span>, and then repeat the above.</p>
+<p>Consider the function <span class="math inline">\(g(x) = 9-x^2\)</span> for <span class="math inline">\(0\leq x\leq 3\)</span> and 0 otherwise. As you complete each exercise below, first write on the board any integral you need to compute. Then use Mathematica to compute it. 1. Draw the function <span class="math inline">\(g\)</span>.</p>
+<ol type="1">
+<li><p>Is <span class="math inline">\(g(x)\)</span> the PDF of a random variable <span class="math inline">\(X\)</span>? Explain.</p></li>
+<li><p>Find a constant <span class="math inline">\(k\)</span> so that <span class="math inline">\(f(x) = k g(x)\)</span> is the PDF of a random variable <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(P(X\leq 1)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(P(X\leq 2)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(P(1&lt;X\leq 2)\)</span>.</p></li>
+<li><p>Compute the cumulative distribution function (CDF), so find <span class="math inline">\(F(x) = P(X\leq x)\)</span>. [You found <span class="math inline">\(F(1)\)</span> and <span class="math inline">\(F(2)\)</span> above.]</p></li>
+<li><p>Compute the expected value <span class="math inline">\(E[X]\)</span>.</p></li>
+<li><p>Compute the variance <span class="math inline">\(Var[X]\)</span>.</p></li>
+<li><p>Compute the standard deviation of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Pick another function <span class="math inline">\(g(x)\)</span> and bounds for <span class="math inline">\(x\)</span>, and then repeat the above.</p></li>
+</ol>
 <details>
 <summary>
 Answers
@@ -374,139 +675,122 @@ Answers
 <ol type="1">
 <li>It’s a parabola open downwards starting at height 9. The following code plots <span class="math inline">\(g\)</span> with Mathematica.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Plot[<span class="dv">9</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span>,{x,<span class="dv">0</span>,<span class="dv">3</span>}]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>](<span class="sc">:</span>codemend<span class="sc">:</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span>  <span class="sc">$</span>\int_{<span class="sc">-</span>\infty}<span class="sc">^</span>{\infty} <span class="fu">g</span>(x) dx <span class="ot">=</span> \int_0<span class="sc">^</span><span class="dv">3</span> <span class="dv">9</span><span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span> <span class="ot">=</span> <span class="dv">18</span> \neq <span class="dv">1</span><span class="sc">$</span>, so <span class="sc">$</span>g<span class="sc">$</span> is not a probability density function.</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>codem<span class="sc">:</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Integrate[9-x^2,{x,0,3}]</p>
-<pre><code>(:codemend:)
-
-1.  $k = \frac{1}{18}$.
-
-1.  $\int_{-\infty}^{1} f(x)dx = \int_0^1 \frac{1}{18}(9-x^2)dx = \frac{13}{27} \approx 0.481$
-(:codem:)</code></pre>
-<p>Integrate[(1/18)*(9-x^2),{x,0,1}]</p>
-<pre><code>(:codemend:)
-Note that $\int_{-\infty}^{1} f(x)dx \neq \int_{-\infty}^1 \frac{1}{18}(9-x^2)dx$, as you MUST change the $-\infty$ to 0 to capture the domain of $f$. 
-Note also that we computed the CDF at 1 and have $F(1) = P(X \leq 1) = \frac{13}{27}$. 
-
-1.  $\int_{-\infty}^{2} f(x)dx = \int_0^2 \frac{1}{18}(9-x^2)dx = \frac{23}{27} \approx 0.852$ which means $F(2) = \frac{23}{27}$.
-(:codem:)</code></pre>
-<p>Integrate[(1/18)*(9-x^2),{x,0,2}]</p>
-<pre><code>(:codemend:)
-
-1.  $\int_1^2 \frac{1}{18}(9-x^2)dx = \frac{10}{27} \approx 0.370$
-(:codem:)</code></pre>
-<p>Integrate[(1/18)*(9-x^2),{x,1,2}]</p>
-<pre><code>(:codemend:)
-Note that $P(1\leq X\leq 2) = F(2) - F(1)$
-
-1.  There 3 regions to consider. First, when $x&lt;0$. Second, when $0\leq x \leq 3$. And third, when $x&gt;3$.&lt;br&gt;
-When $x&lt;0$, $F(x) = 0$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^x 0 dx = 0$).&lt;br&gt;
-When $x&gt;3$, $F(x) = 1$ (since $\int_{-\infty}^x f(x)dx = \int_{-\infty}^0 0dx + \int_0^3 \frac{1}{18}(9-x^2)dx + \int_3^x 0 dx = 0+1+0=1$).&lt;br&gt;
-When $0\leq x\leq 3$, $F(x) = \int_{-\infty}^x f(x) dx = \int_0^x \frac{1}{18}(9-t^2)dt = \frac{1}{2}x - \frac{1}{54}x^3$.
-(:codem:)</code></pre>
-<p>Integrate[(1/18)*(9-t^2),{t,0,x}]</p>
-<pre><code>(:codemend:)
-OR
-(:codem:)</code></pre>
-<p>Integrate[(1/18)*(9-x^2),{x,0,x}]</p>
-<pre><code>(:codemend:)
-Note: $F'(x) = f(x)$
-
-1.  $E[X] = \int_{-\infty}^{\infty} xf(x)dx = \int_0^3 x(\frac{1}{18}(9-x^2)) dx = \frac{9}{8} = 1.125$
-(:codem:)</code></pre>
-<p>Integrate[x<em>(1/18)</em>(9-x^2),{x,0,3}]</p>
-<pre><code>(:codemend:)
-
-1.  $Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2f(x)dx = \int_0^3 (x-\frac{9}{8})^2(\frac{1}{18}(9-x^2)) dx = \frac{171}{320} \approx 0.534$
-(:codem:)</code></pre>
-<p>Integrate[(x-9/8)<sup>2*(1/18)(9-x</sup>2),{x,0,3}]</p>
-<pre><code>(:codemend:)
-
-1.  $\sigma_X = \sqrt{Var[X]} = \sqrt{\frac{171}{320}} \approx 0.731$
-(:codem:)</code></pre>
-<p>N[Sqrt[171/320]]</p>
-<pre><code>(:codemend:)
-
-&lt;/details&gt;
-
-## Discussion 
-### "Infinite targets" and Rectangles - An Exponential Random Variable
-Consider the random variable $X$ with the PDF $$f(x) = 
+<pre><code>Plot[9-x^2,{x,0,3}]</code></pre>
+<ol type="1">
+<li><span class="math inline">\(\int_{-\infty}^{\infty} g(x) dx = \int_0^3 9-x^2 = 18 \neq 1\)</span>, so <span class="math inline">\(g\)</span> is not a probability density function.</li>
+</ol>
+<pre><code>Integrate[9-x^2,{x,0,3}]</code></pre>
+<ol type="1">
+<li><p><span class="math inline">\(k = \frac{1}{18}\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_{-\infty}^{1} f(x)dx = \int_0^1 \frac{1}{18}(9-x^2)dx = \frac{13}{27} \approx 0.481\)</span></p></li>
+</ol>
+<pre><code>Integrate[(1/18)*(9-x^2),{x,0,1}]</code></pre>
+<p>Note that <span class="math inline">\(\int_{-\infty}^{1} f(x)dx \neq \int_{-\infty}^1 \frac{1}{18}(9-x^2)dx\)</span>, as you MUST change the <span class="math inline">\(-\infty\)</span> to 0 to capture the domain of <span class="math inline">\(f\)</span>. Note also that we computed the CDF at 1 and have <span class="math inline">\(F(1) = P(X \leq 1) = \frac{13}{27}\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(\int_{-\infty}^{2} f(x)dx = \int_0^2 \frac{1}{18}(9-x^2)dx = \frac{23}{27} \approx 0.852\)</span> which means <span class="math inline">\(F(2) = \frac{23}{27}\)</span>.</li>
+</ol>
+<pre><code>Integrate[(1/18)*(9-x^2),{x,0,2}]</code></pre>
+<ol type="1">
+<li><span class="math inline">\(\int_1^2 \frac{1}{18}(9-x^2)dx = \frac{10}{27} \approx 0.370\)</span></li>
+</ol>
+<pre><code>Integrate[(1/18)*(9-x^2),{x,1,2}]</code></pre>
+<p>Note that <span class="math inline">\(P(1\leq X\leq 2) = F(2) - F(1)\)</span></p>
+<ol type="1">
+<li>There 3 regions to consider. First, when <span class="math inline">\(x&lt;0\)</span>. Second, when <span class="math inline">\(0\leq x \leq 3\)</span>. And third, when <span class="math inline">\(x&gt;3\)</span>.<br> When <span class="math inline">\(x&lt;0\)</span>, <span class="math inline">\(F(x) = 0\)</span> (since <span class="math inline">\(\int_{-\infty}^x f(x)dx = \int_{-\infty}^x 0 dx = 0\)</span>).<br> When <span class="math inline">\(x&gt;3\)</span>, <span class="math inline">\(F(x) = 1\)</span> (since <span class="math inline">\(\int_{-\infty}^x f(x)dx = \int_{-\infty}^0 0dx + \int_0^3 \frac{1}{18}(9-x^2)dx + \int_3^x 0 dx = 0+1+0=1\)</span>).<br> When <span class="math inline">\(0\leq x\leq 3\)</span>, <span class="math inline">\(F(x) = \int_{-\infty}^x f(x) dx = \int_0^x \frac{1}{18}(9-t^2)dt = \frac{1}{2}x - \frac{1}{54}x^3\)</span>.</li>
+</ol>
+<pre><code>Integrate[(1/18)*(9-t^2),{t,0,x}]</code></pre>
+<p>OR</p>
+<pre><code>Integrate[(1/18)*(9-x^2),{x,0,x}]</code></pre>
+<p>Note: <span class="math inline">\(F'(x) = f(x)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(E[X] = \int_{-\infty}^{\infty} xf(x)dx = \int_0^3 x(\frac{1}{18}(9-x^2)) dx = \frac{9}{8} = 1.125\)</span></li>
+</ol>
+<pre><code>Integrate[x*(1/18)*(9-x^2),{x,0,3}]</code></pre>
+<ol type="1">
+<li><span class="math inline">\(Var[X] = \int_{-\infty}^{\infty} (x - E[X])^2f(x)dx = \int_0^3 (x-\frac{9}{8})^2(\frac{1}{18}(9-x^2)) dx = \frac{171}{320} \approx 0.534\)</span></li>
+</ol>
+<pre><code>Integrate[(x-9/8)^2*(1/18)(9-x^2),{x,0,3}]</code></pre>
+<ol type="1">
+<li><span class="math inline">\(\sigma_X = \sqrt{Var[X]} = \sqrt{\frac{171}{320}} \approx 0.731\)</span></li>
+</ol>
+<pre><code>N[Sqrt[171/320]]</code></pre>
+</details>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="infinite-targets-and-rectangles---an-exponential-random-variable" class="level3">
+<h3 class="anchored" data-anchor-id="infinite-targets-and-rectangles---an-exponential-random-variable">“Infinite targets” and Rectangles - An Exponential Random Variable</h3>
+<p>Consider the random variable <span class="math inline">\(X\)</span> with the PDF <span class="math display">\[f(x) =
 \begin{cases}
 5e^{-5x} &amp;  x \geq 0 \\
 0 &amp;  \text{otherwise}
-\end{cases}.$$
-
-- Why do we know the area under the "infinite" target is 1?
-
-Let's approximate the area under $f$ using rectangles (so a Riemann sum).
-(:code:)
-```r
-f &lt;- function(x){5*exp(-5*x)}
-
-a &lt;- 0
-1. b should be infinity, but infinity is a concept (not a number) and the computer program needs a number to complete the calculation... so we pick a large but finite value for b
-b &lt;- 30 
-n &lt;- 1000
-dx &lt;- (b-a)/n
-draw_rect_approx(f,a,b,n) 
-
-xi &lt;- seq(a+dx/2,b,dx)
-A &lt;- sum(f(xi)*dx)
-A</code></pre>
+\end{cases}.\]</span></p>
+<ul>
+<li>Why do we know the area under the “infinite” target is 1?</li>
+</ul>
+<p>Let’s approximate the area under <span class="math inline">\(f\)</span> using rectangles (so a Riemann sum).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">5</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span>x)}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#b should be infinity, but infinity is a concept (not a number) and the computer program needs a number to complete the calculation... so we pick a large but finite value for b</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">30</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">&lt;-</span> (b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_rect_approx</span>(f,a,b,n) </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We know the exact area is 1 and see that our approximation with 1000 rectangles, 0.9990631, is pretty good.</p>
 <p>Now let’s use rectangles to approximate the expected value using the Riemann sum <span class="math inline">\(E[X]\approx \sum x_i f(x_i) \Delta x\)</span>, and the variance using the Riemann sum <span class="math inline">\(\text{Var}[X]\approx \sum (x_i-E[X])^2 f(x_i) \Delta x\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">&lt;-</span> <span class="fu">sum</span>(xi<span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>EV</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">&lt;-</span> <span class="fu">sum</span>((xi<span class="sc">-</span>EV)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Var</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">&lt;-</span> <span class="fu">sum</span>(xi<span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>EV</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">&lt;-</span> <span class="fu">sum</span>((xi<span class="sc">-</span>EV)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">f</span>(xi)<span class="sc">*</span>dx)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>Var</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The “target” seems to have more weight on the left, so <span class="math inline">\(E[X]\approx 0.2003749\)</span> seems like a reasonable approximation for <span class="math inline">\(E[X]\)</span>. This shape is not on any of our list of centroids so we don’t have a formula find the exact value for our expected value of <span class="math inline">\(E[X]\)</span>. But the exact expected value can be computed using a definite integral with Mathematica.</p>
 <p>We now compute <span class="math inline">\(A=\int_0^{\infty}f(x) dx\)</span>, <span class="math inline">\(E[X]=\int_0^{\infty}xf(x) dx\)</span>, and <span class="math inline">\(\text{Var}[X]=\int_0^{\infty}(x-E[X])^2f(x) dx\)</span> with Mathematica.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="dv">5</span> Exp[<span class="sc">-</span><span class="dv">5</span> x]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> Integrate[f, {x, <span class="dv">0</span>, Infinity}]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>EV <span class="ot">=</span> Integrate[x<span class="sc">*</span>f, {x, <span class="dv">0</span>, Infinity}]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Var <span class="ot">=</span> Integrate[(x <span class="sc">-</span> EV)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>f, {x, <span class="dv">0</span>, Infinity}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(:codemend:)</p>
+<pre><code>f = 5 Exp[-5 x]
+A = Integrate[f, {x, 0, Infinity}]
+EV = Integrate[x*f, {x, 0, Infinity}]
+Var = Integrate[(x - EV)^2*f, {x, 0, Infinity}]</code></pre>
+</section>
 <section id="project-3-and-knewton-alta-tips" class="level3">
 <h3 class="anchored" data-anchor-id="project-3-and-knewton-alta-tips">Project 3 and Knewton Alta Tips</h3>
 <ul>
-<li>Let’s plot some of the probability models from Project 3. (:code:)</li>
+<li>Let’s plot some of the probability models from Project 3.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a)<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">f0</span>(x0,a,b)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x0,y0,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">m=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>((x<span class="sc">-</span>m)<span class="sc">/</span>s)<span class="sc">^</span><span class="dv">2</span>)}</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">f1</span>(x1,m,s)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x1,y1,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">1</span>){b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(x)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>x)}</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x2,a,b)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x2,y2,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)}</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">f3</span>(x3,lambda)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x3,y3,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a)<span class="sc">+</span><span class="dv">0</span><span class="sc">*</span>x}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">f0</span>(x0,a,b)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x0,y0,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">m=</span><span class="dv">0</span>,<span class="at">s=</span><span class="dv">1</span>){<span class="dv">1</span><span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>((x<span class="sc">-</span>m)<span class="sc">/</span>s)<span class="sc">^</span><span class="dv">2</span>)}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">f1</span>(x1,m,s)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x1,y1,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">1</span>){b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(x)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>x)}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">f2</span>(x2,a,b)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x2,y2,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">1</span>){lambda<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda<span class="sc">*</span>x)}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">f3</span>(x3,lambda)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x3,y3,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>- What is dexp()? What is rexp()?</code></pre>
 <ul>
 <li>Let’s compare f1 and dnorm().</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x1,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x1,y1,<span class="at">type=</span><span class="st">'l,lwd=5,col='</span>gray<span class="st">')</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">lines(x1,y,col=4)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x1,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x1,y1,<span class="at">type=</span><span class="st">'l,lwd=5,col='</span>gray<span class="st">')</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">lines(x1,y,col=4)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Let’s do some Knewton Alta exercises together.
 <ul>
@@ -514,25 +798,49 @@ A</code></pre>
 <li>3 – Riemann Sums &amp; Definite Integrals</li>
 <li>3 – Calculate Parameters of Continuous Random Variables Identifying Expected Value and Variance</li>
 </ul></li>
-<li>Let’s calculate $_{-}^f(x) dx $, $ E[X] $, $ Var[X] $, and standard deviation of X for <span class="math inline">\(f_3\)</span> and <span class="math inline">\(f_1\)</span>. (:codem:)[@ $Assumptions = [Lambda] &gt; 0; Integrate[[Lambda]<em>Exp[-[Lambda]</em>x],{x,0,Infinity}] Integrate[x*[Lambda]<em>Exp[-[Lambda]</em>x],{x,0,Infinity}]</li>
+<li>Let’s calculate $_{-}^f(x) dx $, $ E[X] $, $ Var[X] $, and standard deviation of X for <span class="math inline">\(f_3\)</span> and <span class="math inline">\(f_1\)</span>.</li>
 </ul>
-<p>m=Integrate[x*[Lambda]<em>Exp[-[Lambda]</em>x],{x,0,Infinity}]; Integrate[(x-m)^2*[Lambda]<em>Exp[-[Lambda]</em>x],{x,0,Infinity}]</p>
-<p>Sqrt[Integrate[(x-m)^2*[Lambda]<em>Exp[-[Lambda]</em>x],{x,0,Infinity}]]</p>
-<pre><code>(:codemend:)
+<pre><code>$Assumptions = \[Lambda] &gt; 0;
+Integrate[\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
+Integrate[x*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
 
-(:codem:)</code></pre>
-<p>$Assumptions = [Sigma] &gt; 0; Integrate[1/Sqrt[2*[Pi]*[Sigma]^2]<em>Exp[-1/2*((x - [Mu])/[Sigma])^2],{x,-Infinity,Infinity}] Integrate[x<em>1/Sqrt[2*[Pi]</em>[Sigma]^2]</em>Exp[-1/2*((x - [Mu])/[Sigma])^2],{x,-Infinity,Infinity}]</p>
-<p>m = Integrate[x<em>1/Sqrt[2*[Pi]</em>[Sigma]^2]<em>Exp[-1/2*((x - [Mu])/[Sigma])^2],{x,-Infinity,Infinity}]; Integrate[(x-m)^2<em>1/Sqrt[2*[Pi]</em>[Sigma]^2]</em>Exp[-1/2*((x - [Mu])/[Sigma])^2],{x,-Infinity,Infinity}]</p>
-<p>V = Integrate[(x-m)^2<em>1/Sqrt[2*[Pi]</em>[Sigma]^2]*Exp[-1/2*((x - [Mu])/[Sigma])^2],{x,-Infinity,Infinity}]; Simplify[Sqrt[V]] ``` (:codemend:)</p>
+m=Integrate[x*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}];
+Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]
+
+Sqrt[Integrate[(x-m)^2*\[Lambda]*Exp[-\[Lambda]*x],{x,0,Infinity}]]</code></pre>
+<pre><code>$Assumptions = \[Sigma] &gt; 0;
+Integrate[1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+Integrate[x*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+
+m = Integrate[x*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}];
+Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}]
+
+V = Integrate[(x-m)^2*1/Sqrt[2*\[Pi]*\[Sigma]^2]*Exp[-1/2*((x - \[Mu])/\[Sigma])^2],{x,-Infinity,Infinity}];
+Simplify[Sqrt[V]]</code></pre>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.38">Class.38 on byuimath.com</a></em></p>
 
 
 </section>
-</details></section>
+</section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

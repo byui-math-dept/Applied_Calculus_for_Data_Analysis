@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,16 +429,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-name" id="toc-during-class---day-name" class="nav-link active" data-scroll-target="#during-class---day-name">During Class - Day {$Name}</a>
+  <li><a href="#between-class-sessions---prep-for-day-7" id="toc-between-class-sessions---prep-for-day-7" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-7">Between Class Sessions - Prep for Day 7 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#sum-and-product-notation" id="toc-sum-and-product-notation" class="nav-link" data-scroll-target="#sum-and-product-notation">(2) Sum and Product Notation</a></li>
+  <li><a href="#systems-of-equations-videos" id="toc-systems-of-equations-videos" class="nav-link" data-scroll-target="#systems-of-equations-videos">(3) Systems of Equations (videos)</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class---day-7" id="toc-during-class---day-7" class="nav-link" data-scroll-target="#during-class---day-7">During Class - Day 7</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
   <ul class="collapse">
   <li><a href="#describing-functions-practice-reading-mathematics" id="toc-describing-functions-practice-reading-mathematics" class="nav-link" data-scroll-target="#describing-functions-practice-reading-mathematics">Describing Functions (practice Reading Mathematics)</a></li>
-  <li><a href="#sum-and-product-notation" id="toc-sum-and-product-notation" class="nav-link" data-scroll-target="#sum-and-product-notation">Sum and Product Notation</a></li>
-  <li><a href="#systems-of-equations-videos" id="toc-systems-of-equations-videos" class="nav-link" data-scroll-target="#systems-of-equations-videos">Systems of Equations (videos)</a></li>
+  <li><a href="#sum-and-product-notation-1" id="toc-sum-and-product-notation-1" class="nav-link" data-scroll-target="#sum-and-product-notation-1">Sum and Product Notation</a></li>
+  <li><a href="#systems-of-equations-videos-1" id="toc-systems-of-equations-videos-1" class="nav-link" data-scroll-target="#systems-of-equations-videos-1">Systems of Equations (videos)</a></li>
   </ul></li>
-  <li><a href="#discusion" id="toc-discusion" class="nav-link" data-scroll-target="#discusion">Discusion</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#discussion---project-1-task-2-and-the-example-project." id="toc-discussion---project-1-task-2-and-the-example-project." class="nav-link" data-scroll-target="#discussion---project-1-task-2-and-the-example-project.">Discussion - Project 1 Task 2 and the Example Project.</a></li>
   </ul></li>
   </ul>
@@ -278,6 +456,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -298,11 +477,101 @@ window.Quarto = {
 </header>
 
 
-<section id="during-class---day-name" class="level1">
-<h1>During Class - Day {$Name}</h1>
+<section id="between-class-sessions---prep-for-day-7" class="level1">
+<h1>Between Class Sessions - Prep for Day 7 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Describing Functions (practice Reading Mathematics) Click on each box to expand it. Read each of the definitions. Then complete the questions that follow.</p>
+<details>
+<summary>
+Definition: <strong>Constant</strong> on the Interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is constant on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) = f(x_2)\)</span>.</p>
+</details>
+<details>
+<summary>
+Definition: <strong>Increasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \leq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<details>
+<summary>
+Definition: <strong>Decreasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \geq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<details>
+<summary>
+Definition: <strong>Positive</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is positive on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; 0\)</span>.</p>
+</details>
+<details>
+<summary>
+Definition: <strong>Nonnegative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is nonnegative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) \geq 0\)</span>.</p>
+</details>
+<details>
+<summary>
+Definition: <strong>Negative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is negative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; 0\)</span>.</p>
+</details>
+<ul>
+<li>What is the difference between a function being positive and a function being nonnegative?</li>
+<li>Give an example of a function that is constant and nonnegative on the interval $ (1,5) $.</li>
+<li>Give an example of a function that is negative and strictly increasing on the interval $ (0,2) $</li>
+<li>Can a function be both positive and nonnegative on an interval? If so, give an example.</li>
+<li>Can a function be both increasing and decreasing on an interval? If so, give an example.</li>
+<li>Give an example of a positive function that is increasing on $ (-2,0) $ and then decreasing on $ (0,2) $.</li>
+</ul>
+<section id="sum-and-product-notation" class="level3">
+<h3 class="anchored" data-anchor-id="sum-and-product-notation">(2) Sum and Product Notation</h3>
+<p><strong>Sum Notation</strong><br> The symbol <span class="math inline">\(\sum_{k=1}^n a_k\)</span> means to find the sum of the <span class="math inline">\(a_k\)</span> terms for each integer from <span class="math inline">\(k=1\)</span> to <span class="math inline">\(k=n\)</span> .</p>
+<p>For example: - <span class="math inline">\(\sum_{k=2}^5 (3k-1) = \underbrace{ (3(2)-1) }_{k=2} + \underbrace{ (3(3)-1) }_{k=3}  + \underbrace{ (3(4)-1) }_{k=4} +\underbrace{ (3(5)-1) }_{k=5} = 5+8+11+14 =  38\)</span>.</p>
+<p><strong>Product Notation</strong><br> The symbol <span class="math inline">\(\prod_{j=1}^n a_j\)</span> means to find the product of the <span class="math inline">\(a_j\)</span> terms for each integer from <span class="math inline">\(j=1\)</span> to <span class="math inline">\(j=n\)</span>.</p>
+<p>For example: - <span class="math inline">\(\prod_{m=2}^5 (3m-1) = \underbrace{ (3(2)-1) }_{k=2}\cdot \underbrace{ (3(3)-1) }_{k=3}\cdot \underbrace{ (3(4)-1) }_{k=4}\cdot \underbrace{ (3(5)-1) }_{k=5} = 5\cdot 8\cdot 11\cdot 14=6160\)</span>.</p>
+<p>We can use R to compute sums and products as follows.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">3</span><span class="sc">*</span>k<span class="dv">-1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(<span class="dv">3</span><span class="sc">*</span>k<span class="dv">-1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Calculate the following values by hand, and check your work with R. - <span class="math inline">\(\sum_{m=1}^5 (4m^2+4)\)</span> and <span class="math inline">\(\prod_{m=1}^5 (4m^2+4)\)</span> - <span class="math inline">\(\sum_{k=1}^4 (30 - k^2)\)</span> and <span class="math inline">\(\prod_{k=1}^3 (30 - k^2)\)</span> - <span class="math inline">\(\sum_{n=1}^{10} n\)</span> and <span class="math inline">\(\prod_{n=1}^7 n\)</span> - <span class="math inline">\(\sum_{i=1}^6 (50-i)\)</span> and <span class="math inline">\(\prod_{i=1}^6 (10-i)\)</span></p>
+</section>
+<section id="systems-of-equations-videos" class="level3">
+<h3 class="anchored" data-anchor-id="systems-of-equations-videos">(3) Systems of Equations (videos)</h3>
+<p>Watch the following videos about solving systems of equations. - <a href="https://www.youtube.com/watch?v=HxhacvH49o8">Video 1</a> (~10 minutes) - <a href="https://www.youtube.com/watch?v=ova8GSmPV4o">Video 2</a> (~7.5 minutes)</p>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 1 – Transformations of Functions assignment</li>
+<li>Complete 1 – Solving Linear Systems assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue working on Project 1 Task 2</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="during-class---day-7" class="level1">
+<h1>During Class - Day 7</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
-<p>Write in expanded form and then calculate each of the following. 1. <span class="math inline">\(\sum_{k=4}^{8} (5-k)\)</span> 1. <span class="math inline">\(\prod_{n=1}^4 n\)</span> 1. <span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2)\)</span> When you finish, check your solution using R.</p>
+<p>Write in expanded form and then calculate each of the following. 1. <span class="math inline">\(\sum_{k=4}^{8} (5-k)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\prod_{n=1}^4 n\)</span></li>
+<li><span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2)\)</span> When you finish, check your solution using R.</li>
+</ol>
 <details>
 <summary>
 Solution
@@ -310,20 +579,20 @@ Solution
 <ul>
 <li>We find <span class="math inline">\(\sum_{k=4}^{8} (5-k) = (5-4) + (5-5) + (5-6) + (5-7) + (5-8) = -5\)</span>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">5</span><span class="sc">-</span>x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">5</span><span class="sc">-</span>x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>We compute <span class="math inline">\(\prod_{n=1}^4 n = 1(2)(3)(4) = 24\)</span>.</li>
 </ul>
-<pre><code>prod(1:4)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since <span class="math inline">\(4! = \prod_{n=1}^4 n\)</span>, you can also use the factorial command in R to commute this product.</p>
-<pre><code>factorial(4)</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>We see <span class="math inline">\(\frac{1}{3}\sum_{i=3}^{7} (2+i^2) = \frac{1}{3}\left( (2+3^2) + (2+4^2) + (2+5^2) + (2+6)^2 + (2+7^2)\right) = \frac{145}{3}.\)</span></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((<span class="dv">2</span><span class="sc">+</span>i<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((<span class="dv">2</span><span class="sc">+</span>i<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((<span class="dv">2</span><span class="sc">+</span>i<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((<span class="dv">2</span><span class="sc">+</span>i<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="group-meeting" class="level2">
@@ -331,20 +600,67 @@ Solution
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="describing-functions-practice-reading-mathematics" class="level3">
 <h3 class="anchored" data-anchor-id="describing-functions-practice-reading-mathematics">Describing Functions (practice Reading Mathematics)</h3>
-<p>The prep for yesterday involved reading and coming up with examples related to 6 definitions. <!-- include: Definition.ConstantOnTheIntervalI --> <!-- include: Definition.IncreasingOnTheIntervalI --> <!-- include: Definition.DecreasingOnTheIntervalI --> <!-- include: Definition.PositiveOnTheIntervalI --> <!-- include: Definition.NonnegativeOnTheIntervalI --> <!-- include: Definition.NegativeOnTheIntervalI --></p>
+<p>The prep for yesterday involved reading and coming up with examples related to 6 definitions.</p>
+<!-- from Definition.ConstantOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Constant</strong> on the Interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is constant on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) = f(x_2)\)</span>.</p>
+</details>
+<!-- from Definition.IncreasingOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Increasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \leq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly increasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<!-- from Definition.DecreasingOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Decreasing</strong> on the Interval <span class="math inline">\(I\)</span> (from OpenStax textbook)
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) \geq f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note: We say a function <span class="math inline">\(f\)</span> is strictly decreasing on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span> when <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+</details>
+<!-- from Definition.PositiveOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Positive</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is positive on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &gt; 0\)</span>.</p>
+</details>
+<!-- from Definition.NonnegativeOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Nonnegative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is nonnegative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) \geq 0\)</span>.</p>
+</details>
+<!-- from Definition.NegativeOnTheIntervalI -->
+<details>
+<summary>
+Definition: <strong>Negative</strong> on the interval <span class="math inline">\(I\)</span>
+</summary>
+<p>We say a function <span class="math inline">\(f\)</span> is negative on the interval <span class="math inline">\(I\)</span> if for all <span class="math inline">\(x_1\)</span> in the interval, <span class="math inline">\(f(x_1) &lt; 0\)</span>.</p>
+</details>
 <p>Let’s apply these definitions to some examples. 1. Consider the function <span class="math inline">\(\ds f(x) = \begin{cases}-x-4 &amp; x&lt;-2\\-2 &amp; -2\leq x\leq 2\\x-4 &amp; 2&lt;x\\\end{cases}.\)</span> 1. Sketch the graph of <span class="math inline">\(f\)</span>. 1. Give an interval on which <span class="math inline">\(f\)</span> is constant. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is increasing. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is decreasing. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is positive. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is non-negative. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is negative. Then give another. 1. Give an interval on which <span class="math inline">\(f\)</span> is both increasing and decreasing. 1. Draw the graph of a function that is constant on $ (0,2) $, strictly increasing on $ (2,5) $, decreasing on $ (5,10) $, nonnegative on $ [4,7] $, and negative on both $ [0,4) $ and $ (7,10] $.</p>
 </section>
-<section id="sum-and-product-notation" class="level3">
-<h3 class="anchored" data-anchor-id="sum-and-product-notation">Sum and Product Notation</h3>
-<p>Start by discussing any questions from the prep. The complete the following with your team. 1. Writing the expression in expanded form, then compute the sum or product, and finish by checking with R. 1. <span class="math inline">\(\sum_{k=2}^{4} (2k-3)\)</span> 1. <span class="math inline">\(\prod_{k=2}^4 (2k-3)\)</span> 1. <span class="math inline">\(\sum_{k=3}^{8} (k-5)^2\)</span> 1. <span class="math inline">\(\prod_{n=3}^8 (n-5)^2\)</span> 1. Write out each sum in expanded form (or at least show the pattern), and then use R to compute the sum. 1. <span class="math inline">\(\sum_{k=1}^{1} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{2} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{3} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{4} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{5} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{6} (2k-1)\)</span> 1. Make a guess, based on the patterns from above, for <span class="math inline">\(\sum_{k=1}^{20} (2k-1)\)</span>. Then check with R. 1. Compute <span class="math inline">\(1+3+5+\cdots+97+99\)</span>.</p>
+<section id="sum-and-product-notation-1" class="level3">
+<h3 class="anchored" data-anchor-id="sum-and-product-notation-1">Sum and Product Notation</h3>
+<p>Start by discussing any questions from the prep. The complete the following with your team. 1. Writing the expression in expanded form, then compute the sum or product, and finish by checking with R. 1. <span class="math inline">\(\sum_{k=2}^{4} (2k-3)\)</span> 1. <span class="math inline">\(\prod_{k=2}^4 (2k-3)\)</span> 1. <span class="math inline">\(\sum_{k=3}^{8} (k-5)^2\)</span> 1. <span class="math inline">\(\prod_{n=3}^8 (n-5)^2\)</span> 1. Write out each sum in expanded form (or at least show the pattern), and then use R to compute the sum. 1. <span class="math inline">\(\sum_{k=1}^{1} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{2} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{3} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{4} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{5} (2k-1)\)</span> 1. <span class="math inline">\(\sum_{k=1}^{6} (2k-1)\)</span> 1. Make a guess, based on the patterns from above, for <span class="math inline">\(\sum_{k=1}^{20} (2k-1)\)</span>. Then check with R.</p>
+<ol type="1">
+<li>Compute <span class="math inline">\(1+3+5+\cdots+97+99\)</span>.</li>
+</ol>
 </section>
-<section id="systems-of-equations-videos" class="level3">
-<h3 class="anchored" data-anchor-id="systems-of-equations-videos">Systems of Equations (videos)</h3>
+<section id="systems-of-equations-videos-1" class="level3">
+<h3 class="anchored" data-anchor-id="systems-of-equations-videos-1">Systems of Equations (videos)</h3>
 <p>Solve each system of equations for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The variables <span class="math inline">\(a,b,c,d,e,f\)</span> below are constants. - <span class="math inline">\(3x + 2y = -4, -x + 7y = 9\)</span> - <span class="math inline">\(x+2y=3, 4x+5y=6\)</span> - <span class="math inline">\(x+by=3, 4x+5y=6\)</span> - <span class="math inline">\(x+by=c, 4x+5y=6\)</span> - <span class="math inline">\(x+by=c, dx+5y=6\)</span> - <span class="math inline">\(x+by=c, dx+ey=6\)</span> - <span class="math inline">\(x+by=c, dx+ey=f\)</span> - <span class="math inline">\(ax+by=c, dx+ey=f\)</span></p>
 </section>
 </section>
-<section id="discusion" class="level2">
-<h2 class="anchored" data-anchor-id="discusion">Discusion</h2>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <ul>
 <li>Reminder of what the parameters in the general transformation form do. <span class="math display">\[ T(x) = af(b(x-h))+k \]</span></li>
 <li>Let’s think about the general quadratic <span class="math inline">\(f(x) = a_2x^2 + a_1x + a_0\)</span>.
@@ -362,35 +678,37 @@ Solution
 <section id="discussion---project-1-task-2-and-the-example-project." class="level2">
 <h2 class="anchored" data-anchor-id="discussion---project-1-task-2-and-the-example-project.">Discussion - Project 1 Task 2 and the Example Project.</h2>
 <p>If you haven’t yet found the worked examples in Canvas, note that there are examples for a few tasks in the Additional resources module. Here is an example for project 1 task 2, which shows how you can put multiple plots together in the same figure, using the par(mfrow()) command, something required for the task. Note that the example below shows far more plots than are required for the actual tasks.<br>
-- https://byuistats.github.io/M119/m119-docs/Project1_Task2_f2_example.html</p>
-<p>We’ll spend the rest of class examining the example project’s Task 2. - Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 - Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>. - Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span> and <span class="math inline">\(a\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_1\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_2\)</span>.</p>
+- <a href="https://chaz-clark.github.io/M119/Projects/m119-docs/Project1_Task2_f2_example.html">Project 1 Task 2 worked example</a></p>
+<p>We’ll spend the rest of class examining the example project’s Task 2. - Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 - Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>. - Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span> and <span class="math inline">\(a\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_1\)</span>. - Use the slider to alter the values of <span class="math inline">\(h\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_2\)</span>.</p>
 <p>We’ll have a discussion in class about what you observed.<br>
 Our goal is to understand enough about the general functions <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span> and their parameters to be able to identify specific functions (so specified parameters) of the forms <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span> that looks like the density histogram of our light bulb data. The code below will regenerate this histogram for us.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dist<span class="sc">$</span>percent_intensity,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dist<span class="sc">$</span>percent_intensity,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If we have time today, we’ll make a summary plot using the par(mfrow()) command to show what we learned.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make sure a &lt; b when using this function.</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> a,<span class="cn">NaN</span>, <span class="fu">ifelse</span>(x <span class="sc">&lt;=</span> b, <span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a), <span class="cn">NaN</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">98</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">102</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,a,b)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'For f0: a=98, b=102'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,a,b)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change a=100 (keep b=102)'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>f0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">a=</span><span class="dv">0</span>,<span class="at">b=</span><span class="dv">1</span>){</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make sure a &lt; b when using this function.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> a,<span class="cn">NaN</span>, <span class="fu">ifelse</span>(x <span class="sc">&lt;=</span> b, <span class="dv">1</span><span class="sc">/</span>(b<span class="sc">-</span>a), <span class="cn">NaN</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">98</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">102</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,a,b)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'For f0: a=98, b=102'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(a,b,<span class="fl">0.1</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(x,a,b)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change a=100 (keep b=102)'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.7">Class.7 on byuimath.com</a></em></p>
 
 
 </section>
@@ -399,6 +717,19 @@ Our goal is to understand enough about the general functions <span class="math i
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

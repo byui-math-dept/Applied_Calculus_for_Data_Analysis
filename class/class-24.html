@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-24" id="toc-between-class-sessions---prep-for-day-24" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-24">Between Class Sessions - Prep for Day 24 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#partial-derivatives-of-a-loglikelihood-function" id="toc-partial-derivatives-of-a-loglikelihood-function" class="nav-link" data-scroll-target="#partial-derivatives-of-a-loglikelihood-function">(2) Partial Derivatives of a loglikelihood function</a></li>
+  <li><a href="#applying-partial-derivatives-to-loglikelihood" id="toc-applying-partial-derivatives-to-loglikelihood" class="nav-link" data-scroll-target="#applying-partial-derivatives-to-loglikelihood">Applying Partial Derivatives to Loglikelihood</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
@@ -269,7 +447,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#activity---loglikelihood-practice-derivatives-optimization-and-project-2" id="toc-activity---loglikelihood-practice-derivatives-optimization-and-project-2" class="nav-link" data-scroll-target="#activity---loglikelihood-practice-derivatives-optimization-and-project-2">Activity - Loglikelihood Practice, Derivatives, Optimization, and Project 2</a></li>
   <li><a href="#activity---work-on-project-2-task-2" id="toc-activity---work-on-project-2-task-2" class="nav-link" data-scroll-target="#activity---work-on-project-2-task-2">Activity - Work on Project 2 Task 2</a></li>
-  <li><a href="#activity---derivative-matching" id="toc-activity---derivative-matching" class="nav-link" data-scroll-target="#activity---derivative-matching">Activity - Derivative Matching</a></li>
   </ul></li>
   <li><a href="#discussion-1" id="toc-discussion-1" class="nav-link" data-scroll-target="#discussion-1">Discussion</a></li>
   </ul></li>
@@ -278,6 +455,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -298,14 +476,90 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-24" class="level1">
+<h1>Between Class Sessions - Prep for Day 24 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Writing Equations (more practice) The goal of these exercises is to practice writing functions that model given situations. Each of the functions you create should depend on only <strong>one variable</strong>. You’ll need this skill to solve applied optimization problems. - A right circular cone has a volume of 231 cubic inches, which is 1 gallon. (For example, if the height is <span class="math inline">\(h=5\)</span> inches then the radius is <span class="math inline">\(r = ?\)</span>). Find a function that gives the radius in terms of its height. What is the domain of this function?</p>
+<ul>
+<li>A light-rail system carries 80000 passengers per day at a fare of 2.25 dollars per ride. For each 5-cent increase/decrease in fare, surveys predict ridership will drop/grow by 250 passengers. (For example, if the fare is lowered to 2.00 dollars per ride, then the number of riders is ??? and the revenue is ???). Find a function giving the revenue as a function of <span class="math inline">\(x\)</span>, the number of 5-cent increases. (Hint: first find a formula for the number of riders as a function of <span class="math inline">\(x\)</span>, and the cost per ride as a function of <span class="math inline">\(x\)</span>. Revenue is number of passengers multiplied by the cost per passenger.) What is the domain of this function?</li>
+</ul>
+<section id="partial-derivatives-of-a-loglikelihood-function" class="level3">
+<h3 class="anchored" data-anchor-id="partial-derivatives-of-a-loglikelihood-function">(2) Partial Derivatives of a loglikelihood function</h3>
+<p>Watch the videos below that walk you through finding the first and second partials of <span class="math display">\[\ell_2 = \ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right).\]</span> - <a href="https://www.loom.com/share/faf8677c97d3471e82ef932733754eec?sharedAppSource=personal_library" target="_blank">First Partials</a> (~11 min) - <a href="https://www.loom.com/share/e40fd32ff0df48dfaeeee70cd2d8534b?sharedAppSource=personal_library" target="_blank">Second Partials</a> (~10 min) - <a href="https://www.loom.com/share/1033f69c42e843db94624993e73c5764?sharedAppSource=personal_library" target="_blank">Calculating Constants</a> (~7 min) After watching the videos, try to repeat the computations on your own so that you can discover where you have questions.</p>
+<p>Now try repeating these computations yourself for <span class="math display">\[\ell_6(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2(1-e^{-0.0003t}))^2.\]</span> - <a href="https://byuistats.github.io/M119/m119-docs/PDloglikelihoodFn6.html">Partial derivatives of loglikelihood for f6</a>.</p>
+<details>
+<summary>
+Click to expand the material used in the videos above.
+</summary>
+</details></section>
+<section id="applying-partial-derivatives-to-loglikelihood" class="level3">
+<h3 class="anchored" data-anchor-id="applying-partial-derivatives-to-loglikelihood">Applying Partial Derivatives to Loglikelihood</h3>
+<p>Consider the model <span class="math inline">\(f_2(t; a_1, a_2) = 100 + a_1t + a_2t^2\)</span>. The function <span class="math inline">\(f_2\)</span> models the brightness of a lightbulb, measured as a percent of the original intensity of the lightbulb, given the number of hours the lightbulb as been on, <span class="math inline">\(t\)</span>. We will fit <span class="math inline">\(f_2\)</span> to a list of 44 measurements, <span class="math inline">\((t_i, y_i)\)</span>. Assuming the residuals (or errors) are independent and normally distributed (with mean 0 and standard deviation 1), the loglikelihood function for these errors is <span class="math inline">\(\ell_2(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) + \sum_{i=1}^{44} \left(-\frac{1}{2}(y_i - 100 - a_1t_i - a_2t_i^2)^2\right)\)</span>.</p>
+<ol type="1">
+<li><p>Find the first partials of <span class="math inline">\(\ell_2\)</span>.</p></li>
+<li><p>Find the second partials of <span class="math inline">\(\ell_2\)</span>.</p></li>
+</ol>
+<p>Our data, a list of 44 points <span class="math inline">\((t_i, y_i)\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">0219</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The number <span class="math inline">\(\sum_{i=1}^{44} t_i(y_i-100)\)</span> is a constant that depends on our data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="dv">-100</span>)<span class="sc">*</span>t)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The number <span class="math inline">\(\sum t_i^2\)</span> is a constant that depends on our data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>B</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The number <span class="math inline">\(\sum t_i^3\)</span> is a constant that depends on our data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The number <span class="math inline">\(\sum t_i^2(y_i -100)\)</span> is a constant that depends on our data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="dv">-100</span>)<span class="sc">*</span>t<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The number <span class="math inline">\(\sum t_i^4\)</span> is a constant that depends on our data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">sum</span>(t<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 2 – Partial Derivatives assignment.</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Start Project 2 Task 2
+<ul>
+<li>Calculate the first derivative of <span class="math inline">\(\ell_1\)</span> with respect to <span class="math inline">\(a_1\)</span>.</li>
+<li>Calculate the first partial derivatives of <span class="math inline">\(\ell_4\)</span>. Remember there are two first partial derivatives when a function has two independent variables.</li>
+<li>Calculate the first derivative of <span class="math inline">\(\ell_5\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <ol type="1">
-<li>Consider the curve <span class="math inline">\(y=8/x\)</span> for <span class="math inline">\(x&gt;0\)</span>. Write down a function <span class="math inline">\(f(x)\)</span> that gives the distance from the origin <span class="math inline">\((0,0)\)</span> to a point on the curve <span class="math inline">\(y=8/x\)</span>. A plot of the curve is shown below, along with a right triangle that has one vertex at <span class="math inline">\((0,0)\)</span> and another at a point <span class="math inline">\((x,8/x)\)</span> on the curve. (Hint: The Pythagorean theorem <span class="math inline">\(a^2+b^2=c^2\)</span> will help.)<br>
-<img src="https://byuimath.com/bmw/all/119/uploads/Class/8overx.png" class="img-fluid" alt="Curve y=8/x with right triangle"></li>
+<li>Consider the curve <span class="math inline">\(y=8/x\)</span> for <span class="math inline">\(x&gt;0\)</span>. Write down a function <span class="math inline">\(f(x)\)</span> that gives the distance from the origin <span class="math inline">\((0,0)\)</span> to a point on the curve <span class="math inline">\(y=8/x\)</span>. A plot of the curve is shown below, along with a right triangle that has one vertex at <span class="math inline">\((0,0)\)</span> and another at a point <span class="math inline">\((x,8/x)\)</span> on the curve. (Hint: The Pythagorean theorem <span class="math inline">\(a^2+b^2=c^2\)</span> will help.)</li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://byuimath.com/bmw/all/119/uploads/Class/8overx.png" class="img-fluid figure-img"></p>
+<figcaption>Curve y = 8/x with right triangle</figcaption>
+</figure>
+</div>
 <details>
 <summary>
 Solution
@@ -320,31 +574,31 @@ Solution
 Solution
 </summary>
 <p>We now use R to graph both the equation <span class="math inline">\(y=8/x\)</span> and the distance function.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span><span class="sc">/</span>x)<span class="sc">^</span><span class="dv">2</span>)}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> We first plot y <span class="ot">=</span> <span class="dv">8</span><span class="sc">/</span>x. Using asp<span class="ot">=</span><span class="dv">1</span> equalizes x and y distances.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>, <span class="fl">0.01</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="dv">8</span><span class="sc">/</span>x, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Let<span class="st">'s add concentric circles to see how far from the origin points are.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">symbols(x = rep(0,5), y =rep(0,5), circles = seq(1,5), add = TRUE, inches = FALSE)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">1. Let'</span>s guess x <span class="ot">=</span> <span class="dv">3</span> as the closest spot.  We can see it<span class="st">'s a bit to large. </span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">abline(v=3)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">1. Now let'</span>s plot f and add x<span class="ot">=</span><span class="dv">3</span> <span class="cf">for</span> comparison </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The value x<span class="ot">=</span><span class="dv">3</span> is too large.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Zoom in. </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.5</span>,<span class="dv">3</span>, <span class="fl">0.01</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.82</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.84</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Zoom in. </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.82</span>, <span class="fl">2.84</span>, <span class="fl">0.001</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">3.999</span>,<span class="fl">4.001</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span><span class="sc">/</span>x)<span class="sc">^</span><span class="dv">2</span>)}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#We first plot y = 8/x. Using asp=1 equalizes x and y distances.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>, <span class="fl">0.01</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="dv">8</span><span class="sc">/</span>x, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's add concentric circles to see how far from the origin points are.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">symbols</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">y =</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">circles =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">inches =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's guess x = 3 as the closest spot.  We can see it's a bit to large. </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Now let's plot f and add x=3 for comparison </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#The value x=3 is too large.</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Zoom in. </span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.5</span>,<span class="dv">3</span>, <span class="fl">0.01</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.82</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">2.84</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Zoom in. </span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">2.82</span>, <span class="fl">2.84</span>, <span class="fl">0.001</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>(x), <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">3.999</span>,<span class="fl">4.001</span>), <span class="at">type =</span> <span class="st">"l"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The plot has a minimum value somewhere a bit less than 3. There has to be a better way to find the minimum than zooming in. This is where derivatives come to the rescue.</p>
 </details>
 <ol start="3" type="1">
@@ -355,40 +609,48 @@ Solution
 Solution
 </summary>
 <p>We first rewrite <span class="math inline">\(f(x) = \sqrt{x^2+(8/x)^2}\)</span> as <span class="math inline">\(f(x) = (x^2+64x^{-2})^{1/2}\)</span>. The derivative is <span class="math inline">\(f'(x) = \frac{1}{2}(x^2+64x^{-2})^{-1/2}(2x - 128x^{-3})\)</span>. Using uniroot, we obtain <span class="math inline">\(x = 2.828428\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f_x <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">64</span><span class="sc">*</span>x<span class="sc">^</span>(<span class="sc">-</span><span class="dv">2</span>))<span class="sc">^</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">2</span><span class="sc">*</span>x <span class="sc">-</span> <span class="dv">128</span><span class="sc">*</span>x<span class="sc">^</span>(<span class="sc">-</span><span class="dv">3</span>))}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f_x,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f_x <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span><span class="sc">*</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">64</span><span class="sc">*</span>x<span class="sc">^</span>(<span class="sc">-</span><span class="dv">2</span>))<span class="sc">^</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(<span class="dv">2</span><span class="sc">*</span>x <span class="sc">-</span> <span class="dv">128</span><span class="sc">*</span>x<span class="sc">^</span>(<span class="sc">-</span><span class="dv">3</span>))}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(f_x,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))<span class="sc">$</span>root</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math display">\[p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.\]</span> 1. Write the loglikelihood function for the errors in this situation. 1. Rewrite the loglikelihood function using the properties of logs and sums. 1. Compute the first partial derivatives of the loglikelihood function. (We’ll do one together. The solutions for all three of them are in the file below.) <a href="https://byuistats.github.io/M119/m119-docs/ElvesRUs-loglikelihood-derivatives.pdf" target="_blank">Elves-R-Us loglikelihood derivatives (PDF)</a></p>
+<p>You have been given a list of data for 50 ElvesRUs employees, <span class="math inline">\((t_i, c_i)\)</span>, were <span class="math inline">\(t_i\)</span> is the number of years working at ElvesRUs and <span class="math inline">\(c_i\)</span> is the salary for the <span class="math inline">\(i^{\text{th}}\)</span> employee. The salary (platinum coins per year) for an employee at ElvesRUs can be modeled by <span class="math inline">\(f(t;A,b,k)=Ae^{bt}+k,\)</span> where <span class="math inline">\(t\)</span> is the number of years an elf has been working at ElvesRUs. Assume the residuals (errors) are independent and normally distributed (with mean of 0 and standard deviation of 1), which means we’re assuming the probability model for the residuals is <span class="math display">\[p(r) = \frac{1}{\sqrt{2\pi}}e^{-\frac{r^2}{2}}.\]</span> 1. Write the loglikelihood function for the errors in this situation.</p>
+<ol type="1">
+<li>Rewrite the loglikelihood function using the properties of logs and sums.</li>
+<li>Compute the first partial derivatives of the loglikelihood function. (We’ll do one together. The solutions for all three of them are in the file below.) <a href="../assets/docs/ElvesRUs-loglikelihood-derivatives.pdf">ElvesRUs loglikelihood derivatives (PDF)</a></li>
+</ol>
 </section>
 <section id="group-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="activity---loglikelihood-practice-derivatives-optimization-and-project-2" class="level3">
 <h3 class="anchored" data-anchor-id="activity---loglikelihood-practice-derivatives-optimization-and-project-2">Activity - Loglikelihood Practice, Derivatives, Optimization, and Project 2</h3>
-<p>You will be working together to revisit Task 1 and complete part of Task 2 for <a href="https://byuistats.github.io/M119/project2.html" target="_blank">Project 2</a>. The prep for today asked you to watch some videos related to <span class="math inline">\(f_2\)</span>.</p>
+<p>You will be working together to revisit Task 1 and complete part of Task 2 for <a href="https://chaz-clark.github.io/M119/Projects/unit2.html">Project 2</a>. The prep for today asked you to watch some videos related to <span class="math inline">\(f_2\)</span>.</p>
 <p>Consider the model <span class="math inline">\(f_1(t; a_1) = 100 + a_1t\)</span>. 1. On the chalk board, as a group, go through the computations needed to obtain the loglikelihood function. Your job is to perform the needed computations and include enough explanations to show that <span class="math display">\[\ell_1(a_1; \mathbf{t},\mathbf{y}) =
 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i
-- 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of the loglikelihood function, so compute <span class="math inline">\(\frac{d\ell_1}{da_1}\)</span>. The solution is provided in Task 2. 1. Now compute the second derivative <span class="math inline">\(\frac{d^2\ell_1}{da_1^2}\)</span>. Again, the solution is provided in Task 2. 1. Use the following code to plot the loglikelihood function.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())  <span class="co">#clear the environment</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led) <span class="co">#load the library</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> read <span class="cf">in</span> the data set, using seed <span class="dv">123</span> <span class="cf">for</span> class comparisons</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> define the loglikelihood <span class="cf">function</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="cf">function</span>(p,t,y){ <span class="dv">44</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">sum</span>((y<span class="dv">-100</span><span class="sc">-</span>p<span class="sc">*</span>t)<span class="sc">^</span><span class="dv">2</span>) } </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> create a list of inputs <span class="cf">for</span> our plot of the loglikelihood <span class="cf">function</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.005</span>,<span class="fl">0.005</span>,<span class="fl">1e-5</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> use those inputs to calculate outputs <span class="cf">for</span> our plot of the loglikelihood <span class="cf">function</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">lapply</span>(a1,<span class="at">FUN=</span>l,<span class="at">t=</span>t,<span class="at">y=</span>y))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> plot the loglikelihood <span class="cf">function</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a1,Y,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+- 100 - a_1t_i)^2.\]</span> 1. Compute the first derivative of the loglikelihood function, so compute <span class="math inline">\(\frac{d\ell_1}{da_1}\)</span>. The solution is provided in Task 2.</p>
+<ol type="1">
+<li>Now compute the second derivative <span class="math inline">\(\frac{d^2\ell_1}{da_1^2}\)</span>. Again, the solution is provided in Task 2.</li>
+<li>Use the following code to plot the loglikelihood function.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())  <span class="co">#clear the environment</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led) <span class="co">#load the library</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#read in the data set, using seed 123 for class comparisons</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bulb <span class="ot">&lt;-</span> <span class="fu">led_bulb</span>(<span class="dv">1</span>,<span class="at">seed=</span><span class="dv">123</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> bulb<span class="sc">$</span>hours</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bulb<span class="sc">$</span>percent_intensity</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#define the loglikelihood function</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="cf">function</span>(p,t,y){ <span class="dv">44</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)) <span class="sc">-</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">sum</span>((y<span class="dv">-100</span><span class="sc">-</span>p<span class="sc">*</span>t)<span class="sc">^</span><span class="dv">2</span>) } </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list of inputs for our plot of the loglikelihood function</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.005</span>,<span class="fl">0.005</span>,<span class="fl">1e-5</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#use those inputs to calculate outputs for our plot of the loglikelihood function</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">lapply</span>(a1,<span class="at">FUN=</span>l,<span class="at">t=</span>t,<span class="at">y=</span>y))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the loglikelihood function</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a1,Y,<span class="at">type=</span><span class="st">'l'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>Adapt the inputs vector above to make a guess for what you think is the best value for <span class="math inline">\(a_1\)</span>. How did you decide on that value?
 <ul>
@@ -402,19 +664,11 @@ Solution
 <h3 class="anchored" data-anchor-id="activity---work-on-project-2-task-2">Activity - Work on Project 2 Task 2</h3>
 <p>As a group, spend any remaining class time working on Project 2 Task 2. Start with the loglikelihood function <span class="math display">\[\ell_4(a_1,a_2; \mathbf{t},\mathbf{y}) = 44\ln\left(\frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i}^{44} (y_i - 100 - a_1t_i - a_2\ln(0.005t_i+1))^2\]</span> and compute the two first partial derivatives as well as all second partial derivatives. A full solution for <span class="math inline">\(\ell_6\)</span> is provided for you, and may help you with <span class="math inline">\(\ell_4\)</span>. The solutions are provided in the task instructions.</p>
 </section>
-<section id="activity---derivative-matching" class="level3">
-<h3 class="anchored" data-anchor-id="activity---derivative-matching">Activity - Derivative Matching</h3>
-<p>Your task in this activity is to match the graph of each function $ f(x) $ (pink cards) with that of its derivative $ f’(x) $ (yellow cards). Thus, when you have completed the activity, you will have fifteen matched function/derivative pairs.</p>
-<p>These <a href="http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf" target="_blank">tiles</a> can be printed and cut out if you are completing the activity on your own. You will only need the first two pages of the file.</p>
-<p><em>Source: University of Colorado and BOALA (Active Calculus)</em></p>
-<p><a href="http://math.colorado.edu/activecalc1/DerivativeMatchingRevised.pdf" target="_blank">Tiles</a></p>
-<p>-&gt;<a href="http://math.colorado.edu/activecalc1/Derivative_matching_guide.pdf" target="_blank">User’s Guide</a></p>
-<p><a href="https://docs.google.com/presentation/d/1YWrE5RVdg6rNlB8MJ41ckWWz0kkVIStqHJJZVmj0QhE/edit#slide=id.gba65dd33e3_0_77" target="_blank">My electronic adaptation of this activity</a></p>
-<p>-&gt;<a href="https://docs.google.com/presentation/d/1x2UH5BmZQY_olf8ZSh5xzGFrBXTRlLpO9wLGWIB0J4U/edit#slide=id.gba65dd33e3_0_77" target="_blank">Instructor copy with key</a></p>
-</section>
 </section>
 <section id="discussion-1" class="level2">
 <h2 class="anchored" data-anchor-id="discussion-1">Discussion</h2>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.24">Class.24 on byuimath.com</a></em></p>
 
 
 </section>
@@ -423,6 +677,19 @@ Solution
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

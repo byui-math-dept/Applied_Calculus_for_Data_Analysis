@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-8" id="toc-during-class---day-8" class="nav-link active" data-scroll-target="#during-class---day-8">During Class - Day 8</a>
+  <li><a href="#between-class-sessions---prep-for-day-8" id="toc-between-class-sessions---prep-for-day-8" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-8">Between Class Sessions - Prep for Day 8 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class---day-8" id="toc-during-class---day-8" class="nav-link" data-scroll-target="#during-class---day-8">During Class - Day 8</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -283,6 +458,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Class 8</h1>
@@ -302,6 +478,39 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-8" class="level1">
+<h1>Between Class Sessions - Prep for Day 8 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Exponential Function Practice Watch this video from mathispower4u, <a href="https://www.youtube.com/watch?v=FMzZB9Ve-1U&amp;feature=youtu.be">Graphing Exponential Functions</a> (~6.5 minutes)</p>
+<p>Now complete the following:</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(f(x) = 4^x\)</span> and complete the following exercises. Find the exact values.</p>
+<ul>
+<li>Evaluate <span class="math inline">\(f(1)\)</span>.</li>
+<li>Evaluate <span class="math inline">\(f(0)\)</span>.</li>
+<li>Evaluate <span class="math inline">\(f(-1)\)</span>.</li>
+<li>Evaluate <span class="math inline">\(f(-2)\)</span>.</li>
+<li>Evaluate <span class="math inline">\(f(\frac{1}{2})\)</span>.</li>
+<li>Evaluate <span class="math inline">\(f(3)\)</span>.</li>
+<li>Are there any real numbers that would cause us a problem when trying to evaluate <span class="math inline">\(f\)</span> at that number?</li>
+<li>What do you notice about all the outputs of <span class="math inline">\(f\)</span>?</li>
+<li>Graph the function <span class="math inline">\(f(x) = 4^x\)</span>.</li>
+<li>Is this function increasing or decreasing on the interval <span class="math inline">\((-\infty,\infty)\)</span>?</li>
+</ul></li>
+<li><p>Graph the function <span class="math inline">\(g(x) = (1/2)^x\)</span>. Is this function increasing or decreasing on the interval <span class="math inline">\((-\infty,\infty)\)</span>?</p></li>
+<li><p>If <span class="math inline">\(h(x) = a^x\)</span> is an increasing function, what do you know about the parameter <span class="math inline">\(a\)</span>? ### (2) Project 1 Task 2 Work on project 1 task 2, with the goal of submitting it. Remember to complete the AI log.</p></li>
+</ol>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<p>Start working on - 1 – Definition of a Logarithm - 1 – Evaluate Exponential and Logarithmic Functions - 1 – Properties of Logarithms ### Applied Practice (Project Work) - Work on Project 1 Task 2</p>
+</section>
+</section>
+</section>
 <section id="during-class---day-8" class="level1">
 <h1>During Class - Day 8</h1>
 <section id="brain-gains" class="level2">
@@ -341,10 +550,10 @@ Solution
 </summary>
 <p>The function <span class="math inline">\(e^{ ( ) }\)</span> in R is given using the exp() function.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">2</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="fl">7.389056</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#7.389056</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What is <span class="math inline">\(e\)</span>? It’s a number.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="fl">2.718282</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#2.718282</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The number arises from calculus, and we’ll see in a few weeks why <span class="math inline">\(e\)</span> is special.</p>
 </details>
 </section>
@@ -362,7 +571,7 @@ Solution
 <section id="example-project-tasks-2-and-3" class="level3">
 <h3 class="anchored" data-anchor-id="example-project-tasks-2-and-3">Example Project Tasks 2 and 3</h3>
 <ul>
-<li>Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
+<li>Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
 <li>Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>.
 <ul>
 <li>Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>.</li>
@@ -407,7 +616,7 @@ Solution
 <section id="example-project-tasks-2-and-3-1" class="level3">
 <h3 class="anchored" data-anchor-id="example-project-tasks-2-and-3-1">Example Project Tasks 2 and 3</h3>
 <ul>
-<li>Open the <a href="https://byuistats.github.io/M119/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
+<li>Open the <a href="../assets/docs/example_project.html" target="_blank">Example Project Instructions</a>, and briefly read Task 2 and Task 3.</li>
 <li>Use the Desmos links to explore the three probability density models <span class="math inline">\(f_0\)</span>, <span class="math inline">\(f_1\)</span>, and <span class="math inline">\(f_2\)</span>.
 <ul>
 <li>Use the slider to alter the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Discuss how these parameters alter the graph of <span class="math inline">\(f_0\)</span>.</li>
@@ -425,7 +634,7 @@ Solution
 </ul>
 <section id="summary-plots" class="level4">
 <h4 class="anchored" data-anchor-id="summary-plots">Summary Plots</h4>
-<p>We’ll spend some time today in class discussing the https://byuistats.github.io/M119/example_project.html. Here’s a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.</p>
+<p>We’ll spend some time today in class discussing the <a href="../assets/docs/example_project.html">Example Project</a>. Here’s a quick snippet of code to draw the histogram representing the percent intensity of 202 bulbs after about 2100 hours.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data4led)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">led_time</span>(<span class="dv">2100</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dist<span class="sc">$</span>percent_intensity,<span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -470,54 +679,53 @@ Solution
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f0</span>(L,a,b)</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">90</span>,<span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change a= (keep b=)'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)<span class="sc">@</span>]</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>codeend<span class="sc">:</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Now let<span class="st">'s look at the second model $f_1$. </span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="st">- What did you notice about the general model $f_1$ and its parameters?</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">    - What is the domain of $f_1$?</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">    - What does $h$ do?</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">    - What does $a$ do?</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">    - Try to pick some values for the parameters that provide a visual fit to the data. </span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="st">    - What story does this model tell, in the context of percent intensities of light bulbs?</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="st">Let'</span>s summarize our observations with a few plots.</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>Run this code <span class="cf">in</span> your Console to plot representative curves <span class="cf">for</span> the parameter <span class="sc">$</span>h<span class="sc">$</span> <span class="cf">in</span> <span class="cf">function</span> <span class="sc">$</span>f_1<span class="sc">$</span>.</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>(<span class="sc">:</span>code<span class="sc">:</span>)[<span class="sc">@</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>){</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure h <span class="sc">&gt;</span> <span class="dv">0</span> and a <span class="sc">&gt;</span> <span class="fl">0.</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>a)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(L<span class="sc">-</span>h)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>a))</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">80</span>,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a)</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'plot f1 with h= and a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [another selected value]</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a)</span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change h=, keep a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(a\)</span> in function <span class="math inline">\(f_1\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">80</span>,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a1)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y3,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a2)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change a= (keep b=)'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now let’s look at the second model <span class="math inline">\(f_1\)</span>.</p>
+<ul>
+<li>What did you notice about the general model <span class="math inline">\(f_1\)</span> and its parameters?
+<ul>
+<li>What is the domain of <span class="math inline">\(f_1\)</span>?</li>
+<li>What does <span class="math inline">\(h\)</span> do?</li>
+<li>What does <span class="math inline">\(a\)</span> do?</li>
+<li>Try to pick some values for the parameters that provide a visual fit to the data.</li>
+<li>What story does this model tell, in the context of percent intensities of light bulbs?</li>
+</ul></li>
+</ul>
+<p>Let’s summarize our observations with a few plots. Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(h\)</span> in function <span class="math inline">\(f_1\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>){</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Make sure h &gt; 0 and a &gt; 0.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>a)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>(L<span class="sc">-</span>h)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>a))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">80</span>,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a)</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y4,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change h=, keep a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'plot f1 with h= and a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [another selected value]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change h=, keep a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(a\)</span> in function <span class="math inline">\(f_1\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">80</span>,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a1)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y3,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> <span class="fu">f1</span>(L,h,a2)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y4,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'change h=, keep a='</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>What did you notice about the general model <span class="math inline">\(f_2\)</span> and its parameters?
 <ul>
@@ -529,62 +737,64 @@ Solution
 </ul>
 <p>Let’s summarize our observations with a few plots.</p>
 <p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(h\)</span> in function <span class="math inline">\(f_2\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">5</span>){</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure a <span class="sc">&gt;</span> <span class="dv">0</span> and b <span class="sc">&gt;</span> <span class="fl">0.</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fu">length</span>(L))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>out[(L <span class="sc">&lt;</span> h)] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>L[(L <span class="sc">&lt;</span> h)]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>out[(L <span class="sc">&gt;=</span> h)] <span class="ot">&lt;-</span> b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(L[(L <span class="sc">&gt;=</span> h)]<span class="sc">-</span>h)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>(L[(L <span class="sc">&gt;=</span> h)]<span class="sc">-</span>h))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(out)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing h in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(L,<span class="at">h=</span><span class="dv">0</span>,<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">5</span>){</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure a &gt; 0 and b &gt; 0.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fu">length</span>(L))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>out[(L <span class="sc">&lt;</span> h)] <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>L[(L <span class="sc">&lt;</span> h)]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>out[(L <span class="sc">&gt;=</span> h)] <span class="ot">&lt;-</span> b<span class="sc">^</span>a<span class="sc">/</span><span class="fu">gamma</span>(a)<span class="sc">*</span>(L[(L <span class="sc">&gt;=</span> h)]<span class="sc">-</span>h)<span class="sc">^</span>(a<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">*</span>(L[(L <span class="sc">&gt;=</span> h)]<span class="sc">-</span>h))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(out)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing h in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(a\)</span> in function <span class="math inline">\(f_2\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing a in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(b\)</span> in function <span class="math inline">\(f_2\)</span>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing b in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing a in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run this code in your Console to plot representative curves for the parameter <span class="math inline">\(b\)</span> in function <span class="math inline">\(f_2\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">seq</span>(h,<span class="dv">120</span>,<span class="fl">0.1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> [your selected value]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">f2</span>(L,h,a,b)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L,y,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">120</span>))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">'Changing b in f2'</span>, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">0</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.8">Class.8 on byuimath.com</a></em></p>
 
 
 </section>
@@ -595,6 +805,19 @@ Solution
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

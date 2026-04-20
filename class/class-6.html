@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class---day-name" id="toc-during-class---day-name" class="nav-link active" data-scroll-target="#during-class---day-name">During Class - Day {$Name}</a>
+  <li><a href="#between-class-sessions---prep-for-day-6" id="toc-between-class-sessions---prep-for-day-6" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-6">Between Class Sessions - Prep for Day 6 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#function-composition-practice" id="toc-function-composition-practice" class="nav-link" data-scroll-target="#function-composition-practice">(2) Function Composition Practice</a></li>
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class---day-6" id="toc-during-class---day-6" class="nav-link" data-scroll-target="#during-class---day-6">During Class - Day 6</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -277,6 +454,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -297,8 +475,53 @@ window.Quarto = {
 </header>
 
 
-<section id="during-class---day-name" class="level1">
-<h1>During Class - Day {$Name}</h1>
+<section id="between-class-sessions---prep-for-day-6" class="level1">
+<h1>Between Class Sessions - Prep for Day 6 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Practice with Functions Let <span class="math inline">\(f(x) = \sqrt{x}\)</span> and complete the exercise 1-4.<br> 1. Find the exact values. - Evaluate <span class="math inline">\(f(1)\)</span>. - Evaluate <span class="math inline">\(f(0)\)</span>. - Evaluate <span class="math inline">\(f(36)\)</span>. - Evaluate <span class="math inline">\(f(\frac{1}{4})\)</span>. - Evaluate <span class="math inline">\(f(15)\)</span>. - Evaluate <span class="math inline">\(f(-1)\)</span>. - Are there any real numbers that would cause us a problem when trying to evaluate <span class="math inline">\(f\)</span> at that number?</p>
+<ol start="2" type="1">
+<li>A different kind of question. Find the exact values. Assume that <span class="math inline">\(x\)</span> is a real number.</li>
+</ol>
+<ul>
+<li>Solve <span class="math inline">\(f(x) = 16\)</span>.</li>
+<li>Solve <span class="math inline">\(f(x) = \frac{1}{25}\)</span>.</li>
+<li>Solve <span class="math inline">\(f(x) = -1\)</span>.</li>
+<li>Solve <span class="math inline">\(f(x) = x-2\)</span>.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>Evaluate <span class="math inline">\(f(x+7)\)</span>. Then identify the parameters in the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span> needed to obtain <span class="math inline">\(f(x+7)\)</span>. What is the relationship between the graphs of <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(f(x+7)\)</span>?</p></li>
+<li><p>Evaluate <span class="math inline">\(f(x)+3\)</span>. Then identify the parameters in the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span> needed to obtain <span class="math inline">\(f(x)+3\)</span>. What is the relationship between the graphs of <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(f(x)+3\)</span>?</p></li>
+<li><p>Given a function <span class="math inline">\(h(t)\)</span>, what is the difference between the symbols <span class="math inline">\(h(t) = 5\)</span> and <span class="math inline">\(h(5)\)</span>?</p></li>
+</ol>
+<section id="function-composition-practice" class="level3">
+<h3 class="anchored" data-anchor-id="function-composition-practice">(2) Function Composition Practice</h3>
+<p>Watch the following videos from mathispower4u about Function Composition - <a href="https://www.youtube.com/watch?v=gFSSk8jaAwA&amp;feature=youtu.be">Video 1</a> (~6 minutes) - <a href="https://www.youtube.com/watch?v=Blvv-Dnfubo&amp;feature=youtu.be">Video 2</a> (~4.5 minutes) - <a href="https://www.youtube.com/watch?v=b-i7N0hE-Ys&amp;feature=youtu.be">Video 3</a> (~5 minutes)</p>
+<p>Then complete the following: 1. For <span class="math inline">\(f(x) = x^2\)</span> and <span class="math inline">\(g(x) = (x+3)\)</span>, compute each of <span class="math inline">\(f(g(x))\)</span> and <span class="math inline">\(g(f(x))\)</span>.</p>
+<ol type="1">
+<li>Given the function <span class="math inline">\(f(x) = \sqrt{3-2x}\)</span>, give two function <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(h(x)\)</span> so that <span class="math inline">\(f(x) = g(h(x))\)</span>.</li>
+</ol>
+<p><a id="PP"></a></p>
+</section>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Continue working on 1 – Transformations of Functions assignment</li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Begin Project 1 Task 2.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="during-class---day-6" class="level1">
+<h1>During Class - Day 6</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>Consider the function <span class="math inline">\(T(x) = \frac{1}{2}(3(x+2))^2 - 10\)</span>. 1. Let <span class="math inline">\(g(x) = c f(a(x+b)) + d\)</span> with <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span> constants. If <span class="math inline">\(T(x) = g(x)\)</span>, which means <span class="math inline">\(f(u) = u^2\)</span>, answer the following questions. - What is <span class="math inline">\(a\)</span>? - What is <span class="math inline">\(b\)</span>? - What is <span class="math inline">\(c\)</span>? - What is <span class="math inline">\(d\)</span>? 1. Let <span class="math inline">\(h(x) = A f(B(x-C)) + D\)</span> with <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> constants. If <span class="math inline">\(T(x) = h(x)\)</span>, which means <span class="math inline">\(f(u) = u^2\)</span>, answer the following questions. - What is <span class="math inline">\(A\)</span>? - What is <span class="math inline">\(B\)</span>? - What is <span class="math inline">\(C\)</span>? - What is <span class="math inline">\(D\)</span>?</p>
@@ -321,13 +544,13 @@ Answer
 </section>
 <section id="activity---transformations-of-a-function" class="level3">
 <h3 class="anchored" data-anchor-id="activity---transformations-of-a-function">Activity - Transformations of a function</h3>
-<p>Last time in class we worked with the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span>. Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) controls some aspect of the graph of the function. Let <span class="math inline">\(f(x) = 3\sqrt{x}\)</span> and use this https://www.desmos.com/calculator/5jc00j0rpr to explore changing these parameters and write a description of what each parameter controls.</p>
-<p>Open https://byuistats.github.io/M119/project1.html#Task_2:_Models_and_Parameter_Exploration. There are 6 functions we’ll be exploring. Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls.</p>
+<p>Last time in class we worked with the transformation <span class="math inline">\(T(x;A,B,C,D) = Af(B(x-C))+D\)</span>. Each parameter ( <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, and <span class="math inline">\(D\)</span> ) controls some aspect of the graph of the function. Let <span class="math inline">\(f(x) = 3\sqrt{x}\)</span> and use this <a href="https://www.desmos.com/calculator/5jc00j0rpr">Desmos calculator</a> to explore changing these parameters and write a description of what each parameter controls.</p>
+<p>Open <a href="https://chaz-clark.github.io/M119/Projects/unit1.html#task-2-models-and-parameter-exploration">Project Unit 1 - Task 2: Models and Parameter Exploration</a>. There are 6 functions we’ll be exploring. Use the Desmos links provided there, and for each function spend time together as a group discussing how each parameter changes the behavior of the function. Write a description of what each parameter controls.</p>
 </section>
 <section id="activity---defining-and-plotting-functions-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="activity---defining-and-plotting-functions-in-r">Activity - Defining and Plotting Functions in R</h3>
 <p>Run the following code in your Console to clear the environment.</p>
-<pre><code>rm(list=ls())</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Examine and run the following code. If you encounter any new commands, discuss together what they do, and try changing them to see how things change.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">3</span><span class="sc">-</span>x)</span>
@@ -391,12 +614,14 @@ Answer
 <section id="discussion---functions-transformations-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="discussion---functions-transformations-parameters">Discussion - Functions, Transformations, Parameters</h2>
 <ol type="1">
-<li>How do we find the domain (implied domain) of a function?</li>
-<li>What is the difference between a power function and an exponential function? Give an example of each.</li>
-<li>Give an example of a transformed power function.</li>
-<li>Give an example of a transformed exponential function.</li>
-<li>Let’s use https://www.desmos.com/calculator/5jc00j0rpr and create some examples, exploring how parameters transform a function.</li>
+<li><p>How do we find the domain (implied domain) of a function?</p></li>
+<li><p>What is the difference between a power function and an exponential function? Give an example of each.</p></li>
+<li><p>Give an example of a transformed power function.</p></li>
+<li><p>Give an example of a transformed exponential function.</p></li>
+<li><p>Let’s use this <a href="https://www.desmos.com/calculator/5jc00j0rpr">Desmos calculator</a> and create some examples, exploring how parameters transform a function.</p></li>
 </ol>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.6">Class.6 on byuimath.com</a></em></p>
 
 
 </section>
@@ -405,6 +630,19 @@ Answer
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

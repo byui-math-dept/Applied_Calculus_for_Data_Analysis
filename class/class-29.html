@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-29" id="toc-between-class-sessions---prep-for-day-29" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-29">Between Class Sessions - Prep for Day 29 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -275,6 +451,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -295,6 +472,74 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-29" class="level1">
+<h1>Between Class Sessions - Prep for Day 29 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Identifying Maximums and Minimums in Higher Dimensions - What would the first derivative test look like in 2 dimensions?</p>
+<details>
+<summary>
+Definition: Critical Points (2 dimensions)
+</summary>
+<p>Let <span class="math inline">\(f(x,y)\)</span> be a function of two variables that is defined on an open set containing the point <span class="math inline">\((x_0,y_0)\)</span>. We say that <span class="math inline">\((x_0,y_0)\)</span> is a <strong>critical point</strong> of <span class="math inline">\(f(x,y)\)</span> if any of the following condition are true. - <span class="math inline">\(\pd{f}{x}{}(x_0,y_0) = 0\)</span> and <span class="math inline">\(\pd{f}{y}{}(x_0,y_0) = 0\)</span> - <span class="math inline">\(f_x(x_0,y_0)\)</span> is undefined - <span class="math inline">\(f_y(x_0,y_0)\)</span> is undefined</p>
+</details>
+<details>
+<summary>
+Second Derivative Test (2 dimensions)
+</summary>
+<p>Given <span class="math inline">\(f(x,y)\)</span> where <span class="math inline">\(f_x\)</span>, <span class="math inline">\(f_y\)</span>, <span class="math inline">\(f_{xx}\)</span>, <span class="math inline">\(f_{xy}\)</span>, <span class="math inline">\(f_{yx}\)</span>, and <span class="math inline">\(f_{yy}\)</span> are continuous near <span class="math inline">\((x_0,y_0)\)</span>, continuous on some disk containing the point <span class="math inline">\((x_0,y_0)\)</span>. Suppose that <span class="math inline">\(f_x(x_0,y_0) = 0\)</span> and <span class="math inline">\(f_y(x_0,y_0) = 0\)</span>.<br> Consider <span class="math inline">\(D = f_{xx}(x_0,y_0)f_{yy}(x_0,y_0) - (f_{xy}(x_0,y_0))^2\)</span>. - If <span class="math inline">\(D &gt; 0\)</span> and <span class="math inline">\(f_{xx}(x_0,y_0)&gt;0\)</span>, then <span class="math inline">\(f\)</span> has a local minimum at <span class="math inline">\((x_0,y_0)\)</span>. - If <span class="math inline">\(D &gt; 0\)</span> and <span class="math inline">\(f_{xx}(x_0,y_0)&lt;0\)</span>, then <span class="math inline">\(f\)</span> has a local maximum at <span class="math inline">\((x_0,y_0)\)</span>. - If <span class="math inline">\(D &lt; 0\)</span>, then <span class="math inline">\(f\)</span> has a saddle point at <span class="math inline">\((x_0,y_0)\)</span>. - If <span class="math inline">\(D = 0\)</span>, then the test is inconclusive.</p>
+</details>
+<ul>
+<li>Suppose (0,2) is a critical point of the function <span class="math inline">\(\ell\)</span> with continuous second derivatives. In each case, determine whether (0,2) is a maximum or minimum of <span class="math inline">\(\ell\)</span>.
+<ul>
+<li><span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = -1\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial a_1a_2} = 2\)</span>, <span class="math inline">\(\pd{\ell}{a_2}{2}(0,2) = -8\)</span></li>
+<li><span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = 2\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial a_1a_2} = 3\)</span>, <span class="math inline">\(\pd{\ell}{a_2}{2}(0,2) = 8\)</span></li>
+<li><span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = 4\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial a_1a_2} = 6\)</span>, <span class="math inline">\(\pd{\ell}{a_2}{2}(0,2) = 9\)</span></li>
+<li><span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = -1\)</span>, <span class="math inline">\(\frac{\partial^2\ell}{\partial a_1a_2} = 6\)</span>, <span class="math inline">\(\pd{\ell}{a_2}{2}(0,2) = 1\)</span></li>
+</ul></li>
+</ul>
+<details>
+<summary>
+Answers
+</summary>
+<ul>
+<li><span class="math inline">\(D = 4 &gt; 0\)</span> and <span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = -1 &lt; 0\)</span> so (0,2) is the location of a local max of <span class="math inline">\(\ell\)</span></li>
+<li><span class="math inline">\(D = 7 &gt; 0\)</span> and <span class="math inline">\(\pd{\ell}{a_1}{2}(0,2) = 2 &gt; 0\)</span> so (0,2) is the location of a local min of <span class="math inline">\(\ell\)</span></li>
+<li><span class="math inline">\(D = 0\)</span> so the second derivative test is inconclusive in this case</li>
+<li><span class="math inline">\(D = -37 &lt; 0\)</span> so (0,2) is a saddle point of <span class="math inline">\(\ell\)</span></li>
+</ul>
+</details>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>If you have not done so already, complete the other derivative rule assignments
+<ul>
+<li>2 – Derivative Rules (Power Function, Sum/Difference, Constant Multiple)</li>
+<li>2 – Derivative Rules (Product and Quotient)</li>
+<li>2 – Derivative Rules (Function Composition) - the Chain Rule</li>
+<li>2 – Linearization</li>
+<li>2 – Partial Derivatives</li>
+<li>2 – First Derivative and Extrema</li>
+<li>2 – Second Derivative and Extrema</li>
+</ul></li>
+</ul>
+</section>
+<section id="applied-practice-project-work" class="level3">
+<h3 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h3>
+<ul>
+<li>Continue work on Project 2 Task 3
+<ul>
+<li>Consider the critical point you found for <span class="math inline">\(\ell_4\)</span> in your previous Between Class Work. Is there a local maximum or local minimum at this point, $ (a_1, a_2) $ (what is the conclusion of the second derivative test in this case)?</li>
+</ul></li>
+<li>Finish up Project 2 Task 3 by writing your cohesive analysis (an essay, a report) describing how to fit the models to our data using the Maximum Likelihood method.</li>
+</ul>
+</section>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
@@ -303,7 +548,7 @@ window.Quarto = {
 <summary>
 Definition: Critical Points (2 dimensions)
 </summary>
-<p>Let <span class="math inline">\(f(x,y)\)</span> be a function of two variables that id defined on an open set containing the point <span class="math inline">\((x_0,y_0)\)</span>. We say that <span class="math inline">\((x_0,y_0)\)</span> is a <strong>critical point</strong> of <span class="math inline">\(f(x,y)\)</span> if any of the following condition are true. - <span class="math inline">\(\pd{f}{x}{}(x_0,y_0) = 0\)</span> and <span class="math inline">\(\pd{f}{y}{}(x_0,y_0) = 0\)</span> - <span class="math inline">\(f_x(x_0,y_0)\)</span> is undefined - <span class="math inline">\(f_y(x_0,y_0)\)</span> is undefined</p>
+<p>Let <span class="math inline">\(f(x,y)\)</span> be a function of two variables that is defined on an open set containing the point <span class="math inline">\((x_0,y_0)\)</span>. We say that <span class="math inline">\((x_0,y_0)\)</span> is a <strong>critical point</strong> of <span class="math inline">\(f(x,y)\)</span> if any of the following condition are true. - <span class="math inline">\(\pd{f}{x}{}(x_0,y_0) = 0\)</span> and <span class="math inline">\(\pd{f}{y}{}(x_0,y_0) = 0\)</span> - <span class="math inline">\(f_x(x_0,y_0)\)</span> is undefined - <span class="math inline">\(f_y(x_0,y_0)\)</span> is undefined</p>
 </details>
 <details>
 <summary>
@@ -373,27 +618,27 @@ Solution
 \end{align*}
 \right.\]</span> Feel free to appropriately adapt the code below.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Make sure you<span class="st">'ve loaded the data from above. </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you've loaded the data from above. </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">c11 &lt;- </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">c12 &lt;- </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">b1 &lt;- </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">c21 &lt;- </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">c22 &lt;- </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">b2 &lt;- </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>c11 <span class="ot">&lt;-</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>c12 <span class="ot">&lt;-</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c21 <span class="ot">&lt;-</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c22 <span class="ot">&lt;-</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> </span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">1. Create a function to solve a system of equations. </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem &lt;- function(c11, c12,b1,c21,c22,b2){ </span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">  c((b1*c22 - c12*b2)/(c11*c22 - c21*c12),</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">    (c11*b2 - b1*c21)/(c11*c22 - c21*c12))</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">1. Check the function. The solution to 2x+3y=4, 5x+6y=7 is simple. </span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">solvesystem(2,3,4,5,6,7)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to solve a system of equations. </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>solvesystem <span class="ot">&lt;-</span> <span class="cf">function</span>(c11, c12,b1,c21,c22,b2){ </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>((b1<span class="sc">*</span>c22 <span class="sc">-</span> c12<span class="sc">*</span>b2)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    (c11<span class="sc">*</span>b2 <span class="sc">-</span> b1<span class="sc">*</span>c21)<span class="sc">/</span>(c11<span class="sc">*</span>c22 <span class="sc">-</span> c21<span class="sc">*</span>c12))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the function. The solution to 2x+3y=4, 5x+6y=7 is simple. </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">solvesystem</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">sol &lt;- solvesystem(c11, c12, b1, c21, c22, b2)</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">sol</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">sol[1] </span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">sol[2]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">solvesystem</span>(c11, c12, b1, c21, c22, b2)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>sol</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">1</span>] </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details>
 <summary>
 Solution
@@ -476,21 +721,23 @@ Solution
 <h2 class="anchored" data-anchor-id="group-meeting">Group Meeting</h2>
 <section id="activity---maximum-likelihood-method-for-f_6" class="level3">
 <h3 class="anchored" data-anchor-id="activity---maximum-likelihood-method-for-f_6">Activity - Maximum likelihood Method for <span class="math inline">\(f_6\)</span></h3>
-<p>Work through the computations of the maximum likelihood method for <span class="math inline">\(f_6\)</span>. As you work, you can check how you are doing by comparing your work to the complete solution for <span class="math inline">\(f_6\)</span> provided under https://tinyurl.com/4c5bxady.</p>
+<p>Work through the computations of the maximum likelihood method for <span class="math inline">\(f_6\)</span>. As you work, you can check how you are doing by comparing your work to the complete solution for <span class="math inline">\(f_6\)</span> provided under <a href="https://tinyurl.com/4c5bxady">this link</a>.</p>
 <ol type="1">
-<li>Consider the model <span class="math inline">\(f_6(t; a_1, a_2)\)</span>. Assuming the residuals follow a standard normal distribution (so the probability model is given by <span class="math inline">\(g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}\)</span>, state the loglikelihood function for <span class="math inline">\(f_6\)</span>. Discuss any questions. This was part of Project 2 Task 1.</li>
-<li>Obtain the partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</li>
-<li>Obtain the second partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</li>
-<li>To find the critical points of <span class="math inline">\(\ell_6\)</span>, write the system of equations you will need to solve. Give names to all the coefficients and organize your work so that you can use <code>solvesystem</code> function.</li>
-<li>Find the critical points of <span class="math inline">\(\ell_6\)</span>. So that you can compare results, use seed 123 for all remaining parts of this activity.</li>
-<li>Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood.</li>
-<li>Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit.</li>
+<li><p>Consider the model <span class="math inline">\(f_6(t; a_1, a_2)\)</span>. Assuming the residuals follow a standard normal distribution (so the probability model is given by <span class="math inline">\(g(r) = \frac{1}{\sqrt{2\pi}}e^{-r^2/2}\)</span>, state the loglikelihood function for <span class="math inline">\(f_6\)</span>. Discuss any questions. This was part of Project 2 Task 1.</p></li>
+<li><p>Obtain the partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</p></li>
+<li><p>Obtain the second partial derivatives of <span class="math inline">\(\ell_6\)</span>. Discuss any questions. This was part of Project 2 Task 2.</p></li>
+<li><p>To find the critical points of <span class="math inline">\(\ell_6\)</span>, write the system of equations you will need to solve. Give names to all the coefficients and organize your work so that you can use <code>solvesystem</code> function.</p></li>
+<li><p>Find the critical points of <span class="math inline">\(\ell_6\)</span>. So that you can compare results, use seed 123 for all remaining parts of this activity.</p></li>
+<li><p>Use the second derivative test to show that the critical point does indeed correspond to maximum likelihood.</p></li>
+<li><p>Use what we have done above to state the fitted model, with the maximum likelihood parameters. Then plot the data along with the model on the same viewing window to verify that we have indeed found a reasonable fit.</p></li>
 </ol>
 <p>When you finish, start working on <span class="math inline">\(f_4\)</span>.</p>
 </section>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.29">Class.29 on byuimath.com</a></em></p>
 
 
 </section>
@@ -499,6 +746,19 @@ Solution
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

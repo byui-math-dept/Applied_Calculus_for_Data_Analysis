@@ -75,10 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e6ec55d50a8571276e9da61ff62941ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f7919f14b89ae9a431cba0b331f0b52b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 window.MathJax = {
   tex: {
     macros: {
-      ds: "\\displaystyle"
+      ds: "\\displaystyle",
+      diff: ["\\frac{d#1}{d#2}", 2]
     }
   }
 };
@@ -149,7 +154,169 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +415,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -261,7 +429,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#during-class" id="toc-during-class" class="nav-link active" data-scroll-target="#during-class">During Class</a>
+  <li><a href="#between-class-sessions---prep-for-day-14" id="toc-between-class-sessions---prep-for-day-14" class="nav-link active" data-scroll-target="#between-class-sessions---prep-for-day-14">Between Class Sessions - Prep for Day 14 </a><a id="tasklist" class="nav-link" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#regular-reminders" id="toc-regular-reminders" class="nav-link" data-scroll-target="#regular-reminders">Regular Reminders</a>
+  <ul class="collapse">
+  <li><a href="#skill-practice-ka-homework" id="toc-skill-practice-ka-homework" class="nav-link" data-scroll-target="#skill-practice-ka-homework">Skill Practice (KA Homework)</a></li>
+  </ul></li>
+  <li><a href="#applied-practice-project-work" id="toc-applied-practice-project-work" class="nav-link" data-scroll-target="#applied-practice-project-work">Applied Practice (Project Work)</a></li>
+  </ul></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During Class</a>
   <ul class="collapse">
   <li><a href="#brain-gains" id="toc-brain-gains" class="nav-link" data-scroll-target="#brain-gains">Brain Gains</a></li>
   <li><a href="#group-meeting" id="toc-group-meeting" class="nav-link" data-scroll-target="#group-meeting">Group Meeting</a>
@@ -276,6 +452,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -296,16 +473,96 @@ window.Quarto = {
 </header>
 
 
+<section id="between-class-sessions---prep-for-day-14" class="level1">
+<h1>Between Class Sessions - Prep for Day 14 <a id="tasklist"></a></h1>
+<!-- from Prep.GeneralInstructions -->
+<p>Please spend around 2 hours working between class sessions, focusing on the tasks below. Use any extra time to complete KnewtonAlta assignments and/or work on Project tasks.</p>
+<p>Pick something from your prep today that you can share with your group in class. It might be something new that you learned. It might be questions you have that are still unanswered, or a question along with what helped you eventually answer it. It might be something tricky that you solved. It might be a review topic that helped you remember something. It might be a conversation you had with AI that was helpful. You will have a chance to share this with your peers during class. Come ready to articulate your thinking and questions.</p>
+<p><a id="Prep"></a> ## Preparation ### (1) Probability Exercise (Tropical Storms Example) Read the definitions and complete the exercises below.</p>
+<details>
+<summary>
+Definition: Factorial
+</summary>
+<p>The product of positive integers from 1 to <span class="math inline">\(n\)</span> is called <strong><span class="math inline">\(n\)</span> factorial</strong> and is written <span class="math inline">\(n\)</span>!. We define 0! = 1.</p>
+<p>Examples: <span class="math inline">\(3! = (3)(2)(1) = \prod_{i=1}^{3} i = 6\)</span></p>
+<p>Either of the following commands will calculate <span class="math inline">\(3!\)</span> in R.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math inline">\(n! = (n)(n-1)(n-2) ... (2)(1) = \prod_{k=1}^{n} k\)</span></p>
+</details>
+<details>
+<summary>
+Definition: Poisson Random Variable
+</summary>
+<p>A <strong>Poisson random variable (or Poisson distribution)</strong> is a model for the number of events that occur during a fixed time interval. See <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution on Wikipedia</a>.</p>
+<p>The probability mass function (pmf) for the Poisson distribution is <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> when <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span> and zero otherwise where <span class="math inline">\(\lambda &gt; 0\)</span>.</p>
+<p>Examples: - Let <span class="math inline">\(X\)</span> be the random variable that counts the number of hurricanes in Florida in a given year. - Let <span class="math inline">\(Y\)</span> be the random variable that counts the number of hits on BYU-Idaho’s website in a given minute. - Let <span class="math inline">\(W\)</span> be the random variable that counts the number of cars that go through an intersection in a given hour. The random variables <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, and <span class="math inline">\(W\)</span> are Poisson random variables.</p>
+</details>
+<p>The number of <a href="https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(2000%E2%80%93present)">Florida hurricanes (2000–present)</a> can be thought of as a Poisson random variable, which means we can model the probabilty of having <span class="math inline">\(x\)</span> tropical storms in a year using <span class="math display">\[p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\text{ with }x = 0, 1, 2, 3, ...\text{ where }\lambda &gt; 0.\]</span> The parameter <span class="math inline">\(\lambda\)</span> is a value we would like to determine. The code chunk below defines this probability mass function in R, using a default value of <span class="math inline">\(\lambda = 2\)</span>. Start by exploring the function <span class="math inline">\(p(x; \lambda)\)</span> and how the parameter <span class="math inline">\(\lambda\)</span> affects the plot.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be a whole number</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">1</span>) <span class="co"># x must be a whole number</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x,<span class="at">lambda=</span><span class="dv">5</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">p</span>(x,<span class="at">lambda=</span><span class="fl">2.4</span>)) <span class="co"># lambda just needs to be positive.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Assuming the parameter <span class="math inline">\(\lambda = 2\)</span>, calculate the following and check your answers. - The probability of 4 Florida tropical storms this year. - The probability of 5 Florida tropical storms this year. - The probability of 2 Florida tropical storms this year. - The probability of 3 or more Florida tropical storms this year. - The probability of more than 10 Florida tropical storms this year. - The probability of 2 or less Florida tropical storms this year.</p>
+<details>
+<summary>
+Answers
+</summary>
+<p>Let <span class="math inline">\(X\)</span> be the random variable that counts the number of hurricanes in Florida this year.</p>
+<p>Use the following code to graph the pmf of <span class="math inline">\(X\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">30</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">p</span>(x),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.3</span>),<span class="at">width=</span><span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">length</span>(x)),<span class="at">space=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><span class="math inline">\(P(X = 4) = p(4;2) = 0.09022352\)</span></li>
+<li><span class="math inline">\(P(X = 5) = p(5;2) = 0.03608941\)</span></li>
+<li><span class="math inline">\(P(X = 2) = p(2;2) = 0.2706706\)</span></li>
+<li><span class="math inline">\(P(X \geq 3) = \sum_{i=3}^{\infty} P(X=i) = 1 - \sum_{i=0}^{2} P(X=i) = 1 - (P(X=0) + P(X=1) + P(X=2)) = 0.3233236\)</span></li>
+<li><span class="math inline">\(P(X &gt; 10) = \sum_{i=11}^{\infty} P(X=i) = 1 - \sum_{i=0}^{10} P(X=i) = 0.000008308\)</span></li>
+<li><span class="math inline">\(P(X \leq 2) = P(X=0) + P(X=1) + P(X=2) = 1 - P(X \geq 3) = 0.6766764\)</span></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">5</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">2</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (<span class="fu">p</span>(<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">p</span>(<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">p</span>(<span class="dv">2</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span><span class="sc">-</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fu">p</span>(<span class="dv">0</span>) <span class="sc">+</span> <span class="fu">p</span>(<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">p</span>(<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Now answer the following and come with answers to compare with your group in class. - The probability of less than 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 3\)</span>. - The probability of less than 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 6\)</span>. - The probability of at least 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 6\)</span>. - The probability of more than 12 Florida tropical storms this year using <span class="math inline">\(\lambda  = 5\)</span>.</p>
+<p><a id="PP"></a></p>
+<section id="regular-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="regular-reminders">Regular Reminders</h2>
+<section id="skill-practice-ka-homework" class="level3">
+<h3 class="anchored" data-anchor-id="skill-practice-ka-homework">Skill Practice (KA Homework)</h3>
+<ul>
+<li>Complete 3 – Probability Basics assignment in Knewton Alta</li>
+</ul>
+</section>
+</section>
+<section id="applied-practice-project-work" class="level2">
+<h2 class="anchored" data-anchor-id="applied-practice-project-work">Applied Practice (Project Work)</h2>
+<ul>
+<li>Complete and Submit Project 1 Task 3</li>
+</ul>
+</section>
+</section>
 <section id="during-class" class="level1">
 <h1>During Class</h1>
 <section id="brain-gains" class="level2">
 <h2 class="anchored" data-anchor-id="brain-gains">Brain Gains</h2>
 <p>Let $ h(t) = $. - Compute $ h(2) $. - Solve $ h(t) = 2 $ for $ t $. Let <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> be independent random variables which each return the value of a single toss of one fair six-sided die. - Compute <span class="math inline">\(P(X_1 = 1, X_2 = 4, \text{ and } X_3 = 5)\)</span>. - Compute <span class="math inline">\(P(X_1 \leq 3, X_2\leq 3,\text{ and }X_3\leq 3)\)</span>. Recall that the probability mass function (pmf) for a Poisson distribution is <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span>. Suppose that <span class="math inline">\(Y\)</span> is a random variable with a Poisson distribution with <span class="math inline">\(\lambda = 1\)</span>. - Compute <span class="math inline">\(P(Y=1)\)</span>. - Compute <span class="math inline">\(P(Y=0)\)</span>. - Compute <span class="math inline">\(P(Y&gt;1)\)</span>.</p>
 <p>You may use the code below to help you code in the Poisson distribution.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x must be a whole number</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be a whole number</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details>
 <summary>
 Answers
@@ -329,46 +586,46 @@ p(0,1)
 <p>Start by giving each person a moment to share what they chose to prepare for class. Help each other address any questions. When each person has had a chance to share, move on the other activities.</p>
 <section id="probability-exercise-tropical-storms-example-from-prep" class="level3">
 <h3 class="anchored" data-anchor-id="probability-exercise-tropical-storms-example-from-prep">Probability Exercise (Tropical Storms Example from Prep)</h3>
-<p>Between class we worked with a https://en.wikipedia.org/wiki/Poisson_distribution to model the number of tropical storms in Florida in a given year. The probability mass function for a Poisson distribution is given by <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span>. You can use the following code to use this function in R.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x must be a whole number</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Between class we worked with a <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> to model the number of tropical storms in Florida in a given year. The probability mass function for a Poisson distribution is given by <span class="math inline">\(p(x; \lambda) = \frac{\lambda^x}{x!}e^{-\lambda}\)</span> with <span class="math inline">\(x = 0, 1, 2, 3, ...\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span>. You can use the following code to use this function in R.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be a whole number</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compare your answers that you got for the last 4 questions of yesterday’s prep work. These 4 problems asked you to compute each of the things below. - The probability of less than 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 3\)</span>. - The probability of less than 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 6\)</span>. - The probability of at least 8 Florida tropical storms this year using <span class="math inline">\(\lambda = 6\)</span>. - The probability of more than 12 Florida tropical storms this year using <span class="math inline">\(\lambda  = 5\)</span>.</p>
 </section>
 <section id="activity---florida-tropical-storms-revisited" class="level3">
 <h3 class="anchored" data-anchor-id="activity---florida-tropical-storms-revisited">Activity - Florida Tropical Storms Revisited</h3>
 <p>Read through the following work, execute the code chunks, and then complete the additional calculations and discuss the questions shown at the end.</p>
 <p>Let <span class="math inline">\(X\)</span> be the random variable that counts the number of tropical storms in Florida this year. Assuming the parameter <span class="math inline">\(\lambda = 2\)</span>, we calculate the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Define the Poisson distribution with a default value <span class="cf">for</span> lambda</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x must be a whole number</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">4</span> Florida tropical storms this <span class="fu">year</span> (<span class="at">lambda =</span> <span class="dv">2</span> is assumed)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>) </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">4</span> Florida tropical storms this <span class="fu">year</span> (<span class="at">lambda =</span> <span class="dv">2</span> is assigned <span class="sc">-</span> should match above. )</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>,<span class="dv">2</span>) </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">5</span> Florida tropical storms this <span class="fu">year</span> (<span class="at">lambda =</span> <span class="dv">2</span> is assumed)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">5</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">2</span> Florida tropical storms this <span class="fu">year</span> (<span class="at">lambda =</span> <span class="dv">2</span> is assumed)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">2</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="sc">$</span>x<span class="sc">$</span> Florida tropical storms this <span class="fu">year</span> (<span class="at">lambda =</span> <span class="dv">2</span> is assumed) <span class="cf">for</span> each x from <span class="dv">0</span> to <span class="dv">10</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Define the Poisson distribution with a default value for lambda</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x must be a whole number</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 4 Florida tropical storms this year (lambda = 2 is assumed)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>) </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 4 Florida tropical storms this year (lambda = 2 is assigned - should match above. )</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>,<span class="dv">2</span>) </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 5 Florida tropical storms this year (lambda = 2 is assumed)</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">5</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 2 Florida tropical storms this year (lambda = 2 is assumed)</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">2</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of $x$ Florida tropical storms this year (lambda = 2 is assumed) for each x from 0 to 10</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The value for <span class="math inline">\(\lambda\)</span> does not have to be 2. We can instead change it to 5, or some other value, and repeat the computations above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">4</span> Florida tropical storms this year, using lambda <span class="ot">=</span> <span class="fl">5.</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>,<span class="dv">5</span>) </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="sc">$</span>x<span class="sc">$</span> Florida tropical storms this year, using lambda <span class="ot">=</span> <span class="dv">5</span>, <span class="cf">for</span> each x from <span class="dv">0</span> to <span class="dv">10</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">5</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="sc">$</span>x<span class="sc">$</span> Florida tropical storms this year, using lambda <span class="ot">=</span> <span class="dv">1</span>, <span class="cf">for</span> each x from <span class="dv">0</span> to <span class="dv">10</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 4 Florida tropical storms this year, using lambda = 5.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>,<span class="dv">5</span>) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of $x$ Florida tropical storms this year, using lambda = 5, for each x from 0 to 10</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">5</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of $x$ Florida tropical storms this year, using lambda = 1, for each x from 0 to 10</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="additional-calculations-and-questions" class="level4">
 <h4 class="anchored" data-anchor-id="additional-calculations-and-questions">Additional Calculations and Questions</h4>
 <ul>
@@ -387,36 +644,38 @@ p(0,1)
 <section id="activity---florida-tropical-storms-extended" class="level3">
 <h3 class="anchored" data-anchor-id="activity---florida-tropical-storms-extended">Activity - Florida Tropical Storms Extended</h3>
 <p>Let <span class="math inline">\(X_1\)</span> be the random variable that counts the number of tropical storms in Florida this year, <span class="math inline">\(X_2\)</span> be the random variable that counts the number of tropical storms in Florida next year, and <span class="math inline">\(X_3\)</span> be the random variable that counts the number of tropical storms in Florida the year after. Assuming <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> are independent Poisson random variables each with the the same parameter <span class="math inline">\(\lambda = 2\)</span>. This means we have <span class="math display">\[p_{3yr}(x_1, x_2, x_3; \lambda) = \left(\frac{\lambda^{x_1}}{x_1!}e^{-\lambda}\right) \left(\frac{\lambda^{x_2}}{x_2!}e^{-\lambda}\right) \left(\frac{\lambda^{x_3}}{x_3!}e^{-\lambda}\right) = \frac{\lambda^{x_1 + x_2 + x_3}}{x_1!x_2!x_3!}e^{-3\lambda}\]</span> with <span class="math inline">\(x_1 = 0, 1, 2, 3, ...\)</span>, <span class="math inline">\(x_2 = 0, 1, 2, 3, ...\)</span>, and <span class="math inline">\(x_3 = 0, 1, 2, 3, ...\)</span>, (and zero otherwise) where <span class="math inline">\(\lambda &gt; 0.\)</span> The following code chunk provides two versions to input this function. The first requires you input a vector <span class="math inline">\(x\)</span> consisting of the number of tropical storms that occurred each year (and can be used if you want to look at a period of 3 years, or even 7 years, by just changing the number of inputs to the vector). The second version will only work with a 3 year period.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> each element of x must be a whole number</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>p3v2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x1,x2,x3,<span class="at">lambda=</span><span class="dv">2</span>){</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> x1, x2, and x3 must be whole numbers</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>(x1<span class="sc">+</span>x2<span class="sc">+</span>x3)<span class="sc">/</span>(<span class="fu">factorial</span>(x1)<span class="sc">*</span><span class="fu">factorial</span>(x2)<span class="sc">*</span><span class="fu">factorial</span>(x3)))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">*</span>lambda)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p3v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each element of x must be a whole number</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>((lambda<span class="sc">^</span>x<span class="sc">/</span><span class="fu">factorial</span>(x))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>lambda))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>p3v2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x1,x2,x3,<span class="at">lambda=</span><span class="dv">2</span>){</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># x1, x2, and x3 must be whole numbers</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  (lambda<span class="sc">^</span>(x1<span class="sc">+</span>x2<span class="sc">+</span>x3)<span class="sc">/</span>(<span class="fu">factorial</span>(x1)<span class="sc">*</span><span class="fu">factorial</span>(x2)<span class="sc">*</span><span class="fu">factorial</span>(x3)))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">*</span>lambda)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can now calculate the following probabilities:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">4</span> Florida tropical storms this year, <span class="dv">4</span> Florida tropical storms <span class="cf">next</span> year, and <span class="dv">8</span> Florida tropical storms the year <span class="fu">after</span> (using <span class="sc">$</span>\<span class="at">lambda =</span> <span class="dv">2</span><span class="sc">$</span> as assumed).</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The same probability as above, using the other version</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The same probabilty as above by just multiplying probabilities of independent events together. </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>)<span class="sc">*</span><span class="fu">p</span>(<span class="dv">4</span>)<span class="sc">*</span><span class="fu">p</span>(<span class="dv">8</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">2</span> Florida tropical storms this year, <span class="dv">5</span> Florida tropical storms <span class="cf">next</span> year, and <span class="dv">3</span> Florida tropical storms the year after.</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after (using $\lambda = 2$ as assumed).</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The same probability as above, using the other version</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#The same probabilty as above by just multiplying probabilities of independent events together. </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span>(<span class="dv">4</span>)<span class="sc">*</span><span class="fu">p</span>(<span class="dv">4</span>)<span class="sc">*</span><span class="fu">p</span>(<span class="dv">8</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 2 Florida tropical storms this year, 5 Florida tropical storms next year, and 3 Florida tropical storms the year after.</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Again, we can change <span class="math inline">\(\lambda\)</span> to another value, and see how these probabilities change.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> The probability of <span class="dv">4</span> Florida tropical storms this year, <span class="dv">4</span> Florida tropical storms <span class="cf">next</span> year, and <span class="dv">8</span> Florida tropical storms the year after, assuming the parameter <span class="sc">$</span>\lambda <span class="ot">=</span> <span class="dv">5</span><span class="sc">$</span>.</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">5</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Repeat the above, but with lambda <span class="ot">=</span> <span class="dv">1</span>, and then with lambda <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">1</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">10</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">1</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we know there will be 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after, then our calculations above can help us determine a good value for the parameter <span class="math inline">\(\lambda\)</span>. The value <span class="math inline">\(\lambda=10\)</span> is a better option that <span class="math inline">\(\lambda = 1\)</span> because <span class="math inline">\(p3(4,4,8,10) = 4.029234e-05 &gt; 2.143747e-09 = p3(4,4,8,1)\)</span>. - Try various other values for <span class="math inline">\(\lambda\)</span> and calculate the probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after. - What criteria would you use to decide “what is the best value for the parameter <span class="math inline">\(\lambda\)</span>?” - Construct a plot (use p3v2) that has <span class="math inline">\(\lambda\)</span> on the horizontal(<span class="math inline">\(x\)</span>) axis, and on the vertical(<span class="math inline">\(y\)</span>) axis we place the probability of 4, then 4, then 8 Florida tropical storms for the next three years assuming that value for <span class="math inline">\(\lambda\)</span>. Describe the shape of this plot, and how can we use it to find the “best value” for <span class="math inline">\(\lambda\)</span>. - In the plot you made, update your code to use p3v1 instead of p3v2. If you notice an error, that’s OK. The problem is that R does not know how to use two vectors as an input to <span class="math inline">\(p\)</span> without more information. The sapply function deals with this and shows up in the prep tomorrow. - Use the data from https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(200080%93present) for the years 2000-2005 (6 years) to estimate a good value for lambda (you’ll need to use p3v1 now, as there are 6 data points instead of 3).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after, assuming the parameter $\lambda = 5$.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">5</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Repeat the above, but with lambda = 1, and then with lambda = 10</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">1</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v1</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>),<span class="dv">10</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">1</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p3v2</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we know there will be 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after, then our calculations above can help us determine a good value for the parameter <span class="math inline">\(\lambda\)</span>. The value <span class="math inline">\(\lambda=10\)</span> is a better option that <span class="math inline">\(\lambda = 1\)</span> because <span class="math inline">\(p3(4,4,8,10) = 4.029234e-05 &gt; 2.143747e-09 = p3(4,4,8,1)\)</span>. - Try various other values for <span class="math inline">\(\lambda\)</span> and calculate the probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after. - What criteria would you use to decide “what is the best value for the parameter <span class="math inline">\(\lambda\)</span>?” - Construct a plot (use p3v2) that has <span class="math inline">\(\lambda\)</span> on the horizontal(<span class="math inline">\(x\)</span>) axis, and on the vertical(<span class="math inline">\(y\)</span>) axis we place the probability of 4, then 4, then 8 Florida tropical storms for the next three years assuming that value for <span class="math inline">\(\lambda\)</span>. Describe the shape of this plot, and how can we use it to find the “best value” for <span class="math inline">\(\lambda\)</span>. - In the plot you made, update your code to use p3v1 instead of p3v2. If you notice an error, that’s OK. The problem is that R does not know how to use two vectors as an input to <span class="math inline">\(p\)</span> without more information. The sapply function deals with this and shows up in the prep tomorrow. - Use the data from the <a href="https://en.wikipedia.org/wiki/List_of_Florida_hurricanes_(2000%E2%80%93present)">List of Florida hurricanes (2000–present)</a> for the years 2000-2005 (6 years) to estimate a good value for lambda (you’ll need to use p3v1 now, as there are 6 data points instead of 3).</p>
+<hr>
+<p><em>Source: <a href="https://byuimath.com/clarkc/all/119/index.php?n=Class.14">Class.14 on byuimath.com</a></em></p>
 
 
 </section>
@@ -426,6 +685,19 @@ p(0,1)
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
